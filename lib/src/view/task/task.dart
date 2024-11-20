@@ -41,6 +41,16 @@ class _TaskWidgetState extends State<TaskWidget> {
     ],
     'Nov 20, 2024': [
       {
+        'title': 'Cho gà ăn',
+        'status': 'Đã làm',
+        'location': 'Chuồng gà Trưởng Thành',
+      },
+      {
+        'title': 'Vệ sinh chuồng',
+        'status': 'Đang làm',
+        'location': 'Chuồng gà Trưởng Thành',
+      },
+      {
         'title': 'Thu hoạch trứng',
         'status': 'Đang làm',
         'location': 'Chuồng gà Trưởng Thành',

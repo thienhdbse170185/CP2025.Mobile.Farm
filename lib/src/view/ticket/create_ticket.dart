@@ -1,19 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // For picking images
 import 'dart:io';
 
-import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle files
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 
-class HealthReportWidget extends StatefulWidget {
-  const HealthReportWidget({super.key});
+class CreateTicketWidget extends StatefulWidget {
+  const CreateTicketWidget({super.key});
 
   @override
-  State<HealthReportWidget> createState() => _HealthReportWidgetState();
+  State<CreateTicketWidget> createState() => _CreateTicketWidgetState();
 }
 
-class _HealthReportWidgetState extends State<HealthReportWidget> {
+class _CreateTicketWidgetState extends State<CreateTicketWidget> {
   final TextEditingController _noteController = TextEditingController();
   final List<File> _images = [];
+  late DateTime _selectedExpiryDate;
+  final TextEditingController _expiryDateController = TextEditingController();
 
   // Function to pick multiple images
   Future<void> _pickImages() async {
@@ -24,11 +27,31 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
     });
   }
 
+  _selectExpiryDate(BuildContext context) async {
+    await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2024, 1),
+            lastDate: DateTime(2030, 12))
+        .then((selectedDate) {
+      if (selectedDate != null) {
+        setState(() {
+          _selectedExpiryDate = selectedDate;
+        });
+        _expiryDateController
+          ..text = DateFormat.yMMMd().format(_selectedExpiryDate)
+          ..selection = TextSelection.fromPosition(TextPosition(
+              offset: _expiryDateController.text.length,
+              affinity: TextAffinity.upstream));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Báo cáo sức khỏe'),
+          title: const Text('Báo cáo vấn đề'),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -59,7 +82,7 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
                     text: TextSpan(
                       style: Theme.of(context).textTheme.bodyMedium,
                       children: [
-                        const TextSpan(text: 'Vụ nuôi '),
+                        const TextSpan(text: 'Lý do báo cáo '),
                         TextSpan(
                             text: '*',
                             style: TextStyle(
@@ -68,27 +91,31 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
                     ),
                   ),
                   dropdownMenuEntries: const [
-                    DropdownMenuEntry(value: 'Vụ nuôi 1', label: 'Vụ nuôi 1'),
-                    DropdownMenuEntry(value: 'Vụ nuôi 2', label: 'Vụ nuôi 2'),
-                    DropdownMenuEntry(value: 'Vụ nuôi 3', label: 'Vụ nuôi 3'),
+                    DropdownMenuEntry(value: 'Đèn bị hư', label: 'Đèn bị hư'),
+                    DropdownMenuEntry(
+                        value: 'Thiết bị cảm biến hư',
+                        label: 'Thiết bị cảm biến hư'),
+                    DropdownMenuEntry(value: 'Camera hư', label: 'Camera hư'),
                   ],
                   width: MediaQuery.of(context).size.width - 32,
                 ),
                 const SizedBox(height: 16),
-                const TextFieldRequired(
-                    label: 'Triệu chứng bệnh',
-                    hintText: 'Nhập triệu chứng bệnh'),
-                const SizedBox(height: 16),
-                const TextFieldRequired(
-                    label: 'Số lượng con vật bị bệnh',
-                    hintText: 'Nhập số lượng'),
+                TextFieldRequired(
+                  label: 'Thời gian xảy ra',
+                  hintText: 'Chọn ngày giờ xảy ra',
+                  suffixIcon: const Icon(Icons.calendar_month),
+                  isDisabled: true,
+                  onTap: () {
+                    _selectExpiryDate(context);
+                  },
+                ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: _noteController,
                   maxLines: 5,
                   decoration: InputDecoration(
-                    labelText: 'Ghi chú',
-                    hintText: 'Nhập ghi chú',
+                    labelText: 'Chi tiết',
+                    hintText: 'Mô tả chi tiết vấn đề',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

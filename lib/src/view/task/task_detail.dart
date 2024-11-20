@@ -36,6 +36,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Chi tiết công việc'),
         actions: [
           IconButton(
             icon: const Icon(Icons.attach_file),

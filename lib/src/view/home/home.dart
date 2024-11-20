@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smart_farm/src/core/router.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -190,95 +192,100 @@ class _HomeWidgetState extends State<HomeWidget> {
                 itemBuilder: (context, index) {
                   final task = tasks[index];
                   final color = cardColors[index % cardColors.length];
-                  return Card(
-                    color: color,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image:
-                              AssetImage('assets/images/line_background.png'),
-                          fit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () {
+                      context.push(RouteName.cage);
+                    },
+                    child: Card(
+                      color: color,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image:
+                                AssetImage('assets/images/line_background.png'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    task['title']!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(color: Colors.white),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    'Task tiếp theo:',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(color: Colors.white70),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    children: [
-                                      const Icon(Icons.circle,
-                                          size: 8, color: Colors.white),
-                                      const SizedBox(width: 8),
-                                      Text(
-                                        task['task']!,
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Tiến độ công việc',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(color: Colors.white),
-                                      ),
-                                      Text(
-                                        task['progress']!,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 8),
-                                  LinearProgressIndicator(
-                                    borderRadius: BorderRadius.circular(10),
-                                    value: double.parse(task['progress']!
-                                            .replaceAll('%', '')) /
-                                        100,
-                                    backgroundColor: Colors.white30,
-                                    valueColor:
-                                        const AlwaysStoppedAnimation<Color>(
-                                            Colors.white),
-                                  ),
-                                ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      task['title']!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(color: Colors.white),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Task tiếp theo:',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(color: Colors.white70),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.circle,
+                                            size: 8, color: Colors.white),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          task['task']!,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Tiến độ công việc',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium
+                                              ?.copyWith(color: Colors.white),
+                                        ),
+                                        Text(
+                                          task['progress']!,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium
+                                              ?.copyWith(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    LinearProgressIndicator(
+                                      borderRadius: BorderRadius.circular(10),
+                                      value: double.parse(task['progress']!
+                                              .replaceAll('%', '')) /
+                                          100,
+                                      backgroundColor: Colors.white30,
+                                      valueColor:
+                                          const AlwaysStoppedAnimation<Color>(
+                                              Colors.white),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 16),
-                            Lottie.asset(
-                              task['image']!,
-                              width: 100,
-                              height: 100,
-                            ),
-                          ],
+                              const SizedBox(width: 16),
+                              Lottie.asset(
+                                task['image']!,
+                                width: 100,
+                                height: 100,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
