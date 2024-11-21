@@ -133,7 +133,9 @@ class _TaskWidgetState extends State<TaskWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(RouteName.notification);
+                    },
                     icon: const Badge(
                         label: Text('3'),
                         child: Icon(
@@ -216,13 +218,22 @@ class _TaskWidgetState extends State<TaskWidget> {
                         Padding(
                           padding: const EdgeInsets.all(16),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment
+                                .stretch, // Để text luôn nằm bên trái
+                            mainAxisAlignment: MainAxisAlignment
+                                .spaceBetween, // Tạo khoảng cách giữa các phần tử
                             children: [
-                              Icon(
-                                task['icon'],
-                                size: 32,
-                                color: Colors.white,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween, // Tạo khoảng cách giữa icon và text
+                                children: [
+                                  const Spacer(),
+                                  Icon(
+                                    task['icon'],
+                                    size: 32,
+                                    color: Colors.white,
+                                  ),
+                                ],
                               ),
                               Text(
                                 task['title'],
@@ -253,58 +264,103 @@ class _TaskWidgetState extends State<TaskWidget> {
               ],
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: tasksByDate[formattedDate]?.length ?? 0,
-                itemBuilder: (context, index) {
-                  final task = tasksByDate[formattedDate]![index];
-                  return GestureDetector(
-                    onTap: () {
-                      context.push(RouteName.taskDetail);
-                    },
-                    child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      color: Theme.of(context).colorScheme.secondaryContainer,
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 16),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: ListTile(
-                          leading: const Icon(Icons.task_alt_outlined),
-                          title: Text(task['title'],
-                              style: Theme.of(context).textTheme.titleMedium),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Trạng thái: ${task['status']}',
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
+              child: tasksByDate[formattedDate]?.isNotEmpty ?? false
+                  ? ListView.builder(
+                      itemCount: tasksByDate[formattedDate]!.length,
+                      itemBuilder: (context, index) {
+                        final task = tasksByDate[formattedDate]![index];
+                        return GestureDetector(
+                          onTap: () {
+                            context.push(RouteName.taskDetail);
+                          },
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 16),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: ListTile(
+                                leading: const Icon(Icons.task_alt_outlined),
+                                title: Text(task['title'],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Trạng thái: ${task['status']}',
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      task['location'],
+                                      style: TextStyle(
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                trailing: Icon(
+                                  Icons.chevron_right_outlined,
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
+                                  size: 24,
                                 ),
                               ),
-                              const SizedBox(height: 4),
-                              Text(
-                                task['location'],
-                                style: TextStyle(
-                                  color: Colors.grey[600],
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(90),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer
+                                    .withOpacity(0.4)),
+                            width: 120,
+                            height: 120,
+                            child: Icon(
+                              Icons.task_alt_outlined,
+                              size: 64,
+                              color: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.4),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Không có công việc nào\n trong ngày này',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant,
                                 ),
-                              ),
-                            ],
+                            textAlign: TextAlign.center,
                           ),
-                          trailing: Icon(
-                            Icons.chevron_right_outlined,
-                            color: Theme.of(context).colorScheme.onSurface,
-                            size: 24,
-                          ),
-                        ),
+                        ],
                       ),
                     ),
-                  );
-                },
-              ),
             ),
           ],
         ),
