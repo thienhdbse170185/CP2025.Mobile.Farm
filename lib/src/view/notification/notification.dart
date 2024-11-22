@@ -15,7 +15,6 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Thông báo'),
-        automaticallyImplyLeading: false,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
@@ -46,7 +45,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                 width: 180,
                 height: 180,
                 child: Icon(
-                  Icons.notifications_paused_outlined,
+                  Icons.inbox_outlined,
                   color: Theme.of(context).primaryColor.withOpacity(0.4),
                   size: 100,
                 ),

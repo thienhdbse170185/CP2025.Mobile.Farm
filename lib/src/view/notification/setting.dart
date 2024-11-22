@@ -14,7 +14,6 @@ class _NotificationSettingWidgetState extends State<NotificationSettingWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cài đặt thông báo'),
-        automaticallyImplyLeading: false,
       ),
       body: const Center(child: Text('Notification Setting screen')),
     );
