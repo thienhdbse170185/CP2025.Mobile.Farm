@@ -36,7 +36,17 @@ class _TaskWidgetState extends State<TaskWidget> {
       {
         'title': 'Làm sạch chuồng',
         'status': 'Đã làm',
-        'location': 'Chuồng gà Non',
+        'location': 'Chuồng gà Con',
+      },
+      {
+        'title': 'Kiểm tra sức khỏe gà',
+        'status': 'Đã làm',
+        'location': 'Chuồng gà Con',
+      },
+      {
+        'title': 'Cho gà ăn',
+        'status': 'Đã làm',
+        'location': 'Chuồng gà Đông Tảo',
       },
     ],
     'Nov 20, 2024': [
@@ -52,13 +62,23 @@ class _TaskWidgetState extends State<TaskWidget> {
       },
       {
         'title': 'Thu hoạch trứng',
-        'status': 'Đang làm',
+        'status': 'Chưa làm',
         'location': 'Chuồng gà Trưởng Thành',
       },
       {
         'title': 'Kiểm tra sức khỏe gà',
-        'status': 'Đang làm',
+        'status': 'Chưa làm',
         'location': 'Chuồng gà Trưởng Thành',
+      },
+      {
+        'title': 'Làm sạch chuồng',
+        'status': 'Chưa làm',
+        'location': 'Chuồng gà Con',
+      },
+      {
+        'title': 'Tiêm vắc-xin',
+        'status': 'Chưa làm',
+        'location': 'Chuồng gà Đông Tảo',
       },
     ],
   };
@@ -80,6 +100,18 @@ class _TaskWidgetState extends State<TaskWidget> {
     return selectedDate.year == now.year &&
         selectedDate.month == now.month &&
         selectedDate.day == now.day;
+  }
+
+  // Function to group tasks by location
+  Map<String, List<Map<String, dynamic>>> get groupedTasks {
+    final tasks = tasksByDate[formattedDate] ?? [];
+    final grouped = <String, List<Map<String, dynamic>>>{};
+
+    for (final task in tasks) {
+      final location = task['location'] as String;
+      grouped.putIfAbsent(location, () => []).add(task);
+    }
+    return grouped;
   }
 
   // Function to show the date picker
@@ -133,7 +165,9 @@ class _TaskWidgetState extends State<TaskWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(RouteName.notification);
+                    },
                     icon: const Badge(
                         label: Text('3'),
                         child: Icon(
@@ -216,13 +250,22 @@ class _TaskWidgetState extends State<TaskWidget> {
                         Padding(
                           padding: const EdgeInsets.all(16),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment
+                                .stretch, // Để text luôn nằm bên trái
+                            mainAxisAlignment: MainAxisAlignment
+                                .spaceBetween, // Tạo khoảng cách giữa các phần tử
                             children: [
-                              Icon(
-                                task['icon'],
-                                size: 32,
-                                color: Colors.white,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween, // Tạo khoảng cách giữa icon và text
+                                children: [
+                                  const Spacer(),
+                                  Icon(
+                                    task['icon'],
+                                    size: 32,
+                                    color: Colors.white,
+                                  ),
+                                ],
                               ),
                               Text(
                                 task['title'],
@@ -241,74 +284,140 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
             ),
             const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Danh sách công việc',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.sort_rounded)),
-              ],
-            ),
             Expanded(
-              child: ListView.builder(
-                itemCount: tasksByDate[formattedDate]?.length ?? 0,
-                itemBuilder: (context, index) {
-                  final task = tasksByDate[formattedDate]![index];
-                  return GestureDetector(
-                    onTap: () {
-                      context.push(RouteName.taskDetail);
-                    },
-                    child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      color: Theme.of(context).colorScheme.secondaryContainer,
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 16),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: ListTile(
-                          leading: const Icon(Icons.task_alt_outlined),
-                          title: Text(task['title'],
-                              style: Theme.of(context).textTheme.titleMedium),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Trạng thái: ${task['status']}',
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                task['location'],
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ],
+              child: tasksByDate[formattedDate]?.isNotEmpty ?? false
+                  ? ListView(
+                      children:
+                          _buildExpansionTiles(tasksByDate[formattedDate]!),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(90),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer
+                                  .withOpacity(0.4),
+                            ),
+                            width: 120,
+                            height: 120,
+                            child: Icon(
+                              Icons.task_alt_outlined,
+                              size: 64,
+                              color: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.4),
+                            ),
                           ),
-                          trailing: Icon(
-                            Icons.chevron_right_outlined,
-                            color: Theme.of(context).colorScheme.onSurface,
-                            size: 24,
+                          const SizedBox(height: 16),
+                          Text(
+                            'Không có công việc nào\n trong ngày này',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant,
+                                ),
+                            textAlign: TextAlign.center,
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  );
-                },
-              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _buildExpansionTiles(List<Map<String, dynamic>> tasks) {
+    // Nhóm tasks theo location
+    final Map<String, List<Map<String, dynamic>>> tasksByLocation = {};
+    for (var task in tasks) {
+      final location = task['location'];
+      if (tasksByLocation[location] == null) {
+        tasksByLocation[location] = [];
+      }
+      tasksByLocation[location]!.add(task);
+    }
+
+    // Tạo danh sách ExpansionTile
+    return tasksByLocation.entries.map((entry) {
+      final location = entry.key;
+      final locationTasks = entry.value;
+
+      return ExpansionTile(
+        title: Text(
+          location,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        children: locationTasks.map((task) {
+          // Cập nhật UI của từng task bên trong
+          final status = task['status'];
+          final isCompleted = status == 'Đã làm';
+          final isInProgress = status == 'Đang làm';
+
+          return Container(
+            margin: const EdgeInsets.only(bottom: 8),
+            child: GestureDetector(
+              onTap: () {
+                if (!isCompleted) {
+                  context.push(RouteName.taskDetail);
+                }
+              },
+              child: Card(
+                elevation: 1,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  side: BorderSide(
+                    color: isInProgress
+                        ? Theme.of(context).primaryColor
+                        : Colors.transparent,
+                  ),
+                ),
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: Icon(
+                      isCompleted
+                          ? Icons.task_alt
+                          : (isInProgress ? Icons.timelapse : Icons.pending),
+                      color: isCompleted
+                          ? Colors.green
+                          : (isInProgress
+                              ? Colors.orange
+                              : Theme.of(context).iconTheme.color),
+                    ),
+                    title: Opacity(
+                      opacity: isCompleted ? 0.5 : 1.0,
+                      child: Text(task['title'],
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    decoration: isCompleted
+                                        ? TextDecoration.lineThrough
+                                        : null,
+                                  )),
+                    ),
+                    subtitle: Text('Trạng thái: ${task['status']}'),
+                    trailing: Icon(
+                      Icons.chevron_right_outlined,
+                      color: Theme.of(context).colorScheme.onSurface,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      );
+    }).toList();
   }
 }
