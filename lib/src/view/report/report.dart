@@ -59,7 +59,7 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
                     text: TextSpan(
                       style: Theme.of(context).textTheme.bodyMedium,
                       children: [
-                        const TextSpan(text: 'Vụ nuôi '),
+                        const TextSpan(text: 'Triệu chứng bệnh '),
                         TextSpan(
                             text: '*',
                             style: TextStyle(
@@ -68,16 +68,15 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
                     ),
                   ),
                   dropdownMenuEntries: const [
-                    DropdownMenuEntry(value: 'Vụ nuôi 1', label: 'Vụ nuôi 1'),
-                    DropdownMenuEntry(value: 'Vụ nuôi 2', label: 'Vụ nuôi 2'),
-                    DropdownMenuEntry(value: 'Vụ nuôi 3', label: 'Vụ nuôi 3'),
+                    DropdownMenuEntry(
+                        value: 'Triệu chứng 1', label: 'Triệu chứng 1'),
+                    DropdownMenuEntry(
+                        value: 'Triệu chứng 2', label: 'Triệu chứng 2'),
+                    DropdownMenuEntry(
+                        value: 'Triệu chứng 3', label: 'Triệu chứng 3'),
                   ],
                   width: MediaQuery.of(context).size.width - 32,
                 ),
-                const SizedBox(height: 16),
-                const TextFieldRequired(
-                    label: 'Triệu chứng bệnh',
-                    hintText: 'Nhập triệu chứng bệnh'),
                 const SizedBox(height: 16),
                 const TextFieldRequired(
                     label: 'Số lượng con vật bị bệnh',

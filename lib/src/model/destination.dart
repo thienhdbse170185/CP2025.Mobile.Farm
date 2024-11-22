@@ -23,7 +23,7 @@ const destinations = <Destination>[
       icon: Icons.info_outline_rounded,
       iconSelected: Icons.info_rounded),
   Destination(
-      label: 'Cá nhân',
-      icon: Icons.account_circle_outlined,
-      iconSelected: Icons.account_circle_rounded),
+      label: 'Kho',
+      icon: Icons.warehouse_outlined,
+      iconSelected: Icons.warehouse_rounded),
 ];

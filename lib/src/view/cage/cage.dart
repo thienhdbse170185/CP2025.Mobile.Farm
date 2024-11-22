@@ -114,76 +114,88 @@ class _CageWidgetState extends State<CageWidget> {
                                     .titleMedium
                                     ?.copyWith(color: Colors.white),
                               ),
-                              const SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Tiến độ công việc',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(color: Colors.white),
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
+                              if (inProgressTasks.isEmpty &&
+                                  doneTasks.isEmpty) ...[
+                                const SizedBox(height: 8),
+                                Text('Không có Task',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(color: Colors.white)),
+                                const SizedBox(height: 8)
+                              ] else ...[
+                                const SizedBox(height: 20),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Tiến độ công việc',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium
+                                              ?.copyWith(color: Colors.white),
+                                        ),
+                                        RichText(
+                                          text: TextSpan(
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(color: Colors.white),
+                                            children: [
+                                              const TextSpan(text: 'Đã done: '),
+                                              TextSpan(
+                                                text:
+                                                    '${doneTasks.length}', // Số task đã làm
+                                                style: const TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    '/${doneTasks.length + inProgressTasks.length} task.',
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(width: 16),
+                                    Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 50,
+                                          height: 50,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 5,
+                                            value: doneTasks.isNotEmpty
+                                                ? doneTasks.length /
+                                                    (doneTasks.length +
+                                                        inProgressTasks.length)
+                                                : 0.0,
+                                            backgroundColor: Colors.white30,
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                    Color>(Colors.white),
+                                          ),
+                                        ),
+                                        Text(
+                                          '${((doneTasks.length / (doneTasks.length + inProgressTasks.length).clamp(1, double.infinity)) * 100).round()}%',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium
                                               ?.copyWith(color: Colors.white),
-                                          children: [
-                                            const TextSpan(text: 'Đã done: '),
-                                            TextSpan(
-                                              text:
-                                                  '${doneTasks.length}', // Số task đã làm
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  '/${doneTasks.length + inProgressTasks.length} task.',
-                                            ),
-                                          ],
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(width: 16),
-                                  Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 50,
-                                        height: 50,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 5,
-                                          value: doneTasks.isNotEmpty
-                                              ? doneTasks.length /
-                                                  (doneTasks.length +
-                                                      inProgressTasks.length)
-                                              : 0.0,
-                                          backgroundColor: Colors.white30,
-                                          valueColor:
-                                              const AlwaysStoppedAnimation<
-                                                  Color>(Colors.white),
-                                        ),
-                                      ),
-                                      Text(
-                                        '${(doneTasks.length / (doneTasks.length + inProgressTasks.length) * 100).round()}%',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
                               const SizedBox(height: 8),
                               ElevatedButton(
                                   onPressed: () {
@@ -206,16 +218,56 @@ class _CageWidgetState extends State<CageWidget> {
               ),
               const SizedBox(height: 16),
 
-              // In-progress tasks
-              SectionHeader(title: 'Đang làm (${inProgressTasks.length})'),
-              const SizedBox(height: 8),
-              TaskList(tasks: inProgressTasks),
+              if (inProgressTasks.isEmpty && doneTasks.isEmpty) ...[
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(90),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer
+                                  .withOpacity(0.4)),
+                          width: 120,
+                          height: 120,
+                          child: Icon(
+                            Icons.task_alt_outlined,
+                            size: 64,
+                            color:
+                                Theme.of(context).primaryColor.withOpacity(0.4),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Không có công việc nào\n trong hôm nay',
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .outlineVariant,
+                                  ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ] else ...[
+                // In-progress tasks
+                SectionHeader(title: 'Đang làm (${inProgressTasks.length})'),
+                const SizedBox(height: 8),
+                TaskList(tasks: inProgressTasks),
 
-              // Done tasks
-              const SizedBox(height: 16),
-              SectionHeader(title: 'Đã làm (${doneTasks.length})'),
-              const SizedBox(height: 8),
-              TaskList(tasks: doneTasks),
+                // Done tasks
+                const SizedBox(height: 16),
+                SectionHeader(title: 'Đã làm (${doneTasks.length})'),
+                const SizedBox(height: 8),
+                TaskList(tasks: doneTasks),
+              ],
             ],
           ),
         ),

@@ -14,7 +14,7 @@ class _TicketWidgetState extends State<TicketWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ticket'),
+        title: const Text('Vấn đề xảy ra'),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16),

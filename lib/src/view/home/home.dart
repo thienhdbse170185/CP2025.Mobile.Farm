@@ -43,7 +43,9 @@ class _HomeWidgetState extends State<HomeWidget> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.push(RouteName.notification);
+          },
           icon: const Badge(
             label: Text('3'),
             child: Icon(Icons.notifications_outlined),
