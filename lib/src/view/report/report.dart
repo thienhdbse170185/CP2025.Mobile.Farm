@@ -14,6 +14,18 @@ class HealthReportWidget extends StatefulWidget {
 class _HealthReportWidgetState extends State<HealthReportWidget> {
   final TextEditingController _noteController = TextEditingController();
   final List<File> _images = [];
+  final TextEditingController _symptomController = TextEditingController();
+
+  // List of predefined symptoms for suggestions
+  final List<String> _symptomSuggestions = [
+    'Triệu chứng 1',
+    'Triệu chứng 2',
+    'Triệu chứng 3',
+    'Ho',
+    'Sốt cao',
+    'Biếng ăn',
+    'Phân lỏng'
+  ];
 
   // Function to pick multiple images
   Future<void> _pickImages() async {
@@ -54,34 +66,40 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 ),
                 const SizedBox(height: 16),
-                DropdownMenu(
-                  label: RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      children: [
-                        const TextSpan(text: 'Triệu chứng bệnh '),
-                        TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.error))
-                      ],
-                    ),
-                  ),
-                  dropdownMenuEntries: const [
-                    DropdownMenuEntry(
-                        value: 'Triệu chứng 1', label: 'Triệu chứng 1'),
-                    DropdownMenuEntry(
-                        value: 'Triệu chứng 2', label: 'Triệu chứng 2'),
-                    DropdownMenuEntry(
-                        value: 'Triệu chứng 3', label: 'Triệu chứng 3'),
-                  ],
-                  width: MediaQuery.of(context).size.width - 32,
+                Text(
+                  'Triệu chứng bệnh',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 8),
+                Autocomplete<String>(
+                  optionsBuilder: (TextEditingValue textEditingValue) {
+                    if (textEditingValue.text.isEmpty) {
+                      return const Iterable<String>.empty();
+                    }
+                    return _symptomSuggestions.where((String suggestion) {
+                      return suggestion
+                          .toLowerCase()
+                          .contains(textEditingValue.text.toLowerCase());
+                    });
+                  },
+                  fieldViewBuilder: (BuildContext context,
+                      TextEditingController fieldTextEditingController,
+                      FocusNode fieldFocusNode,
+                      VoidCallback onFieldSubmitted) {
+                    _symptomController.text = fieldTextEditingController.text;
+                    return const TextFieldRequired(
+                        label: 'Triệu chứng bệnh',
+                        hintText: 'Nhập triệu chứng bệnh');
+                  },
+                  onSelected: (String selected) {
+                    _symptomController.text = selected;
+                  },
                 ),
                 const SizedBox(height: 16),
                 const TextFieldRequired(
                     label: 'Số lượng con vật bị bệnh',
                     hintText: 'Nhập số lượng'),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 TextField(
                   controller: _noteController,
                   maxLines: 5,

@@ -14,16 +14,20 @@ const destinations = <Destination>[
       label: 'Trang chủ',
       icon: Icons.home_outlined,
       iconSelected: Icons.home_rounded),
+  // Destination(
+  //     label: 'Task',
+  //     icon: Icons.task_outlined,
+  //     iconSelected: Icons.task_rounded),
+  // Destination(
+  //     label: 'Vấn đề',
+  //     icon: Icons.info_outline_rounded,
+  //     iconSelected: Icons.info_rounded),
+  // Destination(
+  //     label: 'Kho',
+  //     icon: Icons.warehouse_outlined,
+  //     iconSelected: Icons.warehouse_rounded),
   Destination(
-      label: 'Task',
-      icon: Icons.task_outlined,
-      iconSelected: Icons.task_rounded),
-  Destination(
-      label: 'Vấn đề',
-      icon: Icons.info_outline_rounded,
-      iconSelected: Icons.info_rounded),
-  Destination(
-      label: 'Kho',
-      icon: Icons.warehouse_outlined,
-      iconSelected: Icons.warehouse_rounded),
+      label: 'Cá nhân',
+      icon: Icons.account_circle_outlined,
+      iconSelected: Icons.account_circle_rounded)
 ];
