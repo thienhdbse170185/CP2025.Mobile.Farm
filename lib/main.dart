@@ -1,22 +1,23 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:smart_farm/firebase_options.dart';
-import 'package:smart_farm/src/core/service/push_notification.dart';
+import 'package:signalr_core/signalr_core.dart';
 
 import 'src/app.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
+final hubConnection = HubConnectionBuilder()
+    .withUrl('YOUR_SIGNALR_URL') // Replace with your SignalR URL
+    .build(); // Initialize SignalR connection
 
 // function to listen to background changes
-Future _firebaseBackgroundMessage(RemoteMessage message) async {
-  if (message.notification != null) {
+void _signalRBackgroundMessage(List<Object?>? message) {
+  if (message != null &&
+      (message[0] as Map<String, dynamic>)['notification'] != null) {
     log("Some notification Received in background...");
   }
 }
@@ -43,56 +44,36 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('vi_VN', null);
   await Hive.initFlutter();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
-  await PushNotifications.init();
+  await hubConnection.start(); // Start SignalR connection
 
-  if (!kIsWeb) {
-    await PushNotifications.localNotiInit();
-  }
+  hubConnection.on('ReceiveMessage', (message) {
+    String payloadData = jsonEncode(message);
+    log("Got a message in foreground");
+    if (message != null) {
+      if (kIsWeb) {
+        showNotification(title: message[0]['title'], body: message[0]['body']);
+      } else {
+        // Replace with your local notification logic
+        log("Notification: ${message[0]['title']} - ${message[0]['body']}");
+      }
+    }
+  });
 
   // Listen to background notifications
-  FirebaseMessaging.onBackgroundMessage(_firebaseBackgroundMessage);
+  hubConnection.on(
+      'BackgroundMessage', (message) => _signalRBackgroundMessage(message));
 
   // on background notification tapped
-  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    if (message.notification != null) {
+  hubConnection.on('MessageOpenedApp', (message) {
+    if (message != null) {
       log("Background Notification Tapped");
       navigatorKey.currentState!.pushNamed("/cage");
     }
   });
 
-// to handle foreground notifications
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    String payloadData = jsonEncode(message.data);
-    log("Got a message in foreground");
-    if (message.notification != null) {
-      if (kIsWeb) {
-        showNotification(
-            title: message.notification!.title!,
-            body: message.notification!.body!);
-      } else {
-        PushNotifications.showSimpleNotification(
-            title: message.notification!.title!,
-            body: message.notification!.body!,
-            payload: payloadData);
-      }
-    }
-  });
-
-  PushNotifications.getDeviceToken();
-
   // for handling in terminated state
-  final RemoteMessage? message =
-      await FirebaseMessaging.instance.getInitialMessage();
+  // Implement your logic to handle terminated state notifications if needed
 
-  if (message != null) {
-    log("Launched from terminated state");
-    Future.delayed(const Duration(seconds: 1), () {
-      navigatorKey.currentState!.pushNamed("/cage");
-    });
-  }
   runApp(const MyApp());
 }
