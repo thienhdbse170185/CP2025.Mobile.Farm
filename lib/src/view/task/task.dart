@@ -351,9 +351,23 @@ class _TaskWidgetState extends State<TaskWidget> {
       final location = entry.key;
       final locationTasks = entry.value;
 
+      // Sắp xếp locationTasks: "Đang làm" lên trước, "Đã làm" xuống sau
+      locationTasks.sort((a, b) {
+        if (a['status'] == 'Đang làm' && b['status'] != 'Đang làm') {
+          return -1; // Đang làm lên trên
+        } else if (a['status'] != 'Đang làm' && b['status'] == 'Đang làm') {
+          return 1; // Đang làm lên trên
+        } else if (a['status'] == 'Đã làm' && b['status'] != 'Đã làm') {
+          return 1; // Đã làm xuống dưới
+        } else if (a['status'] != 'Đã làm' && b['status'] == 'Đã làm') {
+          return -1; // Đã làm xuống dưới
+        }
+        return 0; // Không thay đổi thứ tự
+      });
+
       return ExpansionTile(
         title: Text(
-          location,
+          '$location (${locationTasks.where((task) => task['status'] == 'Đã làm').length}/${locationTasks.length})',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         children: locationTasks.map((task) {

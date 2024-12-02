@@ -8,8 +8,17 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
   AuthBloc({required this.authRepository}) : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<LoginStarted>(_onLoginStarted);
+  }
+
+  Future<void> _onLoginStarted(
+      LoginStarted event, Emitter<AuthState> emit) async {
+    emit(AuthLoginInProgress());
+    try {
+      final userId = await authRepository.login(event.username, event.password);
+      emit(AuthSuccess(userId));
+    } catch (error) {
+      emit(AuthFailure(error.toString()));
+    }
   }
 }

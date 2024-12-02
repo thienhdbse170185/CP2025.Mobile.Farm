@@ -1,21 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_farm/src/view/cage/cage.dart';
-import 'package:smart_farm/src/view/home/home.dart';
+import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
-import 'package:smart_farm/src/view/notification/notification.dart';
-import 'package:smart_farm/src/view/notification/setting.dart';
-import 'package:smart_farm/src/view/report/report.dart';
-import 'package:smart_farm/src/view/setting/settings.dart';
-import 'package:smart_farm/src/view/task/task.dart';
-import 'package:smart_farm/src/view/task/task_detail.dart';
-import 'package:smart_farm/src/view/ticket/create_ticket.dart';
-import 'package:smart_farm/src/view/ticket/ticket.dart';
-import 'package:smart_farm/src/view/warehouse/warehouse.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 class RouteName {
+  static const String welcome = '/welcome';
+  static const String support = '/support';
+  static const String login = '/login';
+  static const String newbie = '/newbie';
   static const String home = '/';
   static const String task = '/task';
   static const String ticket = '/ticket';
@@ -30,6 +24,10 @@ class RouteName {
   static const String notificationSetting = '/notification_setting';
 
   static const publicRoutes = [
+    welcome,
+    support,
+    newbie,
+    login,
     home,
     task,
     ticket,
@@ -66,25 +64,61 @@ final router = GoRouter(
                 builder: (context, state) => const HomeWidget(),
               )
             ]),
+            // StatefulShellBranch(routes: [
+            //   GoRoute(
+            //     path: RouteName.task,
+            //     builder: (context, state) => const TaskWidget(),
+            //   )
+            // ]),
+            // StatefulShellBranch(routes: [
+            //   GoRoute(
+            //     path: RouteName.ticket,
+            //     builder: (context, state) => const TicketWidget(),
+            //   )
+            // ]),
+            // StatefulShellBranch(routes: [
+            //   GoRoute(
+            //     path: RouteName.warehouse,
+            //     builder: (context, state) => const WarehouseWidget(),
+            //   )
+            // ]),
             StatefulShellBranch(routes: [
               GoRoute(
-                path: RouteName.task,
-                builder: (context, state) => const TaskWidget(),
-              )
-            ]),
-            StatefulShellBranch(routes: [
-              GoRoute(
-                path: RouteName.ticket,
-                builder: (context, state) => const TicketWidget(),
-              )
-            ]),
-            StatefulShellBranch(routes: [
-              GoRoute(
-                path: RouteName.warehouse,
-                builder: (context, state) => const WarehouseWidget(),
-              )
+                  path: RouteName.profile,
+                  builder: (context, state) => const ProfileWidget())
             ])
           ]),
+
+      ///welcome-route
+      GoRoute(
+          path: RouteName.welcome,
+          builder: (context, state) => const WelcomeWidget()),
+
+      ///support-route
+      GoRoute(
+        path: RouteName.support,
+        builder: (context, state) => const SupportWidget(),
+      ),
+
+      GoRoute(
+        path: RouteName.task,
+        builder: (context, state) => const TaskWidget(),
+      ),
+
+      GoRoute(
+        path: RouteName.ticket,
+        builder: (context, state) => const TicketWidget(),
+      ),
+
+      ///login-route
+      GoRoute(
+          path: RouteName.login,
+          builder: (context, state) => const LoginWidget()),
+
+      ///newbie-login-route
+      GoRoute(
+          path: RouteName.newbie,
+          builder: (context, state) => const NewbieLoginWidget()),
 
       ///task-detail-route
       GoRoute(
