@@ -1,8 +1,8 @@
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // For image picking
 import 'dart:io';
 
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle file
 
 class TaskDetailWidget extends StatefulWidget {

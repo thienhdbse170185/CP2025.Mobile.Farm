@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/viewmodel/task/task_cubit.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -79,6 +82,20 @@ class _HomeWidgetState extends State<HomeWidget> {
       routeName: RouteName.support,
     )
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<TaskCubit>().fetchItems();
+    final taskState = context.read<TaskCubit>().state;
+    if (taskState is TaskLoading) {
+      LoadingDialog.show(context);
+    } else if (taskState is TaskSuccess) {
+      LoadingDialog.hide(context);
+    } else if (taskState is TaskError) {
+      LoadingDialog.hide(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
