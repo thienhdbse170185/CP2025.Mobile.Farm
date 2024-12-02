@@ -12,8 +12,6 @@ environment:
 dependencies:
   dio: ^5.7.0
   dotted_border: ^2.1.0
-  firebase_core: ^3.8.0
-  firebase_messaging: ^15.1.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -34,6 +32,11 @@ dependencies:
   shared_preferences: ^2.3.3
   data_layer:
     path: ../data_layer
+  carousel_slider: ^5.0.0
+  signalr_core: ^1.1.2
+  web_socket_channel: ^2.4.3
+  web: ^0.5.0
+  freezed_annotation: ^2.4.4
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +45,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   json_serializable: ^6.8.0
   build_runner: ^2.4.13
+  freezed: ^2.5.7
 
 flutter:
   uses-material-design: true
