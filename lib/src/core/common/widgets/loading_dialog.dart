@@ -17,7 +17,7 @@ class LoadingDialog {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Lottie.asset(
-                  'assets/animation/loading_animation.json',
+                  'assets/animations/loading_animation.json',
                   alignment: Alignment.center,
                   height: 180,
                   width: 180,
