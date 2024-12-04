@@ -7,6 +7,7 @@ import 'package:smart_farm/src/core/network/http_client.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/theme/theme.dart';
 import 'package:smart_farm/src/core/theme/util.dart';
+import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 
 /// The Widget that configures your application.
@@ -64,9 +65,7 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) =>
                   AuthBloc(authRepository: context.read<AuthRepository>())),
-          BlocProvider(
-              create: (context) =>
-                  TaskCubit(repository: context.read<TaskRepository>())),
+          BlocProvider(create: (context) => TaskBloc()),
           BlocProvider(
               create: (context) =>
                   CageCubit(cageRepository: context.read<CageRepository>())),
@@ -85,7 +84,7 @@ class _MyAppState extends State<MyApp> {
                   UserBloc(userRepository: context.read<UserRepository>())),
           BlocProvider(
               create: (context) => ReportCubit(
-                  reportRepository: context.read<ReportRepository>()))
+                  reportRepository: context.read<ReportRepository>())),
         ],
         child: BlocBuilder<ThemeCubit, bool>(
           builder: (context, themeMode) {
