@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_farm/src/app.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart';
@@ -26,20 +25,23 @@ class HomeFeatures {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  final List<Map<String, String>> tasks = [
+  final List<Map<String, String>> cages = [
     {
+      'cageId': 'f47e1646-41d4-43c3-87c8-99f189b5a597',
       'title': 'Chuồng gà Trưởng Thành',
       'task': 'Thu hoạch trứng',
       'progress': '50%',
       'image': 'assets/animations/chicken_adult.json',
     },
     {
+      'cageId': 'fcabb9b5-7513-4abf-a401-0ac8dc08720f',
       'title': 'Chuồng gà Con',
       'task': 'Cho gà ăn',
       'progress': '0%',
       'image': 'assets/animations/chicken_adult.json',
     },
     {
+      'cageId': 'e357c9c7-6ab7-4917-b473-5754822e877f',
       'title': 'Chuồng gà Đông Tảo',
       'task': 'Kiểm tra sức khỏe',
       'progress': '75%',
@@ -108,7 +110,11 @@ class _HomeWidgetState extends State<HomeWidget> {
             },
             failure: (error) {
               log('Lỗi khi tải dữ liệu: $error');
-              LoadingDialog.show(context);
+              LoadingDialog.hide(context);
+            },
+            testConnectSuccess: () {
+              log('Kết nối thành công!');
+              LoadingDialog.hide(context);
             });
       },
       child: Scaffold(
@@ -167,6 +173,12 @@ class _HomeWidgetState extends State<HomeWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // OutlinedButton(
+              //   onPressed: () {
+              //     context.read<TaskBloc>().add(const TaskEvent.testConnect());
+              //   },
+              //   child: const Text('Test connect'),
+              // ),
               Container(
                 color: const Color(0xFFFFFFFF),
                 width: MediaQuery.of(context).size.width,
@@ -238,13 +250,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: tasks.length,
+                      itemCount: cages.length,
                       itemBuilder: (context, index) {
-                        final task = tasks[index];
+                        final cage = cages[index];
                         final color = cardColors[index % cardColors.length];
                         return GestureDetector(
                           onTap: () {
-                            context.push(RouteName.cage);
+                            context.push(RouteName.cage, extra: cage['cageId']);
                           },
                           child: Card(
                             color: color,
@@ -267,7 +279,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            task['title']!,
+                                            cage['title']!,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium
@@ -289,7 +301,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   size: 8, color: Colors.white),
                                               const SizedBox(width: 8),
                                               Text(
-                                                task['task']!,
+                                                cage['task']!,
                                                 style: const TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -309,7 +321,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         color: Colors.white),
                                               ),
                                               Text(
-                                                task['progress']!,
+                                                cage['progress']!,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium
@@ -323,7 +335,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             value: double.parse(
-                                                    task['progress']!
+                                                    cage['progress']!
                                                         .replaceAll('%', '')) /
                                                 100,
                                             backgroundColor: Colors.white30,
@@ -336,7 +348,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                     const SizedBox(width: 16),
                                     Lottie.asset(
-                                      task['image']!,
+                                      cage['image']!,
                                       width: 100,
                                       height: 100,
                                     ),

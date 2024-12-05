@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
+import 'package:smart_farm/src/view/task/task.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -64,12 +65,12 @@ final router = GoRouter(
                 builder: (context, state) => const HomeWidget(),
               )
             ]),
-            // StatefulShellBranch(routes: [
-            //   GoRoute(
-            //     path: RouteName.task,
-            //     builder: (context, state) => const TaskWidget(),
-            //   )
-            // ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                path: RouteName.task,
+                builder: (context, state) => const TaskWidget(),
+              )
+            ]),
             // StatefulShellBranch(routes: [
             //   GoRoute(
             //     path: RouteName.ticket,
@@ -123,13 +124,19 @@ final router = GoRouter(
       ///task-detail-route
       GoRoute(
         path: RouteName.taskDetail,
-        builder: (context, state) => const TaskDetailWidget(),
+        builder: (context, state) {
+          final taskId = state.extra as String;
+          return TaskDetailWidget(taskId: taskId);
+        },
       ),
 
       ///cage-route
       GoRoute(
           path: RouteName.cage,
-          builder: (context, state) => const CageWidget()),
+          builder: (context, state) {
+            final cageId = state.extra as String;
+            return CageWidget(cageId: cageId);
+          }),
 
       ///health-report-route
       GoRoute(

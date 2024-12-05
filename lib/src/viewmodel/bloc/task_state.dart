@@ -12,4 +12,11 @@ class TaskState with _$TaskState {
   const factory TaskState.getTasksSuccess(Map<String, dynamic> tasks) =
       _GetTasksSuccess;
   const factory TaskState.getTasksFailure(String error) = _GetTasksFailure;
+  const factory TaskState.testConnectSuccess() = _TestConnectSuccess;
+  const factory TaskState.getTasksByCageIdLoading() = _GetTasksByCageIdLoading;
+  const factory TaskState.getTasksByCageIdSuccess(TasksByCageResponse tasks) =
+      _GetTasksByCageIdSuccess;
+  const factory TaskState.getTaskByIdLoading() = _GetTaskByIdLoading;
+  const factory TaskState.getTaskByIdSuccess(Map<String, dynamic> task) = _GetTaskByIdSuccess;
+  const factory TaskState.getTaskByIdFailure(String error) = _GetTaskByIdFailure;
 }

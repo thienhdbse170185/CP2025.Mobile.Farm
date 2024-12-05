@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:data_layer/model/response/task/task_by_cage/tasks_by_cage_response.dart';
+import 'package:data_layer/repository/repository_interface.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'task_event.dart';
@@ -6,7 +8,8 @@ part 'task_state.dart';
 part 'task_bloc.freezed.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
-  TaskBloc() : super(const _Initial()) {
+  final IRepository repository;
+  TaskBloc({required this.repository}) : super(const _Initial()) {
     on<_Started>((event, emit) {
       // Handle started event
     });
@@ -37,7 +40,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(TaskState.failure(e.toString()));
       }
     });
-    on<_GetTasks>((evnet, emit) async {
+    on<_GetTasks>((event, emit) async {
       emit(const TaskState.loading());
       try {
         // Add logic to get tasks
@@ -45,6 +48,34 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(const TaskState.getTasksSuccess({}));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
+      }
+    });
+    on<_TestConnect>((event, emit) async {
+      emit(const TaskState.loading());
+      try {
+        // Add logic to test connection
+        await repository.testConnect();
+        emit(const TaskState.testConnectSuccess());
+      } catch (e) {
+        emit(TaskState.failure(e.toString()));
+      }
+    });
+    on<_GetTasksByCageId>((event, emit) async {
+      emit(const TaskState.loading());
+      try {
+        final tasks = await repository.getTasksByCageId(event.cageId);
+        emit(TaskState.getTasksByCageIdSuccess(tasks));
+      } catch (e) {
+        emit(TaskState.getTasksFailure(e.toString()));
+      }
+    });
+    on<_GetTaskById>((event, emit) async {
+      emit(const TaskState.getTaskByIdLoading());
+      try {
+        final task = await repository.getById(event.taskId);
+        emit(TaskState.getTaskByIdSuccess(task));
+      } catch (e) {
+        emit(TaskState.getTaskByIdFailure(e.toString()));
       }
     });
   }
