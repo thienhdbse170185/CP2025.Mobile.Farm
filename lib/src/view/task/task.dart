@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/view/widgets/task_card.dart';
 import 'package:smart_farm/src/view/widgets/task_card_map.dart'; // Import the TaskCard widget
 
 class TaskWidget extends StatefulWidget {
@@ -30,7 +29,7 @@ class _TaskWidgetState extends State<TaskWidget> {
   ];
 
   final Map<String, List<Map<String, dynamic>>> tasksByDate = {
-    'Dec 05, 2024': [
+    'Dec 06, 2024': [
       {
         'title': 'Cho gà ăn',
         'status': 'Đang làm',
@@ -235,6 +234,8 @@ class _TaskWidgetState extends State<TaskWidget> {
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium),
+                                subtitle: Text(
+                                    '${tasksByDate[formattedDate]?.length} kết quả'),
                                 trailing: const Icon(Icons.arrow_drop_down)),
                           ),
                         ),

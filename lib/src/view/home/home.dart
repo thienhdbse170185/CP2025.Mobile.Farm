@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:data_layer/model/entity/task/next_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,29 +26,8 @@ class HomeFeatures {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  final List<Map<String, String>> cages = [
-    {
-      'cageId': 'f47e1646-41d4-43c3-87c8-99f189b5a597',
-      'title': 'Chuồng gà Trưởng Thành',
-      'task': 'Thu hoạch trứng',
-      'progress': '50%',
-      'image': 'assets/animations/chicken_adult.json',
-    },
-    {
-      'cageId': 'fcabb9b5-7513-4abf-a401-0ac8dc08720f',
-      'title': 'Chuồng gà Con',
-      'task': 'Cho gà ăn',
-      'progress': '0%',
-      'image': 'assets/animations/chicken_adult.json',
-    },
-    {
-      'cageId': 'e357c9c7-6ab7-4917-b473-5754822e877f',
-      'title': 'Chuồng gà Đông Tảo',
-      'task': 'Kiểm tra sức khỏe',
-      'progress': '75%',
-      'image': 'assets/animations/chicken_adult.json',
-    },
-  ];
+  List<NextTask> cages = [];
+  String userId = '604df876-6e3e-4f34-92a0-2aeaa1238a39';
 
   final List<Color> cardColors = [
     Colors.blueAccent,
@@ -56,21 +36,6 @@ class _HomeWidgetState extends State<HomeWidget> {
   ];
 
   final List<HomeFeatures> features = [
-    HomeFeatures(
-      icon: Icons.task_alt_outlined,
-      title: 'Công việc',
-      routeName: RouteName.task,
-    ),
-    HomeFeatures(
-      icon: Icons.info_outline_rounded,
-      title: 'Báo cáo vấn đề',
-      routeName: RouteName.createTicket,
-    ),
-    HomeFeatures(
-      icon: Icons.warehouse_outlined,
-      title: 'Vật nuôi bị bệnh',
-      routeName: RouteName.report,
-    ),
     HomeFeatures(
       title: 'Thời tiết nông vụ',
       icon: Icons.sunny_snowing,
@@ -91,7 +56,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
-    context.read<TaskBloc>().add(const TaskEvent.getTasks());
+    context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
   }
 
   @override
@@ -100,15 +65,18 @@ class _HomeWidgetState extends State<HomeWidget> {
       listener: (context, state) {
         state.maybeWhen(
             orElse: () {},
-            getTasksSuccess: (tasks) {
+            getNextTaskSuccess: (tasks) {
               log('Lấy danh sách công việc thành công!');
               LoadingDialog.hide(context);
+              setState(() {
+                cages = tasks;
+              });
             },
-            loading: () {
+            getNextTaskLoading: () {
               log('Đang tải dữ liệu...');
-              LoadingDialog.show(context);
+              LoadingDialog.show(context, "Đang tải dữ liệu...");
             },
-            failure: (error) {
+            getNextTaskFailure: (error) {
               log('Lỗi khi tải dữ liệu: $error');
               LoadingDialog.hide(context);
             },
@@ -187,7 +155,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.22,
+                        height: MediaQuery.of(context).size.height * 0.13,
                         child: GridView.builder(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
@@ -238,7 +206,6 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
               const SizedBox(height: 8),
               Container(
-                color: const Color(0xFFFFFFFF),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: Column(
@@ -256,7 +223,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         final color = cardColors[index % cardColors.length];
                         return GestureDetector(
                           onTap: () {
-                            context.push(RouteName.cage, extra: cage['cageId']);
+                            context.push(RouteName.cage, extra: {
+                              'cageId': cage.cageId,
+                              'color': color,
+                            });
                           },
                           child: Card(
                             color: color,
@@ -279,7 +249,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cage['title']!,
+                                            cage.cagename,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium
@@ -301,7 +271,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   size: 8, color: Colors.white),
                                               const SizedBox(width: 8),
                                               Text(
-                                                cage['task']!,
+                                                cage.taskName,
                                                 style: const TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -321,7 +291,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         color: Colors.white),
                                               ),
                                               Text(
-                                                cage['progress']!,
+                                                "${cage.taskDone}/${cage.total}",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium
@@ -335,7 +305,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             value: double.parse(
-                                                    cage['progress']!
+                                                    (cage.taskDone / cage.total)
+                                                        .toString()
                                                         .replaceAll('%', '')) /
                                                 100,
                                             backgroundColor: Colors.white30,
@@ -348,7 +319,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                     const SizedBox(width: 16),
                                     Lottie.asset(
-                                      cage['image']!,
+                                      'assets/animations/chicken_adult.json',
                                       width: 100,
                                       height: 100,
                                     ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:developer';
 
+import 'package:data_layer/model/entity/task/task.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart'; // To handle file
+import 'package:intl/intl.dart';
 
 class TaskDetailWidget extends StatefulWidget {
   final String taskId;
@@ -24,13 +26,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   // For image upload
   File? _image;
-  // For logging
-  String log = '';
   // Controller for log input
   TextEditingController logController = TextEditingController();
 
   // Tab controller
   late TabController _tabController;
+  Task? task;
 
   @override
   void initState() {
@@ -46,8 +47,20 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
-        log += '\nImage uploaded: ${pickedFile.path}';
       });
+    }
+  }
+
+  String formatDate(String? date) {
+    if (date == null || date.isEmpty) {
+      return "N/A"; // Return a default value if the date is null or empty
+    }
+    try {
+      final DateTime parsedDate = DateTime.parse(date);
+      final DateFormat formatter = DateFormat('dd/MM/yyyy');
+      return formatter.format(parsedDate);
+    } catch (e) {
+      return "Invalid date"; // Return an error message if parsing fails
     }
   }
 
@@ -60,16 +73,19 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             // Handle task data
             await Future.delayed(const Duration(seconds: 1));
             LoadingDialog.hide(context);
-            log;
+            setState(() {
+              this.task = task;
+            });
+            log("Lấy thông tin công việc thành công!");
           },
           getTaskByIdLoading: () {
-            log;
-            LoadingDialog.show(context);
+            LoadingDialog.show(context, "Đang lấy thông tin công việc...");
+            log("Đang lấy thông tin công việc...");
           },
           getTaskByIdFailure: (e) async {
             await Future.delayed(const Duration(seconds: 1));
             LoadingDialog.hide(context);
-            log;
+            log("Lấy thông tin công việc thất bại!");
           },
           orElse: () {},
         );
@@ -110,8 +126,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             onPressed: () {
               setState(() {
                 if (taskStatus == 'Đang thực hiện') {
-                  taskStatus = 'Hoàn thành'; // Change status to 'completed'
-                  log += '\nTask completed at: ${DateTime.now()}';
+                  taskStatus = 'Hoàn thành';
                 }
               });
             },
@@ -141,7 +156,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Vệ sinh chuồng gà Trưởng Thành',
+                        task?.taskName ?? "",
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge
@@ -149,7 +164,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       ),
                       const SizedBox(height: 8),
                       Chip(
-                        label: Text(taskStatus), // Display current task status
+                        label: Text(
+                            task?.status ?? ""), // Display current task status
                       ),
                     ],
                   ),
@@ -171,40 +187,33 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               ],
             ),
             const SizedBox(height: 32),
-            const TextFieldRequired(
+            TextFieldRequired(
               label: 'Loại công việc',
               hintText: 'Loại công việc',
-              content: 'Vệ sinh',
-              prefixIcon: Icon(Icons.work_outline),
+              content: task?.taskType.taskTypeName,
+              prefixIcon: const Icon(Icons.work_outline),
             ),
             const SizedBox(height: 16),
-            const TextFieldRequired(
+            TextFieldRequired(
               label: 'Người được phân công',
               hintText: 'được phân công',
-              content: 'Hoang Dang Bao Thien (K17 HCM)',
-              prefixIcon: Icon(Icons.person),
+              content: task?.assignedToUser.fullName,
+              prefixIcon: const Icon(Icons.person),
             ),
             const SizedBox(height: 16),
-            const TextFieldRequired(
-              label: 'Người phân công',
-              hintText: 'phân công',
-              content: 'hauntse150603',
-              prefixIcon: Icon(Icons.person_outline),
-            ),
-            const SizedBox(height: 16),
-            const TextFieldRequired(
+            TextFieldRequired(
               label: 'Ngày tạo',
               hintText: 'Ngày tạo',
-              content: '25/11/2024',
-              prefixIcon: Icon(Icons.date_range),
+              content: formatDate(task?.createdAt),
+              prefixIcon: const Icon(Icons.date_range),
             ),
-            const SizedBox(height: 16),
-            const TextFieldRequired(
-              label: 'Ước tính thời gian',
-              hintText: 'Ước tính thời gian',
-              content: '1 ngày',
-              prefixIcon: Icon(Icons.access_time),
-            ),
+            // const SizedBox(height: 16),
+            // const TextFieldRequired(
+            //   label: 'Ước tính thời gian',
+            //   hintText: 'Ước tính thời gian',
+            //   content: '1 ngày',
+            //   prefixIcon: Icon(Icons.access_time),
+            // ),
           ],
         ),
       ),
@@ -217,20 +226,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Mô tả công việc',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '''
-          • Cách làm 1.
-          • Cách làm 2.
-          • Cách làm 3.
-                ''',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 16),
           // Upload Image Section
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

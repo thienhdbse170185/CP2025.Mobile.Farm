@@ -10,4 +10,5 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.testConnect() = _TestConnect;
   const factory TaskEvent.getTasksByCageId(String cageId) = _GetTasksByCageId;
   const factory TaskEvent.getTaskById(String taskId) = _GetTaskById;
+  const factory TaskEvent.getNextTask(String userId) = _GetNextTask;
 }

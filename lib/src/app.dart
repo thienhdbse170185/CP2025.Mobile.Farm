@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
         ),
         RepositoryProvider(
           create: (context) =>
-              CageRepository(cageApiClient: CageApiClient(dio: dio)),
+              CageRepository(cageApiClient: CageApiClient(dio: Dio())),
         ),
         RepositoryProvider(
           create: (context) =>

@@ -9,15 +9,16 @@ class TaskCard extends StatelessWidget {
   final bool isCompleted;
   final bool isInProgress;
   final bool isFirst; // Add this line
+  final Color borderColor;
 
-  const TaskCard({
-    super.key,
-    required this.task,
-    required this.isCompleted,
-    required this.isInProgress,
-    this.isFirst = false,
-    this.taskId, // Add this line
-  });
+  const TaskCard(
+      {super.key,
+      required this.task,
+      required this.isCompleted,
+      required this.isInProgress,
+      this.isFirst = false,
+      this.taskId, // Add this line
+      required this.borderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +35,7 @@ class TaskCard extends StatelessWidget {
           child: Card(
             shape: RoundedRectangleBorder(
               side: BorderSide(
-                color: isFirst
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.secondaryContainer,
+                color: borderColor,
               ),
               borderRadius: BorderRadius.circular(8),
             ),

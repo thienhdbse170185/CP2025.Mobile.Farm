@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:data_layer/model/entity/task/next_task.dart';
+import 'package:data_layer/model/entity/task/task.dart';
 import 'package:data_layer/model/response/task/task_by_cage/tasks_by_cage_response.dart';
 import 'package:data_layer/repository/repository_interface.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -76,6 +78,15 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(TaskState.getTaskByIdSuccess(task));
       } catch (e) {
         emit(TaskState.getTaskByIdFailure(e.toString()));
+      }
+    });
+    on<_GetNextTask>((event, emit) async {
+      emit(const TaskState.getNextTaskLoading());
+      try {
+        final task = await repository.getNextTask(event.userId);
+        emit(TaskState.getNextTaskSuccess(task));
+      } catch (e) {
+        emit(TaskState.getNextTaskFailure(e.toString()));
       }
     });
   }
