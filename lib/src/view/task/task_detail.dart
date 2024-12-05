@@ -1,12 +1,17 @@
 import 'dart:io';
+import 'dart:developer';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle file
+import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/view/widgets/text_field_required.dart';
+import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart'; // To handle file
 
 class TaskDetailWidget extends StatefulWidget {
-  const TaskDetailWidget({super.key});
+  final String taskId;
+  const TaskDetailWidget({super.key, required this.taskId});
 
   @override
   State<TaskDetailWidget> createState() => _TaskDetailWidgetState();
@@ -31,6 +36,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
   }
 
   // Function to pick image
@@ -47,48 +53,71 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chi tiết công việc'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.attach_file),
-            onPressed: () {
-              // Navigate to the edit screen
-            },
+    return BlocListener<TaskBloc, TaskState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          getTaskByIdSuccess: (task) async {
+            // Handle task data
+            await Future.delayed(const Duration(seconds: 1));
+            LoadingDialog.hide(context);
+            log;
+          },
+          getTaskByIdLoading: () {
+            log;
+            LoadingDialog.show(context);
+          },
+          getTaskByIdFailure: (e) async {
+            await Future.delayed(const Duration(seconds: 1));
+            LoadingDialog.hide(context);
+            log;
+          },
+          orElse: () {},
+        );
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Chi tiết công việc'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.attach_file),
+              onPressed: () {
+                // Navigate to the edit screen
+              },
+            ),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
+          ],
+          bottom: TabBar(
+            controller: _tabController,
+            tabs: const [
+              Tab(text: 'Thông tin'),
+              Tab(text: 'Công việc'),
+            ],
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
-        ],
-        bottom: TabBar(
+        ),
+        body: TabBarView(
           controller: _tabController,
-          tabs: const [
-            Tab(text: 'Thông tin'),
-            Tab(text: 'Công việc'),
+          children: [
+            // Tab "Thông tin"
+            _buildInfoTab(context),
+            // Tab "Công việc"
+            _buildWorkTab(context),
           ],
         ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          // Tab "Thông tin"
-          _buildInfoTab(context),
-          // Tab "Công việc"
-          _buildWorkTab(context),
-        ],
-      ),
-      bottomSheet: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: FilledButton(
-          onPressed: () {
-            setState(() {
-              if (taskStatus == 'Đang thực hiện') {
-                taskStatus = 'Hoàn thành'; // Change status to 'completed'
-                log += '\nTask completed at: ${DateTime.now()}';
-              }
-            });
-          },
-          child: const Text('Xác nhận hoàn thành'), // Always confirm completion
+        bottomSheet: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: FilledButton(
+            onPressed: () {
+              setState(() {
+                if (taskStatus == 'Đang thực hiện') {
+                  taskStatus = 'Hoàn thành'; // Change status to 'completed'
+                  log += '\nTask completed at: ${DateTime.now()}';
+                }
+              });
+            },
+            child:
+                const Text('Xác nhận hoàn thành'), // Always confirm completion
+          ),
         ),
       ),
     );

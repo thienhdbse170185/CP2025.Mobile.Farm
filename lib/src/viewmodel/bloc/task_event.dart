@@ -7,4 +7,7 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.updateTask(String task) = _UpdateTask;
   const factory TaskEvent.deleteTask(String taskId) = _DeleteTask;
   const factory TaskEvent.getTasks() = _GetTasks;
+  const factory TaskEvent.testConnect() = _TestConnect;
+  const factory TaskEvent.getTasksByCageId(String cageId) = _GetTasksByCageId;
+  const factory TaskEvent.getTaskById(String taskId) = _GetTaskById;
 }

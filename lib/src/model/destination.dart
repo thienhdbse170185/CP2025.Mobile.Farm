@@ -14,10 +14,10 @@ const destinations = <Destination>[
       label: 'Trang chủ',
       icon: Icons.home_outlined,
       iconSelected: Icons.home_rounded),
-  // Destination(
-  //     label: 'Task',
-  //     icon: Icons.task_outlined,
-  //     iconSelected: Icons.task_rounded),
+  Destination(
+      label: 'Công việc',
+      icon: Icons.task_outlined,
+      iconSelected: Icons.task_rounded),
   // Destination(
   //     label: 'Vấn đề',
   //     icon: Icons.info_outline_rounded,
