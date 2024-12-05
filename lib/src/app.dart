@@ -1,5 +1,6 @@
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/repository/auth/auth_local_data.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_farm/src/core/common/cubits/theme_cubit.dart';
@@ -32,7 +33,8 @@ class _MyAppState extends State<MyApp> {
           create: (context) => AuthRepository(dataClient: AuthLocalData()),
         ),
         RepositoryProvider(
-          create: (context) => TaskRepository(dataClient: TaskLocalData()),
+          create: (context) =>
+              TaskRepository(dataClient: TaskRemoteData(dio: Dio())),
         ),
         RepositoryProvider(
           create: (context) =>
@@ -65,7 +67,9 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) =>
                   AuthBloc(authRepository: context.read<AuthRepository>())),
-          BlocProvider(create: (context) => TaskBloc()),
+          BlocProvider(
+              create: (context) =>
+                  TaskBloc(repository: context.read<TaskRepository>())),
           BlocProvider(
               create: (context) =>
                   CageCubit(cageRepository: context.read<CageRepository>())),

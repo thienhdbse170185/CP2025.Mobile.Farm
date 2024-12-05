@@ -1,11 +1,20 @@
+import 'dart:developer';
+
+import 'package:data_layer/model/entity/task/task.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/view/export.dart';
+import 'package:smart_farm/src/view/widgets/task_card.dart';
+import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart'; // Import the TaskCard widget
 
 class CageWidget extends StatefulWidget {
-  const CageWidget({super.key});
+  final String cageId;
+  const CageWidget({super.key, required this.cageId});
 
   @override
   State<CageWidget> createState() => _CageWidgetState();
@@ -13,262 +22,512 @@ class CageWidget extends StatefulWidget {
 
 class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
+  String selectedFilter = 'Tất cả công việc'; // Add this line
+  Icon selectedFilterIcon =
+      const Icon(Icons.people_outline_outlined); // Update this line
+  String loggedInUser = 'Staff Farm 1'; // Add this line
 
-  final Map<String, List<Map<String, dynamic>>> tasksByDate = {
-    'Nov 19, 2024': [
-      {
-        'title': 'Cho gà ăn',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Làm sạch chuồng',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Non',
-      },
-    ],
-    'Nov 20, 2024': [
-      {
-        'title': 'Cho gà ăn',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Vệ sinh chuồng',
-        'status': 'Đang làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Thu hoạch trứng',
-        'status': 'Đang làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Kiểm tra sức khỏe gà',
-        'status': 'Đang làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-    ],
-  };
+  List<Task> tasks = [];
 
   String get formattedDate {
     return DateFormat('MMM dd, yyyy').format(selectedDate);
   }
 
   // Function to filter tasks by status
-  List<Map<String, dynamic>> getTasksByStatus(String status) {
-    final tasks = tasksByDate[formattedDate];
-    if (tasks == null) return [];
-    return tasks.where((task) => task['status'] == status).toList();
+  List<Task> getTasksByStatus(String status) {
+    return tasks.where((task) => task.status == status).toList();
+  }
+
+  // Function to filter tasks by user
+  List<Task> getTasksByUser(String user) {
+    if (user == 'Tất cả công việc') {
+      return tasks;
+    } else {
+      return tasks
+          .where((task) => task.assignedToUser.fullName == loggedInUser)
+          .toList();
+    }
+  }
+
+  // Function to categorize tasks by time of day and sort by priorityNum
+  Map<String, List<Task>> get tasksByTimeOfDay {
+    final Map<String, List<Task>> categorizedTasks = {
+      'Buổi sáng': [],
+      'Buổi trưa': [],
+      'Buổi chiều': [],
+    };
+
+    for (final task in tasks) {
+      if (task.status != 'Done') {
+        final session = task.session;
+        if (session == 1) {
+          categorizedTasks['Buổi sáng']?.add(task);
+        } else if (session == 2) {
+          categorizedTasks['Buổi trưa']?.add(task);
+        } else if (session == 3) {
+          categorizedTasks['Buổi chiều']?.add(task);
+        }
+      }
+    }
+
+    // Sort tasks by priorityNum
+    categorizedTasks.forEach((key, value) {
+      value.sort((a, b) => a.priorityNum.compareTo(b.priorityNum));
+    });
+
+    return categorizedTasks;
+  }
+
+  // Function to get completed tasks
+  List<Task> get completedTasks {
+    return tasks.where((task) => task.status == 'Done').toList();
+  }
+
+  final List<HomeFeatures> features = [
+    HomeFeatures(
+      icon: Icons.info_outline_rounded,
+      title: 'Báo cáo vấn đề',
+      routeName: RouteName.createTicket,
+    ),
+    HomeFeatures(
+      icon: Icons.warehouse_outlined,
+      title: 'Vật nuôi bị bệnh',
+      routeName: RouteName.report,
+    ),
+    HomeFeatures(
+      title: 'Gọi khẩn cấp',
+      icon: Icons.phone_outlined,
+      routeName: RouteName.support,
+    )
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(widget.cageId));
   }
 
   @override
   Widget build(BuildContext context) {
-    final doneTasks = getTasksByStatus('Đã làm');
-    final inProgressTasks = getTasksByStatus('Đang làm');
+    final filteredTasks = getTasksByUser(selectedFilter); // Update this line
+    final doneTasks = filteredTasks
+        .where((task) => task.status == 'Done')
+        .toList(); // Update this line
+    final inProgressTasks = filteredTasks
+        .where((task) => task.status == 'InProgress')
+        .toList(); // Update this line
+    final tasksByTime = {
+      'Buổi sáng': filteredTasks
+          .where((task) => task.session == 1 && task.status != 'Done')
+          .toList(),
+      'Buổi trưa': filteredTasks
+          .where((task) => task.session == 2 && task.status != 'Done')
+          .toList(),
+      'Buổi chiều': filteredTasks
+          .where((task) => task.session == 3 && task.status != 'Done')
+          .toList(),
+    }; // Update this line
+    final completedTasksList = filteredTasks
+        .where((task) => task.status == 'Done')
+        .toList(); // Update this line
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chi tiết chuồng'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
-          )
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          // Refresh the task details
-        },
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding:
-              const EdgeInsets.only(left: 16, right: 16, bottom: 80, top: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header
-              Card(
-                color: Colors.blueAccent,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/line_background.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Chuồng gà Trưởng Thành',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(color: Colors.white),
-                              ),
-                              if (inProgressTasks.isEmpty &&
-                                  doneTasks.isEmpty) ...[
-                                const SizedBox(height: 8),
-                                Text('Không có Task',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(color: Colors.white)),
-                                const SizedBox(height: 8)
-                              ] else ...[
-                                const SizedBox(height: 20),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<TaskBloc, TaskState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getTasksByCageIdLoading: () {
+                LoadingDialog.show(context);
+              },
+              getTasksByCageIdSuccess: (tasksResponse) async {
+                await Future.delayed(const Duration(seconds: 1));
+                LoadingDialog.hide(context);
+                setState(() {
+                  tasks = tasksResponse.items;
+                });
+                log('Lấy công việc theo chuồng thành công!');
+              },
+              getTasksFailure: (e) {
+                LoadingDialog.hide(context);
+                SnackBar(content: Text(e.toString()));
+                log('Lấy công việc theo chuồng thất bại!');
+              },
+              orElse: () {},
+            );
+          },
+        ),
+      ],
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text('Chuồng gà Trưởng Thành'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.more_vert),
+            )
+          ],
+        ),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            // Refresh the task details
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Card(
+                    color: Colors.blueAccent,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image:
+                              AssetImage('assets/images/line_background.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (inProgressTasks.isEmpty &&
+                                      doneTasks.isEmpty) ...[
+                                    const SizedBox(height: 8),
+                                    Text('Không có Task',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.white)),
+                                    const SizedBox(height: 8)
+                                  ] else ...[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          'Tiến độ công việc',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium
-                                              ?.copyWith(color: Colors.white),
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium
-                                                ?.copyWith(color: Colors.white),
-                                            children: [
-                                              const TextSpan(text: 'Đã done: '),
-                                              TextSpan(
-                                                text:
-                                                    '${doneTasks.length}', // Số task đã làm
-                                                style: const TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Tiến độ công việc',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium
+                                                  ?.copyWith(
+                                                      color: Colors.white),
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium
+                                                    ?.copyWith(
+                                                        color: Colors.white),
+                                                children: [
+                                                  const TextSpan(
+                                                      text: 'Đã done: '),
+                                                  TextSpan(
+                                                    text:
+                                                        '${doneTasks.length}', // Số task đã làm
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  TextSpan(
+                                                    text:
+                                                        '/${doneTasks.length + inProgressTasks.length} task.',
+                                                  ),
+                                                ],
                                               ),
-                                              TextSpan(
-                                                text:
-                                                    '/${doneTasks.length + inProgressTasks.length} task.',
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(width: 16),
+                                        Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                strokeWidth: 5,
+                                                value: doneTasks.isNotEmpty
+                                                    ? doneTasks.length /
+                                                        (doneTasks.length +
+                                                            inProgressTasks
+                                                                .length)
+                                                    : 0.0,
+                                                backgroundColor: Colors.white30,
+                                                valueColor:
+                                                    const AlwaysStoppedAnimation<
+                                                        Color>(Colors.white),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 5,
-                                            value: doneTasks.isNotEmpty
-                                                ? doneTasks.length /
-                                                    (doneTasks.length +
-                                                        inProgressTasks.length)
-                                                : 0.0,
-                                            backgroundColor: Colors.white30,
-                                            valueColor:
-                                                const AlwaysStoppedAnimation<
-                                                    Color>(Colors.white),
-                                          ),
-                                        ),
-                                        Text(
-                                          '${((doneTasks.length / (doneTasks.length + inProgressTasks.length).clamp(1, double.infinity)) * 100).round()}%',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(color: Colors.white),
+                                            ),
+                                            Text(
+                                              '${((doneTasks.length / (doneTasks.length + inProgressTasks.length).clamp(1, double.infinity)) * 100).round()}%',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium
+                                                  ?.copyWith(
+                                                      color: Colors.white),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
                                   ],
-                                ),
-                              ],
-                              const SizedBox(height: 8),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    context.push(RouteName.report);
-                                  },
-                                  child: const Text('Báo cáo sức khỏe'))
-                            ],
-                          ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Lottie.asset(
+                              'assets/animations/chicken_adult.json',
+                              width: 100,
+                              height: 100,
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 16),
-                        Lottie.asset(
-                          'assets/animations/chicken_adult.json',
-                          width: 100,
-                          height: 100,
+                      ),
+                    ),
+                  ),
+                ),
+
+                Container(
+                  color: const Color(0xFFFFFFFF),
+                  width: MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 16, right: 16),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.12,
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 32,
+                                      crossAxisSpacing: 12,
+                                      childAspectRatio: 1),
+                              itemBuilder: (context, index) {
+                                if (index < features.length) {
+                                  final feature = features[index];
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        context.push(feature.routeName),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            border: Border.all(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          child: Icon(feature.icon,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          feature.title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                                return null;
+                              }),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16),
 
-              if (inProgressTasks.isEmpty && doneTasks.isEmpty) ...[
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.6,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(90),
+                if (tasksByTime.values.every((tasks) => tasks.isEmpty) &&
+                    completedTasksList.isEmpty) ...[
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(90),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer
+                                    .withOpacity(0.4)),
+                            width: 120,
+                            height: 120,
+                            child: Icon(
+                              Icons.task_alt_outlined,
+                              size: 64,
                               color: Theme.of(context)
-                                  .colorScheme
-                                  .primaryContainer
-                                  .withOpacity(0.4)),
-                          width: 120,
-                          height: 120,
-                          child: Icon(
-                            Icons.task_alt_outlined,
-                            size: 64,
-                            color:
-                                Theme.of(context).primaryColor.withOpacity(0.4),
+                                  .primaryColor
+                                  .withOpacity(0.4),
+                            ),
                           ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Không có công việc nào\n trong hôm nay',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant,
+                                ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ] else ...[
+                  const SizedBox(height: 8),
+                  Container(
+                    color: Colors.white,
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, top: 16, bottom: 32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Chip(
+                          shape: const StadiumBorder(
+                              side: BorderSide(
+                                  width: 0, color: Colors.transparent)),
+                          label: Text(
+                            DateFormat('EEEE, MMM d, yyyy')
+                                .format(DateTime.now()),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary),
+                          ),
+                          avatar: Icon(
+                            Icons.calendar_month_outlined,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primaryContainer,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Công việc',
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                            FilterChip(
+                              label: selectedFilterIcon, // Update this line
+                              onSelected: (bool selected) {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        ListTile(
+                                          leading: const Icon(
+                                              Icons.account_circle_outlined),
+                                          title:
+                                              const Text('Phân công cho tôi'),
+                                          onTap: () {
+                                            setState(() {
+                                              selectedFilter =
+                                                  'Phân công cho tôi'; // Update this line
+                                              selectedFilterIcon = const Icon(Icons
+                                                  .account_circle_outlined); // Update this line
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                        ListTile(
+                                          leading: const Icon(
+                                              Icons.people_outline_outlined),
+                                          title: const Text('Tất cả công việc'),
+                                          onTap: () {
+                                            setState(() {
+                                              selectedFilter =
+                                                  'Tất cả công việc'; // Update this line
+                                              selectedFilterIcon = const Icon(Icons
+                                                  .people_outline_outlined); // Update this line
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 16),
-                        Text(
-                          'Không có công việc nào\n trong hôm nay',
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .outlineVariant,
-                                  ),
-                          textAlign: TextAlign.center,
-                        ),
+                        // Morning tasks
+                        if (tasksByTime['Buổi sáng']?.isNotEmpty ?? false) ...[
+                          SectionHeader(
+                              title:
+                                  'Buổi sáng (${tasksByTime['Buổi sáng']?.length ?? 0})'),
+                          const SizedBox(height: 8),
+                          TaskList(tasks: tasksByTime['Buổi sáng'] ?? []),
+                        ],
+                        if (tasksByTime['Buổi trưa']?.isNotEmpty ?? false) ...[
+                          const SizedBox(height: 16),
+                          SectionHeader(
+                              title:
+                                  'Buổi trưa (${tasksByTime['Buổi trưa']?.length ?? 0})'),
+                          const SizedBox(height: 8),
+                          TaskList(tasks: tasksByTime['Buổi trưa'] ?? []),
+                        ],
+                        if (tasksByTime['Buổi chiều']?.isNotEmpty ?? false) ...[
+                          const SizedBox(height: 16),
+                          SectionHeader(
+                              title:
+                                  'Buổi chiều (${tasksByTime['Buổi chiều']?.length ?? 0})'),
+                          const SizedBox(height: 8),
+                          TaskList(tasks: tasksByTime['Buổi chiều'] ?? []),
+                        ],
+                        if (completedTasksList.isNotEmpty) ...[
+                          const SizedBox(height: 16),
+                          Text(
+                              'Công việc đã làm (${completedTasksList.length})',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(fontSize: 18)),
+                          const SizedBox(height: 8),
+                          TaskList(tasks: completedTasksList),
+                        ],
                       ],
                     ),
-                  ),
-                ),
-              ] else ...[
-                // In-progress tasks
-                SectionHeader(title: 'Đang làm (${inProgressTasks.length})'),
-                const SizedBox(height: 8),
-                TaskList(tasks: inProgressTasks),
-
-                // Done tasks
-                const SizedBox(height: 16),
-                SectionHeader(title: 'Đã làm (${doneTasks.length})'),
-                const SizedBox(height: 8),
-                TaskList(tasks: doneTasks),
+                  )
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
@@ -314,7 +573,7 @@ class SectionHeader extends StatelessWidget {
 
 // Widget for task lists
 class TaskList extends StatelessWidget {
-  final List<Map<String, dynamic>> tasks;
+  final List<Task> tasks;
 
   const TaskList({super.key, required this.tasks});
 
@@ -326,50 +585,15 @@ class TaskList extends StatelessWidget {
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];
-        return GestureDetector(
-          onTap: () {
-            context.push(RouteName.taskDetail);
-          },
-          child: Card(
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            color: Theme.of(context).colorScheme.secondaryContainer,
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: ListTile(
-                leading: const Icon(Icons.task_alt_outlined),
-                title: Text(task['title'],
-                    style: Theme.of(context).textTheme.titleMedium),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Trạng thái: ${task['status']}',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      task['location'],
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-                trailing: Icon(
-                  Icons.chevron_right_outlined,
-                  color: Theme.of(context).colorScheme.onSurface,
-                  size: 24,
-                ),
-              ),
-            ),
-          ),
+        final isInProgress = task.status == 'Đang làm';
+        final isCompleted = task.status == 'Đã làm';
+
+        return TaskCard(
+          task: task,
+          taskId: task.id,
+          isCompleted: isCompleted,
+          isInProgress: isInProgress,
+          isFirst: index == 0, // Add this line
         );
       },
     );

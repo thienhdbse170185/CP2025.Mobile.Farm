@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:smart_farm/src/core/router.dart'; // For formatting the selected date
+import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/view/widgets/task_card.dart';
+import 'package:smart_farm/src/view/widgets/task_card_map.dart'; // Import the TaskCard widget
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({super.key});
@@ -12,6 +14,7 @@ class TaskWidget extends StatefulWidget {
 
 class _TaskWidgetState extends State<TaskWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
+  String selectedFilter = 'Phân công cho tôi'; // Default filter
 
   final List<Map<String, dynamic>> taskCards = [
     {
@@ -27,58 +30,30 @@ class _TaskWidgetState extends State<TaskWidget> {
   ];
 
   final Map<String, List<Map<String, dynamic>>> tasksByDate = {
-    'Nov 19, 2024': [
+    'Dec 05, 2024': [
       {
         'title': 'Cho gà ăn',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Làm sạch chuồng',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Con',
-      },
-      {
-        'title': 'Kiểm tra sức khỏe gà',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Con',
-      },
-      {
-        'title': 'Cho gà ăn',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Đông Tảo',
-      },
-    ],
-    'Nov 20, 2024': [
-      {
-        'title': 'Cho gà ăn',
-        'status': 'Đã làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Vệ sinh chuồng',
         'status': 'Đang làm',
         'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Thu hoạch trứng',
-        'status': 'Chưa làm',
-        'location': 'Chuồng gà Trưởng Thành',
-      },
-      {
-        'title': 'Kiểm tra sức khỏe gà',
-        'status': 'Chưa làm',
-        'location': 'Chuồng gà Trưởng Thành',
+        'session': 1,
       },
       {
         'title': 'Làm sạch chuồng',
-        'status': 'Chưa làm',
+        'status': 'Đang làm',
         'location': 'Chuồng gà Con',
+        'session': 2,
       },
       {
-        'title': 'Tiêm vắc-xin',
-        'status': 'Chưa làm',
+        'title': 'Kiểm tra sức khỏe gà',
+        'status': 'Đang làm',
+        'location': 'Chuồng gà Con',
+        'session': 2,
+      },
+      {
+        'title': 'Cho gà ăn',
+        'status': 'Đang làm',
         'location': 'Chuồng gà Đông Tảo',
+        'session': 3,
       },
     ],
   };
@@ -131,10 +106,45 @@ class _TaskWidgetState extends State<TaskWidget> {
     }
   }
 
+  void _showFilterBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: const Icon(Icons.account_circle_outlined),
+              title: const Text('Phân công cho tôi'),
+              onTap: () {
+                setState(() {
+                  selectedFilter = 'Phân công cho tôi';
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.people_outline_outlined),
+              title: const Text('Tất cả công việc'),
+              onTap: () {
+                setState(() {
+                  selectedFilter = 'Tất cả công việc';
+                });
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leadingWidth: MediaQuery.of(context).size.width * 0.4,
         leading: Padding(
           padding: const EdgeInsets.only(left: 16),
@@ -206,91 +216,52 @@ class _TaskWidgetState extends State<TaskWidget> {
                   .titleMedium
                   ?.copyWith(fontSize: 22),
             ),
-            const SizedBox(height: 24),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.14,
-              child: GridView.builder(
-                itemCount: taskCards.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 1.5,
-                ),
-                itemBuilder: (context, index) {
-                  final task = taskCards[index];
-                  return Card(
-                    color: task['color'],
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: -20,
-                          left: -20,
-                          child: Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.3),
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: -20,
-                          right: -20,
-                          child: Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.3),
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment
-                                .stretch, // Để text luôn nằm bên trái
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceBetween, // Tạo khoảng cách giữa các phần tử
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment
-                                    .spaceBetween, // Tạo khoảng cách giữa icon và text
-                                children: [
-                                  const Spacer(),
-                                  Icon(
-                                    task['icon'],
-                                    size: 32,
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                task['title'],
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
+
             const SizedBox(height: 8),
             Expanded(
               child: tasksByDate[formattedDate]?.isNotEmpty ?? false
-                  ? ListView(
-                      children:
-                          _buildExpansionTiles(tasksByDate[formattedDate]!),
+                  ? Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () => _showFilterBottomSheet(context),
+                          child: Card.outlined(
+                            child: ListTile(
+                                leading: Icon(
+                                  selectedFilter == 'Phân công cho tôi'
+                                      ? Icons.account_circle_outlined
+                                      : Icons.people_outline_outlined,
+                                ),
+                                title: Text(selectedFilter,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium),
+                                trailing: const Icon(Icons.arrow_drop_down)),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              ..._buildExpansionTiles(groupedTasks),
+                              if (completedTasks.isNotEmpty) ...[
+                                const SizedBox(height: 16),
+                                Text('Đã hoàn thành (${completedTasks.length})',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(fontSize: 18)),
+                                const SizedBox(height: 8),
+                                TaskList(tasks: completedTasks),
+                              ],
+                            ],
+                          ),
+                        )
+                      ],
                     )
-                  : Center(
+                  : Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.height * 0.1),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -335,103 +306,109 @@ class _TaskWidgetState extends State<TaskWidget> {
     );
   }
 
-  List<Widget> _buildExpansionTiles(List<Map<String, dynamic>> tasks) {
-    // Nhóm tasks theo location
-    final Map<String, List<Map<String, dynamic>>> tasksByLocation = {};
-    for (var task in tasks) {
-      final location = task['location'];
-      if (tasksByLocation[location] == null) {
-        tasksByLocation[location] = [];
-      }
-      tasksByLocation[location]!.add(task);
-    }
-
-    // Tạo danh sách ExpansionTile
-    return tasksByLocation.entries.map((entry) {
+  List<Widget> _buildExpansionTiles(
+      Map<String, List<Map<String, dynamic>>> tasks) {
+    return tasks.entries.map((entry) {
       final location = entry.key;
       final locationTasks = entry.value;
 
-      // Sắp xếp locationTasks: "Đang làm" lên trước, "Đã làm" xuống sau
-      locationTasks.sort((a, b) {
-        if (a['status'] == 'Đang làm' && b['status'] != 'Đang làm') {
-          return -1; // Đang làm lên trên
-        } else if (a['status'] != 'Đang làm' && b['status'] == 'Đang làm') {
-          return 1; // Đang làm lên trên
-        } else if (a['status'] == 'Đã làm' && b['status'] != 'Đã làm') {
-          return 1; // Đã làm xuống dưới
-        } else if (a['status'] != 'Đã làm' && b['status'] == 'Đã làm') {
-          return -1; // Đã làm xuống dưới
-        }
-        return 0; // Không thay đổi thứ tự
-      });
+      final morningTasks =
+          locationTasks.where((task) => task['session'] == 1).toList();
+      final noonTasks =
+          locationTasks.where((task) => task['session'] == 2).toList();
+      final afternoonTasks =
+          locationTasks.where((task) => task['session'] == 3).toList();
 
-      return ExpansionTile(
-        title: Text(
-          '$location (${locationTasks.where((task) => task['status'] == 'Đã làm').length}/${locationTasks.length})',
-          style: Theme.of(context).textTheme.titleMedium,
+      return Container(
+        color: Colors.white,
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: ExpansionTile(
+          title: Text(
+            '$location (${locationTasks.where((task) => task['status'] == 'Đã làm').length}/${locationTasks.length})',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          children: [
+            if (morningTasks.isNotEmpty) ...[
+              SectionHeader(title: 'Buổi sáng (${morningTasks.length})'),
+              TaskList(tasks: morningTasks),
+            ],
+            if (noonTasks.isNotEmpty) ...[
+              SectionHeader(title: 'Buổi trưa (${noonTasks.length})'),
+              TaskList(tasks: noonTasks),
+            ],
+            if (afternoonTasks.isNotEmpty) ...[
+              SectionHeader(title: 'Buổi chiều (${afternoonTasks.length})'),
+              TaskList(tasks: afternoonTasks),
+            ],
+          ],
         ),
-        children: locationTasks.map((task) {
-          // Cập nhật UI của từng task bên trong
-          final status = task['status'];
-          final isCompleted = status == 'Đã làm';
-          final isInProgress = status == 'Đang làm';
-
-          return Container(
-            margin: const EdgeInsets.only(bottom: 8),
-            child: GestureDetector(
-              onTap: () {
-                if (!isCompleted) {
-                  context.push(RouteName.taskDetail);
-                }
-              },
-              child: Card(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(
-                    color: isInProgress
-                        ? Theme.of(context).primaryColor
-                        : Colors.transparent,
-                  ),
-                ),
-                color: Theme.of(context).colorScheme.secondaryContainer,
-                margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: ListTile(
-                    leading: Icon(
-                      isCompleted
-                          ? Icons.task_alt
-                          : (isInProgress ? Icons.timelapse : Icons.pending),
-                      color: isCompleted
-                          ? Colors.green
-                          : (isInProgress
-                              ? Colors.orange
-                              : Theme.of(context).iconTheme.color),
-                    ),
-                    title: Opacity(
-                      opacity: isCompleted ? 0.5 : 1.0,
-                      child: Text(task['title'],
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    decoration: isCompleted
-                                        ? TextDecoration.lineThrough
-                                        : null,
-                                  )),
-                    ),
-                    subtitle: Text('Trạng thái: ${task['status']}'),
-                    trailing: Icon(
-                      Icons.chevron_right_outlined,
-                      color: Theme.of(context).colorScheme.onSurface,
-                      size: 24,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          );
-        }).toList(),
       );
     }).toList();
+  }
+
+  List<Map<String, dynamic>> get completedTasks {
+    final tasks = tasksByDate[formattedDate] ?? [];
+    return tasks.where((task) => task['status'] == 'Đã làm').toList();
+  }
+}
+
+class SectionHeader extends StatelessWidget {
+  final String title;
+
+  const SectionHeader({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: 20,
+          height: 1,
+          color: Theme.of(context).colorScheme.outlineVariant,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium
+                ?.copyWith(color: Theme.of(context).primaryColor),
+          ),
+        ),
+        Expanded(
+          child: Divider(
+            color: Theme.of(context).primaryColor.withOpacity(0.3),
+            thickness: 1,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class TaskList extends StatelessWidget {
+  final List<Map<String, dynamic>> tasks;
+
+  const TaskList({super.key, required this.tasks});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: tasks.length,
+      itemBuilder: (context, index) {
+        final task = tasks[index];
+        final isInProgress = task['status'] == 'Đang làm';
+        final isCompleted = task['status'] == 'Đã làm';
+
+        return TaskCardMap(
+          task: task,
+          isCompleted: isCompleted,
+          isInProgress: isInProgress,
+        );
+      },
+    );
   }
 }
