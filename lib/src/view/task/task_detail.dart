@@ -33,6 +33,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   late TabController _tabController;
   Task? task;
 
+  // Assume this is the logged-in user ID
+  final String loggedInUserId = '604df876-6e3e-4f34-92a0-2aeaa1238a39';
+
   @override
   void initState() {
     super.initState();
@@ -119,21 +122,23 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             _buildWorkTab(context),
           ],
         ),
-        bottomSheet: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: FilledButton(
-            onPressed: () {
-              setState(() {
-                if (taskStatus == 'Đang thực hiện') {
-                  taskStatus = 'Hoàn thành';
-                }
-              });
-            },
-            child:
-                const Text('Xác nhận hoàn thành'), // Always confirm completion
-          ),
-        ),
+        bottomSheet: task?.assignedToUser.userId == loggedInUserId
+            ? Container(
+                width: MediaQuery.of(context).size.width,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: FilledButton(
+                  onPressed: () {
+                    setState(() {
+                      if (taskStatus == 'Đang thực hiện') {
+                        taskStatus = 'Hoàn thành';
+                      }
+                    });
+                  },
+                  child: const Text('Xác nhận hoàn thành'),
+                ),
+              )
+            : null,
       ),
     );
   }
@@ -221,6 +226,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   }
 
   Widget _buildWorkTab(BuildContext context) {
+    bool isEditable = task?.assignedToUser.userId == loggedInUserId;
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Column(
@@ -265,7 +271,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   radius: const Radius.circular(12),
                   strokeWidth: 1,
                   child: InkWell(
-                    onTap: () => _pickImage(),
+                    onTap: isEditable ? () => _pickImage() : null,
                     child: SizedBox(
                       width: 120,
                       child: _image != null
@@ -307,6 +313,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           TextField(
             controller: logController,
             maxLines: 5,
+            readOnly: !isEditable,
             decoration: InputDecoration(
               hintText: 'Ghi chú...',
               border: OutlineInputBorder(

@@ -25,9 +25,9 @@ class CageWidget extends StatefulWidget {
 
 class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
-  String selectedFilter = 'Tất cả công việc'; // Add this line
+  String selectedFilter = 'Phân công cho tôi'; // Add this line
   Icon selectedFilterIcon =
-      const Icon(Icons.people_outline_outlined); // Update this line
+      const Icon(Icons.account_circle_outlined); // Update this line
   String loggedInUser = 'Staff Farm 1'; // Add this line
 
   List<Task> tasks = [];
@@ -119,6 +119,9 @@ class _CageWidgetState extends State<CageWidget> {
         .toList(); // Update this line
     final inProgressTasks = filteredTasks
         .where((task) => task.status == 'InProgress')
+        .toList(); // Update this line
+    final pendingTasks = filteredTasks
+        .where((task) => task.status == 'Pending')
         .toList(); // Update this line
     final tasksByTime = {
       'Buổi sáng': filteredTasks
@@ -261,7 +264,7 @@ class _CageWidgetState extends State<CageWidget> {
                                                         color: Colors.white),
                                                 children: [
                                                   const TextSpan(
-                                                      text: 'Đã done: '),
+                                                      text: 'Đã làm: '),
                                                   TextSpan(
                                                     text:
                                                         '${doneTasks.length}', // Số task đã làm
@@ -271,7 +274,7 @@ class _CageWidgetState extends State<CageWidget> {
                                                   ),
                                                   TextSpan(
                                                     text:
-                                                        '/${doneTasks.length + inProgressTasks.length} task.',
+                                                        '/${doneTasks.length + inProgressTasks.length + pendingTasks.length} task.',
                                                   ),
                                                 ],
                                               ),
@@ -291,7 +294,8 @@ class _CageWidgetState extends State<CageWidget> {
                                                     ? doneTasks.length /
                                                         (doneTasks.length +
                                                             inProgressTasks
-                                                                .length)
+                                                                .length +
+                                                            pendingTasks.length)
                                                     : 0.0,
                                                 backgroundColor: Colors.white30,
                                                 valueColor:
@@ -300,7 +304,7 @@ class _CageWidgetState extends State<CageWidget> {
                                               ),
                                             ),
                                             Text(
-                                              '${((doneTasks.length / (doneTasks.length + inProgressTasks.length).clamp(1, double.infinity)) * 100).round()}%',
+                                              '${((doneTasks.length / (doneTasks.length + inProgressTasks.length + pendingTasks.length).clamp(1, double.infinity)) * 100).round()}%',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium
@@ -637,6 +641,8 @@ class TaskList extends StatelessWidget {
               : Theme.of(context)
                   .colorScheme
                   .secondaryContainer, // Add this line
+          highlightName:
+              task.assignedToUser.fullName == 'Staff Farm 1', // Add this line
         );
       },
     );

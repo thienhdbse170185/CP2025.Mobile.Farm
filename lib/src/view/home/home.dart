@@ -64,26 +64,27 @@ class _HomeWidgetState extends State<HomeWidget> {
     return BlocListener<TaskBloc, TaskState>(
       listener: (context, state) {
         state.maybeWhen(
-            orElse: () {},
-            getNextTaskSuccess: (tasks) {
-              log('Lấy danh sách công việc thành công!');
-              LoadingDialog.hide(context);
-              setState(() {
-                cages = tasks;
-              });
-            },
-            getNextTaskLoading: () {
-              log('Đang tải dữ liệu...');
-              LoadingDialog.show(context, "Đang tải dữ liệu...");
-            },
-            getNextTaskFailure: (error) {
-              log('Lỗi khi tải dữ liệu: $error');
-              LoadingDialog.hide(context);
-            },
-            testConnectSuccess: () {
-              log('Kết nối thành công!');
-              LoadingDialog.hide(context);
+          getNextTaskSuccess: (tasks) {
+            log('Lấy danh sách công việc thành công!');
+            LoadingDialog.hide(context);
+            setState(() {
+              cages = tasks;
             });
+          },
+          getNextTaskLoading: () {
+            log('Đang tải dữ liệu...');
+            LoadingDialog.show(context, "Đang tải dữ liệu...");
+          },
+          getNextTaskFailure: (error) {
+            log('Lỗi khi tải dữ liệu: $error');
+            LoadingDialog.hide(context);
+          },
+          testConnectSuccess: () {
+            log('Kết nối thành công!');
+            LoadingDialog.hide(context);
+          },
+          orElse: () {},
+        );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -137,204 +138,215 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // OutlinedButton(
-              //   onPressed: () {
-              //     context.read<TaskBloc>().add(const TaskEvent.testConnect());
-              //   },
-              //   child: const Text('Test connect'),
-              // ),
-              Container(
-                color: const Color(0xFFFFFFFF),
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.13,
-                        child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    mainAxisSpacing: 16,
-                                    crossAxisSpacing: 8,
-                                    childAspectRatio: 1.5),
-                            itemBuilder: (context, index) {
-                              if (index < features.length) {
-                                final feature = features[index];
-                                return GestureDetector(
-                                  onTap: () => context.push(feature.routeName),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                          border: Border.all(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
-                                            width: 1,
+        body: RefreshIndicator(
+          onRefresh: () async {
+            context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
+            return;
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // OutlinedButton(
+                //   onPressed: () {
+                //     context.read<TaskBloc>().add(const TaskEvent.testConnect());
+                //   },
+                //   child: const Text('Test connect'),
+                // ),
+                Container(
+                  color: const Color(0xFFFFFFFF),
+                  width: MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 16, right: 16),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.13,
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 16,
+                                      crossAxisSpacing: 8,
+                                      childAspectRatio: 1.5),
+                              itemBuilder: (context, index) {
+                                if (index < features.length) {
+                                  final feature = features[index];
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        context.push(feature.routeName),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            border: Border.all(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryContainer,
+                                              width: 1,
+                                            ),
                                           ),
+                                          child: Icon(feature.icon,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary),
                                         ),
-                                        child: Icon(feature.icon,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      Text(feature.title,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium),
-                                    ],
-                                  ),
-                                );
-                              }
-                              return null;
-                            }),
-                      ),
-                    ],
+                                        const SizedBox(height: 8),
+                                        Text(feature.title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium),
+                                      ],
+                                    ),
+                                  );
+                                }
+                                return null;
+                              }),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Chuồng được cung cấp',
-                        style: Theme.of(context).textTheme.titleLarge),
-                    const SizedBox(height: 16),
-                    ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: cages.length,
-                      itemBuilder: (context, index) {
-                        final cage = cages[index];
-                        final color = cardColors[index % cardColors.length];
-                        return GestureDetector(
-                          onTap: () {
-                            context.push(RouteName.cage, extra: {
-                              'cageId': cage.cageId,
-                              'color': color,
-                            });
-                          },
-                          child: Card(
-                            color: color,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/line_background.png'),
-                                  fit: BoxFit.cover,
+                const SizedBox(height: 8),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Chuồng được cung cấp',
+                          style: Theme.of(context).textTheme.titleLarge),
+                      const SizedBox(height: 16),
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: cages.length,
+                        itemBuilder: (context, index) {
+                          final cage = cages[index];
+                          final color = cardColors[index % cardColors.length];
+                          return GestureDetector(
+                            onTap: () {
+                              context.push(RouteName.cage, extra: {
+                                'cageId': cage.cageId,
+                                'color': color,
+                              });
+                            },
+                            child: Card(
+                              color: color,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/line_background.png'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            cage.cagename,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium
-                                                ?.copyWith(color: Colors.white),
-                                          ),
-                                          const SizedBox(height: 8),
-                                          Text(
-                                            'Task tiếp theo:',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium
-                                                ?.copyWith(
-                                                    color: Colors.white70),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Row(
-                                            children: [
-                                              const Icon(Icons.circle,
-                                                  size: 8, color: Colors.white),
-                                              const SizedBox(width: 8),
-                                              Text(
-                                                cage.taskName,
-                                                style: const TextStyle(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              cage.cagename,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium
+                                                  ?.copyWith(
+                                                      color: Colors.white),
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Text(
+                                              'Task tiếp theo:',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium
+                                                  ?.copyWith(
+                                                      color: Colors.white70),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Row(
+                                              children: [
+                                                const Icon(Icons.circle,
+                                                    size: 8,
                                                     color: Colors.white),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'Tiến độ công việc',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                        color: Colors.white),
-                                              ),
-                                              Text(
-                                                "${cage.taskDone}/${cage.total}",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                        color: Colors.white),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 8),
-                                          LinearProgressIndicator(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            value: double.parse(
-                                                    (cage.taskDone / cage.total)
-                                                        .toString()
-                                                        .replaceAll('%', '')) /
-                                                100,
-                                            backgroundColor: Colors.white30,
-                                            valueColor:
-                                                const AlwaysStoppedAnimation<
-                                                    Color>(Colors.white),
-                                          ),
-                                        ],
+                                                const SizedBox(width: 8),
+                                                Text(
+                                                  cage.taskName,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Tiến độ công việc',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium
+                                                      ?.copyWith(
+                                                          color: Colors.white),
+                                                ),
+                                                Text(
+                                                  "${cage.taskDone}/${cage.total}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium
+                                                      ?.copyWith(
+                                                          color: Colors.white),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 8),
+                                            LinearProgressIndicator(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              value: int.parse((cage.taskDone /
+                                                          cage.total)
+                                                      .toString()
+                                                      .replaceAll('%', '')) /
+                                                  100,
+                                              backgroundColor: Colors.white30,
+                                              valueColor:
+                                                  const AlwaysStoppedAnimation<
+                                                      Color>(Colors.white),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Lottie.asset(
-                                      'assets/animations/chicken_adult.json',
-                                      width: 100,
-                                      height: 100,
-                                    ),
-                                  ],
+                                      const SizedBox(width: 16),
+                                      Lottie.asset(
+                                        'assets/animations/chicken_adult.json',
+                                        width: 100,
+                                        height: 100,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              )
-            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

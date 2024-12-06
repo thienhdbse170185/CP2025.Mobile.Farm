@@ -10,6 +10,7 @@ class TaskCard extends StatelessWidget {
   final bool isInProgress;
   final bool isFirst; // Add this line
   final Color borderColor;
+  final bool highlightName; // Add this line
 
   const TaskCard(
       {super.key,
@@ -18,7 +19,8 @@ class TaskCard extends StatelessWidget {
       required this.isInProgress,
       this.isFirst = false,
       this.taskId, // Add this line
-      required this.borderColor});
+      required this.borderColor,
+      required this.highlightName}); // Add this line
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,9 @@ class TaskCard extends StatelessWidget {
                       Text(
                         task.assignedToUser.fullName,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: highlightName
+                              ? Colors.red // Highlight the name in red
+                              : Theme.of(context).colorScheme.onSurface,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
