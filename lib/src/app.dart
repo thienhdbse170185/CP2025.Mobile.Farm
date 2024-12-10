@@ -8,7 +8,7 @@ import 'package:smart_farm/src/core/network/http_client.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/theme/theme.dart';
 import 'package:smart_farm/src/core/theme/util.dart';
-import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 
 /// The Widget that configures your application.

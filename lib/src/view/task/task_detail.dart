@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
-import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart'; // To handle file
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // To handle file
 import 'package:intl/intl.dart';
 
 class TaskDetailWidget extends StatefulWidget {

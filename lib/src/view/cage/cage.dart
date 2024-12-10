@@ -11,7 +11,7 @@ import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
-import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
 
 class CageWidget extends StatefulWidget {

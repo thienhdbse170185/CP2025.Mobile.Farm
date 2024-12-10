@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
