@@ -230,7 +230,8 @@ class _CageWidgetState extends State<CageWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   if (inProgressTasks.isEmpty &&
-                                      doneTasks.isEmpty) ...[
+                                      doneTasks.isEmpty &&
+                                      pendingTasks.isEmpty) ...[
                                     const SizedBox(height: 8),
                                     Text('Không có Task',
                                         style: Theme.of(context)

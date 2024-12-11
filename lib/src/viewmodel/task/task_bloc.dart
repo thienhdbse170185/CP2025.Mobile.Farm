@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:data_layer/model/entity/task/next_task/next_task.dart';
 import 'package:data_layer/model/entity/task/task.dart';
 import 'package:data_layer/model/response/task/task_by_cage/tasks_by_cage_response.dart';
+import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:data_layer/repository/repository_interface.dart';
+import 'package:data_layer/repository/task/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'task_event.dart';
@@ -65,7 +67,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetTasksByCageId>((event, emit) async {
       emit(const TaskState.loading());
       try {
-        final tasks = await repository.getTasksByCageId(event.cageId);
+        final tasks =
+            await (repository as TaskRepository).getTasksByCageId(event.cageId);
         emit(TaskState.getTasksByCageIdSuccess(tasks));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
@@ -83,10 +86,22 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetNextTask>((event, emit) async {
       emit(const TaskState.getNextTaskLoading());
       try {
-        final task = await repository.getNextTask(event.userId);
+        final task =
+            await (repository as TaskRepository).getNextTask(event.userId);
         emit(TaskState.getNextTaskSuccess(task));
       } catch (e) {
         emit(TaskState.getNextTaskFailure(e.toString()));
+      }
+    });
+    on<_GetTasksByUserIdAndDate>((event, emit) async {
+      emit(const TaskState.getTasksByUserIdAndDateLoading());
+      try {
+        final formattedDate = "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
+        final tasks = await (repository as TaskRepository)
+            .getTasksByUserIdAndDate(event.userId, formattedDate);
+        emit(TaskState.getTasksByUserIdAndDateSuccess(tasks));
+      } catch (e) {
+        emit(TaskState.getTasksByUserIdAndDateFailure(e.toString()));
       }
     });
   }

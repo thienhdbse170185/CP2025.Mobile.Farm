@@ -5,5 +5,5 @@ part 'healthy_state.dart';
 part 'healthy_cubit.freezed.dart';
 
 class HealthyCubit extends Cubit<HealthyState> {
-  HealthyCubit() : super(HealthyState.initial());
+  HealthyCubit() : super(const HealthyState.initial());
 }

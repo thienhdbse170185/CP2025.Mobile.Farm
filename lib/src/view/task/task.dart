@@ -13,7 +13,8 @@ class TaskWidget extends StatefulWidget {
 
 class _TaskWidgetState extends State<TaskWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
-  String selectedFilter = 'Phân công cho tôi'; // Default filter
+  String selectedFilter = 'Tất cả chuồng'; // Default filter
+  String selectedLocation = 'Tất cả'; // Default location filter
 
   final List<Map<String, dynamic>> taskCards = [
     {
@@ -88,6 +89,21 @@ class _TaskWidgetState extends State<TaskWidget> {
     return grouped;
   }
 
+  // Function to group tasks by session and filter by location
+  Map<int, List<Map<String, dynamic>>> get groupedTasksBySession {
+    final tasks = tasksByDate[formattedDate] ?? [];
+    final filteredTasks = selectedLocation == 'Tất cả'
+        ? tasks
+        : tasks.where((task) => task['location'] == selectedLocation).toList();
+    final grouped = <int, List<Map<String, dynamic>>>{};
+
+    for (final task in filteredTasks) {
+      final session = task['session'] as int;
+      grouped.putIfAbsent(session, () => []).add(task);
+    }
+    return grouped;
+  }
+
   // Function to show the date picker
   Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = (await showDatePicker(
@@ -105,41 +121,15 @@ class _TaskWidgetState extends State<TaskWidget> {
     }
   }
 
-  void _showFilterBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.account_circle_outlined),
-              title: const Text('Phân công cho tôi'),
-              onTap: () {
-                setState(() {
-                  selectedFilter = 'Phân công cho tôi';
-                });
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.people_outline_outlined),
-              title: const Text('Tất cả công việc'),
-              onTap: () {
-                setState(() {
-                  selectedFilter = 'Tất cả công việc';
-                });
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final availableLocations =
+        tasksByDate[formattedDate]?.map((task) => task['location']).toSet() ??
+            {};
+    if (availableLocations.isNotEmpty) {
+      availableLocations.add('Tất cả'); // Ensure 'Tất cả' is always available
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -217,46 +207,48 @@ class _TaskWidgetState extends State<TaskWidget> {
             ),
 
             const SizedBox(height: 8),
+            if (availableLocations.isNotEmpty) ...[
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    'Tất cả',
+                    ...availableLocations
+                        .where((location) => location != 'Tất cả')
+                  ].map((location) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: FilterChip(
+                        label: Text(location),
+                        selected: selectedLocation == location,
+                        onSelected: (bool selected) {
+                          setState(() {
+                            selectedFilter = location;
+                            selectedLocation = location;
+                          });
+                        },
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
             Expanded(
               child: tasksByDate[formattedDate]?.isNotEmpty ?? false
-                  ? Column(
+                  ? ListView(
                       children: [
-                        GestureDetector(
-                          onTap: () => _showFilterBottomSheet(context),
-                          child: Card.outlined(
-                            child: ListTile(
-                                leading: Icon(
-                                  selectedFilter == 'Phân công cho tôi'
-                                      ? Icons.account_circle_outlined
-                                      : Icons.people_outline_outlined,
-                                ),
-                                title: Text(selectedFilter,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium),
-                                subtitle: Text(
-                                    '${tasksByDate[formattedDate]?.length} kết quả'),
-                                trailing: const Icon(Icons.arrow_drop_down)),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Expanded(
-                          child: ListView(
-                            children: [
-                              ..._buildExpansionTiles(groupedTasks),
-                              if (completedTasks.isNotEmpty) ...[
-                                const SizedBox(height: 16),
-                                Text('Đã hoàn thành (${completedTasks.length})',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(fontSize: 18)),
-                                const SizedBox(height: 8),
-                                TaskList(tasks: completedTasks),
-                              ],
-                            ],
-                          ),
-                        )
+                        ..._buildSessionSections(groupedTasksBySession),
+                        if (completedTasks.isNotEmpty) ...[
+                          const SizedBox(height: 16),
+                          Text('Đã hoàn thành (${completedTasks.length})',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(fontSize: 18)),
+                          const SizedBox(height: 8),
+                          TaskList(tasks: completedTasks),
+                        ],
                       ],
                     )
                   : Container(
@@ -307,40 +299,35 @@ class _TaskWidgetState extends State<TaskWidget> {
     );
   }
 
-  List<Widget> _buildExpansionTiles(
-      Map<String, List<Map<String, dynamic>>> tasks) {
+  List<Widget> _buildSessionSections(
+      Map<int, List<Map<String, dynamic>>> tasks) {
     return tasks.entries.map((entry) {
-      final location = entry.key;
-      final locationTasks = entry.value;
+      final session = entry.key;
+      final sessionTasks = entry.value;
 
-      final morningTasks =
-          locationTasks.where((task) => task['session'] == 1).toList();
-      final noonTasks =
-          locationTasks.where((task) => task['session'] == 2).toList();
-      final afternoonTasks =
-          locationTasks.where((task) => task['session'] == 3).toList();
+      String sessionTitle;
+      switch (session) {
+        case 1:
+          sessionTitle = 'Buổi sáng';
+          break;
+        case 2:
+          sessionTitle = 'Buổi trưa';
+          break;
+        case 3:
+          sessionTitle = 'Buổi chiều';
+          break;
+        default:
+          sessionTitle = 'Khác';
+      }
 
       return Container(
         color: Colors.white,
         padding: const EdgeInsets.only(bottom: 16.0),
-        child: ExpansionTile(
-          title: Text(
-            '$location (${locationTasks.where((task) => task['status'] == 'Đã làm').length}/${locationTasks.length})',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (morningTasks.isNotEmpty) ...[
-              SectionHeader(title: 'Buổi sáng (${morningTasks.length})'),
-              TaskList(tasks: morningTasks),
-            ],
-            if (noonTasks.isNotEmpty) ...[
-              SectionHeader(title: 'Buổi trưa (${noonTasks.length})'),
-              TaskList(tasks: noonTasks),
-            ],
-            if (afternoonTasks.isNotEmpty) ...[
-              SectionHeader(title: 'Buổi chiều (${afternoonTasks.length})'),
-              TaskList(tasks: afternoonTasks),
-            ],
+            SectionHeader(title: '$sessionTitle (${sessionTasks.length})'),
+            TaskList(tasks: sessionTasks),
           ],
         ),
       );

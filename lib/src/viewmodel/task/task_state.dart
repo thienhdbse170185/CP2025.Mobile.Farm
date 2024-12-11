@@ -25,4 +25,10 @@ class TaskState with _$TaskState {
       _GetNextTaskSuccess;
   const factory TaskState.getNextTaskFailure(String error) =
       _GetNextTaskFailure;
+  const factory TaskState.getTasksByUserIdAndDateLoading() =
+      _GetTasksByUserIdAndDateLoading;
+  const factory TaskState.getTasksByUserIdAndDateSuccess(
+      TaskByUserResponse tasks) = _GetTasksByUserIdAndDateSuccess;
+  const factory TaskState.getTasksByUserIdAndDateFailure(String error) =
+      _GetTasksByUserIdAndDateFailure;
 }

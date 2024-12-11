@@ -1,6 +1,5 @@
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/repository/auth/auth_local_data.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_farm/src/core/common/cubits/theme_cubit.dart';
@@ -34,11 +33,11 @@ class _MyAppState extends State<MyApp> {
         ),
         RepositoryProvider(
           create: (context) =>
-              TaskRepository(dataClient: TaskRemoteData(dio: Dio())),
+              TaskRepository(dataClient: TaskRemoteData(dio: dio)),
         ),
         RepositoryProvider(
           create: (context) =>
-              CageRepository(cageApiClient: CageApiClient(dio: Dio())),
+              CageRepository(cageApiClient: CageApiClient(dio: dio)),
         ),
         RepositoryProvider(
           create: (context) =>

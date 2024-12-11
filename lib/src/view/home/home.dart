@@ -27,7 +27,7 @@ class HomeFeatures {
 
 class _HomeWidgetState extends State<HomeWidget> {
   List<NextTask> cages = [];
-  String userId = '604df876-6e3e-4f34-92a0-2aeaa1238a39';
+  String userId = '93f1f4db-5135-42b8-8301-5b3b96f6c434';
 
   final List<Color> cardColors = [
     Colors.blueAccent,
@@ -50,13 +50,16 @@ class _HomeWidgetState extends State<HomeWidget> {
       title: 'Gọi khẩn cấp',
       icon: Icons.phone_outlined,
       routeName: RouteName.support,
-    )
+    ),
   ];
 
   @override
   void initState() {
     super.initState();
     context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
+    context
+        .read<TaskBloc>()
+        .add(TaskEvent.getTasksByUserIdAndDate(userId, DateTime.now()));
   }
 
   @override
@@ -87,6 +90,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         );
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: const Color(0xFFFFFFFF),
           leading: IconButton(
@@ -214,8 +218,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
                 const SizedBox(height: 8),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -225,8 +228,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: cages.length,
+                        itemCount: cages.isEmpty ? 1 : cages.length,
                         itemBuilder: (context, index) {
+                          if (cages.isEmpty) {
+                            return Center(
+                              child: Text(
+                                'Bạn chưa được gán chuồng nào.',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            );
+                          }
                           final cage = cages[index];
                           final color = cardColors[index % cardColors.length];
                           return GestureDetector(
@@ -315,11 +326,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             LinearProgressIndicator(
                                               borderRadius:
                                                   BorderRadius.circular(10),
-                                              value: int.parse((cage.taskDone /
-                                                          cage.total)
-                                                      .toString()
-                                                      .replaceAll('%', '')) /
-                                                  100,
+                                              value: cage.taskDone / cage.total,
                                               backgroundColor: Colors.white30,
                                               valueColor:
                                                   const AlwaysStoppedAnimation<
