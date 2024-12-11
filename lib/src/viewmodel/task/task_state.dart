@@ -28,7 +28,7 @@ class TaskState with _$TaskState {
   const factory TaskState.getTasksByUserIdAndDateLoading() =
       _GetTasksByUserIdAndDateLoading;
   const factory TaskState.getTasksByUserIdAndDateSuccess(
-      TaskByUserResponse tasks) = _GetTasksByUserIdAndDateSuccess;
+      List<TaskByUserResponse> tasks) = _GetTasksByUserIdAndDateSuccess;
   const factory TaskState.getTasksByUserIdAndDateFailure(String error) =
       _GetTasksByUserIdAndDateFailure;
 }

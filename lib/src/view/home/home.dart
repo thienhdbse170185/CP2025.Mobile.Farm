@@ -57,9 +57,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
-    context
-        .read<TaskBloc>()
-        .add(TaskEvent.getTasksByUserIdAndDate(userId, DateTime.now()));
+    
   }
 
   @override
@@ -68,7 +66,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       listener: (context, state) {
         state.maybeWhen(
           getNextTaskSuccess: (tasks) {
-            log('Lấy danh sách công việc thành công!');
+            log('Lấy danh sách chuồng thành công!');
             LoadingDialog.hide(context);
             setState(() {
               cages = tasks;

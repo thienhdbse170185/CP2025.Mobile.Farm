@@ -636,14 +636,11 @@ class TaskList extends StatelessWidget {
           taskId: task.id,
           isCompleted: isCompleted,
           isInProgress: isInProgress,
-          isFirst: index == 0, // Add this line
+          isFirst: index == 0,
           borderColor: isHighestPriorityInProgress
               ? Theme.of(context).colorScheme.primary
-              : Theme.of(context)
-                  .colorScheme
-                  .secondaryContainer, // Add this line
-          highlightName:
-              task.assignedToUser.fullName == 'Staff Farm 1', // Add this line
+              : Theme.of(context).colorScheme.secondaryContainer,
+          highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
         );
       },
     );

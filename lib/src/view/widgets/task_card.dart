@@ -8,9 +8,10 @@ class TaskCard extends StatelessWidget {
   final Task task;
   final bool isCompleted;
   final bool isInProgress;
-  final bool isFirst; // Add this line
+  final bool isFirst;
   final Color borderColor;
-  final bool highlightName; // Add this line
+  final bool highlightName;
+  final String? cageName;
 
   const TaskCard(
       {super.key,
@@ -18,9 +19,10 @@ class TaskCard extends StatelessWidget {
       required this.isCompleted,
       required this.isInProgress,
       this.isFirst = false,
-      this.taskId, // Add this line
+      this.taskId,
       required this.borderColor,
-      required this.highlightName}); // Add this line
+      required this.highlightName,
+      this.cageName});
 
   @override
   Widget build(BuildContext context) {
@@ -68,23 +70,20 @@ class TaskCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Text('Đảm nhiệm: '),
+                      const Text('Chuồng: '),
                       const SizedBox(width: 2),
                       SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: Image.asset('assets/images/avatar.png'),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        task.assignedToUser.fullName,
-                        style: TextStyle(
-                          color: highlightName
-                              ? Colors.red // Highlight the name in red
-                              : Theme.of(context).colorScheme.onSurface,
-                          fontWeight: FontWeight.bold,
+                        width: MediaQuery.of(context).size.width * 0.41,
+                        child: Text(
+                          cageName ?? 'Chưa xác định',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ],
