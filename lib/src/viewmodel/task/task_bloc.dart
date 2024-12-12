@@ -96,12 +96,36 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetTasksByUserIdAndDate>((event, emit) async {
       emit(const TaskState.getTasksByUserIdAndDateLoading());
       try {
-        final formattedDate = "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
+        final formattedDate =
+            "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
         final tasks = await (repository as TaskRepository)
             .getTasksByUserIdAndDate(event.userId, formattedDate);
         emit(TaskState.getTasksByUserIdAndDateSuccess(tasks));
       } catch (e) {
         emit(TaskState.getTasksByUserIdAndDateFailure(e.toString()));
+      }
+    });
+    on<_FilterTasksByLocation>((event, emit) async {
+      emit(const TaskState.filteredTaskLoading());
+      try {
+        // Chờ mô phỏng tải dữ liệu
+        await Future.delayed(const Duration(seconds: 1));
+
+        // Lọc công việc
+        final filteredTasks = event.location == 'Tất cả'
+            ? event.tasks
+            : event.tasks.where((task) {
+                // Kiểm tra chuồng có khớp với location không
+                final cageNames =
+                    task.cages.map((cage) => cage.cageName).toList();
+
+                return cageNames.contains(event.location);
+              }).toList();
+
+        emit(TaskState.filteredTasksSuccess(filteredTasks));
+      } catch (e) {
+        // Xử lý lỗi nếu có
+        emit(TaskState.filteredTasksFailure(e.toString()));
       }
     });
   }

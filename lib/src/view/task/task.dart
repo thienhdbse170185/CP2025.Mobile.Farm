@@ -51,13 +51,12 @@ class _TaskWidgetState extends State<TaskWidget> {
             .where((task) =>
                 task.cages.any((cage) => cage.cageName == selectedLocation))
             .toList();
-    final grouped = <String, List<TaskByUserResponse>>{};
 
+    final grouped = <String, List<TaskByUserResponse>>{};
     for (final task in filteredTasks) {
       final session = task.sessionName;
       grouped.putIfAbsent(session, () => []).add(task);
     }
-
     return grouped;
   }
 
@@ -114,6 +113,22 @@ class _TaskWidgetState extends State<TaskWidget> {
           },
           getTasksByUserIdAndDateFailure: (e) {
             log("Lấy danh sách công việc thất bại! Message:");
+            log(e.toString());
+            LoadingDialog.hide(context);
+          },
+          filteredTaskLoading: () {
+            log("Đang lọc công việc...");
+            LoadingDialog.show(context, "Đang lọc công việc...");
+          },
+          filteredTasksSuccess: (filteredTasks) {
+            log("Lọc công việc thành công!");
+            setState(() {
+              tasksByDate = filteredTasks;
+            });
+            LoadingDialog.hide(context);
+          },
+          filteredTasksFailure: (e) {
+            log("Lọc công việc thất bại! Message:");
             log(e.toString());
             LoadingDialog.hide(context);
           },
@@ -204,7 +219,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                     children: [
                       'Tất cả',
                       ...availableLocations
-                          .where((location) => location != 'Tất cả')
+                          .where((location) => location != 'Tất cả'),
                     ].map((location) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 8.0),
@@ -213,9 +228,14 @@ class _TaskWidgetState extends State<TaskWidget> {
                           selected: selectedLocation == location,
                           onSelected: (bool selected) {
                             setState(() {
-                              selectedFilter = location;
                               selectedLocation = location;
                             });
+                            context
+                                .read<TaskBloc>()
+                                .add(TaskEvent.filterTasksByLocation(
+                                  location: location,
+                                  tasks: tasksByDate,
+                                ));
                           },
                         ),
                       );

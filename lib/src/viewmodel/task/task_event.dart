@@ -13,4 +13,8 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.getNextTask(String userId) = _GetNextTask;
   const factory TaskEvent.getTasksByUserIdAndDate(
       String userId, DateTime? date) = _GetTasksByUserIdAndDate;
+  const factory TaskEvent.filterTasksByLocation({
+    required String location,
+    required List<TaskByUserResponse> tasks,
+  }) = _FilterTasksByLocation;
 }

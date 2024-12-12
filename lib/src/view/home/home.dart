@@ -42,9 +42,9 @@ class _HomeWidgetState extends State<HomeWidget> {
       routeName: RouteName.home,
     ),
     HomeFeatures(
-      title: 'Các loại đơn từ',
-      routeName: RouteName.home,
-      icon: Icons.menu_open_outlined,
+      title: 'Kho',
+      routeName: RouteName.warehouse,
+      icon: Icons.warehouse_outlined,
     ),
     HomeFeatures(
       title: 'Gọi khẩn cấp',
@@ -57,7 +57,6 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
-    
   }
 
   @override
@@ -283,18 +282,28 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       color: Colors.white70),
                                             ),
                                             const SizedBox(height: 4),
-                                            Row(
-                                              children: [
-                                                const Icon(Icons.circle,
-                                                    size: 8,
-                                                    color: Colors.white),
-                                                const SizedBox(width: 8),
-                                                Text(
-                                                  cage.taskName,
-                                                  style: const TextStyle(
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.6,
+                                              child: Row(
+                                                children: [
+                                                  const Icon(Icons.circle,
+                                                      size: 8,
                                                       color: Colors.white),
-                                                ),
-                                              ],
+                                                  const SizedBox(width: 8),
+                                                  Expanded(
+                                                    child: Text(
+                                                      cage.taskName,
+                                                      style: const TextStyle(
+                                                          color: Colors.white),
+                                                      overflow:
+                                                          TextOverflow.visible,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                             const SizedBox(height: 10),
                                             Row(

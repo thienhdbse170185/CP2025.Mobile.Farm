@@ -354,8 +354,7 @@ class _CageWidgetState extends State<CageWidget> {
                                 if (index < features.length) {
                                   final feature = features[index];
                                   return GestureDetector(
-                                    onTap: () =>
-                                        context.push(feature.routeName),
+                                    onTap: () => context.push(feature.routeName, extra: {'cageName': cage?.name ?? ''}), // Update this line
                                     child: Column(
                                       children: [
                                         Container(
