@@ -134,14 +134,23 @@ final router = GoRouter(
       GoRoute(
           path: RouteName.cage,
           builder: (context, state) {
-            final cageId = state.extra as String;
-            return CageWidget(cageId: cageId);
+            final cageId =
+                (state.extra as Map<String, dynamic>?)?['cageId'] as String;
+            final cardColor =
+                (state.extra as Map<String, dynamic>?)?['color'] as Color;
+            return CageWidget(
+              cageId: cageId,
+              color: cardColor,
+            );
           }),
 
       ///health-report-route
       GoRoute(
           path: RouteName.report,
-          builder: (context, state) => const HealthReportWidget()),
+          builder: (context, state) {
+            final cageName = (state.extra as Map<String, dynamic>?)?['cageName'] as String;
+            return HealthReportWidget(cageName: cageName);
+          }),
 
       ///create-ticket-route
       GoRoute(

@@ -1,6 +1,7 @@
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/repository/auth/auth_local_data.dart';
-import 'package:dio/dio.dart';
+import 'package:data_layer/repository/healthy/healthy_api_client.dart';
+import 'package:data_layer/repository/healthy/healthy_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_farm/src/core/common/cubits/theme_cubit.dart';
@@ -8,7 +9,8 @@ import 'package:smart_farm/src/core/network/http_client.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/theme/theme.dart';
 import 'package:smart_farm/src/core/theme/util.dart';
-import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 
 /// The Widget that configures your application.
@@ -34,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         ),
         RepositoryProvider(
           create: (context) =>
-              TaskRepository(dataClient: TaskRemoteData(dio: Dio())),
+              TaskRepository(dataClient: TaskRemoteData(dio: dio)),
         ),
         RepositoryProvider(
           create: (context) =>
@@ -60,6 +62,9 @@ class _MyAppState extends State<MyApp> {
           create: (context) =>
               ReportRepository(reportApiClient: ReportApiClient(dio: dio)),
         ),
+        RepositoryProvider(
+            create: (context) =>
+                HealthyRepository(apiClient: HealthyApiClient(dio: dio)))
       ],
       child: MultiBlocProvider(
         providers: [
@@ -89,6 +94,9 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) => ReportCubit(
                   reportRepository: context.read<ReportRepository>())),
+          BlocProvider(
+              create: (context) => HealthyCubit(
+                  healthyRepository: context.read<HealthyRepository>())),
         ],
         child: BlocBuilder<ThemeCubit, bool>(
           builder: (context, themeMode) {

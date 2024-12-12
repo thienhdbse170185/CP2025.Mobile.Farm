@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class LoadingDialog {
-  static void show(BuildContext context) {
+  static void show(BuildContext context, String message) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -19,10 +19,10 @@ class LoadingDialog {
                 Lottie.asset(
                   'assets/animations/loading_animation.json',
                   alignment: Alignment.center,
-                  height: 180,
+                  height: 170,
                   width: 180,
                 ),
-                const Text('Loading...', style: TextStyle(fontSize: 16)),
+                Text(message, style: Theme.of(context).textTheme.bodyMedium),
               ],
             ),
           ),

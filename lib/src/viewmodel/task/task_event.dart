@@ -10,4 +10,11 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.testConnect() = _TestConnect;
   const factory TaskEvent.getTasksByCageId(String cageId) = _GetTasksByCageId;
   const factory TaskEvent.getTaskById(String taskId) = _GetTaskById;
+  const factory TaskEvent.getNextTask(String userId) = _GetNextTask;
+  const factory TaskEvent.getTasksByUserIdAndDate(
+      String userId, DateTime? date) = _GetTasksByUserIdAndDate;
+  const factory TaskEvent.filterTasksByLocation({
+    required String location,
+    required List<TaskByUserResponse> tasks,
+  }) = _FilterTasksByLocation;
 }
