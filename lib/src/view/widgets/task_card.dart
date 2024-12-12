@@ -39,7 +39,9 @@ class TaskCard extends StatelessWidget {
           child: Card(
             shape: RoundedRectangleBorder(
               side: BorderSide(
-                color: borderColor,
+                color: Theme.of(context)
+                    .colorScheme
+                    .outline, // Reset to default M3 color
               ),
               borderRadius: BorderRadius.circular(8),
             ),
@@ -68,24 +70,25 @@ class TaskCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Row(
-                    children: [
-                      const Text('Chuồng: '),
-                      const SizedBox(width: 2),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.41,
-                        child: Text(
-                          cageName ?? 'Chưa xác định',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                            fontWeight: FontWeight.bold,
+                  if (cageName != null)
+                    Row(
+                      children: [
+                        const Text('Chuồng: '),
+                        const SizedBox(width: 2),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.41,
+                          child: Text(
+                            cageName ?? 'Chưa xác định',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                        ),
-                      )
-                    ],
-                  ),
+                        )
+                      ],
+                    ),
                 ],
               ),
               trailing: Icon(

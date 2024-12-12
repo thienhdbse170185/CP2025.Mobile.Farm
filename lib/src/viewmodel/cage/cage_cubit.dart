@@ -30,4 +30,14 @@ class CageCubit extends Cubit<CageState> {
       emit(CageState.loadByIdFailure(e.toString()));
     }
   }
+
+  Future<void> getCagesByUserId(String userId) async {
+    emit(const CageState.loadByUserIdInProgress());
+    try {
+      final cages = await cageRepository.getCagesByUserId(userId);
+      emit(CageState.loadByUserIdSuccess(cages));
+    } catch (e) {
+      emit(CageState.loadByUserIdFailure(e.toString()));
+    }
+  }
 }

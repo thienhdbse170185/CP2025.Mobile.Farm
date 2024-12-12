@@ -11,6 +11,7 @@ class TextFieldRequired extends StatefulWidget {
     this.isDisabled,
     this.controller,
     this.content,
+    this.isReadOnly = false, // Add this line
   });
 
   final String label;
@@ -21,6 +22,7 @@ class TextFieldRequired extends StatefulWidget {
   final bool? isDisabled; // Để kiểm soát việc vô hiệu hóa TextField
   final TextEditingController? controller;
   final String? content; // Nội dung tĩnh (không thể thay đổi)
+  final bool isReadOnly; // Add this line
 
   @override
   State<TextFieldRequired> createState() => _TextFieldRequiredState();
@@ -29,7 +31,7 @@ class TextFieldRequired extends StatefulWidget {
 class _TextFieldRequiredState extends State<TextFieldRequired> {
   @override
   Widget build(BuildContext context) {
-    final isReadOnly = widget.content != null || widget.isDisabled == true;
+    final isReadOnly = widget.content != null || widget.isDisabled == true || widget.isReadOnly; // Modify this line
 
     return TextField(
       autocorrect: false,

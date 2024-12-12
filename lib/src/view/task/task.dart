@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
@@ -57,6 +58,13 @@ class _TaskWidgetState extends State<TaskWidget> {
       final session = task.sessionName;
       grouped.putIfAbsent(session, () => []).add(task);
     }
+
+    // Sort tasks within each session by priorityNum
+    grouped.forEach((session, tasks) {
+      tasks.sort((a, b) => a.cages.first.tasks.first.priorityNum
+          .compareTo(b.cages.first.tasks.first.priorityNum));
+    });
+
     return grouped;
   }
 
@@ -77,15 +85,12 @@ class _TaskWidgetState extends State<TaskWidget> {
     }
   }
 
-  final userId = "93f1f4db-5135-42b8-8301-5b3b96f6c434";
-
   @override
   void initState() {
     super.initState();
     // Fetch tasks for the selected date when the widget is initialized
-    context
-        .read<TaskBloc>()
-        .add(TaskEvent.getTasksByUserIdAndDate(userId, DateTime.now()));
+    context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
+        UserDataConstant.userId, DateTime.now()));
   }
 
   @override
@@ -197,113 +202,119 @@ class _TaskWidgetState extends State<TaskWidget> {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Update this to display either "Hôm nay" or the day of the week
-              Text(
-                isToday ? 'Hôm nay' : dayOfWeek, // Show "Hôm nay" if today
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(fontSize: 22),
-              ),
-
-              const SizedBox(height: 8),
-              if (availableLocations.isNotEmpty) ...[
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      'Tất cả',
-                      ...availableLocations
-                          .where((location) => location != 'Tất cả'),
-                    ].map((location) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: FilterChip(
-                          label: Text(location),
-                          selected: selectedLocation == location,
-                          onSelected: (bool selected) {
-                            setState(() {
-                              selectedLocation = location;
-                            });
-                            context
-                                .read<TaskBloc>()
-                                .add(TaskEvent.filterTasksByLocation(
-                                  location: location,
-                                  tasks: tasksByDate,
-                                ));
-                          },
-                        ),
-                      );
-                    }).toList(),
-                  ),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
+                UserDataConstant.userId, selectedDate));
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Update this to display either "Hôm nay" or the day of the week
+                Text(
+                  isToday ? 'Hôm nay' : dayOfWeek, // Show "Hôm nay" if today
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontSize: 22),
                 ),
-                const SizedBox(height: 24),
-              ],
-              Expanded(
-                child: tasksByDate.isNotEmpty
-                    ? ListView(
-                        children: [
-                          ..._buildSessionSections(groupedTasksBySession),
-                          if (completedTasks.isNotEmpty) ...[
-                            const SizedBox(height: 16),
-                            Text('Đã hoàn thành (${completedTasks.length})',
+
+                const SizedBox(height: 8),
+                if (availableLocations.isNotEmpty) ...[
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        'Tất cả',
+                        ...availableLocations
+                            .where((location) => location != 'Tất cả'),
+                      ].map((location) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: FilterChip(
+                            label: Text(location),
+                            selected: selectedLocation == location,
+                            onSelected: (bool selected) {
+                              setState(() {
+                                selectedLocation = location;
+                              });
+                              context
+                                  .read<TaskBloc>()
+                                  .add(TaskEvent.filterTasksByLocation(
+                                    location: location,
+                                    tasks: tasksByDate,
+                                  ));
+                            },
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                ],
+                Expanded(
+                  child: tasksByDate.isNotEmpty
+                      ? ListView(
+                          children: [
+                            ..._buildSessionSections(groupedTasksBySession),
+                            if (completedTasks.isNotEmpty) ...[
+                              const SizedBox(height: 16),
+                              Text('Đã hoàn thành (${completedTasks.length})',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(fontSize: 18)),
+                              const SizedBox(height: 8),
+                              TaskList(tasks: completedTasks),
+                            ],
+                          ],
+                        )
+                      : Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height * 0.1),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(90),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer
+                                      .withOpacity(0.4),
+                                ),
+                                width: 120,
+                                height: 120,
+                                child: Icon(
+                                  Icons.task_alt_outlined,
+                                  size: 64,
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.4),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                'Không có công việc nào\n trong ngày này',
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
-                                    ?.copyWith(fontSize: 18)),
-                            const SizedBox(height: 8),
-                            TaskList(tasks: completedTasks),
-                          ],
-                        ],
-                      )
-                    : Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).size.height * 0.1),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primaryContainer
-                                    .withOpacity(0.4),
+                                    ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .outlineVariant,
+                                    ),
+                                textAlign: TextAlign.center,
                               ),
-                              width: 120,
-                              height: 120,
-                              child: Icon(
-                                Icons.task_alt_outlined,
-                                size: 64,
-                                color: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.4),
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Không có công việc nào\n trong ngày này',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .outlineVariant,
-                                  ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

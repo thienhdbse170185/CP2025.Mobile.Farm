@@ -154,66 +154,66 @@ class _HomeWidgetState extends State<HomeWidget> {
                 //   },
                 //   child: const Text('Test connect'),
                 // ),
-                Container(
-                  color: const Color(0xFFFFFFFF),
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 16, left: 16, right: 16),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.13,
-                          child: GridView.builder(
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      mainAxisSpacing: 16,
-                                      crossAxisSpacing: 8,
-                                      childAspectRatio: 1.5),
-                              itemBuilder: (context, index) {
-                                if (index < features.length) {
-                                  final feature = features[index];
-                                  return GestureDetector(
-                                    onTap: () =>
-                                        context.push(feature.routeName),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 10),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            border: Border.all(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primaryContainer,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          child: Icon(feature.icon,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                        ),
-                                        const SizedBox(height: 8),
-                                        Text(feature.title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium),
-                                      ],
-                                    ),
-                                  );
-                                }
-                                return null;
-                              }),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
+                // Container(
+                //   color: const Color(0xFFFFFFFF),
+                //   width: MediaQuery.of(context).size.width,
+                //   child: Padding(
+                //     padding:
+                //         const EdgeInsets.only(top: 16, left: 16, right: 16),
+                //     child: Column(
+                //       children: [
+                //         SizedBox(
+                //           height: MediaQuery.of(context).size.height * 0.13,
+                //           child: GridView.builder(
+                //               gridDelegate:
+                //                   const SliverGridDelegateWithFixedCrossAxisCount(
+                //                       crossAxisCount: 3,
+                //                       mainAxisSpacing: 16,
+                //                       crossAxisSpacing: 8,
+                //                       childAspectRatio: 1.5),
+                //               itemBuilder: (context, index) {
+                //                 if (index < features.length) {
+                //                   final feature = features[index];
+                //                   return GestureDetector(
+                //                     onTap: () =>
+                //                         context.push(feature.routeName),
+                //                     child: Column(
+                //                       children: [
+                //                         Container(
+                //                           padding: const EdgeInsets.symmetric(
+                //                               horizontal: 12, vertical: 10),
+                //                           decoration: BoxDecoration(
+                //                             borderRadius:
+                //                                 BorderRadius.circular(16),
+                //                             border: Border.all(
+                //                               color: Theme.of(context)
+                //                                   .colorScheme
+                //                                   .primaryContainer,
+                //                               width: 1,
+                //                             ),
+                //                           ),
+                //                           child: Icon(feature.icon,
+                //                               color: Theme.of(context)
+                //                                   .colorScheme
+                //                                   .primary),
+                //                         ),
+                //                         const SizedBox(height: 8),
+                //                         Text(feature.title,
+                //                             style: Theme.of(context)
+                //                                 .textTheme
+                //                                 .bodyMedium),
+                //                       ],
+                //                     ),
+                //                   );
+                //                 }
+                //                 return null;
+                //               }),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
