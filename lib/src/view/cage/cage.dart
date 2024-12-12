@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:data_layer/model/entity/cage/cage.dart';
 import 'package:data_layer/model/entity/task/task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,11 +11,13 @@ import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
-import 'package:smart_farm/src/viewmodel/bloc/task_bloc.dart'; // Import the TaskCard widget
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
 
 class CageWidget extends StatefulWidget {
   final String cageId;
-  const CageWidget({super.key, required this.cageId});
+  final Color color;
+  const CageWidget({super.key, required this.cageId, required this.color});
 
   @override
   State<CageWidget> createState() => _CageWidgetState();
@@ -22,12 +25,13 @@ class CageWidget extends StatefulWidget {
 
 class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
-  String selectedFilter = 'Tất cả công việc'; // Add this line
+  String selectedFilter = 'Phân công cho tôi'; // Add this line
   Icon selectedFilterIcon =
-      const Icon(Icons.people_outline_outlined); // Update this line
+      const Icon(Icons.account_circle_outlined); // Update this line
   String loggedInUser = 'Staff Farm 1'; // Add this line
 
   List<Task> tasks = [];
+  Cage? cage;
 
   String get formattedDate {
     return DateFormat('MMM dd, yyyy').format(selectedDate);
@@ -116,6 +120,9 @@ class _CageWidgetState extends State<CageWidget> {
     final inProgressTasks = filteredTasks
         .where((task) => task.status == 'InProgress')
         .toList(); // Update this line
+    final pendingTasks = filteredTasks
+        .where((task) => task.status == 'Pending')
+        .toList(); // Update this line
     final tasksByTime = {
       'Buổi sáng': filteredTasks
           .where((task) => task.session == 1 && task.status != 'Done')
@@ -136,8 +143,8 @@ class _CageWidgetState extends State<CageWidget> {
         BlocListener<TaskBloc, TaskState>(
           listener: (context, state) {
             state.maybeWhen(
-              getTasksByCageIdLoading: () {
-                LoadingDialog.show(context);
+              loading: () {
+                LoadingDialog.show(context, 'Đang tải công việc...');
               },
               getTasksByCageIdSuccess: (tasksResponse) async {
                 await Future.delayed(const Duration(seconds: 1));
@@ -146,6 +153,7 @@ class _CageWidgetState extends State<CageWidget> {
                   tasks = tasksResponse.items;
                 });
                 log('Lấy công việc theo chuồng thành công!');
+                context.read<CageCubit>().getCageById(widget.cageId);
               },
               getTasksFailure: (e) {
                 LoadingDialog.hide(context);
@@ -156,11 +164,32 @@ class _CageWidgetState extends State<CageWidget> {
             );
           },
         ),
+        BlocListener<CageCubit, CageState>(listener: (context, state) {
+          state.maybeWhen(
+            loadByIdSuccess: (cage) async {
+              await Future.delayed(const Duration(seconds: 2));
+              log('Lấy thông tin chuồng thành công!');
+              LoadingDialog.hide(context);
+              setState(() {
+                this.cage = cage;
+              });
+            },
+            loadByIdInProgress: () {
+              log('Đang lấy thông tin chuồng...');
+              LoadingDialog.show(context, 'Đang lấy thông tin chuồng...');
+            },
+            loadByIdFailure: (e) {
+              log('Lấy thông tin chuồng thất bại!');
+              LoadingDialog.hide(context);
+            },
+            orElse: () {},
+          );
+        }),
       ],
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text('Chuồng gà Trưởng Thành'),
+          title: Text(cage?.name ?? ""),
           actions: [
             IconButton(
               onPressed: () {},
@@ -182,7 +211,7 @@ class _CageWidgetState extends State<CageWidget> {
                   color: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Card(
-                    color: Colors.blueAccent,
+                    color: widget.color,
                     child: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
@@ -201,7 +230,8 @@ class _CageWidgetState extends State<CageWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   if (inProgressTasks.isEmpty &&
-                                      doneTasks.isEmpty) ...[
+                                      doneTasks.isEmpty &&
+                                      pendingTasks.isEmpty) ...[
                                     const SizedBox(height: 8),
                                     Text('Không có Task',
                                         style: Theme.of(context)
@@ -235,7 +265,7 @@ class _CageWidgetState extends State<CageWidget> {
                                                         color: Colors.white),
                                                 children: [
                                                   const TextSpan(
-                                                      text: 'Đã done: '),
+                                                      text: 'Đã làm: '),
                                                   TextSpan(
                                                     text:
                                                         '${doneTasks.length}', // Số task đã làm
@@ -245,7 +275,7 @@ class _CageWidgetState extends State<CageWidget> {
                                                   ),
                                                   TextSpan(
                                                     text:
-                                                        '/${doneTasks.length + inProgressTasks.length} task.',
+                                                        '/${doneTasks.length + inProgressTasks.length + pendingTasks.length} task.',
                                                   ),
                                                 ],
                                               ),
@@ -265,7 +295,8 @@ class _CageWidgetState extends State<CageWidget> {
                                                     ? doneTasks.length /
                                                         (doneTasks.length +
                                                             inProgressTasks
-                                                                .length)
+                                                                .length +
+                                                            pendingTasks.length)
                                                     : 0.0,
                                                 backgroundColor: Colors.white30,
                                                 valueColor:
@@ -274,7 +305,7 @@ class _CageWidgetState extends State<CageWidget> {
                                               ),
                                             ),
                                             Text(
-                                              '${((doneTasks.length / (doneTasks.length + inProgressTasks.length).clamp(1, double.infinity)) * 100).round()}%',
+                                              '${((doneTasks.length / (doneTasks.length + inProgressTasks.length + pendingTasks.length).clamp(1, double.infinity)) * 100).round()}%',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium
@@ -323,8 +354,7 @@ class _CageWidgetState extends State<CageWidget> {
                                 if (index < features.length) {
                                   final feature = features[index];
                                   return GestureDetector(
-                                    onTap: () =>
-                                        context.push(feature.routeName),
+                                    onTap: () => context.push(feature.routeName, extra: {'cageName': cage?.name ?? ''}), // Update this line
                                     child: Column(
                                       children: [
                                         Container(
@@ -513,8 +543,7 @@ class _CageWidgetState extends State<CageWidget> {
                         ],
                         if (completedTasksList.isNotEmpty) ...[
                           const SizedBox(height: 16),
-                          Text(
-                              'Công việc đã làm (${completedTasksList.length})',
+                          Text('Đã hoàn thành (${completedTasksList.length})',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium
@@ -579,21 +608,38 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Find the highest priority task with status 'InProgress'
+    Task? highestPriorityInProgressTask;
+    for (final task in tasks) {
+      if (task.status == 'InProgress') {
+        if (highestPriorityInProgressTask == null ||
+            task.priorityNum < highestPriorityInProgressTask.priorityNum) {
+          highestPriorityInProgressTask = task;
+        }
+      }
+    }
+
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];
-        final isInProgress = task.status == 'Đang làm';
-        final isCompleted = task.status == 'Đã làm';
+        final isInProgress = task.status == 'InProgress';
+        final isCompleted = task.status == 'Done';
+        final isHighestPriorityInProgress =
+            task == highestPriorityInProgressTask;
 
         return TaskCard(
           task: task,
           taskId: task.id,
           isCompleted: isCompleted,
           isInProgress: isInProgress,
-          isFirst: index == 0, // Add this line
+          isFirst: index == 0,
+          borderColor: isHighestPriorityInProgress
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.secondaryContainer,
+          highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
         );
       },
     );

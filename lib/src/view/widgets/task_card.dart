@@ -8,16 +8,21 @@ class TaskCard extends StatelessWidget {
   final Task task;
   final bool isCompleted;
   final bool isInProgress;
-  final bool isFirst; // Add this line
+  final bool isFirst;
+  final Color borderColor;
+  final bool highlightName;
+  final String? cageName;
 
-  const TaskCard({
-    super.key,
-    required this.task,
-    required this.isCompleted,
-    required this.isInProgress,
-    this.isFirst = false,
-    this.taskId, // Add this line
-  });
+  const TaskCard(
+      {super.key,
+      required this.task,
+      required this.isCompleted,
+      required this.isInProgress,
+      this.isFirst = false,
+      this.taskId,
+      required this.borderColor,
+      required this.highlightName,
+      this.cageName});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +39,7 @@ class TaskCard extends StatelessWidget {
           child: Card(
             shape: RoundedRectangleBorder(
               side: BorderSide(
-                color: isFirst
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.secondaryContainer,
+                color: borderColor,
               ),
               borderRadius: BorderRadius.circular(8),
             ),
@@ -67,21 +70,20 @@ class TaskCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Text('Người làm: '),
+                      const Text('Chuồng: '),
                       const SizedBox(width: 2),
                       SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: Image.asset('assets/images/avatar.png'),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        task.assignedToUser.fullName,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontWeight: FontWeight.bold,
+                        width: MediaQuery.of(context).size.width * 0.41,
+                        child: Text(
+                          cageName ?? 'Chưa xác định',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ],

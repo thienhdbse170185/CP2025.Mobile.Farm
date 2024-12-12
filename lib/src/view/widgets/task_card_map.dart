@@ -54,7 +54,7 @@ class TaskCardMap extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Text('Người làm: '),
+                      const Text('Đảm nhiệm: '),
                       const SizedBox(width: 2),
                       SizedBox(
                         height: 24,
