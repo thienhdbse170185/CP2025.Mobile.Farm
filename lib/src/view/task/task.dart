@@ -82,6 +82,9 @@ class _TaskWidgetState extends State<TaskWidget> {
       setState(() {
         selectedDate = picked;
       });
+      // Call the API to fetch tasks for the selected date
+      context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
+          UserDataConstant.userId, picked, null));
     }
   }
 
@@ -90,7 +93,7 @@ class _TaskWidgetState extends State<TaskWidget> {
     super.initState();
     // Fetch tasks for the selected date when the widget is initialized
     context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
-        UserDataConstant.userId, DateTime.now()));
+        UserDataConstant.userId, DateTime.now(), null));
   }
 
   @override
@@ -205,7 +208,7 @@ class _TaskWidgetState extends State<TaskWidget> {
         body: RefreshIndicator(
           onRefresh: () async {
             context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
-                UserDataConstant.userId, selectedDate));
+                UserDataConstant.userId, selectedDate, null));
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -240,12 +243,20 @@ class _TaskWidgetState extends State<TaskWidget> {
                               setState(() {
                                 selectedLocation = location;
                               });
-                              context
-                                  .read<TaskBloc>()
-                                  .add(TaskEvent.filterTasksByLocation(
-                                    location: location,
-                                    tasks: tasksByDate,
-                                  ));
+                              // Get the cageId for the selected location
+                              final cageId = location == 'Tất cả'
+                                  ? null
+                                  : tasksByDate
+                                      .expand((task) => task.cages)
+                                      .firstWhere(
+                                          (cage) => cage.cageName == location)
+                                      .cageId;
+                              // Call the API to fetch tasks for the selected cage
+                              context.read<TaskBloc>().add(
+                                  TaskEvent.getTasksByUserIdAndDate(
+                                      UserDataConstant.userId,
+                                      selectedDate,
+                                      cageId));
                             },
                           ),
                         );
@@ -327,16 +338,19 @@ class _TaskWidgetState extends State<TaskWidget> {
       final session = entry.key;
       final sessionTasks = entry.value;
 
-      String sessionTitle;
+      String sessionTitle, image = 'assets/images/default.png';
       switch (session) {
         case 'Morning':
           sessionTitle = 'Buổi sáng';
+          image = 'assets/images/morning.png';
           break;
         case 'Afternoon':
           sessionTitle = 'Buổi trưa';
+          image = 'assets/images/afternoon.png';
           break;
         case 'Evening':
           sessionTitle = 'Buổi chiều';
+          image = 'assets/images/moon.png';
           break;
         default:
           sessionTitle = 'Khác';
@@ -348,7 +362,9 @@ class _TaskWidgetState extends State<TaskWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SectionHeader(title: '$sessionTitle (${sessionTasks.length})'),
+            SectionHeader(
+                title: '$sessionTitle (${sessionTasks.length})', image: image),
+            const SizedBox(height: 4),
             TaskList(tasks: sessionTasks),
           ],
         ),
@@ -366,17 +382,19 @@ class _TaskWidgetState extends State<TaskWidget> {
 
 class SectionHeader extends StatelessWidget {
   final String title;
+  final String image;
 
-  const SectionHeader({super.key, required this.title});
+  const SectionHeader({super.key, required this.title, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 20,
-          height: 1,
-          color: Theme.of(context).colorScheme.outlineVariant,
+        const SizedBox(width: 8),
+        Image.asset(
+          image,
+          width: 24,
+          height: 24,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -386,12 +404,6 @@ class SectionHeader extends StatelessWidget {
                 .textTheme
                 .titleMedium
                 ?.copyWith(color: Theme.of(context).primaryColor),
-          ),
-        ),
-        Expanded(
-          child: Divider(
-            color: Theme.of(context).primaryColor.withOpacity(0.3),
-            thickness: 1,
           ),
         ),
       ],

@@ -49,6 +49,12 @@ dev_dependencies:
   freezed: ^2.5.7
   flutter_launcher_icons: ^0.14.2
 
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/images/LOGOOFFICIAL.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/LOGOOFFICIAL.png"
+
 flutter:
   uses-material-design: true
 
@@ -62,6 +68,13 @@ flutter:
     - .env
 
 flutter_native_splash:
-  image: assets/images/LOGOOFFICIAL.png
-  color: "#00FF00" # Green color
   android: true
+  ios: false
+  web: false
+
+  color: "#379C3B" # Green color
+  image: "assets/images/LOGOOFFICIAL.png"
+
+  android_12:
+    color: "#379C3B" # Green color
+    image: "assets/images/LOGOOFFICIAL.png"

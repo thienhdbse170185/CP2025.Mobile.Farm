@@ -27,7 +27,7 @@ mixin _$TaskEvent {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -44,7 +44,8 @@ mixin _$TaskEvent {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) =>
@@ -60,7 +61,8 @@ mixin _$TaskEvent {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -186,7 +188,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -206,7 +208,8 @@ class _$StartedImpl implements _Started {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -225,7 +228,8 @@ class _$StartedImpl implements _Started {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -378,7 +382,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -398,7 +402,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -417,7 +422,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -578,7 +584,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -598,7 +604,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -617,7 +624,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -778,7 +786,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -798,7 +806,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -817,7 +826,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -951,7 +961,7 @@ class _$GetTasksImpl implements _GetTasks {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -971,7 +981,8 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -990,7 +1001,8 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -1116,7 +1128,7 @@ class _$TestConnectImpl implements _TestConnect {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -1136,7 +1148,8 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -1155,7 +1168,8 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -1309,7 +1323,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -1329,7 +1343,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -1348,7 +1363,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -1509,7 +1525,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -1529,7 +1545,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -1548,7 +1565,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -1709,7 +1727,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -1729,7 +1747,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -1748,7 +1767,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
@@ -1839,7 +1859,7 @@ abstract class _$$GetTasksByUserIdAndDateImplCopyWith<$Res> {
           $Res Function(_$GetTasksByUserIdAndDateImpl) then) =
       __$$GetTasksByUserIdAndDateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String userId, DateTime? date});
+  $Res call({String userId, DateTime? date, String? cageId});
 }
 
 /// @nodoc
@@ -1858,6 +1878,7 @@ class __$$GetTasksByUserIdAndDateImplCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? date = freezed,
+    Object? cageId = freezed,
   }) {
     return _then(_$GetTasksByUserIdAndDateImpl(
       null == userId
@@ -1868,6 +1889,10 @@ class __$$GetTasksByUserIdAndDateImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1875,16 +1900,18 @@ class __$$GetTasksByUserIdAndDateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
-  const _$GetTasksByUserIdAndDateImpl(this.userId, this.date);
+  const _$GetTasksByUserIdAndDateImpl(this.userId, this.date, this.cageId);
 
   @override
   final String userId;
   @override
   final DateTime? date;
+  @override
+  final String? cageId;
 
   @override
   String toString() {
-    return 'TaskEvent.getTasksByUserIdAndDate(userId: $userId, date: $date)';
+    return 'TaskEvent.getTasksByUserIdAndDate(userId: $userId, date: $date, cageId: $cageId)';
   }
 
   @override
@@ -1893,11 +1920,12 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         (other.runtimeType == runtimeType &&
             other is _$GetTasksByUserIdAndDateImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.cageId, cageId) || other.cageId == cageId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, date);
+  int get hashCode => Object.hash(runtimeType, userId, date, cageId);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -1920,12 +1948,12 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
   }) {
-    return getTasksByUserIdAndDate(userId, date);
+    return getTasksByUserIdAndDate(userId, date, cageId);
   }
 
   @override
@@ -1940,11 +1968,12 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
-    return getTasksByUserIdAndDate?.call(userId, date);
+    return getTasksByUserIdAndDate?.call(userId, date, cageId);
   }
 
   @override
@@ -1959,13 +1988,14 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDate != null) {
-      return getTasksByUserIdAndDate(userId, date);
+      return getTasksByUserIdAndDate(userId, date, cageId);
     }
     return orElse();
   }
@@ -2033,11 +2063,12 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
 
 abstract class _GetTasksByUserIdAndDate implements TaskEvent {
   const factory _GetTasksByUserIdAndDate(
-          final String userId, final DateTime? date) =
+          final String userId, final DateTime? date, final String? cageId) =
       _$GetTasksByUserIdAndDateImpl;
 
   String get userId;
   DateTime? get date;
+  String? get cageId;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -2142,7 +2173,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     required TResult Function(String cageId) getTasksByCageId,
     required TResult Function(String taskId) getTaskById,
     required TResult Function(String userId) getNextTask,
-    required TResult Function(String userId, DateTime? date)
+    required TResult Function(String userId, DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String location, List<TaskByUserResponse> tasks)
         filterTasksByLocation,
@@ -2162,7 +2193,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(String cageId)? getTasksByCageId,
     TResult? Function(String taskId)? getTaskById,
     TResult? Function(String userId)? getNextTask,
-    TResult? Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult? Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult? Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
   }) {
@@ -2181,7 +2213,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(String cageId)? getTasksByCageId,
     TResult Function(String taskId)? getTaskById,
     TResult Function(String userId)? getNextTask,
-    TResult Function(String userId, DateTime? date)? getTasksByUserIdAndDate,
+    TResult Function(String userId, DateTime? date, String? cageId)?
+        getTasksByUserIdAndDate,
     TResult Function(String location, List<TaskByUserResponse> tasks)?
         filterTasksByLocation,
     required TResult orElse(),

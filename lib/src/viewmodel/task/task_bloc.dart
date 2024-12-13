@@ -99,7 +99,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         final formattedDate =
             "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
         final tasks = await (repository as TaskRepository)
-            .getTasksByUserIdAndDate(event.userId, formattedDate);
+            .getTasksByUserIdAndDate(event.userId, formattedDate, event.cageId);
         emit(TaskState.getTasksByUserIdAndDateSuccess(tasks));
       } catch (e) {
         emit(TaskState.getTasksByUserIdAndDateFailure(e.toString()));
