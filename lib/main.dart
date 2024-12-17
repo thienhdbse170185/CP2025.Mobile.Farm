@@ -1,40 +1,18 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:signalr_core/signalr_core.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'src/app.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
-// final hubConnection = HubConnectionBuilder()
-//     .withUrl('YOUR_SIGNALR_URL') // Replace with your SignalR URL
-//     .build(); // Initialize SignalR connection
-
-// // function to listen to background changes
-// void _signalRBackgroundMessage(List<Object?>? message) {
-//   if (message != null &&
-//       (message[0] as Map<String, dynamic>)['notification'] != null) {
-//     log("Some notification Received in background...");
-//   }
-// }
-
-// // to handle notification on foreground on web platform
-// void showNotification({required String title, required String body}) {
-//   showDialog(
-//     context: navigatorKey.currentContext!,
-//     builder: (context) => AlertDialog(
-//       title: Text(title),
-//       content: Text(body),
-//       actions: [
-//         TextButton(
-//             onPressed: () {
-//               Navigator.pop(context);
-//             },
-//             child: const Text("Ok"))
-//       ],
-//     ),
-//   );
-// }
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -42,35 +20,93 @@ Future<void> main() async {
   await initializeDateFormatting('vi_VN', null);
   await Hive.initFlutter();
 
-  // await hubConnection.start(); // Start SignalR connection
+  // Initialize flutter_local_notifications
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@drawable/ic_launcher_foreground');
+  const InitializationSettings initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
-  // hubConnection.on('ReceiveMessage', (message) {
-  //   String payloadData = jsonEncode(message);
-  //   log("Got a message in foreground");
-  //   if (message != null) {
-  //     if (kIsWeb) {
-  //       showNotification(title: message[0]['title'], body: message[0]['body']);
-  //     } else {
-  //       // Replace with your local notification logic
-  //       log("Notification: ${message[0]['title']} - ${message[0]['body']}");
-  //     }
-  //   }
-  // });
+  // Check notification permission
+  final bool? granted = await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.areNotificationsEnabled();
 
-  // // Listen to background notifications
-  // hubConnection.on(
-  //     'BackgroundMessage', (message) => _signalRBackgroundMessage(message));
+  if (granted != null && !granted) {
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
+  }
 
-  // // on background notification tapped
-  // hubConnection.on('MessageOpenedApp', (message) {
-  //   if (message != null) {
-  //     log("Background Notification Tapped");
-  //     navigatorKey.currentState!.pushNamed("/cage");
-  //   }
-  // });
+  final bool? permissionGranted = await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.areNotificationsEnabled();
 
-  // for handling in terminated state
-  // Implement your logic to handle terminated state notifications if needed
+  if (permissionGranted != null && !permissionGranted) {
+    log("[NOTIFICATION_PERMISSION] Notification permission not granted");
+    return;
+  }
+
+  log("[CONNECTION_STATUS] Starting SignalR connection...");
+  String serverUrl = "${dotenv.env['BASE_SIGNALR_URL']}";
+  String accessToken = "${dotenv.env['SIGNALR_ACCESS_TOKEN']}";
+  final hubConnection = HubConnectionBuilder()
+      .withUrl(
+          serverUrl,
+          HttpConnectionOptions(logging: (level, message) {
+            log("[LOG_CONNECTION_OPTION] $level: $message");
+          }, accessTokenFactory: () async {
+            return accessToken;
+          })) // Replace with your SignalR URL
+      .build(); // Initialize SignalR connection
+
+  hubConnection.on('ReceiveNotification', (message) async {
+    String payloadData = jsonEncode(message);
+    log("[FOREGROUND_NOTIFICATION] Got a message in foreground");
+    try {
+      if (message != null) {
+        log("[FOREGROUND_NOTIFICATION] Notification: ${message[0]}");
+        log("[FOREGROUND_NOTIFICATION] Payload: $payloadData");
+
+        if (granted != null && granted) {
+          // Create a push notification
+          const AndroidNotificationDetails androidPlatformChannelSpecifics =
+              AndroidNotificationDetails(
+            'test_channel_id',
+            'Test notifications',
+            importance: Importance.max,
+            priority: Priority.high,
+            showWhen: false,
+          );
+          const NotificationDetails platformChannelSpecifics =
+              NotificationDetails(android: androidPlatformChannelSpecifics);
+          await flutterLocalNotificationsPlugin.show(
+            0,
+            'Có thông báo mới!',
+            message[0],
+            platformChannelSpecifics,
+            payload: payloadData,
+          );
+        } else {
+          log("[FOREGROUND_NOTIFICATION] Notification permission not granted");
+        }
+      } else {
+        log("[FOREGROUND_NOTIFICATION] Message is null");
+      }
+    } catch (e) {
+      log("[FOREGROUND_NOTIFICATION] Error: $e");
+    }
+  });
+
+  try {
+    await hubConnection.start(); // Start SignalR connection
+    log("[CONNECTION_STATUS] SignalR connection started successfully");
+  } catch (e) {
+    log("[CONNECTION_STATUS] Error starting SignalR connection: $e");
+  }
 
   runApp(const MyApp());
 }
