@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
@@ -49,18 +50,15 @@ class _LoginWidgetState extends State<LoginWidget> {
             log('[LOGIN] Đang xử lý login...');
             LoadingDialog.show(context, 'Đang xử lý...');
           },
-          success: (user) {
+          success: () {
             LoadingDialog.hide(context);
             log('[LOGIN] Đăng nhập thành công!');
+            context.go(RouteName.home);
           },
           failure: (message) {
             LoadingDialog.hide(context);
             SnackBar(content: Text(message));
             log('[LOGIN] Đăng nhập thất bại: $message');
-            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //   content: Text(message),
-            //   backgroundColor: Colors.red,
-            // ));
           },
           orElse: () {},
         );

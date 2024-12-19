@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
 
 class WelcomeWidget extends StatefulWidget {
   const WelcomeWidget({super.key});

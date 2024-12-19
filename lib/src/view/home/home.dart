@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -56,6 +57,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
+    context.read<AuthBloc>().add(const AuthEvent.appStarted());
     context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
   }
 

@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
 import 'package:smart_farm/src/view/task/task.dart';
+import 'package:hive/hive.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 class RouteName {
   static const String welcome = '/welcome';
@@ -29,29 +31,22 @@ class RouteName {
     support,
     newbie,
     login,
-    home,
-    task,
-    ticket,
-    warehouse,
-    profile,
-    taskDetail,
-    cage,
-    report,
-    createTicket,
-    notification,
-    setting,
-    notificationSetting
   ];
 }
 
 final router = GoRouter(
-    navigatorKey: _rootNavigatorKey,
-    initialLocation: RouteName.welcome,
-    redirect: (context, state) {
-      if (RouteName.publicRoutes.contains(state.fullPath)) {
-        return null;
+    navigatorKey: rootNavigatorKey,
+    initialLocation: RouteName.home,
+    redirect: (context, state) async {
+      final box = await Hive.openBox(AuthDataConstant.authBoxName);
+      final accessToken = box.get(AuthDataConstant.accessTokenKey);
+      final isAuthenticated = accessToken != null && accessToken.isNotEmpty;
+
+      if (!isAuthenticated &&
+          !RouteName.publicRoutes.contains(state.fullPath)) {
+        return RouteName.welcome;
       }
-      return RouteName.welcome;
+      return null;
     },
     routes: [
       StatefulShellRoute.indexedStack(
@@ -152,6 +147,7 @@ final router = GoRouter(
         builder: (context, state) {
           final taskId = state.extra as String;
           return TaskDetailWidget(taskId: taskId);
+          // return TaskDetailWidget();
         },
       ),
 
