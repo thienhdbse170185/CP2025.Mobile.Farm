@@ -11,7 +11,9 @@ class TextFieldRequired extends StatefulWidget {
     this.isDisabled,
     this.controller,
     this.content,
-    this.isReadOnly = false, // Add this line
+    this.isReadOnly = false,
+    this.isObscureText = false, // Add this line
+    this.isPassword = false,
   });
 
   final String label;
@@ -22,16 +24,29 @@ class TextFieldRequired extends StatefulWidget {
   final bool? isDisabled; // Để kiểm soát việc vô hiệu hóa TextField
   final TextEditingController? controller;
   final String? content; // Nội dung tĩnh (không thể thay đổi)
-  final bool isReadOnly; // Add this line
+  final bool isReadOnly;
+
+  final bool isObscureText; // Add this line
+  final bool isPassword;
 
   @override
   State<TextFieldRequired> createState() => _TextFieldRequiredState();
 }
 
 class _TextFieldRequiredState extends State<TextFieldRequired> {
+  bool _isObscureText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isObscureText = widget.isObscureText;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isReadOnly = widget.content != null || widget.isDisabled == true || widget.isReadOnly; // Modify this line
+    final isReadOnly = widget.content != null ||
+        widget.isDisabled == true ||
+        widget.isReadOnly; // Modify this line
 
     return TextField(
       autocorrect: false,
@@ -60,8 +75,19 @@ class _TextFieldRequiredState extends State<TextFieldRequired> {
         ),
         hintText: widget.hintText,
         prefixIcon: widget.prefixIcon, // Hiển thị prefixIcon
-        suffixIcon: widget.suffixIcon, // Hiển thị suffixIcon
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    _isObscureText = !_isObscureText;
+                  });
+                },
+                icon: Icon(_isObscureText
+                    ? Icons.visibility_off_rounded
+                    : Icons.visibility_rounded))
+            : widget.suffixIcon, // Hiển thị suffixIcon
       ),
+      obscureText: _isObscureText,
     );
   }
 }

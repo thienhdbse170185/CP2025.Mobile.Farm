@@ -46,16 +46,20 @@ class RouteName {
 
 final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: RouteName.home,
+    initialLocation: RouteName.welcome,
     redirect: (context, state) {
       if (RouteName.publicRoutes.contains(state.fullPath)) {
         return null;
       }
-      return RouteName.home;
+      return RouteName.welcome;
     },
     routes: [
       StatefulShellRoute.indexedStack(
-          builder: (context, state, navigationShell) {
+          builder: (
+            context,
+            state,
+            navigationShell,
+          ) {
             return LayoutScaffold(navigationShell: navigationShell);
           },
           branches: [
@@ -113,8 +117,29 @@ final router = GoRouter(
 
       ///login-route
       GoRoute(
-          path: RouteName.login,
-          builder: (context, state) => const LoginWidget()),
+        path: RouteName.login,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const LoginWidget(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              // Tạo hiệu ứng trượt từ bên phải qua
+              const begin = Offset(1.0, 0.0); // Bắt đầu từ bên phải
+              const end = Offset.zero; // Kết thúc ở vị trí gốc
+              const curve = Curves.easeInOut; // Đường cong chuyển động
+
+              final tween =
+                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+              final offsetAnimation = animation.drive(tween);
+
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
+          );
+        },
+      ),
 
       ///newbie-login-route
       GoRoute(
@@ -148,7 +173,8 @@ final router = GoRouter(
       GoRoute(
           path: RouteName.report,
           builder: (context, state) {
-            final cageName = (state.extra as Map<String, dynamic>?)?['cageName'] as String;
+            final cageName =
+                (state.extra as Map<String, dynamic>?)?['cageName'] as String;
             return HealthReportWidget(cageName: cageName);
           }),
 

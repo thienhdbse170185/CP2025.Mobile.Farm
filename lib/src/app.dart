@@ -1,5 +1,4 @@
 import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/repository/auth/auth_local_data.dart';
 import 'package:data_layer/repository/healthy/healthy_api_client.dart';
 import 'package:data_layer/repository/healthy/healthy_repository.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,8 @@ class _MyAppState extends State<MyApp> {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-          create: (context) => AuthRepository(dataClient: AuthLocalData()),
+          create: (context) =>
+              AuthRepository(authApiClient: AuthApiClient(dio: dio)),
         ),
         RepositoryProvider(
           create: (context) =>
