@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
-import 'package:smart_farm/main.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/core/signalr_service.dart';
+import 'package:smart_farm/src/core/service/signalr_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:smart_farm/src/view/export.dart';
 

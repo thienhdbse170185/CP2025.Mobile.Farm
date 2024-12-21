@@ -196,7 +196,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         );
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: const Text('Chi tiết công việc'),
           actions: [
             IconButton(
