@@ -7,8 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -28,7 +28,6 @@ class HomeFeatures {
 
 class _HomeWidgetState extends State<HomeWidget> {
   List<NextTask> cages = [];
-  String userId = '93f1f4db-5135-42b8-8301-5b3b96f6c434';
 
   final List<Color> cardColors = [
     Colors.blueAccent,
@@ -58,7 +57,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     context.read<AuthBloc>().add(const AuthEvent.appStarted());
-    context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
+    context.read<TaskBloc>().add(const TaskEvent.getNextTask());
   }
 
   @override
@@ -143,7 +142,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
+            context.read<TaskBloc>().add(const TaskEvent.getNextTask());
             return;
           },
           child: SingleChildScrollView(

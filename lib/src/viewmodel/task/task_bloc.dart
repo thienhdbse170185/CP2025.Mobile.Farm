@@ -5,10 +5,12 @@ import 'package:data_layer/model/response/task/task_by_cage/tasks_by_cage_respon
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:data_layer/repository/task/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
+import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 
+part 'task_bloc.freezed.dart';
 part 'task_event.dart';
 part 'task_state.dart';
-part 'task_bloc.freezed.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final TaskRepository repository;
@@ -85,7 +87,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetNextTask>((event, emit) async {
       emit(const TaskState.getNextTaskLoading());
       try {
-        final task = await (repository).getNextTask(event.userId);
+        final box = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = box.get(UserDataConstant.userId);
+        final task = await (repository).getNextTask(userId);
         emit(TaskState.getNextTaskSuccess(task));
       } catch (e) {
         emit(TaskState.getNextTaskFailure(e.toString()));
@@ -96,8 +100,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       try {
         final formattedDate =
             "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
+        final box = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = box.get(UserDataConstant.userIdKey);
         final tasks = await (repository)
-            .getTasksByUserIdAndDate(event.userId, formattedDate, event.cageId);
+            .getTasksByUserIdAndDate(userId, formattedDate, event.cageId);
         emit(TaskState.getTasksByUserIdAndDateSuccess(tasks));
       } catch (e) {
         emit(TaskState.getTasksByUserIdAndDateFailure(e.toString()));

@@ -1,15 +1,14 @@
 import 'dart:developer';
 
+import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
-import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
-import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({super.key});
@@ -83,8 +82,9 @@ class _TaskWidgetState extends State<TaskWidget> {
         selectedDate = picked;
       });
       // Call the API to fetch tasks for the selected date
-      context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
-          UserDataConstant.userId, picked, null));
+      context
+          .read<TaskBloc>()
+          .add(TaskEvent.getTasksByUserIdAndDate(picked, null));
     }
   }
 
@@ -92,8 +92,9 @@ class _TaskWidgetState extends State<TaskWidget> {
   void initState() {
     super.initState();
     // Fetch tasks for the selected date when the widget is initialized
-    context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
-        UserDataConstant.userId, DateTime.now(), null));
+    context
+        .read<TaskBloc>()
+        .add(TaskEvent.getTasksByUserIdAndDate(DateTime.now(), null));
   }
 
   @override
@@ -207,8 +208,9 @@ class _TaskWidgetState extends State<TaskWidget> {
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            context.read<TaskBloc>().add(TaskEvent.getTasksByUserIdAndDate(
-                UserDataConstant.userId, selectedDate, null));
+            context
+                .read<TaskBloc>()
+                .add(TaskEvent.getTasksByUserIdAndDate(selectedDate, null));
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -254,9 +256,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                               // Call the API to fetch tasks for the selected cage
                               context.read<TaskBloc>().add(
                                   TaskEvent.getTasksByUserIdAndDate(
-                                      UserDataConstant.userId,
-                                      selectedDate,
-                                      cageId));
+                                      selectedDate, cageId));
                             },
                           ),
                         );
