@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
+import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
 import 'package:smart_farm/src/view/task/task.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 class RouteName {
   static const String welcome = '/welcome';
@@ -18,7 +20,7 @@ class RouteName {
   static const String profile = '/profile';
   static const String taskDetail = '/task_detail';
   static const String cage = '/cage';
-  static const String report = '/report';
+  static const String symptom = '/symptom';
   static const String createTicket = '/create_ticket';
   static const String notification = '/notification';
   static const String setting = '/setting';
@@ -29,33 +31,30 @@ class RouteName {
     support,
     newbie,
     login,
-    home,
-    task,
-    ticket,
-    warehouse,
-    profile,
-    taskDetail,
-    cage,
-    report,
-    createTicket,
-    notification,
-    setting,
-    notificationSetting
   ];
 }
 
 final router = GoRouter(
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: rootNavigatorKey,
     initialLocation: RouteName.home,
-    redirect: (context, state) {
-      if (RouteName.publicRoutes.contains(state.fullPath)) {
-        return null;
+    redirect: (context, state) async {
+      final box = await Hive.openBox(AuthDataConstant.authBoxName);
+      final accessToken = box.get(AuthDataConstant.accessTokenKey);
+      final isAuthenticated = accessToken != null && accessToken.isNotEmpty;
+
+      if (!isAuthenticated &&
+          !RouteName.publicRoutes.contains(state.fullPath)) {
+        return RouteName.welcome;
       }
-      return RouteName.home;
+      return null;
     },
     routes: [
       StatefulShellRoute.indexedStack(
-          builder: (context, state, navigationShell) {
+          builder: (
+            context,
+            state,
+            navigationShell,
+          ) {
             return LayoutScaffold(navigationShell: navigationShell);
           },
           branches: [
@@ -71,18 +70,6 @@ final router = GoRouter(
                 builder: (context, state) => const TaskWidget(),
               )
             ]),
-            // StatefulShellBranch(routes: [
-            //   GoRoute(
-            //     path: RouteName.ticket,
-            //     builder: (context, state) => const TicketWidget(),
-            //   )
-            // ]),
-            // StatefulShellBranch(routes: [
-            //   GoRoute(
-            //     path: RouteName.warehouse,
-            //     builder: (context, state) => const WarehouseWidget(),
-            //   )
-            // ]),
             StatefulShellBranch(routes: [
               GoRoute(
                   path: RouteName.profile,
@@ -113,8 +100,53 @@ final router = GoRouter(
 
       ///login-route
       GoRoute(
-          path: RouteName.login,
-          builder: (context, state) => const LoginWidget()),
+        path: RouteName.login,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const LoginWidget(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              // Tạo hiệu ứng trượt từ bên phải qua
+              const begin = Offset(1.0, 0.0); // Bắt đầu từ bên phải
+              const end = Offset.zero; // Kết thúc ở vị trí gốc
+              const curve = Curves.easeInOut; // Đường cong chuyển động
+
+              final tween =
+                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+              final offsetAnimation = animation.drive(tween);
+
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: RouteName.setting,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const SettingWidget(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0);
+              const end = Offset.zero;
+              const curve = Curves.easeInOut;
+
+              final tween =
+                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+              final offsetAnimation = animation.drive(tween);
+
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
+          );
+        },
+      ),
 
       ///newbie-login-route
       GoRoute(
@@ -127,6 +159,7 @@ final router = GoRouter(
         builder: (context, state) {
           final taskId = state.extra as String;
           return TaskDetailWidget(taskId: taskId);
+          // return TaskDetailWidget();
         },
       ),
 
@@ -146,10 +179,11 @@ final router = GoRouter(
 
       ///health-report-route
       GoRoute(
-          path: RouteName.report,
+          path: RouteName.symptom,
           builder: (context, state) {
-            final cageName = (state.extra as Map<String, dynamic>?)?['cageName'] as String;
-            return HealthReportWidget(cageName: cageName);
+            final cageName =
+                (state.extra as Map<String, dynamic>?)?['cageName'] as String;
+            return SymptomWidget(cageName: cageName);
           }),
 
       ///create-ticket-route
@@ -160,13 +194,26 @@ final router = GoRouter(
       ///notification-route
       GoRoute(
           path: RouteName.notification,
-          builder: (context, builder) => const NotificationWidget()),
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              child: const NotificationWidget(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                const curve = Curves.easeInOut;
 
-      ///setting-route
-      GoRoute(
-        path: RouteName.setting,
-        builder: (context, state) => const SettingWidget(),
-      ),
+                final tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
+                final offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(
+                  position: offsetAnimation,
+                  child: child,
+                );
+              },
+            );
+          }),
 
       ///notification-setting-route
       GoRoute(

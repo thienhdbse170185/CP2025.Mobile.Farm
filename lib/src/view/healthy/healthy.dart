@@ -1,25 +1,25 @@
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // For picking images
 import 'dart:io';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
-import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
+
 import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart'; // For picking images
+import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle files
+import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
+import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 
-class HealthReportWidget extends StatefulWidget {
+class SymptomWidget extends StatefulWidget {
   final String cageName; // Add this line
-  const HealthReportWidget(
-      {super.key, required this.cageName}); // Update this line
+  const SymptomWidget({super.key, required this.cageName}); // Update this line
 
   @override
-  State<HealthReportWidget> createState() => _HealthReportWidgetState();
+  State<SymptomWidget> createState() => _SymptomWidgetState();
 }
 
-class _HealthReportWidgetState extends State<HealthReportWidget> {
+class _SymptomWidgetState extends State<SymptomWidget> {
   final TextEditingController _noteController = TextEditingController();
   final List<File> _images = [];
   final TextEditingController _symptomController = TextEditingController();
@@ -28,14 +28,26 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
 
   // List of predefined symptoms for suggestions
   final List<String> _symptomSuggestions = [
-    'Triệu chứng 1',
-    'Triệu chứng 2',
-    'Triệu chứng 3',
     'Ho',
     'Sốt cao',
     'Biếng ăn',
     'Phân lỏng'
   ];
+
+  List<String> _cages = [];
+  String? _selectedCage;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedCage = widget.cageName.isNotEmpty ? widget.cageName : null;
+    _fetchCages();
+  }
+
+  void _fetchCages() async {
+    const userId = UserDataConstant.userId; // Replace with actual user ID
+    context.read<CageCubit>().getCagesByUserId(userId);
+  }
 
   // Function to pick multiple images
   Future<void> _pickImages() async {
@@ -49,7 +61,7 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
   void _submitForm() {
     final request = CreateSymptomRequest(
       farmingBatchId:
-          '5b98e892-3a3f-4b3e-b03e-8e127fd29c5a', // Replace with actual batch ID
+          '1252AE87-0DC7-4E7D-B0F4-8D49025DC253', // Replace with actual batch ID
       symptoms: _enteredSymptoms.join(', '),
       status: 'Pending', // Replace with actual status
       affectedQuantity: int.parse(_affectedController.text),
@@ -65,243 +77,310 @@ class _HealthReportWidgetState extends State<HealthReportWidget> {
     context.read<HealthyCubit>().createSymptom(request);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<HealthyCubit, HealthyState>(
-      listener: (context, state) {
-        state.maybeWhen(
-          createLoading: () {
-            log("Đang tạo báo cáo...");
-            LoadingDialog.show(context, "Đang tạo báo cáo...");
-          },
-          createSuccess: () {
-            log("Tạo báo cáo thành công");
-            LoadingDialog.hide(context);
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Tạo báo cáo thành công'),
+  void _showCageSelectionSheet() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16),
+          height: MediaQuery.of(context).size.height * 0.5, // Adjust height
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Chọn chuồng',
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-            );
-          },
-          createFailure: (error) {
-            log("Tạo báo cáo thất bại: $error");
-            LoadingDialog.hide(context);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Tạo báo cáo thất bại: $error'),
-              ),
-            );
-          },
-          orElse: () {},
-        );
-      },
-      child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Báo cáo sức khỏe'),
-          ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(children: [
-                    Text(
-                      'Chuồng: ',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(width: 4),
-                    Chip(
-                      shape: const StadiumBorder(
-                          side: BorderSide(color: Colors.transparent)),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.primaryContainer,
-                      label: Text(
-                        widget.cageName, // Display the cage name
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(color: Theme.of(context).primaryColor),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                    ),
-                  ]),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Autocomplete<String>(
-                          optionsBuilder: (TextEditingValue textEditingValue) {
-                            if (textEditingValue.text.isEmpty) {
-                              return const Iterable<String>.empty();
-                            }
-                            return _symptomSuggestions
-                                .where((String suggestion) {
-                              return suggestion.toLowerCase().contains(
-                                  textEditingValue.text.toLowerCase());
-                            });
-                          },
-                          fieldViewBuilder: (BuildContext context,
-                              TextEditingController fieldTextEditingController,
-                              FocusNode fieldFocusNode,
-                              VoidCallback onFieldSubmitted) {
-                            return TextField(
-                              controller: fieldTextEditingController,
-                              focusNode: fieldFocusNode,
-                              decoration: InputDecoration(
-                                label: RichText(
-                                  text: TextSpan(
-                                    text: 'Nhập triệu chứng ',
-                                    style: DefaultTextStyle.of(context).style,
-                                    children: const <TextSpan>[
-                                      TextSpan(
-                                        text: '*',
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                hintText: 'Nhập triệu chứng',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                              ),
-                            );
-                          },
-                          onSelected: (String selected) {
-                            _symptomController.text = selected;
-                          },
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.add),
-                        onPressed: () {
+              const SizedBox(height: 16),
+              Expanded(
+                child: ListView(
+                  children: _cages.map((String cage) {
+                    return Card.outlined(
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      child: ListTile(
+                        leading: Icon(Icons.home,
+                            color: Theme.of(context).primaryColor),
+                        title: Text(cage),
+                        onTap: () {
                           setState(() {
-                            if (_symptomController.text.isNotEmpty) {
-                              if (_enteredSymptoms
-                                  .contains(_symptomController.text)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Triệu chứng đã tồn tại'),
-                                  ),
-                                );
-                              } else {
-                                _enteredSymptoms.add(_symptomController.text);
-                              }
-                              _symptomController
-                                  .clear(); // Clear the text after adding
-                            }
+                            _selectedCage = cage;
                           });
+                          Navigator.pop(context);
                         },
                       ),
-                    ],
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<HealthyCubit, HealthyState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              createLoading: () {
+                log("Đang tạo báo cáo...");
+                LoadingDialog.show(context, "Đang tạo báo cáo...");
+              },
+              createSuccess: () {
+                log("Tạo báo cáo thành công");
+                LoadingDialog.hide(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Tạo báo cáo thành công'),
                   ),
-                  if (_enteredSymptoms.isNotEmpty)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 16),
-                        const Text(
-                          '• Triệu chứng đã nhập: ',
-                          style:
-                              TextStyle(decoration: TextDecoration.underline),
+                );
+              },
+              createFailure: (error) {
+                log("Tạo báo cáo thất bại: $error");
+                LoadingDialog.hide(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Tạo báo cáo thất bại: $error'),
+                  ),
+                );
+              },
+              orElse: () {},
+            );
+          },
+        ),
+        BlocListener<CageCubit, CageState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              loadByUserIdInProgress: () {
+                log("Đang lấy thông tin chuồng...");
+                LoadingDialog.show(context, "Đang lấy thông tin chuồng...");
+              },
+              loadByUserIdSuccess: (cages) {
+                setState(() {
+                  _cages = cages.map((cage) => cage.name).toList();
+                });
+              },
+              loadByUserIdFailure: (error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Lỗi fetch chuồng: $error'),
+                  ),
+                );
+              },
+              orElse: () {},
+            );
+          },
+        ),
+      ],
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text('Đơn báo cáo sức khỏe'),
+        ),
+        body: _buildForm(),
+        bottomSheet: Container(
+          padding: const EdgeInsets.all(16),
+          width: MediaQuery.of(context).size.width,
+          child: FilledButton(
+            onPressed: _submitForm,
+            child: const Text('Gửi'),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildForm() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      physics: const AlwaysScrollableScrollPhysics(),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFieldRequired(
+              label: 'Chuồng',
+              hintText: 'Chọn chuồng',
+              suffixIcon: const Icon(Icons.arrow_drop_down),
+              isReadOnly: true,
+              onTap: _showCageSelectionSheet,
+              controller:
+                  TextEditingController(text: _selectedCage ?? 'Chọn chuồng'),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text.isEmpty) {
+                        return const Iterable<String>.empty();
+                      }
+                      return _symptomSuggestions.where((String suggestion) {
+                        return suggestion
+                            .toLowerCase()
+                            .contains(textEditingValue.text.toLowerCase());
+                      });
+                    },
+                    fieldViewBuilder: (BuildContext context,
+                        TextEditingController fieldTextEditingController,
+                        FocusNode fieldFocusNode,
+                        VoidCallback onFieldSubmitted) {
+                      return TextField(
+                        controller: fieldTextEditingController,
+                        focusNode: fieldFocusNode,
+                        decoration: InputDecoration(
+                          label: RichText(
+                            text: TextSpan(
+                              text: 'Nhập triệu chứng ',
+                              style: DefaultTextStyle.of(context).style,
+                              children: const <TextSpan>[
+                                TextSpan(
+                                  text: '*',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ],
+                            ),
+                          ),
+                          hintText: 'Nhập triệu chứng',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          helperText:
+                              'Ấn dấu + để thêm triệu chứng vào báo cáo',
                         ),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: _enteredSymptoms.map((symptom) {
-                            return Chip(
-                              label: Text(symptom),
-                              onDeleted: () {
-                                setState(() {
-                                  _enteredSymptoms.remove(symptom);
-                                });
-                              },
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                  const SizedBox(height: 16),
-                  TextFieldRequired(
-                      controller: _affectedController,
-                      label: 'Số lượng con vật bị bệnh',
-                      hintText: 'Nhập số lượng'),
-                  const SizedBox(height: 24),
-                  TextField(
-                    controller: _noteController,
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      labelText: 'Ghi chú',
-                      hintText: 'Nhập ghi chú',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                      );
+                    },
+                    onSelected: (String selected) {
+                      _symptomController.text = selected;
+                    },
                   ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    setState(() {
+                      if (_symptomController.text.isNotEmpty) {
+                        if (_enteredSymptoms
+                            .contains(_symptomController.text)) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Triệu chứng đã tồn tại'),
+                            ),
+                          );
+                        } else {
+                          _enteredSymptoms.add(_symptomController.text);
+                        }
+                        _symptomController
+                            .clear(); // Clear the text after adding
+                      }
+                    });
+                  },
+                ),
+              ],
+            ),
+            if (_enteredSymptoms.isNotEmpty)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   const SizedBox(height: 16),
-                  Text(
-                    'Ảnh kèm theo',
-                    style: Theme.of(context).textTheme.titleMedium,
+                  const Text(
+                    '• Triệu chứng đã nhập: ',
+                    style: TextStyle(decoration: TextDecoration.underline),
                   ),
-                  const SizedBox(height: 8),
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
-                    children: _images.map((image) {
-                      return Stack(
-                        alignment: Alignment.topRight,
-                        children: [
-                          Image.file(
-                            image,
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                          Positioned(
-                            right: 0,
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _images.remove(image);
-                                });
-                              },
-                              child: const CircleAvatar(
-                                radius: 12,
-                                backgroundColor: Colors.red,
-                                child: Icon(
-                                  Icons.close,
-                                  size: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                    children: _enteredSymptoms.map((symptom) {
+                      return Chip(
+                        label: Text(symptom),
+                        onDeleted: () {
+                          setState(() {
+                            _enteredSymptoms.remove(symptom);
+                          });
+                        },
                       );
                     }).toList(),
                   ),
-                  const SizedBox(height: 8),
-                  ElevatedButton.icon(
-                    onPressed: _pickImages,
-                    icon: const Icon(Icons.add_a_photo),
-                    label: const Text('Tải ảnh lên'),
-                  ),
                 ],
               ),
+            const SizedBox(height: 16),
+            TextFieldRequired(
+                controller: _affectedController,
+                label: 'Số lượng con vật bị bệnh',
+                hintText: 'Nhập số lượng'),
+            const SizedBox(height: 24),
+            TextField(
+              controller: _noteController,
+              maxLines: 5,
+              decoration: InputDecoration(
+                labelText: 'Ghi chú',
+                hintText: 'Nhập ghi chú',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
             ),
-          ),
-          bottomSheet: Container(
-            padding: const EdgeInsets.all(16),
-            width: MediaQuery.of(context).size.width,
-            child: FilledButton(
-              onPressed: _submitForm,
-              child: const Text('Gửi'),
+            const SizedBox(height: 16),
+            Text(
+              'Ảnh kèm theo',
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-          )),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _images.map((image) {
+                return Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Image.file(
+                      image,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                    Positioned(
+                      right: 0,
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _images.remove(image);
+                          });
+                        },
+                        child: const CircleAvatar(
+                          radius: 12,
+                          backgroundColor: Colors.red,
+                          child: Icon(
+                            Icons.close,
+                            size: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton.icon(
+              onPressed: _pickImages,
+              icon: const Icon(Icons.add_a_photo),
+              label: const Text('Tải ảnh lên'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

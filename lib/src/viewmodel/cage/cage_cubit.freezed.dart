@@ -27,6 +27,9 @@ mixin _$CageState {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +43,9 @@ mixin _$CageState {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +59,9 @@ mixin _$CageState {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,6 +76,10 @@ mixin _$CageState {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +93,9 @@ mixin _$CageState {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,6 +109,9 @@ mixin _$CageState {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,6 +187,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return initial();
   }
@@ -184,6 +206,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return initial?.call();
   }
@@ -200,6 +225,9 @@ class _$InitialImpl implements _Initial {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -220,6 +248,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return initial(this);
   }
@@ -236,6 +268,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return initial?.call(this);
   }
@@ -252,6 +287,9 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -315,6 +353,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return loading();
   }
@@ -331,6 +372,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return loading?.call();
   }
@@ -347,6 +391,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -367,6 +414,10 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return loading(this);
   }
@@ -383,6 +434,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return loading?.call(this);
   }
@@ -399,6 +453,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -462,6 +519,9 @@ class _$LoadAllInProgressImpl implements _LoadAllInProgress {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return loadAllInProgress();
   }
@@ -478,6 +538,9 @@ class _$LoadAllInProgressImpl implements _LoadAllInProgress {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return loadAllInProgress?.call();
   }
@@ -494,6 +557,9 @@ class _$LoadAllInProgressImpl implements _LoadAllInProgress {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadAllInProgress != null) {
@@ -514,6 +580,10 @@ class _$LoadAllInProgressImpl implements _LoadAllInProgress {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return loadAllInProgress(this);
   }
@@ -530,6 +600,9 @@ class _$LoadAllInProgressImpl implements _LoadAllInProgress {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return loadAllInProgress?.call(this);
   }
@@ -546,6 +619,9 @@ class _$LoadAllInProgressImpl implements _LoadAllInProgress {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadAllInProgress != null) {
@@ -609,6 +685,9 @@ class _$LoadByIdInProgressImpl implements _LoadByIdInProgress {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return loadByIdInProgress();
   }
@@ -625,6 +704,9 @@ class _$LoadByIdInProgressImpl implements _LoadByIdInProgress {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return loadByIdInProgress?.call();
   }
@@ -641,6 +723,9 @@ class _$LoadByIdInProgressImpl implements _LoadByIdInProgress {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadByIdInProgress != null) {
@@ -661,6 +746,10 @@ class _$LoadByIdInProgressImpl implements _LoadByIdInProgress {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return loadByIdInProgress(this);
   }
@@ -677,6 +766,9 @@ class _$LoadByIdInProgressImpl implements _LoadByIdInProgress {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return loadByIdInProgress?.call(this);
   }
@@ -693,6 +785,9 @@ class _$LoadByIdInProgressImpl implements _LoadByIdInProgress {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadByIdInProgress != null) {
@@ -797,6 +892,9 @@ class _$LoadAllSuccessImpl implements _LoadAllSuccess {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return loadAllSuccess(response);
   }
@@ -813,6 +911,9 @@ class _$LoadAllSuccessImpl implements _LoadAllSuccess {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return loadAllSuccess?.call(response);
   }
@@ -829,6 +930,9 @@ class _$LoadAllSuccessImpl implements _LoadAllSuccess {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadAllSuccess != null) {
@@ -849,6 +953,10 @@ class _$LoadAllSuccessImpl implements _LoadAllSuccess {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return loadAllSuccess(this);
   }
@@ -865,6 +973,9 @@ class _$LoadAllSuccessImpl implements _LoadAllSuccess {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return loadAllSuccess?.call(this);
   }
@@ -881,6 +992,9 @@ class _$LoadAllSuccessImpl implements _LoadAllSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadAllSuccess != null) {
@@ -993,6 +1107,9 @@ class _$LoadByIdSuccessImpl implements _LoadByIdSuccess {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return loadByIdSuccess(cage);
   }
@@ -1009,6 +1126,9 @@ class _$LoadByIdSuccessImpl implements _LoadByIdSuccess {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return loadByIdSuccess?.call(cage);
   }
@@ -1025,6 +1145,9 @@ class _$LoadByIdSuccessImpl implements _LoadByIdSuccess {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadByIdSuccess != null) {
@@ -1045,6 +1168,10 @@ class _$LoadByIdSuccessImpl implements _LoadByIdSuccess {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return loadByIdSuccess(this);
   }
@@ -1061,6 +1188,9 @@ class _$LoadByIdSuccessImpl implements _LoadByIdSuccess {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return loadByIdSuccess?.call(this);
   }
@@ -1077,6 +1207,9 @@ class _$LoadByIdSuccessImpl implements _LoadByIdSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadByIdSuccess != null) {
@@ -1175,6 +1308,9 @@ class _$FailureImpl implements _Failure {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return failure(error);
   }
@@ -1191,6 +1327,9 @@ class _$FailureImpl implements _Failure {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return failure?.call(error);
   }
@@ -1207,6 +1346,9 @@ class _$FailureImpl implements _Failure {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1227,6 +1369,10 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return failure(this);
   }
@@ -1243,6 +1389,9 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return failure?.call(this);
   }
@@ -1259,6 +1408,9 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1358,6 +1510,9 @@ class _$LoadAllFailureImpl implements _LoadAllFailure {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return loadAllFailure(error);
   }
@@ -1374,6 +1529,9 @@ class _$LoadAllFailureImpl implements _LoadAllFailure {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return loadAllFailure?.call(error);
   }
@@ -1390,6 +1548,9 @@ class _$LoadAllFailureImpl implements _LoadAllFailure {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadAllFailure != null) {
@@ -1410,6 +1571,10 @@ class _$LoadAllFailureImpl implements _LoadAllFailure {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return loadAllFailure(this);
   }
@@ -1426,6 +1591,9 @@ class _$LoadAllFailureImpl implements _LoadAllFailure {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return loadAllFailure?.call(this);
   }
@@ -1442,6 +1610,9 @@ class _$LoadAllFailureImpl implements _LoadAllFailure {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadAllFailure != null) {
@@ -1541,6 +1712,9 @@ class _$LoadByIdFailureImpl implements _LoadByIdFailure {
     required TResult Function(String error) failure,
     required TResult Function(String error) loadAllFailure,
     required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
   }) {
     return loadByIdFailure(error);
   }
@@ -1557,6 +1731,9 @@ class _$LoadByIdFailureImpl implements _LoadByIdFailure {
     TResult? Function(String error)? failure,
     TResult? Function(String error)? loadAllFailure,
     TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
   }) {
     return loadByIdFailure?.call(error);
   }
@@ -1573,6 +1750,9 @@ class _$LoadByIdFailureImpl implements _LoadByIdFailure {
     TResult Function(String error)? failure,
     TResult Function(String error)? loadAllFailure,
     TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadByIdFailure != null) {
@@ -1593,6 +1773,10 @@ class _$LoadByIdFailureImpl implements _LoadByIdFailure {
     required TResult Function(_Failure value) failure,
     required TResult Function(_LoadAllFailure value) loadAllFailure,
     required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
   }) {
     return loadByIdFailure(this);
   }
@@ -1609,6 +1793,9 @@ class _$LoadByIdFailureImpl implements _LoadByIdFailure {
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LoadAllFailure value)? loadAllFailure,
     TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
   }) {
     return loadByIdFailure?.call(this);
   }
@@ -1625,6 +1812,9 @@ class _$LoadByIdFailureImpl implements _LoadByIdFailure {
     TResult Function(_Failure value)? failure,
     TResult Function(_LoadAllFailure value)? loadAllFailure,
     TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
     required TResult orElse(),
   }) {
     if (loadByIdFailure != null) {
@@ -1643,5 +1833,587 @@ abstract class _LoadByIdFailure implements CageState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadByIdFailureImplCopyWith<_$LoadByIdFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadByUserIdInProgressImplCopyWith<$Res> {
+  factory _$$LoadByUserIdInProgressImplCopyWith(
+          _$LoadByUserIdInProgressImpl value,
+          $Res Function(_$LoadByUserIdInProgressImpl) then) =
+      __$$LoadByUserIdInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadByUserIdInProgressImplCopyWithImpl<$Res>
+    extends _$CageStateCopyWithImpl<$Res, _$LoadByUserIdInProgressImpl>
+    implements _$$LoadByUserIdInProgressImplCopyWith<$Res> {
+  __$$LoadByUserIdInProgressImplCopyWithImpl(
+      _$LoadByUserIdInProgressImpl _value,
+      $Res Function(_$LoadByUserIdInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CageState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadByUserIdInProgressImpl implements _LoadByUserIdInProgress {
+  const _$LoadByUserIdInProgressImpl();
+
+  @override
+  String toString() {
+    return 'CageState.loadByUserIdInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadByUserIdInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loadAllInProgress,
+    required TResult Function() loadByIdInProgress,
+    required TResult Function(GetAllCageResponse response) loadAllSuccess,
+    required TResult Function(Cage cage) loadByIdSuccess,
+    required TResult Function(String error) failure,
+    required TResult Function(String error) loadAllFailure,
+    required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
+  }) {
+    return loadByUserIdInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loadAllInProgress,
+    TResult? Function()? loadByIdInProgress,
+    TResult? Function(GetAllCageResponse response)? loadAllSuccess,
+    TResult? Function(Cage cage)? loadByIdSuccess,
+    TResult? Function(String error)? failure,
+    TResult? Function(String error)? loadAllFailure,
+    TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
+  }) {
+    return loadByUserIdInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadAllInProgress,
+    TResult Function()? loadByIdInProgress,
+    TResult Function(GetAllCageResponse response)? loadAllSuccess,
+    TResult Function(Cage cage)? loadByIdSuccess,
+    TResult Function(String error)? failure,
+    TResult Function(String error)? loadAllFailure,
+    TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
+    required TResult orElse(),
+  }) {
+    if (loadByUserIdInProgress != null) {
+      return loadByUserIdInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadAllInProgress value) loadAllInProgress,
+    required TResult Function(_LoadByIdInProgress value) loadByIdInProgress,
+    required TResult Function(_LoadAllSuccess value) loadAllSuccess,
+    required TResult Function(_LoadByIdSuccess value) loadByIdSuccess,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_LoadAllFailure value) loadAllFailure,
+    required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
+  }) {
+    return loadByUserIdInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadAllInProgress value)? loadAllInProgress,
+    TResult? Function(_LoadByIdInProgress value)? loadByIdInProgress,
+    TResult? Function(_LoadAllSuccess value)? loadAllSuccess,
+    TResult? Function(_LoadByIdSuccess value)? loadByIdSuccess,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_LoadAllFailure value)? loadAllFailure,
+    TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
+  }) {
+    return loadByUserIdInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadAllInProgress value)? loadAllInProgress,
+    TResult Function(_LoadByIdInProgress value)? loadByIdInProgress,
+    TResult Function(_LoadAllSuccess value)? loadAllSuccess,
+    TResult Function(_LoadByIdSuccess value)? loadByIdSuccess,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LoadAllFailure value)? loadAllFailure,
+    TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
+    required TResult orElse(),
+  }) {
+    if (loadByUserIdInProgress != null) {
+      return loadByUserIdInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadByUserIdInProgress implements CageState {
+  const factory _LoadByUserIdInProgress() = _$LoadByUserIdInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadByUserIdSuccessImplCopyWith<$Res> {
+  factory _$$LoadByUserIdSuccessImplCopyWith(_$LoadByUserIdSuccessImpl value,
+          $Res Function(_$LoadByUserIdSuccessImpl) then) =
+      __$$LoadByUserIdSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Cage> response});
+}
+
+/// @nodoc
+class __$$LoadByUserIdSuccessImplCopyWithImpl<$Res>
+    extends _$CageStateCopyWithImpl<$Res, _$LoadByUserIdSuccessImpl>
+    implements _$$LoadByUserIdSuccessImplCopyWith<$Res> {
+  __$$LoadByUserIdSuccessImplCopyWithImpl(_$LoadByUserIdSuccessImpl _value,
+      $Res Function(_$LoadByUserIdSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? response = null,
+  }) {
+    return _then(_$LoadByUserIdSuccessImpl(
+      null == response
+          ? _value._response
+          : response // ignore: cast_nullable_to_non_nullable
+              as List<Cage>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadByUserIdSuccessImpl implements _LoadByUserIdSuccess {
+  const _$LoadByUserIdSuccessImpl(final List<Cage> response)
+      : _response = response;
+
+  final List<Cage> _response;
+  @override
+  List<Cage> get response {
+    if (_response is EqualUnmodifiableListView) return _response;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_response);
+  }
+
+  @override
+  String toString() {
+    return 'CageState.loadByUserIdSuccess(response: $response)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadByUserIdSuccessImpl &&
+            const DeepCollectionEquality().equals(other._response, _response));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_response));
+
+  /// Create a copy of CageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadByUserIdSuccessImplCopyWith<_$LoadByUserIdSuccessImpl> get copyWith =>
+      __$$LoadByUserIdSuccessImplCopyWithImpl<_$LoadByUserIdSuccessImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loadAllInProgress,
+    required TResult Function() loadByIdInProgress,
+    required TResult Function(GetAllCageResponse response) loadAllSuccess,
+    required TResult Function(Cage cage) loadByIdSuccess,
+    required TResult Function(String error) failure,
+    required TResult Function(String error) loadAllFailure,
+    required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
+  }) {
+    return loadByUserIdSuccess(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loadAllInProgress,
+    TResult? Function()? loadByIdInProgress,
+    TResult? Function(GetAllCageResponse response)? loadAllSuccess,
+    TResult? Function(Cage cage)? loadByIdSuccess,
+    TResult? Function(String error)? failure,
+    TResult? Function(String error)? loadAllFailure,
+    TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
+  }) {
+    return loadByUserIdSuccess?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadAllInProgress,
+    TResult Function()? loadByIdInProgress,
+    TResult Function(GetAllCageResponse response)? loadAllSuccess,
+    TResult Function(Cage cage)? loadByIdSuccess,
+    TResult Function(String error)? failure,
+    TResult Function(String error)? loadAllFailure,
+    TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
+    required TResult orElse(),
+  }) {
+    if (loadByUserIdSuccess != null) {
+      return loadByUserIdSuccess(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadAllInProgress value) loadAllInProgress,
+    required TResult Function(_LoadByIdInProgress value) loadByIdInProgress,
+    required TResult Function(_LoadAllSuccess value) loadAllSuccess,
+    required TResult Function(_LoadByIdSuccess value) loadByIdSuccess,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_LoadAllFailure value) loadAllFailure,
+    required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
+  }) {
+    return loadByUserIdSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadAllInProgress value)? loadAllInProgress,
+    TResult? Function(_LoadByIdInProgress value)? loadByIdInProgress,
+    TResult? Function(_LoadAllSuccess value)? loadAllSuccess,
+    TResult? Function(_LoadByIdSuccess value)? loadByIdSuccess,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_LoadAllFailure value)? loadAllFailure,
+    TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
+  }) {
+    return loadByUserIdSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadAllInProgress value)? loadAllInProgress,
+    TResult Function(_LoadByIdInProgress value)? loadByIdInProgress,
+    TResult Function(_LoadAllSuccess value)? loadAllSuccess,
+    TResult Function(_LoadByIdSuccess value)? loadByIdSuccess,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LoadAllFailure value)? loadAllFailure,
+    TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
+    required TResult orElse(),
+  }) {
+    if (loadByUserIdSuccess != null) {
+      return loadByUserIdSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadByUserIdSuccess implements CageState {
+  const factory _LoadByUserIdSuccess(final List<Cage> response) =
+      _$LoadByUserIdSuccessImpl;
+
+  List<Cage> get response;
+
+  /// Create a copy of CageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadByUserIdSuccessImplCopyWith<_$LoadByUserIdSuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadByUserIdFailureImplCopyWith<$Res> {
+  factory _$$LoadByUserIdFailureImplCopyWith(_$LoadByUserIdFailureImpl value,
+          $Res Function(_$LoadByUserIdFailureImpl) then) =
+      __$$LoadByUserIdFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$LoadByUserIdFailureImplCopyWithImpl<$Res>
+    extends _$CageStateCopyWithImpl<$Res, _$LoadByUserIdFailureImpl>
+    implements _$$LoadByUserIdFailureImplCopyWith<$Res> {
+  __$$LoadByUserIdFailureImplCopyWithImpl(_$LoadByUserIdFailureImpl _value,
+      $Res Function(_$LoadByUserIdFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$LoadByUserIdFailureImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadByUserIdFailureImpl implements _LoadByUserIdFailure {
+  const _$LoadByUserIdFailureImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'CageState.loadByUserIdFailure(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadByUserIdFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of CageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadByUserIdFailureImplCopyWith<_$LoadByUserIdFailureImpl> get copyWith =>
+      __$$LoadByUserIdFailureImplCopyWithImpl<_$LoadByUserIdFailureImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() loadAllInProgress,
+    required TResult Function() loadByIdInProgress,
+    required TResult Function(GetAllCageResponse response) loadAllSuccess,
+    required TResult Function(Cage cage) loadByIdSuccess,
+    required TResult Function(String error) failure,
+    required TResult Function(String error) loadAllFailure,
+    required TResult Function(String error) loadByIdFailure,
+    required TResult Function() loadByUserIdInProgress,
+    required TResult Function(List<Cage> response) loadByUserIdSuccess,
+    required TResult Function(String error) loadByUserIdFailure,
+  }) {
+    return loadByUserIdFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? loadAllInProgress,
+    TResult? Function()? loadByIdInProgress,
+    TResult? Function(GetAllCageResponse response)? loadAllSuccess,
+    TResult? Function(Cage cage)? loadByIdSuccess,
+    TResult? Function(String error)? failure,
+    TResult? Function(String error)? loadAllFailure,
+    TResult? Function(String error)? loadByIdFailure,
+    TResult? Function()? loadByUserIdInProgress,
+    TResult? Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult? Function(String error)? loadByUserIdFailure,
+  }) {
+    return loadByUserIdFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? loadAllInProgress,
+    TResult Function()? loadByIdInProgress,
+    TResult Function(GetAllCageResponse response)? loadAllSuccess,
+    TResult Function(Cage cage)? loadByIdSuccess,
+    TResult Function(String error)? failure,
+    TResult Function(String error)? loadAllFailure,
+    TResult Function(String error)? loadByIdFailure,
+    TResult Function()? loadByUserIdInProgress,
+    TResult Function(List<Cage> response)? loadByUserIdSuccess,
+    TResult Function(String error)? loadByUserIdFailure,
+    required TResult orElse(),
+  }) {
+    if (loadByUserIdFailure != null) {
+      return loadByUserIdFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadAllInProgress value) loadAllInProgress,
+    required TResult Function(_LoadByIdInProgress value) loadByIdInProgress,
+    required TResult Function(_LoadAllSuccess value) loadAllSuccess,
+    required TResult Function(_LoadByIdSuccess value) loadByIdSuccess,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_LoadAllFailure value) loadAllFailure,
+    required TResult Function(_LoadByIdFailure value) loadByIdFailure,
+    required TResult Function(_LoadByUserIdInProgress value)
+        loadByUserIdInProgress,
+    required TResult Function(_LoadByUserIdSuccess value) loadByUserIdSuccess,
+    required TResult Function(_LoadByUserIdFailure value) loadByUserIdFailure,
+  }) {
+    return loadByUserIdFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadAllInProgress value)? loadAllInProgress,
+    TResult? Function(_LoadByIdInProgress value)? loadByIdInProgress,
+    TResult? Function(_LoadAllSuccess value)? loadAllSuccess,
+    TResult? Function(_LoadByIdSuccess value)? loadByIdSuccess,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_LoadAllFailure value)? loadAllFailure,
+    TResult? Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult? Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult? Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult? Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
+  }) {
+    return loadByUserIdFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadAllInProgress value)? loadAllInProgress,
+    TResult Function(_LoadByIdInProgress value)? loadByIdInProgress,
+    TResult Function(_LoadAllSuccess value)? loadAllSuccess,
+    TResult Function(_LoadByIdSuccess value)? loadByIdSuccess,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LoadAllFailure value)? loadAllFailure,
+    TResult Function(_LoadByIdFailure value)? loadByIdFailure,
+    TResult Function(_LoadByUserIdInProgress value)? loadByUserIdInProgress,
+    TResult Function(_LoadByUserIdSuccess value)? loadByUserIdSuccess,
+    TResult Function(_LoadByUserIdFailure value)? loadByUserIdFailure,
+    required TResult orElse(),
+  }) {
+    if (loadByUserIdFailure != null) {
+      return loadByUserIdFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadByUserIdFailure implements CageState {
+  const factory _LoadByUserIdFailure(final String error) =
+      _$LoadByUserIdFailureImpl;
+
+  String get error;
+
+  /// Create a copy of CageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadByUserIdFailureImplCopyWith<_$LoadByUserIdFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
