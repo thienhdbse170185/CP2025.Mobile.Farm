@@ -70,18 +70,6 @@ final router = GoRouter(
                 builder: (context, state) => const TaskWidget(),
               )
             ]),
-            // StatefulShellBranch(routes: [
-            //   GoRoute(
-            //     path: RouteName.ticket,
-            //     builder: (context, state) => const TicketWidget(),
-            //   )
-            // ]),
-            // StatefulShellBranch(routes: [
-            //   GoRoute(
-            //     path: RouteName.warehouse,
-            //     builder: (context, state) => const WarehouseWidget(),
-            //   )
-            // ]),
             StatefulShellBranch(routes: [
               GoRoute(
                   path: RouteName.profile,
@@ -122,6 +110,30 @@ final router = GoRouter(
               const begin = Offset(1.0, 0.0); // Bắt đầu từ bên phải
               const end = Offset.zero; // Kết thúc ở vị trí gốc
               const curve = Curves.easeInOut; // Đường cong chuyển động
+
+              final tween =
+                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+              final offsetAnimation = animation.drive(tween);
+
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: RouteName.setting,
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            child: const SettingWidget(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0);
+              const end = Offset.zero;
+              const curve = Curves.easeInOut;
 
               final tween =
                   Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
@@ -182,13 +194,26 @@ final router = GoRouter(
       ///notification-route
       GoRoute(
           path: RouteName.notification,
-          builder: (context, builder) => const NotificationWidget()),
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              child: const NotificationWidget(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                const curve = Curves.easeInOut;
 
-      ///setting-route
-      GoRoute(
-        path: RouteName.setting,
-        builder: (context, state) => const SettingWidget(),
-      ),
+                final tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
+                final offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(
+                  position: offsetAnimation,
+                  child: child,
+                );
+              },
+            );
+          }),
 
       ///notification-setting-route
       GoRoute(
