@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -19,15 +20,18 @@ class HomeWidget extends StatefulWidget {
 class HomeFeatures {
   final IconData icon;
   final String title;
+  final Map<String, dynamic>? extra;
   final String routeName;
 
   HomeFeatures(
-      {required this.icon, required this.title, required this.routeName});
+      {required this.icon,
+      required this.title,
+      this.extra,
+      required this.routeName});
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
   List<NextTask> cages = [];
-  String userId = '93f1f4db-5135-42b8-8301-5b3b96f6c434';
 
   final List<Color> cardColors = [
     Colors.blueAccent,
@@ -37,26 +41,18 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   final List<HomeFeatures> features = [
     HomeFeatures(
-      title: 'Thời tiết nông vụ',
-      icon: Icons.sunny_snowing,
-      routeName: RouteName.home,
-    ),
-    HomeFeatures(
-      title: 'Kho',
-      routeName: RouteName.warehouse,
-      icon: Icons.warehouse_outlined,
-    ),
-    HomeFeatures(
-      title: 'Gọi khẩn cấp',
-      icon: Icons.phone_outlined,
-      routeName: RouteName.support,
+      title: 'Báo cáo \ntriệu chứng',
+      routeName: RouteName.symptom,
+      extra: {'cageName': ''},
+      icon: Icons.warehouse_rounded,
     ),
   ];
 
   @override
   void initState() {
     super.initState();
-    context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
+    context.read<AuthBloc>().add(const AuthEvent.appStarted());
+    context.read<TaskBloc>().add(const TaskEvent.getNextTask());
   }
 
   @override
@@ -141,25 +137,19 @@ class _HomeWidgetState extends State<HomeWidget> {
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            context.read<TaskBloc>().add(TaskEvent.getNextTask(userId));
+            context.read<TaskBloc>().add(const TaskEvent.getNextTask());
             return;
           },
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // OutlinedButton(
-                //   onPressed: () {
-                //     context.read<TaskBloc>().add(const TaskEvent.testConnect());
-                //   },
-                //   child: const Text('Test connect'),
-                // ),
                 Container(
                   color: const Color(0xFFFFFFFF),
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 16, left: 16, right: 16),
+                        const EdgeInsets.only(top: 24, left: 16, right: 16),
                     child: Column(
                       children: [
                         SizedBox(
@@ -167,28 +157,31 @@ class _HomeWidgetState extends State<HomeWidget> {
                           child: GridView.builder(
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      mainAxisSpacing: 16,
-                                      crossAxisSpacing: 8,
-                                      childAspectRatio: 1.5),
+                                      crossAxisCount: 4, childAspectRatio: 0.8),
                               itemBuilder: (context, index) {
                                 if (index < features.length) {
                                   final feature = features[index];
                                   return GestureDetector(
-                                    onTap: () =>
-                                        context.push(feature.routeName),
+                                    onTap: () {
+                                      if (feature.extra!.isNotEmpty) {
+                                        context.push(feature.routeName,
+                                            extra: feature.extra);
+                                      } else {
+                                        context.push(feature.routeName);
+                                      }
+                                    },
                                     child: Column(
                                       children: [
                                         Container(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 10),
+                                              horizontal: 14, vertical: 12),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(16),
                                             border: Border.all(
                                               color: Theme.of(context)
                                                   .colorScheme
-                                                  .primaryContainer,
+                                                  .primary,
                                               width: 1,
                                             ),
                                           ),
@@ -197,11 +190,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   .colorScheme
                                                   .primary),
                                         ),
-                                        const SizedBox(height: 8),
+                                        const SizedBox(height: 4),
                                         Text(feature.title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium),
+                                            textAlign: TextAlign.center),
                                       ],
                                     ),
                                   );
@@ -213,7 +204,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 24),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(

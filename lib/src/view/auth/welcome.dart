@@ -16,6 +16,8 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
   late final AssetImage _imageManage;
   late final AssetImage _imageNoti;
 
+  int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -39,78 +41,157 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 16),
-          child: Image.asset('assets/images/flutter_logo.png'),
+          child: Image.asset('assets/images/LOGOOFFICIAL.png'),
         ),
+        leadingWidth: 70,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: TextButton(
-              onPressed: () {
-                context.push(RouteName.support);
-              },
-              child: const Text('Trợ giúp'),
-            ),
+          GestureDetector(
+            onTap: () {},
+            child: Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: Text(
+                  'Trợ giúp',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                )),
           )
         ],
       ),
-      body: Column(
-        children: [
-          // CarouselSlider for Illustrations
-          Expanded(
-            child: CarouselSlider(
-              items: [
-                _buildPage(
-                  image: _imageTask,
-                  title: 'Quản lý công việc hiệu quả',
-                  description:
-                      'Giúp bạn quản lý các công việc được giao một cách dễ dàng và tiện lợi.',
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 24.0),
+        child: Column(
+          children: [
+            // CarouselSlider for Illustrations
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.47,
+              child: CarouselSlider(
+                items: [
+                  _buildPage(
+                    image: _imageTask,
+                    description: 'Quản lý công việc dễ dàng',
+                  ),
+                  _buildPage(
+                    image: _imageManage,
+                    description: 'Theo dõi và quản lý chuồng trại',
+                  ),
+                  _buildPage(
+                    image: _imageNoti,
+                    description: 'Nhận thông báo công việc tức thời',
+                  ),
+                ],
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  autoPlay: true,
+                  autoPlayInterval:
+                      const Duration(seconds: 5), // Increased interval
+                  enlargeCenterPage: true,
+                  viewportFraction: 0.9,
+                  aspectRatio: 16 / 9,
+                  enableInfiniteScroll: true,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
                 ),
-                _buildPage(
-                  image: _imageManage,
-                  title: 'Quản lý chuồng trại',
-                  description:
-                      'Theo dõi và quản lý các chuồng trại mà bạn được assign để làm việc.',
-                ),
-                _buildPage(
-                  image: _imageNoti,
-                  title: 'Thông báo công việc tức thời',
-                  description:
-                      'Nhanh chóng nhận thông báo về các công việc mới được giao hoặc các thông tin quan trọng.',
-                ),
-              ],
-              options: CarouselOptions(
-                height: MediaQuery.of(context).size.height * 0.7,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 3),
-                enlargeCenterPage: true,
-                viewportFraction: 0.9,
-                aspectRatio: 16 / 9,
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          // Button to explore app
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                context.go(RouteName.home);
-              },
-              child: const Text('Khám phá ngay'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildPageIndicators(),
             ),
-          ),
-          const SizedBox(height: 16)
-        ],
+            const Spacer(),
+            // New text and buttons
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Xin chào,',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 2),
+                  const Text(
+                    'Vui lòng đăng nhập để sử dụng ứng dụng',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      onPressed: () {
+                        // Handle login with employee account
+                        context.push(RouteName.login);
+                      },
+                      child: const Text('Đăng nhập với tài khoản nhân viên'),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // Handle login for new employees
+                      },
+                      child: const Text('Đăng nhập dành cho nhân viên mới'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // Footer with privacy terms
+            const SizedBox(height: 24),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Bằng cách đăng nhập, bạn đã đồng ý với các',
+                    style: TextStyle(fontSize: 14),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Điều khoản về Quyền riêng tư.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }
 
+  List<Widget> _buildPageIndicators() {
+    return List<Widget>.generate(3, (index) {
+      return Container(
+        width: 8.0,
+        height: 8.0,
+        margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: _currentIndex == index
+              ? Theme.of(context).colorScheme.primary
+              : Colors.grey,
+        ),
+      );
+    });
+  }
+
   Widget _buildPage({
     required AssetImage image,
-    required String title,
     required String description,
   }) {
     return Column(
@@ -118,23 +199,17 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
       children: [
         Image(
           image: image,
-          height: 200,
+          height: 320,
           fit: BoxFit.contain,
         ),
-        const SizedBox(height: 16),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
         const SizedBox(height: 8),
-        Text(
-          description,
-          style: const TextStyle(fontSize: 16),
-          textAlign: TextAlign.center,
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: Text(
+            description,
+            style: const TextStyle(fontSize: 14, color: Colors.black54),
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );

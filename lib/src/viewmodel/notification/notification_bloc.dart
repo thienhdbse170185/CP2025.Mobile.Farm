@@ -9,8 +9,6 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   final NotificationRepository notificationRepository;
   NotificationBloc({required this.notificationRepository})
       : super(NotificationInitial()) {
-    on<NotificationEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<NotificationEvent>((event, emit) {});
   }
 }

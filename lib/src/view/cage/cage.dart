@@ -11,8 +11,8 @@ import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
-import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class CageWidget extends StatefulWidget {
   final String cageId;
@@ -25,13 +25,18 @@ class CageWidget extends StatefulWidget {
 
 class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
-  String selectedFilter = 'Phân công cho tôi'; // Add this line
-  Icon selectedFilterIcon =
-      const Icon(Icons.account_circle_outlined); // Update this line
   String loggedInUser = 'Staff Farm 1'; // Add this line
 
   List<Task> tasks = [];
   Cage? cage;
+
+  List<String> cageNames = [
+    "-- Chọn chuồng --",
+    "Cage 1",
+    "Cage 2",
+    "Cage 3"
+  ]; // Add this line
+  String selectedCageName = "-- Chọn chuồng --"; // Add this line
 
   String get formattedDate {
     return DateFormat('MMM dd, yyyy').format(selectedDate);
@@ -40,17 +45,6 @@ class _CageWidgetState extends State<CageWidget> {
   // Function to filter tasks by status
   List<Task> getTasksByStatus(String status) {
     return tasks.where((task) => task.status == status).toList();
-  }
-
-  // Function to filter tasks by user
-  List<Task> getTasksByUser(String user) {
-    if (user == 'Tất cả công việc') {
-      return tasks;
-    } else {
-      return tasks
-          .where((task) => task.assignedToUser.fullName == loggedInUser)
-          .toList();
-    }
   }
 
   // Function to categorize tasks by time of day and sort by priorityNum
@@ -96,7 +90,7 @@ class _CageWidgetState extends State<CageWidget> {
     HomeFeatures(
       icon: Icons.warehouse_outlined,
       title: 'Vật nuôi bị bệnh',
-      routeName: RouteName.report,
+      routeName: RouteName.symptom,
     ),
     HomeFeatures(
       title: 'Gọi khẩn cấp',
@@ -113,30 +107,24 @@ class _CageWidgetState extends State<CageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredTasks = getTasksByUser(selectedFilter); // Update this line
-    final doneTasks = filteredTasks
-        .where((task) => task.status == 'Done')
-        .toList(); // Update this line
-    final inProgressTasks = filteredTasks
-        .where((task) => task.status == 'InProgress')
-        .toList(); // Update this line
-    final pendingTasks = filteredTasks
-        .where((task) => task.status == 'Pending')
-        .toList(); // Update this line
+    final doneTasks = tasks.where((task) => task.status == 'Done').toList();
+    final inProgressTasks =
+        tasks.where((task) => task.status == 'InProgress').toList();
+    final pendingTasks =
+        tasks.where((task) => task.status == 'Pending').toList();
     final tasksByTime = {
-      'Buổi sáng': filteredTasks
+      'Buổi sáng': tasks
           .where((task) => task.session == 1 && task.status != 'Done')
           .toList(),
-      'Buổi trưa': filteredTasks
+      'Buổi trưa': tasks
           .where((task) => task.session == 2 && task.status != 'Done')
           .toList(),
-      'Buổi chiều': filteredTasks
+      'Buổi chiều': tasks
           .where((task) => task.session == 3 && task.status != 'Done')
           .toList(),
-    }; // Update this line
-    final completedTasksList = filteredTasks
-        .where((task) => task.status == 'Done')
-        .toList(); // Update this line
+    };
+    final completedTasksList =
+        tasks.where((task) => task.status == 'Done').toList();
 
     return MultiBlocListener(
       listeners: [
@@ -188,14 +176,12 @@ class _CageWidgetState extends State<CageWidget> {
       ],
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
           backgroundColor: Colors.white,
-          title: Text(cage?.name ?? ""),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.more_vert),
-            )
-          ],
+          title: Text(
+            cage?.name ?? 'Đang tải...',
+          ),
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -354,7 +340,10 @@ class _CageWidgetState extends State<CageWidget> {
                                 if (index < features.length) {
                                   final feature = features[index];
                                   return GestureDetector(
-                                    onTap: () => context.push(feature.routeName, extra: {'cageName': cage?.name ?? ''}), // Update this line
+                                    onTap: () => context.push(feature.routeName,
+                                        extra: {
+                                          'cageName': cage?.name ?? ''
+                                        }), // Update this line
                                     child: Column(
                                       children: [
                                         Container(
@@ -446,23 +435,7 @@ class _CageWidgetState extends State<CageWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Chip(
-                          shape: const StadiumBorder(
-                              side: BorderSide(
-                                  width: 0, color: Colors.transparent)),
-                          label: Text(
-                            DateFormat('EEEE, MMM d, yyyy')
-                                .format(DateTime.now()),
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary),
-                          ),
-                          avatar: Icon(
-                            Icons.calendar_month_outlined,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primaryContainer,
-                        ),
+                        // Move the date display to be inline with the "Công việc" text
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -470,49 +443,25 @@ class _CageWidgetState extends State<CageWidget> {
                               'Công việc',
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
-                            FilterChip(
-                              label: selectedFilterIcon, // Update this line
-                              onSelected: (bool selected) {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        ListTile(
-                                          leading: const Icon(
-                                              Icons.account_circle_outlined),
-                                          title:
-                                              const Text('Phân công cho tôi'),
-                                          onTap: () {
-                                            setState(() {
-                                              selectedFilter =
-                                                  'Phân công cho tôi'; // Update this line
-                                              selectedFilterIcon = const Icon(Icons
-                                                  .account_circle_outlined); // Update this line
-                                            });
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                        ListTile(
-                                          leading: const Icon(
-                                              Icons.people_outline_outlined),
-                                          title: const Text('Tất cả công việc'),
-                                          onTap: () {
-                                            setState(() {
-                                              selectedFilter =
-                                                  'Tất cả công việc'; // Update this line
-                                              selectedFilterIcon = const Icon(Icons
-                                                  .people_outline_outlined); // Update this line
-                                            });
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
+                            Chip(
+                              shape: const StadiumBorder(
+                                  side: BorderSide(
+                                      width: 0, color: Colors.transparent)),
+                              label: Row(
+                                children: [
+                                  Text(
+                                    DateFormat('EEEE, MMM d, yyyy')
+                                        .format(DateTime.now()),
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                                  ),
+                                ],
+                              ),
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer,
                             ),
                           ],
                         ),
@@ -520,6 +469,7 @@ class _CageWidgetState extends State<CageWidget> {
                         // Morning tasks
                         if (tasksByTime['Buổi sáng']?.isNotEmpty ?? false) ...[
                           SectionHeader(
+                              image: 'assets/images/morning.png',
                               title:
                                   'Buổi sáng (${tasksByTime['Buổi sáng']?.length ?? 0})'),
                           const SizedBox(height: 8),
@@ -528,6 +478,7 @@ class _CageWidgetState extends State<CageWidget> {
                         if (tasksByTime['Buổi trưa']?.isNotEmpty ?? false) ...[
                           const SizedBox(height: 16),
                           SectionHeader(
+                              image: 'assets/images/afternoon.png',
                               title:
                                   'Buổi trưa (${tasksByTime['Buổi trưa']?.length ?? 0})'),
                           const SizedBox(height: 8),
@@ -536,6 +487,7 @@ class _CageWidgetState extends State<CageWidget> {
                         if (tasksByTime['Buổi chiều']?.isNotEmpty ?? false) ...[
                           const SizedBox(height: 16),
                           SectionHeader(
+                              image: 'assets/images/moon.png',
                               title:
                                   'Buổi chiều (${tasksByTime['Buổi chiều']?.length ?? 0})'),
                           const SizedBox(height: 8),
@@ -543,11 +495,13 @@ class _CageWidgetState extends State<CageWidget> {
                         ],
                         if (completedTasksList.isNotEmpty) ...[
                           const SizedBox(height: 16),
-                          Text('Đã hoàn thành (${completedTasksList.length})',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(fontSize: 18)),
+                          Text(
+                            'Đã hoàn thành (${completedTasksList.length})',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(fontSize: 18),
+                          ),
                           const SizedBox(height: 8),
                           TaskList(tasks: completedTasksList),
                         ],
@@ -567,17 +521,19 @@ class _CageWidgetState extends State<CageWidget> {
 // Widget for section headers
 class SectionHeader extends StatelessWidget {
   final String title;
+  final String image;
 
-  const SectionHeader({super.key, required this.title});
+  const SectionHeader({super.key, required this.title, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 20,
-          height: 1,
-          color: Theme.of(context).colorScheme.outlineVariant,
+        const SizedBox(width: 8),
+        Image.asset(
+          image,
+          width: 24,
+          height: 24,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -587,12 +543,6 @@ class SectionHeader extends StatelessWidget {
                 .textTheme
                 .titleMedium
                 ?.copyWith(color: Theme.of(context).primaryColor),
-          ),
-        ),
-        Expanded(
-          child: Divider(
-            color: Theme.of(context).primaryColor.withOpacity(0.3),
-            thickness: 1,
           ),
         ),
       ],

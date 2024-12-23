@@ -12,4 +12,9 @@ class CageState with _$CageState {
   const factory CageState.failure(String error) = _Failure;
   const factory CageState.loadAllFailure(String error) = _LoadAllFailure;
   const factory CageState.loadByIdFailure(String error) = _LoadByIdFailure;
+  const factory CageState.loadByUserIdInProgress() = _LoadByUserIdInProgress;
+  const factory CageState.loadByUserIdSuccess(List<Cage> response) =
+      _LoadByUserIdSuccess;
+  const factory CageState.loadByUserIdFailure(String error) =
+      _LoadByUserIdFailure;
 }

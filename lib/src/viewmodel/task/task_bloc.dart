@@ -3,16 +3,17 @@ import 'package:data_layer/model/entity/task/next_task/next_task.dart';
 import 'package:data_layer/model/entity/task/task.dart';
 import 'package:data_layer/model/response/task/task_by_cage/tasks_by_cage_response.dart';
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
-import 'package:data_layer/repository/repository_interface.dart';
 import 'package:data_layer/repository/task/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
+import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 
+part 'task_bloc.freezed.dart';
 part 'task_event.dart';
 part 'task_state.dart';
-part 'task_bloc.freezed.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
-  final IRepository repository;
+  final TaskRepository repository;
   TaskBloc({required this.repository}) : super(const _Initial()) {
     on<_Started>((event, emit) {
       // Handle started event
@@ -27,12 +28,13 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       }
     });
     on<_UpdateTask>((event, emit) async {
-      emit(const TaskState.loading());
+      emit(const TaskState.updateStatusTaskLoading());
       try {
         // Add logic to update task
-        emit(const TaskState.taskUpdated());
+        await repository.update(event.taskId, event.statusId);
+        emit(const TaskState.updateStatusTaskSuccess());
       } catch (e) {
-        emit(TaskState.failure(e.toString()));
+        emit(TaskState.updateStatusTaskFailure(e.toString()));
       }
     });
     on<_DeleteTask>((event, emit) async {
@@ -67,8 +69,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetTasksByCageId>((event, emit) async {
       emit(const TaskState.loading());
       try {
-        final tasks =
-            await (repository as TaskRepository).getTasksByCageId(event.cageId);
+        final tasks = await (repository).getTasksByCageId(event.cageId);
         emit(TaskState.getTasksByCageIdSuccess(tasks));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
@@ -86,8 +87,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetNextTask>((event, emit) async {
       emit(const TaskState.getNextTaskLoading());
       try {
-        final task =
-            await (repository as TaskRepository).getNextTask(event.userId);
+        final box = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = box.get(UserDataConstant.userId);
+        final task = await (repository).getNextTask(userId);
         emit(TaskState.getNextTaskSuccess(task));
       } catch (e) {
         emit(TaskState.getNextTaskFailure(e.toString()));
@@ -98,8 +100,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       try {
         final formattedDate =
             "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
-        final tasks = await (repository as TaskRepository)
-            .getTasksByUserIdAndDate(event.userId, formattedDate);
+        final box = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = box.get(UserDataConstant.userIdKey);
+        final tasks = await (repository)
+            .getTasksByUserIdAndDate(userId, formattedDate, event.cageId);
         emit(TaskState.getTasksByUserIdAndDateSuccess(tasks));
       } catch (e) {
         emit(TaskState.getTasksByUserIdAndDateFailure(e.toString()));

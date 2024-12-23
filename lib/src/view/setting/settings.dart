@@ -11,6 +11,7 @@ class _SettingWidgetState extends State<SettingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(title: const Text('Setting')),
       body: const Center(child: Text('Setting screen')),
     );

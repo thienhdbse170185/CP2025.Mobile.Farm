@@ -36,4 +36,8 @@ class TaskState with _$TaskState {
       _FilteredTasksSuccess;
   const factory TaskState.filteredTasksFailure(String error) =
       _FilteredTasksFailure;
+  const factory TaskState.updateStatusTaskLoading() = _UpdateStatusTaskLoading;
+  const factory TaskState.updateStatusTaskSuccess() = _UpdateStatusTaskSuccess;
+  const factory TaskState.updateStatusTaskFailure(String error) =
+      _UpdateStatusTaskFailure;
 }
