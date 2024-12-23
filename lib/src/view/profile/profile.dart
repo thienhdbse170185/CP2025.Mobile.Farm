@@ -7,6 +7,7 @@ import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
 
+// TODO: Dựng lại UI
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({super.key});
 

@@ -1,27 +1,25 @@
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // For picking images
 import 'dart:io';
+
+import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart'; // For picking images
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
+import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle files
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
-import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
 
-import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle files
-
-class HealthReportWidget extends StatefulWidget {
+class SymptomWidget extends StatefulWidget {
   final String cageName; // Add this line
-  const HealthReportWidget(
-      {super.key, required this.cageName}); // Update this line
+  const SymptomWidget({super.key, required this.cageName}); // Update this line
 
   @override
-  State<HealthReportWidget> createState() => _HealthReportWidgetState();
+  State<SymptomWidget> createState() => _SymptomWidgetState();
 }
 
-class _HealthReportWidgetState extends State<HealthReportWidget> {
+class _SymptomWidgetState extends State<SymptomWidget> {
   final TextEditingController _noteController = TextEditingController();
   final List<File> _images = [];
   final TextEditingController _symptomController = TextEditingController();

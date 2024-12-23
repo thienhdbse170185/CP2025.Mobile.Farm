@@ -32,12 +32,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Foreground Service -->
-        <service
-            android:name=".SignalRForegroundService"
-            android:exported="false"
-            android:foregroundServiceType="connectedDevice" />
-
         <!-- Required for Flutter engine -->
         <meta-data
             android:name="flutterEmbedding"

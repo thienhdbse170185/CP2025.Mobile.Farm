@@ -228,6 +228,9 @@ class _TaskWidgetState extends State<TaskWidget> {
 
                 const SizedBox(height: 8),
                 if (availableLocations.isNotEmpty) ...[
+                  // TODO: Fix bug chọn filter nhưng khi chọn
+                  // chỉ hiện ra filter đang chọn, filter của
+                  // chuồng khác bị mất.
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(

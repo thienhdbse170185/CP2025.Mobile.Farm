@@ -20,10 +20,14 @@ class HomeWidget extends StatefulWidget {
 class HomeFeatures {
   final IconData icon;
   final String title;
+  final Map<String, dynamic>? extra;
   final String routeName;
 
   HomeFeatures(
-      {required this.icon, required this.title, required this.routeName});
+      {required this.icon,
+      required this.title,
+      this.extra,
+      required this.routeName});
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
@@ -37,19 +41,10 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   final List<HomeFeatures> features = [
     HomeFeatures(
-      title: 'Thời tiết nông vụ',
-      icon: Icons.sunny_snowing,
-      routeName: RouteName.home,
-    ),
-    HomeFeatures(
-      title: 'Kho',
-      routeName: RouteName.warehouse,
-      icon: Icons.warehouse_outlined,
-    ),
-    HomeFeatures(
-      title: 'Gọi khẩn cấp',
-      icon: Icons.phone_outlined,
-      routeName: RouteName.support,
+      title: 'Báo cáo \ntriệu chứng',
+      routeName: RouteName.symptom,
+      extra: {'cageName': ''},
+      icon: Icons.warehouse_rounded,
     ),
   ];
 
@@ -149,72 +144,67 @@ class _HomeWidgetState extends State<HomeWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // OutlinedButton(
-                //   onPressed: () {
-                //     context.read<TaskBloc>().add(const TaskEvent.testConnect());
-                //   },
-                //   child: const Text('Test connect'),
-                // ),
-                // Container(
-                //   color: const Color(0xFFFFFFFF),
-                //   width: MediaQuery.of(context).size.width,
-                //   child: Padding(
-                //     padding:
-                //         const EdgeInsets.only(top: 16, left: 16, right: 16),
-                //     child: Column(
-                //       children: [
-                //         SizedBox(
-                //           height: MediaQuery.of(context).size.height * 0.13,
-                //           child: GridView.builder(
-                //               gridDelegate:
-                //                   const SliverGridDelegateWithFixedCrossAxisCount(
-                //                       crossAxisCount: 3,
-                //                       mainAxisSpacing: 16,
-                //                       crossAxisSpacing: 8,
-                //                       childAspectRatio: 1.5),
-                //               itemBuilder: (context, index) {
-                //                 if (index < features.length) {
-                //                   final feature = features[index];
-                //                   return GestureDetector(
-                //                     onTap: () =>
-                //                         context.push(feature.routeName),
-                //                     child: Column(
-                //                       children: [
-                //                         Container(
-                //                           padding: const EdgeInsets.symmetric(
-                //                               horizontal: 12, vertical: 10),
-                //                           decoration: BoxDecoration(
-                //                             borderRadius:
-                //                                 BorderRadius.circular(16),
-                //                             border: Border.all(
-                //                               color: Theme.of(context)
-                //                                   .colorScheme
-                //                                   .primaryContainer,
-                //                               width: 1,
-                //                             ),
-                //                           ),
-                //                           child: Icon(feature.icon,
-                //                               color: Theme.of(context)
-                //                                   .colorScheme
-                //                                   .primary),
-                //                         ),
-                //                         const SizedBox(height: 8),
-                //                         Text(feature.title,
-                //                             style: Theme.of(context)
-                //                                 .textTheme
-                //                                 .bodyMedium),
-                //                       ],
-                //                     ),
-                //                   );
-                //                 }
-                //                 return null;
-                //               }),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                const SizedBox(height: 16),
+                Container(
+                  color: const Color(0xFFFFFFFF),
+                  width: MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 24, left: 16, right: 16),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.13,
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 4, childAspectRatio: 0.8),
+                              itemBuilder: (context, index) {
+                                if (index < features.length) {
+                                  final feature = features[index];
+                                  return GestureDetector(
+                                    onTap: () {
+                                      if (feature.extra!.isNotEmpty) {
+                                        context.push(feature.routeName,
+                                            extra: feature.extra);
+                                      } else {
+                                        context.push(feature.routeName);
+                                      }
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 14, vertical: 12),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            border: Border.all(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          child: Icon(feature.icon,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(feature.title,
+                                            textAlign: TextAlign.center),
+                                      ],
+                                    ),
+                                  );
+                                }
+                                return null;
+                              }),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(

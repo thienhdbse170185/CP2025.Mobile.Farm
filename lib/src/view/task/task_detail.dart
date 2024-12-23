@@ -1,17 +1,19 @@
-import 'dart:io';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:data_layer/model/entity/task/task.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // To handle file
-import 'package:intl/intl.dart';
-import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 
+// TODO: Làm thêm dựa vào taskType và các field
+// của task trong DB, cập nhật UI cho phù hợp
 class TaskDetailWidget extends StatefulWidget {
   final String taskId;
   const TaskDetailWidget({super.key, required this.taskId});

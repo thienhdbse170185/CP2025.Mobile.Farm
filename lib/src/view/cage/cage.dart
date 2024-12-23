@@ -11,8 +11,8 @@ import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
-import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class CageWidget extends StatefulWidget {
   final String cageId;
@@ -90,7 +90,7 @@ class _CageWidgetState extends State<CageWidget> {
     HomeFeatures(
       icon: Icons.warehouse_outlined,
       title: 'Vật nuôi bị bệnh',
-      routeName: RouteName.report,
+      routeName: RouteName.symptom,
     ),
     HomeFeatures(
       title: 'Gọi khẩn cấp',

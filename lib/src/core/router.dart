@@ -20,7 +20,7 @@ class RouteName {
   static const String profile = '/profile';
   static const String taskDetail = '/task_detail';
   static const String cage = '/cage';
-  static const String report = '/report';
+  static const String symptom = '/symptom';
   static const String createTicket = '/create_ticket';
   static const String notification = '/notification';
   static const String setting = '/setting';
@@ -167,11 +167,11 @@ final router = GoRouter(
 
       ///health-report-route
       GoRoute(
-          path: RouteName.report,
+          path: RouteName.symptom,
           builder: (context, state) {
             final cageName =
                 (state.extra as Map<String, dynamic>?)?['cageName'] as String;
-            return HealthReportWidget(cageName: cageName);
+            return SymptomWidget(cageName: cageName);
           }),
 
       ///create-ticket-route
