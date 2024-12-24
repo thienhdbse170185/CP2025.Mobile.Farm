@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart'; // For picking images
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
-import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle files
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
@@ -47,8 +46,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
   }
 
   void _fetchCages() async {
-    const userId = UserDataConstant.userId; // Replace with actual user ID
-    context.read<CageCubit>().getCagesByUserId(userId);
+    context.read<CageCubit>().getCagesByUserId();
   }
 
   // Function to pick multiple images
@@ -265,6 +263,28 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                           ),
                           helperText:
                               'Ấn dấu + để thêm triệu chứng vào báo cáo',
+                          suffixIcon: IconButton(
+                            icon: LinearIcons.addCircleIcon,
+                            onPressed: () {
+                              setState(() {
+                                if (_symptomController.text.isNotEmpty) {
+                                  if (_enteredSymptoms
+                                      .contains(_symptomController.text)) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Triệu chứng đã tồn tại'),
+                                      ),
+                                    );
+                                  } else {
+                                    _enteredSymptoms
+                                        .add(_symptomController.text);
+                                  }
+                                  _symptomController
+                                      .clear(); // Clear the text after adding
+                                }
+                              });
+                            },
+                          ),
                         ),
                       );
                     },
@@ -272,27 +292,6 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                       _symptomController.text = selected;
                     },
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () {
-                    setState(() {
-                      if (_symptomController.text.isNotEmpty) {
-                        if (_enteredSymptoms
-                            .contains(_symptomController.text)) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Triệu chứng đã tồn tại'),
-                            ),
-                          );
-                        } else {
-                          _enteredSymptoms.add(_symptomController.text);
-                        }
-                        _symptomController
-                            .clear(); // Clear the text after adding
-                      }
-                    });
-                  },
                 ),
               ],
             ),

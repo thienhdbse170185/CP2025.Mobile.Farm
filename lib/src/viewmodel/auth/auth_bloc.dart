@@ -2,14 +2,11 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/repository/auth/auth_repository.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
-import 'package:smart_farm/src/core/service/notification_service.dart';
-import 'package:smart_farm/src/core/service/signalr_service.dart';
 import 'package:smart_farm/src/core/utils/jwt_decoder.dart';
 
 part 'auth_bloc.freezed.dart';
@@ -38,11 +35,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         });
 
         if (accessToken != null && accessToken.isNotEmpty) {
-          await setupNotifications();
-          final signalRService =
-              SignalRService(flutterLocalNotificationsPlugin);
-          await signalRService.connect(
-              accessToken, dotenv.env['BASE_SIGNALR_URL']!);
+          // await setupNotifications();
+          // final signalRService =
+          //     SignalRService(flutterLocalNotificationsPlugin);
+          // await signalRService.connect(
+          //     accessToken, dotenv.env['BASE_SIGNALR_URL']!);
           emit(const AuthState.success());
         } else {
           emit(const AuthState.initial());

@@ -84,4 +84,16 @@ class LinearIcons {
     semanticsLabel: 'Phone Calling',
     colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
   );
+
+  static final Widget addCircleIcon = SvgPicture.asset(
+    'assets/icons/add-circle.svg',
+    semanticsLabel: 'Add Circle',
+  );
+
+  static final Widget caretDownIcon = SvgPicture.asset(
+    'assets/icons/caret-down.svg',
+    semanticsLabel: 'Caret Down',
+    width: 24,
+    height: 24,
+  );
 }

@@ -13,6 +13,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool centerTitle;
   final double toolbarOpacity;
   final double bottomOpacity;
+  final double? appBarHeight; // New property
 
   const CustomAppBar({
     super.key,
@@ -28,6 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = true,
     this.toolbarOpacity = 1.0,
     this.bottomOpacity = 1.0,
+    this.appBarHeight, // New property
   });
 
   @override
@@ -39,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: bottom,
       elevation: elevation,
       backgroundColor: backgroundColor ??
-          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.4),
+          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
       foregroundColor: foregroundColor,
       iconTheme: iconTheme,
       centerTitle: centerTitle,
@@ -51,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             image: const AssetImage('assets/images/leaf.jpg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.03), // Adjust the opacity here
+              Colors.black.withOpacity(0.04), // Adjust the opacity here
               BlendMode.dstATop,
             ),
           ),
@@ -63,7 +65,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize {
     return Size.fromHeight(
-      kToolbarHeight + (bottom?.preferredSize.height ?? 0.0),
+      appBarHeight ??
+          kToolbarHeight +
+              (bottom?.preferredSize.height ?? 0.0), // Modified line
     );
   }
 }
