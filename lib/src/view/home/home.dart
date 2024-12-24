@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
@@ -18,7 +19,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class HomeFeatures {
-  final IconData icon;
+  final Widget icon;
   final String title;
   final Map<String, dynamic>? extra;
   final String routeName;
@@ -44,7 +45,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       title: 'Báo cáo \ntriệu chứng',
       routeName: RouteName.symptom,
       extra: {'cageName': ''},
-      icon: Icons.warehouse_rounded,
+      icon: LinearIcons.healthIconGreen,
     ),
   ];
 
@@ -90,9 +91,9 @@ class _HomeWidgetState extends State<HomeWidget> {
             onPressed: () {
               context.push(RouteName.notification);
             },
-            icon: const Badge(
+            icon: Badge(
               label: Text('3'),
-              child: Icon(Icons.notifications_outlined),
+              child: LinearIcons.bellIconNormal,
             ),
           ),
           actions: [
@@ -181,14 +182,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             border: Border.all(
                                               color: Theme.of(context)
                                                   .colorScheme
-                                                  .primary,
+                                                  .primaryContainer,
                                               width: 1,
                                             ),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer
+                                                .withOpacity(0.2),
                                           ),
-                                          child: Icon(feature.icon,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
+                                          child: feature.icon,
                                         ),
                                         const SizedBox(height: 4),
                                         Text(feature.title,

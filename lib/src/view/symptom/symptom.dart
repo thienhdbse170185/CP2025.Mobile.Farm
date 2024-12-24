@@ -5,8 +5,10 @@ import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_r
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart'; // For picking images
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
+import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle files
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
@@ -181,9 +183,15 @@ class _SymptomWidgetState extends State<SymptomWidget> {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
+        appBar: CustomAppBar(
           title: const Text('Đơn báo cáo sức khỏe'),
+          centerTitle: true,
+          leading: IconButton(
+            icon: LinearIcons.arrowBackIcon,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
         body: _buildForm(),
         bottomSheet: Container(
@@ -200,7 +208,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
 
   Widget _buildForm() {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       physics: const AlwaysScrollableScrollPhysics(),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
