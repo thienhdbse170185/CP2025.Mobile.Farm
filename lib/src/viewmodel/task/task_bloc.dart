@@ -7,6 +7,7 @@ import 'package:data_layer/repository/task/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
+import 'package:smart_farm/src/model/task/cage_filter.dart';
 
 part 'task_bloc.freezed.dart';
 part 'task_event.dart';
@@ -14,6 +15,7 @@ part 'task_state.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final TaskRepository repository;
+
   TaskBloc({required this.repository}) : super(const _Initial()) {
     on<_Started>((event, emit) {
       // Handle started event
@@ -100,11 +102,29 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       try {
         final formattedDate =
             "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
-        final box = await Hive.openBox(UserDataConstant.userBoxName);
-        final userId = box.get(UserDataConstant.userIdKey);
+        final String userId = Hive.box(UserDataConstant.userBoxName)
+            .get(UserDataConstant.userIdKey);
         final tasks = await (repository)
             .getTasksByUserIdAndDate(userId, formattedDate, event.cageId);
-        emit(TaskState.getTasksByUserIdAndDateSuccess(tasks));
+
+        // Create a list of cage names and types without duplicates
+        List<CageFilter> cageList = [
+          CageFilter(cageName: 'Tất cả', cageType: 'all', cageId: null)
+        ];
+        final cageNamesSet = <String>{'Tất cả'};
+        for (var task in tasks) {
+          for (var cage in task.cages) {
+            if (!cageNamesSet.contains(cage.cageName)) {
+              cageList.add(CageFilter(
+                  cageName: cage.cageName,
+                  cageType: 'chicken',
+                  cageId: cage.cageId));
+              cageNamesSet.add(cage.cageName);
+            }
+          }
+        }
+
+        emit(TaskState.getTasksByUserIdAndDateSuccess(tasks, cageList));
       } catch (e) {
         emit(TaskState.getTasksByUserIdAndDateFailure(e.toString()));
       }
@@ -112,19 +132,13 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_FilterTasksByLocation>((event, emit) async {
       emit(const TaskState.filteredTaskLoading());
       try {
-        // Chờ mô phỏng tải dữ liệu
-        await Future.delayed(const Duration(seconds: 1));
-
+        final formattedDate =
+            "${event.date.year}/${event.date.month.toString().padLeft(2, '0')}/${event.date.day.toString().padLeft(2, '0')}";
+        final String userId = Hive.box(UserDataConstant.userBoxName)
+            .get(UserDataConstant.userIdKey);
         // Lọc công việc
-        final filteredTasks = event.location == 'Tất cả'
-            ? event.tasks
-            : event.tasks.where((task) {
-                // Kiểm tra chuồng có khớp với location không
-                final cageNames =
-                    task.cages.map((cage) => cage.cageName).toList();
-
-                return cageNames.contains(event.location);
-              }).toList();
+        final filteredTasks = await repository.getTasksByUserIdAndDate(
+            userId, formattedDate, event.cageId);
 
         emit(TaskState.filteredTasksSuccess(filteredTasks));
       } catch (e) {

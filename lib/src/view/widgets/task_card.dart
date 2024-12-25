@@ -1,6 +1,7 @@
 import 'package:data_layer/model/entity/task/task.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
 
 class TaskCard extends StatelessWidget {
@@ -36,23 +37,13 @@ class TaskCard extends StatelessWidget {
               context.push(RouteName.taskDetail, extra: taskId);
             }
           },
-          child: Card(
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Theme.of(context)
-                    .colorScheme
-                    .outline, // Reset to default M3 color
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
+          child: Card.outlined(
             child: ListTile(
-              leading: Icon(
-                isCompleted
-                    ? Icons.task_alt_outlined
-                    : (isInProgress
-                        ? Icons.timelapse_outlined
-                        : Icons.pending_outlined),
-              ),
+              leading: isCompleted
+                  ? LinearIcons.doneTaskIcon
+                  : (isInProgress
+                      ? LinearIcons.inprogressTaskIcon
+                      : LinearIcons.pendingTaskIcon),
               title: Text(
                 task.taskName,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(

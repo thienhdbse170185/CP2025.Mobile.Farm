@@ -92,22 +92,19 @@ class _HomeWidgetState extends State<HomeWidget> {
               height: MediaQuery.of(context).size.height * 0.11,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .colorScheme
-                    .primaryContainer
-                    .withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primaryContainer,
                 image: DecorationImage(
                   image: AssetImage('assets/images/leaf.jpg'),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.3),
+                    Colors.black.withOpacity(0.4),
                     BlendMode.dstATop,
                   ),
                 ),
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.057,
+              top: MediaQuery.of(context).size.height * 0.059,
               left: 16,
               right: 16,
               child: Card(
@@ -169,7 +166,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
             Container(
               margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.16),
+                  top: MediaQuery.of(context).size.height * 0.165),
               child: RefreshIndicator(
                 onRefresh: () async {
                   context.read<TaskBloc>().add(const TaskEvent.getNextTask());

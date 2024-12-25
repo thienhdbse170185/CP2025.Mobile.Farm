@@ -29,7 +29,7 @@ mixin _$TaskEvent {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ mixin _$TaskEvent {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$TaskEvent {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) =>
@@ -188,7 +188,7 @@ class _$StartedImpl implements _Started {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return started();
@@ -207,7 +207,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return started?.call();
@@ -226,7 +226,7 @@ class _$StartedImpl implements _Started {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -380,7 +380,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return createTask(task);
@@ -399,7 +399,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return createTask?.call(task);
@@ -418,7 +418,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -589,7 +589,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return updateTask(taskId, statusId);
@@ -608,7 +608,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return updateTask?.call(taskId, statusId);
@@ -627,7 +627,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -791,7 +791,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return deleteTask(taskId);
@@ -810,7 +810,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return deleteTask?.call(taskId);
@@ -829,7 +829,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -964,7 +964,7 @@ class _$GetTasksImpl implements _GetTasks {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return getTasks();
@@ -983,7 +983,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return getTasks?.call();
@@ -1002,7 +1002,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -1129,7 +1129,7 @@ class _$TestConnectImpl implements _TestConnect {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return testConnect();
@@ -1148,7 +1148,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return testConnect?.call();
@@ -1167,7 +1167,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -1322,7 +1322,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return getTasksByCageId(cageId);
@@ -1341,7 +1341,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return getTasksByCageId?.call(cageId);
@@ -1360,7 +1360,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -1522,7 +1522,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return getTaskById(taskId);
@@ -1541,7 +1541,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return getTaskById?.call(taskId);
@@ -1560,7 +1560,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -1695,7 +1695,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return getNextTask();
@@ -1714,7 +1714,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return getNextTask?.call();
@@ -1733,7 +1733,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -1898,7 +1898,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
     return getTasksByUserIdAndDate(date, cageId);
@@ -1917,7 +1917,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
     return getTasksByUserIdAndDate?.call(date, cageId);
@@ -1936,7 +1936,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
@@ -2029,7 +2029,7 @@ abstract class _$$FilterTasksByLocationImplCopyWith<$Res> {
           $Res Function(_$FilterTasksByLocationImpl) then) =
       __$$FilterTasksByLocationImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String location, List<TaskByUserResponse> tasks});
+  $Res call({String? cageId, DateTime date, String cageName});
 }
 
 /// @nodoc
@@ -2045,18 +2045,23 @@ class __$$FilterTasksByLocationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? location = null,
-    Object? tasks = null,
+    Object? cageId = freezed,
+    Object? date = null,
+    Object? cageName = null,
   }) {
     return _then(_$FilterTasksByLocationImpl(
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
+      cageId: freezed == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      cageName: null == cageName
+          ? _value.cageName
+          : cageName // ignore: cast_nullable_to_non_nullable
               as String,
-      tasks: null == tasks
-          ? _value._tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<TaskByUserResponse>,
     ));
   }
 }
@@ -2065,22 +2070,18 @@ class __$$FilterTasksByLocationImplCopyWithImpl<$Res>
 
 class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
   const _$FilterTasksByLocationImpl(
-      {required this.location, required final List<TaskByUserResponse> tasks})
-      : _tasks = tasks;
+      {required this.cageId, required this.date, required this.cageName});
 
   @override
-  final String location;
-  final List<TaskByUserResponse> _tasks;
+  final String? cageId;
   @override
-  List<TaskByUserResponse> get tasks {
-    if (_tasks is EqualUnmodifiableListView) return _tasks;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tasks);
-  }
+  final DateTime date;
+  @override
+  final String cageName;
 
   @override
   String toString() {
-    return 'TaskEvent.filterTasksByLocation(location: $location, tasks: $tasks)';
+    return 'TaskEvent.filterTasksByLocation(cageId: $cageId, date: $date, cageName: $cageName)';
   }
 
   @override
@@ -2088,14 +2089,14 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterTasksByLocationImpl &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.cageName, cageName) ||
+                other.cageName == cageName));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, location, const DeepCollectionEquality().hash(_tasks));
+  int get hashCode => Object.hash(runtimeType, cageId, date, cageName);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -2120,10 +2121,10 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
-    required TResult Function(String location, List<TaskByUserResponse> tasks)
+    required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
   }) {
-    return filterTasksByLocation(location, tasks);
+    return filterTasksByLocation(cageId, date, cageName);
   }
 
   @override
@@ -2139,10 +2140,10 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(String taskId)? getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String location, List<TaskByUserResponse> tasks)?
+    TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
   }) {
-    return filterTasksByLocation?.call(location, tasks);
+    return filterTasksByLocation?.call(cageId, date, cageName);
   }
 
   @override
@@ -2158,12 +2159,12 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(String taskId)? getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String location, List<TaskByUserResponse> tasks)?
+    TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
     required TResult orElse(),
   }) {
     if (filterTasksByLocation != null) {
-      return filterTasksByLocation(location, tasks);
+      return filterTasksByLocation(cageId, date, cageName);
     }
     return orElse();
   }
@@ -2231,12 +2232,13 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
 
 abstract class _FilterTasksByLocation implements TaskEvent {
   const factory _FilterTasksByLocation(
-          {required final String location,
-          required final List<TaskByUserResponse> tasks}) =
-      _$FilterTasksByLocationImpl;
+      {required final String? cageId,
+      required final DateTime date,
+      required final String cageName}) = _$FilterTasksByLocationImpl;
 
-  String get location;
-  List<TaskByUserResponse> get tasks;
+  String? get cageId;
+  DateTime get date;
+  String get cageName;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -2269,7 +2271,8 @@ mixin _$TaskState {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -2302,7 +2305,8 @@ mixin _$TaskState {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -2334,7 +2338,7 @@ mixin _$TaskState {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -2537,7 +2541,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -2573,7 +2578,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -2608,7 +2614,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -2811,7 +2817,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -2847,7 +2854,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -2882,7 +2890,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -3085,7 +3093,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -3121,7 +3130,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -3156,7 +3166,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -3386,7 +3396,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -3422,7 +3433,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -3457,7 +3469,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -3668,7 +3680,8 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -3704,7 +3717,8 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -3739,7 +3753,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -3942,7 +3956,8 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -3978,7 +3993,8 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -4013,7 +4029,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -4216,7 +4232,8 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -4252,7 +4269,8 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -4287,7 +4305,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -4525,7 +4543,8 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -4561,7 +4580,8 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -4596,7 +4616,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -4836,7 +4856,8 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -4872,7 +4893,8 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -4907,7 +4929,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -5118,7 +5140,8 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -5154,7 +5177,8 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -5189,7 +5213,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -5395,7 +5419,8 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -5431,7 +5456,8 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -5466,7 +5492,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -5711,7 +5737,8 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -5747,7 +5774,8 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -5782,7 +5810,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -5994,7 +6022,8 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -6030,7 +6059,8 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -6065,7 +6095,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -6308,7 +6338,8 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -6344,7 +6375,8 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -6379,7 +6411,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -6618,7 +6650,8 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -6654,7 +6687,8 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -6689,7 +6723,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -6901,7 +6935,8 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -6937,7 +6972,8 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -6972,7 +7008,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -7209,7 +7245,8 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -7245,7 +7282,8 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -7280,7 +7318,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -7520,7 +7558,8 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -7556,7 +7595,8 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -7591,7 +7631,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -7807,7 +7847,8 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -7843,7 +7884,8 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -7878,7 +7920,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -8028,7 +8070,7 @@ abstract class _$$GetTasksByUserIdAndDateSuccessImplCopyWith<$Res> {
           $Res Function(_$GetTasksByUserIdAndDateSuccessImpl) then) =
       __$$GetTasksByUserIdAndDateSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<TaskByUserResponse> tasks});
+  $Res call({List<TaskByUserResponse> tasks, List<CageFilter> cageList});
 }
 
 /// @nodoc
@@ -8046,12 +8088,17 @@ class __$$GetTasksByUserIdAndDateSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tasks = null,
+    Object? cageList = null,
   }) {
     return _then(_$GetTasksByUserIdAndDateSuccessImpl(
       null == tasks
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as List<TaskByUserResponse>,
+      null == cageList
+          ? _value._cageList
+          : cageList // ignore: cast_nullable_to_non_nullable
+              as List<CageFilter>,
     ));
   }
 }
@@ -8061,8 +8108,9 @@ class __$$GetTasksByUserIdAndDateSuccessImplCopyWithImpl<$Res>
 class _$GetTasksByUserIdAndDateSuccessImpl
     implements _GetTasksByUserIdAndDateSuccess {
   const _$GetTasksByUserIdAndDateSuccessImpl(
-      final List<TaskByUserResponse> tasks)
-      : _tasks = tasks;
+      final List<TaskByUserResponse> tasks, final List<CageFilter> cageList)
+      : _tasks = tasks,
+        _cageList = cageList;
 
   final List<TaskByUserResponse> _tasks;
   @override
@@ -8072,9 +8120,17 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     return EqualUnmodifiableListView(_tasks);
   }
 
+  final List<CageFilter> _cageList;
+  @override
+  List<CageFilter> get cageList {
+    if (_cageList is EqualUnmodifiableListView) return _cageList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cageList);
+  }
+
   @override
   String toString() {
-    return 'TaskState.getTasksByUserIdAndDateSuccess(tasks: $tasks)';
+    return 'TaskState.getTasksByUserIdAndDateSuccess(tasks: $tasks, cageList: $cageList)';
   }
 
   @override
@@ -8082,12 +8138,15 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetTasksByUserIdAndDateSuccessImpl &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
+            const DeepCollectionEquality().equals(other._cageList, _cageList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tasks));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tasks),
+      const DeepCollectionEquality().hash(_cageList));
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -8122,7 +8181,8 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -8133,7 +8193,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
   }) {
-    return getTasksByUserIdAndDateSuccess(tasks);
+    return getTasksByUserIdAndDateSuccess(tasks, cageList);
   }
 
   @override
@@ -8158,7 +8218,8 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -8168,7 +8229,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
   }) {
-    return getTasksByUserIdAndDateSuccess?.call(tasks);
+    return getTasksByUserIdAndDateSuccess?.call(tasks, cageList);
   }
 
   @override
@@ -8193,7 +8254,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -8205,7 +8266,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateSuccess != null) {
-      return getTasksByUserIdAndDateSuccess(tasks);
+      return getTasksByUserIdAndDateSuccess(tasks, cageList);
     }
     return orElse();
   }
@@ -8333,10 +8394,11 @@ class _$GetTasksByUserIdAndDateSuccessImpl
 
 abstract class _GetTasksByUserIdAndDateSuccess implements TaskState {
   const factory _GetTasksByUserIdAndDateSuccess(
-          final List<TaskByUserResponse> tasks) =
-      _$GetTasksByUserIdAndDateSuccessImpl;
+      final List<TaskByUserResponse> tasks,
+      final List<CageFilter> cageList) = _$GetTasksByUserIdAndDateSuccessImpl;
 
   List<TaskByUserResponse> get tasks;
+  List<CageFilter> get cageList;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -8439,7 +8501,8 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -8475,7 +8538,8 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -8510,7 +8574,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -8724,7 +8788,8 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -8760,7 +8825,8 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -8795,7 +8861,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -9034,7 +9100,8 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -9070,7 +9137,8 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -9105,7 +9173,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -9346,7 +9414,8 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -9382,7 +9451,8 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -9417,7 +9487,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -9632,7 +9702,8 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -9668,7 +9739,8 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -9703,7 +9775,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -9909,7 +9981,8 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -9945,7 +10018,8 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -9980,7 +10054,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,
@@ -10213,7 +10287,8 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
     required TResult Function(String error) getNextTaskFailure,
     required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(List<TaskByUserResponse> tasks)
+    required TResult Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)
         getTasksByUserIdAndDateSuccess,
     required TResult Function(String error) getTasksByUserIdAndDateFailure,
     required TResult Function() filteredTaskLoading,
@@ -10249,7 +10324,8 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
     TResult? Function(String error)? getNextTaskFailure,
     TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(List<TaskByUserResponse> tasks)?
+    TResult? Function(
+            List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult? Function(String error)? getTasksByUserIdAndDateFailure,
     TResult? Function()? filteredTaskLoading,
@@ -10284,7 +10360,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
     TResult Function(String error)? getNextTaskFailure,
     TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(List<TaskByUserResponse> tasks)?
+    TResult Function(List<TaskByUserResponse> tasks, List<CageFilter> cageList)?
         getTasksByUserIdAndDateSuccess,
     TResult Function(String error)? getTasksByUserIdAndDateFailure,
     TResult Function()? filteredTaskLoading,

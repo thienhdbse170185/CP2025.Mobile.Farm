@@ -15,7 +15,8 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.getTasksByUserIdAndDate(
       DateTime? date, String? cageId) = _GetTasksByUserIdAndDate;
   const factory TaskEvent.filterTasksByLocation({
-    required String location,
-    required List<TaskByUserResponse> tasks,
+    required String? cageId,
+    required DateTime date,
+    required String cageName,
   }) = _FilterTasksByLocation;
 }
