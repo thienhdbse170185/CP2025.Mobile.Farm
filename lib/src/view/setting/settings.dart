@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 
 class SettingWidget extends StatefulWidget {
   const SettingWidget({super.key});
@@ -12,8 +13,10 @@ class _SettingWidgetState extends State<SettingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: const Text('Setting')),
-      body: const Center(child: Text('Setting screen')),
+      appBar: CustomAppBar(
+        title: const Text('Cài đặt'),
+      ),
+      body: const Center(child: Text('Màn hình Setting')),
     );
   }
 }

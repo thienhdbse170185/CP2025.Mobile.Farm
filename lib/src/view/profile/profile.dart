@@ -123,7 +123,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       'Bảo Thiên',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 18,
                       ),
                     ),
                     trailing: LinearIcons.chevronRightIcon,
@@ -193,7 +193,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             },
                             child: Row(
                               children: [
-                                LinearIcons.bellIcon,
+                                LinearIcons.bellIconGreen,
                                 const SizedBox(width: 16),
                                 Text(
                                   'Thông báo',
@@ -275,7 +275,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 Expanded(
                                   child: Row(
                                     children: [
-                                      LinearIcons.settingIcon,
+                                      LinearIcons.settingIconGreen,
                                       const SizedBox(width: 16),
                                       Text(
                                         'Cài đặt',
@@ -295,23 +295,28 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  GestureDetector(
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     onTap: () {
                       _showLogoutConfirmationBottomSheet(context);
                     },
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 8),
-                        LinearIcons.logoutIcon,
-                        const SizedBox(width: 8),
-                        Text(
-                          'Đăng xuất',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(color: Colors.red),
-                        )
-                      ],
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 8),
+                          LinearIcons.logoutIcon,
+                          const SizedBox(width: 8),
+                          Text(
+                            'Đăng xuất',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(color: Colors.red),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],

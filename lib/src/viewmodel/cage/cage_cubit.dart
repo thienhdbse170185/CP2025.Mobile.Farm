@@ -3,9 +3,11 @@ import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/entity/cage/cage.dart';
 import 'package:data_layer/model/response/cage/get_all/get_all_cage_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
+import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 
-part 'cage_state.dart';
 part 'cage_cubit.freezed.dart';
+part 'cage_state.dart';
 
 class CageCubit extends Cubit<CageState> {
   final CageRepository cageRepository;
@@ -31,9 +33,11 @@ class CageCubit extends Cubit<CageState> {
     }
   }
 
-  Future<void> getCagesByUserId(String userId) async {
+  Future<void> getCagesByUserId() async {
     emit(const CageState.loadByUserIdInProgress());
     try {
+      final userId = Hive.box(UserDataConstant.userBoxName)
+          .get(UserDataConstant.userIdKey);
       final cages = await cageRepository.getCagesByUserId(userId);
       emit(CageState.loadByUserIdSuccess(cages));
     } catch (e) {

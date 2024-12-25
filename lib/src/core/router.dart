@@ -34,6 +34,26 @@ class RouteName {
   ];
 }
 
+CustomTransitionPage _buildPageWithSlideTransition(Widget child) {
+  return CustomTransitionPage(
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
+
+      final tween =
+          Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      final offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+
 final router = GoRouter(
     navigatorKey: rootNavigatorKey,
     initialLocation: RouteName.home,
@@ -80,144 +100,97 @@ final router = GoRouter(
       ///welcome-route
       GoRoute(
           path: RouteName.welcome,
-          builder: (context, state) => const WelcomeWidget()),
+          pageBuilder: (context, state) =>
+              _buildPageWithSlideTransition(const WelcomeWidget())),
 
       ///support-route
       GoRoute(
         path: RouteName.support,
-        builder: (context, state) => const SupportWidget(),
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const SupportWidget()),
       ),
 
       GoRoute(
         path: RouteName.task,
-        builder: (context, state) => const TaskWidget(),
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const TaskWidget()),
       ),
 
       GoRoute(
         path: RouteName.ticket,
-        builder: (context, state) => const TicketWidget(),
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const TicketWidget()),
       ),
 
       ///login-route
       GoRoute(
         path: RouteName.login,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            child: const LoginWidget(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              // Tạo hiệu ứng trượt từ bên phải qua
-              const begin = Offset(1.0, 0.0); // Bắt đầu từ bên phải
-              const end = Offset.zero; // Kết thúc ở vị trí gốc
-              const curve = Curves.easeInOut; // Đường cong chuyển động
-
-              final tween =
-                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-              final offsetAnimation = animation.drive(tween);
-
-              return SlideTransition(
-                position: offsetAnimation,
-                child: child,
-              );
-            },
-          );
-        },
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const LoginWidget()),
       ),
 
       GoRoute(
         path: RouteName.setting,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            child: const SettingWidget(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              const begin = Offset(1.0, 0.0);
-              const end = Offset.zero;
-              const curve = Curves.easeInOut;
-
-              final tween =
-                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-              final offsetAnimation = animation.drive(tween);
-
-              return SlideTransition(
-                position: offsetAnimation,
-                child: child,
-              );
-            },
-          );
-        },
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const SettingWidget()),
       ),
 
       ///newbie-login-route
       GoRoute(
           path: RouteName.newbie,
-          builder: (context, state) => const NewbieLoginWidget()),
+          pageBuilder: (context, state) =>
+              _buildPageWithSlideTransition(const NewbieLoginWidget())),
 
       ///task-detail-route
       GoRoute(
         path: RouteName.taskDetail,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final taskId = state.extra as String;
-          return TaskDetailWidget(taskId: taskId);
-          // return TaskDetailWidget();
+          return _buildPageWithSlideTransition(
+              TaskDetailWidget(taskId: taskId));
         },
       ),
 
       ///cage-route
       GoRoute(
           path: RouteName.cage,
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final cageId =
                 (state.extra as Map<String, dynamic>?)?['cageId'] as String;
             final cardColor =
                 (state.extra as Map<String, dynamic>?)?['color'] as Color;
-            return CageWidget(
+            return _buildPageWithSlideTransition(CageWidget(
               cageId: cageId,
               color: cardColor,
-            );
+            ));
           }),
 
       ///health-report-route
       GoRoute(
           path: RouteName.symptom,
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final cageName =
                 (state.extra as Map<String, dynamic>?)?['cageName'] as String;
-            return SymptomWidget(cageName: cageName);
+            return _buildPageWithSlideTransition(
+                SymptomWidget(cageName: cageName));
           }),
 
       ///create-ticket-route
       GoRoute(
           path: RouteName.createTicket,
-          builder: (context, builder) => const CreateTicketWidget()),
+          pageBuilder: (context, builder) =>
+              _buildPageWithSlideTransition(const CreateTicketWidget())),
 
       ///notification-route
       GoRoute(
           path: RouteName.notification,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              child: const NotificationWidget(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                const begin = Offset(1.0, 0.0);
-                const end = Offset.zero;
-                const curve = Curves.easeInOut;
-
-                final tween = Tween(begin: begin, end: end)
-                    .chain(CurveTween(curve: curve));
-                final offsetAnimation = animation.drive(tween);
-
-                return SlideTransition(
-                  position: offsetAnimation,
-                  child: child,
-                );
-              },
-            );
-          }),
+          pageBuilder: (context, state) =>
+              _buildPageWithSlideTransition(const NotificationWidget())),
 
       ///notification-setting-route
       GoRoute(
         path: RouteName.notificationSetting,
-        builder: (context, state) => const NotificationSettingWidget(),
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const NotificationSettingWidget()),
       ),
     ]);

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/export.dart';
@@ -83,18 +84,18 @@ class _CageWidgetState extends State<CageWidget> {
 
   final List<HomeFeatures> features = [
     HomeFeatures(
-      icon: Icons.info_outline_rounded,
+      icon: LinearIcons.aboutIcon,
       title: 'Báo cáo vấn đề',
       routeName: RouteName.createTicket,
     ),
     HomeFeatures(
-      icon: Icons.warehouse_outlined,
+      icon: LinearIcons.healthIconGreen,
       title: 'Vật nuôi bị bệnh',
       routeName: RouteName.symptom,
     ),
     HomeFeatures(
       title: 'Gọi khẩn cấp',
-      icon: Icons.phone_outlined,
+      icon: LinearIcons.phoneCallingIconGreen,
       routeName: RouteName.support,
     )
   ];
@@ -359,10 +360,7 @@ class _CageWidgetState extends State<CageWidget> {
                                               width: 1,
                                             ),
                                           ),
-                                          child: Icon(feature.icon,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
+                                          child: feature.icon,
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
