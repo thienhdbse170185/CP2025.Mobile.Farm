@@ -18,8 +18,8 @@ class TextFieldRequired extends StatefulWidget {
 
   final String label;
   final String hintText;
-  final Icon? suffixIcon;
-  final Icon? prefixIcon; // Icon hiển thị bên trái
+  final Widget? suffixIcon;
+  final Widget? prefixIcon; // Icon hiển thị bên trái
   final VoidCallback? onTap;
   final bool? isDisabled; // Để kiểm soát việc vô hiệu hóa TextField
   final TextEditingController? controller;

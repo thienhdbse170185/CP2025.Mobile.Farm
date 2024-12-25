@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 
 class NotificationWidget extends StatefulWidget {
   const NotificationWidget({super.key});
@@ -14,18 +16,24 @@ class _NotificationWidgetState extends State<NotificationWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
+      appBar: CustomAppBar(
+        leading: IconButton(
+          icon: LinearIcons.arrowBackIcon,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: const Text('Thông báo'),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: IconButton(
-                onPressed: () {
-                  context.push(RouteName.notificationSetting);
-                },
-                icon: const Icon(Icons.settings_outlined)),
-          )
+              onPressed: () {
+                context.push(RouteName.notificationSetting);
+              },
+              icon: LinearIcons.settingIconNormal,
+            ),
+          ),
         ],
       ),
       body: Padding(

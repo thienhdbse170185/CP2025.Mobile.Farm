@@ -3,10 +3,9 @@ import 'dart:developer';
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
-import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
 
@@ -146,65 +145,39 @@ class _TaskWidgetState extends State<TaskWidget> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leadingWidth: MediaQuery.of(context).size.width * 0.4,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: InkWell(
-              onTap: () => _selectDate(context), // Open date picker when tapped
-              child: Chip(
-                shape: const StadiumBorder(
-                    side: BorderSide(width: 0, color: Colors.transparent)),
-                label: Text(
-                  formattedDate, // Display the formatted date
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                avatar: Icon(
-                  Icons.calendar_month_outlined,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              ),
-            ),
+        appBar: CustomAppBar(
+          centerTitle: false,
+          title: Text(
+            isToday ? 'Hôm nay' : dayOfWeek, // Show "Hôm nay" if today
+            style:
+                Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
           ),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        context.push(RouteName.notification);
-                      },
-                      icon: const Badge(
-                          label: Text('3'),
-                          child: Icon(
-                            Icons.notifications_outlined,
-                          ))),
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2,
-                      ),
-                    ),
-                    child: const CircleAvatar(
-                      radius: 20,
-                      backgroundImage: AssetImage('assets/images/avatar.png'),
+              child: InkWell(
+                onTap: () =>
+                    _selectDate(context), // Open date picker when tapped
+                child: Chip(
+                  shape: const StadiumBorder(
+                      side: BorderSide(width: 0, color: Colors.transparent)),
+                  label: Text(
+                    formattedDate, // Display the formatted date
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
-                ],
+                  avatar: Icon(
+                    Icons.calendar_month_outlined,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  backgroundColor:
+                      Theme.of(context).colorScheme.primaryContainer,
+                ),
               ),
             ),
           ],
+          appBarHeight: MediaQuery.of(context).size.height * 0.08,
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -217,15 +190,6 @@ class _TaskWidgetState extends State<TaskWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Update this to display either "Hôm nay" or the day of the week
-                Text(
-                  isToday ? 'Hôm nay' : dayOfWeek, // Show "Hôm nay" if today
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(fontSize: 22),
-                ),
-
                 const SizedBox(height: 8),
                 if (availableLocations.isNotEmpty) ...[
                   SingleChildScrollView(
