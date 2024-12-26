@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
@@ -28,7 +29,7 @@ class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
   String loggedInUser = 'Staff Farm 1'; // Add this line
 
-  List<Task> tasks = [];
+  List<TaskHaveCageName> tasks = [];
   Cage? cage;
 
   List<String> cageNames = [
@@ -44,13 +45,13 @@ class _CageWidgetState extends State<CageWidget> {
   }
 
   // Function to filter tasks by status
-  List<Task> getTasksByStatus(String status) {
+  List<TaskHaveCageName> getTasksByStatus(String status) {
     return tasks.where((task) => task.status == status).toList();
   }
 
   // Function to categorize tasks by time of day and sort by priorityNum
-  Map<String, List<Task>> get tasksByTimeOfDay {
-    final Map<String, List<Task>> categorizedTasks = {
+  Map<String, List<TaskHaveCageName>> get tasksByTimeOfDay {
+    final Map<String, List<TaskHaveCageName>> categorizedTasks = {
       'Buổi sáng': [],
       'Buổi trưa': [],
       'Buổi chiều': [],
@@ -78,7 +79,7 @@ class _CageWidgetState extends State<CageWidget> {
   }
 
   // Function to get completed tasks
-  List<Task> get completedTasks {
+  List<TaskHaveCageName> get completedTasks {
     return tasks.where((task) => task.status == 'Done').toList();
   }
 
@@ -124,8 +125,6 @@ class _CageWidgetState extends State<CageWidget> {
           .where((task) => task.session == 3 && task.status != 'Done')
           .toList(),
     };
-    final completedTasksList =
-        tasks.where((task) => task.status == 'Done').toList();
 
     return MultiBlocListener(
       listeners: [
@@ -139,7 +138,7 @@ class _CageWidgetState extends State<CageWidget> {
                 await Future.delayed(const Duration(seconds: 1));
                 LoadingDialog.hide(context);
                 setState(() {
-                  tasks = tasksResponse.items;
+                  // tasks = tasksResponse.items;
                 });
                 log('Lấy công việc theo chuồng thành công!');
                 context.read<CageCubit>().getCageById(widget.cageId);
@@ -382,8 +381,7 @@ class _CageWidgetState extends State<CageWidget> {
                   ),
                 ),
 
-                if (tasksByTime.values.every((tasks) => tasks.isEmpty) &&
-                    completedTasksList.isEmpty) ...[
+                if (tasksByTime.values.every((tasks) => tasks.isEmpty)) ...[
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.6,
                     child: Center(
@@ -491,18 +489,6 @@ class _CageWidgetState extends State<CageWidget> {
                           const SizedBox(height: 8),
                           TaskList(tasks: tasksByTime['Buổi chiều'] ?? []),
                         ],
-                        if (completedTasksList.isNotEmpty) ...[
-                          const SizedBox(height: 16),
-                          Text(
-                            'Đã hoàn thành (${completedTasksList.length})',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(fontSize: 18),
-                          ),
-                          const SizedBox(height: 8),
-                          TaskList(tasks: completedTasksList),
-                        ],
                       ],
                     ),
                   )
@@ -550,14 +536,14 @@ class SectionHeader extends StatelessWidget {
 
 // Widget for task lists
 class TaskList extends StatelessWidget {
-  final List<Task> tasks;
+  final List<TaskHaveCageName> tasks;
 
   const TaskList({super.key, required this.tasks});
 
   @override
   Widget build(BuildContext context) {
     // Find the highest priority task with status 'InProgress'
-    Task? highestPriorityInProgressTask;
+    TaskHaveCageName? highestPriorityInProgressTask;
     for (final task in tasks) {
       if (task.status == 'InProgress') {
         if (highestPriorityInProgressTask == null ||

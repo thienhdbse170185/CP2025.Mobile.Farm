@@ -28,12 +28,12 @@ class TaskState with _$TaskState {
   const factory TaskState.getTasksByUserIdAndDateLoading() =
       _GetTasksByUserIdAndDateLoading;
   const factory TaskState.getTasksByUserIdAndDateSuccess(
-          List<TaskByUserResponse> tasks, List<CageFilter> cageList) =
-      _GetTasksByUserIdAndDateSuccess;
+      Map<String, List<TaskHaveCageName>> tasks,
+      List<CageFilter> cageList) = _GetTasksByUserIdAndDateSuccess;
   const factory TaskState.getTasksByUserIdAndDateFailure(String error) =
       _GetTasksByUserIdAndDateFailure;
   const factory TaskState.filteredTaskLoading() = _FilteredTaskLoading;
-  const factory TaskState.filteredTasksSuccess(List<TaskByUserResponse> tasks) =
+  const factory TaskState.filteredTasksSuccess(Map<String, List<TaskHaveCageName>> tasks) =
       _FilteredTasksSuccess;
   const factory TaskState.filteredTasksFailure(String error) =
       _FilteredTasksFailure;

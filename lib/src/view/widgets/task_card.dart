@@ -1,12 +1,12 @@
-import 'package:data_layer/model/entity/task/task.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
 
 class TaskCard extends StatelessWidget {
   final String? taskId;
-  final Task task;
+  final TaskHaveCageName task;
   final bool isCompleted;
   final bool isInProgress;
   final bool isFirst;
@@ -69,7 +69,7 @@ class TaskCard extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.41,
                           child: Text(
-                            cageName ?? 'Chưa xác định',
+                            task.cageName,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
                               fontWeight: FontWeight.bold,

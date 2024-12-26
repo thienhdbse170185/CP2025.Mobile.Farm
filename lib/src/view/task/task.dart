@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
+import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
 
@@ -22,7 +22,7 @@ class _TaskWidgetState extends State<TaskWidget> {
   String selectedFilter = 'Tất cả'; // Default filter
   List<CageFilter> availableCageFilters = []; // List of available cage filters
 
-  List<TaskByUserResponse> tasksByDate = []; // Use TaskByUserResponse
+  Map<String, List<TaskHaveCageName>> taskSorted = {}; // Updated to Map
 
   // Function to format the selected date to a string (e.g., "Nov 19, 2024")
   String get formattedDate {
@@ -41,25 +41,6 @@ class _TaskWidgetState extends State<TaskWidget> {
     return selectedDate.year == now.year &&
         selectedDate.month == now.month &&
         selectedDate.day == now.day;
-  }
-
-  // Function to group tasks by session and filter by location
-  Map<String, List<TaskByUserResponse>> get groupedTasksBySession {
-    final filteredTasks = tasksByDate;
-
-    final grouped = <String, List<TaskByUserResponse>>{};
-    for (final task in filteredTasks) {
-      final session = task.sessionName;
-      grouped.putIfAbsent(session, () => []).add(task);
-    }
-
-    // Sort tasks within each session by priorityNum
-    grouped.forEach((session, tasks) {
-      tasks.sort((a, b) => a.cages.first.tasks.first.priorityNum
-          .compareTo(b.cages.first.tasks.first.priorityNum));
-    });
-
-    return grouped;
   }
 
   // Function to show the date picker
@@ -94,8 +75,9 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final availableLocations = tasksByDate
-        .expand((task) => task.cages.map((cage) => cage.cageName))
+    final availableLocations = taskSorted.values
+        .expand(
+            (tasks) => tasks.map((task) => task.cageName)) // Extract cageName
         .toSet();
     if (availableLocations.isNotEmpty) {
       availableLocations.add('Tất cả'); // Ensure 'Tất cả' is always available
@@ -111,9 +93,10 @@ class _TaskWidgetState extends State<TaskWidget> {
           getTasksByUserIdAndDateSuccess: (tasks, cageList) {
             // Update the tasksByDate list with the new tasks
             setState(() {
-              tasksByDate = tasks;
+              taskSorted = tasks;
               availableCageFilters = cageList;
             });
+
             LoadingDialog.hide(context);
           },
           getTasksByUserIdAndDateFailure: (e) {
@@ -129,8 +112,9 @@ class _TaskWidgetState extends State<TaskWidget> {
           filteredTasksSuccess: (filteredTasks) {
             log("Lọc công việc thành công!");
             setState(() {
-              tasksByDate = filteredTasks;
+              taskSorted = filteredTasks;
             });
+
             LoadingDialog.hide(context);
           },
           filteredTasksFailure: (e) {
@@ -228,7 +212,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                                     TaskEvent.filterTasksByLocation(
                                         cageId:
                                             availableCageFilters[index].cageId,
-                                            date: selectedDate,
+                                        date: selectedDate,
                                         cageName: availableCageFilters[index]
                                             .cageName));
                                 setState(() {
@@ -284,21 +268,12 @@ class _TaskWidgetState extends State<TaskWidget> {
                   ],
                 ),
               ),
+              // [BODY]
               Expanded(
-                child: tasksByDate.isNotEmpty
+                child: taskSorted.isNotEmpty
                     ? ListView(
                         children: [
-                          ..._buildSessionSections(groupedTasksBySession),
-                          if (completedTasks.isNotEmpty) ...[
-                            const SizedBox(height: 16),
-                            Text('Đã hoàn thành (${completedTasks.length})',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(fontSize: 18)),
-                            const SizedBox(height: 8),
-                            TaskList(tasks: completedTasks),
-                          ],
+                          ..._buildSessionSections(taskSorted),
                         ],
                       )
                     : Container(
@@ -351,10 +326,13 @@ class _TaskWidgetState extends State<TaskWidget> {
   }
 
   List<Widget> _buildSessionSections(
-      Map<String, List<TaskByUserResponse>> tasks) {
+      Map<String, List<TaskHaveCageName>> tasks) {
     return tasks.entries.map((entry) {
       final session = entry.key;
       final sessionTasks = entry.value;
+
+      // Tính tổng số lượng tasks trong session
+      int totalTasks = sessionTasks.length;
 
       String sessionTitle, image = 'assets/images/default.png';
       switch (session) {
@@ -376,98 +354,69 @@ class _TaskWidgetState extends State<TaskWidget> {
 
       return Container(
         color: Colors.white,
-        padding: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0),
+        padding: const EdgeInsets.only(bottom: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SectionHeader(
-                title: '$sessionTitle (${sessionTasks.length})', image: image),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Image.asset(image, width: 32, height: 32),
+                  const SizedBox(width: 8),
+                  Text(
+                    sessionTitle,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    '$totalTasks công việc',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 8),
-            TaskList(tasks: sessionTasks),
+            ...sessionTasks.map((task) => TaskList(tasks: [task])),
           ],
         ),
       );
     }).toList();
   }
-
-  List<TaskByUserResponse> get completedTasks {
-    return tasksByDate
-        .where((task) => task.cages
-            .any((cage) => cage.tasks.any((task) => task.status == 'Đã làm')))
-        .toList();
-  }
-}
-
-class SectionHeader extends StatelessWidget {
-  final String title;
-  final String image;
-
-  const SectionHeader({super.key, required this.title, required this.image});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const SizedBox(width: 8),
-        Image.asset(
-          image,
-          width: 24,
-          height: 24,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(color: Theme.of(context).primaryColor),
-          ),
-        ),
-      ],
-    );
-  }
 }
 
 class TaskList extends StatelessWidget {
-  final List<TaskByUserResponse> tasks;
+  final List<TaskHaveCageName>
+      tasks; // Thay TaskByUserResponse thành List<TaskHaveCageName>
 
   const TaskList({super.key, required this.tasks});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        final task = tasks[index];
-        final isInProgress = task.cages
-            .any((cage) => cage.tasks.any((task) => task.status == 'Đang làm'));
-        final isCompleted = task.cages
-            .any((cage) => cage.tasks.any((task) => task.status == 'Đã làm'));
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: task.cages.expand((cage) {
-            return cage.tasks.map((task) {
-              return TaskCard(
-                task: task,
-                taskId: task.id,
-                cageName: cage.cageName,
-                isCompleted: isCompleted,
-                isInProgress: isInProgress,
-                isFirst: index == 0,
-                borderColor: isInProgress
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.secondaryContainer,
-                highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
-              );
-            }).toList();
-          }).toList(),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: tasks.map((task) {
+          return TaskCard(
+            task: task, // Chuyển sang sử dụng TaskHaveCageName
+            taskId: task.id,
+            cageName: task.cageName,
+            isCompleted: task.status == 'Done',
+            isInProgress: task.status == 'InProgress',
+            isFirst: false, // Giữ nguyên theo yêu cầu
+            borderColor: task.status == 'InProgress'
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.secondaryContainer,
+            highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
+          );
+        }).toList(),
+      ),
     );
   }
 }

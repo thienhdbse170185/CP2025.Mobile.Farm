@@ -8,6 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
+import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
 
 part 'task_bloc.freezed.dart';
 part 'task_event.dart';
@@ -99,6 +100,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     });
     on<_GetTasksByUserIdAndDate>((event, emit) async {
       emit(const TaskState.getTasksByUserIdAndDateLoading());
+
       try {
         final formattedDate =
             "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
@@ -107,24 +109,26 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         final tasks = await (repository)
             .getTasksByUserIdAndDate(userId, formattedDate, event.cageId);
 
-        // Create a list of cage names and types without duplicates
+        // Refactor the conversion logic into a separate function
+        final taskSortedData = _convertTasksToTaskMap(tasks);
+        _sortTasksByStatus(taskSortedData);
+
+        // Tạo danh sách cage không trùng lặp
         List<CageFilter> cageList = [
           CageFilter(cageName: 'Tất cả', cageType: 'all', cageId: null)
         ];
-        final cageNamesSet = <String>{'Tất cả'};
-        for (var task in tasks) {
-          for (var cage in task.cages) {
-            if (!cageNamesSet.contains(cage.cageName)) {
-              cageList.add(CageFilter(
-                  cageName: cage.cageName,
-                  cageType: 'chicken',
-                  cageId: cage.cageId));
-              cageNamesSet.add(cage.cageName);
-            }
+        for (var task in taskSortedData.values.expand((element) => element)) {
+          if (!cageList.any((element) => element.cageName == task.cageName)) {
+            cageList.add(CageFilter(
+                cageName: task.cageName,
+                cageType: 'cage',
+                cageId: task.cageId));
           }
         }
 
-        emit(TaskState.getTasksByUserIdAndDateSuccess(tasks, cageList));
+        // Đẩy state với taskSorted và danh sách cage đã sắp xếp
+        emit(
+            TaskState.getTasksByUserIdAndDateSuccess(taskSortedData, cageList));
       } catch (e) {
         emit(TaskState.getTasksByUserIdAndDateFailure(e.toString()));
       }
@@ -139,12 +143,69 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         // Lọc công việc
         final filteredTasks = await repository.getTasksByUserIdAndDate(
             userId, formattedDate, event.cageId);
+        final mappedTasks = _convertTasksToTaskMap(filteredTasks);
 
-        emit(TaskState.filteredTasksSuccess(filteredTasks));
+        emit(TaskState.filteredTasksSuccess(mappedTasks));
       } catch (e) {
         // Xử lý lỗi nếu có
         emit(TaskState.filteredTasksFailure(e.toString()));
       }
     });
+  }
+
+  // Tách hàm chuyển đổi tasks sang taskSorted
+  Map<String, List<TaskHaveCageName>> _convertTasksToTaskMap(
+      List<TaskByUserResponse> tasks) {
+    Map<String, List<TaskHaveCageName>> taskSorted = {};
+
+    // Chuyển đổi tasks từ TaskByUserResponse sang TaskHaveCageName và nhóm theo session
+    for (var task in tasks) {
+      // Lặp qua từng cage trong task
+      for (var cage in task.cages) {
+        String cageName = cage.cageName;
+        String cageId = cage.cageId;
+        for (var taskItem in cage.tasks) {
+          // Chuyển đổi task sang TaskHaveCageName
+          final taskHaveCageName = TaskHaveCageName(
+            id: taskItem.id,
+            cageId: cageId,
+            cageName: cageName, // Thêm cageName vào TaskHaveCageName
+            taskName: taskItem.taskName,
+            description: taskItem.description,
+            status: taskItem.status,
+            createdAt: taskItem.createdAt,
+            priorityNum: taskItem.priorityNum,
+            dueDate: taskItem.dueDate,
+            session: taskItem.session,
+            completedAt: taskItem.completedAt,
+            assignedToUser: taskItem.assignedToUser,
+            taskType: taskItem.taskType,
+          );
+
+          // Đưa task vào đúng session
+          if (!taskSorted.containsKey(task.sessionName)) {
+            taskSorted[task.sessionName] = [];
+          }
+          taskSorted[task.sessionName]?.add(taskHaveCageName);
+        }
+      }
+    }
+
+    return taskSorted;
+  }
+
+  // Hàm sắp xếp các công việc, chuyển các công việc 'done' xuống cuối
+  void _sortTasksByStatus(Map<String, List<TaskHaveCageName>> taskSorted) {
+    for (var sessionTasks in taskSorted.values) {
+      sessionTasks.sort((a, b) {
+        if (a.status == 'Done' && b.status != 'Done') {
+          return 1; // Move "done" task to the end
+        } else if (a.status != 'Done' && b.status == 'Done') {
+          return -1; // Keep "done" task at the end
+        } else {
+          return 0; // Keep order unchanged for tasks with the same status
+        }
+      });
+    }
   }
 }
