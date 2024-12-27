@@ -30,7 +30,7 @@ class TaskDetailWidget extends StatefulWidget {
 class _TaskDetailWidgetState extends State<TaskDetailWidget>
     with SingleTickerProviderStateMixin {
   // Task status
-  String taskStatus = 'Đang thực hiện'; // Start directly at 'in progress'
+  String taskStatus = 'Loading...'; // Start directly at 'in progress'
 
   // For image upload
   List<File> _images = [];
@@ -154,13 +154,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   String getStatusText(String status) {
     switch (status) {
-      case 'Inprogress':
+      case 'InProgress':
         return 'Đang làm';
       case 'Done':
         return 'Đã hoàn thành';
       case 'Pending':
         return 'Chuẩn bị';
-      case 'overdue':
+      case 'Overdue':
         return 'Đã quá hạn';
       default:
         return status;
@@ -182,6 +182,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   String getPriorityText(int priority) {
     switch (priority) {
+      case 0:
+        return 'N/A';
       case 1:
         return 'Cao';
       case 2:
@@ -189,7 +191,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
       case 3:
         return 'Thấp';
       default:
-        return 'Thấp'; // Treat priorities greater than 3 as "Thấp"
+        return 'Thấp';
     }
   }
 
