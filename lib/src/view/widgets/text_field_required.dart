@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class TextFieldRequired extends StatefulWidget {
-  const TextFieldRequired({
-    super.key,
-    required this.label,
-    required this.hintText,
-    this.suffixIcon,
-    this.prefixIcon, // Thêm prefixIcon
-    this.onTap,
-    this.isDisabled,
-    this.controller,
-    this.content,
-    this.isReadOnly = false,
-    this.isObscureText = false, // Add this line
-    this.isPassword = false,
-  });
+  const TextFieldRequired(
+      {super.key,
+      required this.label,
+      required this.hintText,
+      this.suffixIcon,
+      this.prefixIcon, // Thêm prefixIcon
+      this.onTap,
+      this.isDisabled,
+      this.controller,
+      this.content,
+      this.isReadOnly = false,
+      this.isObscureText = false, // Add this line
+      this.isPassword = false,
+      this.keyBoardType});
 
   final String label;
   final String hintText;
@@ -25,6 +25,7 @@ class TextFieldRequired extends StatefulWidget {
   final TextEditingController? controller;
   final String? content; // Nội dung tĩnh (không thể thay đổi)
   final bool isReadOnly;
+  final TextInputType? keyBoardType;
 
   final bool isObscureText; // Add this line
   final bool isPassword;
@@ -56,6 +57,7 @@ class _TextFieldRequiredState extends State<TextFieldRequired> {
               : null), // Nếu có `content`, hiển thị trong TextField
       focusNode: isReadOnly ? AlwaysDisabledFocusNode() : null, // Vô hiệu hóa
       onTap: widget.onTap,
+      keyboardType: widget.keyBoardType,
       readOnly: isReadOnly, // Cài đặt `readOnly` cho TextField
       decoration: InputDecoration(
         label: RichText(

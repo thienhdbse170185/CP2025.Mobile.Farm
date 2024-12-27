@@ -15,7 +15,20 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.getTasksByUserIdAndDate(
       DateTime? date, String? cageId) = _GetTasksByUserIdAndDate;
   const factory TaskEvent.filterTasksByLocation({
-    required String location,
-    required List<TaskByUserResponse> tasks,
+    required String? cageId,
+    required DateTime date,
+    required String cageName,
   }) = _FilterTasksByLocation;
+  const factory TaskEvent.createDailyFoodUsageLog({
+    required String cageId,
+    required DailyFoodUsageLogDto log,
+  }) = _CreateDailyFoodUsageLog;
+  const factory TaskEvent.createHealthLog({
+    required String cageId,
+    required HealthLogDto log,
+  }) = _CreateHealthLog;
+  const factory TaskEvent.createVaccinScheduleLog({
+    required String cageId,
+    required VaccinScheduleLogDto log,
+  }) = _CreateVaccinScheduleLog;
 }

@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: bottom,
       elevation: elevation,
       backgroundColor: backgroundColor ??
-          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
+          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
       foregroundColor: foregroundColor,
       iconTheme: iconTheme,
       centerTitle: centerTitle,
@@ -53,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             image: const AssetImage('assets/images/leaf.jpg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.04), // Adjust the opacity here
+              Colors.black.withOpacity(0.2), // Adjust the opacity here
               BlendMode.dstATop,
             ),
           ),
