@@ -28,16 +28,33 @@ class TaskState with _$TaskState {
   const factory TaskState.getTasksByUserIdAndDateLoading() =
       _GetTasksByUserIdAndDateLoading;
   const factory TaskState.getTasksByUserIdAndDateSuccess(
-      List<TaskByUserResponse> tasks) = _GetTasksByUserIdAndDateSuccess;
+      Map<String, List<TaskHaveCageName>> tasks,
+      List<CageFilter> cageList) = _GetTasksByUserIdAndDateSuccess;
   const factory TaskState.getTasksByUserIdAndDateFailure(String error) =
       _GetTasksByUserIdAndDateFailure;
   const factory TaskState.filteredTaskLoading() = _FilteredTaskLoading;
-  const factory TaskState.filteredTasksSuccess(List<TaskByUserResponse> tasks) =
-      _FilteredTasksSuccess;
+  const factory TaskState.filteredTasksSuccess(
+      Map<String, List<TaskHaveCageName>> tasks) = _FilteredTasksSuccess;
   const factory TaskState.filteredTasksFailure(String error) =
       _FilteredTasksFailure;
   const factory TaskState.updateStatusTaskLoading() = _UpdateStatusTaskLoading;
   const factory TaskState.updateStatusTaskSuccess() = _UpdateStatusTaskSuccess;
   const factory TaskState.updateStatusTaskFailure(String error) =
       _UpdateStatusTaskFailure;
+  const factory TaskState.createDailyFoodUsageLogLoading() =
+      _CreateDailyFoodUsageLogLoading;
+  const factory TaskState.createDailyFoodUsageLogSuccess() =
+      _CreateDailyFoodUsageLogSuccess;
+  const factory TaskState.createDailyFoodUsageLogFailure(String error) =
+      _CreateDailyFoodUsageLogFailure;
+  const factory TaskState.createHealthLogLoading() = _CreateHealthLogLoading;
+  const factory TaskState.createHealthLogSuccess() = _CreateHealthLogSuccess;
+  const factory TaskState.createHealthLogFailure(String error) =
+      _CreateHealthLogFailure;
+  const factory TaskState.createVaccinScheduleLogLoading() =
+      _CreateVaccinScheduleLogLoading;
+  const factory TaskState.createVaccinScheduleLogSuccess() =
+      _CreateVaccinScheduleLogSuccess;
+  const factory TaskState.createVaccinScheduleLogFailure(String error) =
+      _CreateVaccinScheduleLogFailure;
 }

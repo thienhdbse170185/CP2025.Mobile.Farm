@@ -1,11 +1,12 @@
 import 'dart:developer';
 
-import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
-import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
+import 'package:smart_farm/src/model/task/cage_filter.dart';
+import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
 
@@ -18,10 +19,10 @@ class TaskWidget extends StatefulWidget {
 
 class _TaskWidgetState extends State<TaskWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
-  String selectedFilter = 'Tất cả chuồng'; // Default filter
-  String selectedLocation = 'Tất cả'; // Default location filter
+  String selectedFilter = 'Tất cả'; // Default filter
+  List<CageFilter> availableCageFilters = []; // List of available cage filters
 
-  List<TaskByUserResponse> tasksByDate = []; // Use TaskByUserResponse
+  Map<String, List<TaskHaveCageName>> taskSorted = {}; // Updated to Map
 
   // Function to format the selected date to a string (e.g., "Nov 19, 2024")
   String get formattedDate {
@@ -40,30 +41,6 @@ class _TaskWidgetState extends State<TaskWidget> {
     return selectedDate.year == now.year &&
         selectedDate.month == now.month &&
         selectedDate.day == now.day;
-  }
-
-  // Function to group tasks by session and filter by location
-  Map<String, List<TaskByUserResponse>> get groupedTasksBySession {
-    final filteredTasks = selectedLocation == 'Tất cả'
-        ? tasksByDate
-        : tasksByDate
-            .where((task) =>
-                task.cages.any((cage) => cage.cageName == selectedLocation))
-            .toList();
-
-    final grouped = <String, List<TaskByUserResponse>>{};
-    for (final task in filteredTasks) {
-      final session = task.sessionName;
-      grouped.putIfAbsent(session, () => []).add(task);
-    }
-
-    // Sort tasks within each session by priorityNum
-    grouped.forEach((session, tasks) {
-      tasks.sort((a, b) => a.cages.first.tasks.first.priorityNum
-          .compareTo(b.cages.first.tasks.first.priorityNum));
-    });
-
-    return grouped;
   }
 
   // Function to show the date picker
@@ -98,8 +75,9 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final availableLocations = tasksByDate
-        .expand((task) => task.cages.map((cage) => cage.cageName))
+    final availableLocations = taskSorted.values
+        .expand(
+            (tasks) => tasks.map((task) => task.cageName)) // Extract cageName
         .toSet();
     if (availableLocations.isNotEmpty) {
       availableLocations.add('Tất cả'); // Ensure 'Tất cả' is always available
@@ -112,17 +90,20 @@ class _TaskWidgetState extends State<TaskWidget> {
             log("Đang lấy danh sách công việc...");
             LoadingDialog.show(context, "Đang lấy danh sách công việc...");
           },
-          getTasksByUserIdAndDateSuccess: (tasks) {
+          getTasksByUserIdAndDateSuccess: (tasks, cageList) {
             // Update the tasksByDate list with the new tasks
             setState(() {
-              tasksByDate = tasks;
+              taskSorted = tasks;
+              availableCageFilters = cageList;
             });
+
             LoadingDialog.hide(context);
           },
           getTasksByUserIdAndDateFailure: (e) {
             log("Lấy danh sách công việc thất bại! Message:");
             log(e.toString());
             LoadingDialog.hide(context);
+            SnackBar(content: Text('Lỗi: ${e.toString()}'));
           },
           filteredTaskLoading: () {
             log("Đang lọc công việc...");
@@ -131,8 +112,9 @@ class _TaskWidgetState extends State<TaskWidget> {
           filteredTasksSuccess: (filteredTasks) {
             log("Lọc công việc thành công!");
             setState(() {
-              tasksByDate = filteredTasks;
+              taskSorted = filteredTasks;
             });
+
             LoadingDialog.hide(context);
           },
           filteredTasksFailure: (e) {
@@ -145,151 +127,198 @@ class _TaskWidgetState extends State<TaskWidget> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: CustomAppBar(
-          centerTitle: false,
-          title: Text(
-            isToday ? 'Hôm nay' : dayOfWeek, // Show "Hôm nay" if today
-            style:
-                Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: InkWell(
-                onTap: () =>
-                    _selectDate(context), // Open date picker when tapped
-                child: Chip(
-                  shape: const StadiumBorder(
-                      side: BorderSide(width: 0, color: Colors.transparent)),
-                  label: Text(
-                    formattedDate, // Display the formatted date
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                  avatar: Icon(
-                    Icons.calendar_month_outlined,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  backgroundColor:
-                      Theme.of(context).colorScheme.primaryContainer,
-                ),
-              ),
-            ),
-          ],
-          appBarHeight: MediaQuery.of(context).size.height * 0.08,
-        ),
         body: RefreshIndicator(
           onRefresh: () async {
             context
                 .read<TaskBloc>()
                 .add(TaskEvent.getTasksByUserIdAndDate(selectedDate, null));
           },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                if (availableLocations.isNotEmpty) ...[
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        'Tất cả',
-                        ...availableLocations
-                            .where((location) => location != 'Tất cả'),
-                      ].map((location) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: FilterChip(
-                            label: Text(location),
-                            selected: selectedLocation == location,
-                            onSelected: (bool selected) {
-                              setState(() {
-                                selectedLocation = location;
-                              });
-                              // Get the cageId for the selected location
-                              final cageId = location == 'Tất cả'
-                                  ? null
-                                  : tasksByDate
-                                      .expand((task) => task.cages)
-                                      .firstWhere(
-                                          (cage) => cage.cageName == location)
-                                      .cageId;
-                              // Call the API to fetch tasks for the selected cage
-                              context.read<TaskBloc>().add(
-                                  TaskEvent.getTasksByUserIdAndDate(
-                                      selectedDate, cageId));
-                            },
-                          ),
-                        );
-                      }).toList(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .primaryContainer
+                      .withOpacity(0.6),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/leaf.jpg'),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.1),
+                      BlendMode.dstATop,
                     ),
                   ),
-                  const SizedBox(height: 24),
-                ],
-                Expanded(
-                  child: tasksByDate.isNotEmpty
-                      ? ListView(
-                          children: [
-                            ..._buildSessionSections(groupedTasksBySession),
-                            if (completedTasks.isNotEmpty) ...[
-                              const SizedBox(height: 16),
-                              Text('Đã hoàn thành (${completedTasks.length})',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.copyWith(fontSize: 18)),
-                              const SizedBox(height: 8),
-                              TaskList(tasks: completedTasks),
-                            ],
-                          ],
-                        )
-                      : Container(
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.only(
-                              bottom: MediaQuery.of(context).size.height * 0.1),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(90),
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primaryContainer
-                                      .withOpacity(0.4),
-                                ),
-                                width: 120,
-                                height: 120,
-                                child: Icon(
-                                  Icons.task_alt_outlined,
-                                  size: 64,
-                                  color: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.4),
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              Text(
-                                'Không có công việc nào\n trong ngày này',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .outlineVariant,
-                                    ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
                 ),
-              ],
-            ),
+                padding: const EdgeInsets.only(top: 24.0, bottom: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // [APPBAR] Time
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            isToday ? 'Hôm nay' : dayOfWeek,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(fontSize: 22),
+                          ),
+                          InkWell(
+                            onTap: () => _selectDate(context),
+                            child: Chip(
+                              shape: const StadiumBorder(
+                                  side: BorderSide(
+                                      width: 0, color: Colors.transparent)),
+                              label: Text(
+                                formattedDate,
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              ),
+                              avatar: LinearIcons.calendarIcon,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    // [APPBAR] Location Filter
+                    if (availableCageFilters.isNotEmpty)
+                      Container(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        height: 50,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            final isSelected = selectedFilter ==
+                                availableCageFilters[index].cageName;
+                            return GestureDetector(
+                              onTap: () {
+                                context.read<TaskBloc>().add(
+                                    TaskEvent.filterTasksByLocation(
+                                        cageId:
+                                            availableCageFilters[index].cageId,
+                                        date: selectedDate,
+                                        cageName: availableCageFilters[index]
+                                            .cageName));
+                                setState(() {
+                                  selectedFilter =
+                                      availableCageFilters[index].cageName;
+                                });
+                              },
+                              child: Card.outlined(
+                                shape: StadiumBorder(
+                                  side: BorderSide(
+                                    color: isSelected
+                                        ? Theme.of(context).colorScheme.primary
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .outlineVariant,
+                                  ),
+                                ),
+                                color: isSelected
+                                    ? Colors.white
+                                    : Colors.transparent,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      availableCageFilters[index].cageType ==
+                                              'all'
+                                          ? LinearIcons.farmHouseIcon
+                                          : LinearIcons.chickenIcon,
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        availableCageFilters[index].cageName,
+                                        style: TextStyle(
+                                            color: isSelected
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .primary
+                                                : Theme.of(context)
+                                                    .colorScheme
+                                                    .onSurfaceVariant,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          itemCount: availableCageFilters.length,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              // [BODY]
+              Expanded(
+                child: taskSorted.isNotEmpty
+                    ? ListView(
+                        children: [
+                          ..._buildSessionSections(taskSorted),
+                        ],
+                      )
+                    : Container(
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).size.height * 0.1),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(90),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer
+                                    .withOpacity(0.4),
+                              ),
+                              width: 120,
+                              height: 120,
+                              child: Icon(
+                                Icons.task_alt_outlined,
+                                size: 64,
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.4),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Không có công việc nào\n trong ngày này',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .outlineVariant,
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+              ),
+            ],
           ),
         ),
       ),
@@ -297,10 +326,13 @@ class _TaskWidgetState extends State<TaskWidget> {
   }
 
   List<Widget> _buildSessionSections(
-      Map<String, List<TaskByUserResponse>> tasks) {
+      Map<String, List<TaskHaveCageName>> tasks) {
     return tasks.entries.map((entry) {
       final session = entry.key;
       final sessionTasks = entry.value;
+
+      // Tính tổng số lượng tasks trong session
+      int totalTasks = sessionTasks.length;
 
       String sessionTitle, image = 'assets/images/default.png';
       switch (session) {
@@ -326,93 +358,65 @@ class _TaskWidgetState extends State<TaskWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SectionHeader(
-                title: '$sessionTitle (${sessionTasks.length})', image: image),
-            const SizedBox(height: 4),
-            TaskList(tasks: sessionTasks),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Image.asset(image, width: 32, height: 32),
+                  const SizedBox(width: 8),
+                  Text(
+                    sessionTitle,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    '$totalTasks công việc',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            ...sessionTasks.map((task) => TaskList(tasks: [task])),
           ],
         ),
       );
     }).toList();
   }
-
-  List<TaskByUserResponse> get completedTasks {
-    return tasksByDate
-        .where((task) => task.cages
-            .any((cage) => cage.tasks.any((task) => task.status == 'Đã làm')))
-        .toList();
-  }
-}
-
-class SectionHeader extends StatelessWidget {
-  final String title;
-  final String image;
-
-  const SectionHeader({super.key, required this.title, required this.image});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const SizedBox(width: 8),
-        Image.asset(
-          image,
-          width: 24,
-          height: 24,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(color: Theme.of(context).primaryColor),
-          ),
-        ),
-      ],
-    );
-  }
 }
 
 class TaskList extends StatelessWidget {
-  final List<TaskByUserResponse> tasks;
+  final List<TaskHaveCageName>
+      tasks; // Thay TaskByUserResponse thành List<TaskHaveCageName>
 
   const TaskList({super.key, required this.tasks});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        final task = tasks[index];
-        final isInProgress = task.cages
-            .any((cage) => cage.tasks.any((task) => task.status == 'Đang làm'));
-        final isCompleted = task.cages
-            .any((cage) => cage.tasks.any((task) => task.status == 'Đã làm'));
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: task.cages.expand((cage) {
-            return cage.tasks.map((task) {
-              return TaskCard(
-                task: task,
-                taskId: task.id,
-                cageName: cage.cageName,
-                isCompleted: isCompleted,
-                isInProgress: isInProgress,
-                isFirst: index == 0,
-                borderColor: isInProgress
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.secondaryContainer,
-                highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
-              );
-            }).toList();
-          }).toList(),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: tasks.map((task) {
+          return TaskCard(
+            task: task, // Chuyển sang sử dụng TaskHaveCageName
+            taskId: task.id,
+            cageName: task.cageName,
+            isCompleted: task.status == 'Done',
+            isInProgress: task.status == 'InProgress',
+            isFirst: false, // Giữ nguyên theo yêu cầu
+            borderColor: task.status == 'InProgress'
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.secondaryContainer,
+            highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
+          );
+        }).toList(),
+      ),
     );
   }
 }

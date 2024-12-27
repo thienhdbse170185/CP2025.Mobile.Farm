@@ -96,4 +96,38 @@ class LinearIcons {
     width: 24,
     height: 24,
   );
+
+  static final Widget pendingTaskIcon = SvgPicture.asset(
+    'assets/icons/pending-task.svg',
+    semanticsLabel: 'Pending Task',
+  );
+
+  static final Widget inprogressTaskIcon = SvgPicture.asset(
+    'assets/icons/inprogress-task.svg',
+    semanticsLabel: 'Inprogress Task',
+  );
+
+  static final Widget doneTaskIcon = SvgPicture.asset(
+    'assets/icons/done-task.svg',
+    semanticsLabel: 'Done Task',
+  );
+
+  static final Widget calendarIcon = SvgPicture.asset(
+    'assets/icons/calendar-search.svg',
+    semanticsLabel: 'Calendar',
+  );
+
+  static final Widget farmHouseIcon = SvgPicture.asset(
+    'assets/icons/farm-house.svg',
+    semanticsLabel: 'Farm House',
+    width: 24,
+    height: 24,
+  );
+
+  static final Widget chickenIcon = SvgPicture.asset(
+    'assets/icons/chicken.svg',
+    semanticsLabel: 'Chicken',
+    width: 24,
+    height: 24,
+  );
 }
