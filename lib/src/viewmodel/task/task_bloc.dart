@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/entity/task/next_task/next_task.dart';
-import 'package:data_layer/model/entity/task/task.dart';
 import 'package:data_layer/model/response/task/task_by_cage/tasks_by_cage_response.dart';
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
-import 'package:data_layer/repository/task/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
@@ -149,6 +148,67 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       } catch (e) {
         // Xử lý lỗi nếu có
         emit(TaskState.filteredTasksFailure(e.toString()));
+      }
+    });
+    on<_CreateDailyFoodUsageLog>((event, emit) async {
+      emit(const TaskState.createDailyFoodUsageLogLoading());
+      try {
+        final request = DailyFoodUsageLogDto(
+            recommendedWeight: event.log.recommendedWeight,
+            actualWeight: event.log.actualWeight,
+            notes: event.log.notes,
+            logTime: DateTime.now(),
+            photo: event.log.photo,
+            taskId: event.log.taskId);
+        final result =
+            await repository.createDailyFoodUsageLog(event.cageId, request);
+        if (result) {
+          emit(const TaskState.createDailyFoodUsageLogSuccess());
+        } else {
+          emit(const TaskState.createDailyFoodUsageLogFailure(
+              'Tạo log cho ăn thất bại!'));
+        }
+      } catch (e) {
+        emit(TaskState.createDailyFoodUsageLogFailure(e.toString()));
+      }
+    });
+    on<_CreateHealthLog>((event, emit) async {
+      emit(const TaskState.createHealthLogLoading());
+      try {
+        final request = HealthLogDto(
+            notes: event.log.notes,
+            date: DateTime.now(),
+            photo: event.log.photo,
+            taskId: event.log.taskId);
+        final result = await repository.createHealthLog(event.cageId, request);
+        if (result) {
+          emit(const TaskState.createHealthLogSuccess());
+        } else {
+          emit(const TaskState.createHealthLogFailure(
+              'Tạo log cho sức khỏe thất bại!'));
+        }
+      } catch (e) {
+        emit(TaskState.createHealthLogFailure(e.toString()));
+      }
+    });
+    on<_CreateVaccinScheduleLog>((event, emit) async {
+      emit(const TaskState.createVaccinScheduleLogLoading());
+      try {
+        final request = VaccinScheduleLogDto(
+            notes: event.log.notes,
+            date: DateTime.now(),
+            photo: event.log.photo,
+            taskId: event.log.taskId);
+        final result =
+            await repository.createVaccinScheduleLog(event.cageId, request);
+        if (result) {
+          emit(const TaskState.createVaccinScheduleLogSuccess());
+        } else {
+          emit(const TaskState.createVaccinScheduleLogFailure(
+              'Tạo log cho lịch tiêm chủng thất bại!'));
+        }
+      } catch (e) {
+        emit(TaskState.createVaccinScheduleLogFailure(e.toString()));
       }
     });
   }

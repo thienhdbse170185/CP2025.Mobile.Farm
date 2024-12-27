@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
@@ -33,9 +35,8 @@ class TaskCard extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 8.0),
         child: GestureDetector(
           onTap: () {
-            if (!isCompleted) {
-              context.push(RouteName.taskDetail, extra: taskId);
-            }
+            log('$taskId');
+            context.push(RouteName.taskDetail, extra: taskId);
           },
           child: Card.outlined(
             child: ListTile(

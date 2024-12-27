@@ -9,8 +9,8 @@ import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/theme/theme.dart';
 import 'package:smart_farm/src/core/theme/util.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
-import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         ),
         RepositoryProvider(
           create: (context) =>
-              TaskRepository(dataClient: TaskRemoteData(dio: dio)),
+              TaskRepository(apiClient: TaskRemoteData(dio: dio)),
         ),
         RepositoryProvider(
           create: (context) =>

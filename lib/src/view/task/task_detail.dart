@@ -1,14 +1,18 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:data_layer/model/entity/task/task.dart';
+import 'package:data_layer/data_layer.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
+import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
+import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // To handle file
 
@@ -33,13 +37,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   // Controller for log input
   TextEditingController logController = TextEditingController();
+  TextEditingController actualWeightController = TextEditingController();
 
   // Tab controller
   late TabController _tabController;
   Task? task;
 
   // Assume this is the logged-in user ID
-  final String taskId = '5fbcaacb-169e-495d-ae14-138f486229ad';
   final String loggedInUserId = '8dac47e4-58b6-43ef-aac8-c9c4315bd4e0';
 
   @override
@@ -79,12 +83,52 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                if (taskStatus == 'Đang tiến hành') {
+                if (taskStatus == 'Đang làm') {
+                  if (task!.taskType.taskTypeId ==
+                      TaskTypeDataConstant.feeding) {
+                    int actualWeight = actualWeightController.text.isEmpty
+                        ? 0
+                        : int.parse(actualWeightController.text);
+                    final log = DailyFoodUsageLogDto(
+                        recommendedWeight: 45,
+                        actualWeight: actualWeight,
+                        notes: 'Hum nay là ngày đẹp truyệt zời',
+                        logTime: DateTime.now(),
+                        photo: '',
+                        taskId: widget.taskId);
+                    context.read<TaskBloc>().add(
+                        TaskEvent.createDailyFoodUsageLog(
+                            cageId: task!.cageId, log: log));
+                  } else if (task!.taskType.taskTypeId ==
+                      TaskTypeDataConstant.health) {
+                    final log = HealthLogDto(
+                        date: DateTime.now(),
+                        notes: 'Hum nay là ngày đẹp truyệt zời',
+                        photo: '',
+                        taskId: widget.taskId);
+                    context.read<TaskBloc>().add(TaskEvent.createHealthLog(
+                        cageId: task!.cageId, log: log));
+                  } else if (task!.taskType.taskTypeId ==
+                      TaskTypeDataConstant.vaccin) {
+                    final log = VaccinScheduleLogDto(
+                      date: DateTime.now(),
+                      notes: "Hum nay là ngày đẹp truyệt zời",
+                      photo: "",
+                      taskId: widget.taskId,
+                    );
+                    context.read<TaskBloc>().add(
+                          TaskEvent.createVaccinScheduleLog(
+                            cageId: task!.cageId,
+                            log: log,
+                          ),
+                        );
+                  } else {
+                    context.read<TaskBloc>().add(TaskEvent.updateTask(
+                        widget.taskId, TaskStatusDataConstant.done));
+                  }
+                } else if (taskStatus == 'Chuẩn bị') {
                   context.read<TaskBloc>().add(TaskEvent.updateTask(
-                      widget.taskId, StatusDataConstant.done));
-                } else if (taskStatus == 'Đang chờ') {
-                  context.read<TaskBloc>().add(TaskEvent.updateTask(
-                      widget.taskId, StatusDataConstant.inprogress));
+                      widget.taskId, TaskStatusDataConstant.inprogress));
                 }
               },
               child: const Text('Xác nhận'),
@@ -110,12 +154,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   String getStatusText(String status) {
     switch (status) {
-      case 'InProgress':
-        return 'Đang tiến hành';
+      case 'Inprogress':
+        return 'Đang làm';
       case 'Done':
         return 'Đã hoàn thành';
       case 'Pending':
-        return 'Đang chờ';
+        return 'Chuẩn bị';
+      case 'overdue':
+        return 'Đã quá hạn';
       default:
         return status;
     }
@@ -156,6 +202,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             // Handle task data
             await Future.delayed(const Duration(seconds: 1));
             LoadingDialog.hide(context);
+            log(task.status);
             setState(() {
               this.task = task;
               taskStatus = getStatusText(task.status);
@@ -194,13 +241,81 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   content: Text('Cập nhật trạng thái công việc thất bại!')),
             );
           },
+          createDailyFoodUsageLogLoading: () {
+            LoadingDialog.show(context, "Đang tạo log cho ăn...");
+            log("Đang tạo log cho ăn...");
+          },
+          createDailyFoodUsageLogSuccess: () async {
+            LoadingDialog.hide(context);
+            log("Tạo log cho ăn thành công!");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Tạo log cho ăn thành công!')),
+            );
+            // Refresh the task details
+            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
+          },
+          createDailyFoodUsageLogFailure: (e) async {
+            LoadingDialog.hide(context);
+            log("Tạo log cho ăn thất bại!");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Tạo log cho ăn thất bại!')),
+            );
+          },
+          createHealthLogLoading: () {
+            LoadingDialog.show(context, "Đang tạo log uống thuốc...");
+            log("Đang tạo log uống thuốc...");
+          },
+          createHealthLogSuccess: () async {
+            LoadingDialog.hide(context);
+            log("Tạo log uống thuốc thành công!");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Tạo log uống thuốc thành công!')),
+            );
+            // Refresh the task details
+            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget
+                .taskId)); // This is a temporary workaround to refresh the task details
+          },
+          createHealthLogFailure: (e) async {
+            LoadingDialog.hide(context);
+            log("Tạo log uống thuốc thất bại!");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Tạo log uống thuốc thất bại!')),
+            );
+          },
+          createVaccinScheduleLogLoading: () {
+            LoadingDialog.show(context, "Đang tạo log lịch tiêm chủng...");
+            log("Đang tạo log lịch tiêm chủng...");
+          },
+          createVaccinScheduleLogSuccess: () async {
+            LoadingDialog.hide(context);
+            log("Tạo log lịch tiêm chủng thành công!");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Tạo log lịch tiêm chủng thành công!')),
+            );
+            // Refresh the task details
+            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget
+                .taskId)); // This is a temporary workaround to refresh the task details
+          },
+          createVaccinScheduleLogFailure: (e) async {
+            LoadingDialog.hide(context);
+            log("Tạo log lịch tiêm chủng thất bại!");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Tạo log lịch tiêm chủng thất bại!')),
+            );
+          },
           orElse: () {},
         );
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
+        appBar: CustomAppBar(
+          leading: IconButton(
+              onPressed: () {
+                context.pop();
+              },
+              icon: LinearIcons.arrowBackIcon),
           title: const Text('Chi tiết công việc'),
           actions: [
             IconButton(
@@ -209,36 +324,42 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 // Navigate to the edit screen
               },
             ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
           ],
-          bottom: TabBar(
-            controller: _tabController,
-            tabs: const [
-              Tab(text: 'Thông tin'),
-              Tab(text: 'Công việc'),
-            ],
-          ),
+          bottom: (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
+                  task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
+                  task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
+              ? TabBar(
+                  controller: _tabController,
+                  tabs: const [
+                    Tab(text: 'Thông tin'),
+                    Tab(text: 'Công việc'),
+                  ],
+                )
+              : null,
         ),
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            // Tab "Thông tin"
-            _buildInfoTab(context),
-            // Tab "Công việc"
-            _buildWorkTab(context),
-          ],
-        ),
+        body: (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
+                task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
+                task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
+            ? TabBarView(
+                controller: _tabController,
+                children: [
+                  // Tab "Thông tin"
+                  _buildInfoTab(context),
+                  // Tab "Công việc"
+                  _buildWorkTab(context),
+                ],
+              )
+            : _buildInfoTab(context),
         bottomSheet: task?.assignedToUser.userId == loggedInUserId
             ? Container(
                 width: MediaQuery.of(context).size.width,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: FilledButton(
-                  onPressed: (taskStatus == 'Đã hoàn thành' ||
-                          (taskStatus == 'Đang tiến hành' && _images.isEmpty))
+                  onPressed: (taskStatus == 'Đã hoàn thành')
                       ? null
                       : _updateTaskStatus,
-                  child: Text(taskStatus == 'Đang chờ'
+                  child: Text(taskStatus == 'Chuẩn bị'
                       ? 'Bắt đầu'
                       : taskStatus == 'Đã hoàn thành'
                           ? 'Công việc đã hoàn thành'
@@ -278,7 +399,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       const SizedBox(height: 8),
                       Chip(
                         label: Text(
-                          getStatusText(task?.status ?? ""),
+                          taskStatus,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
                           ),
@@ -381,7 +502,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Widget _buildWorkTab(BuildContext context) {
     bool isEditable = task?.assignedToUser.userId == loggedInUserId;
-    bool isPending = taskStatus == 'Đang chờ';
+    bool isPending = taskStatus == 'Chuẩn bị';
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Column(
@@ -396,6 +517,79 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             )
           else ...[
             // Upload Image Section
+            if (task!.taskType.taskTypeId == TaskTypeDataConstant.feeding)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Đơn log công việc cho ăn',
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  TextFieldRequired(
+                      label: 'Cân nặng thực tế (kg)',
+                      keyBoardType: TextInputType.number,
+                      controller: actualWeightController,
+                      hintText: 'Nhập cân nặng thực tế (kg)')
+                ],
+              )
+            else if (task!.taskType.taskTypeId == TaskTypeDataConstant.health)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Đơn log công việc cho uống thuốc',
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                  ),
+                ],
+              )
+            else if (task!.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Đơn log công việc tiêm vắc xin',
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                  ),
+                ],
+              ),
+            const SizedBox(height: 24),
+            Text(
+              'Ghi chú',
+              style: Theme.of(context).textTheme.labelMedium,
+            ),
+            const SizedBox(height: 8),
+            // Log input TextField
+            TextField(
+              controller: logController,
+              maxLines: 5,
+              readOnly: !isEditable,
+              decoration: InputDecoration(
+                hintText: 'Ghi chú...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -488,27 +682,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   ],
                 );
               }).toList(),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Ghi chú',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            const SizedBox(height: 8),
-            // Log input TextField
-            TextField(
-              controller: logController,
-              maxLines: 5,
-              readOnly: !isEditable,
-              decoration: InputDecoration(
-                hintText: 'Ghi chú...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
-                ),
-              ),
             ),
           ],
         ],

@@ -31,6 +31,11 @@ mixin _$TaskEvent {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +52,11 @@ mixin _$TaskEvent {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +73,11 @@ mixin _$TaskEvent {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,6 +96,11 @@ mixin _$TaskEvent {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +116,9 @@ mixin _$TaskEvent {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,6 +134,9 @@ mixin _$TaskEvent {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -190,6 +216,11 @@ class _$StartedImpl implements _Started {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return started();
   }
@@ -209,6 +240,11 @@ class _$StartedImpl implements _Started {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return started?.call();
   }
@@ -228,6 +264,11 @@ class _$StartedImpl implements _Started {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -252,6 +293,11 @@ class _$StartedImpl implements _Started {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return started(this);
   }
@@ -270,6 +316,9 @@ class _$StartedImpl implements _Started {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return started?.call(this);
   }
@@ -288,6 +337,9 @@ class _$StartedImpl implements _Started {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -382,6 +434,11 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return createTask(task);
   }
@@ -401,6 +458,11 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return createTask?.call(task);
   }
@@ -420,6 +482,11 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -444,6 +511,11 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return createTask(this);
   }
@@ -462,6 +534,9 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return createTask?.call(this);
   }
@@ -480,6 +555,9 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -591,6 +669,11 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return updateTask(taskId, statusId);
   }
@@ -610,6 +693,11 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return updateTask?.call(taskId, statusId);
   }
@@ -629,6 +717,11 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -653,6 +746,11 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return updateTask(this);
   }
@@ -671,6 +769,9 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return updateTask?.call(this);
   }
@@ -689,6 +790,9 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -793,6 +897,11 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return deleteTask(taskId);
   }
@@ -812,6 +921,11 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return deleteTask?.call(taskId);
   }
@@ -831,6 +945,11 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -855,6 +974,11 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return deleteTask(this);
   }
@@ -873,6 +997,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return deleteTask?.call(this);
   }
@@ -891,6 +1018,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -966,6 +1096,11 @@ class _$GetTasksImpl implements _GetTasks {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return getTasks();
   }
@@ -985,6 +1120,11 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return getTasks?.call();
   }
@@ -1004,6 +1144,11 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTasks != null) {
@@ -1028,6 +1173,11 @@ class _$GetTasksImpl implements _GetTasks {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return getTasks(this);
   }
@@ -1046,6 +1196,9 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return getTasks?.call(this);
   }
@@ -1064,6 +1217,9 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTasks != null) {
@@ -1131,6 +1287,11 @@ class _$TestConnectImpl implements _TestConnect {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return testConnect();
   }
@@ -1150,6 +1311,11 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return testConnect?.call();
   }
@@ -1169,6 +1335,11 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (testConnect != null) {
@@ -1193,6 +1364,11 @@ class _$TestConnectImpl implements _TestConnect {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return testConnect(this);
   }
@@ -1211,6 +1387,9 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return testConnect?.call(this);
   }
@@ -1229,6 +1408,9 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (testConnect != null) {
@@ -1324,6 +1506,11 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return getTasksByCageId(cageId);
   }
@@ -1343,6 +1530,11 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return getTasksByCageId?.call(cageId);
   }
@@ -1362,6 +1554,11 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTasksByCageId != null) {
@@ -1386,6 +1583,11 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return getTasksByCageId(this);
   }
@@ -1404,6 +1606,9 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return getTasksByCageId?.call(this);
   }
@@ -1422,6 +1627,9 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTasksByCageId != null) {
@@ -1524,6 +1732,11 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return getTaskById(taskId);
   }
@@ -1543,6 +1756,11 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return getTaskById?.call(taskId);
   }
@@ -1562,6 +1780,11 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTaskById != null) {
@@ -1586,6 +1809,11 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return getTaskById(this);
   }
@@ -1604,6 +1832,9 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return getTaskById?.call(this);
   }
@@ -1622,6 +1853,9 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTaskById != null) {
@@ -1697,6 +1931,11 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return getNextTask();
   }
@@ -1716,6 +1955,11 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return getNextTask?.call();
   }
@@ -1735,6 +1979,11 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getNextTask != null) {
@@ -1759,6 +2008,11 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return getNextTask(this);
   }
@@ -1777,6 +2031,9 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return getNextTask?.call(this);
   }
@@ -1795,6 +2052,9 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getNextTask != null) {
@@ -1900,6 +2160,11 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return getTasksByUserIdAndDate(date, cageId);
   }
@@ -1919,6 +2184,11 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return getTasksByUserIdAndDate?.call(date, cageId);
   }
@@ -1938,6 +2208,11 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDate != null) {
@@ -1962,6 +2237,11 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return getTasksByUserIdAndDate(this);
   }
@@ -1980,6 +2260,9 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return getTasksByUserIdAndDate?.call(this);
   }
@@ -1998,6 +2281,9 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDate != null) {
@@ -2123,6 +2409,11 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
   }) {
     return filterTasksByLocation(cageId, date, cageName);
   }
@@ -2142,6 +2433,11 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
   }) {
     return filterTasksByLocation?.call(cageId, date, cageName);
   }
@@ -2161,6 +2457,11 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (filterTasksByLocation != null) {
@@ -2185,6 +2486,11 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasksByUserIdAndDate,
     required TResult Function(_FilterTasksByLocation value)
         filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
   }) {
     return filterTasksByLocation(this);
   }
@@ -2203,6 +2509,9 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(_GetNextTask value)? getNextTask,
     TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
   }) {
     return filterTasksByLocation?.call(this);
   }
@@ -2221,6 +2530,9 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(_GetNextTask value)? getNextTask,
     TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
     TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
     required TResult orElse(),
   }) {
     if (filterTasksByLocation != null) {
@@ -2244,6 +2556,762 @@ abstract class _FilterTasksByLocation implements TaskEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterTasksByLocationImplCopyWith<_$FilterTasksByLocationImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateDailyFoodUsageLogImplCopyWith<$Res> {
+  factory _$$CreateDailyFoodUsageLogImplCopyWith(
+          _$CreateDailyFoodUsageLogImpl value,
+          $Res Function(_$CreateDailyFoodUsageLogImpl) then) =
+      __$$CreateDailyFoodUsageLogImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String cageId, DailyFoodUsageLogDto log});
+
+  $DailyFoodUsageLogDtoCopyWith<$Res> get log;
+}
+
+/// @nodoc
+class __$$CreateDailyFoodUsageLogImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$CreateDailyFoodUsageLogImpl>
+    implements _$$CreateDailyFoodUsageLogImplCopyWith<$Res> {
+  __$$CreateDailyFoodUsageLogImplCopyWithImpl(
+      _$CreateDailyFoodUsageLogImpl _value,
+      $Res Function(_$CreateDailyFoodUsageLogImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cageId = null,
+    Object? log = null,
+  }) {
+    return _then(_$CreateDailyFoodUsageLogImpl(
+      cageId: null == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
+              as String,
+      log: null == log
+          ? _value.log
+          : log // ignore: cast_nullable_to_non_nullable
+              as DailyFoodUsageLogDto,
+    ));
+  }
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DailyFoodUsageLogDtoCopyWith<$Res> get log {
+    return $DailyFoodUsageLogDtoCopyWith<$Res>(_value.log, (value) {
+      return _then(_value.copyWith(log: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
+  const _$CreateDailyFoodUsageLogImpl(
+      {required this.cageId, required this.log});
+
+  @override
+  final String cageId;
+  @override
+  final DailyFoodUsageLogDto log;
+
+  @override
+  String toString() {
+    return 'TaskEvent.createDailyFoodUsageLog(cageId: $cageId, log: $log)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateDailyFoodUsageLogImpl &&
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.log, log) || other.log == log));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, cageId, log);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateDailyFoodUsageLogImplCopyWith<_$CreateDailyFoodUsageLogImpl>
+      get copyWith => __$$CreateDailyFoodUsageLogImplCopyWithImpl<
+          _$CreateDailyFoodUsageLogImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String task) createTask,
+    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(String taskId) deleteTask,
+    required TResult Function() getTasks,
+    required TResult Function() testConnect,
+    required TResult Function(String cageId) getTasksByCageId,
+    required TResult Function(String taskId) getTaskById,
+    required TResult Function() getNextTask,
+    required TResult Function(DateTime? date, String? cageId)
+        getTasksByUserIdAndDate,
+    required TResult Function(String? cageId, DateTime date, String cageName)
+        filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
+  }) {
+    return createDailyFoodUsageLog(cageId, log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String task)? createTask,
+    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId)? deleteTask,
+    TResult? Function()? getTasks,
+    TResult? Function()? testConnect,
+    TResult? Function(String cageId)? getTasksByCageId,
+    TResult? Function(String taskId)? getTaskById,
+    TResult? Function()? getNextTask,
+    TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult? Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
+  }) {
+    return createDailyFoodUsageLog?.call(cageId, log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String task)? createTask,
+    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId)? deleteTask,
+    TResult Function()? getTasks,
+    TResult Function()? testConnect,
+    TResult Function(String cageId)? getTasksByCageId,
+    TResult Function(String taskId)? getTaskById,
+    TResult Function()? getNextTask,
+    TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLog != null) {
+      return createDailyFoodUsageLog(cageId, log);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_GetTasks value) getTasks,
+    required TResult Function(_TestConnect value) testConnect,
+    required TResult Function(_GetTasksByCageId value) getTasksByCageId,
+    required TResult Function(_GetTaskById value) getTaskById,
+    required TResult Function(_GetNextTask value) getNextTask,
+    required TResult Function(_GetTasksByUserIdAndDate value)
+        getTasksByUserIdAndDate,
+    required TResult Function(_FilterTasksByLocation value)
+        filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
+  }) {
+    return createDailyFoodUsageLog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_GetTasks value)? getTasks,
+    TResult? Function(_TestConnect value)? testConnect,
+    TResult? Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult? Function(_GetTaskById value)? getTaskById,
+    TResult? Function(_GetNextTask value)? getNextTask,
+    TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+  }) {
+    return createDailyFoodUsageLog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_GetTasks value)? getTasks,
+    TResult Function(_TestConnect value)? testConnect,
+    TResult Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult Function(_GetTaskById value)? getTaskById,
+    TResult Function(_GetNextTask value)? getNextTask,
+    TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLog != null) {
+      return createDailyFoodUsageLog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateDailyFoodUsageLog implements TaskEvent {
+  const factory _CreateDailyFoodUsageLog(
+      {required final String cageId,
+      required final DailyFoodUsageLogDto log}) = _$CreateDailyFoodUsageLogImpl;
+
+  String get cageId;
+  DailyFoodUsageLogDto get log;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateDailyFoodUsageLogImplCopyWith<_$CreateDailyFoodUsageLogImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateHealthLogImplCopyWith<$Res> {
+  factory _$$CreateHealthLogImplCopyWith(_$CreateHealthLogImpl value,
+          $Res Function(_$CreateHealthLogImpl) then) =
+      __$$CreateHealthLogImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String cageId, HealthLogDto log});
+
+  $HealthLogDtoCopyWith<$Res> get log;
+}
+
+/// @nodoc
+class __$$CreateHealthLogImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$CreateHealthLogImpl>
+    implements _$$CreateHealthLogImplCopyWith<$Res> {
+  __$$CreateHealthLogImplCopyWithImpl(
+      _$CreateHealthLogImpl _value, $Res Function(_$CreateHealthLogImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cageId = null,
+    Object? log = null,
+  }) {
+    return _then(_$CreateHealthLogImpl(
+      cageId: null == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
+              as String,
+      log: null == log
+          ? _value.log
+          : log // ignore: cast_nullable_to_non_nullable
+              as HealthLogDto,
+    ));
+  }
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $HealthLogDtoCopyWith<$Res> get log {
+    return $HealthLogDtoCopyWith<$Res>(_value.log, (value) {
+      return _then(_value.copyWith(log: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CreateHealthLogImpl implements _CreateHealthLog {
+  const _$CreateHealthLogImpl({required this.cageId, required this.log});
+
+  @override
+  final String cageId;
+  @override
+  final HealthLogDto log;
+
+  @override
+  String toString() {
+    return 'TaskEvent.createHealthLog(cageId: $cageId, log: $log)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateHealthLogImpl &&
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.log, log) || other.log == log));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, cageId, log);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateHealthLogImplCopyWith<_$CreateHealthLogImpl> get copyWith =>
+      __$$CreateHealthLogImplCopyWithImpl<_$CreateHealthLogImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String task) createTask,
+    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(String taskId) deleteTask,
+    required TResult Function() getTasks,
+    required TResult Function() testConnect,
+    required TResult Function(String cageId) getTasksByCageId,
+    required TResult Function(String taskId) getTaskById,
+    required TResult Function() getNextTask,
+    required TResult Function(DateTime? date, String? cageId)
+        getTasksByUserIdAndDate,
+    required TResult Function(String? cageId, DateTime date, String cageName)
+        filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
+  }) {
+    return createHealthLog(cageId, log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String task)? createTask,
+    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId)? deleteTask,
+    TResult? Function()? getTasks,
+    TResult? Function()? testConnect,
+    TResult? Function(String cageId)? getTasksByCageId,
+    TResult? Function(String taskId)? getTaskById,
+    TResult? Function()? getNextTask,
+    TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult? Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
+  }) {
+    return createHealthLog?.call(cageId, log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String task)? createTask,
+    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId)? deleteTask,
+    TResult Function()? getTasks,
+    TResult Function()? testConnect,
+    TResult Function(String cageId)? getTasksByCageId,
+    TResult Function(String taskId)? getTaskById,
+    TResult Function()? getNextTask,
+    TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
+    required TResult orElse(),
+  }) {
+    if (createHealthLog != null) {
+      return createHealthLog(cageId, log);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_GetTasks value) getTasks,
+    required TResult Function(_TestConnect value) testConnect,
+    required TResult Function(_GetTasksByCageId value) getTasksByCageId,
+    required TResult Function(_GetTaskById value) getTaskById,
+    required TResult Function(_GetNextTask value) getNextTask,
+    required TResult Function(_GetTasksByUserIdAndDate value)
+        getTasksByUserIdAndDate,
+    required TResult Function(_FilterTasksByLocation value)
+        filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
+  }) {
+    return createHealthLog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_GetTasks value)? getTasks,
+    TResult? Function(_TestConnect value)? testConnect,
+    TResult? Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult? Function(_GetTaskById value)? getTaskById,
+    TResult? Function(_GetNextTask value)? getNextTask,
+    TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+  }) {
+    return createHealthLog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_GetTasks value)? getTasks,
+    TResult Function(_TestConnect value)? testConnect,
+    TResult Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult Function(_GetTaskById value)? getTaskById,
+    TResult Function(_GetNextTask value)? getNextTask,
+    TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+    required TResult orElse(),
+  }) {
+    if (createHealthLog != null) {
+      return createHealthLog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateHealthLog implements TaskEvent {
+  const factory _CreateHealthLog(
+      {required final String cageId,
+      required final HealthLogDto log}) = _$CreateHealthLogImpl;
+
+  String get cageId;
+  HealthLogDto get log;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateHealthLogImplCopyWith<_$CreateHealthLogImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateVaccinScheduleLogImplCopyWith<$Res> {
+  factory _$$CreateVaccinScheduleLogImplCopyWith(
+          _$CreateVaccinScheduleLogImpl value,
+          $Res Function(_$CreateVaccinScheduleLogImpl) then) =
+      __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String cageId, VaccinScheduleLogDto log});
+
+  $VaccinScheduleLogDtoCopyWith<$Res> get log;
+}
+
+/// @nodoc
+class __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$CreateVaccinScheduleLogImpl>
+    implements _$$CreateVaccinScheduleLogImplCopyWith<$Res> {
+  __$$CreateVaccinScheduleLogImplCopyWithImpl(
+      _$CreateVaccinScheduleLogImpl _value,
+      $Res Function(_$CreateVaccinScheduleLogImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cageId = null,
+    Object? log = null,
+  }) {
+    return _then(_$CreateVaccinScheduleLogImpl(
+      cageId: null == cageId
+          ? _value.cageId
+          : cageId // ignore: cast_nullable_to_non_nullable
+              as String,
+      log: null == log
+          ? _value.log
+          : log // ignore: cast_nullable_to_non_nullable
+              as VaccinScheduleLogDto,
+    ));
+  }
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VaccinScheduleLogDtoCopyWith<$Res> get log {
+    return $VaccinScheduleLogDtoCopyWith<$Res>(_value.log, (value) {
+      return _then(_value.copyWith(log: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
+  const _$CreateVaccinScheduleLogImpl(
+      {required this.cageId, required this.log});
+
+  @override
+  final String cageId;
+  @override
+  final VaccinScheduleLogDto log;
+
+  @override
+  String toString() {
+    return 'TaskEvent.createVaccinScheduleLog(cageId: $cageId, log: $log)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateVaccinScheduleLogImpl &&
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.log, log) || other.log == log));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, cageId, log);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateVaccinScheduleLogImplCopyWith<_$CreateVaccinScheduleLogImpl>
+      get copyWith => __$$CreateVaccinScheduleLogImplCopyWithImpl<
+          _$CreateVaccinScheduleLogImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String task) createTask,
+    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(String taskId) deleteTask,
+    required TResult Function() getTasks,
+    required TResult Function() testConnect,
+    required TResult Function(String cageId) getTasksByCageId,
+    required TResult Function(String taskId) getTaskById,
+    required TResult Function() getNextTask,
+    required TResult Function(DateTime? date, String? cageId)
+        getTasksByUserIdAndDate,
+    required TResult Function(String? cageId, DateTime date, String cageName)
+        filterTasksByLocation,
+    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+        createDailyFoodUsageLog,
+    required TResult Function(String cageId, HealthLogDto log) createHealthLog,
+    required TResult Function(String cageId, VaccinScheduleLogDto log)
+        createVaccinScheduleLog,
+  }) {
+    return createVaccinScheduleLog(cageId, log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String task)? createTask,
+    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId)? deleteTask,
+    TResult? Function()? getTasks,
+    TResult? Function()? testConnect,
+    TResult? Function(String cageId)? getTasksByCageId,
+    TResult? Function(String taskId)? getTaskById,
+    TResult? Function()? getNextTask,
+    TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult? Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult? Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
+  }) {
+    return createVaccinScheduleLog?.call(cageId, log);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String task)? createTask,
+    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId)? deleteTask,
+    TResult Function()? getTasks,
+    TResult Function()? testConnect,
+    TResult Function(String cageId)? getTasksByCageId,
+    TResult Function(String taskId)? getTaskById,
+    TResult Function()? getNextTask,
+    TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+        createDailyFoodUsageLog,
+    TResult Function(String cageId, HealthLogDto log)? createHealthLog,
+    TResult Function(String cageId, VaccinScheduleLogDto log)?
+        createVaccinScheduleLog,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLog != null) {
+      return createVaccinScheduleLog(cageId, log);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_GetTasks value) getTasks,
+    required TResult Function(_TestConnect value) testConnect,
+    required TResult Function(_GetTasksByCageId value) getTasksByCageId,
+    required TResult Function(_GetTaskById value) getTaskById,
+    required TResult Function(_GetNextTask value) getNextTask,
+    required TResult Function(_GetTasksByUserIdAndDate value)
+        getTasksByUserIdAndDate,
+    required TResult Function(_FilterTasksByLocation value)
+        filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
+  }) {
+    return createVaccinScheduleLog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_GetTasks value)? getTasks,
+    TResult? Function(_TestConnect value)? testConnect,
+    TResult? Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult? Function(_GetTaskById value)? getTaskById,
+    TResult? Function(_GetNextTask value)? getNextTask,
+    TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+  }) {
+    return createVaccinScheduleLog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_GetTasks value)? getTasks,
+    TResult Function(_TestConnect value)? testConnect,
+    TResult Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult Function(_GetTaskById value)? getTaskById,
+    TResult Function(_GetNextTask value)? getNextTask,
+    TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLog != null) {
+      return createVaccinScheduleLog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateVaccinScheduleLog implements TaskEvent {
+  const factory _CreateVaccinScheduleLog(
+      {required final String cageId,
+      required final VaccinScheduleLogDto log}) = _$CreateVaccinScheduleLogImpl;
+
+  String get cageId;
+  VaccinScheduleLogDto get log;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateVaccinScheduleLogImplCopyWith<_$CreateVaccinScheduleLogImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2282,6 +3350,15 @@ mixin _$TaskState {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2316,6 +3393,15 @@ mixin _$TaskState {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2350,6 +3436,15 @@ mixin _$TaskState {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2390,6 +3485,24 @@ mixin _$TaskState {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2424,6 +3537,21 @@ mixin _$TaskState {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2458,6 +3586,21 @@ mixin _$TaskState {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2555,6 +3698,15 @@ class _$InitialImpl implements _Initial {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return initial();
   }
@@ -2592,6 +3744,15 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return initial?.call();
   }
@@ -2629,6 +3790,15 @@ class _$InitialImpl implements _Initial {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -2675,6 +3845,24 @@ class _$InitialImpl implements _Initial {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return initial(this);
   }
@@ -2712,6 +3900,21 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return initial?.call(this);
   }
@@ -2749,6 +3952,21 @@ class _$InitialImpl implements _Initial {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -2834,6 +4052,15 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return loading();
   }
@@ -2871,6 +4098,15 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return loading?.call();
   }
@@ -2908,6 +4144,15 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -2954,6 +4199,24 @@ class _$LoadingImpl implements _Loading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return loading(this);
   }
@@ -2991,6 +4254,21 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return loading?.call(this);
   }
@@ -3028,6 +4306,21 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -3113,6 +4406,15 @@ class _$SuccessImpl implements _Success {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return success();
   }
@@ -3150,6 +4452,15 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return success?.call();
   }
@@ -3187,6 +4498,15 @@ class _$SuccessImpl implements _Success {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -3233,6 +4553,24 @@ class _$SuccessImpl implements _Success {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return success(this);
   }
@@ -3270,6 +4608,21 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return success?.call(this);
   }
@@ -3307,6 +4660,21 @@ class _$SuccessImpl implements _Success {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -3419,6 +4787,15 @@ class _$FailureImpl implements _Failure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return failure(error);
   }
@@ -3456,6 +4833,15 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return failure?.call(error);
   }
@@ -3493,6 +4879,15 @@ class _$FailureImpl implements _Failure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -3539,6 +4934,24 @@ class _$FailureImpl implements _Failure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return failure(this);
   }
@@ -3576,6 +4989,21 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return failure?.call(this);
   }
@@ -3613,6 +5041,21 @@ class _$FailureImpl implements _Failure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -3706,6 +5149,15 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return taskCreated();
   }
@@ -3743,6 +5195,15 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return taskCreated?.call();
   }
@@ -3780,6 +5241,15 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (taskCreated != null) {
@@ -3826,6 +5296,24 @@ class _$TaskCreatedImpl implements _TaskCreated {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return taskCreated(this);
   }
@@ -3863,6 +5351,21 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return taskCreated?.call(this);
   }
@@ -3900,6 +5403,21 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (taskCreated != null) {
@@ -3985,6 +5503,15 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return taskUpdated();
   }
@@ -4022,6 +5549,15 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return taskUpdated?.call();
   }
@@ -4059,6 +5595,15 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (taskUpdated != null) {
@@ -4105,6 +5650,24 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return taskUpdated(this);
   }
@@ -4142,6 +5705,21 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return taskUpdated?.call(this);
   }
@@ -4179,6 +5757,21 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (taskUpdated != null) {
@@ -4264,6 +5857,15 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return taskDeleted();
   }
@@ -4301,6 +5903,15 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return taskDeleted?.call();
   }
@@ -4338,6 +5949,15 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (taskDeleted != null) {
@@ -4384,6 +6004,24 @@ class _$TaskDeletedImpl implements _TaskDeleted {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return taskDeleted(this);
   }
@@ -4421,6 +6059,21 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return taskDeleted?.call(this);
   }
@@ -4458,6 +6111,21 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (taskDeleted != null) {
@@ -4578,6 +6246,15 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTasksSuccess(tasks);
   }
@@ -4615,6 +6292,15 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTasksSuccess?.call(tasks);
   }
@@ -4652,6 +6338,15 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksSuccess != null) {
@@ -4698,6 +6393,24 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksSuccess(this);
   }
@@ -4735,6 +6448,21 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksSuccess?.call(this);
   }
@@ -4772,6 +6500,21 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksSuccess != null) {
@@ -4894,6 +6637,15 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTasksFailure(error);
   }
@@ -4931,6 +6683,15 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTasksFailure?.call(error);
   }
@@ -4968,6 +6729,15 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksFailure != null) {
@@ -5014,6 +6784,24 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksFailure(this);
   }
@@ -5051,6 +6839,21 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksFailure?.call(this);
   }
@@ -5088,6 +6891,21 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksFailure != null) {
@@ -5181,6 +6999,15 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return testConnectSuccess();
   }
@@ -5218,6 +7045,15 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return testConnectSuccess?.call();
   }
@@ -5255,6 +7091,15 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (testConnectSuccess != null) {
@@ -5301,6 +7146,24 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return testConnectSuccess(this);
   }
@@ -5338,6 +7201,21 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return testConnectSuccess?.call(this);
   }
@@ -5375,6 +7253,21 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (testConnectSuccess != null) {
@@ -5463,6 +7356,15 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdLoading();
   }
@@ -5500,6 +7402,15 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdLoading?.call();
   }
@@ -5537,6 +7448,15 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdLoading != null) {
@@ -5583,6 +7503,24 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdLoading(this);
   }
@@ -5620,6 +7558,21 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdLoading?.call(this);
   }
@@ -5657,6 +7610,21 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdLoading != null) {
@@ -5784,6 +7752,15 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdSuccess(tasks);
   }
@@ -5821,6 +7798,15 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdSuccess?.call(tasks);
   }
@@ -5858,6 +7844,15 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdSuccess != null) {
@@ -5904,6 +7899,24 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdSuccess(this);
   }
@@ -5941,6 +7954,21 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByCageIdSuccess?.call(this);
   }
@@ -5978,6 +8006,21 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdSuccess != null) {
@@ -6072,6 +8115,15 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdLoading();
   }
@@ -6109,6 +8161,15 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdLoading?.call();
   }
@@ -6146,6 +8207,15 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdLoading != null) {
@@ -6192,6 +8262,24 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdLoading(this);
   }
@@ -6229,6 +8317,21 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdLoading?.call(this);
   }
@@ -6266,6 +8369,21 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdLoading != null) {
@@ -6391,6 +8509,15 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdSuccess(task);
   }
@@ -6428,6 +8555,15 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdSuccess?.call(task);
   }
@@ -6465,6 +8601,15 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdSuccess != null) {
@@ -6511,6 +8656,24 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdSuccess(this);
   }
@@ -6548,6 +8711,21 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdSuccess?.call(this);
   }
@@ -6585,6 +8763,21 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdSuccess != null) {
@@ -6706,6 +8899,15 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdFailure(error);
   }
@@ -6743,6 +8945,15 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdFailure?.call(error);
   }
@@ -6780,6 +8991,15 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdFailure != null) {
@@ -6826,6 +9046,24 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdFailure(this);
   }
@@ -6863,6 +9101,21 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTaskByIdFailure?.call(this);
   }
@@ -6900,6 +9153,21 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdFailure != null) {
@@ -6994,6 +9262,15 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getNextTaskLoading();
   }
@@ -7031,6 +9308,15 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getNextTaskLoading?.call();
   }
@@ -7068,6 +9354,15 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskLoading != null) {
@@ -7114,6 +9409,24 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getNextTaskLoading(this);
   }
@@ -7151,6 +9464,21 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getNextTaskLoading?.call(this);
   }
@@ -7188,6 +9516,21 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskLoading != null) {
@@ -7307,6 +9650,15 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getNextTaskSuccess(task);
   }
@@ -7344,6 +9696,15 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getNextTaskSuccess?.call(task);
   }
@@ -7381,6 +9742,15 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskSuccess != null) {
@@ -7427,6 +9797,24 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getNextTaskSuccess(this);
   }
@@ -7464,6 +9852,21 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getNextTaskSuccess?.call(this);
   }
@@ -7501,6 +9904,21 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskSuccess != null) {
@@ -7623,6 +10041,15 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getNextTaskFailure(error);
   }
@@ -7660,6 +10087,15 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getNextTaskFailure?.call(error);
   }
@@ -7697,6 +10133,15 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskFailure != null) {
@@ -7743,6 +10188,24 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getNextTaskFailure(this);
   }
@@ -7780,6 +10243,21 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getNextTaskFailure?.call(this);
   }
@@ -7817,6 +10295,21 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskFailure != null) {
@@ -7915,6 +10408,15 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateLoading();
   }
@@ -7952,6 +10454,15 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateLoading?.call();
   }
@@ -7989,6 +10500,15 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateLoading != null) {
@@ -8035,6 +10555,24 @@ class _$GetTasksByUserIdAndDateLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateLoading(this);
   }
@@ -8072,6 +10610,21 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateLoading?.call(this);
   }
@@ -8109,6 +10662,21 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateLoading != null) {
@@ -8254,6 +10822,15 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateSuccess(tasks, cageList);
   }
@@ -8291,6 +10868,15 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateSuccess?.call(tasks, cageList);
   }
@@ -8328,6 +10914,15 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateSuccess != null) {
@@ -8374,6 +10969,24 @@ class _$GetTasksByUserIdAndDateSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateSuccess(this);
   }
@@ -8411,6 +11024,21 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateSuccess?.call(this);
   }
@@ -8448,6 +11076,21 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateSuccess != null) {
@@ -8577,6 +11220,15 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateFailure(error);
   }
@@ -8614,6 +11266,15 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateFailure?.call(error);
   }
@@ -8651,6 +11312,15 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateFailure != null) {
@@ -8697,6 +11367,24 @@ class _$GetTasksByUserIdAndDateFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateFailure(this);
   }
@@ -8734,6 +11422,21 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return getTasksByUserIdAndDateFailure?.call(this);
   }
@@ -8771,6 +11474,21 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateFailure != null) {
@@ -8867,6 +11585,15 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return filteredTaskLoading();
   }
@@ -8904,6 +11631,15 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return filteredTaskLoading?.call();
   }
@@ -8941,6 +11677,15 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (filteredTaskLoading != null) {
@@ -8987,6 +11732,24 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return filteredTaskLoading(this);
   }
@@ -9024,6 +11787,21 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return filteredTaskLoading?.call(this);
   }
@@ -9061,6 +11839,21 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (filteredTaskLoading != null) {
@@ -9183,6 +11976,15 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return filteredTasksSuccess(tasks);
   }
@@ -9220,6 +12022,15 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return filteredTasksSuccess?.call(tasks);
   }
@@ -9257,6 +12068,15 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksSuccess != null) {
@@ -9303,6 +12123,24 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return filteredTasksSuccess(this);
   }
@@ -9340,6 +12178,21 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return filteredTasksSuccess?.call(this);
   }
@@ -9377,6 +12230,21 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksSuccess != null) {
@@ -9501,6 +12369,15 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return filteredTasksFailure(error);
   }
@@ -9538,6 +12415,15 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return filteredTasksFailure?.call(error);
   }
@@ -9575,6 +12461,15 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksFailure != null) {
@@ -9621,6 +12516,24 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return filteredTasksFailure(this);
   }
@@ -9658,6 +12571,21 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return filteredTasksFailure?.call(this);
   }
@@ -9695,6 +12623,21 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksFailure != null) {
@@ -9792,6 +12735,15 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskLoading();
   }
@@ -9829,6 +12781,15 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskLoading?.call();
   }
@@ -9866,6 +12827,15 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskLoading != null) {
@@ -9912,6 +12882,24 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskLoading(this);
   }
@@ -9949,6 +12937,21 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskLoading?.call(this);
   }
@@ -9986,6 +12989,21 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskLoading != null) {
@@ -10074,6 +13092,15 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskSuccess();
   }
@@ -10111,6 +13138,15 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskSuccess?.call();
   }
@@ -10148,6 +13184,15 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskSuccess != null) {
@@ -10194,6 +13239,24 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskSuccess(this);
   }
@@ -10231,6 +13294,21 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskSuccess?.call(this);
   }
@@ -10268,6 +13346,21 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskSuccess != null) {
@@ -10383,6 +13476,15 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskFailure(error);
   }
@@ -10420,6 +13522,15 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskFailure?.call(error);
   }
@@ -10457,6 +13568,15 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskFailure != null) {
@@ -10503,6 +13623,24 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskFailure(this);
   }
@@ -10540,6 +13678,21 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
   }) {
     return updateStatusTaskFailure?.call(this);
   }
@@ -10577,6 +13730,21 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskFailure != null) {
@@ -10596,5 +13764,3340 @@ abstract class _UpdateStatusTaskFailure implements TaskState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateStatusTaskFailureImplCopyWith<_$UpdateStatusTaskFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateDailyFoodUsageLogLoadingImplCopyWith<$Res> {
+  factory _$$CreateDailyFoodUsageLogLoadingImplCopyWith(
+          _$CreateDailyFoodUsageLogLoadingImpl value,
+          $Res Function(_$CreateDailyFoodUsageLogLoadingImpl) then) =
+      __$$CreateDailyFoodUsageLogLoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateDailyFoodUsageLogLoadingImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateDailyFoodUsageLogLoadingImpl>
+    implements _$$CreateDailyFoodUsageLogLoadingImplCopyWith<$Res> {
+  __$$CreateDailyFoodUsageLogLoadingImplCopyWithImpl(
+      _$CreateDailyFoodUsageLogLoadingImpl _value,
+      $Res Function(_$CreateDailyFoodUsageLogLoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateDailyFoodUsageLogLoadingImpl
+    implements _CreateDailyFoodUsageLogLoading {
+  const _$CreateDailyFoodUsageLogLoadingImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.createDailyFoodUsageLogLoading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateDailyFoodUsageLogLoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogLoading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLogLoading != null) {
+      return createDailyFoodUsageLogLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogLoading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLogLoading != null) {
+      return createDailyFoodUsageLogLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateDailyFoodUsageLogLoading implements TaskState {
+  const factory _CreateDailyFoodUsageLogLoading() =
+      _$CreateDailyFoodUsageLogLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateDailyFoodUsageLogSuccessImplCopyWith<$Res> {
+  factory _$$CreateDailyFoodUsageLogSuccessImplCopyWith(
+          _$CreateDailyFoodUsageLogSuccessImpl value,
+          $Res Function(_$CreateDailyFoodUsageLogSuccessImpl) then) =
+      __$$CreateDailyFoodUsageLogSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateDailyFoodUsageLogSuccessImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateDailyFoodUsageLogSuccessImpl>
+    implements _$$CreateDailyFoodUsageLogSuccessImplCopyWith<$Res> {
+  __$$CreateDailyFoodUsageLogSuccessImplCopyWithImpl(
+      _$CreateDailyFoodUsageLogSuccessImpl _value,
+      $Res Function(_$CreateDailyFoodUsageLogSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateDailyFoodUsageLogSuccessImpl
+    implements _CreateDailyFoodUsageLogSuccess {
+  const _$CreateDailyFoodUsageLogSuccessImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.createDailyFoodUsageLogSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateDailyFoodUsageLogSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLogSuccess != null) {
+      return createDailyFoodUsageLogSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLogSuccess != null) {
+      return createDailyFoodUsageLogSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateDailyFoodUsageLogSuccess implements TaskState {
+  const factory _CreateDailyFoodUsageLogSuccess() =
+      _$CreateDailyFoodUsageLogSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateDailyFoodUsageLogFailureImplCopyWith<$Res> {
+  factory _$$CreateDailyFoodUsageLogFailureImplCopyWith(
+          _$CreateDailyFoodUsageLogFailureImpl value,
+          $Res Function(_$CreateDailyFoodUsageLogFailureImpl) then) =
+      __$$CreateDailyFoodUsageLogFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$CreateDailyFoodUsageLogFailureImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateDailyFoodUsageLogFailureImpl>
+    implements _$$CreateDailyFoodUsageLogFailureImplCopyWith<$Res> {
+  __$$CreateDailyFoodUsageLogFailureImplCopyWithImpl(
+      _$CreateDailyFoodUsageLogFailureImpl _value,
+      $Res Function(_$CreateDailyFoodUsageLogFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$CreateDailyFoodUsageLogFailureImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateDailyFoodUsageLogFailureImpl
+    implements _CreateDailyFoodUsageLogFailure {
+  const _$CreateDailyFoodUsageLogFailureImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'TaskState.createDailyFoodUsageLogFailure(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateDailyFoodUsageLogFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateDailyFoodUsageLogFailureImplCopyWith<
+          _$CreateDailyFoodUsageLogFailureImpl>
+      get copyWith => __$$CreateDailyFoodUsageLogFailureImplCopyWithImpl<
+          _$CreateDailyFoodUsageLogFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLogFailure != null) {
+      return createDailyFoodUsageLogFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createDailyFoodUsageLogFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createDailyFoodUsageLogFailure != null) {
+      return createDailyFoodUsageLogFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateDailyFoodUsageLogFailure implements TaskState {
+  const factory _CreateDailyFoodUsageLogFailure(final String error) =
+      _$CreateDailyFoodUsageLogFailureImpl;
+
+  String get error;
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateDailyFoodUsageLogFailureImplCopyWith<
+          _$CreateDailyFoodUsageLogFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateHealthLogLoadingImplCopyWith<$Res> {
+  factory _$$CreateHealthLogLoadingImplCopyWith(
+          _$CreateHealthLogLoadingImpl value,
+          $Res Function(_$CreateHealthLogLoadingImpl) then) =
+      __$$CreateHealthLogLoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateHealthLogLoadingImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateHealthLogLoadingImpl>
+    implements _$$CreateHealthLogLoadingImplCopyWith<$Res> {
+  __$$CreateHealthLogLoadingImplCopyWithImpl(
+      _$CreateHealthLogLoadingImpl _value,
+      $Res Function(_$CreateHealthLogLoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
+  const _$CreateHealthLogLoadingImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.createHealthLogLoading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateHealthLogLoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogLoading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createHealthLogLoading != null) {
+      return createHealthLogLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogLoading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createHealthLogLoading != null) {
+      return createHealthLogLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateHealthLogLoading implements TaskState {
+  const factory _CreateHealthLogLoading() = _$CreateHealthLogLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateHealthLogSuccessImplCopyWith<$Res> {
+  factory _$$CreateHealthLogSuccessImplCopyWith(
+          _$CreateHealthLogSuccessImpl value,
+          $Res Function(_$CreateHealthLogSuccessImpl) then) =
+      __$$CreateHealthLogSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateHealthLogSuccessImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateHealthLogSuccessImpl>
+    implements _$$CreateHealthLogSuccessImplCopyWith<$Res> {
+  __$$CreateHealthLogSuccessImplCopyWithImpl(
+      _$CreateHealthLogSuccessImpl _value,
+      $Res Function(_$CreateHealthLogSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
+  const _$CreateHealthLogSuccessImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.createHealthLogSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateHealthLogSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createHealthLogSuccess != null) {
+      return createHealthLogSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createHealthLogSuccess != null) {
+      return createHealthLogSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateHealthLogSuccess implements TaskState {
+  const factory _CreateHealthLogSuccess() = _$CreateHealthLogSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateHealthLogFailureImplCopyWith<$Res> {
+  factory _$$CreateHealthLogFailureImplCopyWith(
+          _$CreateHealthLogFailureImpl value,
+          $Res Function(_$CreateHealthLogFailureImpl) then) =
+      __$$CreateHealthLogFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$CreateHealthLogFailureImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateHealthLogFailureImpl>
+    implements _$$CreateHealthLogFailureImplCopyWith<$Res> {
+  __$$CreateHealthLogFailureImplCopyWithImpl(
+      _$CreateHealthLogFailureImpl _value,
+      $Res Function(_$CreateHealthLogFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$CreateHealthLogFailureImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
+  const _$CreateHealthLogFailureImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'TaskState.createHealthLogFailure(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateHealthLogFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateHealthLogFailureImplCopyWith<_$CreateHealthLogFailureImpl>
+      get copyWith => __$$CreateHealthLogFailureImplCopyWithImpl<
+          _$CreateHealthLogFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createHealthLogFailure != null) {
+      return createHealthLogFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createHealthLogFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createHealthLogFailure != null) {
+      return createHealthLogFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateHealthLogFailure implements TaskState {
+  const factory _CreateHealthLogFailure(final String error) =
+      _$CreateHealthLogFailureImpl;
+
+  String get error;
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateHealthLogFailureImplCopyWith<_$CreateHealthLogFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateVaccinScheduleLogLoadingImplCopyWith<$Res> {
+  factory _$$CreateVaccinScheduleLogLoadingImplCopyWith(
+          _$CreateVaccinScheduleLogLoadingImpl value,
+          $Res Function(_$CreateVaccinScheduleLogLoadingImpl) then) =
+      __$$CreateVaccinScheduleLogLoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateVaccinScheduleLogLoadingImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateVaccinScheduleLogLoadingImpl>
+    implements _$$CreateVaccinScheduleLogLoadingImplCopyWith<$Res> {
+  __$$CreateVaccinScheduleLogLoadingImplCopyWithImpl(
+      _$CreateVaccinScheduleLogLoadingImpl _value,
+      $Res Function(_$CreateVaccinScheduleLogLoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateVaccinScheduleLogLoadingImpl
+    implements _CreateVaccinScheduleLogLoading {
+  const _$CreateVaccinScheduleLogLoadingImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.createVaccinScheduleLogLoading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateVaccinScheduleLogLoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogLoading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLogLoading != null) {
+      return createVaccinScheduleLogLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogLoading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLogLoading != null) {
+      return createVaccinScheduleLogLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateVaccinScheduleLogLoading implements TaskState {
+  const factory _CreateVaccinScheduleLogLoading() =
+      _$CreateVaccinScheduleLogLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateVaccinScheduleLogSuccessImplCopyWith<$Res> {
+  factory _$$CreateVaccinScheduleLogSuccessImplCopyWith(
+          _$CreateVaccinScheduleLogSuccessImpl value,
+          $Res Function(_$CreateVaccinScheduleLogSuccessImpl) then) =
+      __$$CreateVaccinScheduleLogSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateVaccinScheduleLogSuccessImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateVaccinScheduleLogSuccessImpl>
+    implements _$$CreateVaccinScheduleLogSuccessImplCopyWith<$Res> {
+  __$$CreateVaccinScheduleLogSuccessImplCopyWithImpl(
+      _$CreateVaccinScheduleLogSuccessImpl _value,
+      $Res Function(_$CreateVaccinScheduleLogSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateVaccinScheduleLogSuccessImpl
+    implements _CreateVaccinScheduleLogSuccess {
+  const _$CreateVaccinScheduleLogSuccessImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.createVaccinScheduleLogSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateVaccinScheduleLogSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLogSuccess != null) {
+      return createVaccinScheduleLogSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLogSuccess != null) {
+      return createVaccinScheduleLogSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateVaccinScheduleLogSuccess implements TaskState {
+  const factory _CreateVaccinScheduleLogSuccess() =
+      _$CreateVaccinScheduleLogSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateVaccinScheduleLogFailureImplCopyWith<$Res> {
+  factory _$$CreateVaccinScheduleLogFailureImplCopyWith(
+          _$CreateVaccinScheduleLogFailureImpl value,
+          $Res Function(_$CreateVaccinScheduleLogFailureImpl) then) =
+      __$$CreateVaccinScheduleLogFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$CreateVaccinScheduleLogFailureImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$CreateVaccinScheduleLogFailureImpl>
+    implements _$$CreateVaccinScheduleLogFailureImplCopyWith<$Res> {
+  __$$CreateVaccinScheduleLogFailureImplCopyWithImpl(
+      _$CreateVaccinScheduleLogFailureImpl _value,
+      $Res Function(_$CreateVaccinScheduleLogFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$CreateVaccinScheduleLogFailureImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateVaccinScheduleLogFailureImpl
+    implements _CreateVaccinScheduleLogFailure {
+  const _$CreateVaccinScheduleLogFailureImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'TaskState.createVaccinScheduleLogFailure(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateVaccinScheduleLogFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateVaccinScheduleLogFailureImplCopyWith<
+          _$CreateVaccinScheduleLogFailureImpl>
+      get copyWith => __$$CreateVaccinScheduleLogFailureImplCopyWithImpl<
+          _$CreateVaccinScheduleLogFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function(Map<String, dynamic> tasks) getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(TasksByCageResponse tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(Task task) getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(Task task)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function(Map<String, dynamic> tasks)? getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(TasksByCageResponse tasks)? getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(Task task)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLogFailure != null) {
+      return createVaccinScheduleLogFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+  }) {
+    return createVaccinScheduleLogFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    required TResult orElse(),
+  }) {
+    if (createVaccinScheduleLogFailure != null) {
+      return createVaccinScheduleLogFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateVaccinScheduleLogFailure implements TaskState {
+  const factory _CreateVaccinScheduleLogFailure(final String error) =
+      _$CreateVaccinScheduleLogFailureImpl;
+
+  String get error;
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateVaccinScheduleLogFailureImplCopyWith<
+          _$CreateVaccinScheduleLogFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
