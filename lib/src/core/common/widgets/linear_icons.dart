@@ -130,4 +130,23 @@ class LinearIcons {
     width: 24,
     height: 24,
   );
+
+  static final Widget exportIcon = SvgPicture.asset(
+    'assets/icons/export.svg',
+    semanticsLabel: 'Export',
+    colorFilter: ColorFilter.mode(Colors.redAccent, BlendMode.srcIn),
+  );
+
+  static final Widget refreshIcon = SvgPicture.asset('assets/icons/refresh.svg',
+      semanticsLabel: 'Import', width: 20, height: 20);
+
+  static final Widget deadlineIcon = SvgPicture.asset(
+    'assets/icons/deadline.svg',
+    semanticsLabel: 'Deadline',
+  );
+
+  static final Widget homeHashtagIcon = SvgPicture.asset(
+    'assets/icons/home-hashtag.svg',
+    semanticsLabel: 'Home Hashtag',
+  );
 }

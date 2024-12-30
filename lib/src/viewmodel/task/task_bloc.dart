@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/entity/task/next_task/next_task.dart';
-import 'package:data_layer/model/response/task/task_by_cage/tasks_by_cage_response.dart';
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
-import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 
 part 'task_bloc.freezed.dart';
 part 'task_event.dart';
@@ -71,8 +70,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetTasksByCageId>((event, emit) async {
       emit(const TaskState.loading());
       try {
-        final tasks = await (repository).getTasksByCageId(event.cageId);
-        emit(TaskState.getTasksByCageIdSuccess(tasks));
+        final formattedDate =
+            "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
+        final box = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = box.get(UserDataConstant.userIdKey);
+        final tasks = await (repository)
+            .getTasksByCageId(userId, formattedDate, event.cageId);
+        final tasksMap = _convertTasksToTaskMap(tasks);
+        emit(TaskState.getTasksByCageIdSuccess(tasksMap));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
       }
@@ -90,7 +95,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       emit(const TaskState.getNextTaskLoading());
       try {
         final box = await Hive.openBox(UserDataConstant.userBoxName);
-        final userId = box.get(UserDataConstant.userId);
+        final userId = box.get(UserDataConstant.userIdKey);
         final task = await (repository).getNextTask(userId);
         emit(TaskState.getNextTaskSuccess(task));
       } catch (e) {
@@ -143,6 +148,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         final filteredTasks = await repository.getTasksByUserIdAndDate(
             userId, formattedDate, event.cageId);
         final mappedTasks = _convertTasksToTaskMap(filteredTasks);
+        _sortTasksByStatus(mappedTasks);
 
         emit(TaskState.filteredTasksSuccess(mappedTasks));
       } catch (e) {
@@ -254,14 +260,16 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     return taskSorted;
   }
 
-  // Hàm sắp xếp các công việc, chuyển các công việc 'done' xuống cuối
+  // Hàm sắp xếp các công việc, chuyển các công việc 'done' và 'OverSchedules' xuống cuối
   void _sortTasksByStatus(Map<String, List<TaskHaveCageName>> taskSorted) {
     for (var sessionTasks in taskSorted.values) {
       sessionTasks.sort((a, b) {
-        if (a.status == 'Done' && b.status != 'Done') {
-          return 1; // Move "done" task to the end
-        } else if (a.status != 'Done' && b.status == 'Done') {
-          return -1; // Keep "done" task at the end
+        if ((a.status == 'Done' || a.status == 'OverSchedules') &&
+            (b.status != 'Done' && b.status != 'OverSchedules')) {
+          return 1; // Move "done" and "OverSchedules" tasks to the end
+        } else if ((a.status != 'Done' && a.status != 'OverSchedules') &&
+            (b.status == 'Done' || b.status == 'OverSchedules')) {
+          return -1; // Keep "done" and "OverSchedules" tasks at the end
         } else {
           return 0; // Keep order unchanged for tasks with the same status
         }

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   // Tab controller
   late TabController _tabController;
-  Task? task;
+  TaskHaveCageName? task;
 
   // Assume this is the logged-in user ID
   final String loggedInUserId = '8dac47e4-58b6-43ef-aac8-c9c4315bd4e0';
@@ -124,11 +125,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         );
                   } else {
                     context.read<TaskBloc>().add(TaskEvent.updateTask(
-                        widget.taskId, TaskStatusDataConstant.done));
+                        widget.taskId,
+                        TaskStatusDataConstant.done.toLowerCase()));
                   }
                 } else if (taskStatus == 'Chuẩn bị') {
                   context.read<TaskBloc>().add(TaskEvent.updateTask(
-                      widget.taskId, TaskStatusDataConstant.inprogress));
+                      widget.taskId,
+                      TaskStatusDataConstant.inprogress.toLowerCase()));
                 }
               },
               child: const Text('Xác nhận'),
@@ -154,16 +157,46 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   String getStatusText(String status) {
     switch (status) {
-      case 'InProgress':
+      case 'InProgress' || 'inprogress':
         return 'Đang làm';
-      case 'Done':
+      case 'Done' || 'done':
         return 'Đã hoàn thành';
-      case 'Pending':
+      case 'Pending' || 'pending':
         return 'Chuẩn bị';
-      case 'Overdue':
+      case 'OverSchedules' || 'overschedules':
         return 'Đã quá hạn';
       default:
         return status;
+    }
+  }
+
+  Color getStatusColor(String status) {
+    switch (status) {
+      case 'InProgress' || 'inprogress':
+        return Colors.yellow.shade200;
+      case 'Done' || 'done':
+        return Colors.green.shade200;
+      case 'Pending' || 'pending':
+        return Colors.grey.shade300;
+      case 'OverSchedules' || 'overschedules':
+        return Colors.red.shade200;
+      default:
+        return Colors.grey.shade300;
+    }
+  }
+
+  Color getStatusTextColor(String status) {
+    switch (status) {
+      case 'InProgress':
+        return Colors.black;
+      case 'Done':
+        return Colors.white;
+      case 'Pending':
+        return Colors.black;
+      case 'OverSchedules':
+        return Colors.white;
+      default:
+        return Colors.black;
     }
   }
 
@@ -253,14 +286,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Tạo log cho ăn thành công!')),
             );
-            // Refresh the task details
-            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
+            context.read<TaskBloc>().add(TaskEvent.updateTask(
+                widget.taskId, TaskStatusDataConstant.done.toLowerCase()));
           },
           createDailyFoodUsageLogFailure: (e) async {
             LoadingDialog.hide(context);
             log("Tạo log cho ăn thất bại!");
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Tạo log cho ăn thất bại!')),
+              SnackBar(content: Text(e.toString())),
             );
           },
           createHealthLogLoading: () {
@@ -319,14 +352,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               icon: LinearIcons.arrowBackIcon),
           title: const Text('Chi tiết công việc'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.attach_file),
-              onPressed: () {
-                // Navigate to the edit screen
-              },
-            ),
-          ],
           bottom: (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
                   task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
                   task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
@@ -358,14 +383,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: FilledButton(
-                  onPressed: (taskStatus == 'Đã hoàn thành')
+                  onPressed: (taskStatus == 'Đã hoàn thành' ||
+                          taskStatus == 'Đã quá hạn')
                       ? null
                       : _updateTaskStatus,
                   child: Text(taskStatus == 'Chuẩn bị'
                       ? 'Bắt đầu'
                       : taskStatus == 'Đã hoàn thành'
                           ? 'Công việc đã hoàn thành'
-                          : 'Xác nhận hoàn thành'),
+                          : taskStatus == 'Đã quá hạn'
+                              ? 'Công việc đã quá hạn'
+                              : 'Xác nhận hoàn thành'),
                 ),
               )
             : null,
@@ -393,21 +421,28 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     children: [
                       Text(
                         task?.taskName ?? "",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          LinearIcons.homeHashtagIcon,
+                          const SizedBox(width: 8),
+                          Text(
+                            task?.cageName ?? "",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 8),
                       Chip(
                         label: Text(
                           taskStatus,
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: getStatusTextColor(task?.status ?? ''),
                           ),
                         ),
-                        backgroundColor:
-                            Theme.of(context).colorScheme.primaryContainer,
+                        backgroundColor: getStatusColor(task?.status ?? ''),
                         shape: const StadiumBorder(
                             side: BorderSide(
                                 width: 0, color: Colors.transparent)),

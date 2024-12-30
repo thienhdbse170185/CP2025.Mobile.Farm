@@ -9,9 +9,12 @@ import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/view/export.dart';
-import 'package:smart_farm/src/view/widgets/task_card.dart';
+import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
+import 'package:smart_farm/src/view/widgets/custom_divider.dart';
+import 'package:smart_farm/src/view/widgets/menu_feature.dart';
+import 'package:smart_farm/src/view/widgets/task_list.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
@@ -28,7 +31,7 @@ class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
   String loggedInUser = 'Staff Farm 1'; // Add this line
 
-  List<TaskHaveCageName> tasks = [];
+  Map<String, List<TaskHaveCageName>> tasks = {};
   Cage? cage;
 
   List<String> cageNames = [
@@ -40,46 +43,7 @@ class _CageWidgetState extends State<CageWidget> {
   String selectedCageName = "-- Chọn chuồng --"; // Add this line
 
   String get formattedDate {
-    return DateFormat('MMM dd, yyyy').format(selectedDate);
-  }
-
-  // Function to filter tasks by status
-  List<TaskHaveCageName> getTasksByStatus(String status) {
-    return tasks.where((task) => task.status == status).toList();
-  }
-
-  // Function to categorize tasks by time of day and sort by priorityNum
-  Map<String, List<TaskHaveCageName>> get tasksByTimeOfDay {
-    final Map<String, List<TaskHaveCageName>> categorizedTasks = {
-      'Buổi sáng': [],
-      'Buổi trưa': [],
-      'Buổi chiều': [],
-    };
-
-    for (final task in tasks) {
-      if (task.status != 'Done') {
-        final session = task.session;
-        if (session == 1) {
-          categorizedTasks['Buổi sáng']?.add(task);
-        } else if (session == 2) {
-          categorizedTasks['Buổi trưa']?.add(task);
-        } else if (session == 3) {
-          categorizedTasks['Buổi chiều']?.add(task);
-        }
-      }
-    }
-
-    // Sort tasks by priorityNum
-    categorizedTasks.forEach((key, value) {
-      value.sort((a, b) => a.priorityNum.compareTo(b.priorityNum));
-    });
-
-    return categorizedTasks;
-  }
-
-  // Function to get completed tasks
-  List<TaskHaveCageName> get completedTasks {
-    return tasks.where((task) => task.status == 'Done').toList();
+    return DateFormat('EEEE, dd/MM/yyyy', 'vi').format(selectedDate);
   }
 
   final List<HomeFeatures> features = [
@@ -91,7 +55,7 @@ class _CageWidgetState extends State<CageWidget> {
     HomeFeatures(
       icon: LinearIcons.healthIconGreen,
       title: 'Vật nuôi bị bệnh',
-      routeName: RouteName.symptom,
+      routeName: RouteName.createSymptom,
     ),
     HomeFeatures(
       title: 'Gọi khẩn cấp',
@@ -100,30 +64,48 @@ class _CageWidgetState extends State<CageWidget> {
     )
   ];
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime picked = (await showDatePicker(
+          context: context,
+          initialDate: selectedDate,
+          firstDate: DateTime(2020),
+          lastDate: DateTime(2025),
+        )) ??
+        selectedDate;
+
+    if (picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+      // Call the API to fetch tasks for the selected date
+      context
+          .read<TaskBloc>()
+          .add(TaskEvent.getTasksByCageId(picked, widget.cageId));
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(widget.cageId));
+    context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(
+          DateTime.now(),
+          widget.cageId,
+        ));
   }
 
   @override
   Widget build(BuildContext context) {
-    final doneTasks = tasks.where((task) => task.status == 'Done').toList();
+    final doneTasks = tasks.values.expand((element) => element).where((task) {
+      return task.status == 'Done';
+    }).toList();
     final inProgressTasks =
-        tasks.where((task) => task.status == 'InProgress').toList();
+        tasks.values.expand((element) => element).where((task) {
+      return task.status == 'InProgress';
+    }).toList();
     final pendingTasks =
-        tasks.where((task) => task.status == 'Pending').toList();
-    final tasksByTime = {
-      'Buổi sáng': tasks
-          .where((task) => task.session == 1 && task.status != 'Done')
-          .toList(),
-      'Buổi trưa': tasks
-          .where((task) => task.session == 2 && task.status != 'Done')
-          .toList(),
-      'Buổi chiều': tasks
-          .where((task) => task.session == 3 && task.status != 'Done')
-          .toList(),
-    };
+        tasks.values.expand((element) => element).where((task) {
+      return task.status == 'Pending';
+    }).toList();
 
     return MultiBlocListener(
       listeners: [
@@ -137,7 +119,7 @@ class _CageWidgetState extends State<CageWidget> {
                 await Future.delayed(const Duration(seconds: 1));
                 LoadingDialog.hide(context);
                 setState(() {
-                  // tasks = tasksResponse.items;
+                  tasks = tasksResponse;
                 });
                 log('Lấy công việc theo chuồng thành công!');
                 context.read<CageCubit>().getCageById(widget.cageId);
@@ -174,19 +156,37 @@ class _CageWidgetState extends State<CageWidget> {
         }),
       ],
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          backgroundColor: Colors.white,
+        appBar: CustomAppBar(
+          appBarHeight: MediaQuery.of(context).size.height * 0.08,
+          hasLeading: false,
           title: Text(
             cage?.name ?? 'Đang tải...',
           ),
+          centerTitle: false,
+          actions: [
+            InkWell(
+              onTap: () => _selectDate(context),
+              child: Chip(
+                shape: const StadiumBorder(
+                    side: BorderSide(width: 0, color: Colors.transparent)),
+                label: Text(
+                  formattedDate,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                avatar: LinearIcons.calendarIcon,
+                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              ),
+            ),
+          ],
         ),
         body: RefreshIndicator(
           onRefresh: () async {
             // Refresh the task details
           },
           child: SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 16),
             physics: const AlwaysScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -323,7 +323,7 @@ class _CageWidgetState extends State<CageWidget> {
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 16, left: 16, right: 16),
+                        const EdgeInsets.only(top: 24, left: 16, right: 16),
                     child: Column(
                       children: [
                         SizedBox(
@@ -339,38 +339,14 @@ class _CageWidgetState extends State<CageWidget> {
                                 if (index < features.length) {
                                   final feature = features[index];
                                   return GestureDetector(
-                                    onTap: () => context.push(feature.routeName,
-                                        extra: {
-                                          'cageName': cage?.name ?? ''
-                                        }), // Update this line
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 10),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            border: Border.all(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          child: feature.icon,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        Text(
-                                          feature.title,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  );
+                                      onTap: () => context
+                                              .push(feature.routeName, extra: {
+                                            'cageName': cage?.name ?? ''
+                                          }), // Update this line
+                                      child: MenuFeatureWidget(
+                                        title: feature.title,
+                                        icon: feature.icon,
+                                      ));
                                 }
                                 return null;
                               }),
@@ -380,13 +356,16 @@ class _CageWidgetState extends State<CageWidget> {
                   ),
                 ),
 
-                if (tasksByTime.values.every((tasks) => tasks.isEmpty)) ...[
-                  SizedBox(
+                CustomDividerWidget(),
+                if (tasks.values.every((tasks) => tasks.isEmpty)) ...[
+                  Container(
+                    color: Colors.white,
                     height: MediaQuery.of(context).size.height * 0.6,
                     child: Center(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.1),
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(90),
@@ -424,70 +403,28 @@ class _CageWidgetState extends State<CageWidget> {
                 ] else ...[
                   const SizedBox(height: 8),
                   Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
                     color: Colors.white,
-                    padding: const EdgeInsets.only(
-                        left: 16, right: 16, top: 16, bottom: 32),
+                    padding: const EdgeInsets.only(top: 16, bottom: 32),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Move the date display to be inline with the "Công việc" text
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Công việc',
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            ),
-                            Chip(
-                              shape: const StadiumBorder(
-                                  side: BorderSide(
-                                      width: 0, color: Colors.transparent)),
-                              label: Row(
-                                children: [
-                                  Text(
-                                    DateFormat('EEEE, MMM d, yyyy')
-                                        .format(DateTime.now()),
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
-                                  ),
-                                ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Công việc',
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
                               ),
-                              backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .primaryContainer,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 16),
-                        // Morning tasks
-                        if (tasksByTime['Buổi sáng']?.isNotEmpty ?? false) ...[
-                          SectionHeader(
-                              image: 'assets/images/morning.png',
-                              title:
-                                  'Buổi sáng (${tasksByTime['Buổi sáng']?.length ?? 0})'),
-                          const SizedBox(height: 8),
-                          TaskList(tasks: tasksByTime['Buổi sáng'] ?? []),
-                        ],
-                        if (tasksByTime['Buổi trưa']?.isNotEmpty ?? false) ...[
-                          const SizedBox(height: 16),
-                          SectionHeader(
-                              image: 'assets/images/afternoon.png',
-                              title:
-                                  'Buổi trưa (${tasksByTime['Buổi trưa']?.length ?? 0})'),
-                          const SizedBox(height: 8),
-                          TaskList(tasks: tasksByTime['Buổi trưa'] ?? []),
-                        ],
-                        if (tasksByTime['Buổi chiều']?.isNotEmpty ?? false) ...[
-                          const SizedBox(height: 16),
-                          SectionHeader(
-                              image: 'assets/images/moon.png',
-                              title:
-                                  'Buổi chiều (${tasksByTime['Buổi chiều']?.length ?? 0})'),
-                          const SizedBox(height: 8),
-                          TaskList(tasks: tasksByTime['Buổi chiều'] ?? []),
-                        ],
+                        ..._buildSessionSections(tasks),
                       ],
                     ),
                   )
@@ -499,82 +436,67 @@ class _CageWidgetState extends State<CageWidget> {
       ),
     );
   }
-}
 
-// Widget for section headers
-class SectionHeader extends StatelessWidget {
-  final String title;
-  final String image;
+  List<Widget> _buildSessionSections(
+      Map<String, List<TaskHaveCageName>> tasks) {
+    return tasks.entries.map((entry) {
+      final session = entry.key;
+      final sessionTasks = entry.value;
 
-  const SectionHeader({super.key, required this.title, required this.image});
+      // Tính tổng số lượng tasks trong session
+      int totalTasks = sessionTasks.length;
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const SizedBox(width: 8),
-        Image.asset(
-          image,
-          width: 24,
-          height: 24,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(color: Theme.of(context).primaryColor),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// Widget for task lists
-class TaskList extends StatelessWidget {
-  final List<TaskHaveCageName> tasks;
-
-  const TaskList({super.key, required this.tasks});
-
-  @override
-  Widget build(BuildContext context) {
-    // Find the highest priority task with status 'InProgress'
-    TaskHaveCageName? highestPriorityInProgressTask;
-    for (final task in tasks) {
-      if (task.status == 'InProgress') {
-        if (highestPriorityInProgressTask == null ||
-            task.priorityNum < highestPriorityInProgressTask.priorityNum) {
-          highestPriorityInProgressTask = task;
-        }
+      String sessionTitle, image = 'assets/images/default.png';
+      switch (session) {
+        case 'Morning':
+          sessionTitle = 'Buổi sáng';
+          image = 'assets/images/morning.png';
+          break;
+        case 'Afternoon':
+          sessionTitle = 'Buổi trưa';
+          image = 'assets/images/afternoon.png';
+          break;
+        case 'Evening':
+          sessionTitle = 'Buổi chiều';
+          image = 'assets/images/moon.png';
+          break;
+        default:
+          sessionTitle = 'Khác';
       }
-    }
 
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        final task = tasks[index];
-        final isInProgress = task.status == 'InProgress';
-        final isCompleted = task.status == 'Done';
-        final isHighestPriorityInProgress =
-            task == highestPriorityInProgressTask;
-
-        return TaskCard(
-          task: task,
-          taskId: task.id,
-          isCompleted: isCompleted,
-          isInProgress: isInProgress,
-          isFirst: index == 0,
-          borderColor: isHighestPriorityInProgress
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.secondaryContainer,
-          highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
-        );
-      },
-    );
+      return Container(
+        color: Colors.white,
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Image.asset(image, width: 32, height: 32),
+                  const SizedBox(width: 8),
+                  Text(
+                    sessionTitle,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    '$totalTasks công việc',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            ...sessionTasks.map((task) => TaskListWidget(tasks: [task])),
+          ],
+        ),
+      );
+    }).toList();
   }
 }

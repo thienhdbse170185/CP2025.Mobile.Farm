@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/view/widgets/menu_feature.dart';
 import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
@@ -43,7 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   final List<HomeFeatures> features = [
     HomeFeatures(
       title: 'Báo cáo \ntriệu chứng',
-      routeName: RouteName.symptom,
+      routeName: RouteName.createSymptom,
       extra: {'cageName': ''},
       icon: LinearIcons.healthIconGreen,
     ),
@@ -118,10 +119,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                       onPressed: () {
                         context.push(RouteName.notification);
                       },
-                      icon: Badge(
-                        label: Text('3'),
-                        child: LinearIcons.bellIconNormal,
-                      ),
+                      icon: Image.asset('assets/images/morning.png',
+                          width: 32, height: 32),
                     ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -195,46 +194,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     if (index < features.length) {
                                       final feature = features[index];
                                       return GestureDetector(
-                                        onTap: () {
-                                          if (feature.extra!.isNotEmpty) {
-                                            context.push(feature.routeName,
-                                                extra: feature.extra);
-                                          } else {
-                                            context.push(feature.routeName);
-                                          }
-                                        },
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 14,
-                                                      vertical: 12),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
-                                                border: Border.all(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .primaryContainer,
-                                                  width: 1,
-                                                ),
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primaryContainer
-                                                    .withOpacity(0.2),
-                                              ),
-                                              child: feature.icon,
-                                            ),
-                                            const SizedBox(height: 4),
-                                            Text(
-                                              feature.title,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(fontSize: 13),
-                                            ),
-                                          ],
-                                        ),
-                                      );
+                                          onTap: () {
+                                            if (feature.extra!.isNotEmpty) {
+                                              context.push(feature.routeName,
+                                                  extra: feature.extra);
+                                            } else {
+                                              context.push(feature.routeName);
+                                            }
+                                          },
+                                          child: MenuFeatureWidget(
+                                            title: feature.title,
+                                            icon: feature.icon,
+                                          ));
                                     }
                                     return null;
                                   },
@@ -258,12 +229,24 @@ class _HomeWidgetState extends State<HomeWidget> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Chuồng được cung cấp',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Chuồng được cung cấp',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      context
+                                          .read<TaskBloc>()
+                                          .add(TaskEvent.getNextTask());
+                                    },
+                                    icon: LinearIcons.refreshIcon)
+                              ],
                             ),
-                            const SizedBox(height: 16),
                             ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
