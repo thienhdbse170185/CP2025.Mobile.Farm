@@ -1,19 +1,17 @@
 import 'dart:developer';
 
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/entity/cage/cage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/custom_divider.dart';
-import 'package:smart_farm/src/view/widgets/menu_feature.dart';
 import 'package:smart_farm/src/view/widgets/task_list.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
@@ -156,6 +154,7 @@ class _CageWidgetState extends State<CageWidget> {
         }),
       ],
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: CustomAppBar(
           appBarHeight: MediaQuery.of(context).size.height * 0.08,
           hasLeading: false,
@@ -193,7 +192,6 @@ class _CageWidgetState extends State<CageWidget> {
               children: [
                 // Header
                 Container(
-                  color: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Card(
                     color: widget.color,
@@ -318,44 +316,45 @@ class _CageWidgetState extends State<CageWidget> {
                   ),
                 ),
 
-                Container(
-                  color: const Color(0xFFFFFFFF),
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 24, left: 16, right: 16),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.12,
-                          child: GridView.builder(
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      mainAxisSpacing: 32,
-                                      crossAxisSpacing: 12,
-                                      childAspectRatio: 1),
-                              itemBuilder: (context, index) {
-                                if (index < features.length) {
-                                  final feature = features[index];
-                                  return GestureDetector(
-                                      onTap: () => context
-                                              .push(feature.routeName, extra: {
-                                            'cageName': cage?.name ?? ''
-                                          }), // Update this line
-                                      child: MenuFeatureWidget(
-                                        title: feature.title,
-                                        icon: feature.icon,
-                                      ));
-                                }
-                                return null;
-                              }),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // Container(
+                //   color: const Color(0xFFFFFFFF),
+                //   width: MediaQuery.of(context).size.width,
+                //   child: Padding(
+                //     padding:
+                //         const EdgeInsets.only(top: 24, left: 16, right: 16),
+                //     child: Column(
+                //       children: [
+                //         SizedBox(
+                //           height: MediaQuery.of(context).size.height * 0.12,
+                //           child: GridView.builder(
+                //               gridDelegate:
+                //                   const SliverGridDelegateWithFixedCrossAxisCount(
+                //                       crossAxisCount: 3,
+                //                       mainAxisSpacing: 32,
+                //                       crossAxisSpacing: 12,
+                //                       childAspectRatio: 1),
+                //               itemBuilder: (context, index) {
+                //                 if (index < features.length) {
+                //                   final feature = features[index];
+                //                   return GestureDetector(
+                //                       onTap: () => context
+                //                               .push(feature.routeName, extra: {
+                //                             'cageName': cage?.name ?? ''
+                //                           }), // Update this line
+                //                       child: MenuFeatureWidget(
+                //                         title: feature.title,
+                //                         icon: feature.icon,
+                //                       ));
+                //                 }
+                //                 return null;
+                //               }),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
 
+                const SizedBox(height: 16),
                 CustomDividerWidget(),
                 if (tasks.values.every((tasks) => tasks.isEmpty)) ...[
                   Container(
@@ -403,8 +402,6 @@ class _CageWidgetState extends State<CageWidget> {
                 ] else ...[
                   const SizedBox(height: 8),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    color: Colors.white,
                     padding: const EdgeInsets.only(top: 16, bottom: 32),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

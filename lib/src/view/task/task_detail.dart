@@ -45,14 +45,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   TaskHaveCageName? task;
 
   // Assume this is the logged-in user ID
-  final String loggedInUserId = '8dac47e4-58b6-43ef-aac8-c9c4315bd4e0';
+  String loggedInUserId = '';
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
-    // context.read<TaskBloc>().add(TaskEvent.getTaskById(taskId));
   }
 
   // Function to pick multiple images
@@ -187,13 +186,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Color getStatusTextColor(String status) {
     switch (status) {
-      case 'InProgress':
+      case 'InProgress' || 'inprogress':
         return Colors.black;
-      case 'Done':
+      case 'Done' || 'done':
         return Colors.white;
-      case 'Pending':
+      case 'Pending' || 'pending':
         return Colors.black;
-      case 'OverSchedules':
+      case 'OverSchedules' || 'overschedules':
         return Colors.white;
       default:
         return Colors.black;
@@ -233,14 +232,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     return BlocListener<TaskBloc, TaskState>(
       listener: (context, state) {
         state.maybeWhen(
-          getTaskByIdSuccess: (task) async {
+          getTaskByIdSuccess: (task, userId) async {
             // Handle task data
-            await Future.delayed(const Duration(seconds: 1));
             LoadingDialog.hide(context);
             log(task.status);
             setState(() {
               this.task = task;
               taskStatus = getStatusText(task.status);
+              loggedInUserId = userId;
             });
             log("Lấy thông tin công việc thành công!");
           },
@@ -306,9 +305,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Tạo log uống thuốc thành công!')),
             );
-            // Refresh the task details
-            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget
-                .taskId)); // This is a temporary workaround to refresh the task details
+            context.read<TaskBloc>().add(TaskEvent.updateTask(
+                widget.taskId, TaskStatusDataConstant.done.toLowerCase()));
           },
           createHealthLogFailure: (e) async {
             LoadingDialog.hide(context);
@@ -328,9 +326,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               const SnackBar(
                   content: Text('Tạo log lịch tiêm chủng thành công!')),
             );
-            // Refresh the task details
-            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget
-                .taskId)); // This is a temporary workaround to refresh the task details
+            context.read<TaskBloc>().add(TaskEvent.updateTask(
+                widget.taskId, TaskStatusDataConstant.done.toLowerCase()));
           },
           createVaccinScheduleLogFailure: (e) async {
             LoadingDialog.hide(context);

@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/entity/task/next_task/next_task.dart';
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
-import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 
 part 'task_bloc.freezed.dart';
 part 'task_event.dart';
@@ -86,7 +86,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       emit(const TaskState.getTaskByIdLoading());
       try {
         final task = await repository.getById(event.taskId);
-        emit(TaskState.getTaskByIdSuccess(task));
+        final box = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = box.get(UserDataConstant.userIdKey);
+        emit(TaskState.getTaskByIdSuccess(task, userId));
       } catch (e) {
         emit(TaskState.getTaskByIdFailure(e.toString()));
       }
@@ -264,11 +266,15 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   void _sortTasksByStatus(Map<String, List<TaskHaveCageName>> taskSorted) {
     for (var sessionTasks in taskSorted.values) {
       sessionTasks.sort((a, b) {
-        if ((a.status == 'Done' || a.status == 'OverSchedules') &&
-            (b.status != 'Done' && b.status != 'OverSchedules')) {
+        if ((a.status.toLowerCase() == 'done' ||
+                a.status.toLowerCase() == 'overschedules') &&
+            (b.status.toLowerCase() != 'done' &&
+                b.status.toLowerCase() != 'overschedules')) {
           return 1; // Move "done" and "OverSchedules" tasks to the end
-        } else if ((a.status != 'Done' && a.status != 'OverSchedules') &&
-            (b.status == 'Done' || b.status == 'OverSchedules')) {
+        } else if ((a.status.toLowerCase() != 'done' &&
+                a.status.toLowerCase() != 'overschedules') &&
+            (b.status.toLowerCase() == 'done' ||
+                b.status.toLowerCase() == 'overschedules')) {
           return -1; // Keep "done" and "OverSchedules" tasks at the end
         } else {
           return 0; // Keep order unchanged for tasks with the same status

@@ -3343,7 +3343,8 @@ mixin _$TaskState {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -3387,7 +3388,7 @@ mixin _$TaskState {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -3431,7 +3432,7 @@ mixin _$TaskState {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -3693,7 +3694,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -3740,7 +3742,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -3787,7 +3789,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -4049,7 +4051,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -4096,7 +4099,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -4143,7 +4146,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -4405,7 +4408,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -4452,7 +4456,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -4499,7 +4503,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -4788,7 +4792,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -4835,7 +4840,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -4882,7 +4887,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -5152,7 +5157,8 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -5199,7 +5205,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -5246,7 +5252,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -5508,7 +5514,8 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -5555,7 +5562,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -5602,7 +5609,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -5864,7 +5871,8 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -5911,7 +5919,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -5958,7 +5966,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -6255,7 +6263,8 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -6302,7 +6311,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -6349,7 +6358,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -6648,7 +6657,8 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -6695,7 +6705,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -6742,7 +6752,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -7012,7 +7022,8 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -7059,7 +7070,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -7106,7 +7117,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -7371,7 +7382,8 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -7418,7 +7430,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -7465,7 +7477,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -7765,7 +7777,8 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -7812,7 +7825,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -7859,7 +7872,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -8131,7 +8144,8 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -8178,7 +8192,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -8225,7 +8239,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -8438,7 +8452,7 @@ abstract class _$$GetTaskByIdSuccessImplCopyWith<$Res> {
           $Res Function(_$GetTaskByIdSuccessImpl) then) =
       __$$GetTaskByIdSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TaskHaveCageName task});
+  $Res call({TaskHaveCageName task, String userId});
 
   $TaskHaveCageNameCopyWith<$Res> get task;
 }
@@ -8457,12 +8471,17 @@ class __$$GetTaskByIdSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? task = null,
+    Object? userId = null,
   }) {
     return _then(_$GetTaskByIdSuccessImpl(
       null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
               as TaskHaveCageName,
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -8480,14 +8499,16 @@ class __$$GetTaskByIdSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
-  const _$GetTaskByIdSuccessImpl(this.task);
+  const _$GetTaskByIdSuccessImpl(this.task, this.userId);
 
   @override
   final TaskHaveCageName task;
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'TaskState.getTaskByIdSuccess(task: $task)';
+    return 'TaskState.getTaskByIdSuccess(task: $task, userId: $userId)';
   }
 
   @override
@@ -8495,11 +8516,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetTaskByIdSuccessImpl &&
-            (identical(other.task, task) || other.task == task));
+            (identical(other.task, task) || other.task == task) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, task);
+  int get hashCode => Object.hash(runtimeType, task, userId);
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -8527,7 +8549,8 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -8554,7 +8577,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function() createVaccinScheduleLogSuccess,
     required TResult Function(String error) createVaccinScheduleLogFailure,
   }) {
-    return getTaskByIdSuccess(task);
+    return getTaskByIdSuccess(task, userId);
   }
 
   @override
@@ -8574,7 +8597,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -8601,7 +8624,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function()? createVaccinScheduleLogSuccess,
     TResult? Function(String error)? createVaccinScheduleLogFailure,
   }) {
-    return getTaskByIdSuccess?.call(task);
+    return getTaskByIdSuccess?.call(task, userId);
   }
 
   @override
@@ -8621,7 +8644,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -8650,7 +8673,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult orElse(),
   }) {
     if (getTaskByIdSuccess != null) {
-      return getTaskByIdSuccess(task);
+      return getTaskByIdSuccess(task, userId);
     }
     return orElse();
   }
@@ -8825,10 +8848,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
 }
 
 abstract class _GetTaskByIdSuccess implements TaskState {
-  const factory _GetTaskByIdSuccess(final TaskHaveCageName task) =
+  const factory _GetTaskByIdSuccess(
+          final TaskHaveCageName task, final String userId) =
       _$GetTaskByIdSuccessImpl;
 
   TaskHaveCageName get task;
+  String get userId;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -8920,7 +8945,8 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -8967,7 +8993,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -9014,7 +9040,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -9285,7 +9311,8 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -9332,7 +9359,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -9379,7 +9406,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -9675,7 +9702,8 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -9722,7 +9750,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -9769,7 +9797,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -10068,7 +10096,8 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -10115,7 +10144,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -10162,7 +10191,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -10437,7 +10466,8 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -10484,7 +10514,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -10531,7 +10561,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -10853,7 +10883,8 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -10900,7 +10931,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -10947,7 +10978,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -11253,7 +11284,8 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -11300,7 +11332,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -11347,7 +11379,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -11620,7 +11652,8 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -11667,7 +11700,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -11714,7 +11747,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -12013,7 +12046,8 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -12060,7 +12094,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -12107,7 +12141,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -12408,7 +12442,8 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -12455,7 +12490,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -12502,7 +12537,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -12776,7 +12811,8 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -12823,7 +12859,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -12870,7 +12906,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -13135,7 +13171,8 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -13182,7 +13219,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -13229,7 +13266,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -13521,7 +13558,8 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -13568,7 +13606,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -13615,7 +13653,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -13890,7 +13928,8 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -13937,7 +13976,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -13984,7 +14023,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -14251,7 +14290,8 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -14298,7 +14338,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -14345,7 +14385,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -14640,7 +14680,8 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -14687,7 +14728,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -14734,7 +14775,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -15009,7 +15050,8 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -15056,7 +15098,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -15103,7 +15145,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -15368,7 +15410,8 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -15415,7 +15458,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -15462,7 +15505,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -15754,7 +15797,8 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -15801,7 +15845,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -15848,7 +15892,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -16123,7 +16167,8 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -16170,7 +16215,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -16217,7 +16262,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -16484,7 +16529,8 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -16531,7 +16577,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -16578,7 +16624,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,
@@ -16873,7 +16919,8 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
         getTasksByCageIdSuccess,
     required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task) getTaskByIdSuccess,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
     required TResult Function(String error) getTaskByIdFailure,
     required TResult Function() getNextTaskLoading,
     required TResult Function(List<NextTask> task) getNextTaskSuccess,
@@ -16920,7 +16967,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult? Function(String error)? getTaskByIdFailure,
     TResult? Function()? getNextTaskLoading,
     TResult? Function(List<NextTask> task)? getNextTaskSuccess,
@@ -16967,7 +17014,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
         getTasksByCageIdSuccess,
     TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task)? getTaskByIdSuccess,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
     TResult Function(String error)? getTaskByIdFailure,
     TResult Function()? getNextTaskLoading,
     TResult Function(List<NextTask> task)? getNextTaskSuccess,

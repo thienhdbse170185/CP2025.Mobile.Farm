@@ -17,7 +17,10 @@ class TaskState with _$TaskState {
   const factory TaskState.getTasksByCageIdSuccess(
       Map<String, List<TaskHaveCageName>> tasks) = _GetTasksByCageIdSuccess;
   const factory TaskState.getTaskByIdLoading() = _GetTaskByIdLoading;
-  const factory TaskState.getTaskByIdSuccess(TaskHaveCageName task) = _GetTaskByIdSuccess;
+  const factory TaskState.getTaskByIdSuccess(
+    TaskHaveCageName task,
+    String userId,
+  ) = _GetTaskByIdSuccess;
   const factory TaskState.getTaskByIdFailure(String error) =
       _GetTaskByIdFailure;
   const factory TaskState.getNextTaskLoading() = _GetNextTaskLoading;
