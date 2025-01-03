@@ -85,7 +85,7 @@ class _CageWidgetState extends State<CageWidget> {
   void initState() {
     super.initState();
     context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(
-          DateTime.now(),
+          selectedDate,
           widget.cageId,
         ));
   }
@@ -93,15 +93,15 @@ class _CageWidgetState extends State<CageWidget> {
   @override
   Widget build(BuildContext context) {
     final doneTasks = tasks.values.expand((element) => element).where((task) {
-      return task.status == 'Done' || task.status == 'done';
+      return task.status.toLowerCase() == 'done';
     }).toList();
     final inProgressTasks =
         tasks.values.expand((element) => element).where((task) {
-      return task.status == 'InProgress' || task.status == 'inprogress';
+      return task.status.toLowerCase() == 'inprogress';
     }).toList();
     final pendingTasks =
         tasks.values.expand((element) => element).where((task) {
-      return task.status == 'Pending' || task.status == 'pending';
+      return task.status.toLowerCase() == 'pending';
     }).toList();
 
     return MultiBlocListener(
@@ -209,7 +209,7 @@ class _CageWidgetState extends State<CageWidget> {
         body: RefreshIndicator(
           onRefresh: () async {
             context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(
-                  DateTime.now(),
+                  selectedDate,
                   widget.cageId,
                 ));
           },

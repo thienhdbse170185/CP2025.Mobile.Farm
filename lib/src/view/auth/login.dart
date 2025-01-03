@@ -89,12 +89,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                 TextFieldRequired(
                   label: 'Tên tài khoản',
                   hintText: 'Nhập tên tài khoản',
+                  isDisabled: false,
                   controller: _usernameController,
                 ),
                 const SizedBox(height: 16),
                 TextFieldRequired(
                   label: 'Mật khẩu',
                   hintText: 'Nhập mậu khẩu',
+                  isDisabled: false,
                   isObscureText: !_isPasswordVisible,
                   controller: _passwordController,
                   isPassword: true,

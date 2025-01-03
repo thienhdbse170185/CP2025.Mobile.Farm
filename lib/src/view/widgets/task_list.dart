@@ -32,7 +32,6 @@ class TaskListWidget extends StatelessWidget {
                     task.status == 'done'
                 ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).colorScheme.secondaryContainer,
-            highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
           );
         }).toList(),
       ),

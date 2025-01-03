@@ -34,7 +34,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   DateTime? logTime;
 
   // For image upload
-  List<File> _images = [];
+  final List<File> _images = [];
 
   // Controller for log input
   TextEditingController logController = TextEditingController();
@@ -107,8 +107,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         photo: '',
                         taskId: widget.taskId);
                     context.read<TaskBloc>().add(
-                        TaskEvent.createDailyFoodUsageLog(
-                            cageId: task!.cageId, log: log));
+                          TaskEvent.createDailyFoodUsageLog(
+                              cageId: task!.cageId, log: log),
+                        );
                   } else if (task!.taskType.taskTypeId ==
                       TaskTypeDataConstant.health) {
                     final log = HealthLogDto(
@@ -316,7 +317,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               const SnackBar(content: Text('Tạo log cho ăn thành công!')),
             );
             context.read<TaskBloc>().add(TaskEvent.updateTask(
-                widget.taskId, TaskStatusDataConstant.done.toLowerCase()));
+                widget.taskId, TaskStatusDataConstant.done));
           },
           createDailyFoodUsageLogFailure: (e) async {
             LoadingDialog.hide(context);
@@ -336,7 +337,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               const SnackBar(content: Text('Tạo log uống thuốc thành công!')),
             );
             context.read<TaskBloc>().add(TaskEvent.updateTask(
-                widget.taskId, TaskStatusDataConstant.done.toLowerCase()));
+                widget.taskId, TaskStatusDataConstant.done));
           },
           createHealthLogFailure: (e) async {
             LoadingDialog.hide(context);
@@ -357,7 +358,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   content: Text('Tạo log lịch tiêm chủng thành công!')),
             );
             context.read<TaskBloc>().add(TaskEvent.updateTask(
-                widget.taskId, TaskStatusDataConstant.done.toLowerCase()));
+                widget.taskId, TaskStatusDataConstant.done));
           },
           createVaccinScheduleLogFailure: (e) async {
             LoadingDialog.hide(context);

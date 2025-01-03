@@ -74,9 +74,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
         final box = await Hive.openBox(UserDataConstant.userBoxName);
         final userId = box.get(UserDataConstant.userIdKey);
-        final tasks = await (repository)
+        final tasks = await repository
             .getTasksByCageId(userId, formattedDate, event.cageId);
         final tasksMap = _convertTasksToTaskMap(tasks);
+        _sortTasksByStatus(tasksMap);
         emit(TaskState.getTasksByCageIdSuccess(tasksMap));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
@@ -293,20 +294,24 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   void _sortTasksByStatus(Map<String, List<TaskHaveCageName>> taskSorted) {
     for (var sessionTasks in taskSorted.values) {
       sessionTasks.sort((a, b) {
-        if ((a.status.toLowerCase() == 'done' ||
-                a.status.toLowerCase() == 'overschedules') &&
-            (b.status.toLowerCase() != 'done' &&
-                b.status.toLowerCase() != 'overschedules')) {
-          return 1; // Move "done" and "OverSchedules" tasks to the end
-        } else if ((a.status.toLowerCase() != 'done' &&
-                a.status.toLowerCase() != 'overschedules') &&
-            (b.status.toLowerCase() == 'done' ||
-                b.status.toLowerCase() == 'overschedules')) {
-          return -1; // Keep "done" and "OverSchedules" tasks at the end
-        } else {
-          return 0; // Keep order unchanged for tasks with the same status
-        }
+        // Ánh xạ trạng thái thành giá trị số để sắp xếp
+        int priorityA = _getStatusPriority(a.status);
+        int priorityB = _getStatusPriority(b.status);
+
+        return priorityA.compareTo(priorityB);
       });
+    }
+  }
+
+// Hàm ánh xạ trạng thái task thành giá trị số
+  int _getStatusPriority(String status) {
+    switch (status.toLowerCase()) {
+      case 'overschedules': // Task hết hạn
+        return 2; // Ưu tiên thấp nhất
+      case 'done': // Task đã hoàn thành
+        return 1; // Ưu tiên trung bình
+      default: // Các trạng thái khác
+        return 0; // Ưu tiên cao nhất
     }
   }
 }

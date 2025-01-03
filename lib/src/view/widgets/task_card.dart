@@ -13,7 +13,6 @@ class TaskCard extends StatelessWidget {
   final bool isInProgress;
   final bool isFirst;
   final Color borderColor;
-  final bool highlightName;
   final String? cageName;
   final bool isOverdue;
 
@@ -25,7 +24,6 @@ class TaskCard extends StatelessWidget {
       this.isFirst = false,
       this.taskId,
       required this.borderColor,
-      required this.highlightName,
       this.cageName,
       required this.isOverdue});
 

@@ -120,11 +120,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: ListTile(
-                      leading: IconButton(
-                        onPressed: () {
-                          context.push(RouteName.notification);
-                        },
-                        icon: Image.asset('assets/images/morning.png',
+                      leading: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Image.asset('assets/images/morning.png',
                             width: 32, height: 32),
                       ),
                       trailing: Row(
