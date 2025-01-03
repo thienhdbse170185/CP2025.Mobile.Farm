@@ -60,4 +60,21 @@ class TaskState with _$TaskState {
       _CreateVaccinScheduleLogSuccess;
   const factory TaskState.createVaccinScheduleLogFailure(String error) =
       _CreateVaccinScheduleLogFailure;
+  const factory TaskState.getDailyFoodUsageLogLoading() =
+      _GetDailyFoodUsageLogLoading;
+  const factory TaskState.getDailyFoodUsageLogSuccess(
+      DailyFoodUsageLogDto log) = _GetDailyFoodUsageLogSuccess;
+  const factory TaskState.getDailyFoodUsageLogFailure(String error) =
+      _GetDailyFoodUsageLogFailure;
+  const factory TaskState.getHealthLogLoading() = _GetHealthLogLoading;
+  const factory TaskState.getHealthLogSuccess(HealthLogDto log) =
+      _GetHealthLogSuccess;
+  const factory TaskState.getHealthLogFailure(String error) =
+      _GetHealthLogFailure;
+  const factory TaskState.getVaccinScheduleLogLoading() =
+      _GetVaccinScheduleLogLoading;
+  const factory TaskState.getVaccinScheduleLogSuccess(
+      VaccinScheduleLogDto log) = _GetVaccinScheduleLogSuccess;
+  const factory TaskState.getVaccinScheduleLogFailure(String error) =
+      _GetVaccinScheduleLogFailure;
 }

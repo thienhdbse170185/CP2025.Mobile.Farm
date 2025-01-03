@@ -27,7 +27,6 @@ class CageWidget extends StatefulWidget {
 
 class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now(); // Store the selected date
-  String loggedInUser = 'Staff Farm 1'; // Add this line
 
   Map<String, List<TaskHaveCageName>> tasks = {};
   Cage? cage;
@@ -66,8 +65,8 @@ class _CageWidgetState extends State<CageWidget> {
     final DateTime picked = (await showDatePicker(
           context: context,
           initialDate: selectedDate,
-          firstDate: DateTime(2020),
-          lastDate: DateTime(2025),
+          firstDate: DateTime(2024),
+          lastDate: DateTime(2028),
         )) ??
         selectedDate;
 
@@ -94,15 +93,15 @@ class _CageWidgetState extends State<CageWidget> {
   @override
   Widget build(BuildContext context) {
     final doneTasks = tasks.values.expand((element) => element).where((task) {
-      return task.status == 'Done';
+      return task.status == 'Done' || task.status == 'done';
     }).toList();
     final inProgressTasks =
         tasks.values.expand((element) => element).where((task) {
-      return task.status == 'InProgress';
+      return task.status == 'InProgress' || task.status == 'inprogress';
     }).toList();
     final pendingTasks =
         tasks.values.expand((element) => element).where((task) {
-      return task.status == 'Pending';
+      return task.status == 'Pending' || task.status == 'pending';
     }).toList();
 
     return MultiBlocListener(
@@ -156,33 +155,63 @@ class _CageWidgetState extends State<CageWidget> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          appBarHeight: MediaQuery.of(context).size.height * 0.08,
-          hasLeading: false,
-          title: Text(
-            cage?.name ?? 'Đang tải...',
+          leading: IconButton(
+            icon: LinearIcons.arrowBackIcon,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          centerTitle: false,
-          actions: [
-            InkWell(
-              onTap: () => _selectDate(context),
-              child: Chip(
-                shape: const StadiumBorder(
-                    side: BorderSide(width: 0, color: Colors.transparent)),
-                label: Text(
-                  formattedDate,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                avatar: LinearIcons.calendarIcon,
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          appBarHeight: MediaQuery.of(context).size.height * 0.08,
+          title: Column(
+            children: [
+              Text(
+                cage?.name ?? 'Đang tải...',
               ),
-            ),
-          ],
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    formattedDate,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(width: 8),
+                  InkWell(
+                    onTap: () => _selectDate(context),
+                    child: Text('Thay đổi',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              decoration: TextDecoration.underline,
+                            )),
+                  )
+                ],
+              )
+            ],
+          ),
+          // centerTitle: false,
+          // actions: [
+          //   InkWell(
+          //     onTap: () => _selectDate(context),
+          //     child: Chip(
+          //       shape: const StadiumBorder(
+          //           side: BorderSide(width: 0, color: Colors.transparent)),
+          //       label: Text(
+          //         formattedDate,
+          //         style: TextStyle(
+          //           color: Theme.of(context).colorScheme.primary,
+          //         ),
+          //       ),
+          //       avatar: LinearIcons.calendarIcon,
+          //       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          //     ),
+          //   ),
+          // ],
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            // Refresh the task details
+            context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(
+                  DateTime.now(),
+                  widget.cageId,
+                ));
           },
           child: SingleChildScrollView(
             padding: const EdgeInsets.only(top: 16),
@@ -194,7 +223,7 @@ class _CageWidgetState extends State<CageWidget> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Card(
-                    color: widget.color,
+                    color: Theme.of(context).colorScheme.primary,
                     child: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(

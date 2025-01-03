@@ -219,6 +219,33 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(TaskState.createVaccinScheduleLogFailure(e.toString()));
       }
     });
+    on<_GetDailyFoodUsageLog>((event, emit) async {
+      emit(const TaskState.getDailyFoodUsageLogLoading());
+      try {
+        final log = await repository.getDailyFoodUsageLog(event.taskId);
+        emit(TaskState.getDailyFoodUsageLogSuccess(log));
+      } catch (e) {
+        emit(TaskState.getDailyFoodUsageLogFailure(e.toString()));
+      }
+    });
+    on<_GetHealthLog>((event, emit) async {
+      emit(const TaskState.getHealthLogLoading());
+      try {
+        final log = await repository.getHealthLog(event.taskId);
+        emit(TaskState.getHealthLogSuccess(log));
+      } catch (e) {
+        emit(TaskState.getHealthLogFailure(e.toString()));
+      }
+    });
+    on<_GetVaccinScheduleLog>((event, emit) async {
+      emit(const TaskState.getVaccinScheduleLogLoading());
+      try {
+        final log = await repository.getVaccinScheduleLog(event.taskId);
+        emit(TaskState.getVaccinScheduleLogSuccess(log));
+      } catch (e) {
+        emit(TaskState.getVaccinScheduleLogFailure(e.toString()));
+      }
+    });
   }
 
   // Tách hàm chuyển đổi tasks sang taskSorted

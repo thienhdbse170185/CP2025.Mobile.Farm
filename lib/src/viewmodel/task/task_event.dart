@@ -31,4 +31,9 @@ class TaskEvent with _$TaskEvent {
     required String cageId,
     required VaccinScheduleLogDto log,
   }) = _CreateVaccinScheduleLog;
+  const factory TaskEvent.getDailyFoodUsageLog(String taskId) =
+      _GetDailyFoodUsageLog;
+  const factory TaskEvent.getHealthLog(String taskId) = _GetHealthLog;
+  const factory TaskEvent.getVaccinScheduleLog(String taskId) =
+      _GetVaccinScheduleLog;
 }

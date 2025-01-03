@@ -5,6 +5,7 @@ import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_r
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart'; // For picking images
+import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
@@ -59,10 +60,36 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     });
   }
 
+  String get formattedDate {
+    return DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
+  }
+
+  // Function to pick an image from the camera
+  Future<void> _pickImageFromCamera() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setState(() {
+        _images.add(File(pickedFile.path));
+      });
+    }
+  }
+
+  // Function to pick an image from the gallery
+  Future<void> _pickImageFromGallery() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _images.add(File(pickedFile.path));
+      });
+    }
+  }
+
   void _submitForm() {
     final request = CreateSymptomRequest(
       farmingBatchId:
-          '1252AE87-0DC7-4E7D-B0F4-8D49025DC253', // Replace with actual batch ID
+          '888a205f-2726-4368-bd93-0368ad786ffd', // Replace with actual batch ID
       symptoms: _enteredSymptoms.join(', '),
       status: 'Pending', // Replace with actual status
       affectedQuantity: int.parse(_affectedController.text),
@@ -80,6 +107,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
 
   void _showCageSelectionSheet() {
     showModalBottomSheet(
+      backgroundColor: Colors.white,
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -102,8 +130,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                     return Card.outlined(
                       margin: const EdgeInsets.symmetric(vertical: 8),
                       child: ListTile(
-                        leading: Icon(Icons.home,
-                            color: Theme.of(context).primaryColor),
+                        leading: LinearIcons.chickenIcon,
                         title: Text(cage),
                         onTap: () {
                           setState(() {
@@ -183,7 +210,16 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          title: const Text('Đơn báo cáo sức khỏe'),
+          appBarHeight: MediaQuery.of(context).size.height * 0.08,
+          title: Column(
+            children: [
+              const Text('Đơn báo cáo sức khỏe'),
+              Text(
+                'Ngày báo cáo: $formattedDate',
+                style: Theme.of(context).textTheme.bodyMedium,
+              )
+            ],
+          ),
           centerTitle: true,
           leading: IconButton(
             icon: LinearIcons.arrowBackIcon,
@@ -207,7 +243,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
 
   Widget _buildForm() {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 128),
       physics: const AlwaysScrollableScrollPhysics(),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -216,9 +252,10 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           children: [
             TextFieldRequired(
               label: 'Chuồng',
+              isDisabled: false,
+              isReadOnly: true,
               hintText: 'Chọn chuồng',
               suffixIcon: const Icon(Icons.arrow_drop_down),
-              isReadOnly: true,
               onTap: _showCageSelectionSheet,
               controller:
                   TextEditingController(text: _selectedCage ?? 'Chọn chuồng'),
@@ -324,6 +361,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             const SizedBox(height: 16),
             TextFieldRequired(
                 controller: _affectedController,
+                isDisabled: false,
                 label: 'Số lượng con vật bị bệnh',
                 hintText: 'Nhập số lượng'),
             const SizedBox(height: 24),
@@ -338,18 +376,49 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            Text(
-              'Ảnh kèm theo',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 32),
+            Text('Tập tin đính kèm',
+                style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 20),
+            if (_images.isEmpty)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: _pickImageFromCamera,
+                    child: Column(
+                      children: [
+                        LinearIcons.cameraIcon,
+                        SizedBox(height: 8),
+                        Text(
+                          'Chụp ảnh',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: _pickImageFromGallery,
+                    child: Column(
+                      children: [
+                        LinearIcons.folderAddIcon,
+                        SizedBox(height: 8),
+                        Text(
+                          'Chọn tập tin',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: _images.map((image) {
                 return Stack(
-                  alignment: Alignment.topRight,
                   children: [
                     Image.file(
                       image,
@@ -359,33 +428,64 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                     ),
                     Positioned(
                       right: 0,
-                      child: InkWell(
-                        onTap: () {
+                      child: IconButton(
+                        icon:
+                            const Icon(Icons.remove_circle, color: Colors.red),
+                        onPressed: () {
                           setState(() {
                             _images.remove(image);
                           });
                         },
-                        child: const CircleAvatar(
-                          radius: 12,
-                          backgroundColor: Colors.red,
-                          child: Icon(
-                            Icons.close,
-                            size: 16,
-                            color: Colors.white,
-                          ),
-                        ),
                       ),
                     ),
                   ],
                 );
               }).toList(),
             ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: _pickImages,
-              icon: const Icon(Icons.add_a_photo),
-              label: const Text('Tải ảnh lên'),
-            ),
+            const SizedBox(height: 24),
+            if (_images.isNotEmpty)
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SafeArea(
+                        child: Wrap(
+                          children: <Widget>[
+                            ListTile(
+                              leading: LinearIcons.cameraIcon,
+                              title: Text('Chụp ảnh'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                _pickImageFromCamera();
+                              },
+                            ),
+                            ListTile(
+                              leading: LinearIcons.folderAddIcon,
+                              title: Text('Chọn tập tin'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                _pickImageFromGallery();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Column(
+                  children: [
+                    LinearIcons.folderAddIcon,
+                    const SizedBox(height: 8),
+                    Text(
+                      'Thêm mục khác',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                  ],
+                ),
+              )
           ],
         ),
       ),

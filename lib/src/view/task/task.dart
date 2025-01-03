@@ -48,8 +48,8 @@ class _TaskWidgetState extends State<TaskWidget> {
     final DateTime picked = (await showDatePicker(
           context: context,
           initialDate: selectedDate,
-          firstDate: DateTime(2020),
-          lastDate: DateTime(2025),
+          firstDate: DateTime(2024),
+          lastDate: DateTime(2026),
         )) ??
         selectedDate;
 
@@ -270,7 +270,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
               // [BODY]
               Expanded(
-                child: taskSorted.isNotEmpty
+                child: taskSorted.values.isNotEmpty
                     ? ListView(
                         children: [
                           ..._buildSessionSections(taskSorted),

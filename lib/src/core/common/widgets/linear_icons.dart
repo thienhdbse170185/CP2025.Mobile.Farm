@@ -5,7 +5,7 @@ class LinearIcons {
   static final Widget settingIconGreen = SvgPicture.asset(
     'assets/icons/setting.svg',
     semanticsLabel: 'Setting',
-    colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
   static final Widget settingIconNormal = SvgPicture.asset(
@@ -16,7 +16,7 @@ class LinearIcons {
   static final Widget bellIconGreen = SvgPicture.asset(
     'assets/icons/bell.svg',
     semanticsLabel: 'Bell',
-    colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
   static final Widget bellIconNormal = SvgPicture.asset(
@@ -27,19 +27,19 @@ class LinearIcons {
   static final Widget helpIcon = SvgPicture.asset(
     'assets/icons/help.svg',
     semanticsLabel: 'Help',
-    colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
   static final Widget aboutIcon = SvgPicture.asset(
     'assets/icons/information.svg',
     semanticsLabel: 'About',
-    colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
   static final Widget historyIcon = SvgPicture.asset(
     'assets/icons/history.svg',
     semanticsLabel: 'History',
-    colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
   static final Widget logoutIcon = SvgPicture.asset(
@@ -76,13 +76,13 @@ class LinearIcons {
   static final Widget healthIconGreen = SvgPicture.asset(
     'assets/icons/health.svg',
     semanticsLabel: 'Health',
-    colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
   static final Widget phoneCallingIconGreen = SvgPicture.asset(
     'assets/icons/call-calling.svg',
     semanticsLabel: 'Phone Calling',
-    colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn),
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
   static final Widget addCircleIcon = SvgPicture.asset(
@@ -148,5 +148,38 @@ class LinearIcons {
   static final Widget homeHashtagIcon = SvgPicture.asset(
     'assets/icons/home-hashtag.svg',
     semanticsLabel: 'Home Hashtag',
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
+  );
+
+  static final Widget categoryIcon = SvgPicture.asset(
+    'assets/icons/category.svg',
+    semanticsLabel: 'Category',
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
+  );
+
+  static final Widget calendarRemoveIcon = SvgPicture.asset(
+    'assets/icons/calendar-remove.svg',
+    semanticsLabel: 'Calendar Remove',
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
+  );
+
+  static final Widget notiStatusIcon = SvgPicture.asset(
+      'assets/icons/noti-status.svg',
+      semanticsLabel: 'Noti Status');
+
+  static final Widget taskSquareIcon = SvgPicture.asset(
+      'assets/icons/task-square.svg',
+      semanticsLabel: 'Task Square');
+
+  static final Widget cameraIcon = SvgPicture.asset(
+    'assets/icons/camera.svg',
+    semanticsLabel: 'Camera',
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
+  );
+
+  static final Widget folderAddIcon = SvgPicture.asset(
+    'assets/icons/folder-add.svg',
+    semanticsLabel: 'Folder Add',
+    colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 }

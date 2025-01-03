@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +31,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     with SingleTickerProviderStateMixin {
   // Task status
   String taskStatus = 'Loading...'; // Start directly at 'in progress'
+  DateTime? logTime;
 
   // For image upload
   List<File> _images = [];
@@ -40,8 +40,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   TextEditingController logController = TextEditingController();
   TextEditingController actualWeightController = TextEditingController();
 
-  // Tab controller
-  late TabController _tabController;
   TaskHaveCageName? task;
 
   // Assume this is the logged-in user ID
@@ -50,17 +48,29 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
     context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
   }
 
-  // Function to pick multiple images
-  Future<void> _pickImages() async {
+  // Function to pick an image from the camera
+  Future<void> _pickImageFromCamera() async {
     final picker = ImagePicker();
-    final pickedFiles = await picker.pickMultiImage();
-    setState(() {
-      _images = pickedFiles.map((pickedFile) => File(pickedFile.path)).toList();
-    });
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setState(() {
+        _images.add(File(pickedFile.path));
+      });
+    }
+  }
+
+  // Function to pick an image from the gallery
+  Future<void> _pickImageFromGallery() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _images.add(File(pickedFile.path));
+      });
+    }
   }
 
   // Function to update task status
@@ -123,14 +133,16 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                           ),
                         );
                   } else {
-                    context.read<TaskBloc>().add(TaskEvent.updateTask(
-                        widget.taskId,
-                        TaskStatusDataConstant.done.toLowerCase()));
+                    context.read<TaskBloc>().add(
+                          TaskEvent.updateTask(
+                              widget.taskId, TaskStatusDataConstant.done),
+                        );
                   }
                 } else if (taskStatus == 'Chuẩn bị') {
-                  context.read<TaskBloc>().add(TaskEvent.updateTask(
-                      widget.taskId,
-                      TaskStatusDataConstant.inprogress.toLowerCase()));
+                  context.read<TaskBloc>().add(
+                        TaskEvent.updateTask(
+                            widget.taskId, TaskStatusDataConstant.inprogress),
+                      );
                 }
               },
               child: const Text('Xác nhận'),
@@ -202,13 +214,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   Color getPriorityColor(int priority) {
     switch (priority) {
       case 1:
-        return Colors.red;
+        return Colors.red.shade200;
       case 2:
-        return Colors.yellow;
+        return Colors.yellow.shade200;
       case 3:
-        return Colors.lightBlue;
+        return Colors.lightBlue.shade300;
       default:
-        return Colors.lightBlue; // Treat priorities greater than 3 as "Thấp"
+        return Colors
+            .lightBlue.shade200; // Treat priorities greater than 3 as "Thấp"
     }
   }
 
@@ -242,6 +255,23 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               loggedInUserId = userId;
             });
             log("Lấy thông tin công việc thành công!");
+            if (task.status == 'Done' || task.status == 'done') {
+              if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
+                context
+                    .read<TaskBloc>()
+                    .add(TaskEvent.getDailyFoodUsageLog(widget.taskId));
+              } else if (task.taskType.taskTypeId ==
+                  TaskTypeDataConstant.health) {
+                context
+                    .read<TaskBloc>()
+                    .add(TaskEvent.getHealthLog(widget.taskId));
+              } else if (task.taskType.taskTypeId ==
+                  TaskTypeDataConstant.vaccin) {
+                context
+                    .read<TaskBloc>()
+                    .add(TaskEvent.getVaccinScheduleLog(widget.taskId));
+              }
+            }
           },
           getTaskByIdLoading: () {
             LoadingDialog.show(context, "Đang lấy thông tin công việc...");
@@ -337,11 +367,51 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   content: Text('Tạo log lịch tiêm chủng thất bại!')),
             );
           },
+          getDailyFoodUsageLogLoading: () {
+            log("Đang lấy log cho ăn...");
+            LoadingDialog.show(context, "Đang lấy thông tin đơn báo cáo...");
+          },
+          getDailyFoodUsageLogSuccess: (log) async {
+            setState(() {
+              actualWeightController.text = log.actualWeight.toString();
+              logController.text = log.notes;
+              logTime = log.logTime;
+            });
+            LoadingDialog.hide(context);
+          },
+          getDailyFoodUsageLogFailure: (e) async {
+            log("Lấy log cho ăn thất bại!");
+          },
+          getHealthLogLoading: () {
+            log("Đang lấy log sức khỏe...");
+            LoadingDialog.show(context, "Đang lấy thông tin đơn báo cáo...");
+          },
+          getHealthLogSuccess: (log) async {
+            setState(() {
+              logController.text = log.notes;
+            });
+            LoadingDialog.hide(context);
+          },
+          getHealthLogFailure: (e) async {
+            log("Lấy log sức khỏe thất bại!");
+          },
+          getVaccinScheduleLogLoading: () {
+            log("Đang lấy log lịch tiêm chủng...");
+            LoadingDialog.show(context, "Đang lấy thông tin đơn báo cáo...");
+          },
+          getVaccinScheduleLogSuccess: (log) async {
+            setState(() {
+              logController.text = log.notes;
+            });
+            LoadingDialog.hide(context);
+          },
+          getVaccinScheduleLogFailure: (e) async {
+            log("Lấy log lịch tiêm chủng thất bại!");
+          },
           orElse: () {},
         );
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: CustomAppBar(
           leading: IconButton(
               onPressed: () {
@@ -349,31 +419,184 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               icon: LinearIcons.arrowBackIcon),
           title: const Text('Chi tiết công việc'),
-          bottom: (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-                  task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
-                  task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
-              ? TabBar(
-                  controller: _tabController,
-                  tabs: const [
-                    Tab(text: 'Thông tin'),
-                    Tab(text: 'Công việc'),
-                  ],
-                )
-              : null,
+          appBarHeight: MediaQuery.of(context).size.height * 0.08,
         ),
-        body: (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-                task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
-                task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
-            ? TabBarView(
-                controller: _tabController,
-                children: [
-                  // Tab "Thông tin"
-                  _buildInfoTab(context),
-                  // Tab "Công việc"
-                  _buildWorkTab(context),
-                ],
-              )
-            : _buildInfoTab(context),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            // Refresh the task details
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(bottom: 80),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(top: 24, left: 20, bottom: 24),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Tên công việc',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.outline,
+                            fontSize: 13,
+                          )),
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          const SizedBox(width: 4),
+                          Text(
+                            task?.taskName ?? "",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Mô tả',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.outline,
+                          fontSize: 13,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              task?.description ?? "",
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(
+                      top: 24, left: 20, bottom: 24, right: 20),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                      bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // Số cột
+                      mainAxisSpacing: 16, // Khoảng cách giữa các hàng
+                      crossAxisSpacing: 16, // Khoảng cách giữa các cột
+                      childAspectRatio: 3, // Tỉ lệ chiều rộng / chiều cao
+                    ),
+                    itemCount: 6, // Tổng số phần tử trong lưới
+                    itemBuilder: (context, index) {
+                      switch (index) {
+                        case 0:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.homeHashtagIcon,
+                            label: 'Tên chuồng',
+                            value: task?.cageName ?? "",
+                          );
+                        case 1:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.categoryIcon,
+                            label: 'Loại công việc',
+                            value: task?.taskType.taskTypeName ?? "",
+                          );
+                        case 2:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.taskSquareIcon,
+                            label: 'Độ ưu tiên',
+                            value: getPriorityText(task?.priorityNum ?? 0),
+                            color: getPriorityColor(task?.priorityNum ?? 0),
+                          );
+                        case 3:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.notiStatusIcon,
+                            label: 'Trạng thái',
+                            value: getStatusText(task?.status ?? ""),
+                            color: getStatusColor(task?.status ?? ""),
+                          );
+                        case 4:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.calendarRemoveIcon,
+                            label: 'Hạn chót',
+                            value: formatDate(task?.dueDate ?? ""),
+                          );
+                        case 5:
+                          return Container(); // Phần tử trống
+                        default:
+                          return Container();
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                      bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: (task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.feeding ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.health ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.vaccin)
+                      ? _buildWorkTab(context)
+                      : Text(
+                          '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  color: Theme.of(context).colorScheme.error),
+                        ),
+                )
+              ],
+            ),
+          ),
+        ),
         bottomSheet: task?.assignedToUser.userId == loggedInUserId
             ? Container(
                 width: MediaQuery.of(context).size.width,
@@ -398,160 +621,23 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     );
   }
 
-  Widget _buildInfoTab(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        // Refresh the task details
-      },
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        padding:
-            const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 80),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        task?.taskName ?? "",
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          LinearIcons.homeHashtagIcon,
-                          const SizedBox(width: 8),
-                          Text(
-                            task?.cageName ?? "",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Chip(
-                        label: Text(
-                          taskStatus,
-                          style: TextStyle(
-                            color: getStatusTextColor(task?.status ?? ''),
-                          ),
-                        ),
-                        backgroundColor: getStatusColor(task?.status ?? ''),
-                        shape: const StadiumBorder(
-                            side: BorderSide(
-                                width: 0, color: Colors.transparent)),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(2),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 2,
-                    ),
-                  ),
-                  child: const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/images/avatar.png'),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Mô tả',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            const SizedBox(height: 4),
-            // Log input TextField
-            TextField(
-              controller: TextEditingController(text: task?.description),
-              style: Theme.of(context).textTheme.bodyMedium,
-              maxLines: 3,
-              readOnly: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Độ ưu tiên',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-            Chip(
-              label: Text(
-                getPriorityText(task?.priorityNum ?? 0),
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-              backgroundColor: getPriorityColor(task?.priorityNum ?? 0),
-              shape: const StadiumBorder(
-                  side: BorderSide(width: 0, color: Colors.transparent)),
-            ),
-            const SizedBox(height: 32),
-            TextFieldRequired(
-              label: 'Loại công việc',
-              hintText: 'Loại công việc',
-              content: task?.taskType.taskTypeName,
-              prefixIcon: const Icon(Icons.work_outline),
-            ),
-            const SizedBox(height: 16),
-            TextFieldRequired(
-              label: 'Người được phân công',
-              hintText: 'được phân công',
-              content: task?.assignedToUser.fullName,
-              prefixIcon: const Icon(Icons.person),
-            ),
-            const SizedBox(height: 16),
-            TextFieldRequired(
-              label: 'Ngày tạo',
-              hintText: 'Ngày tạo',
-              content: formatDate(task?.createdAt),
-              prefixIcon: const Icon(Icons.date_range),
-            ),
-            const SizedBox(height: 16),
-            TextFieldRequired(
-              label: 'Ngày hết hạn',
-              hintText: 'Ngày hết hạn',
-              content: formatDate(task?.dueDate),
-              prefixIcon: const Icon(Icons.date_range),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildWorkTab(BuildContext context) {
     bool isEditable = task?.assignedToUser.userId == loggedInUserId;
     bool isPending = taskStatus == 'Chuẩn bị';
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (isPending)
             Text(
-              'Xác nhận bắt đầu để có thể tải ảnh lên, ghi chú và hoàn thành công việc.',
+              '(!) Xác nhận bắt đầu để có thể tạo đơn báo cáo và hoàn thành công việc.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.error,
                   ),
             )
           else ...[
             // Upload Image Section
-            if (task!.taskType.taskTypeId == TaskTypeDataConstant.feeding)
+            if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -559,20 +645,23 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 4),
                   Text(
-                    'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
+                    'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(logTime ?? DateTime.now())}',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.outline,
                     ),
                   ),
                   const SizedBox(height: 24),
                   TextFieldRequired(
-                      label: 'Cân nặng thực tế (kg)',
-                      keyBoardType: TextInputType.number,
-                      controller: actualWeightController,
-                      hintText: 'Nhập cân nặng thực tế (kg)')
+                    label: 'Cân nặng thực tế (kg)',
+                    keyBoardType: TextInputType.number,
+                    controller: actualWeightController,
+                    hintText: 'Nhập cân nặng thực tế (kg)',
+                    isDisabled: taskStatus ==
+                        'Đã hoàn thành', // Make read-only if task is done
+                  )
                 ],
               )
-            else if (task!.taskType.taskTypeId == TaskTypeDataConstant.health)
+            else if (task?.taskType.taskTypeId == TaskTypeDataConstant.health)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -587,7 +676,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   ),
                 ],
               )
-            else if (task!.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
+            else if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -603,92 +692,52 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 ],
               ),
             const SizedBox(height: 24),
-            Text(
-              'Ghi chú',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            const SizedBox(height: 8),
             // Log input TextField
-            TextField(
+            TextFieldRequired(
               controller: logController,
-              maxLines: 5,
-              readOnly: !isEditable,
-              decoration: InputDecoration(
-                hintText: 'Ghi chú...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
-                ),
-              ),
+              maxLines: 3,
+              isDisabled: taskStatus == 'Đã hoàn thành',
+              label: 'Ghi chú',
+              hintText: 'Nhập ghi chú',
             ),
-            const SizedBox(height: 24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        style: Theme.of(context).textTheme.titleLarge,
-                        children: [
-                          const TextSpan(text: 'Ảnh kết quả '),
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '(Ảnh chụp phải rõ ràng,\n thấy được kết quả)',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.outline,
-                          ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 120,
-                  height: 120,
-                  child: DottedBorder(
-                    color: Theme.of(context).colorScheme.outlineVariant,
-                    borderType: BorderType.RRect,
-                    radius: const Radius.circular(12),
-                    strokeWidth: 1,
-                    child: InkWell(
-                      onTap: isEditable ? () => _pickImages() : null,
-                      child: SizedBox(
-                        width: 120,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.add),
-                            const SizedBox(height: 8),
-                            Text(
-                              'Tải ảnh lên',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.outline,
-                                  ),
-                            ),
-                          ],
+            const SizedBox(height: 32),
+            Text('Tập tin đính kèm',
+                style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 20),
+            if (_images.isEmpty)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: isEditable ? _pickImageFromCamera : null,
+                    child: Column(
+                      children: [
+                        LinearIcons.cameraIcon,
+                        SizedBox(height: 8),
+                        Text(
+                          'Chụp ảnh',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
+                  InkWell(
+                    onTap: isEditable ? _pickImageFromGallery : null,
+                    child: Column(
+                      children: [
+                        LinearIcons.folderAddIcon,
+                        SizedBox(height: 8),
+                        Text(
+                          'Chọn tập tin',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -717,9 +766,94 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 );
               }).toList(),
             ),
+            const SizedBox(height: 24),
+            if (_images.isNotEmpty)
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SafeArea(
+                        child: Wrap(
+                          children: <Widget>[
+                            ListTile(
+                              leading: LinearIcons.cameraIcon,
+                              title: Text('Chụp ảnh'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                _pickImageFromCamera();
+                              },
+                            ),
+                            ListTile(
+                              leading: LinearIcons.folderAddIcon,
+                              title: Text('Chọn tập tin'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                _pickImageFromGallery();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Column(
+                  children: [
+                    LinearIcons.folderAddIcon,
+                    const SizedBox(height: 8),
+                    Text(
+                      'Thêm mục khác',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                  ],
+                ),
+              )
           ],
         ],
       ),
+    );
+  }
+
+  Widget _buildGridItem(BuildContext context,
+      {required Widget icon,
+      required String label,
+      required String value,
+      Color? color}) {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: color ?? Theme.of(context).colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: icon,
+        ),
+        const SizedBox(width: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              label,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.outline,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              value.length > 10 ? '${value.substring(0, 10)}...' : value,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

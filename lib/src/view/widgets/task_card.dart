@@ -47,7 +47,7 @@ class TaskCard extends StatelessWidget {
     }
 
     return Opacity(
-      opacity: isCompleted ? 0.5 : 1.0,
+      opacity: isCompleted || isOverdue ? 0.5 : 1.0,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
         child: GestureDetector(
@@ -56,6 +56,11 @@ class TaskCard extends StatelessWidget {
             context.push(RouteName.taskDetail, extra: taskId);
           },
           child: Card.outlined(
+            color: isCompleted
+                ? Theme.of(context).colorScheme.primaryContainer
+                : isOverdue
+                    ? Colors.red.withOpacity(0.1)
+                    : null,
             child: ListTile(
               leading: isCompleted
                   ? LinearIcons.doneTaskIcon
@@ -67,11 +72,11 @@ class TaskCard extends StatelessWidget {
               title: Text(
                 task.taskName,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      decoration:
-                          isCompleted ? TextDecoration.lineThrough : null,
                       color: isOverdue
                           ? Colors.red
-                          : null, // Change text color if overdue
+                          : isCompleted
+                              ? Colors.green
+                              : null, // Change text color based on status
                     ),
               ),
               subtitle: Column(
