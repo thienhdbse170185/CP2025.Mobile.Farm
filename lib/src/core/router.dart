@@ -4,7 +4,9 @@ import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
+import 'package:smart_farm/src/view/symptom/symptom.dart';
 import 'package:smart_farm/src/view/task/task.dart';
+import 'package:smart_farm/src/view/task/task_history.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -20,11 +22,13 @@ class RouteName {
   static const String profile = '/profile';
   static const String taskDetail = '/task_detail';
   static const String cage = '/cage';
-  static const String symptom = '/symptom';
+  static const String createSymptom = '/create-symptom';
   static const String createTicket = '/create_ticket';
   static const String notification = '/notification';
   static const String setting = '/setting';
   static const String notificationSetting = '/notification_setting';
+  static const String taskHistory = '/task-history';
+  static const String symptom = '/symptom';
 
   static const publicRoutes = [
     welcome,
@@ -89,6 +93,13 @@ final router = GoRouter(
                 path: RouteName.task,
                 builder: (context, state) => const TaskWidget(),
               )
+            ]),
+            StatefulShellBranch(routes: [
+              GoRoute(
+                  path: RouteName.notification,
+                  builder: (context, state) {
+                    return const NotificationWidget();
+                  })
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
@@ -167,12 +178,12 @@ final router = GoRouter(
 
       ///health-report-route
       GoRoute(
-          path: RouteName.symptom,
+          path: RouteName.createSymptom,
           pageBuilder: (context, state) {
             final cageName =
                 (state.extra as Map<String, dynamic>?)?['cageName'] as String;
             return _buildPageWithSlideTransition(
-                SymptomWidget(cageName: cageName));
+                CreateSymptomWidget(cageName: cageName));
           }),
 
       ///create-ticket-route
@@ -193,4 +204,18 @@ final router = GoRouter(
         pageBuilder: (context, state) =>
             _buildPageWithSlideTransition(const NotificationSettingWidget()),
       ),
+
+      ///history-task-route
+      GoRoute(
+        path: RouteName.taskHistory,
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const TaskHistoryWidget()),
+      ),
+
+      ///list-symptom-route
+      GoRoute(
+          path: RouteName.symptom,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(const SymptomWidget());
+          }),
     ]);

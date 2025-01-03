@@ -24,7 +24,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final authBox = await Hive.openBox(AuthDataConstant.authBoxName);
         final accessToken = authBox.get(AuthDataConstant.accessTokenKey);
         final decodedToken = JwtDecoder.decode(accessToken);
-        log("Decoded Token: $decodedToken");
 
         final userBox = await Hive.openBox(UserDataConstant.userBoxName);
         userBox.putAll({

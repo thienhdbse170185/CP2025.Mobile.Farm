@@ -14,29 +14,33 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double toolbarOpacity;
   final double bottomOpacity;
   final double? appBarHeight; // New property
+  final bool hasLeading;
 
-  const CustomAppBar({
-    super.key,
-    this.leading,
-    this.title,
-    this.actions,
-    this.bottom,
-    this.elevation,
-    this.backgroundColor,
-    this.foregroundColor,
-    this.iconTheme,
-    this.textTheme,
-    this.centerTitle = true,
-    this.toolbarOpacity = 1.0,
-    this.bottomOpacity = 1.0,
-    this.appBarHeight, // New property
-  });
+  const CustomAppBar(
+      {super.key,
+      this.leading,
+      this.title,
+      this.actions,
+      this.bottom,
+      this.elevation,
+      this.backgroundColor,
+      this.foregroundColor,
+      this.iconTheme,
+      this.textTheme,
+      this.centerTitle = true,
+      this.toolbarOpacity = 1.0,
+      this.bottomOpacity = 1.0,
+      this.appBarHeight,
+      this.hasLeading = true});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       leading: leading,
+      automaticallyImplyLeading: hasLeading,
       title: title,
+      titleTextStyle:
+          Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
       actions: actions,
       bottom: bottom,
       elevation: elevation,

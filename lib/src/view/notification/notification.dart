@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
-import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 
 class NotificationWidget extends StatefulWidget {
@@ -17,24 +14,12 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        leading: IconButton(
-          icon: LinearIcons.arrowBackIcon,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        title: Text(
+          'Thông báo',
+          style:
+              Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
         ),
-        title: const Text('Thông báo'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: IconButton(
-              onPressed: () {
-                context.push(RouteName.notificationSetting);
-              },
-              icon: LinearIcons.settingIconNormal,
-            ),
-          ),
-        ],
+        centerTitle: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

@@ -8,7 +8,7 @@ export './home/home.dart';
 export './notification/notification.dart';
 export 'setting/notification.dart';
 export './profile/profile.dart';
-export 'symptom/symptom.dart';
+export 'symptom/create-symptom.dart';
 export './setting/settings.dart';
 export './task/task_detail.dart';
 export './ticket/create_ticket.dart';
