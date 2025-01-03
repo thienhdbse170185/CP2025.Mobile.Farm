@@ -100,10 +100,18 @@ class _TaskWidgetState extends State<TaskWidget> {
             LoadingDialog.hide(context);
           },
           getTasksByUserIdAndDateFailure: (e) {
-            log("Lấy danh sách công việc thất bại! Message:");
-            log(e.toString());
             LoadingDialog.hide(context);
-            SnackBar(content: Text('Lỗi: ${e.toString()}'));
+            if (e.contains('no-task-found')) {
+              log("Không tìm thấy công việc!");
+              setState(() {
+                taskSorted = {};
+                availableCageFilters = [];
+              });
+            } else {
+              log("Lấy danh sách công việc thất bại! Message:");
+              log(e.toString());
+              SnackBar(content: Text('Lỗi: ${e.toString()}'));
+            }
           },
           filteredTaskLoading: () {
             log("Đang lọc công việc...");
