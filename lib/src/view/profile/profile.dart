@@ -164,51 +164,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () {
-                              // Navigate to history
-                              // context.push(RouteName.history);
-                            },
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SizedBox(width: 2),
-                                LinearIcons.historyIcon,
-                                const SizedBox(width: 14),
-                                Text(
-                                  'Lịch sử công việc',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                                const Spacer(),
-                                LinearIcons.chevronRightThinIcon
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              // Navigate to notifications
-                              context.push(RouteName.notification,
-                                  extra: {'transition': 'slide'});
-                            },
-                            child: Row(
-                              children: [
-                                LinearIcons.bellIconGreen,
-                                const SizedBox(width: 16),
-                                Text(
-                                  'Thông báo',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                                const Spacer(),
-                                LinearIcons.chevronRightThinIcon
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
                               // Navigate to help
                               // context.push(RouteName.help);
                             },
@@ -306,7 +261,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       child: Row(
                         children: [
                           const SizedBox(width: 8),
-                          LinearIcons.logoutIcon,
+                          LinearIcons.exportIcon,
                           const SizedBox(width: 8),
                           Text(
                             'Đăng xuất',

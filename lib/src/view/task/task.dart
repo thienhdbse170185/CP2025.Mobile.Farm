@@ -1,13 +1,13 @@
 import 'dart:developer';
 
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
-import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:smart_farm/src/view/widgets/task_card.dart';
+import 'package:smart_farm/src/view/widgets/task_list.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
 
 class TaskWidget extends StatefulWidget {
@@ -26,7 +26,7 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   // Function to format the selected date to a string (e.g., "Nov 19, 2024")
   String get formattedDate {
-    return DateFormat('MMM dd, yyyy').format(selectedDate);
+    return DateFormat('EEEE, dd/MM/yyyy', 'vi').format(selectedDate);
   }
 
   // Function to get the day of the week for the selected date in Vietnamese
@@ -48,8 +48,8 @@ class _TaskWidgetState extends State<TaskWidget> {
     final DateTime picked = (await showDatePicker(
           context: context,
           initialDate: selectedDate,
-          firstDate: DateTime(2020),
-          lastDate: DateTime(2025),
+          firstDate: DateTime(2024),
+          lastDate: DateTime(2026),
         )) ??
         selectedDate;
 
@@ -270,7 +270,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
               // [BODY]
               Expanded(
-                child: taskSorted.isNotEmpty
+                child: taskSorted.values.isNotEmpty
                     ? ListView(
                         children: [
                           ..._buildSessionSections(taskSorted),
@@ -381,42 +381,10 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
             ),
             const SizedBox(height: 8),
-            ...sessionTasks.map((task) => TaskList(tasks: [task])),
+            ...sessionTasks.map((task) => TaskListWidget(tasks: [task])),
           ],
         ),
       );
     }).toList();
-  }
-}
-
-class TaskList extends StatelessWidget {
-  final List<TaskHaveCageName>
-      tasks; // Thay TaskByUserResponse thành List<TaskHaveCageName>
-
-  const TaskList({super.key, required this.tasks});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: tasks.map((task) {
-          return TaskCard(
-            task: task, // Chuyển sang sử dụng TaskHaveCageName
-            taskId: task.id,
-            cageName: task.cageName,
-            isCompleted: task.status == 'Done',
-            isInProgress: task.status == 'InProgress',
-            isFirst: false, // Giữ nguyên theo yêu cầu
-            borderColor: task.status == 'InProgress'
-                ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.secondaryContainer,
-            highlightName: task.assignedToUser.fullName == 'Staff Farm 1',
-          );
-        }).toList(),
-      ),
-    );
   }
 }

@@ -18,14 +18,10 @@ const destinations = <Destination>[
       label: 'Công việc',
       icon: Icons.task_outlined,
       iconSelected: Icons.task_rounded),
-  // Destination(
-  //     label: 'Vấn đề',
-  //     icon: Icons.info_outline_rounded,
-  //     iconSelected: Icons.info_rounded),
-  // Destination(
-  //     label: 'Kho',
-  //     icon: Icons.warehouse_outlined,
-  //     iconSelected: Icons.warehouse_rounded),
+  Destination(
+      label: 'Thông báo',
+      icon: Icons.notifications_outlined,
+      iconSelected: Icons.notifications_rounded),
   Destination(
       label: 'Cá nhân',
       icon: Icons.account_circle_outlined,

@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/model/task/task_have_cage_name/task_have_cage_name.dart';
 
 class TaskCard extends StatelessWidget {
   final String? taskId;
@@ -13,8 +13,8 @@ class TaskCard extends StatelessWidget {
   final bool isInProgress;
   final bool isFirst;
   final Color borderColor;
-  final bool highlightName;
   final String? cageName;
+  final bool isOverdue;
 
   const TaskCard(
       {super.key,
@@ -24,13 +24,28 @@ class TaskCard extends StatelessWidget {
       this.isFirst = false,
       this.taskId,
       required this.borderColor,
-      required this.highlightName,
-      this.cageName});
+      this.cageName,
+      required this.isOverdue});
 
   @override
   Widget build(BuildContext context) {
+    String getStatusText(String status) {
+      switch (status) {
+        case 'Pending' || 'pending':
+          return 'Chuẩn bị';
+        case 'InProgress' || 'inprogress':
+          return 'Đang làm';
+        case 'Done' || 'done':
+          return 'Đã hoàn thành';
+        case 'OverSchedules' || 'overschedules':
+          return 'Đã quá hạn';
+        default:
+          return status;
+      }
+    }
+
     return Opacity(
-      opacity: isCompleted ? 0.5 : 1.0,
+      opacity: isCompleted || isOverdue ? 0.5 : 1.0,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
         child: GestureDetector(
@@ -39,28 +54,64 @@ class TaskCard extends StatelessWidget {
             context.push(RouteName.taskDetail, extra: taskId);
           },
           child: Card.outlined(
+            color: isCompleted
+                ? Theme.of(context).colorScheme.primaryContainer
+                : isOverdue
+                    ? Colors.red.withOpacity(0.1)
+                    : null,
             child: ListTile(
               leading: isCompleted
                   ? LinearIcons.doneTaskIcon
                   : (isInProgress
                       ? LinearIcons.inprogressTaskIcon
-                      : LinearIcons.pendingTaskIcon),
+                      : (isOverdue
+                          ? LinearIcons.deadlineIcon
+                          : LinearIcons.pendingTaskIcon)),
               title: Text(
                 task.taskName,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      decoration:
-                          isCompleted ? TextDecoration.lineThrough : null,
+                      color: isOverdue
+                          ? Colors.red
+                          : isCompleted
+                              ? Colors.green
+                              : null, // Change text color based on status
                     ),
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Trạng thái: ${task.status}',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        'Trạng thái: ',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                      Text(
+                        getStatusText(task.status),
+                        style: TextStyle(
+                          color: task.status == 'Pending' ||
+                                  task.status == 'pending'
+                              ? Colors.grey
+                              : task.status == 'InProgress' ||
+                                      task.status == 'inprogress'
+                                  ? Colors
+                                      .amber // Changed from Colors.yellow to Colors.amber
+                                  : task.status == 'Done' ||
+                                          task.status == 'done'
+                                      ? Colors.green
+                                      : task.status == 'OverSchedules' ||
+                                              task.status == 'overschedules'
+                                          ? Colors.red
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.normal,
+                        ),
+                      ),
+                    ],
                   ),
                   if (cageName != null)
                     Row(
@@ -74,6 +125,7 @@ class TaskCard extends StatelessWidget {
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
                               fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.normal,
                             ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,

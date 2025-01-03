@@ -14,10 +14,13 @@ class TaskState with _$TaskState {
   const factory TaskState.getTasksFailure(String error) = _GetTasksFailure;
   const factory TaskState.testConnectSuccess() = _TestConnectSuccess;
   const factory TaskState.getTasksByCageIdLoading() = _GetTasksByCageIdLoading;
-  const factory TaskState.getTasksByCageIdSuccess(TasksByCageResponse tasks) =
-      _GetTasksByCageIdSuccess;
+  const factory TaskState.getTasksByCageIdSuccess(
+      Map<String, List<TaskHaveCageName>> tasks) = _GetTasksByCageIdSuccess;
   const factory TaskState.getTaskByIdLoading() = _GetTaskByIdLoading;
-  const factory TaskState.getTaskByIdSuccess(Task task) = _GetTaskByIdSuccess;
+  const factory TaskState.getTaskByIdSuccess(
+    TaskHaveCageName task,
+    String userId,
+  ) = _GetTaskByIdSuccess;
   const factory TaskState.getTaskByIdFailure(String error) =
       _GetTaskByIdFailure;
   const factory TaskState.getNextTaskLoading() = _GetNextTaskLoading;
@@ -57,4 +60,21 @@ class TaskState with _$TaskState {
       _CreateVaccinScheduleLogSuccess;
   const factory TaskState.createVaccinScheduleLogFailure(String error) =
       _CreateVaccinScheduleLogFailure;
+  const factory TaskState.getDailyFoodUsageLogLoading() =
+      _GetDailyFoodUsageLogLoading;
+  const factory TaskState.getDailyFoodUsageLogSuccess(
+      DailyFoodUsageLogDto log) = _GetDailyFoodUsageLogSuccess;
+  const factory TaskState.getDailyFoodUsageLogFailure(String error) =
+      _GetDailyFoodUsageLogFailure;
+  const factory TaskState.getHealthLogLoading() = _GetHealthLogLoading;
+  const factory TaskState.getHealthLogSuccess(HealthLogDto log) =
+      _GetHealthLogSuccess;
+  const factory TaskState.getHealthLogFailure(String error) =
+      _GetHealthLogFailure;
+  const factory TaskState.getVaccinScheduleLogLoading() =
+      _GetVaccinScheduleLogLoading;
+  const factory TaskState.getVaccinScheduleLogSuccess(
+      VaccinScheduleLogDto log) = _GetVaccinScheduleLogSuccess;
+  const factory TaskState.getVaccinScheduleLogFailure(String error) =
+      _GetVaccinScheduleLogFailure;
 }

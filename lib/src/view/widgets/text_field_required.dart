@@ -14,7 +14,8 @@ class TextFieldRequired extends StatefulWidget {
       this.isReadOnly = false,
       this.isObscureText = false, // Add this line
       this.isPassword = false,
-      this.keyBoardType});
+      this.keyBoardType,
+      this.maxLines = 1});
 
   final String label;
   final String hintText;
@@ -26,6 +27,7 @@ class TextFieldRequired extends StatefulWidget {
   final String? content; // Nội dung tĩnh (không thể thay đổi)
   final bool isReadOnly;
   final TextInputType? keyBoardType;
+  final int? maxLines;
 
   final bool isObscureText; // Add this line
   final bool isPassword;
@@ -51,6 +53,7 @@ class _TextFieldRequiredState extends State<TextFieldRequired> {
 
     return TextField(
       autocorrect: false,
+      maxLines: widget.maxLines,
       controller: widget.controller ??
           (widget.content != null
               ? TextEditingController(text: widget.content)
@@ -60,15 +63,18 @@ class _TextFieldRequiredState extends State<TextFieldRequired> {
       keyboardType: widget.keyBoardType,
       readOnly: isReadOnly, // Cài đặt `readOnly` cho TextField
       decoration: InputDecoration(
+        enabled: widget.isDisabled == false,
         label: RichText(
           text: TextSpan(
             style: Theme.of(context).textTheme.bodyMedium,
             children: [
               TextSpan(text: '${widget.label} '),
-              TextSpan(
-                text: '*',
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
-              )
+              widget.isDisabled == false
+                  ? TextSpan(
+                      text: ' *',
+                      style: TextStyle(color: Colors.red),
+                    )
+                  : TextSpan(),
             ],
           ),
         ),
