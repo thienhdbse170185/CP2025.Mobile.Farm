@@ -17,8 +17,6 @@ import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // To handle file
 
-// TODO: Làm thêm dựa vào taskType và các field
-// của task trong DB, cập nhật UI cho phù hợp
 class TaskDetailWidget extends StatefulWidget {
   final String taskId;
   const TaskDetailWidget({super.key, required this.taskId});
@@ -460,7 +458,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               icon: LinearIcons.arrowBackIcon),
           title: const Text('Chi tiết công việc'),
-          appBarHeight: MediaQuery.of(context).size.height * 0.08,
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -627,11 +624,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       ? _buildWorkTab(context)
                       : Text(
                           '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  color: Theme.of(context).colorScheme.error),
                         ),
                 )
               ],
@@ -705,8 +697,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     keyBoardType: TextInputType.number,
                     controller: actualWeightController,
                     hintText: 'Nhập theo khối lượng kilogram',
-                    isDisabled: taskStatus ==
-                        'Đã hoàn thành', // Make read-only if task is done
+                    isDisabled: taskStatus == 'Đã hoàn thành' ||
+                        taskStatus ==
+                            'Đã quá hạn', // Make read-only if task is done
                   )
                 ],
               )
@@ -745,47 +738,62 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             TextFieldRequired(
               controller: logController,
               maxLines: 3,
-              isDisabled: taskStatus == 'Đã hoàn thành',
+              isDisabled:
+                  taskStatus == 'Đã hoàn thành' || taskStatus == 'Đã quá hạn',
               label: 'Ghi chú',
               hintText: 'Nhập ghi chú',
             ),
             const SizedBox(height: 32),
-            Text('Tập tin đính kèm',
-                style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 20),
-            if (_images.isEmpty)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            if (taskStatus != "Đã quá hạn")
+              Column(
                 children: [
-                  InkWell(
-                    onTap: isEditable ? _pickImageFromCamera : null,
-                    child: Column(
+                  Text('Tập tin đính kèm',
+                      style: Theme.of(context).textTheme.titleMedium),
+                  const SizedBox(height: 20),
+                  if (_images.isEmpty)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        LinearIcons.cameraIcon,
-                        SizedBox(height: 8),
-                        Text(
-                          'Chụp ảnh',
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
+                        InkWell(
+                          onTap: isEditable ? _pickImageFromCamera : null,
+                          child: Column(
+                            children: [
+                              LinearIcons.cameraIcon,
+                              SizedBox(height: 8),
+                              Text(
+                                'Chụp ảnh',
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                              ),
+                            ],
+                          ),
+                        ),
+                        InkWell(
+                          onTap: isEditable ? _pickImageFromGallery : null,
+                          child: Column(
+                            children: [
+                              LinearIcons.folderAddIcon,
+                              SizedBox(height: 8),
+                              Text(
+                                'Chọn tập tin',
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: isEditable ? _pickImageFromGallery : null,
-                    child: Column(
-                      children: [
-                        LinearIcons.folderAddIcon,
-                        SizedBox(height: 8),
-                        Text(
-                          'Chọn tập tin',
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
-                        ),
-                      ],
-                    ),
-                  ),
+                    )
                 ],
+              )
+            else
+              Text(
+                '(!) Công việc đã quá hạn, không thể tạo đơn báo cáo.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
               ),
             Wrap(
               spacing: 8,
@@ -816,49 +824,49 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               }).toList(),
             ),
             const SizedBox(height: 24),
-            if (_images.isNotEmpty)
-              InkWell(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SafeArea(
-                        child: Wrap(
-                          children: <Widget>[
-                            ListTile(
-                              leading: LinearIcons.cameraIcon,
-                              title: Text('Chụp ảnh'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                _pickImageFromCamera();
-                              },
-                            ),
-                            ListTile(
-                              leading: LinearIcons.folderAddIcon,
-                              title: Text('Chọn tập tin'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                _pickImageFromGallery();
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Column(
-                  children: [
-                    LinearIcons.folderAddIcon,
-                    const SizedBox(height: 8),
-                    Text(
-                      'Thêm mục khác',
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary),
-                    ),
-                  ],
-                ),
-              )
+            // if (_images.isNotEmpty)
+            //   InkWell(
+            //     onTap: () {
+            //       showModalBottomSheet(
+            //         context: context,
+            //         builder: (BuildContext context) {
+            //           return SafeArea(
+            //             child: Wrap(
+            //               children: <Widget>[
+            //                 ListTile(
+            //                   leading: LinearIcons.cameraIcon,
+            //                   title: Text('Chụp ảnh'),
+            //                   onTap: () {
+            //                     Navigator.pop(context);
+            //                     _pickImageFromCamera();
+            //                   },
+            //                 ),
+            //                 ListTile(
+            //                   leading: LinearIcons.folderAddIcon,
+            //                   title: Text('Chọn tập tin'),
+            //                   onTap: () {
+            //                     Navigator.pop(context);
+            //                     _pickImageFromGallery();
+            //                   },
+            //                 ),
+            //               ],
+            //             ),
+            //           );
+            //         },
+            //       );
+            //     },
+            //     child: Column(
+            //       children: [
+            //         LinearIcons.folderAddIcon,
+            //         const SizedBox(height: 8),
+            //         Text(
+            //           'Thêm mục khác',
+            //           style: TextStyle(
+            //               color: Theme.of(context).colorScheme.primary),
+            //         ),
+            //       ],
+            //     ),
+            //   )
           ],
         ],
       ),
@@ -894,7 +902,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ),
             const SizedBox(height: 2),
             Text(
-              value,
+              value.length > 14 ? '${value.substring(0, 14)}...' : value,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,

@@ -4,6 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
+import 'package:smart_farm/src/view/profile/edit_user.dart';
+import 'package:smart_farm/src/view/profile/user.dart';
 import 'package:smart_farm/src/view/symptom/symptom.dart';
 import 'package:smart_farm/src/view/task/task.dart';
 import 'package:smart_farm/src/view/task/task_history.dart';
@@ -20,6 +22,7 @@ class RouteName {
   static const String ticket = '/ticket';
   static const String warehouse = '/warehouse';
   static const String profile = '/profile';
+  static const String userProfile = '/user_profile';
   static const String taskDetail = '/task_detail';
   static const String cage = '/cage';
   static const String createSymptom = '/create-symptom';
@@ -29,6 +32,7 @@ class RouteName {
   static const String notificationSetting = '/notification_setting';
   static const String taskHistory = '/task-history';
   static const String symptom = '/symptom';
+  static const String editUserProfile = '/edit-user-profile';
 
   static const publicRoutes = [
     welcome,
@@ -218,4 +222,16 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             return _buildPageWithSlideTransition(const SymptomWidget());
           }),
+
+      ///user-profile-route
+      GoRoute(
+          path: RouteName.userProfile,
+          pageBuilder: (context, state) =>
+              _buildPageWithSlideTransition(const UserProfileWidget())),
+
+      ///edit-user-profile-route
+      GoRoute(
+          path: RouteName.editUserProfile,
+          pageBuilder: (context, state) =>
+              _buildPageWithSlideTransition(const EditUserProfileWidget())),
     ]);

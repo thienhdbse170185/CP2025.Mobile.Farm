@@ -170,7 +170,8 @@ class _TaskWidgetState extends State<TaskWidget> {
                   children: [
                     // [APPBAR] Time
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
