@@ -100,10 +100,18 @@ class _TaskWidgetState extends State<TaskWidget> {
             LoadingDialog.hide(context);
           },
           getTasksByUserIdAndDateFailure: (e) {
-            log("Lấy danh sách công việc thất bại! Message:");
-            log(e.toString());
             LoadingDialog.hide(context);
-            SnackBar(content: Text('Lỗi: ${e.toString()}'));
+            if (e.contains('no-task-found')) {
+              log("Không tìm thấy công việc!");
+              setState(() {
+                taskSorted = {};
+                availableCageFilters = [];
+              });
+            } else {
+              log("Lấy danh sách công việc thất bại! Message:");
+              log(e.toString());
+              SnackBar(content: Text('Lỗi: ${e.toString()}'));
+            }
           },
           filteredTaskLoading: () {
             log("Đang lọc công việc...");
@@ -162,7 +170,8 @@ class _TaskWidgetState extends State<TaskWidget> {
                   children: [
                     // [APPBAR] Time
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

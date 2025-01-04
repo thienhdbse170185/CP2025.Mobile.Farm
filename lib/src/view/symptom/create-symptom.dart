@@ -120,7 +120,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Chọn chuồng',
+                'Chọn chuồng báo cáo',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 16),
@@ -213,7 +213,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           appBarHeight: MediaQuery.of(context).size.height * 0.08,
           title: Column(
             children: [
-              const Text('Đơn báo cáo sức khỏe'),
+              const Text('Đơn báo cáo triệu chứng'),
               Text(
                 'Ngày báo cáo: $formattedDate',
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -254,11 +254,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               label: 'Chuồng',
               isDisabled: false,
               isReadOnly: true,
-              hintText: 'Chọn chuồng',
+              hintText: 'Chọn chuồng báo cáo',
               suffixIcon: const Icon(Icons.arrow_drop_down),
               onTap: _showCageSelectionSheet,
-              controller:
-                  TextEditingController(text: _selectedCage ?? 'Chọn chuồng'),
+              controller: TextEditingController(
+                  text: _selectedCage ?? 'Chọn chuồng báo cáo'),
             ),
             const SizedBox(height: 16),
             Row(
@@ -379,7 +379,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             const SizedBox(height: 32),
             Text('Tập tin đính kèm',
                 style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             if (_images.isEmpty)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
