@@ -14,10 +14,9 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
+import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // To handle file
 
-// TODO: Làm thêm dựa vào taskType và các field
-// của task trong DB, cập nhật UI cho phù hợp
 class TaskDetailWidget extends StatefulWidget {
   final String taskId;
   const TaskDetailWidget({super.key, required this.taskId});
@@ -32,6 +31,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   // Task status
   String taskStatus = 'Loading...'; // Start directly at 'in progress'
   DateTime? logTime;
+  double? recommendedWeight;
 
   // For image upload
   final List<File> _images = [];
@@ -243,175 +243,213 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<TaskBloc, TaskState>(
-      listener: (context, state) {
-        state.maybeWhen(
-          getTaskByIdSuccess: (task, userId) async {
-            // Handle task data
-            LoadingDialog.hide(context);
-            log(task.status);
-            setState(() {
-              this.task = task;
-              taskStatus = getStatusText(task.status);
-              loggedInUserId = userId;
-            });
-            log("Lấy thông tin công việc thành công!");
-            if (task.status == 'Done' || task.status == 'done') {
-              if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<TaskBloc, TaskState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getTaskByIdSuccess: (task, userId) async {
+                // Handle task data
+                LoadingDialog.hide(context);
+                log(task.status);
+                setState(() {
+                  this.task = task;
+                  taskStatus = getStatusText(task.status);
+                  loggedInUserId = userId;
+                });
+                log("Lấy thông tin công việc thành công!");
+                context
+                    .read<GrowthStageCubit>()
+                    .getRecommendedWeightByCageId(task.cageId);
+              },
+              getTaskByIdLoading: () {
+                LoadingDialog.show(context, "Đang lấy thông tin công việc...");
+                log("Đang lấy thông tin công việc...");
+              },
+              getTaskByIdFailure: (e) async {
+                await Future.delayed(const Duration(seconds: 1));
+                LoadingDialog.hide(context);
+                log("Lấy thông tin công việc thất bại!");
+              },
+              updateStatusTaskLoading: () {
+                LoadingDialog.show(
+                    context, "Đang cập nhật trạng thái công việc...");
+                log("Đang cập nhật trạng thái công việc...");
+              },
+              updateStatusTaskSuccess: () async {
+                LoadingDialog.hide(context);
+                log("Cập nhật trạng thái công việc thành công!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content:
+                          Text('Cập nhật trạng thái công việc thành công!')),
+                );
+                // Refresh the task details
                 context
                     .read<TaskBloc>()
-                    .add(TaskEvent.getDailyFoodUsageLog(widget.taskId));
-              } else if (task.taskType.taskTypeId ==
-                  TaskTypeDataConstant.health) {
-                context
-                    .read<TaskBloc>()
-                    .add(TaskEvent.getHealthLog(widget.taskId));
-              } else if (task.taskType.taskTypeId ==
-                  TaskTypeDataConstant.vaccin) {
-                context
-                    .read<TaskBloc>()
-                    .add(TaskEvent.getVaccinScheduleLog(widget.taskId));
-              }
-            }
-          },
-          getTaskByIdLoading: () {
-            LoadingDialog.show(context, "Đang lấy thông tin công việc...");
-            log("Đang lấy thông tin công việc...");
-          },
-          getTaskByIdFailure: (e) async {
-            await Future.delayed(const Duration(seconds: 1));
-            LoadingDialog.hide(context);
-            log("Lấy thông tin công việc thất bại!");
-          },
-          updateStatusTaskLoading: () {
-            LoadingDialog.show(
-                context, "Đang cập nhật trạng thái công việc...");
-            log("Đang cập nhật trạng thái công việc...");
-          },
-          updateStatusTaskSuccess: () async {
-            LoadingDialog.hide(context);
-            log("Cập nhật trạng thái công việc thành công!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Cập nhật trạng thái công việc thành công!')),
+                    .add(TaskEvent.getTaskById(widget.taskId));
+              },
+              updateStatusTaskFailure: (e) async {
+                LoadingDialog.hide(context);
+                log("Cập nhật trạng thái công việc thất bại!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Text('Cập nhật trạng thái công việc thất bại!')),
+                );
+              },
+              createDailyFoodUsageLogLoading: () {
+                LoadingDialog.show(context, "Đang tạo log cho ăn...");
+                log("Đang tạo log cho ăn...");
+              },
+              createDailyFoodUsageLogSuccess: () async {
+                LoadingDialog.hide(context);
+                log("Tạo log cho ăn thành công!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Tạo log cho ăn thành công!')),
+                );
+                context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId, TaskStatusDataConstant.done));
+              },
+              createDailyFoodUsageLogFailure: (e) async {
+                LoadingDialog.hide(context);
+                log("Tạo log cho ăn thất bại!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(e.toString())),
+                );
+              },
+              createHealthLogLoading: () {
+                LoadingDialog.show(context, "Đang tạo log uống thuốc...");
+                log("Đang tạo log uống thuốc...");
+              },
+              createHealthLogSuccess: () async {
+                LoadingDialog.hide(context);
+                log("Tạo log uống thuốc thành công!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Text('Tạo log uống thuốc thành công!')),
+                );
+                context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId, TaskStatusDataConstant.done));
+              },
+              createHealthLogFailure: (e) async {
+                LoadingDialog.hide(context);
+                log("Tạo log uống thuốc thất bại!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Tạo log uống thuốc thất bại!')),
+                );
+              },
+              createVaccinScheduleLogLoading: () {
+                LoadingDialog.show(context, "Đang tạo log lịch tiêm chủng...");
+                log("Đang tạo log lịch tiêm chủng...");
+              },
+              createVaccinScheduleLogSuccess: () async {
+                LoadingDialog.hide(context);
+                log("Tạo log lịch tiêm chủng thành công!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Text('Tạo log lịch tiêm chủng thành công!')),
+                );
+                context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId, TaskStatusDataConstant.done));
+              },
+              createVaccinScheduleLogFailure: (e) async {
+                LoadingDialog.hide(context);
+                log("Tạo log lịch tiêm chủng thất bại!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Text('Tạo log lịch tiêm chủng thất bại!')),
+                );
+              },
+              getDailyFoodUsageLogLoading: () {
+                log("Đang lấy log cho ăn...");
+                LoadingDialog.show(
+                    context, "Đang lấy thông tin đơn báo cáo...");
+              },
+              getDailyFoodUsageLogSuccess: (log) async {
+                setState(() {
+                  actualWeightController.text = log.actualWeight.toString();
+                  logController.text = log.notes;
+                  logTime = log.logTime;
+                });
+                LoadingDialog.hide(context);
+              },
+              getDailyFoodUsageLogFailure: (e) async {
+                log("Lấy log cho ăn thất bại!");
+              },
+              getHealthLogLoading: () {
+                log("Đang lấy log sức khỏe...");
+                LoadingDialog.show(
+                    context, "Đang lấy thông tin đơn báo cáo...");
+              },
+              getHealthLogSuccess: (log) async {
+                setState(() {
+                  logController.text = log.notes;
+                });
+                LoadingDialog.hide(context);
+              },
+              getHealthLogFailure: (e) async {
+                log("Lấy log sức khỏe thất bại!");
+              },
+              getVaccinScheduleLogLoading: () {
+                log("Đang lấy log lịch tiêm chủng...");
+                LoadingDialog.show(
+                    context, "Đang lấy thông tin đơn báo cáo...");
+              },
+              getVaccinScheduleLogSuccess: (log) async {
+                setState(() {
+                  logController.text = log.notes;
+                });
+                LoadingDialog.hide(context);
+              },
+              getVaccinScheduleLogFailure: (e) async {
+                log("Lấy log lịch tiêm chủng thất bại!");
+              },
+              orElse: () {},
             );
-            // Refresh the task details
-            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
           },
-          updateStatusTaskFailure: (e) async {
-            LoadingDialog.hide(context);
-            log("Cập nhật trạng thái công việc thất bại!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Cập nhật trạng thái công việc thất bại!')),
+        ),
+        BlocListener<GrowthStageCubit, GrowthStageState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getRecommendedWeightByCageIdInProgress: () {
+                log('Đang lấy cân nặng khuyến nghị...');
+                LoadingDialog.show(context, 'Đang lấy cân nặng khuyến nghị...');
+              },
+              getRecommendedWeightByCageIdSuccess: (recommendedWeight) {
+                log('Lấy cân nặng khuyến nghị thành công!');
+                setState(() {
+                  this.recommendedWeight = recommendedWeight;
+                });
+                if (task?.status == 'Done' || task?.status == 'done') {
+                  if (task?.taskType.taskTypeId ==
+                      TaskTypeDataConstant.feeding) {
+                    context
+                        .read<TaskBloc>()
+                        .add(TaskEvent.getDailyFoodUsageLog(widget.taskId));
+                  } else if (task?.taskType.taskTypeId ==
+                      TaskTypeDataConstant.health) {
+                    context
+                        .read<TaskBloc>()
+                        .add(TaskEvent.getHealthLog(widget.taskId));
+                  } else if (task?.taskType.taskTypeId ==
+                      TaskTypeDataConstant.vaccin) {
+                    context
+                        .read<TaskBloc>()
+                        .add(TaskEvent.getVaccinScheduleLog(widget.taskId));
+                  }
+                }
+                LoadingDialog.hide(context);
+              },
+              getRecommendedWeightByCageIdFailure: (e) {
+                log('Lấy cân nặng khuyến nghị thất bại!');
+                LoadingDialog.hide(context);
+                SnackBar(content: Text(e));
+              },
+              orElse: () {},
             );
           },
-          createDailyFoodUsageLogLoading: () {
-            LoadingDialog.show(context, "Đang tạo log cho ăn...");
-            log("Đang tạo log cho ăn...");
-          },
-          createDailyFoodUsageLogSuccess: () async {
-            LoadingDialog.hide(context);
-            log("Tạo log cho ăn thành công!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Tạo log cho ăn thành công!')),
-            );
-            context.read<TaskBloc>().add(TaskEvent.updateTask(
-                widget.taskId, TaskStatusDataConstant.done));
-          },
-          createDailyFoodUsageLogFailure: (e) async {
-            LoadingDialog.hide(context);
-            log("Tạo log cho ăn thất bại!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(e.toString())),
-            );
-          },
-          createHealthLogLoading: () {
-            LoadingDialog.show(context, "Đang tạo log uống thuốc...");
-            log("Đang tạo log uống thuốc...");
-          },
-          createHealthLogSuccess: () async {
-            LoadingDialog.hide(context);
-            log("Tạo log uống thuốc thành công!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Tạo log uống thuốc thành công!')),
-            );
-            context.read<TaskBloc>().add(TaskEvent.updateTask(
-                widget.taskId, TaskStatusDataConstant.done));
-          },
-          createHealthLogFailure: (e) async {
-            LoadingDialog.hide(context);
-            log("Tạo log uống thuốc thất bại!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Tạo log uống thuốc thất bại!')),
-            );
-          },
-          createVaccinScheduleLogLoading: () {
-            LoadingDialog.show(context, "Đang tạo log lịch tiêm chủng...");
-            log("Đang tạo log lịch tiêm chủng...");
-          },
-          createVaccinScheduleLogSuccess: () async {
-            LoadingDialog.hide(context);
-            log("Tạo log lịch tiêm chủng thành công!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Tạo log lịch tiêm chủng thành công!')),
-            );
-            context.read<TaskBloc>().add(TaskEvent.updateTask(
-                widget.taskId, TaskStatusDataConstant.done));
-          },
-          createVaccinScheduleLogFailure: (e) async {
-            LoadingDialog.hide(context);
-            log("Tạo log lịch tiêm chủng thất bại!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Tạo log lịch tiêm chủng thất bại!')),
-            );
-          },
-          getDailyFoodUsageLogLoading: () {
-            log("Đang lấy log cho ăn...");
-            LoadingDialog.show(context, "Đang lấy thông tin đơn báo cáo...");
-          },
-          getDailyFoodUsageLogSuccess: (log) async {
-            setState(() {
-              actualWeightController.text = log.actualWeight.toString();
-              logController.text = log.notes;
-              logTime = log.logTime;
-            });
-            LoadingDialog.hide(context);
-          },
-          getDailyFoodUsageLogFailure: (e) async {
-            log("Lấy log cho ăn thất bại!");
-          },
-          getHealthLogLoading: () {
-            log("Đang lấy log sức khỏe...");
-            LoadingDialog.show(context, "Đang lấy thông tin đơn báo cáo...");
-          },
-          getHealthLogSuccess: (log) async {
-            setState(() {
-              logController.text = log.notes;
-            });
-            LoadingDialog.hide(context);
-          },
-          getHealthLogFailure: (e) async {
-            log("Lấy log sức khỏe thất bại!");
-          },
-          getVaccinScheduleLogLoading: () {
-            log("Đang lấy log lịch tiêm chủng...");
-            LoadingDialog.show(context, "Đang lấy thông tin đơn báo cáo...");
-          },
-          getVaccinScheduleLogSuccess: (log) async {
-            setState(() {
-              logController.text = log.notes;
-            });
-            LoadingDialog.hide(context);
-          },
-          getVaccinScheduleLogFailure: (e) async {
-            log("Lấy log lịch tiêm chủng thất bại!");
-          },
-          orElse: () {},
-        );
-      },
+        ),
+      ],
       child: Scaffold(
         appBar: CustomAppBar(
           leading: IconButton(
@@ -420,7 +458,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               icon: LinearIcons.arrowBackIcon),
           title: const Text('Chi tiết công việc'),
-          appBarHeight: MediaQuery.of(context).size.height * 0.08,
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -587,11 +624,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       ? _buildWorkTab(context)
                       : Text(
                           '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  color: Theme.of(context).colorScheme.error),
                         ),
                 )
               ],
@@ -653,12 +685,21 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   ),
                   const SizedBox(height: 24),
                   TextFieldRequired(
-                    label: 'Cân nặng thực tế (kg)',
+                    label: 'Lượng thức ăn khuyến nghị (kg)',
+                    keyBoardType: TextInputType.number,
+                    content: recommendedWeight.toString(),
+                    hintText: 'Nhập cân nặng thực tế (kg)',
+                    isDisabled: true, // Make read-only if task is done
+                  ),
+                  const SizedBox(height: 24),
+                  TextFieldRequired(
+                    label: 'Lượng thức ăn thực tế (kg)',
                     keyBoardType: TextInputType.number,
                     controller: actualWeightController,
-                    hintText: 'Nhập cân nặng thực tế (kg)',
-                    isDisabled: taskStatus ==
-                        'Đã hoàn thành', // Make read-only if task is done
+                    hintText: 'Nhập theo khối lượng kilogram',
+                    isDisabled: taskStatus == 'Đã hoàn thành' ||
+                        taskStatus ==
+                            'Đã quá hạn', // Make read-only if task is done
                   )
                 ],
               )
@@ -697,47 +738,62 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             TextFieldRequired(
               controller: logController,
               maxLines: 3,
-              isDisabled: taskStatus == 'Đã hoàn thành',
+              isDisabled:
+                  taskStatus == 'Đã hoàn thành' || taskStatus == 'Đã quá hạn',
               label: 'Ghi chú',
               hintText: 'Nhập ghi chú',
             ),
             const SizedBox(height: 32),
-            Text('Tập tin đính kèm',
-                style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 20),
-            if (_images.isEmpty)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            if (taskStatus != "Đã quá hạn")
+              Column(
                 children: [
-                  InkWell(
-                    onTap: isEditable ? _pickImageFromCamera : null,
-                    child: Column(
+                  Text('Tập tin đính kèm',
+                      style: Theme.of(context).textTheme.titleMedium),
+                  const SizedBox(height: 20),
+                  if (_images.isEmpty)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        LinearIcons.cameraIcon,
-                        SizedBox(height: 8),
-                        Text(
-                          'Chụp ảnh',
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
+                        InkWell(
+                          onTap: isEditable ? _pickImageFromCamera : null,
+                          child: Column(
+                            children: [
+                              LinearIcons.cameraIcon,
+                              SizedBox(height: 8),
+                              Text(
+                                'Chụp ảnh',
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                              ),
+                            ],
+                          ),
+                        ),
+                        InkWell(
+                          onTap: isEditable ? _pickImageFromGallery : null,
+                          child: Column(
+                            children: [
+                              LinearIcons.folderAddIcon,
+                              SizedBox(height: 8),
+                              Text(
+                                'Chọn tập tin',
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: isEditable ? _pickImageFromGallery : null,
-                    child: Column(
-                      children: [
-                        LinearIcons.folderAddIcon,
-                        SizedBox(height: 8),
-                        Text(
-                          'Chọn tập tin',
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary),
-                        ),
-                      ],
-                    ),
-                  ),
+                    )
                 ],
+              )
+            else
+              Text(
+                '(!) Công việc đã quá hạn, không thể tạo đơn báo cáo.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
               ),
             Wrap(
               spacing: 8,
@@ -768,49 +824,49 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               }).toList(),
             ),
             const SizedBox(height: 24),
-            if (_images.isNotEmpty)
-              InkWell(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SafeArea(
-                        child: Wrap(
-                          children: <Widget>[
-                            ListTile(
-                              leading: LinearIcons.cameraIcon,
-                              title: Text('Chụp ảnh'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                _pickImageFromCamera();
-                              },
-                            ),
-                            ListTile(
-                              leading: LinearIcons.folderAddIcon,
-                              title: Text('Chọn tập tin'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                _pickImageFromGallery();
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Column(
-                  children: [
-                    LinearIcons.folderAddIcon,
-                    const SizedBox(height: 8),
-                    Text(
-                      'Thêm mục khác',
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary),
-                    ),
-                  ],
-                ),
-              )
+            // if (_images.isNotEmpty)
+            //   InkWell(
+            //     onTap: () {
+            //       showModalBottomSheet(
+            //         context: context,
+            //         builder: (BuildContext context) {
+            //           return SafeArea(
+            //             child: Wrap(
+            //               children: <Widget>[
+            //                 ListTile(
+            //                   leading: LinearIcons.cameraIcon,
+            //                   title: Text('Chụp ảnh'),
+            //                   onTap: () {
+            //                     Navigator.pop(context);
+            //                     _pickImageFromCamera();
+            //                   },
+            //                 ),
+            //                 ListTile(
+            //                   leading: LinearIcons.folderAddIcon,
+            //                   title: Text('Chọn tập tin'),
+            //                   onTap: () {
+            //                     Navigator.pop(context);
+            //                     _pickImageFromGallery();
+            //                   },
+            //                 ),
+            //               ],
+            //             ),
+            //           );
+            //         },
+            //       );
+            //     },
+            //     child: Column(
+            //       children: [
+            //         LinearIcons.folderAddIcon,
+            //         const SizedBox(height: 8),
+            //         Text(
+            //           'Thêm mục khác',
+            //           style: TextStyle(
+            //               color: Theme.of(context).colorScheme.primary),
+            //         ),
+            //       ],
+            //     ),
+            //   )
           ],
         ],
       ),
@@ -841,14 +897,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               label,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.outline,
-                fontSize: 15,
+                fontSize: 13,
               ),
             ),
             const SizedBox(height: 2),
             Text(
-              value.length > 10 ? '${value.substring(0, 10)}...' : value,
+              value.length > 14 ? '${value.substring(0, 14)}...' : value,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
             ),

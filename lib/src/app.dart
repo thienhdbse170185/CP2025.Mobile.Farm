@@ -8,6 +8,7 @@ import 'package:smart_farm/src/core/network/http_client.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/theme/theme.dart';
 import 'package:smart_farm/src/core/theme/util.dart';
+import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
@@ -64,7 +65,11 @@ class _MyAppState extends State<MyApp> {
         ),
         RepositoryProvider(
             create: (context) =>
-                HealthyRepository(apiClient: HealthyApiClient(dio: dio)))
+                HealthyRepository(apiClient: HealthyApiClient(dio: dio))),
+        RepositoryProvider(create: (context) {
+          return GrowthStageRepository(
+              apiClient: GrowthStageApiClient(dio: dio));
+        })
       ],
       child: MultiBlocProvider(
         providers: [
@@ -97,6 +102,9 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) => HealthyCubit(
                   healthyRepository: context.read<HealthyRepository>())),
+          BlocProvider(
+              create: (context) => GrowthStageCubit(
+                  growthStageRepository: context.read<GrowthStageRepository>()))
         ],
         child: BlocBuilder<ThemeCubit, bool>(
           builder: (context, themeMode) {

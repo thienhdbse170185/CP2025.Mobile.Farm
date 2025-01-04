@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 
 class NotificationWidget extends StatefulWidget {
@@ -20,6 +21,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
               Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
         ),
         centerTitle: false,
+        appBarHeight: MediaQuery.of(context).size.height * 0.08,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -30,27 +32,11 @@ class _NotificationWidgetState extends State<NotificationWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(90),
-                    color: Theme.of(context)
-                        .colorScheme
-                        .primaryContainer
-                        .withOpacity(0.4)),
-                width: 180,
-                height: 180,
-                child: Icon(
-                  Icons.inbox_outlined,
-                  color: Theme.of(context).primaryColor.withOpacity(0.4),
-                  size: 100,
-                ),
-              ),
-              const SizedBox(height: 16),
+              LinearIcons.emptyBoxIcon,
+              const SizedBox(height: 24),
               Text(
-                'Chưa có thông báo',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontSize: 20,
-                    color: Theme.of(context).colorScheme.outlineVariant),
+                'Thông báo trống',
+                style: Theme.of(context).textTheme.bodyLarge,
               )
             ],
           ),

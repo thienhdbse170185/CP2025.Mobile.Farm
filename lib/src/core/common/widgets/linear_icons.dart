@@ -177,9 +177,22 @@ class LinearIcons {
     colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
   );
 
+  static final Widget cameraIconWhite = SvgPicture.asset(
+    'assets/icons/camera.svg',
+    semanticsLabel: 'Camera',
+    colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+  );
+
   static final Widget folderAddIcon = SvgPicture.asset(
     'assets/icons/folder-add.svg',
     semanticsLabel: 'Folder Add',
     colorFilter: ColorFilter.mode(Color(0xff466730), BlendMode.srcIn),
+  );
+
+  static final Widget emptyBoxIcon = SvgPicture.asset(
+    'assets/icons/box-empty.svg',
+    semanticsLabel: 'Empty Box',
+    width: 160,
+    height: 160,
   );
 }

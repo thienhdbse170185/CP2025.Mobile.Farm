@@ -107,26 +107,31 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               top: MediaQuery.of(context).size.height * 0.17,
               left: 16,
               right: 16,
-              child: Card(
-                color: Colors.white,
-                shape: StadiumBorder(),
-                elevation: 2,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: ListTile(
-                    leading: Image.asset(
-                      'assets/images/avatar.png',
-                      width: 64,
-                      height: 64,
-                    ),
-                    title: Text(
-                      'Bảo Thiên',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+              child: InkWell(
+                onTap: () {
+                  context.push(RouteName.userProfile);
+                },
+                child: Card(
+                  color: Colors.white,
+                  shape: StadiumBorder(),
+                  elevation: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: ListTile(
+                      leading: Image.asset(
+                        'assets/images/avatar.png',
+                        width: 64,
+                        height: 64,
                       ),
+                      title: Text(
+                        'Bảo Thiên',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      trailing: LinearIcons.chevronRightIcon,
                     ),
-                    trailing: LinearIcons.chevronRightIcon,
                   ),
                 ),
               ),
