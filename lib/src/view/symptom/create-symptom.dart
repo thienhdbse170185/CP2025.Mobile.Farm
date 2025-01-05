@@ -1,22 +1,27 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:data_layer/model/dto/farming_batch/farming_batch_dto.dart';
+import 'package:data_layer/model/dto/symptom/symptom.dart';
 import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
+import 'package:data_layer/model/request/symptom/symptom/get_symptom_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart'; // For picking images
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
-import 'package:smart_farm/src/view/widgets/text_field_required.dart'; // To handle files
+import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
+import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
+import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
 
 class CreateSymptomWidget extends StatefulWidget {
-  final String cageName; // Add this line
-  const CreateSymptomWidget(
-      {super.key, required this.cageName}); // Update this line
+  final String cageName;
+  const CreateSymptomWidget({super.key, required this.cageName});
 
   @override
   State<CreateSymptomWidget> createState() => _CreateSymptomWidgetState();
@@ -26,18 +31,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final TextEditingController _noteController = TextEditingController();
   final List<File> _images = [];
   final TextEditingController _symptomController = TextEditingController();
-  final List<String> _enteredSymptoms = []; // List to store entered symptoms
+  final List<GetSymptomRequest> _enteredSymptoms = [];
+  final List<String> _symptomsName = [];
   final TextEditingController _affectedController = TextEditingController();
+  final TextEditingController _farmingBatchController = TextEditingController();
+  FarmingBatchDto? _farmingBatch;
+  List<SymptomDto> _symptoms = [];
 
-  // List of predefined symptoms for suggestions
-  final List<String> _symptomSuggestions = [
-    'Ho',
-    'Sốt cao',
-    'Biếng ăn',
-    'Phân lỏng'
-  ];
-
-  List<String> _cages = [];
+  List<CageOption> _cages = [];
   String? _selectedCage;
 
   @override
@@ -45,6 +46,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     super.initState();
     _selectedCage = widget.cageName.isNotEmpty ? widget.cageName : null;
     _fetchCages();
+    context.read<SymptomCubit>().getSymptoms();
   }
 
   void _fetchCages() async {
@@ -52,13 +54,13 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   // Function to pick multiple images
-  Future<void> _pickImages() async {
-    final picker = ImagePicker();
-    final pickedFiles = await picker.pickMultiImage();
-    setState(() {
-      _images.addAll(pickedFiles.map((file) => File(file.path)));
-    });
-  }
+  // Future<void> _pickImages() async {
+  //   final picker = ImagePicker();
+  //   final pickedFiles = await picker.pickMultiImage();
+  //   setState(() {
+  //     _images.addAll(pickedFiles.map((file) => File(file.path)));
+  //   });
+  // }
 
   String get formattedDate {
     return DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
@@ -88,19 +90,19 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
 
   void _submitForm() {
     final request = CreateSymptomRequest(
-      farmingBatchId:
-          '888a205f-2726-4368-bd93-0368ad786ffd', // Replace with actual batch ID
-      symptoms: _enteredSymptoms.join(', '),
-      status: 'Pending', // Replace with actual status
-      affectedQuantity: int.parse(_affectedController.text),
-      notes: _noteController.text,
-      pictures: _images
-          .map((image) => PictureSymptom(
-                image: "image.png",
-                dateCaptured: DateTime.now(),
-              ))
-          .toList(),
-    );
+        farmingBatchId: _farmingBatch?.id ?? '',
+        prescriptionId: '95e72b29-6a93-4da9-b2d4-e5956c75622e',
+        symptoms: _enteredSymptoms.join(', '),
+        status: 'Pending', // Replace with actual status
+        affectedQuantity: int.parse(_affectedController.text),
+        notes: _noteController.text,
+        pictures: _images
+            .map((image) => PictureSymptom(
+                  image: "image.png",
+                  dateCaptured: DateTime.now(),
+                ))
+            .toList(),
+        medicalSymptomDetails: _enteredSymptoms);
 
     context.read<HealthyCubit>().createSymptom(request);
   }
@@ -126,15 +128,18 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               const SizedBox(height: 16),
               Expanded(
                 child: ListView(
-                  children: _cages.map((String cage) {
+                  children: _cages.map((CageOption cage) {
                     return Card.outlined(
                       margin: const EdgeInsets.symmetric(vertical: 8),
                       child: ListTile(
                         leading: LinearIcons.chickenIcon,
-                        title: Text(cage),
+                        title: Text(cage.name),
                         onTap: () {
+                          context
+                              .read<FarmingBatchCubit>()
+                              .getFarmingBatchByCage(cage.id);
                           setState(() {
-                            _selectedCage = cage;
+                            _selectedCage = cage.name;
                           });
                           Navigator.pop(context);
                         },
@@ -188,11 +193,12 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             state.maybeWhen(
               loadByUserIdInProgress: () {
                 log("Đang lấy thông tin chuồng...");
-                LoadingDialog.show(context, "Đang lấy thông tin chuồng...");
               },
               loadByUserIdSuccess: (cages) {
                 setState(() {
-                  _cages = cages.map((cage) => cage.name).toList();
+                  _cages = cages
+                      .map((cage) => CageOption(id: cage.id, name: cage.name))
+                      .toList();
                 });
               },
               loadByUserIdFailure: (error) {
@@ -201,6 +207,45 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                     content: Text('Lỗi fetch chuồng: $error'),
                   ),
                 );
+              },
+              orElse: () {},
+            );
+          },
+        ),
+        BlocListener<FarmingBatchCubit, FarmingBatchState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getFarmingBatchByCageInProgress: () {
+                log("Đang lấy thông tin farming-batch...");
+              },
+              getFarmingBatchByCageSuccess: (farmingBatch) {
+                log("Lấy thông tin farming-batch thành công");
+                setState(() {
+                  _farmingBatch = farmingBatch;
+                  _farmingBatchController.text = farmingBatch.name;
+                });
+              },
+              getFarmingBatchByCageFailure: (error) {
+                log("Lấy thông tin farming-batch thất bại: $error");
+              },
+              orElse: () {},
+            );
+          },
+        ),
+        BlocListener<SymptomCubit, SymptomState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getSymptomsInProgress: () {
+                log("Đang lấy triệu chứng...");
+              },
+              getSymptomsSuccess: (symptoms) {
+                log("Lấy triệu chứng thành công");
+                setState(() {
+                  _symptoms = symptoms;
+                });
+              },
+              getSymptomsFailure: (error) {
+                log("Lấy triệu chứng thất bại: $error");
               },
               orElse: () {},
             );
@@ -260,6 +305,18 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               controller: TextEditingController(
                   text: _selectedCage ?? 'Chọn chuồng báo cáo'),
             ),
+            if (_farmingBatch != null)
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  TextFieldRequired(
+                    label: 'Vụ nuôi hiện tại',
+                    hintText: 'Nhập vụ nuôi hiện tại',
+                    isDisabled: true,
+                    controller: _farmingBatchController,
+                  ),
+                ],
+              ),
             const SizedBox(height: 16),
             Row(
               children: [
@@ -269,11 +326,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                       if (textEditingValue.text.isEmpty) {
                         return const Iterable<String>.empty();
                       }
-                      return _symptomSuggestions.where((String suggestion) {
-                        return suggestion
+                      return _symptoms.where((SymptomDto suggestion) {
+                        return suggestion.symptomName
                             .toLowerCase()
                             .contains(textEditingValue.text.toLowerCase());
-                      });
+                      }).map((e) => e.symptomName);
                     },
                     fieldViewBuilder: (BuildContext context,
                         TextEditingController fieldTextEditingController,
@@ -314,8 +371,16 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                                       ),
                                     );
                                   } else {
-                                    _enteredSymptoms
-                                        .add(_symptomController.text);
+                                    for (var symptom in _symptoms) {
+                                      if (symptom.symptomName ==
+                                          _symptomController.text) {
+                                        _symptomsName.add(symptom.symptomName);
+                                        _enteredSymptoms.add(GetSymptomRequest(
+                                          symptomId: symptom.id,
+                                          notes: _noteController.text,
+                                        ));
+                                      }
+                                    }
                                   }
                                   _symptomController
                                       .clear(); // Clear the text after adding
@@ -345,12 +410,12 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
-                    children: _enteredSymptoms.map((symptom) {
+                    children: _symptomsName.map((symptom) {
                       return Chip(
                         label: Text(symptom),
                         onDeleted: () {
                           setState(() {
-                            _enteredSymptoms.remove(symptom);
+                            _symptomsName.remove(symptom);
                           });
                         },
                       );

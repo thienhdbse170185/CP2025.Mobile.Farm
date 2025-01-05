@@ -102,7 +102,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     final log = DailyFoodUsageLogDto(
                         recommendedWeight: 45,
                         actualWeight: actualWeight,
-                        notes: 'Hum nay là ngày đẹp truyệt zời',
+                        notes: logController.text,
                         logTime: DateTime.now(),
                         photo: '',
                         taskId: widget.taskId);
@@ -114,7 +114,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       TaskTypeDataConstant.health) {
                     final log = HealthLogDto(
                         date: DateTime.now(),
-                        notes: 'Hum nay là ngày đẹp truyệt zời',
+                        notes: logController.text,
                         photo: '',
                         taskId: widget.taskId);
                     context.read<TaskBloc>().add(TaskEvent.createHealthLog(
@@ -122,8 +122,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   } else if (task!.taskType.taskTypeId ==
                       TaskTypeDataConstant.vaccin) {
                     final log = VaccinScheduleLogDto(
-                      date: DateTime.now(),
-                      notes: "Hum nay là ngày đẹp truyệt zời",
+                      date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                      notes: logController.text,
                       photo: "",
                       taskId: widget.taskId,
                     );
@@ -354,11 +354,19 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               createVaccinScheduleLogFailure: (e) async {
                 LoadingDialog.hide(context);
-                log("Tạo log lịch tiêm chủng thất bại!");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text('Tạo log lịch tiêm chủng thất bại!')),
-                );
+                if (e.toString().contains('vaccinschedule-not-found')) {
+                  log("Vaccine schedule không tồn tại!");
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Vaccine schedule không tồn tại!')),
+                  );
+                } else {
+                  log("Tạo log lịch tiêm chủng thất bại!");
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Tạo log lịch tiêm chủng thất bại!')),
+                  );
+                }
               },
               getDailyFoodUsageLogLoading: () {
                 log("Đang lấy log cho ăn...");
@@ -746,6 +754,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             const SizedBox(height: 32),
             if (taskStatus != "Đã quá hạn")
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Tập tin đính kèm',
                       style: Theme.of(context).textTheme.titleMedium),
