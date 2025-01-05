@@ -74,8 +74,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
         final box = await Hive.openBox(UserDataConstant.userBoxName);
         final userId = box.get(UserDataConstant.userIdKey);
-        final tasks = await repository
-            .getTasksByCageId(userId, formattedDate, event.cageId);
+        final tasks = await repository.getTasksByCageId(
+            userId, formattedDate, event.cageId);
         final tasksMap = _convertTasksToTaskMap(tasks);
         _sortTasksByStatus(tasksMap);
         emit(TaskState.getTasksByCageIdSuccess(tasksMap));
@@ -205,7 +205,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       try {
         final request = VaccinScheduleLogDto(
             notes: event.log.notes,
-            date: DateTime.now(),
+            date: event.log.date,
             photo: event.log.photo,
             taskId: event.log.taskId);
         final result =

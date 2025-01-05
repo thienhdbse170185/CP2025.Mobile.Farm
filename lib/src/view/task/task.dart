@@ -349,12 +349,16 @@ class _TaskWidgetState extends State<TaskWidget> {
           sessionTitle = 'Buổi sáng';
           image = 'assets/images/morning.png';
           break;
-        case 'Afternoon':
+        case 'Noon':
           sessionTitle = 'Buổi trưa';
+          image = 'assets/images/noon.png';
+          break;
+        case 'Afternoon':
+          sessionTitle = 'Buổi chiều';
           image = 'assets/images/afternoon.png';
           break;
         case 'Evening':
-          sessionTitle = 'Buổi chiều';
+          sessionTitle = 'Buổi tối';
           image = 'assets/images/moon.png';
           break;
         default:
