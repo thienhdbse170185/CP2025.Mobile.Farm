@@ -478,6 +478,10 @@ class _CageWidgetState extends State<CageWidget> {
           sessionTitle = 'Buổi sáng';
           image = 'assets/images/morning.png';
           break;
+        case 'Noon':
+          sessionTitle = 'Buổi trưa';
+          image = 'assets/images/noon.png';
+          break;
         case 'Afternoon':
           sessionTitle = 'Buổi trưa';
           image = 'assets/images/afternoon.png';
