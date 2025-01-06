@@ -92,7 +92,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     final request = CreateSymptomRequest(
         farmingBatchId: _farmingBatch?.id ?? '',
         prescriptionId: '95e72b29-6a93-4da9-b2d4-e5956c75622e',
-        symptoms: _enteredSymptoms.join(', '),
+        symptoms: _symptomsName.join(', '),
         status: 'Pending', // Replace with actual status
         affectedQuantity: int.parse(_affectedController.text),
         notes: _noteController.text,

@@ -1,5 +1,6 @@
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/view/widgets/task_card.dart';
 
 class TaskListWidget extends StatelessWidget {
@@ -20,16 +21,12 @@ class TaskListWidget extends StatelessWidget {
             task: task, // Chuyển sang sử dụng TaskHaveCageName
             taskId: task.id,
             cageName: task.cageName,
-            isCompleted: task.status == 'Done' || task.status == 'done',
-            isInProgress:
-                task.status == 'InProgress' || task.status == 'inprogress',
-            isOverdue: task.status == 'OverSchedules' ||
-                task.status == 'overschedules',
+            isCompleted: task.status == TaskStatusDataConstant.done,
+            isInProgress: task.status == TaskStatusDataConstant.inprogress,
+            isOverdue: task.status == TaskStatusDataConstant.overdue,
             isFirst: false, // Giữ nguyên theo yêu cầu
-            borderColor: task.status == 'InProgress' ||
-                    task.status == 'inprogress' ||
-                    task.status == 'Done' ||
-                    task.status == 'done'
+            borderColor: task.status == TaskStatusDataConstant.inprogress ||
+                    task.status == TaskStatusDataConstant.done
                 ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).colorScheme.secondaryContainer,
           );

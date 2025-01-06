@@ -15,7 +15,8 @@ class TextFieldRequired extends StatefulWidget {
       this.isObscureText = false, // Add this line
       this.isPassword = false,
       this.keyBoardType,
-      this.maxLines = 1});
+      this.maxLines = 1,
+      this.isRequired = true});
 
   final String label;
   final String hintText;
@@ -28,7 +29,7 @@ class TextFieldRequired extends StatefulWidget {
   final bool isReadOnly;
   final TextInputType? keyBoardType;
   final int? maxLines;
-
+  final bool? isRequired;
   final bool isObscureText; // Add this line
   final bool isPassword;
 
@@ -69,7 +70,7 @@ class _TextFieldRequiredState extends State<TextFieldRequired> {
             style: Theme.of(context).textTheme.bodyMedium,
             children: [
               TextSpan(text: '${widget.label} '),
-              widget.isDisabled == false
+              widget.isRequired == true && widget.isDisabled == false
                   ? TextSpan(
                       text: ' *',
                       style: TextStyle(color: Colors.red),
