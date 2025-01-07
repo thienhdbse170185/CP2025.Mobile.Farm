@@ -14,6 +14,7 @@ import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart'
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
+import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
@@ -80,6 +81,10 @@ class _MyAppState extends State<MyApp> {
         }),
         RepositoryProvider(create: (context) {
           return SymptomRepository(apiClient: SymptomApiClient(dio: dio));
+        }),
+        RepositoryProvider(create: (context) {
+          return MedicalSymptomRepository(
+              apiClient: MedicalSymptomApiClient(dio: dio));
         })
       ],
       child: MultiBlocProvider(
@@ -122,7 +127,10 @@ class _MyAppState extends State<MyApp> {
                   repository: context.read<FarmingBatchRepository>())),
           BlocProvider(
               create: (context) => SymptomCubit(
-                  symptomRepository: context.read<SymptomRepository>()))
+                  symptomRepository: context.read<SymptomRepository>())),
+          BlocProvider(
+              create: (context) => MedicalSymptomCubit(
+                  repository: context.read<MedicalSymptomRepository>()))
         ],
         child: BlocBuilder<ThemeCubit, bool>(
           builder: (context, themeMode) {
