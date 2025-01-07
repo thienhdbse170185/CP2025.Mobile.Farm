@@ -36,19 +36,13 @@ class HomeFeatures {
 class _HomeWidgetState extends State<HomeWidget> {
   List<NextTask> cages = [];
 
-  final List<Color> cardColors = [
-    Colors.blueAccent,
-    Colors.pinkAccent,
-    Colors.purpleAccent,
-  ];
-
   final List<HomeFeatures> features = [
     HomeFeatures(
-      title: 'Báo cáo \ntriệu chứng',
-      routeName: RouteName.createSymptom,
-      extra: {'cageName': ''},
+      title: 'Báo cáo\ntriệu chứng',
+      routeName: RouteName.symptom,
       icon: LinearIcons.healthIconGreen,
     ),
+    // Add more features here in the future
   ];
 
   @override
@@ -90,367 +84,366 @@ class _HomeWidgetState extends State<HomeWidget> {
         );
       },
       child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.11,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/leaf.jpg'),
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.4),
-                      BlendMode.dstATop,
-                    ),
+        backgroundColor: Colors.white,
+        body: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.11,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/leaf.jpg'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.4),
+                    BlendMode.dstATop,
                   ),
                 ),
               ),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.059,
-                left: 16,
-                right: 16,
-                child: Card(
-                  color: Colors.white,
-                  shape: StadiumBorder(),
-                  elevation: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: ListTile(
-                      leading: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Image.asset('assets/images/morning.png',
-                            width: 32, height: 32),
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Chào buổi sáng',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium
-                                      ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .outline)),
-                              Text('Bảo Thiên',
-                                  style:
-                                      Theme.of(context).textTheme.titleSmall),
-                              // Display the formatted date here
-                              Text(
-                                formattedDate,
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(width: 8),
-                          Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Theme.of(context).colorScheme.primary,
-                                width: 2,
-                              ),
-                            ),
-                            child: const CircleAvatar(
-                              radius: 20,
-                              backgroundImage:
-                                  AssetImage('assets/images/avatar.png'),
-                            ),
-                          ),
-                        ],
-                      ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.059,
+              left: 16,
+              right: 16,
+              child: Card(
+                color: Colors.white,
+                shape: StadiumBorder(),
+                elevation: 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: ListTile(
+                    leading: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Image.asset('assets/images/morning.png',
+                          width: 32, height: 32),
                     ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.165),
-                child: RefreshIndicator(
-                  onRefresh: () async {
-                    context.read<TaskBloc>().add(const TaskEvent.getNextTask());
-                    return;
-                  },
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Container(
-                        //   color: const Color(0xFFFFFFFF),
-                        //   width: MediaQuery.of(context).size.width,
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.only(left: 16, right: 16),
-                        //     child: Column(
-                        //       children: [
-                        //         SizedBox(
-                        //           height:
-                        //               MediaQuery.of(context).size.height * 0.16,
-                        //           child: GridView.builder(
-                        //             gridDelegate:
-                        //                 const SliverGridDelegateWithFixedCrossAxisCount(
-                        //                     crossAxisCount: 4,
-                        //                     childAspectRatio: 0.8),
-                        //             itemBuilder: (context, index) {
-                        //               if (index < features.length) {
-                        //                 final feature = features[index];
-                        //                 return GestureDetector(
-                        //                     onTap: () {
-                        //                       if (feature.extra!.isNotEmpty) {
-                        //                         context.push(feature.routeName,
-                        //                             extra: feature.extra);
-                        //                       } else {
-                        //                         context.push(feature.routeName);
-                        //                       }
-                        //                     },
-                        //                     child: MenuFeatureWidget(
-                        //                       title: feature.title,
-                        //                       icon: feature.icon,
-                        //                     ));
-                        //               }
-                        //               return null;
-                        //             },
-                        //           ),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
-                        // Container(
-                        //   color: Theme.of(context)
-                        //       .colorScheme
-                        //       .outline
-                        //       .withOpacity(0.05),
-                        //   height: 4,
-                        //   width: MediaQuery.of(context).size.width,
-                        //   margin: const EdgeInsets.symmetric(vertical: 16),
-                        // ),
-                        const SizedBox(height: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Chào buổi sáng',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline)),
+                            Text('Bảo Thiên',
+                                style: Theme.of(context).textTheme.titleSmall),
+                            // Display the formatted date here
+                            Text(
+                              formattedDate,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 8),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Chuồng được cung cấp',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  IconButton(
-                                      onPressed: () {
-                                        context
-                                            .read<TaskBloc>()
-                                            .add(TaskEvent.getNextTask());
-                                      },
-                                      icon: LinearIcons.refreshIcon)
-                                ],
-                              ),
-                              ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: cages.isEmpty ? 1 : cages.length,
-                                itemBuilder: (context, index) {
-                                  if (cages.isEmpty) {
-                                    return Center(
-                                      child: Text(
-                                        'Bạn chưa được gán chuồng nào.',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      ),
-                                    );
-                                  }
-                                  final cage = cages[index];
-                                  final color =
-                                      cardColors[index % cardColors.length];
-                                  return Column(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          context.push(RouteName.cage, extra: {
-                                            'cageId': cage.cageId,
-                                            'color': color,
-                                          });
-                                        },
-                                        child: Card(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/images/line_background.png'),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(16),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            LinearIcons
-                                                                .chickenIcon,
-                                                            const SizedBox(
-                                                                width: 8),
-                                                            Text(
-                                                              cage.cagename,
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .titleMedium
-                                                                  ?.copyWith(
-                                                                      color: Colors
-                                                                          .white),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 8),
-                                                        Text(
-                                                          'Task tiếp theo:',
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyMedium
-                                                              ?.copyWith(
-                                                                  color: Colors
-                                                                      .white70),
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 4),
-                                                        SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.6,
-                                                          child: Row(
-                                                            children: [
-                                                              const Icon(
-                                                                  Icons.circle,
-                                                                  size: 8,
-                                                                  color: Colors
-                                                                      .white),
-                                                              const SizedBox(
-                                                                  width: 8),
-                                                              Expanded(
-                                                                child: Text(
-                                                                  cage.taskName,
-                                                                  style: const TextStyle(
-                                                                      color: Colors
-                                                                          .white),
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .visible,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 10),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Text(
-                                                              'Tiến độ công việc',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .titleMedium
-                                                                  ?.copyWith(
-                                                                      color: Colors
-                                                                          .white),
-                                                            ),
-                                                            Text(
-                                                              "${cage.taskDone}/${cage.total}",
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .titleMedium
-                                                                  ?.copyWith(
-                                                                      color: Colors
-                                                                          .white),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        const SizedBox(
-                                                            height: 8),
-                                                        LinearProgressIndicator(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          value: cage.taskDone /
-                                                              cage.total,
-                                                          backgroundColor:
-                                                              Colors.white30,
-                                                          valueColor:
-                                                              const AlwaysStoppedAnimation<
-                                                                      Color>(
-                                                                  Colors.white),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 16),
-                                                  Lottie.asset(
-                                                    'assets/animations/chicken_adult.json',
-                                                    width: 100,
-                                                    height: 100,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8)
-                                    ],
-                                  );
-                                },
-                              ),
-                            ],
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 2,
+                            ),
                           ),
-                        )
+                          child: const CircleAvatar(
+                            radius: 20,
+                            backgroundImage:
+                                AssetImage('assets/images/avatar.png'),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              context.push(RouteName.symptom);
-            },
-            icon: LinearIcons.addCircleIcon,
-            label: const Text('Báo bệnh'),
-          )),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.165),
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  context.read<TaskBloc>().add(const TaskEvent.getNextTask());
+                  return;
+                },
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Features Grid Section
+                      Container(
+                        color: Colors.white,
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.fromLTRB(24, 8, 16, 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Tiện ích nhanh',
+                                style: Theme.of(context).textTheme.titleMedium),
+                            const SizedBox(height: 16),
+                            InkWell(
+                              onTap: () => context.push(RouteName.symptom),
+                              child: Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer
+                                      .withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .outline
+                                        .withOpacity(0.1),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    LinearIcons.healthIconGreen,
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Báo cáo \ntriệu chứng',
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .outline
+                            .withOpacity(0.05),
+                        height: 8,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Chuồng được cung cấp',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      context
+                                          .read<TaskBloc>()
+                                          .add(TaskEvent.getNextTask());
+                                    },
+                                    icon: LinearIcons.refreshIcon)
+                              ],
+                            ),
+                            ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: cages.isEmpty ? 1 : cages.length,
+                              itemBuilder: (context, index) {
+                                if (cages.isEmpty) {
+                                  return Center(
+                                    child: Text(
+                                      'Hôm nay bạn không có công việc.',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                  );
+                                }
+                                final cage = cages[index];
+                                return Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        context.push(RouteName.cage, extra: {
+                                          'cageId': cage.cageId,
+                                        });
+                                      },
+                                      child: Card(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/images/line_background.png'),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          LinearIcons
+                                                              .chickenIcon,
+                                                          const SizedBox(
+                                                              width: 8),
+                                                          Text(
+                                                            cage.cagename,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .titleMedium
+                                                                ?.copyWith(
+                                                                    color: Colors
+                                                                        .white),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      const SizedBox(height: 8),
+                                                      Text(
+                                                        'Task tiếp theo:',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.copyWith(
+                                                                color: Colors
+                                                                    .white70),
+                                                      ),
+                                                      const SizedBox(height: 4),
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                        child: Row(
+                                                          children: [
+                                                            const Icon(
+                                                                Icons.circle,
+                                                                size: 8,
+                                                                color: Colors
+                                                                    .white),
+                                                            const SizedBox(
+                                                                width: 8),
+                                                            Expanded(
+                                                              child: Text(
+                                                                cage.taskName,
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .visible,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            'Tiến độ công việc',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .titleMedium
+                                                                ?.copyWith(
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                          Text(
+                                                            "${cage.taskDone}/${cage.total}",
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .titleMedium
+                                                                ?.copyWith(
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const SizedBox(height: 8),
+                                                      LinearProgressIndicator(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        value: cage.taskDone /
+                                                            cage.total,
+                                                        backgroundColor:
+                                                            Colors.white30,
+                                                        valueColor:
+                                                            const AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                                Colors.white),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 16),
+                                                Lottie.asset(
+                                                  'assets/animations/chicken_adult.json',
+                                                  width: 100,
+                                                  height: 100,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8)
+                                  ],
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   onPressed: () {
+        //     context.push(RouteName.symptom);
+        //   },
+        //   icon: LinearIcons.addCircleIcon,
+        //   label: const Text('Báo bệnh'),
+        // )
+      ),
     );
   }
 }

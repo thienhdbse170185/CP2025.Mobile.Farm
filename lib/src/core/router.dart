@@ -1,3 +1,4 @@
+import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
@@ -7,6 +8,9 @@ import 'package:smart_farm/src/view/layout.dart';
 import 'package:smart_farm/src/view/profile/edit_user.dart';
 import 'package:smart_farm/src/view/profile/user.dart';
 import 'package:smart_farm/src/view/symptom/symptom.dart';
+import 'package:smart_farm/src/view/symptom/symptom_detail.dart';
+import 'package:smart_farm/src/view/symptom/symptom_search.dart';
+import 'package:smart_farm/src/view/symptom/symptom_success.dart';
 import 'package:smart_farm/src/view/task/task.dart';
 import 'package:smart_farm/src/view/task/task_history.dart';
 
@@ -33,6 +37,9 @@ class RouteName {
   static const String taskHistory = '/task-history';
   static const String symptom = '/symptom';
   static const String editUserProfile = '/edit-user-profile';
+  static const String symptomDetail = '/symptom-detail';
+  static const String symptomSearch = '/symptom-search';
+  static const String symptomSuccess = '/symptom-success';
 
   static const publicRoutes = [
     welcome,
@@ -172,11 +179,8 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             final cageId =
                 (state.extra as Map<String, dynamic>?)?['cageId'] as String;
-            final cardColor =
-                (state.extra as Map<String, dynamic>?)?['color'] as Color;
             return _buildPageWithSlideTransition(CageWidget(
               cageId: cageId,
-              color: cardColor,
             ));
           }),
 
@@ -234,4 +238,32 @@ final router = GoRouter(
           path: RouteName.editUserProfile,
           pageBuilder: (context, state) =>
               _buildPageWithSlideTransition(const EditUserProfileWidget())),
+
+      ///symptom-detail-route
+      GoRoute(
+          path: RouteName.symptomDetail,
+          pageBuilder: (context, state) {
+            final symptom = state.extra as Map<String, dynamic>;
+            return _buildPageWithSlideTransition(SymptomDetailWidget(
+              symptom: symptom['symptom'] as MedicalSymptomDto,
+            ));
+          }),
+
+      ///symptom-search-route
+      GoRoute(
+        path: RouteName.symptomSearch,
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const SymptomSearchWidget()),
+      ),
+
+      ///symptom-success-route
+      GoRoute(
+        path: RouteName.symptomSuccess,
+        pageBuilder: (context, state) {
+          final symptom = state.extra as MedicalSymptomDto;
+          return _buildPageWithSlideTransition(
+            SymptomSuccessWidget(symptom: symptom),
+          );
+        },
+      ),
     ]);

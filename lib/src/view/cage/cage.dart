@@ -18,8 +18,7 @@ import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class CageWidget extends StatefulWidget {
   final String cageId;
-  final Color color;
-  const CageWidget({super.key, required this.cageId, required this.color});
+  const CageWidget({super.key, required this.cageId});
 
   @override
   State<CageWidget> createState() => _CageWidgetState();
