@@ -24,7 +24,7 @@ mixin _$GrowthStageState {
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) =>
@@ -37,7 +37,7 @@ mixin _$GrowthStageState {
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) =>
@@ -49,7 +49,7 @@ mixin _$GrowthStageState {
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),
@@ -177,7 +177,7 @@ class _$InitialImpl implements _Initial {
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) {
@@ -193,7 +193,7 @@ class _$InitialImpl implements _Initial {
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) {
@@ -208,7 +208,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),
@@ -340,7 +340,7 @@ class _$GetGrowthStageByCageIdInProgressImpl
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) {
@@ -356,7 +356,7 @@ class _$GetGrowthStageByCageIdInProgressImpl
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) {
@@ -371,7 +371,7 @@ class _$GetGrowthStageByCageIdInProgressImpl
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),
@@ -545,7 +545,7 @@ class _$GetGrowthStageByCadeIdSuccessImpl
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) {
@@ -561,7 +561,7 @@ class _$GetGrowthStageByCadeIdSuccessImpl
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) {
@@ -576,7 +576,7 @@ class _$GetGrowthStageByCadeIdSuccessImpl
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),
@@ -746,7 +746,7 @@ class _$GetGrowthStageByCageIdFailureImpl
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) {
@@ -762,7 +762,7 @@ class _$GetGrowthStageByCageIdFailureImpl
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) {
@@ -777,7 +777,7 @@ class _$GetGrowthStageByCageIdFailureImpl
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),
@@ -919,7 +919,7 @@ class _$GetRecommendedWeightByCageIdInProgressImpl
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) {
@@ -935,7 +935,7 @@ class _$GetRecommendedWeightByCageIdInProgressImpl
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) {
@@ -950,7 +950,7 @@ class _$GetRecommendedWeightByCageIdInProgressImpl
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),
@@ -1039,7 +1039,7 @@ abstract class _$$GetRecommendedWeightByCageIdSuccessImplCopyWith<$Res> {
           $Res Function(_$GetRecommendedWeightByCageIdSuccessImpl) then) =
       __$$GetRecommendedWeightByCageIdSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({double recommendedWeight});
+  $Res call({double recommendedWeight, List<int> weightList});
 }
 
 /// @nodoc
@@ -1058,12 +1058,17 @@ class __$$GetRecommendedWeightByCageIdSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recommendedWeight = null,
+    Object? weightList = null,
   }) {
     return _then(_$GetRecommendedWeightByCageIdSuccessImpl(
       null == recommendedWeight
           ? _value.recommendedWeight
           : recommendedWeight // ignore: cast_nullable_to_non_nullable
               as double,
+      null == weightList
+          ? _value._weightList
+          : weightList // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -1072,14 +1077,23 @@ class __$$GetRecommendedWeightByCageIdSuccessImplCopyWithImpl<$Res>
 
 class _$GetRecommendedWeightByCageIdSuccessImpl
     implements _GetRecommendedWeightByCageIdSuccess {
-  const _$GetRecommendedWeightByCageIdSuccessImpl(this.recommendedWeight);
+  const _$GetRecommendedWeightByCageIdSuccessImpl(
+      this.recommendedWeight, final List<int> weightList)
+      : _weightList = weightList;
 
   @override
   final double recommendedWeight;
+  final List<int> _weightList;
+  @override
+  List<int> get weightList {
+    if (_weightList is EqualUnmodifiableListView) return _weightList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_weightList);
+  }
 
   @override
   String toString() {
-    return 'GrowthStageState.getRecommendedWeightByCageIdSuccess(recommendedWeight: $recommendedWeight)';
+    return 'GrowthStageState.getRecommendedWeightByCageIdSuccess(recommendedWeight: $recommendedWeight, weightList: $weightList)';
   }
 
   @override
@@ -1088,11 +1102,14 @@ class _$GetRecommendedWeightByCageIdSuccessImpl
         (other.runtimeType == runtimeType &&
             other is _$GetRecommendedWeightByCageIdSuccessImpl &&
             (identical(other.recommendedWeight, recommendedWeight) ||
-                other.recommendedWeight == recommendedWeight));
+                other.recommendedWeight == recommendedWeight) &&
+            const DeepCollectionEquality()
+                .equals(other._weightList, _weightList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, recommendedWeight);
+  int get hashCode => Object.hash(runtimeType, recommendedWeight,
+      const DeepCollectionEquality().hash(_weightList));
 
   /// Create a copy of GrowthStageState
   /// with the given fields replaced by the non-null parameter values.
@@ -1113,11 +1130,11 @@ class _$GetRecommendedWeightByCageIdSuccessImpl
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) {
-    return getRecommendedWeightByCageIdSuccess(recommendedWeight);
+    return getRecommendedWeightByCageIdSuccess(recommendedWeight, weightList);
   }
 
   @override
@@ -1129,11 +1146,12 @@ class _$GetRecommendedWeightByCageIdSuccessImpl
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) {
-    return getRecommendedWeightByCageIdSuccess?.call(recommendedWeight);
+    return getRecommendedWeightByCageIdSuccess?.call(
+        recommendedWeight, weightList);
   }
 
   @override
@@ -1144,13 +1162,13 @@ class _$GetRecommendedWeightByCageIdSuccessImpl
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),
   }) {
     if (getRecommendedWeightByCageIdSuccess != null) {
-      return getRecommendedWeightByCageIdSuccess(recommendedWeight);
+      return getRecommendedWeightByCageIdSuccess(recommendedWeight, weightList);
     }
     return orElse();
   }
@@ -1223,10 +1241,11 @@ class _$GetRecommendedWeightByCageIdSuccessImpl
 abstract class _GetRecommendedWeightByCageIdSuccess
     implements GrowthStageState {
   const factory _GetRecommendedWeightByCageIdSuccess(
-          final double recommendedWeight) =
+          final double recommendedWeight, final List<int> weightList) =
       _$GetRecommendedWeightByCageIdSuccessImpl;
 
   double get recommendedWeight;
+  List<int> get weightList;
 
   /// Create a copy of GrowthStageState
   /// with the given fields replaced by the non-null parameter values.
@@ -1316,7 +1335,7 @@ class _$GetRecommendedWeightByCageIdFailureImpl
         getGrowthStageByCageIdSuccess,
     required TResult Function(String error) getGrowthStageByCageIdFailure,
     required TResult Function() getRecommendedWeightByCageIdInProgress,
-    required TResult Function(double recommendedWeight)
+    required TResult Function(double recommendedWeight, List<int> weightList)
         getRecommendedWeightByCageIdSuccess,
     required TResult Function(String error) getRecommendedWeightByCageIdFailure,
   }) {
@@ -1332,7 +1351,7 @@ class _$GetRecommendedWeightByCageIdFailureImpl
         getGrowthStageByCageIdSuccess,
     TResult? Function(String error)? getGrowthStageByCageIdFailure,
     TResult? Function()? getRecommendedWeightByCageIdInProgress,
-    TResult? Function(double recommendedWeight)?
+    TResult? Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult? Function(String error)? getRecommendedWeightByCageIdFailure,
   }) {
@@ -1347,7 +1366,7 @@ class _$GetRecommendedWeightByCageIdFailureImpl
     TResult Function(GrowthStageDto growthStage)? getGrowthStageByCageIdSuccess,
     TResult Function(String error)? getGrowthStageByCageIdFailure,
     TResult Function()? getRecommendedWeightByCageIdInProgress,
-    TResult Function(double recommendedWeight)?
+    TResult Function(double recommendedWeight, List<int> weightList)?
         getRecommendedWeightByCageIdSuccess,
     TResult Function(String error)? getRecommendedWeightByCageIdFailure,
     required TResult orElse(),

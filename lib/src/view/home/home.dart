@@ -446,10 +446,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
-              // Add your onPressed code here!
-              context.push(RouteName.createSymptom, extra: {
-                'cageName': '',
-              });
+              context.push(RouteName.symptom);
             },
             icon: LinearIcons.addCircleIcon,
             label: const Text('Báo bệnh'),

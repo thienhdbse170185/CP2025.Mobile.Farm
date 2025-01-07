@@ -30,7 +30,6 @@ class CreateSymptomWidget extends StatefulWidget {
 class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final TextEditingController _noteController = TextEditingController();
   final List<File> _images = [];
-  final TextEditingController _symptomController = TextEditingController();
   final List<GetSymptomRequest> _enteredSymptoms = [];
   final List<String> _symptomsName = [];
   final TextEditingController _affectedController = TextEditingController();
@@ -44,6 +43,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   @override
   void initState() {
     super.initState();
+    _affectedController.text = '0';
     _selectedCage = widget.cageName.isNotEmpty ? widget.cageName : null;
     _fetchCages();
     context.read<SymptomCubit>().getSymptoms();
@@ -92,7 +92,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     final request = CreateSymptomRequest(
         farmingBatchId: _farmingBatch?.id ?? '',
         prescriptionId: '95e72b29-6a93-4da9-b2d4-e5956c75622e',
-        symptoms: _enteredSymptoms.join(', '),
+        symptoms: _symptomsName.join(', '),
         status: 'Pending', // Replace with actual status
         affectedQuantity: int.parse(_affectedController.text),
         notes: _noteController.text,
@@ -317,96 +317,13 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                   ),
                 ],
               ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: Autocomplete<String>(
-                    optionsBuilder: (TextEditingValue textEditingValue) {
-                      if (textEditingValue.text.isEmpty) {
-                        return const Iterable<String>.empty();
-                      }
-                      return _symptoms.where((SymptomDto suggestion) {
-                        return suggestion.symptomName
-                            .toLowerCase()
-                            .contains(textEditingValue.text.toLowerCase());
-                      }).map((e) => e.symptomName);
-                    },
-                    fieldViewBuilder: (BuildContext context,
-                        TextEditingController fieldTextEditingController,
-                        FocusNode fieldFocusNode,
-                        VoidCallback onFieldSubmitted) {
-                      return TextField(
-                        controller: fieldTextEditingController,
-                        focusNode: fieldFocusNode,
-                        decoration: InputDecoration(
-                          label: RichText(
-                            text: TextSpan(
-                              text: 'Nhập triệu chứng ',
-                              style: DefaultTextStyle.of(context).style,
-                              children: const <TextSpan>[
-                                TextSpan(
-                                  text: '*',
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                              ],
-                            ),
-                          ),
-                          hintText: 'Nhập triệu chứng',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          helperText:
-                              'Ấn dấu + để thêm triệu chứng vào báo cáo',
-                          suffixIcon: IconButton(
-                            icon: LinearIcons.addCircleIcon,
-                            onPressed: () {
-                              setState(() {
-                                if (_symptomController.text.isNotEmpty) {
-                                  if (_enteredSymptoms
-                                      .contains(_symptomController.text)) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text('Triệu chứng đã tồn tại'),
-                                      ),
-                                    );
-                                  } else {
-                                    for (var symptom in _symptoms) {
-                                      if (symptom.symptomName ==
-                                          _symptomController.text) {
-                                        _symptomsName.add(symptom.symptomName);
-                                        _enteredSymptoms.add(GetSymptomRequest(
-                                          symptomId: symptom.id,
-                                          notes: _noteController.text,
-                                        ));
-                                      }
-                                    }
-                                  }
-                                  _symptomController
-                                      .clear(); // Clear the text after adding
-                                }
-                              });
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                    onSelected: (String selected) {
-                      _symptomController.text = selected;
-                    },
-                  ),
-                ),
-              ],
-            ),
+            const SizedBox(height: 8),
             if (_enteredSymptoms.isNotEmpty)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 16),
-                  const Text(
-                    '• Triệu chứng đã nhập: ',
-                    style: TextStyle(decoration: TextDecoration.underline),
-                  ),
+                  const SizedBox(height: 24),
+                  const Text('• Triệu chứng đã nhập: '),
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
@@ -416,6 +333,12 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                         onDeleted: () {
                           setState(() {
                             _symptomsName.remove(symptom);
+                            _enteredSymptoms.removeWhere((s) =>
+                                _symptoms
+                                    .firstWhere(
+                                        (sym) => sym.symptomName == symptom)
+                                    .id ==
+                                s.symptomId);
                           });
                         },
                       );
@@ -424,11 +347,78 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 ],
               ),
             const SizedBox(height: 16),
-            TextFieldRequired(
-                controller: _affectedController,
-                isDisabled: false,
-                label: 'Số lượng con vật bị bệnh',
-                hintText: 'Nhập số lượng'),
+            OutlinedButton.icon(
+              onPressed: _showSymptomSelectionDialog,
+              icon: LinearIcons.addCircleIcon,
+              label: const Text('Thêm triệu chứng'),
+              style: OutlinedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 48),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Row(
+              children: [
+                Expanded(
+                  child: Text('Số lượng con vật bị bệnh'),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.remove,
+                          size: 16,
+                        ),
+                        onPressed: () {
+                          final currentValue =
+                              int.tryParse(_affectedController.text) ?? 0;
+                          if (currentValue > 0) {
+                            setState(() {
+                              _affectedController.text =
+                                  (currentValue - 1).toString();
+                            });
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        width: 20,
+                        child: TextField(
+                          controller: _affectedController,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.add,
+                          size: 16,
+                        ),
+                        onPressed: () {
+                          final currentValue =
+                              int.tryParse(_affectedController.text) ?? 0;
+                          setState(() {
+                            _affectedController.text =
+                                (currentValue + 1).toString();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 24),
             TextField(
               controller: _noteController,
@@ -554,6 +544,66 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showSymptomSelectionDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Chọn triệu chứng'),
+              content: SizedBox(
+                width: double.maxFinite,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _symptoms.length,
+                  itemBuilder: (context, index) {
+                    final symptom = _symptoms[index];
+                    final isSelected =
+                        _symptomsName.contains(symptom.symptomName);
+
+                    return CheckboxListTile(
+                      title: Text(symptom.symptomName),
+                      value: isSelected,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          if (value == true) {
+                            _symptomsName.add(symptom.symptomName);
+                            _enteredSymptoms.add(GetSymptomRequest(
+                              symptomId: symptom.id,
+                              notes: _noteController.text,
+                            ));
+                          } else {
+                            _symptomsName.remove(symptom.symptomName);
+                            _enteredSymptoms
+                                .removeWhere((s) => s.symptomId == symptom.id);
+                          }
+                        });
+                      },
+                    );
+                  },
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Đóng'),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    this.setState(() {}); // Update parent widget
+                  },
+                  child: const Text('Xác nhận'),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }

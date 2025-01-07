@@ -32,13 +32,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   String taskStatus = 'Loading...'; // Start directly at 'in progress'
   DateTime? logTime;
   double? recommendedWeight;
+  int actualWeight = 0;
 
   // For image upload
   final List<File> _images = [];
+  List<int> weightList = [];
 
   // Controller for log input
   TextEditingController logController = TextEditingController();
-  TextEditingController actualWeightController = TextEditingController();
 
   TaskHaveCageName? task;
 
@@ -80,7 +81,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Xác nhận'),
-          content: Text(taskStatus == 'Đang chờ'
+          content: Text(taskStatus == TaskStatusDataConstant.pendingVn
               ? 'Bạn có chắc chắn muốn bắt đầu công việc này không?'
               : 'Bạn có chắc chắn muốn xác nhận hoàn thành công việc này không?'),
           actions: [
@@ -93,14 +94,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                if (taskStatus == 'Đang làm') {
+                if (taskStatus == TaskStatusDataConstant.inprogressVn) {
                   if (task!.taskType.taskTypeId ==
                       TaskTypeDataConstant.feeding) {
-                    int actualWeight = actualWeightController.text.isEmpty
-                        ? 0
-                        : int.parse(actualWeightController.text);
+                    int actualWeight = this.actualWeight;
                     final log = DailyFoodUsageLogDto(
-                        recommendedWeight: 45,
+                        recommendedWeight: recommendedWeight?.toInt() ?? 0,
                         actualWeight: actualWeight,
                         notes: logController.text,
                         logTime: DateTime.now(),
@@ -139,7 +138,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               widget.taskId, TaskStatusDataConstant.done),
                         );
                   }
-                } else if (taskStatus == 'Chuẩn bị') {
+                } else if (taskStatus == TaskStatusDataConstant.pendingVn) {
                   context.read<TaskBloc>().add(
                         TaskEvent.updateTask(
                             widget.taskId, TaskStatusDataConstant.inprogress),
@@ -169,14 +168,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   String getStatusText(String status) {
     switch (status) {
-      case 'InProgress' || 'inprogress':
-        return 'Đang làm';
-      case 'Done' || 'done':
-        return 'Đã hoàn thành';
-      case 'Pending' || 'pending':
-        return 'Chuẩn bị';
-      case 'OverSchedules' || 'overschedules':
-        return 'Đã quá hạn';
+      case TaskStatusDataConstant.inprogress:
+        return TaskStatusDataConstant.inprogressVn;
+      case TaskStatusDataConstant.done:
+        return TaskStatusDataConstant.doneVn;
+      case TaskStatusDataConstant.pending:
+        return TaskStatusDataConstant.pendingVn;
+      case TaskStatusDataConstant.overdue:
+        return TaskStatusDataConstant.overdueVn;
       default:
         return status;
     }
@@ -184,13 +183,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Color getStatusColor(String status) {
     switch (status) {
-      case 'InProgress' || 'inprogress':
+      case TaskStatusDataConstant.inprogress:
         return Colors.yellow.shade200;
-      case 'Done' || 'done':
+      case TaskStatusDataConstant.done:
         return Colors.green.shade200;
-      case 'Pending' || 'pending':
+      case TaskStatusDataConstant.pending:
         return Colors.grey.shade300;
-      case 'OverSchedules' || 'overschedules':
+      case TaskStatusDataConstant.overdue:
         return Colors.red.shade200;
       default:
         return Colors.grey.shade300;
@@ -199,13 +198,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Color getStatusTextColor(String status) {
     switch (status) {
-      case 'InProgress' || 'inprogress':
+      case TaskStatusDataConstant.inprogress:
         return Colors.black;
-      case 'Done' || 'done':
+      case TaskStatusDataConstant.done:
         return Colors.white;
-      case 'Pending' || 'pending':
+      case TaskStatusDataConstant.pending:
         return Colors.black;
-      case 'OverSchedules' || 'overschedules':
+      case TaskStatusDataConstant.overdue:
         return Colors.white;
       default:
         return Colors.black;
@@ -251,16 +250,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               getTaskByIdSuccess: (task, userId) async {
                 // Handle task data
                 LoadingDialog.hide(context);
-                log(task.status);
                 setState(() {
                   this.task = task;
                   taskStatus = getStatusText(task.status);
                   loggedInUserId = userId;
                 });
                 log("Lấy thông tin công việc thành công!");
-                context
-                    .read<GrowthStageCubit>()
-                    .getRecommendedWeightByCageId(task.cageId);
+                if (task.status != TaskStatusDataConstant.pending) {
+                  context
+                      .read<GrowthStageCubit>()
+                      .getRecommendedWeightByCageId(task.cageId);
+                }
               },
               getTaskByIdLoading: () {
                 LoadingDialog.show(context, "Đang lấy thông tin công việc...");
@@ -375,7 +375,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               getDailyFoodUsageLogSuccess: (log) async {
                 setState(() {
-                  actualWeightController.text = log.actualWeight.toString();
+                  actualWeight = log.actualWeight;
                   logController.text = log.notes;
                   logTime = log.logTime;
                 });
@@ -423,12 +423,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 log('Đang lấy cân nặng khuyến nghị...');
                 LoadingDialog.show(context, 'Đang lấy cân nặng khuyến nghị...');
               },
-              getRecommendedWeightByCageIdSuccess: (recommendedWeight) {
+              getRecommendedWeightByCageIdSuccess:
+                  (recommendedWeight, weightList) {
                 log('Lấy cân nặng khuyến nghị thành công!');
                 setState(() {
                   this.recommendedWeight = recommendedWeight;
+                  actualWeight = recommendedWeight.toInt();
+                  this.weightList = weightList;
                 });
-                if (task?.status == 'Done' || task?.status == 'done') {
+                if (task?.status == TaskStatusDataConstant.done) {
                   if (task?.taskType.taskTypeId ==
                       TaskTypeDataConstant.feeding) {
                     context
@@ -644,15 +647,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: FilledButton(
-                  onPressed: (taskStatus == 'Đã hoàn thành' ||
-                          taskStatus == 'Đã quá hạn')
+                  onPressed: (taskStatus == TaskStatusDataConstant.doneVn ||
+                          taskStatus == TaskStatusDataConstant.overdueVn)
                       ? null
                       : _updateTaskStatus,
-                  child: Text(taskStatus == 'Chuẩn bị'
+                  child: Text(taskStatus == TaskStatusDataConstant.pendingVn
                       ? 'Bắt đầu'
-                      : taskStatus == 'Đã hoàn thành'
+                      : taskStatus == TaskStatusDataConstant.doneVn
                           ? 'Công việc đã hoàn thành'
-                          : taskStatus == 'Đã quá hạn'
+                          : taskStatus == TaskStatusDataConstant.overdueVn
                               ? 'Công việc đã quá hạn'
                               : 'Xác nhận hoàn thành'),
                 ),
@@ -662,28 +665,89 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     );
   }
 
+  Widget _buildImagePickerButton({
+    required BuildContext context,
+    required Widget icon,
+    required String label,
+    required VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Card.outlined(
+        child: SizedBox(
+          width: 110,
+          height: 90,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              icon,
+              const SizedBox(height: 8),
+              Text(
+                label,
+                style: TextStyle(
+                  color: onTap == null
+                      ? Theme.of(context).colorScheme.outline
+                      : Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildWorkTab(BuildContext context) {
     bool isEditable = task?.assignedToUser.userId == loggedInUserId;
-    bool isPending = taskStatus == 'Chuẩn bị';
+    bool isPending = taskStatus == TaskStatusDataConstant.pendingVn;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (isPending)
-            Text(
-              '(!) Xác nhận bắt đầu để có thể tạo đơn báo cáo và hoàn thành công việc.',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.errorContainer,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.warning_amber_rounded,
                     color: Theme.of(context).colorScheme.error,
                   ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Xác nhận bắt đầu để có thể tạo đơn báo cáo và hoàn thành công việc.',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
             )
           else ...[
-            // Upload Image Section
             if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Đơn log công việc cho ăn',
-                      style: Theme.of(context).textTheme.titleLarge),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.restaurant_rounded,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Đơn log công việc cho ăn',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 4),
                   Text(
                     'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(logTime ?? DateTime.now())}',
@@ -692,190 +756,334 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     ),
                   ),
                   const SizedBox(height: 24),
-                  TextFieldRequired(
-                    label: 'Lượng thức ăn khuyến nghị (kg)',
-                    keyBoardType: TextInputType.number,
-                    content: recommendedWeight.toString(),
-                    hintText: 'Nhập cân nặng thực tế (kg)',
-                    isDisabled: true, // Make read-only if task is done
+                  Card.outlined(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.info_outline,
+                                color: Theme.of(context).colorScheme.primary,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Khuyến cáo cho ăn:',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${recommendedWeight != null ? recommendedWeight?.toInt() : 0}g',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Chọn lượng thức ăn:',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: (task?.status ==
+                                              TaskStatusDataConstant.done ||
+                                          DateTime.parse(task?.dueDate ?? "")
+                                              .isBefore(DateTime.now()))
+                                      ? Theme.of(context).colorScheme.outline
+                                      : null,
+                                ),
+                          ),
+                          const SizedBox(height: 8),
+                          Wrap(
+                            spacing: 4,
+                            runSpacing: 4,
+                            children: weightList.map((weight) {
+                              bool isSelected = actualWeight == weight;
+                              bool isDisabled =
+                                  task?.status == TaskStatusDataConstant.done ||
+                                      task?.status ==
+                                          TaskStatusDataConstant.overdue;
+                              return FilterChip(
+                                selected: isSelected,
+                                showCheckmark: false,
+                                label: Text('${weight}g'),
+                                labelStyle: TextStyle(
+                                  color: isDisabled
+                                      ? (isSelected
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .outline)
+                                      : (isSelected
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .onSurface),
+                                ),
+                                selectedColor:
+                                    Theme.of(context).colorScheme.primary,
+                                onSelected: isDisabled
+                                    ? null
+                                    : (bool selected) {
+                                        if (selected) {
+                                          setState(() {
+                                            actualWeight = weight;
+                                          });
+                                        }
+                                      },
+                              );
+                            }).toList(),
+                          ),
+                          const SizedBox(height: 16),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer
+                                  .withOpacity(task?.status ==
+                                          TaskStatusDataConstant.done
+                                      ? 0.5
+                                      : 1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.check_circle_outline,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(task?.status ==
+                                              TaskStatusDataConstant.done
+                                          ? 0.5
+                                          : 1),
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Đã cho ăn: ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        color: task?.status ==
+                                                TaskStatusDataConstant.done
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .outline
+                                            : null,
+                                      ),
+                                ),
+                                Text(
+                                  '${actualWeight}g',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: task?.status ==
+                                                TaskStatusDataConstant.done
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .outline
+                                            : null,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 24),
-                  TextFieldRequired(
-                    label: 'Lượng thức ăn thực tế (kg)',
-                    keyBoardType: TextInputType.number,
-                    controller: actualWeightController,
-                    hintText: 'Nhập theo khối lượng kilogram',
-                    isDisabled: taskStatus == 'Đã hoàn thành' ||
-                        taskStatus ==
-                            'Đã quá hạn', // Make read-only if task is done
-                  )
                 ],
               )
             else if (task?.taskType.taskTypeId == TaskTypeDataConstant.health)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Đơn log công việc cho uống thuốc',
-                      style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outlineVariant,
                   ),
-                ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.medical_services_rounded,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Đơn log công việc cho uống thuốc',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.outline,
+                      ),
+                    ),
+                  ],
+                ),
               )
             else if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Đơn log công việc tiêm vắc xin',
-                      style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outlineVariant,
                   ),
-                ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.vaccines_rounded,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Đơn log công việc tiêm vắc xin',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.outline,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             const SizedBox(height: 24),
-            // Log input TextField
             TextFieldRequired(
+              isRequired: false,
               controller: logController,
               maxLines: 3,
-              isDisabled:
-                  taskStatus == 'Đã hoàn thành' || taskStatus == 'Đã quá hạn',
-              label: 'Ghi chú',
+              isDisabled: taskStatus == TaskStatusDataConstant.doneVn ||
+                  taskStatus == TaskStatusDataConstant.overdueVn,
+              label: 'Ghi chú (nếu có)',
               hintText: 'Nhập ghi chú',
             ),
             const SizedBox(height: 32),
-            if (taskStatus != "Đã quá hạn")
+            if (taskStatus != TaskStatusDataConstant.overdueVn)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Tập tin đính kèm',
-                      style: Theme.of(context).textTheme.titleMedium),
-                  const SizedBox(height: 20),
+                  Text(
+                    'Tập tin đính kèm',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 10),
                   if (_images.isEmpty)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        InkWell(
+                        _buildImagePickerButton(
+                          context: context,
+                          icon: LinearIcons.cameraIcon,
+                          label: 'Chụp ảnh',
                           onTap: isEditable ? _pickImageFromCamera : null,
-                          child: Column(
-                            children: [
-                              LinearIcons.cameraIcon,
-                              SizedBox(height: 8),
-                              Text(
-                                'Chụp ảnh',
-                                style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                              ),
-                            ],
-                          ),
                         ),
-                        InkWell(
+                        _buildImagePickerButton(
+                          context: context,
+                          icon: LinearIcons.folderAddIcon,
+                          label: 'Chọn tập tin',
                           onTap: isEditable ? _pickImageFromGallery : null,
-                          child: Column(
-                            children: [
-                              LinearIcons.folderAddIcon,
-                              SizedBox(height: 8),
-                              Text(
-                                'Chọn tập tin',
-                                style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                              ),
-                            ],
-                          ),
                         ),
                       ],
-                    )
+                    ),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: _images.map((image) {
+                      return Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.file(
+                              image,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.remove_circle,
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _images.remove(image);
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                  ),
                 ],
               )
             else
-              Text(
-                '(!) Công việc đã quá hạn, không thể tạo đơn báo cáo.',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.errorContainer,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.error_outline,
                       color: Theme.of(context).colorScheme.error,
                     ),
-              ),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: _images.map((image) {
-                return Stack(
-                  children: [
-                    Image.file(
-                      image,
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                    ),
-                    Positioned(
-                      right: 0,
-                      child: IconButton(
-                        icon:
-                            const Icon(Icons.remove_circle, color: Colors.red),
-                        onPressed: () {
-                          setState(() {
-                            _images.remove(image);
-                          });
-                        },
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Công việc đã quá hạn, không thể tạo đơn báo cáo.',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.error,
+                            ),
                       ),
                     ),
                   ],
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 24),
-            // if (_images.isNotEmpty)
-            //   InkWell(
-            //     onTap: () {
-            //       showModalBottomSheet(
-            //         context: context,
-            //         builder: (BuildContext context) {
-            //           return SafeArea(
-            //             child: Wrap(
-            //               children: <Widget>[
-            //                 ListTile(
-            //                   leading: LinearIcons.cameraIcon,
-            //                   title: Text('Chụp ảnh'),
-            //                   onTap: () {
-            //                     Navigator.pop(context);
-            //                     _pickImageFromCamera();
-            //                   },
-            //                 ),
-            //                 ListTile(
-            //                   leading: LinearIcons.folderAddIcon,
-            //                   title: Text('Chọn tập tin'),
-            //                   onTap: () {
-            //                     Navigator.pop(context);
-            //                     _pickImageFromGallery();
-            //                   },
-            //                 ),
-            //               ],
-            //             ),
-            //           );
-            //         },
-            //       );
-            //     },
-            //     child: Column(
-            //       children: [
-            //         LinearIcons.folderAddIcon,
-            //         const SizedBox(height: 8),
-            //         Text(
-            //           'Thêm mục khác',
-            //           style: TextStyle(
-            //               color: Theme.of(context).colorScheme.primary),
-            //         ),
-            //       ],
-            //     ),
-            //   )
+                ),
+              ),
           ],
         ],
       ),
