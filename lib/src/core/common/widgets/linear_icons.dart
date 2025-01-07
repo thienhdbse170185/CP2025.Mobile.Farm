@@ -131,6 +131,13 @@ class LinearIcons {
     height: 24,
   );
 
+  static final Widget chickenIconMedium = SvgPicture.asset(
+    'assets/icons/chicken.svg',
+    semanticsLabel: 'Chicken',
+    width: 32,
+    height: 32,
+  );
+
   static final Widget exportIcon = SvgPicture.asset(
     'assets/icons/export.svg',
     semanticsLabel: 'Export',
