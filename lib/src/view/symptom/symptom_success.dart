@@ -193,7 +193,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                           const SizedBox(height: 16),
                           _buildDetailRow(
                             'Triệu chứng',
-                            widget.symptom.symptoms,
+                            widget.symptom.symtom,
                             Image.asset('assets/images/corona-virus.png',
                                 width: 32),
                           ),
