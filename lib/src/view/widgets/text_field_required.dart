@@ -71,11 +71,11 @@ class _TextFieldRequiredState extends State<TextFieldRequired> {
             children: [
               TextSpan(text: '${widget.label} '),
               widget.isRequired == true && widget.isDisabled == false
-                  ? TextSpan(
+                  ? const TextSpan(
                       text: ' *',
                       style: TextStyle(color: Colors.red),
                     )
-                  : TextSpan(),
+                  : const TextSpan(),
             ],
           ),
         ),

@@ -94,7 +94,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 image: DecorationImage(
-                  image: AssetImage('assets/images/leaf.jpg'),
+                  image: const AssetImage('assets/images/leaf.jpg'),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                     Colors.black.withOpacity(0.4),
@@ -109,7 +109,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               right: 16,
               child: Card(
                 color: Colors.white,
-                shape: StadiumBorder(),
+                shape: const StadiumBorder(),
                 elevation: 2,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -242,7 +242,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   'Chuồng được cung cấp',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -252,7 +252,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     onPressed: () {
                                       context
                                           .read<TaskBloc>()
-                                          .add(TaskEvent.getNextTask());
+                                          .add(const TaskEvent.getNextTask());
                                     },
                                     icon: LinearIcons.refreshIcon)
                               ],

@@ -525,7 +525,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                           Expanded(
                             child: Text(
                               task?.description ?? "",
-                              style: TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ),
                         ],
@@ -633,7 +633,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                           task?.taskType.taskTypeId ==
                               TaskTypeDataConstant.vaccin)
                       ? _buildWorkTab(context)
-                      : Text(
+                      : const Text(
                           '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
                         ),
                 )

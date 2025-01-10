@@ -122,7 +122,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
         // Tạo danh sách cage không trùng lặp
         List<CageFilter> cageList = [
-          CageFilter(cageName: 'Tất cả', cageType: 'all', cageId: null)
+          const CageFilter(cageName: 'Tất cả', cageType: 'all', cageId: null)
         ];
         for (var task in taskSortedData.values.expand((element) => element)) {
           if (!cageList.any((element) => element.cageName == task.cageName)) {

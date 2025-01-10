@@ -9,10 +9,10 @@ part 'growth_stage_state.dart';
 class GrowthStageCubit extends Cubit<GrowthStageState> {
   final GrowthStageRepository growthStageRepository;
   GrowthStageCubit({required this.growthStageRepository})
-      : super(GrowthStageState.initial());
+      : super(const GrowthStageState.initial());
 
   Future<void> getGrowthStageByCageId(String cageId) async {
-    emit(GrowthStageState.getGrowthStageByCageIdInProgress());
+    emit(const GrowthStageState.getGrowthStageByCageIdInProgress());
     try {
       final growthStage =
           await growthStageRepository.getGrowthStageByCageId(cageId);
@@ -23,7 +23,7 @@ class GrowthStageCubit extends Cubit<GrowthStageState> {
   }
 
   Future<void> getRecommendedWeightByCageId(String cageId) async {
-    emit(GrowthStageState.getRecommendedWeightByCageIdInProgress());
+    emit(const GrowthStageState.getRecommendedWeightByCageIdInProgress());
     try {
       final growthStage =
           await growthStageRepository.getGrowthStageByCageId(cageId);

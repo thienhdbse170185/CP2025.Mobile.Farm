@@ -160,7 +160,7 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
                 children: <Widget>[
                   ListTile(
                     leading: LinearIcons.cameraIcon,
-                    title: Text('Chụp ảnh'),
+                    title: const Text('Chụp ảnh'),
                     onTap: () {
                       Navigator.pop(context);
                       _pickImageFromCamera();
@@ -168,7 +168,7 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
                   ),
                   ListTile(
                     leading: LinearIcons.folderAddIcon,
-                    title: Text('Chọn tập tin'),
+                    title: const Text('Chọn tập tin'),
                     onTap: () {
                       Navigator.pop(context);
                       _pickImageFromGallery();
