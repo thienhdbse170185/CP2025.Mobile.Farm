@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
@@ -92,15 +93,15 @@ class _CageWidgetState extends State<CageWidget> {
   @override
   Widget build(BuildContext context) {
     final doneTasks = tasks.values.expand((element) => element).where((task) {
-      return task.status.toLowerCase() == 'done';
+      return task.status == StatusDataConstant.done;
     }).toList();
     final inProgressTasks =
         tasks.values.expand((element) => element).where((task) {
-      return task.status.toLowerCase() == 'inprogress';
+      return task.status == StatusDataConstant.inProgress;
     }).toList();
     final pendingTasks =
         tasks.values.expand((element) => element).where((task) {
-      return task.status.toLowerCase() == 'pending';
+      return task.status == StatusDataConstant.pending;
     }).toList();
 
     return MultiBlocListener(
@@ -169,6 +170,8 @@ class _CageWidgetState extends State<CageWidget> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  LinearIcons.calendarIcon,
+                  const SizedBox(width: 4),
                   Text(
                     formattedDate,
                     style: Theme.of(context).textTheme.bodyMedium,

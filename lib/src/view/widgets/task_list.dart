@@ -21,12 +21,12 @@ class TaskListWidget extends StatelessWidget {
             task: task, // Chuyển sang sử dụng TaskHaveCageName
             taskId: task.id,
             cageName: task.cageName,
-            isCompleted: task.status == TaskStatusDataConstant.done,
-            isInProgress: task.status == TaskStatusDataConstant.inprogress,
-            isOverdue: task.status == TaskStatusDataConstant.overdue,
+            isCompleted: task.status == StatusDataConstant.done,
+            isInProgress: task.status == StatusDataConstant.inProgress,
+            isOverdue: task.status == StatusDataConstant.overdue,
             isFirst: false, // Giữ nguyên theo yêu cầu
-            borderColor: task.status == TaskStatusDataConstant.inprogress ||
-                    task.status == TaskStatusDataConstant.done
+            borderColor: task.status == StatusDataConstant.inProgress ||
+                    task.status == StatusDataConstant.done
                 ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).colorScheme.secondaryContainer,
           );
