@@ -383,6 +383,15 @@ class _TaskWidgetState extends State<TaskWidget> {
                           color: Theme.of(context).colorScheme.primary,
                         ),
                   ),
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () {
+                      context.read<TaskBloc>().add(
+                          TaskEvent.getTasksByUserIdAndDate(
+                              selectedDate, null));
+                    },
+                    child: const Icon(Icons.refresh, size: 16),
+                  ),
                   const Spacer(),
                   Text(
                     '$totalTasks công việc',

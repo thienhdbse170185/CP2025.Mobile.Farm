@@ -6,6 +6,7 @@ import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
 import 'package:smart_farm/src/view/profile/edit_user.dart';
+import 'package:smart_farm/src/view/profile/security.dart';
 import 'package:smart_farm/src/view/profile/user.dart';
 import 'package:smart_farm/src/view/symptom/symptom.dart';
 import 'package:smart_farm/src/view/symptom/symptom_detail.dart';
@@ -40,6 +41,7 @@ class RouteName {
   static const String symptomDetail = '/symptom-detail';
   static const String symptomSearch = '/symptom-search';
   static const String symptomSuccess = '/symptom-success';
+  static const String security = '/security';
 
   static const publicRoutes = [
     welcome,
@@ -265,5 +267,12 @@ final router = GoRouter(
             SymptomSuccessWidget(symptom: symptom),
           );
         },
+      ),
+
+      ///security-route
+      GoRoute(
+        path: RouteName.security,
+        pageBuilder: (context, state) =>
+            _buildPageWithSlideTransition(const SecurityWidget()),
       ),
     ]);

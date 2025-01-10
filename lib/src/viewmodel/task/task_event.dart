@@ -9,7 +9,8 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.deleteTask(String taskId) = _DeleteTask;
   const factory TaskEvent.getTasks() = _GetTasks;
   const factory TaskEvent.testConnect() = _TestConnect;
-  const factory TaskEvent.getTasksByCageId(DateTime? date, String cageId) = _GetTasksByCageId;
+  const factory TaskEvent.getTasksByCageId(DateTime? date, String cageId) =
+      _GetTasksByCageId;
   const factory TaskEvent.getTaskById(String taskId) = _GetTaskById;
   const factory TaskEvent.getNextTask() = _GetNextTask;
   const factory TaskEvent.getTasksByUserIdAndDate(
@@ -24,7 +25,7 @@ class TaskEvent with _$TaskEvent {
     required DailyFoodUsageLogDto log,
   }) = _CreateDailyFoodUsageLog;
   const factory TaskEvent.createHealthLog({
-    required String cageId,
+    required String prescriptionId,
     required HealthLogDto log,
   }) = _CreateHealthLog;
   const factory TaskEvent.createVaccinScheduleLog({
@@ -36,4 +37,6 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.getHealthLog(String taskId) = _GetHealthLog;
   const factory TaskEvent.getVaccinScheduleLog(String taskId) =
       _GetVaccinScheduleLog;
+  const factory TaskEvent.getHealthLogInformation(String taskId) =
+      _GetHealthLogInformation;
 }
