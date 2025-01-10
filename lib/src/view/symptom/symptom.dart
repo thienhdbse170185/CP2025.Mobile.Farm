@@ -68,7 +68,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                       .primaryContainer
                       .withOpacity(0.5),
                   image: DecorationImage(
-                    image: AssetImage('assets/images/leaf.jpg'),
+                    image: const AssetImage('assets/images/leaf.jpg'),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.1),

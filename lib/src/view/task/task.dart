@@ -152,7 +152,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                       .primaryContainer
                       .withOpacity(0.6),
                   image: DecorationImage(
-                    image: AssetImage('assets/images/leaf.jpg'),
+                    image: const AssetImage('assets/images/leaf.jpg'),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.1),

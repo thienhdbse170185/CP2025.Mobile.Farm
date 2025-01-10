@@ -9,10 +9,10 @@ part 'farming_batch_state.dart';
 class FarmingBatchCubit extends Cubit<FarmingBatchState> {
   final FarmingBatchRepository repository;
   FarmingBatchCubit({required this.repository})
-      : super(FarmingBatchState.initial());
+      : super(const FarmingBatchState.initial());
 
   Future<void> getFarmingBatchByCage(String cageId) async {
-    emit(FarmingBatchState.getFarmingBatchByCageInProgress());
+    emit(const FarmingBatchState.getFarmingBatchByCageInProgress());
     try {
       final farmingBatch = await repository.getFarmingBatchByCage(cageId);
       emit(FarmingBatchState.getFarmingBatchByCageSuccess(farmingBatch));

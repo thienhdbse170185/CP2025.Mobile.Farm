@@ -11,12 +11,12 @@ class SettingWidget extends StatefulWidget {
 class _SettingWidgetState extends State<SettingWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        title: const Text('Cài đặt'),
+        title: Text('Cài đặt'),
       ),
-      body: const Center(child: Text('Màn hình Setting')),
+      body: Center(child: Text('Màn hình Setting')),
     );
   }
 }

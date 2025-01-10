@@ -383,7 +383,7 @@ class _CageWidgetState extends State<CageWidget> {
                 // ),
 
                 const SizedBox(height: 16),
-                CustomDividerWidget(),
+                const CustomDividerWidget(),
                 if (tasks.values.every((tasks) => tasks.isEmpty)) ...[
                   Container(
                     color: Colors.white,

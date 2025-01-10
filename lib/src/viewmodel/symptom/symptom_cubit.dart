@@ -8,12 +8,12 @@ part 'symptom_state.dart';
 
 class SymptomCubit extends Cubit<SymptomState> {
   SymptomCubit({required this.symptomRepository})
-      : super(SymptomState.initial());
+      : super(const SymptomState.initial());
 
   final SymptomRepository symptomRepository;
 
   Future<void> getSymptoms() async {
-    emit(SymptomState.getSymptomsInProgress());
+    emit(const SymptomState.getSymptomsInProgress());
     try {
       final symptoms = await symptomRepository.getSymptoms();
       emit(SymptomState.getSymptomsSuccess(symptoms));

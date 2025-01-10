@@ -10,10 +10,10 @@ part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
-  UserBloc({required this.userRepository}) : super(UserState.initial()) {
+  UserBloc({required this.userRepository}) : super(const UserState.initial()) {
     on<UserEvent>((event, emit) {});
     on<_GetUserProfile>((event, emit) async {
-      emit(UserState.getUserProfileInProgress());
+      emit(const UserState.getUserProfileInProgress());
       try {
         final userBox = await Hive.openBox(UserDataConstant.userBoxName);
         final userName = userBox.get(UserDataConstant.userNameKey);

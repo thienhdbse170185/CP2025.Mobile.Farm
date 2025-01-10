@@ -24,7 +24,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   void _showLogoutConfirmationBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (BuildContext context) {
@@ -40,7 +40,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
-              Text(
+              const Text(
                 'Bạn có chắc chắn muốn đăng xuất khỏi tài \nkhoản này?',
                 textAlign: TextAlign.center,
               ),
@@ -113,7 +113,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 },
                 child: Card(
                   color: Colors.white,
-                  shape: StadiumBorder(),
+                  shape: const StadiumBorder(),
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -123,7 +123,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         width: 64,
                         height: 64,
                       ),
-                      title: Text(
+                      title: const Text(
                         'Bảo Thiên',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             Container(
               margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.29),
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
