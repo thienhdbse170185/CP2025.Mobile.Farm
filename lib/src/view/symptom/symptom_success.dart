@@ -197,7 +197,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                             Image.asset('assets/images/corona-virus.png',
                                 width: 32),
                           ),
-                          if (widget.symptom.notes.isNotEmpty ?? false) ...[
+                          if (widget.symptom.notes.isNotEmpty) ...[
                             const SizedBox(height: 16),
                             _buildDetailRow(
                                 'Ghi chú',
