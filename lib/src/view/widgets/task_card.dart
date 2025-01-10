@@ -4,6 +4,7 @@ import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_nam
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 
 class TaskCard extends StatelessWidget {
@@ -16,29 +17,30 @@ class TaskCard extends StatelessWidget {
   final String? cageName;
   final bool isOverdue;
 
-  const TaskCard(
-      {super.key,
-      required this.task,
-      required this.isCompleted,
-      required this.isInProgress,
-      this.isFirst = false,
-      this.taskId,
-      required this.borderColor,
-      this.cageName,
-      required this.isOverdue});
+  const TaskCard({
+    super.key,
+    required this.task,
+    required this.isCompleted,
+    required this.isInProgress,
+    this.isFirst = false,
+    this.taskId,
+    required this.borderColor,
+    this.cageName,
+    required this.isOverdue,
+  });
 
   @override
   Widget build(BuildContext context) {
     String getStatusText(String status) {
       switch (status) {
-        case 'Pending' || 'pending':
-          return 'Chuẩn bị';
-        case 'InProgress' || 'inprogress':
-          return 'Đang làm';
-        case 'Done' || 'done':
-          return 'Đã hoàn thành';
-        case 'OverSchedules' || 'overschedules':
-          return 'Đã quá hạn';
+        case StatusDataConstant.pending:
+          return StatusDataConstant.pendingVn;
+        case StatusDataConstant.inProgress:
+          return StatusDataConstant.inProgressVn;
+        case StatusDataConstant.done:
+          return StatusDataConstant.doneVn;
+        case StatusDataConstant.overdue:
+          return StatusDataConstant.overdueVn;
         default:
           return status;
       }
@@ -91,18 +93,15 @@ class TaskCard extends StatelessWidget {
                       Text(
                         getStatusText(task.status),
                         style: TextStyle(
-                          color: task.status == 'Pending' ||
-                                  task.status == 'pending'
+                          color: task.status == StatusDataConstant.pending
                               ? Colors.grey
-                              : task.status == 'InProgress' ||
-                                      task.status == 'inprogress'
+                              : task.status == StatusDataConstant.inProgress
                                   ? Colors
                                       .amber // Changed from Colors.yellow to Colors.amber
-                                  : task.status == 'Done' ||
-                                          task.status == 'done'
+                                  : task.status == StatusDataConstant.done
                                       ? Colors.green
-                                      : task.status == 'OverSchedules' ||
-                                              task.status == 'overschedules'
+                                      : task.status ==
+                                              StatusDataConstant.overdue
                                           ? Colors.red
                                           : Theme.of(context)
                                               .colorScheme

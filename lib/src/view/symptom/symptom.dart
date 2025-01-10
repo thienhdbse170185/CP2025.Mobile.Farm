@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
 
@@ -19,9 +20,9 @@ class _SymptomWidgetState extends State<SymptomWidget> {
 
   final List<String> _statusFilters = [
     'Tất cả',
-    'Chờ xem xét',
-    'Đã kê đơn thuốc',
-    'Từ chối'
+    StatusDataConstant.PENDING_MEDICAL_SYMPTOM_VN,
+    StatusDataConstant.PRESCRIBED_MEDICAL_SYMPTOM_VN,
+    StatusDataConstant.REJECTED_MEDICAL_SYMPTOM_VN,
   ];
 
   @override
@@ -37,11 +38,11 @@ class _SymptomWidgetState extends State<SymptomWidget> {
 
   Color _getStatusColor(String status) {
     switch (status) {
-      case 'Pending':
+      case StatusDataConstant.PENDING_MEDICAL_SYMPTOM:
         return Colors.orange;
-      case 'Prescribed':
+      case StatusDataConstant.PRESCRIBED_MEDICAL_SYMPTOM:
         return Colors.green;
-      case 'Rejected':
+      case StatusDataConstant.REJECTED_MEDICAL_SYMPTOM:
         return Colors.red;
       default:
         return Colors.grey;
@@ -50,12 +51,12 @@ class _SymptomWidgetState extends State<SymptomWidget> {
 
   String _getStatusText(String status) {
     switch (status) {
-      case 'Pending':
-        return 'Chờ xem xét';
-      case 'Prescribed':
-        return 'Đã kê đơn thuốc';
-      case 'Rejected':
-        return 'Từ chối';
+      case StatusDataConstant.PENDING_MEDICAL_SYMPTOM:
+        return StatusDataConstant.PENDING_MEDICAL_SYMPTOM_VN;
+      case StatusDataConstant.PRESCRIBED_MEDICAL_SYMPTOM:
+        return StatusDataConstant.PRESCRIBED_MEDICAL_SYMPTOM_VN;
+      case StatusDataConstant.REJECTED_MEDICAL_SYMPTOM:
+        return StatusDataConstant.REJECTED_MEDICAL_SYMPTOM_VN;
       default:
         return status;
     }
@@ -63,12 +64,12 @@ class _SymptomWidgetState extends State<SymptomWidget> {
 
   String _getStatusValue(String displayText) {
     switch (displayText) {
-      case 'Chờ xem xét':
-        return 'Pending';
-      case 'Đã kê đơn thuốc':
-        return 'Prescribed';
-      case 'Từ chối':
-        return 'Rejected';
+      case StatusDataConstant.PENDING_MEDICAL_SYMPTOM_VN:
+        return StatusDataConstant.PENDING_MEDICAL_SYMPTOM;
+      case StatusDataConstant.PRESCRIBED_MEDICAL_SYMPTOM_VN:
+        return StatusDataConstant.PRESCRIBED_MEDICAL_SYMPTOM;
+      case StatusDataConstant.REJECTED_MEDICAL_SYMPTOM_VN:
+        return StatusDataConstant.REJECTED_MEDICAL_SYMPTOM;
       default:
         return displayText;
     }
@@ -362,7 +363,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
               });
             },
             icon: LinearIcons.addCircleIcon,
-            label: const Text('Tạo đơn'),
+            label: const Text('Tạo báo cáo'),
           ),
         );
       },

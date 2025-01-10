@@ -84,7 +84,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Xác nhận'),
-          content: Text(taskStatus == TaskStatusDataConstant.pendingVn
+          content: Text(taskStatus == StatusDataConstant.pendingVn
               ? 'Bạn có chắc chắn muốn bắt đầu công việc này không?'
               : 'Bạn có chắc chắn muốn xác nhận hoàn thành công việc này không?'),
           actions: [
@@ -97,7 +97,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                if (taskStatus == TaskStatusDataConstant.inprogressVn) {
+                if (taskStatus == StatusDataConstant.inProgressVn) {
                   if (task!.taskType.taskTypeId ==
                       TaskTypeDataConstant.feeding) {
                     int actualWeight = this.actualWeight;
@@ -139,13 +139,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   } else {
                     context.read<TaskBloc>().add(
                           TaskEvent.updateTask(
-                              widget.taskId, TaskStatusDataConstant.done),
+                              widget.taskId, StatusDataConstant.done),
                         );
                   }
-                } else if (taskStatus == TaskStatusDataConstant.pendingVn) {
+                } else if (taskStatus == StatusDataConstant.pendingVn) {
                   context.read<TaskBloc>().add(
                         TaskEvent.updateTask(
-                            widget.taskId, TaskStatusDataConstant.inprogress),
+                            widget.taskId, StatusDataConstant.inProgress),
                       );
                 }
               },
@@ -172,14 +172,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   String getStatusText(String status) {
     switch (status) {
-      case TaskStatusDataConstant.inprogress:
-        return TaskStatusDataConstant.inprogressVn;
-      case TaskStatusDataConstant.done:
-        return TaskStatusDataConstant.doneVn;
-      case TaskStatusDataConstant.pending:
-        return TaskStatusDataConstant.pendingVn;
-      case TaskStatusDataConstant.overdue:
-        return TaskStatusDataConstant.overdueVn;
+      case StatusDataConstant.inProgress:
+        return StatusDataConstant.inProgressVn;
+      case StatusDataConstant.done:
+        return StatusDataConstant.doneVn;
+      case StatusDataConstant.pending:
+        return StatusDataConstant.pendingVn;
+      case StatusDataConstant.overdue:
+        return StatusDataConstant.overdueVn;
       default:
         return status;
     }
@@ -187,13 +187,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Color getStatusColor(String status) {
     switch (status) {
-      case TaskStatusDataConstant.inprogress:
+      case StatusDataConstant.inProgress:
         return Colors.yellow.shade200;
-      case TaskStatusDataConstant.done:
+      case StatusDataConstant.done:
         return Colors.green.shade200;
-      case TaskStatusDataConstant.pending:
+      case StatusDataConstant.pending:
         return Colors.grey.shade300;
-      case TaskStatusDataConstant.overdue:
+      case StatusDataConstant.overdue:
         return Colors.red.shade200;
       default:
         return Colors.grey.shade300;
@@ -202,13 +202,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Color getStatusTextColor(String status) {
     switch (status) {
-      case TaskStatusDataConstant.inprogress:
+      case StatusDataConstant.inProgress:
         return Colors.black;
-      case TaskStatusDataConstant.done:
+      case StatusDataConstant.done:
         return Colors.white;
-      case TaskStatusDataConstant.pending:
+      case StatusDataConstant.pending:
         return Colors.black;
-      case TaskStatusDataConstant.overdue:
+      case StatusDataConstant.overdue:
         return Colors.white;
       default:
         return Colors.black;
@@ -261,7 +261,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   prescriptionId = task.prescriptionId;
                 });
                 log("Lấy thông tin công việc thành công!");
-                if (task.status != TaskStatusDataConstant.pending) {
+                if (task.status != StatusDataConstant.pending) {
                   if (task.taskType.taskTypeId ==
                       TaskTypeDataConstant.feeding) {
                     context
@@ -323,7 +323,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   const SnackBar(content: Text('Tạo log cho ăn thành công!')),
                 );
                 context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, TaskStatusDataConstant.done));
+                    widget.taskId, StatusDataConstant.done));
               },
               createDailyFoodUsageLogFailure: (e) async {
                 LoadingDialog.hide(context);
@@ -344,7 +344,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       content: Text('Tạo log uống thuốc thành công!')),
                 );
                 context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, TaskStatusDataConstant.done));
+                    widget.taskId, StatusDataConstant.done));
               },
               createHealthLogFailure: (e) async {
                 LoadingDialog.hide(context);
@@ -365,7 +365,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       content: Text('Tạo log lịch tiêm chủng thành công!')),
                 );
                 context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, TaskStatusDataConstant.done));
+                    widget.taskId, StatusDataConstant.done));
               },
               createVaccinScheduleLogFailure: (e) async {
                 LoadingDialog.hide(context);
@@ -446,7 +446,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   actualWeight = recommendedWeight.toInt();
                   this.weightList = weightList;
                 });
-                if (task?.status == TaskStatusDataConstant.done) {
+                if (task?.status == StatusDataConstant.done) {
                   if (task?.taskType.taskTypeId ==
                       TaskTypeDataConstant.feeding) {
                     context
@@ -678,15 +678,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: FilledButton(
-                  onPressed: (taskStatus == TaskStatusDataConstant.doneVn ||
-                          taskStatus == TaskStatusDataConstant.overdueVn)
+                  onPressed: (taskStatus == StatusDataConstant.doneVn ||
+                          taskStatus == StatusDataConstant.overdueVn)
                       ? null
                       : _updateTaskStatus,
-                  child: Text(taskStatus == TaskStatusDataConstant.pendingVn
+                  child: Text(taskStatus == StatusDataConstant.pendingVn
                       ? 'Bắt đầu'
-                      : taskStatus == TaskStatusDataConstant.doneVn
+                      : taskStatus == StatusDataConstant.doneVn
                           ? 'Công việc đã hoàn thành'
-                          : taskStatus == TaskStatusDataConstant.overdueVn
+                          : taskStatus == StatusDataConstant.overdueVn
                               ? 'Công việc đã quá hạn'
                               : 'Xác nhận hoàn thành'),
                 ),
@@ -731,7 +731,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Widget _buildWorkTab(BuildContext context) {
     bool isEditable = task?.assignedToUser.userId == loggedInUserId;
-    bool isPending = taskStatus == TaskStatusDataConstant.pendingVn;
+    bool isPending = taskStatus == StatusDataConstant.pendingVn;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -827,7 +827,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                 .bodyMedium
                                 ?.copyWith(
                                   color: (task?.status ==
-                                              TaskStatusDataConstant.done ||
+                                              StatusDataConstant.done ||
                                           DateTime.parse(task?.dueDate ?? "")
                                               .isBefore(DateTime.now()))
                                       ? Theme.of(context).colorScheme.outline
@@ -840,10 +840,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                             runSpacing: 4,
                             children: weightList.map((weight) {
                               bool isSelected = actualWeight == weight;
-                              bool isDisabled =
-                                  task?.status == TaskStatusDataConstant.done ||
-                                      task?.status ==
-                                          TaskStatusDataConstant.overdue;
+                              bool isDisabled = task?.status ==
+                                      StatusDataConstant.done ||
+                                  task?.status == StatusDataConstant.overdue;
                               return FilterChip(
                                 selected: isSelected,
                                 showCheckmark: false,
@@ -886,10 +885,10 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               color: Theme.of(context)
                                   .colorScheme
                                   .primaryContainer
-                                  .withOpacity(task?.status ==
-                                          TaskStatusDataConstant.done
-                                      ? 0.5
-                                      : 1),
+                                  .withOpacity(
+                                      task?.status == StatusDataConstant.done
+                                          ? 0.5
+                                          : 1),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
@@ -901,7 +900,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       .colorScheme
                                       .primary
                                       .withOpacity(task?.status ==
-                                              TaskStatusDataConstant.done
+                                              StatusDataConstant.done
                                           ? 0.5
                                           : 1),
                                   size: 20,
@@ -914,7 +913,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       .bodyMedium
                                       ?.copyWith(
                                         color: task?.status ==
-                                                TaskStatusDataConstant.done
+                                                StatusDataConstant.done
                                             ? Theme.of(context)
                                                 .colorScheme
                                                 .outline
@@ -929,7 +928,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       ?.copyWith(
                                         fontWeight: FontWeight.bold,
                                         color: task?.status ==
-                                                TaskStatusDataConstant.done
+                                                StatusDataConstant.done
                                             ? Theme.of(context)
                                                 .colorScheme
                                                 .outline
@@ -1174,13 +1173,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               isRequired: false,
               controller: logController,
               maxLines: 3,
-              isDisabled: taskStatus == TaskStatusDataConstant.doneVn ||
-                  taskStatus == TaskStatusDataConstant.overdueVn,
+              isDisabled: taskStatus == StatusDataConstant.doneVn ||
+                  taskStatus == StatusDataConstant.overdueVn,
               label: 'Ghi chú (nếu có)',
               hintText: 'Nhập ghi chú',
             ),
             const SizedBox(height: 32),
-            if (taskStatus != TaskStatusDataConstant.overdueVn)
+            if (taskStatus != StatusDataConstant.overdueVn)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
