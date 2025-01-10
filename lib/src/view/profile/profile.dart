@@ -16,9 +16,114 @@ class ProfileWidget extends StatefulWidget {
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
-  @override
-  void initState() {
-    super.initState();
+  Widget _buildSectionHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: Theme.of(context).colorScheme.outline,
+              fontWeight: FontWeight.w500,
+            ),
+      ),
+    );
+  }
+
+  Widget _buildMenuItem({
+    required Widget icon,
+    required String title,
+    required String subtitle,
+    VoidCallback? onTap,
+    bool showDivider = true,
+  }) {
+    return Column(
+      children: [
+        InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color:
+                        Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: icon,
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                LinearIcons.chevronRightIcon,
+              ],
+            ),
+          ),
+        ),
+        if (showDivider)
+          Divider(
+            height: 1,
+            indent: 16,
+            endIndent: 16,
+            color: Colors.grey[200],
+          ),
+      ],
+    );
+  }
+
+  Widget _buildQuickStat(
+    BuildContext context,
+    String label,
+    String value,
+    Widget icon,
+  ) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: icon,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          value,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.grey[600],
+            fontSize: 12,
+          ),
+        ),
+      ],
+    );
   }
 
   void _showLogoutConfirmationBottomSheet(BuildContext context) {
@@ -82,7 +187,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       listener: (context, state) {
         state.maybeWhen(
           loading: () {
-            // Show loading dialog
             LoadingDialog.show(context, 'Đang đăng xuất...');
             log('[AUTH] Đang đăng xuất...');
           },
@@ -94,195 +198,255 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         );
       },
       child: Scaffold(
-        body: Stack(
-          clipBehavior: Clip.none, // Ensures elements can overflow the Stack
-          children: [
-            Image.asset(
-              'assets/images/background_profile.jpg',
-              fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.height * 0.225,
-              width: double.infinity,
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.17,
-              left: 16,
-              right: 16,
-              child: InkWell(
-                onTap: () {
-                  context.push(RouteName.userProfile);
-                },
-                child: Card(
-                  color: Colors.white,
-                  shape: StadiumBorder(),
-                  elevation: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: ListTile(
-                      leading: Image.asset(
-                        'assets/images/avatar.png',
-                        width: 64,
-                        height: 64,
+        body: RefreshIndicator(
+          onRefresh: () async {
+            // Refresh profile data
+          },
+          child: SingleChildScrollView(
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // Background Image
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.225,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: const AssetImage(
+                          'assets/images/background_profile.jpg'),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.3),
+                        BlendMode.darken,
                       ),
-                      title: Text(
-                        'Bảo Thiên',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      trailing: LinearIcons.chevronRightIcon,
                     ),
                   ),
                 ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.29),
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Card.outlined(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: BorderSide(color: Colors.grey.shade300),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 20, bottom: 20, left: 16, right: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Quản lý cá nhân',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.outline),
-                          ),
-                          const SizedBox(height: 16),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              // Navigate to help
-                              // context.push(RouteName.help);
-                            },
-                            child: Row(
+
+                // Profile Card
+                Positioned(
+                  top: MediaQuery.of(context).size.height * 0.17,
+                  left: 16,
+                  right: 16,
+                  child: InkWell(
+                    onTap: () => context.push(RouteName.userProfile),
+                    child: Card(
+                      shape: const StadiumBorder(),
+                      elevation: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Stack(
                               children: [
-                                LinearIcons.helpIcon,
-                                const SizedBox(width: 16),
-                                Text(
-                                  'Trợ giúp',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                                const Spacer(),
-                                LinearIcons.chevronRightThinIcon
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              // Navigate to about
-                              // context.push(RouteName.about);
-                            },
-                            child: Row(
-                              children: [
-                                LinearIcons.aboutIcon,
-                                const SizedBox(width: 16),
-                                Text(
-                                  'Giới thiệu',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                                const Spacer(),
-                                LinearIcons.chevronRightThinIcon
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Card.outlined(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: BorderSide(color: Colors.grey.shade300),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 20, bottom: 20, left: 16, right: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              context.push(RouteName.setting);
-                            },
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      LinearIcons.settingIconGreen,
-                                      const SizedBox(width: 16),
-                                      Text(
-                                        'Cài đặt',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
+                                CircleAvatar(
+                                  radius: 32,
+                                  backgroundImage: const AssetImage(
+                                      'assets/images/avatar.png'),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                        width: 2,
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                                LinearIcons.chevronRightIcon
+                                Positioned(
+                                  right: 0,
+                                  bottom: 0,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(4),
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    child: const Icon(
+                                      Icons.check,
+                                      color: Colors.white,
+                                      size: 12,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Bảo Thiên',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Chủ trang trại',
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Text(
+                                    'ID: #123456',
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            LinearIcons.chevronRightIcon,
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () {
-                      _showLogoutConfirmationBottomSheet(context);
-                    },
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 8),
-                          LinearIcons.exportIcon,
-                          const SizedBox(width: 8),
-                          Text(
-                            'Đăng xuất',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(color: Colors.red),
-                          )
-                        ],
+                ),
+
+                // Main Content
+                Container(
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.29,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
+                      // Quick Stats
+                      Card.outlined(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              _buildQuickStat(
+                                context,
+                                'Tổng đàn',
+                                '1,234',
+                                LinearIcons.chickenIcon,
+                              ),
+                              _buildQuickStat(
+                                context,
+                                'Báo cáo',
+                                '56',
+                                LinearIcons.taskSquareIcon,
+                              ),
+                              _buildQuickStat(
+                                context,
+                                'Chuồng',
+                                '12',
+                                LinearIcons.farmHouseIcon,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
+                      const SizedBox(height: 16),
+
+                      // Account Management
+                      Card.outlined(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildSectionHeader('Quản lý tài khoản'),
+                            _buildMenuItem(
+                              icon: LinearIcons.lockIcon,
+                              title: 'Bảo mật',
+                              subtitle: 'Mật khẩu, xác thực 2 lớp',
+                              onTap: () => context.push(RouteName.security),
+                            ),
+                            _buildMenuItem(
+                              icon: LinearIcons.bellIconGreen,
+                              title: 'Thông báo',
+                              subtitle: 'Cài đặt thông báo',
+                              onTap: () =>
+                                  context.push(RouteName.notificationSetting),
+                            ),
+                            _buildMenuItem(
+                              icon: LinearIcons.shieldIcon,
+                              title: 'Quyền riêng tư',
+                              subtitle: 'Kiểm soát dữ liệu',
+                              // onTap: () => context.push(RouteName.privacy),
+                              showDivider: false,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Support
+                      Card.outlined(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildSectionHeader('Hỗ trợ'),
+                            _buildMenuItem(
+                              icon: LinearIcons.helpIcon,
+                              title: 'Trợ giúp',
+                              subtitle: 'FAQ, hướng dẫn sử dụng',
+                              // onTap: () => context.push(RouteName.help),
+                            ),
+                            _buildMenuItem(
+                              icon: LinearIcons.helpIcon,
+                              title: 'Phản hồi',
+                              subtitle: 'Góp ý, báo lỗi',
+                              // onTap: () => context.push(RouteName.feedback),
+                            ),
+                            _buildMenuItem(
+                              icon: LinearIcons.aboutIcon,
+                              title: 'Giới thiệu',
+                              subtitle: 'Thông tin ứng dụng',
+                              // onTap: () => context.push(RouteName.about),
+                              showDivider: false,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+
+                      // Logout Button
+                      InkWell(
+                        onTap: () =>
+                            _showLogoutConfirmationBottomSheet(context),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            LinearIcons.exportIcon,
+                            const SizedBox(width: 8),
+                            const Text(
+                              'Đăng xuất',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

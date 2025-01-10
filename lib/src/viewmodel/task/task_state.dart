@@ -77,4 +77,10 @@ class TaskState with _$TaskState {
       VaccinScheduleLogDto log) = _GetVaccinScheduleLogSuccess;
   const factory TaskState.getVaccinScheduleLogFailure(String error) =
       _GetVaccinScheduleLogFailure;
+  const factory TaskState.getHealthLogInformationLoading() =
+      _GetHealthLogInformationLoading;
+  const factory TaskState.getHealthLogInformationSuccess(HealthLogDto log) =
+      _GetHealthLogInformationSuccess;
+  const factory TaskState.getHealthLogInformationFailure(String error) =
+      _GetHealthLogInformationFailure;
 }
