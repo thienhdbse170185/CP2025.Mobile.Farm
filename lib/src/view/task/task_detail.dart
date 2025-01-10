@@ -15,6 +15,7 @@ import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
+import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // To handle file
 
 class TaskDetailWidget extends StatefulWidget {
@@ -33,6 +34,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   DateTime? logTime;
   double? recommendedWeight;
   int actualWeight = 0;
+  String? prescriptionId;
+  PrescriptionDto? prescription;
 
   // For image upload
   final List<File> _images = [];
@@ -112,12 +115,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   } else if (task!.taskType.taskTypeId ==
                       TaskTypeDataConstant.health) {
                     final log = HealthLogDto(
+                        prescriptionId: prescriptionId ?? '',
                         date: DateTime.now(),
                         notes: logController.text,
                         photo: '',
                         taskId: widget.taskId);
                     context.read<TaskBloc>().add(TaskEvent.createHealthLog(
-                        cageId: task!.cageId, log: log));
+                        prescriptionId: prescriptionId ?? '', log: log));
                   } else if (task!.taskType.taskTypeId ==
                       TaskTypeDataConstant.vaccin) {
                     final log = VaccinScheduleLogDto(
@@ -254,12 +258,26 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   this.task = task;
                   taskStatus = getStatusText(task.status);
                   loggedInUserId = userId;
+                  prescriptionId = task.prescriptionId;
                 });
                 log("Lấy thông tin công việc thành công!");
                 if (task.status != TaskStatusDataConstant.pending) {
+                  if (task.taskType.taskTypeId ==
+                      TaskTypeDataConstant.feeding) {
+                    context
+                        .read<GrowthStageCubit>()
+                        .getRecommendedWeightByCageId(task.cageId);
+                  } else if (task.taskType.taskTypeId ==
+                      TaskTypeDataConstant.health) {
+                    context
+                        .read<TaskBloc>()
+                        .add(TaskEvent.getHealthLog(widget.taskId));
+                  }
+                }
+                if (task.taskType.taskTypeId == TaskTypeDataConstant.health) {
                   context
-                      .read<GrowthStageCubit>()
-                      .getRecommendedWeightByCageId(task.cageId);
+                      .read<PrescriptionCubit>()
+                      .getPrescription(prescriptionId ?? '');
                 }
               },
               getTaskByIdLoading: () {
@@ -284,10 +302,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       content:
                           Text('Cập nhật trạng thái công việc thành công!')),
                 );
-                // Refresh the task details
-                context
-                    .read<TaskBloc>()
-                    .add(TaskEvent.getTaskById(widget.taskId));
+                context.pop();
               },
               updateStatusTaskFailure: (e) async {
                 LoadingDialog.hide(context);
@@ -455,6 +470,22 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 log('Lấy cân nặng khuyến nghị thất bại!');
                 LoadingDialog.hide(context);
                 SnackBar(content: Text(e));
+              },
+              orElse: () {},
+            );
+          },
+        ),
+        BlocListener<PrescriptionCubit, PrescriptionState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getPrescriptionSuccess: (prescription) {
+                log('Lấy thuốc thành công!');
+                setState(() {
+                  this.prescription = prescription;
+                });
+              },
+              getPrescriptionFailure: (e) {
+                log('Lấy thuốc thất bại!');
               },
               orElse: () {},
             );
@@ -927,6 +958,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Header
                     Row(
                       children: [
                         Icon(
@@ -935,8 +967,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          'Đơn log công việc cho uống thuốc',
-                          style: Theme.of(context).textTheme.titleLarge,
+                          'Đơn log công việc uống thuốc',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontSize: 20),
                         ),
                       ],
                     ),
@@ -947,6 +982,154 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         color: Theme.of(context).colorScheme.outline,
                       ),
                     ),
+
+                    if (prescription != null) ...[
+                      const SizedBox(height: 16),
+                      // Prescription Info
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primaryContainer
+                              .withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                LinearIcons.healthIconGreen,
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Thông tin đơn thuốc',
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                _buildInfoItem(
+                                  context,
+                                  'Số ngày uống',
+                                  '${prescription?.daysToTake} ngày',
+                                  Icons.calendar_today,
+                                ),
+                                const SizedBox(width: 16),
+                                _buildInfoItem(
+                                  context,
+                                  'Số lượng',
+                                  '${prescription?.quantityAnimal} con',
+                                  Icons.pets,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+                      // Medications List
+                      Text(
+                        'Danh sách thuốc',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 8),
+                      ...prescription?.medications?.map((medication) =>
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 12),
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .outlineVariant,
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                                .withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Image.asset(
+                                            'assets/images/medicine.png',
+                                            width: 24,
+                                            height: 24,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                medication.medicationName,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Liều lượng: ${medication.dosage}mg',
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .outline,
+                                                  fontSize: 13,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Thời gian uống:',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .outline,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        if (medication.morning)
+                                          _buildTimeChip(context, 'Sáng'),
+                                        if (medication.noon)
+                                          _buildTimeChip(context, 'Trưa'),
+                                        if (medication.afternoon)
+                                          _buildTimeChip(context, 'Chiều'),
+                                        if (medication.evening)
+                                          _buildTimeChip(context, 'Tối'),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )) ??
+                          [],
+                    ] else
+                      const Center(
+                        child: Text('Không có thông tin đơn thuốc'),
+                      ),
                   ],
                 ),
               )
@@ -1128,6 +1311,60 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildTimeChip(BuildContext context, String time) {
+    return Container(
+      margin: const EdgeInsets.only(right: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        time,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoItem(
+      BuildContext context, String label, String value, IconData icon) {
+    return Expanded(
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: 20,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.outline,
+                  fontSize: 12,
+                ),
+              ),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

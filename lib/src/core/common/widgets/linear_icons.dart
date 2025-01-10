@@ -202,4 +202,14 @@ class LinearIcons {
     width: 160,
     height: 160,
   );
+
+  static final Widget lockIcon = SvgPicture.asset(
+    'assets/icons/lock.svg',
+    semanticsLabel: 'Lock',
+  );
+
+  static final Widget shieldIcon = SvgPicture.asset(
+    'assets/icons/shield-tick.svg',
+    semanticsLabel: 'Shield',
+  );
 }

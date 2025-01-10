@@ -453,7 +453,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                   id: _selectedCage ?? '', // Using cage name as temporary ID
                   farmingBatchId: _farmingBatch?.id ?? '',
                   prescriptionId: '95e72b29-6a93-4da9-b2d4-e5956c75622e',
-                  symptoms: _symptomsName.join(', '),
+                  symtom: _symptomsName.join(', '),
                   status: 'Pending',
                   diagnosis: 'Pending',
                   nameAnimal: 'Pending',
