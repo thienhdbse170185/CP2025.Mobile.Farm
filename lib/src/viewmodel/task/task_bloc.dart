@@ -185,11 +185,13 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       emit(const TaskState.createHealthLogLoading());
       try {
         final request = HealthLogDto(
+            prescriptionId: event.prescriptionId,
             notes: event.log.notes,
             date: DateTime.now(),
             photo: event.log.photo,
             taskId: event.log.taskId);
-        final result = await repository.createHealthLog(event.cageId, request);
+        final result =
+            await repository.createHealthLog(event.prescriptionId, request);
         if (result) {
           emit(const TaskState.createHealthLogSuccess());
         } else {
@@ -276,6 +278,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             completedAt: taskItem.completedAt,
             assignedToUser: taskItem.assignedToUser,
             taskType: taskItem.taskType,
+            prescriptionId: taskItem.prescriptionId,
+            isTreatmentTask: taskItem.isTreatmentTask,
           );
 
           // Đưa task vào đúng session

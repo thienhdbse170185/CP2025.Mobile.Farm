@@ -23,10 +23,9 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
 
   final List<String> _statusFilters = [
     'Tất cả',
-    'Pending',
-    'Normal',
-    'Diagnosed',
-    'Prescribed'
+    'Chờ xem xét',
+    'Đã kê đơn thuốc',
+    'Từ chối'
   ];
 
   final List<String> _commonSymptoms = [
@@ -42,14 +41,38 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
     switch (status) {
       case 'Pending':
         return Colors.orange;
-      case 'Normal':
-        return Colors.green;
-      case 'Diagnosed':
-        return Colors.blue;
       case 'Prescribed':
-        return Colors.purple;
+        return Colors.green;
+      case 'Rejected':
+        return Colors.red;
       default:
         return Colors.grey;
+    }
+  }
+
+  String _getStatusText(String status) {
+    switch (status) {
+      case 'Pending':
+        return 'Chờ xem xét';
+      case 'Prescribed':
+        return 'Đã kê đơn thuốc';
+      case 'Rejected':
+        return 'Từ chối';
+      default:
+        return status;
+    }
+  }
+
+  String _getStatusValue(String displayText) {
+    switch (displayText) {
+      case 'Chờ xem xét':
+        return 'Pending';
+      case 'Đã kê đơn thuốc':
+        return 'Prescribed';
+      case 'Từ chối':
+        return 'Rejected';
+      default:
+        return displayText;
     }
   }
 
@@ -143,22 +166,19 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Text(
-                                      _startDate != null && _endDate != null
-                                          ? '${DateFormat('dd/MM/yyyy').format(_startDate!)} - ${DateFormat('dd/MM/yyyy').format(_endDate!)}'
+                                      tempStartDate != null &&
+                                              tempEndDate != null
+                                          ? '${DateFormat('dd/MM/yyyy').format(tempStartDate!)} - ${DateFormat('dd/MM/yyyy').format(tempEndDate!)}'
                                           : 'Chọn khoảng thời gian',
                                     ),
                                   ),
-                                  if (_startDate != null)
+                                  if (tempStartDate != null)
                                     IconButton(
                                       icon: const Icon(Icons.close, size: 18),
                                       onPressed: () {
                                         setModalState(() {
-                                          _startDate = null;
-                                          _endDate = null;
-                                        });
-                                        setState(() {
-                                          _startDate = null;
-                                          _endDate = null;
+                                          tempStartDate = null;
+                                          tempEndDate = null;
                                         });
                                       },
                                     ),
@@ -296,7 +316,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
   void initState() {
     super.initState();
     // Fetch initial data
-    context.read<MedicalSymptomCubit>().getMedicalSymptomsByBatch(null);
+    context.read<MedicalSymptomCubit>().getMedicalSymptomsByBatch();
   }
 
   // Add filter logic
@@ -304,13 +324,13 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
     return symptoms.where((symptom) {
       // Text search filter
       final matchesSearch = _searchController.text.isEmpty ||
-          symptom.symptoms
+          symptom.symtom
               .toLowerCase()
               .contains(_searchController.text.toLowerCase());
 
       // Status filter
-      final matchesStatus =
-          _selectedStatus == 'Tất cả' || symptom.status == _selectedStatus;
+      final matchesStatus = _selectedStatus == 'Tất cả' ||
+          symptom.status == _getStatusValue(_selectedStatus);
 
       // Date range filter
       final matchesDate = _startDate == null ||
@@ -321,7 +341,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
       // Symptoms filter
       final matchesSymptoms = _selectedFilters.isEmpty ||
           _selectedFilters.any((filter) =>
-              symptom.symptoms.toLowerCase().contains(filter.toLowerCase()));
+              symptom.symtom.toLowerCase().contains(filter.toLowerCase()));
 
       return matchesSearch && matchesStatus && matchesDate && matchesSymptoms;
     }).toList();
@@ -334,7 +354,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
         _selectedStatus != 'Tất cả';
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leadingWidth: 40,
         leading: Padding(
@@ -358,7 +378,6 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
                 color: Colors.grey[400],
                 fontSize: 14,
               ),
-              prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
               border: InputBorder.none,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -510,6 +529,57 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
               ),
             ),
 
+          // Add results count only when searching or filtering
+          if (_searchController.text.isNotEmpty ||
+              _selectedFilters.isNotEmpty ||
+              _startDate != null ||
+              _selectedStatus != 'Tất cả') ...[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Kết quả tìm kiếm',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                  BlocBuilder<MedicalSymptomCubit, MedicalSymptomState>(
+                    builder: (context, state) {
+                      final resultCount = state.maybeWhen(
+                        getMedicalSymptomsByBatchSuccess: (symptoms) =>
+                            _filterSymptoms(symptoms).length,
+                        orElse: () => 0,
+                      );
+
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          '$resultCount báo cáo',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
+          ],
+
           // Updated Search Results
           Expanded(
             child: BlocBuilder<MedicalSymptomCubit, MedicalSymptomState>(
@@ -604,7 +674,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
                                                   symptom.status)),
                                         ),
                                         child: Text(
-                                          symptom.status,
+                                          _getStatusText(symptom.status),
                                           style: TextStyle(
                                             color:
                                                 _getStatusColor(symptom.status),
@@ -616,7 +686,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    'Triệu chứng: ${symptom.symptoms}',
+                                    'Triệu chứng: ${symptom.symtom}',
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -655,7 +725,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
                           onPressed: () {
                             context
                                 .read<MedicalSymptomCubit>()
-                                .getMedicalSymptomsByBatch(null);
+                                .getMedicalSymptomsByBatch();
                           },
                           child: const Text('Thử lại'),
                         ),

@@ -21,14 +21,25 @@ class SymptomDetailWidget extends StatelessWidget {
     switch (status) {
       case 'Pending':
         return Colors.orange;
-      case 'Normal':
-        return Colors.green;
-      case 'Diagnosed':
-        return Colors.blue;
       case 'Prescribed':
-        return Colors.purple;
+        return Colors.green;
+      case 'Rejected':
+        return Colors.red;
       default:
         return Colors.grey;
+    }
+  }
+
+  String _getStatusText(String status) {
+    switch (status) {
+      case 'Pending':
+        return 'Chờ xem xét';
+      case 'Prescribed':
+        return 'Đã kê đơn thuốc';
+      case 'Rejected':
+        return 'Từ chối';
+      default:
+        return status;
     }
   }
 
@@ -46,30 +57,30 @@ class SymptomDetailWidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header Section with Status and Date
+            // Status & Date Section
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        'Trạng thái',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 13,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 6),
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color:
                               _getStatusColor(symptom.status).withOpacity(0.1),
@@ -79,25 +90,23 @@ class SymptomDetailWidget extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          symptom.status,
+                          _getStatusText(symptom.status),
                           style: TextStyle(
                             color: _getStatusColor(symptom.status),
-                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          LinearIcons.calendarIcon,
-                          const SizedBox(width: 8),
-                          Text(
-                            _formatDate(symptom.createAt),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(color: Colors.grey[600]),
-                          ),
-                        ],
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      LinearIcons.calendarIcon,
+                      const SizedBox(width: 8),
+                      Text(
+                        _formatDate(symptom.createAt),
+                        style: TextStyle(color: Colors.grey[600]),
                       ),
                     ],
                   ),
@@ -107,7 +116,7 @@ class SymptomDetailWidget extends StatelessWidget {
 
             const SizedBox(height: 8),
 
-            // Quantity Cards
+            // Quantity Info Cards
             Container(
               padding: const EdgeInsets.all(16),
               color: Colors.white,
@@ -140,7 +149,7 @@ class SymptomDetailWidget extends StatelessWidget {
 
             const SizedBox(height: 8),
 
-            // Symptoms Section
+            // Main Info Section
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
@@ -148,134 +157,84 @@ class SymptomDetailWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/corona-virus.png',
-                        width: 32,
-                      ),
-                      const SizedBox(width: 8),
-                      Text('Triệu chứng',
-                          style: Theme.of(context).textTheme.titleMedium),
-                    ],
+                  // Symptom
+                  _buildInfoRow(
+                    'Triệu chứng',
+                    symptom.symtom,
+                    Image.asset('assets/images/corona-virus.png', width: 24),
                   ),
                   const SizedBox(height: 16),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: symptom.symptoms.split(',').map((symptomText) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          symptomText.trim(),
-                          style: const TextStyle(fontSize: 13),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
-            ),
+                  const Divider(),
+                  const SizedBox(height: 16),
 
-            if (symptom.notes.isNotEmpty) ...[
-              const SizedBox(height: 8),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/notes.png',
-                          width: 32,
-                        ),
-                        const SizedBox(width: 8),
-                        Text('Ghi chú',
-                            style: Theme.of(context).textTheme.titleMedium),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
+                  // Notes if available
+                  if (symptom.notes.isNotEmpty) ...[
+                    _buildInfoRow(
+                      'Ghi chú',
                       symptom.notes,
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        height: 1.5,
-                      ),
+                      Image.asset('assets/images/notes.png', width: 24),
                     ),
+                    const SizedBox(height: 16),
+                    const Divider(),
+                    const SizedBox(height: 16),
                   ],
-                ),
-              ),
-            ],
 
-            if (symptom.diagnosis != null && symptom.diagnosis!.isNotEmpty) ...[
-              const SizedBox(height: 8),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  // Diagnosis if available (styled as conclusion)
+                  if (symptom.diagnosis != null &&
+                      symptom.diagnosis!.isNotEmpty) ...[
                     Row(
                       children: [
-                        Image.asset('assets/images/stethoscope.png', width: 32),
+                        Image.asset('assets/images/stethoscope.png', width: 24),
                         const SizedBox(width: 8),
-                        Text('Chẩn đoán',
-                            style: Theme.of(context).textTheme.titleMedium),
+                        Text(
+                          'Kết luận chẩn đoán',
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: Colors.blue[700],
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 12),
                     Container(
-                      padding: const EdgeInsets.all(12),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Colors.blue[50],
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.blue.shade100),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.blue[200]!),
                       ),
-                      child: Text(
-                        symptom.diagnosis!,
-                        style: TextStyle(
-                          color: Colors.blue[900],
-                          height: 1.5,
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            symptom.diagnosis!,
+                            style: TextStyle(
+                              fontSize: 15,
+                              height: 1.5,
+                              color: Colors.blue[900],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    if (symptom.pictures != null &&
+                        symptom.pictures!.isNotEmpty) ...[
+                      const SizedBox(height: 16),
+                      const Divider(),
+                      const SizedBox(height: 16),
+                    ],
                   ],
-                ),
-              ),
-            ],
 
-            if (symptom.pictures != null && symptom.pictures!.isNotEmpty) ...[
-              const SizedBox(height: 8),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        LinearIcons.warningAboutIcon,
-                        const SizedBox(width: 8),
-                        Text(
-                          'Hình ảnh',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                  // Images if available
+                  if (symptom.pictures != null &&
+                      symptom.pictures!.isNotEmpty) ...[
+                    Text(
+                      'Hình ảnh',
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
                     GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -302,10 +261,9 @@ class SymptomDetailWidget extends StatelessWidget {
                       },
                     ),
                   ],
-                ),
+                ],
               ),
-            ],
-            const SizedBox(height: 16),
+            ),
           ],
         ),
       ),
@@ -348,6 +306,45 @@ class SymptomDetailWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value, Widget icon) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: icon,
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 13,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 15,
+                  height: 1.5,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

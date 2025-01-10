@@ -19,16 +19,15 @@ class _SymptomWidgetState extends State<SymptomWidget> {
 
   final List<String> _statusFilters = [
     'Tất cả',
-    'Pending',
-    'Normal',
-    'Diagnosed',
-    'Prescribed'
+    'Chờ xem xét',
+    'Đã kê đơn thuốc',
+    'Từ chối'
   ];
 
   @override
   void initState() {
     super.initState();
-    context.read<MedicalSymptomCubit>().getMedicalSymptomsByBatch(null);
+    context.read<MedicalSymptomCubit>().getMedicalSymptomsByBatch();
   }
 
   String _formatDate(String dateStr) {
@@ -40,14 +39,38 @@ class _SymptomWidgetState extends State<SymptomWidget> {
     switch (status) {
       case 'Pending':
         return Colors.orange;
-      case 'Normal':
-        return Colors.green;
-      case 'Diagnosed':
-        return Colors.blue;
       case 'Prescribed':
-        return Colors.purple;
+        return Colors.green;
+      case 'Rejected':
+        return Colors.red;
       default:
         return Colors.grey;
+    }
+  }
+
+  String _getStatusText(String status) {
+    switch (status) {
+      case 'Pending':
+        return 'Chờ xem xét';
+      case 'Prescribed':
+        return 'Đã kê đơn thuốc';
+      case 'Rejected':
+        return 'Từ chối';
+      default:
+        return status;
+    }
+  }
+
+  String _getStatusValue(String displayText) {
+    switch (displayText) {
+      case 'Chờ xem xét':
+        return 'Pending';
+      case 'Đã kê đơn thuốc':
+        return 'Prescribed';
+      case 'Từ chối':
+        return 'Rejected';
+      default:
+        return displayText;
     }
   }
 
@@ -163,11 +186,11 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                     // Filter symptoms based on search and status
                     final filteredSymptoms = symptoms.where((symptom) {
                       final matchesSearch = _searchController.text.isEmpty ||
-                          symptom.symptoms
+                          symptom.symtom
                               .toLowerCase()
                               .contains(_searchController.text.toLowerCase());
                       final matchesStatus = _selectedStatus == 'Tất cả' ||
-                          symptom.status == _selectedStatus;
+                          symptom.status == _getStatusValue(_selectedStatus);
                       return matchesSearch && matchesStatus;
                     }).toList();
 
@@ -181,7 +204,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                       onRefresh: () async {
                         context
                             .read<MedicalSymptomCubit>()
-                            .getMedicalSymptomsByBatch(null);
+                            .getMedicalSymptomsByBatch();
                       },
                       child: Column(
                         children: [
@@ -264,7 +287,8 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                                                   ),
                                                 ),
                                                 child: Text(
-                                                  symptom.status,
+                                                  _getStatusText(
+                                                      symptom.status),
                                                   style: TextStyle(
                                                     color: _getStatusColor(
                                                         symptom.status),
@@ -276,7 +300,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                                           ),
                                           const SizedBox(height: 8),
                                           Text(
-                                            'Triệu chứng: ${symptom.symptoms}',
+                                            'Triệu chứng: ${symptom.symtom}',
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -319,7 +343,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                           onPressed: () {
                             context
                                 .read<MedicalSymptomCubit>()
-                                .getMedicalSymptomsByBatch(null);
+                                .getMedicalSymptomsByBatch();
                           },
                           child: const Text('Thử lại'),
                         ),
