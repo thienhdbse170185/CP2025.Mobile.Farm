@@ -17,7 +17,7 @@ import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/qr_scanner.dart'
-    show QRScannerWidget, _QRScannerWidgetState;
+    show QRScannerWidget;
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';

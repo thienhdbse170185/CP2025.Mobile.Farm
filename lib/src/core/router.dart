@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
+import 'package:smart_farm/src/view/notification/test.dart';
 import 'package:smart_farm/src/view/profile/edit_user.dart';
 import 'package:smart_farm/src/view/profile/security.dart';
 import 'package:smart_farm/src/view/profile/user.dart';
@@ -42,6 +43,7 @@ class RouteName {
   static const String symptomSearch = '/symptom-search';
   static const String symptomSuccess = '/symptom-success';
   static const String security = '/security';
+  static const String testNotification = '/test-notification';
 
   static const publicRoutes = [
     welcome,
@@ -275,4 +277,12 @@ final router = GoRouter(
         pageBuilder: (context, state) =>
             _buildPageWithSlideTransition(const SecurityWidget()),
       ),
+
+      ///test-notification-route
+      GoRoute(
+          path: RouteName.testNotification,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(
+                const TestNotificationWidget());
+          }),
     ]);
