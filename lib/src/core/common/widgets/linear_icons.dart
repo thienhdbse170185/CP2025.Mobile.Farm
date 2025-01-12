@@ -212,4 +212,19 @@ class LinearIcons {
     'assets/icons/shield-tick.svg',
     semanticsLabel: 'Shield',
   );
+
+  static final Widget searchIcon = SvgPicture.asset(
+    'assets/icons/search.svg',
+    semanticsLabel: 'Search',
+    width: 24,
+    height: 24,
+  );
+
+  static final Widget searchIconLarge = SvgPicture.asset(
+    'assets/icons/search.svg',
+    semanticsLabel: 'Search',
+    width: 100,
+    height: 100,
+    colorFilter: ColorFilter.mode(Colors.grey.shade300, BlendMode.srcIn),
+  );
 }

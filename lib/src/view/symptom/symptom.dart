@@ -265,12 +265,23 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(
-                                                'Báo cáo #${index + 1}',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium,
-                                              ),
+                                              Row(children: [
+                                                Image.asset(
+                                                  'assets/images/medical-report.png',
+                                                  width: 24,
+                                                ),
+                                                const SizedBox(width: 8),
+                                                Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 2),
+                                                    child: Text(
+                                                      'Báo cáo #${index + 1}',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium,
+                                                    )),
+                                              ]),
                                               Container(
                                                 padding:
                                                     const EdgeInsets.symmetric(
@@ -299,7 +310,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                                               ),
                                             ],
                                           ),
-                                          const SizedBox(height: 8),
+                                          const SizedBox(height: 10),
                                           Text(
                                             'Triệu chứng: ${symptom.symtom}',
                                             maxLines: 2,

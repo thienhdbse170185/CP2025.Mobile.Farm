@@ -38,6 +38,8 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final List<String> _symptomsName = [];
   final TextEditingController _affectedController = TextEditingController();
   final TextEditingController _farmingBatchController = TextEditingController();
+  final TextEditingController _searchSymptomController =
+      TextEditingController();
   FarmingBatchDto? _farmingBatch;
   List<SymptomDto> _symptoms = [];
 
@@ -338,7 +340,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         return StatefulBuilder(
           builder: (context, setState) {
             List<SymptomDto?> filterSymptoms(List<SymptomDto?> symptoms) {
-              if (searchQuery.isEmpty) return symptoms;
+              if (searchQuery.isEmpty) return [];
               return symptoms
                   .where((symptom) =>
                       symptom?.symptomName
@@ -397,9 +399,22 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                         ),
                         const SizedBox(height: 16),
                         TextField(
+                          controller: _searchSymptomController,
                           decoration: InputDecoration(
-                            hintText: 'Tìm kiếm triệu chứng...',
+                            labelText: 'Tìm kiếm triệu chứng',
+                            hintText: 'Khó thở, tiêu chảy,...',
                             prefixIcon: const Icon(Icons.search),
+                            suffixIcon: searchQuery.isNotEmpty
+                                ? IconButton(
+                                    icon: const Icon(Icons.clear),
+                                    onPressed: () {
+                                      setState(() {
+                                        searchQuery = '';
+                                      });
+                                      _searchSymptomController.clear();
+                                    },
+                                  )
+                                : null,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -412,6 +427,52 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                             });
                           },
                         ),
+                        if (_symptomsName.isNotEmpty)
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 16),
+                                Text(
+                                  'Đã chọn',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(color: Colors.grey.shade600),
+                                ),
+                                Wrap(
+                                  spacing: 8,
+                                  runSpacing: 8,
+                                  children: _symptomsName.map((symptom) {
+                                    return Chip(
+                                      label: Text(symptom),
+                                      deleteIcon:
+                                          const Icon(Icons.close, size: 16),
+                                      onDeleted: () {
+                                        setState(() {
+                                          _symptomsName.remove(symptom);
+                                          _enteredSymptoms.removeWhere((s) =>
+                                              _symptoms
+                                                  .firstWhere((sym) =>
+                                                      sym.symptomName ==
+                                                      symptom)
+                                                  .id ==
+                                              s.symptomId);
+                                        });
+                                      },
+                                      backgroundColor: Theme.of(context)
+                                          .colorScheme
+                                          .primaryContainer,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ],
+                            ),
+                          )
                       ],
                     ),
                   ),
@@ -422,75 +483,98 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Nhóm triệu chứng về hô hấp
-                            _buildSymptomGroup(
-                              'Triệu chứng hô hấp',
-                              filterSymptoms([
-                                _findSymptom('Ho'),
-                                _findSymptom('Khó thở'),
-                                _findSymptom('Mũi chảy nước'),
-                              ]),
-                              setState,
-                            ),
+                            if (searchQuery.isEmpty)
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.4,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.search,
+                                          size: 64, color: Colors.grey[400]),
+                                      const SizedBox(height: 16),
+                                      Text(
+                                        'Nhập từ khóa để tìm kiếm\ntriệu chứng',
+                                        textAlign: TextAlign.center,
+                                        style:
+                                            TextStyle(color: Colors.grey[600]),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            else ...[
+                              // Nhóm triệu chứng về hô hấp
+                              _buildSymptomGroup(
+                                'Triệu chứng hô hấp',
+                                filterSymptoms([
+                                  _findSymptom('Ho'),
+                                  _findSymptom('Khó thở'),
+                                  _findSymptom('Mũi chảy nước'),
+                                ]),
+                                setState,
+                              ),
 
-                            // Nhóm triệu chứng về tiêu hóa
-                            _buildSymptomGroup(
-                              'Triệu chứng tiêu hóa',
-                              filterSymptoms([
-                                _findSymptom('Chán ăn'),
-                                _findSymptom('Tiêu chảy'),
-                                _findSymptom('Phân có màu trắng'),
-                                _findSymptom('Phân có màu xanh lá cây'),
-                              ]),
-                              setState,
-                            ),
+                              // Nhóm triệu chứng về tiêu hóa
+                              _buildSymptomGroup(
+                                'Triệu chứng tiêu hóa',
+                                filterSymptoms([
+                                  _findSymptom('Chán ăn'),
+                                  _findSymptom('Tiêu chảy'),
+                                  _findSymptom('Phân có màu trắng'),
+                                  _findSymptom('Phân có màu xanh lá cây'),
+                                ]),
+                                setState,
+                              ),
 
-                            // Nhóm triệu chứng bên ngoài
-                            _buildSymptomGroup(
-                              'Triệu chứng bên ngoài',
-                              filterSymptoms([
-                                _findSymptom('Lông rụng bất thường'),
-                                _findSymptom('Lông xù lên'),
-                                _findSymptom('Da chuyển màu tím'),
-                                _findSymptom('Sưng mặt'),
-                                _findSymptom('Mắt chảy nước'),
-                              ]),
-                              setState,
-                            ),
+                              // Nhóm triệu chứng bên ngoài
+                              _buildSymptomGroup(
+                                'Triệu chứng bên ngoài',
+                                filterSymptoms([
+                                  _findSymptom('Lông rụng bất thường'),
+                                  _findSymptom('Lông xù lên'),
+                                  _findSymptom('Da chuyển màu tím'),
+                                  _findSymptom('Sưng mặt'),
+                                  _findSymptom('Mắt chảy nước'),
+                                ]),
+                                setState,
+                              ),
 
-                            // Nhóm triệu chứng về vận động
-                            _buildSymptomGroup(
-                              'Triệu chứng vận động',
-                              filterSymptoms([
-                                _findSymptom('Co giật'),
-                                _findSymptom('Run cơ'),
-                                _findSymptom('Đầu lắc lư bất thường'),
-                                _findSymptom('Mệt mỏi hoặc lừ đừ'),
-                              ]),
-                              setState,
-                            ),
+                              // Nhóm triệu chứng về vận động
+                              _buildSymptomGroup(
+                                'Triệu chứng vận động',
+                                filterSymptoms([
+                                  _findSymptom('Co giật'),
+                                  _findSymptom('Run cơ'),
+                                  _findSymptom('Đầu lắc lư bất thường'),
+                                  _findSymptom('Mệt mỏi hoặc lừ đừ'),
+                                ]),
+                                setState,
+                              ),
 
-                            // Nhóm triệu chứng khác
-                            _buildSymptomGroup(
-                              'Triệu chứng khác',
-                              filterSymptoms([
-                                _findSymptom('Giảm cân'),
-                                _findSymptom('Sốt cao'),
-                                _findSymptom('Khát nước liên tục'),
-                                _findSymptom('Chảy máu nội tạng'),
-                              ]),
-                              setState,
-                            ),
+                              // Nhóm triệu chứng khác
+                              _buildSymptomGroup(
+                                'Triệu chứng khác',
+                                filterSymptoms([
+                                  _findSymptom('Giảm cân'),
+                                  _findSymptom('Sốt cao'),
+                                  _findSymptom('Khát nước liên tục'),
+                                  _findSymptom('Chảy máu nội tạng'),
+                                ]),
+                                setState,
+                              ),
 
-                            // Nhóm triệu chứng về sinh sản
-                            _buildSymptomGroup(
-                              'Triệu chứng sinh sản',
-                              filterSymptoms([
-                                _findSymptom('Giảm năng suất đẻ trứng'),
-                                _findSymptom('Trứng vỏ mỏng hoặc biến dạng'),
-                              ]),
-                              setState,
-                            ),
+                              // Nhóm triệu chứng về sinh sản
+                              _buildSymptomGroup(
+                                'Triệu chứng sinh sản',
+                                filterSymptoms([
+                                  _findSymptom('Giảm năng suất đẻ trứng'),
+                                  _findSymptom('Trứng vỏ mỏng hoặc biến dạng'),
+                                ]),
+                                setState,
+                              ),
+                            ],
                           ],
                         ),
                       ),
@@ -1136,7 +1220,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                                           s.symptomId);
                                     });
                                   },
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .primaryContainer,
                                   side: BorderSide(color: Colors.grey[300]!),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),

@@ -14,6 +14,13 @@ import 'package:smart_farm/src/core/service/push_notification.dart';
 
 import 'src/app.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  if (message.notification != null) {
+    log('===== BACKGROUND MESSAGE =====');
+    log('Background message: ${message.notification!.body}');
+  }
+}
+
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,12 +36,7 @@ Future<void> main() async {
   }
 
   // Listen to background notifications
-  FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
-    if (message.notification != null) {
-      log('===== BACKGROUND MESSAGE =====');
-      log('Background message: ${message.notification!.body}');
-    }
-  });
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // On background notification tapped
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
