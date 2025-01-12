@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:data_layer/model/dto/farming_batch/farming_batch_dto.dart';
-import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
-import 'package:data_layer/model/dto/symptom/symptom.dart';
+import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
 import 'package:data_layer/model/request/symptom/symptom/get_symptom_request.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +18,7 @@ import 'package:smart_farm/src/view/widgets/qr_scanner.dart'
     show QRScannerWidget;
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
+import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
 
@@ -40,11 +39,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final TextEditingController _farmingBatchController = TextEditingController();
   final TextEditingController _searchSymptomController =
       TextEditingController();
-  FarmingBatchDto? _farmingBatch;
-  List<SymptomDto> _symptoms = [];
 
+  FarmingBatchDto? _farmingBatch;
+  GrowthStageDto? _growthStage;
+  List<SymptomDto> _symptoms = [];
   List<CageOption> _cages = [];
   String? _selectedCage;
+  int? _affectedQuantity;
+  String? _selectedCageId;
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   bool isScanning = false;
@@ -142,9 +144,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             List<CageOption> filterCages(List<CageOption> cages) {
               if (searchQuery.isEmpty) return cages;
               return cages
-                  .where((cage) => cage.name
-                      .toLowerCase()
-                      .contains(searchQuery.toLowerCase()))
+                  .where((cage) =>
+                      cage.name
+                          .toLowerCase()
+                          .contains(searchQuery.toLowerCase()) ||
+                      cage.id.toLowerCase().contains(searchQuery.toLowerCase()))
                   .toList();
             }
 
@@ -260,6 +264,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                                         .getFarmingBatchByCage(cage.id);
                                     setState(() {
                                       _selectedCage = cage.name;
+                                      _selectedCageId = cage.id;
                                     });
                                     Navigator.pop(context);
                                   },
@@ -704,6 +709,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             if (cage.id.isNotEmpty) {
               setState(() {
                 _selectedCage = cage.name;
+                _selectedCageId = cage.id;
               });
               context.read<FarmingBatchCubit>().getFarmingBatchByCage(cage.id);
               Navigator.pop(context);
@@ -931,6 +937,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                   _farmingBatch = farmingBatch;
                   _farmingBatchController.text = farmingBatch.name;
                 });
+                context
+                    .read<GrowthStageCubit>()
+                    .getGrowthStageByCageId(_selectedCageId!);
               },
               getFarmingBatchByCageFailure: (error) {
                 log("Lấy thông tin farming-batch thất bại: $error");
@@ -958,6 +967,26 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             );
           },
         ),
+        BlocListener<GrowthStageCubit, GrowthStageState>(
+            listener: (context, state) {
+          state.maybeWhen(
+            getGrowthStageByCageIdInProgress: () {
+              log("Đang lấy thông tin growth-stage...");
+            },
+            getGrowthStageByCageIdSuccess: (growthStage) {
+              log('Lấy thông tin growth-stage thành công');
+              setState(() {
+                _growthStage = growthStage;
+                _affectedQuantity =
+                    _farmingBatch!.quantity - growthStage.affectQuantity;
+              });
+            },
+            getGrowthStageByCageIdFailure: (error) {
+              log('Lấy thông tin growth-stage thất bại: ${error.toString()}');
+            },
+            orElse: () {},
+          );
+        })
       ],
       child: Scaffold(
         backgroundColor: Colors.grey[50],
@@ -1350,7 +1379,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
-                                  'Tổng số con trong vụ nuôi: ${_farmingBatch!.quantity}',
+                                  'Số con hiện bình thường: $_affectedQuantity con.',
                                   style: TextStyle(
                                     color: Colors.grey[600],
                                     fontSize: 13,
@@ -1361,6 +1390,27 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                           ],
                         ],
                       ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: _affectedController.text ==
+                              _affectedQuantity.toString(),
+                          onChanged: (bool? value) {
+                            setState(() {
+                              if (value == true) {
+                                _affectedController.text =
+                                    _affectedQuantity.toString();
+                              } else {
+                                _affectedController.text = '0';
+                              }
+                            });
+                          },
+                        ),
+                        const SizedBox(width: 4),
+                        const Text('Cả đàn đều bị bệnh'),
+                      ],
                     ),
                   ],
                 ),
