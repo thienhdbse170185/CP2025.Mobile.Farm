@@ -44,6 +44,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   // Controller for log input
   TextEditingController logController = TextEditingController();
 
+  // Controller for medication intake input
+  TextEditingController morningController = TextEditingController();
+  TextEditingController noonController = TextEditingController();
+  TextEditingController afternoonController = TextEditingController();
+  TextEditingController eveningController = TextEditingController();
+
   TaskHaveCageName? task;
 
   // Assume this is the logged-in user ID
@@ -267,11 +273,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     context
                         .read<GrowthStageCubit>()
                         .getRecommendedWeightByCageId(task.cageId);
-                  } else if (task.taskType.taskTypeId ==
-                      TaskTypeDataConstant.health) {
-                    context
-                        .read<TaskBloc>()
-                        .add(TaskEvent.getHealthLog(widget.taskId));
                   }
                 }
                 if (task.taskType.taskTypeId == TaskTypeDataConstant.health) {
@@ -1084,15 +1085,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                                   fontSize: 16,
                                                 ),
                                               ),
-                                              Text(
-                                                'Liều lượng: ${medication.dosage}mg',
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .outline,
-                                                  fontSize: 13,
-                                                ),
-                                              ),
                                             ],
                                           ),
                                         ),
@@ -1102,7 +1094,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                     Row(
                                       children: [
                                         Text(
-                                          'Thời gian uống:',
+                                          'Liều uống:',
                                           style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -1111,14 +1103,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                           ),
                                         ),
                                         const SizedBox(width: 8),
-                                        if (medication.morning)
-                                          _buildTimeChip(context, 'Sáng'),
-                                        if (medication.noon)
-                                          _buildTimeChip(context, 'Trưa'),
-                                        if (medication.afternoon)
-                                          _buildTimeChip(context, 'Chiều'),
-                                        if (medication.evening)
-                                          _buildTimeChip(context, 'Tối'),
+                                        Text(
+                                            '${task?.session == 1 ? medication.morning : task?.session == 2 ? medication.noon : task?.session == 3 ? medication.afternoon : medication.evening} liều'),
                                       ],
                                     ),
                                   ],
@@ -1363,6 +1349,23 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildDosageInput(
+      BuildContext context, String label, TextEditingController controller) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: TextField(
+          controller: controller,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            labelText: label,
+            border: OutlineInputBorder(),
+          ),
+        ),
       ),
     );
   }
