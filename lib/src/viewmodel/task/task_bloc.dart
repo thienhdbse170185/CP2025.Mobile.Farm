@@ -51,10 +51,37 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetTasks>((event, emit) async {
       emit(const TaskState.loading());
       try {
+        final formattedDate = _formatDateSlash(event.date);
+        final userBox = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = userBox.get(UserDataConstant.userIdKey);
         // Add logic to get tasks
-        final request = GetTaskRequest();
+        final request = GetTaskRequest(
+          KeySearch: event.keySearch,
+          Status: event.status,
+          TaskTypeId: event.taskType,
+          CageId: event.cageId,
+          AssignedToUserId: userId,
+          DueDateFrom: formattedDate,
+          DueDateTo: formattedDate,
+          Session: event.session,
+          PageNumber: event.pageNumber,
+          PageSize: event.pageSize,
+        );
         final tasks = await repository.fetchTasks(request);
-        emit(TaskState.getTasksSuccess(tasks));
+        final tasksMap = convertResponseToTaskMap(tasks);
+        _sortTasksByStatus(tasksMap);
+
+        // Tạo danh sách cage không trùng lặp
+        List<CageFilter> cageList = [];
+        for (var task in tasksMap.values.expand((element) => element)) {
+          if (!cageList.any((element) => element.cageName == task.cageName)) {
+            cageList.add(CageFilter(
+                cageName: task.cageName,
+                cageType: 'cage',
+                cageId: task.cageId));
+          }
+        }
+        emit(TaskState.getTasksSuccess(tasksMap, cageList));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
       }
@@ -76,16 +103,20 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         } else if (hour >= 18 && hour < 23) {
           currentSession = 4;
         } else {
-          currentSession = -1;
+          currentSession = 1;
         }
+
+        final userBox = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = userBox.get(UserDataConstant.userIdKey);
 
         final request = GetTaskRequest(
           CageId: event.cageId,
           DueDateFrom: _formatDateSlash(DateTime.now()),
           DueDateTo: _formatDateSlash(DateTime.now()),
+          AssignedToUserId: userId,
           Session: currentSession,
           PageNumber: 1,
-          PageSize: 10,
+          PageSize: 20,
         );
         final tasks = await repository.fetchTasks(request);
         _sortTasksByStatusWithoutSession(tasks);
@@ -348,6 +379,55 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     }
 
     return taskSorted;
+  }
+
+  Map<String, List<TaskHaveCageName>> convertResponseToTaskMap(
+      List<TaskHaveCageName> response) {
+    Map<String, List<TaskHaveCageName>> taskMap = {
+      'Morning': [],
+      'Noon': [],
+      'Afternoon': [],
+      'Evening': []
+    };
+
+    for (var item in response) {
+      final task = TaskHaveCageName(
+        id: item.id,
+        cageId: item.cageId,
+        cageName: item.cageName,
+        taskName: item.taskName,
+        description: item.description,
+        status: item.status,
+        createdAt: item.createdAt,
+        priorityNum: item.priorityNum,
+        dueDate: item.dueDate,
+        session: item.session,
+        completedAt: item.completedAt,
+        assignedToUser: item.assignedToUser,
+        taskType: item.taskType,
+        prescriptionId: item.prescriptionId,
+        isTreatmentTask: item.isTreatmentTask,
+      );
+
+      switch (task.session) {
+        case 1:
+          taskMap['Morning']?.add(task);
+          break;
+        case 2:
+          taskMap['Noon']?.add(task);
+          break;
+        case 3:
+          taskMap['Afternoon']?.add(task);
+          break;
+        case 4:
+          taskMap['Evening']?.add(task);
+          break;
+        default:
+          break;
+      }
+    }
+
+    return taskMap;
   }
 
   // Hàm sắp xếp các công việc, chuyển các công việc 'done' và 'OverSchedules' xuống cuối

@@ -536,9 +536,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       Row(
                         children: [
                           const SizedBox(width: 4),
-                          Text(
-                            task?.taskName ?? "",
-                            style: Theme.of(context).textTheme.titleLarge,
+                          Expanded(
+                            child: Text(
+                              task?.taskName ?? "",
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
                           ),
                         ],
                       ),
@@ -680,16 +682,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: FilledButton(
                   onPressed: (taskStatus == StatusDataConstant.doneVn ||
-                          taskStatus == StatusDataConstant.overdueVn)
+                          taskStatus == StatusDataConstant.overdueVn ||
+                          taskStatus == StatusDataConstant.pendingVn)
                       ? null
                       : _updateTaskStatus,
-                  child: Text(taskStatus == StatusDataConstant.pendingVn
-                      ? 'Bắt đầu'
+                  child: Text(taskStatus == StatusDataConstant.inProgressVn
+                      ? 'Xác nhận hoàn thành'
                       : taskStatus == StatusDataConstant.doneVn
                           ? 'Công việc đã hoàn thành'
                           : taskStatus == StatusDataConstant.overdueVn
                               ? 'Công việc đã quá hạn'
-                              : 'Xác nhận hoàn thành'),
+                              : 'Chưa đến giờ làm việc'),
                 ),
               )
             : null,
@@ -753,7 +756,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Xác nhận bắt đầu để có thể tạo đơn báo cáo và hoàn thành công việc.',
+                      taskStatus == StatusDataConstant.pendingVn
+                          ? 'Bạn chỉ có thể bắt đầu công việc trong đúng buổi đã được phân công.'
+                          : 'Xác nhận bắt đầu để có thể tạo đơn báo cáo và hoàn thành công việc.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.error,
                           ),
@@ -1299,25 +1304,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     );
   }
 
-  Widget _buildTimeChip(BuildContext context, String time) {
-    return Container(
-      margin: const EdgeInsets.only(right: 4),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        time,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    );
-  }
-
   Widget _buildInfoItem(
       BuildContext context, String label, String value, IconData icon) {
     return Expanded(
@@ -1349,23 +1335,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildDosageInput(
-      BuildContext context, String label, TextEditingController controller) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: TextField(
-          controller: controller,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            labelText: label,
-            border: OutlineInputBorder(),
-          ),
-        ),
       ),
     );
   }
