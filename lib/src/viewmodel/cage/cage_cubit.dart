@@ -36,8 +36,8 @@ class CageCubit extends Cubit<CageState> {
   Future<void> getCagesByUserId() async {
     emit(const CageState.loadByUserIdInProgress());
     try {
-      final userId = Hive.box(UserDataConstant.userBoxName)
-          .get(UserDataConstant.userIdKey);
+      final userBox = await Hive.openBox(UserDataConstant.userBoxName);
+      final userId = userBox.get(UserDataConstant.userIdKey);
       final cages = await cageRepository.getCagesByUserId(userId);
       emit(CageState.loadByUserIdSuccess(cages));
     } catch (e) {

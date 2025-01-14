@@ -39,4 +39,8 @@ class TaskEvent with _$TaskEvent {
       _GetVaccinScheduleLog;
   const factory TaskEvent.getHealthLogInformation(String taskId) =
       _GetHealthLogInformation;
+  const factory TaskEvent.getTasksByScanQRCode(String cageId) =
+      _GetTasksByScanQRCode;
+  const factory TaskEvent.updateMultipleTask(
+      List<String> taskIds, String statusId) = _UpdateMultipleTask;
 }

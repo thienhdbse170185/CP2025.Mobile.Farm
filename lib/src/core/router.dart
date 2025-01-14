@@ -9,12 +9,14 @@ import 'package:smart_farm/src/view/notification/test.dart';
 import 'package:smart_farm/src/view/profile/edit_user.dart';
 import 'package:smart_farm/src/view/profile/security.dart';
 import 'package:smart_farm/src/view/profile/user.dart';
+import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/symptom/symptom.dart';
 import 'package:smart_farm/src/view/symptom/symptom_detail.dart';
 import 'package:smart_farm/src/view/symptom/symptom_search.dart';
 import 'package:smart_farm/src/view/symptom/symptom_success.dart';
 import 'package:smart_farm/src/view/task/task.dart';
 import 'package:smart_farm/src/view/task/task_history.dart';
+import 'package:smart_farm/src/view/task/task_qr_code.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -44,6 +46,7 @@ class RouteName {
   static const String symptomSuccess = '/symptom-success';
   static const String security = '/security';
   static const String testNotification = '/test-notification';
+  static const String taskQRCode = '/task-qr-code';
 
   static const publicRoutes = [
     welcome,
@@ -285,4 +288,13 @@ final router = GoRouter(
             return _buildPageWithSlideTransition(
                 const TestNotificationWidget());
           }),
+
+      ///task-qr-code-route
+      GoRoute(
+        path: RouteName.taskQRCode,
+        pageBuilder: (context, state) {
+          CageOption cage = state.extra as CageOption;
+          return _buildPageWithSlideTransition(TaskQRCodeWidget(cage: cage));
+        },
+      ),
     ]);
