@@ -9,8 +9,9 @@ class TaskState with _$TaskState {
   const factory TaskState.taskCreated() = _TaskCreated;
   const factory TaskState.taskUpdated() = _TaskUpdated;
   const factory TaskState.taskDeleted() = _TaskDeleted;
-  const factory TaskState.getTasksSuccess(List<TaskHaveCageName> tasks) =
-      _GetTasksSuccess;
+  const factory TaskState.getTasksSuccess(
+      Map<String, List<TaskHaveCageName>> tasks,
+      List<CageFilter> cageList) = _GetTasksSuccess;
   const factory TaskState.getTasksFailure(String error) = _GetTasksFailure;
   const factory TaskState.testConnectSuccess() = _TestConnectSuccess;
   const factory TaskState.getTasksByCageIdLoading() = _GetTasksByCageIdLoading;

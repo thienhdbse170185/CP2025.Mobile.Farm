@@ -7,7 +7,16 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.updateTask(String taskId, String statusId) =
       _UpdateTask;
   const factory TaskEvent.deleteTask(String taskId) = _DeleteTask;
-  const factory TaskEvent.getTasks() = _GetTasks;
+  const factory TaskEvent.getTasks(
+    String? keySearch,
+    String? status,
+    String? taskType,
+    String? cageId,
+    DateTime? date,
+    int? session,
+    int? pageNumber,
+    int? pageSize,
+  ) = _GetTasks;
   const factory TaskEvent.testConnect() = _TestConnect;
   const factory TaskEvent.getTasksByCageId(DateTime? date, String cageId) =
       _GetTasksByCageId;
