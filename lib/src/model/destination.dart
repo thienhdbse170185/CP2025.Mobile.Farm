@@ -4,9 +4,14 @@ class Destination {
   final String label;
   final IconData icon;
   final IconData iconSelected;
+  final bool isQrButton;
 
-  const Destination(
-      {required this.label, required this.icon, required this.iconSelected});
+  const Destination({
+    required this.label,
+    required this.icon,
+    required this.iconSelected,
+    this.isQrButton = false,
+  });
 }
 
 const destinations = <Destination>[
@@ -19,11 +24,17 @@ const destinations = <Destination>[
       icon: Icons.task_outlined,
       iconSelected: Icons.task_rounded),
   Destination(
+    label: 'Quét QR',
+    icon: Icons.qr_code_scanner,
+    iconSelected: Icons.qr_code_scanner,
+    isQrButton: true,
+  ),
+  Destination(
       label: 'Thông báo',
       icon: Icons.notifications_outlined,
       iconSelected: Icons.notifications_rounded),
   Destination(
       label: 'Cá nhân',
       icon: Icons.account_circle_outlined,
-      iconSelected: Icons.account_circle_rounded)
+      iconSelected: Icons.account_circle_rounded),
 ];

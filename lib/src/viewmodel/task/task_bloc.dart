@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/entity/task/next_task/next_task.dart';
+import 'package:data_layer/model/request/task/get_task/get_task.dart';
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
@@ -51,10 +52,58 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       emit(const TaskState.loading());
       try {
         // Add logic to get tasks
-        await Future.delayed(const Duration(seconds: 2));
-        emit(const TaskState.getTasksSuccess({}));
+        final request = GetTaskRequest();
+        final tasks = await repository.fetchTasks(request);
+        emit(TaskState.getTasksSuccess(tasks));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
+      }
+    });
+    on<_GetTasksByScanQRCode>((event, emit) async {
+      emit(const TaskState.getTasksByScanQRCodeLoading());
+      try {
+        // Get current session based on time
+        final now = DateTime.now();
+        final hour = now.hour;
+        int currentSession;
+
+        if (hour >= 6 && hour < 12) {
+          currentSession = 1;
+        } else if (hour >= 12 && hour < 14) {
+          currentSession = 2;
+        } else if (hour >= 14 && hour < 18) {
+          currentSession = 3;
+        } else if (hour >= 18 && hour < 23) {
+          currentSession = 4;
+        } else {
+          currentSession = -1;
+        }
+
+        final request = GetTaskRequest(
+          CageId: event.cageId,
+          DueDateFrom: _formatDateSlash(DateTime.now()),
+          DueDateTo: _formatDateSlash(DateTime.now()),
+          Session: currentSession,
+          PageNumber: 1,
+          PageSize: 10,
+        );
+        final tasks = await repository.fetchTasks(request);
+        _sortTasksByStatusWithoutSession(tasks);
+        emit(TaskState.getTasksByScanQRCodeSuccess(tasks));
+      } catch (e) {
+        emit(TaskState.getTasksByScanQRCodeFailure(e.toString()));
+      }
+    });
+    on<_UpdateMultipleTask>((event, emit) async {
+      emit(const TaskState.updateStatusTaskLoading());
+      try {
+        // Add logic to update multiple tasks
+        for (var taskId in event.taskIds) {
+          await repository.update(taskId, event.statusId);
+        }
+        emit(const TaskState.updateStatusTaskSuccess());
+      } catch (e) {
+        emit(TaskState.updateStatusTaskFailure(e.toString()));
       }
     });
     on<_TestConnect>((event, emit) async {
@@ -109,8 +158,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       emit(const TaskState.getTasksByUserIdAndDateLoading());
 
       try {
-        final formattedDate =
-            "${event.date?.year}/${event.date?.month.toString().padLeft(2, '0')}/${event.date?.day.toString().padLeft(2, '0')}";
+        final formattedDate = _formatDate(event.date);
         final String userId = Hive.box(UserDataConstant.userBoxName)
             .get(UserDataConstant.userIdKey);
         final tasks = await (repository)
@@ -251,6 +299,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     });
   }
 
+  String _formatDate(DateTime? date) {
+    return "${date?.year}-${date?.month.toString().padLeft(2, '0')}-${date?.day.toString().padLeft(2, '0')}";
+  }
+
+  String _formatDateSlash(DateTime? date) {
+    return "${date?.year}/${date?.month.toString().padLeft(2, '0')}/${date?.day.toString().padLeft(2, '0')}";
+  }
+
   // Tách hàm chuyển đổi tasks sang taskSorted
   Map<String, List<TaskHaveCageName>> _convertTasksToTaskMap(
       List<TaskByUserResponse> tasks) {
@@ -305,6 +361,17 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         return priorityA.compareTo(priorityB);
       });
     }
+  }
+
+  // Hàm sắp xếp các công việc trong một danh sách theo trạng thái
+  void _sortTasksByStatusWithoutSession(List<TaskHaveCageName> tasks) {
+    tasks.sort((a, b) {
+      // Ánh xạ trạng thái thành giá trị số để sắp xếp
+      int priorityA = _getStatusPriority(a.status);
+      int priorityB = _getStatusPriority(b.status);
+
+      return priorityA.compareTo(priorityB);
+    });
   }
 
 // Hàm ánh xạ trạng thái task thành giá trị số

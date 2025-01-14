@@ -9,7 +9,7 @@ class TaskState with _$TaskState {
   const factory TaskState.taskCreated() = _TaskCreated;
   const factory TaskState.taskUpdated() = _TaskUpdated;
   const factory TaskState.taskDeleted() = _TaskDeleted;
-  const factory TaskState.getTasksSuccess(Map<String, dynamic> tasks) =
+  const factory TaskState.getTasksSuccess(List<TaskHaveCageName> tasks) =
       _GetTasksSuccess;
   const factory TaskState.getTasksFailure(String error) = _GetTasksFailure;
   const factory TaskState.testConnectSuccess() = _TestConnectSuccess;
@@ -83,4 +83,18 @@ class TaskState with _$TaskState {
       _GetHealthLogInformationSuccess;
   const factory TaskState.getHealthLogInformationFailure(String error) =
       _GetHealthLogInformationFailure;
+
+  const factory TaskState.getTasksByScanQRCodeLoading() =
+      _GetTasksByScanQRCodeLoading;
+  const factory TaskState.getTasksByScanQRCodeSuccess(
+      List<TaskHaveCageName> tasks) = _GetTasksByScanQRCodeSuccess;
+  const factory TaskState.getTasksByScanQRCodeFailure(String error) =
+      _GetTasksByScanQRCodeFailure;
+
+  const factory TaskState.updateMultipleTaskLoading() =
+      _UpdateMultipleTaskLoading;
+  const factory TaskState.updateMultipleTaskSuccess() =
+      _UpdateMultipleTaskSuccess;
+  const factory TaskState.updateMultipleTaskFailure(String error) =
+      _UpdateMultipleTaskFailure;
 }
