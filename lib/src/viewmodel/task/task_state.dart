@@ -11,7 +11,8 @@ class TaskState with _$TaskState {
   const factory TaskState.taskDeleted() = _TaskDeleted;
   const factory TaskState.getTasksSuccess(
       Map<String, List<TaskHaveCageName>> tasks,
-      List<CageFilter> cageList) = _GetTasksSuccess;
+      List<CageFilter> cageList,
+      List<TaskType> taskTypeList) = _GetTasksSuccess;
   const factory TaskState.getTasksFailure(String error) = _GetTasksFailure;
   const factory TaskState.testConnectSuccess() = _TestConnectSuccess;
   const factory TaskState.getTasksByCageIdLoading() = _GetTasksByCageIdLoading;
@@ -88,7 +89,8 @@ class TaskState with _$TaskState {
   const factory TaskState.getTasksByScanQRCodeLoading() =
       _GetTasksByScanQRCodeLoading;
   const factory TaskState.getTasksByScanQRCodeSuccess(
-      List<TaskHaveCageName> tasks) = _GetTasksByScanQRCodeSuccess;
+          List<TaskHaveCageName> tasks, List<TaskType> taskTypeList) =
+      _GetTasksByScanQRCodeSuccess;
   const factory TaskState.getTasksByScanQRCodeFailure(String error) =
       _GetTasksByScanQRCodeFailure;
 

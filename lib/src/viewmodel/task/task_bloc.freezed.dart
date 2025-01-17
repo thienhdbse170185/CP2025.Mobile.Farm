@@ -50,7 +50,9 @@ mixin _$TaskEvent {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) =>
@@ -87,7 +89,9 @@ mixin _$TaskEvent {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) =>
@@ -124,7 +128,9 @@ mixin _$TaskEvent {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) =>
@@ -302,7 +308,9 @@ class _$StartedImpl implements _Started {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -342,7 +350,9 @@ class _$StartedImpl implements _Started {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -382,7 +392,9 @@ class _$StartedImpl implements _Started {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -587,7 +599,9 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -627,7 +641,9 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -667,7 +683,9 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -889,7 +907,9 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -929,7 +949,9 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -969,7 +991,9 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -1184,7 +1208,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -1224,7 +1250,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -1264,7 +1292,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -1547,7 +1577,9 @@ class _$GetTasksImpl implements _GetTasks {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -1588,7 +1620,9 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -1629,7 +1663,9 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -1831,7 +1867,9 @@ class _$TestConnectImpl implements _TestConnect {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -1871,7 +1909,9 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -1911,7 +1951,9 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -2125,7 +2167,9 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -2165,7 +2209,9 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -2205,7 +2251,9 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -2420,7 +2468,9 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -2460,7 +2510,9 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -2500,7 +2552,9 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -2686,7 +2740,9 @@ class _$GetNextTaskImpl implements _GetNextTask {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -2726,7 +2782,9 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -2766,7 +2824,9 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -2982,7 +3042,9 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -3022,7 +3084,9 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -3062,7 +3126,9 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -3298,7 +3364,9 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -3338,7 +3406,9 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -3378,7 +3448,9 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -3620,7 +3692,9 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -3660,7 +3734,9 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -3700,7 +3776,9 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -3939,7 +4017,9 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -3979,7 +4059,9 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -4019,7 +4101,9 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -4259,7 +4343,9 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -4299,7 +4385,9 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -4339,7 +4427,9 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -4557,7 +4647,9 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -4597,7 +4689,9 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -4637,7 +4731,9 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -4851,7 +4947,9 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -4891,7 +4989,9 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -4931,7 +5031,9 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -5146,7 +5248,9 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -5186,7 +5290,9 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -5226,7 +5332,9 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -5443,7 +5551,9 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -5483,7 +5593,9 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -5523,7 +5635,9 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -5643,7 +5757,13 @@ abstract class _$$GetTasksByScanQRCodeImplCopyWith<$Res> {
           $Res Function(_$GetTasksByScanQRCodeImpl) then) =
       __$$GetTasksByScanQRCodeImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String cageId});
+  $Res call(
+      {String? keySearch,
+      String? status,
+      String? taskType,
+      String cageId,
+      int? pageNumber,
+      int? pageSize});
 }
 
 /// @nodoc
@@ -5659,13 +5779,38 @@ class __$$GetTasksByScanQRCodeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? keySearch = freezed,
+    Object? status = freezed,
+    Object? taskType = freezed,
     Object? cageId = null,
+    Object? pageNumber = freezed,
+    Object? pageSize = freezed,
   }) {
     return _then(_$GetTasksByScanQRCodeImpl(
+      freezed == keySearch
+          ? _value.keySearch
+          : keySearch // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == taskType
+          ? _value.taskType
+          : taskType // ignore: cast_nullable_to_non_nullable
+              as String?,
       null == cageId
           ? _value.cageId
           : cageId // ignore: cast_nullable_to_non_nullable
               as String,
+      freezed == pageNumber
+          ? _value.pageNumber
+          : pageNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -5673,14 +5818,25 @@ class __$$GetTasksByScanQRCodeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
-  const _$GetTasksByScanQRCodeImpl(this.cageId);
+  const _$GetTasksByScanQRCodeImpl(this.keySearch, this.status, this.taskType,
+      this.cageId, this.pageNumber, this.pageSize);
 
   @override
+  final String? keySearch;
+  @override
+  final String? status;
+  @override
+  final String? taskType;
+  @override
   final String cageId;
+  @override
+  final int? pageNumber;
+  @override
+  final int? pageSize;
 
   @override
   String toString() {
-    return 'TaskEvent.getTasksByScanQRCode(cageId: $cageId)';
+    return 'TaskEvent.getTasksByScanQRCode(keySearch: $keySearch, status: $status, taskType: $taskType, cageId: $cageId, pageNumber: $pageNumber, pageSize: $pageSize)';
   }
 
   @override
@@ -5688,11 +5844,21 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetTasksByScanQRCodeImpl &&
-            (identical(other.cageId, cageId) || other.cageId == cageId));
+            (identical(other.keySearch, keySearch) ||
+                other.keySearch == keySearch) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.taskType, taskType) ||
+                other.taskType == taskType) &&
+            (identical(other.cageId, cageId) || other.cageId == cageId) &&
+            (identical(other.pageNumber, pageNumber) ||
+                other.pageNumber == pageNumber) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, cageId);
+  int get hashCode => Object.hash(
+      runtimeType, keySearch, status, taskType, cageId, pageNumber, pageSize);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -5739,11 +5905,14 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
-    return getTasksByScanQRCode(cageId);
+    return getTasksByScanQRCode(
+        keySearch, status, taskType, cageId, pageNumber, pageSize);
   }
 
   @override
@@ -5779,11 +5948,14 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
-    return getTasksByScanQRCode?.call(cageId);
+    return getTasksByScanQRCode?.call(
+        keySearch, status, taskType, cageId, pageNumber, pageSize);
   }
 
   @override
@@ -5819,12 +5991,15 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCode != null) {
-      return getTasksByScanQRCode(cageId);
+      return getTasksByScanQRCode(
+          keySearch, status, taskType, cageId, pageNumber, pageSize);
     }
     return orElse();
   }
@@ -5921,10 +6096,20 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
 }
 
 abstract class _GetTasksByScanQRCode implements TaskEvent {
-  const factory _GetTasksByScanQRCode(final String cageId) =
-      _$GetTasksByScanQRCodeImpl;
+  const factory _GetTasksByScanQRCode(
+      final String? keySearch,
+      final String? status,
+      final String? taskType,
+      final String cageId,
+      final int? pageNumber,
+      final int? pageSize) = _$GetTasksByScanQRCodeImpl;
 
+  String? get keySearch;
+  String? get status;
+  String? get taskType;
   String get cageId;
+  int? get pageNumber;
+  int? get pageSize;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -6051,7 +6236,9 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     required TResult Function(String taskId) getHealthLog,
     required TResult Function(String taskId) getVaccinScheduleLog,
     required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String cageId) getTasksByScanQRCode,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
   }) {
@@ -6091,7 +6278,9 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult? Function(String taskId)? getHealthLog,
     TResult? Function(String taskId)? getVaccinScheduleLog,
     TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String cageId)? getTasksByScanQRCode,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
   }) {
@@ -6131,7 +6320,9 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult Function(String taskId)? getHealthLog,
     TResult Function(String taskId)? getVaccinScheduleLog,
     TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String cageId)? getTasksByScanQRCode,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
     required TResult orElse(),
   }) {
@@ -6259,7 +6450,7 @@ mixin _$TaskState {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -6309,7 +6500,8 @@ mixin _$TaskState {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -6327,7 +6519,7 @@ mixin _$TaskState {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -6374,7 +6566,8 @@ mixin _$TaskState {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -6392,7 +6585,7 @@ mixin _$TaskState {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -6439,7 +6632,8 @@ mixin _$TaskState {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -6773,7 +6967,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -6823,7 +7017,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -6844,7 +7039,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -6891,7 +7086,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -6912,7 +7108,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -6959,7 +7155,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -7293,7 +7490,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -7343,7 +7540,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -7364,7 +7562,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -7411,7 +7609,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -7432,7 +7631,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -7479,7 +7678,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -7813,7 +8013,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -7863,7 +8063,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -7884,7 +8085,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -7931,7 +8132,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -7952,7 +8154,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -7999,7 +8201,8 @@ class _$SuccessImpl implements _Success {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -8360,7 +8563,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -8410,7 +8613,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -8431,7 +8635,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -8478,7 +8682,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -8499,7 +8704,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -8546,7 +8751,8 @@ class _$FailureImpl implements _Failure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -8888,7 +9094,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -8938,7 +9144,8 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -8959,7 +9166,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -9006,7 +9213,8 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -9027,7 +9235,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -9074,7 +9282,8 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -9408,7 +9617,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -9458,7 +9667,8 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -9479,7 +9689,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -9526,7 +9736,8 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -9547,7 +9758,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -9594,7 +9805,8 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -9928,7 +10140,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -9978,7 +10190,8 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -9999,7 +10212,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -10046,7 +10259,8 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -10067,7 +10281,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -10114,7 +10328,8 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -10406,7 +10621,9 @@ abstract class _$$GetTasksSuccessImplCopyWith<$Res> {
       __$$GetTasksSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {Map<String, List<TaskHaveCageName>> tasks, List<CageFilter> cageList});
+      {Map<String, List<TaskHaveCageName>> tasks,
+      List<CageFilter> cageList,
+      List<TaskType> taskTypeList});
 }
 
 /// @nodoc
@@ -10424,6 +10641,7 @@ class __$$GetTasksSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? tasks = null,
     Object? cageList = null,
+    Object? taskTypeList = null,
   }) {
     return _then(_$GetTasksSuccessImpl(
       null == tasks
@@ -10434,6 +10652,10 @@ class __$$GetTasksSuccessImplCopyWithImpl<$Res>
           ? _value._cageList
           : cageList // ignore: cast_nullable_to_non_nullable
               as List<CageFilter>,
+      null == taskTypeList
+          ? _value._taskTypeList
+          : taskTypeList // ignore: cast_nullable_to_non_nullable
+              as List<TaskType>,
     ));
   }
 }
@@ -10442,9 +10664,10 @@ class __$$GetTasksSuccessImplCopyWithImpl<$Res>
 
 class _$GetTasksSuccessImpl implements _GetTasksSuccess {
   const _$GetTasksSuccessImpl(final Map<String, List<TaskHaveCageName>> tasks,
-      final List<CageFilter> cageList)
+      final List<CageFilter> cageList, final List<TaskType> taskTypeList)
       : _tasks = tasks,
-        _cageList = cageList;
+        _cageList = cageList,
+        _taskTypeList = taskTypeList;
 
   final Map<String, List<TaskHaveCageName>> _tasks;
   @override
@@ -10462,9 +10685,17 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     return EqualUnmodifiableListView(_cageList);
   }
 
+  final List<TaskType> _taskTypeList;
+  @override
+  List<TaskType> get taskTypeList {
+    if (_taskTypeList is EqualUnmodifiableListView) return _taskTypeList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_taskTypeList);
+  }
+
   @override
   String toString() {
-    return 'TaskState.getTasksSuccess(tasks: $tasks, cageList: $cageList)';
+    return 'TaskState.getTasksSuccess(tasks: $tasks, cageList: $cageList, taskTypeList: $taskTypeList)';
   }
 
   @override
@@ -10473,14 +10704,17 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
         (other.runtimeType == runtimeType &&
             other is _$GetTasksSuccessImpl &&
             const DeepCollectionEquality().equals(other._tasks, _tasks) &&
-            const DeepCollectionEquality().equals(other._cageList, _cageList));
+            const DeepCollectionEquality().equals(other._cageList, _cageList) &&
+            const DeepCollectionEquality()
+                .equals(other._taskTypeList, _taskTypeList));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_tasks),
-      const DeepCollectionEquality().hash(_cageList));
+      const DeepCollectionEquality().hash(_cageList),
+      const DeepCollectionEquality().hash(_taskTypeList));
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -10502,7 +10736,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -10552,14 +10786,15 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
   }) {
-    return getTasksSuccess(tasks, cageList);
+    return getTasksSuccess(tasks, cageList, taskTypeList);
   }
 
   @override
@@ -10573,7 +10808,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -10620,14 +10855,15 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
   }) {
-    return getTasksSuccess?.call(tasks, cageList);
+    return getTasksSuccess?.call(tasks, cageList, taskTypeList);
   }
 
   @override
@@ -10641,7 +10877,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -10688,7 +10924,8 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -10696,7 +10933,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult orElse(),
   }) {
     if (getTasksSuccess != null) {
-      return getTasksSuccess(tasks, cageList);
+      return getTasksSuccess(tasks, cageList, taskTypeList);
     }
     return orElse();
   }
@@ -10972,10 +11209,12 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
 abstract class _GetTasksSuccess implements TaskState {
   const factory _GetTasksSuccess(
       final Map<String, List<TaskHaveCageName>> tasks,
-      final List<CageFilter> cageList) = _$GetTasksSuccessImpl;
+      final List<CageFilter> cageList,
+      final List<TaskType> taskTypeList) = _$GetTasksSuccessImpl;
 
   Map<String, List<TaskHaveCageName>> get tasks;
   List<CageFilter> get cageList;
+  List<TaskType> get taskTypeList;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -11061,7 +11300,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -11111,7 +11350,8 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -11132,7 +11372,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -11179,7 +11419,8 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -11200,7 +11441,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -11247,7 +11488,8 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -11589,7 +11831,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -11639,7 +11881,8 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -11660,7 +11903,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -11707,7 +11950,8 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -11728,7 +11972,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -11775,7 +12019,8 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -12112,7 +12357,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -12162,7 +12407,8 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -12183,7 +12429,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -12230,7 +12476,8 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -12251,7 +12498,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -12298,7 +12545,8 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -12670,7 +12918,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -12720,7 +12968,8 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -12741,7 +12990,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -12788,7 +13037,8 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -12809,7 +13059,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -12856,7 +13106,8 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -13200,7 +13451,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -13250,7 +13501,8 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -13271,7 +13523,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -13318,7 +13570,8 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -13339,7 +13592,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -13386,7 +13639,8 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -13768,7 +14022,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -13818,7 +14072,8 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -13839,7 +14094,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -13886,7 +14141,8 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -13907,7 +14163,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -13954,7 +14210,8 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -14327,7 +14584,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -14377,7 +14634,8 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -14398,7 +14656,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -14445,7 +14703,8 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -14466,7 +14725,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -14513,7 +14772,8 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -14856,7 +15116,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -14906,7 +15166,8 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -14927,7 +15188,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -14974,7 +15235,8 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -14995,7 +15257,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -15042,7 +15304,8 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -15410,7 +15673,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -15460,7 +15723,8 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -15481,7 +15745,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -15528,7 +15792,8 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -15549,7 +15814,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -15596,7 +15861,8 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -15967,7 +16233,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -16017,7 +16283,8 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -16038,7 +16305,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -16085,7 +16352,8 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -16106,7 +16374,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -16153,7 +16421,8 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -16500,7 +16769,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -16550,7 +16819,8 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -16571,7 +16841,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -16618,7 +16888,8 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -16639,7 +16910,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -16686,7 +16957,8 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -17080,7 +17352,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -17130,7 +17402,8 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -17151,7 +17424,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -17198,7 +17471,8 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -17219,7 +17493,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -17266,7 +17540,8 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -17644,7 +17919,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -17694,7 +17969,8 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -17715,7 +17991,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -17762,7 +18038,8 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -17783,7 +18060,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -17830,7 +18107,8 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -18175,7 +18453,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -18225,7 +18503,8 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -18246,7 +18525,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -18293,7 +18572,8 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -18314,7 +18594,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -18361,7 +18641,8 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -18732,7 +19013,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -18782,7 +19063,8 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -18803,7 +19085,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -18850,7 +19132,8 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -18871,7 +19154,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -18918,7 +19201,8 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -19291,7 +19575,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -19341,7 +19625,8 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -19362,7 +19647,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -19409,7 +19694,8 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -19430,7 +19716,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -19477,7 +19763,8 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -19823,7 +20110,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -19873,7 +20160,8 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -19894,7 +20182,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -19941,7 +20229,8 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -19962,7 +20251,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -20009,7 +20298,8 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -20346,7 +20636,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -20396,7 +20686,8 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -20417,7 +20708,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -20464,7 +20755,8 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -20485,7 +20777,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -20532,7 +20824,8 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -20896,7 +21189,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -20946,7 +21239,8 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -20967,7 +21261,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -21014,7 +21308,8 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -21035,7 +21330,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -21082,7 +21377,8 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -21429,7 +21725,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -21479,7 +21775,8 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -21500,7 +21797,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -21547,7 +21844,8 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -21568,7 +21866,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -21615,7 +21913,8 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -21954,7 +22253,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -22004,7 +22303,8 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -22025,7 +22325,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -22072,7 +22372,8 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -22093,7 +22394,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -22140,7 +22441,8 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -22507,7 +22809,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -22557,7 +22859,8 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -22578,7 +22881,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -22625,7 +22928,8 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -22646,7 +22950,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -22693,7 +22997,8 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -23040,7 +23345,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -23090,7 +23395,8 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -23111,7 +23417,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -23158,7 +23464,8 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -23179,7 +23486,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -23226,7 +23533,8 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -23563,7 +23871,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -23613,7 +23921,8 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -23634,7 +23943,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -23681,7 +23990,8 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -23702,7 +24012,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -23749,7 +24059,8 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -24113,7 +24424,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -24163,7 +24474,8 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -24184,7 +24496,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -24231,7 +24543,8 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -24252,7 +24565,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -24299,7 +24612,8 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -24646,7 +24960,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -24696,7 +25010,8 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -24717,7 +25032,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -24764,7 +25079,8 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -24785,7 +25101,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -24832,7 +25148,8 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -25171,7 +25488,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -25221,7 +25538,8 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -25242,7 +25560,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -25289,7 +25607,8 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -25310,7 +25629,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -25357,7 +25676,8 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -25724,7 +26044,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -25774,7 +26094,8 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -25795,7 +26116,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -25842,7 +26163,8 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -25863,7 +26185,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -25910,7 +26232,8 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -26258,7 +26581,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -26308,7 +26631,8 @@ class _$GetDailyFoodUsageLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -26329,7 +26653,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -26376,7 +26700,8 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -26397,7 +26722,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -26444,7 +26769,8 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -26822,7 +27148,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -26872,7 +27198,8 @@ class _$GetDailyFoodUsageLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -26893,7 +27220,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -26940,7 +27267,8 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -26961,7 +27289,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -27008,7 +27336,8 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -27382,7 +27711,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -27432,7 +27761,8 @@ class _$GetDailyFoodUsageLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -27453,7 +27783,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -27500,7 +27830,8 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -27521,7 +27852,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -27568,7 +27899,8 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -27912,7 +28244,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -27962,7 +28294,8 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -27983,7 +28316,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -28030,7 +28363,8 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -28051,7 +28385,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -28098,7 +28432,8 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -28472,7 +28807,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -28522,7 +28857,8 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -28543,7 +28879,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -28590,7 +28926,8 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -28611,7 +28948,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -28658,7 +28995,8 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -29029,7 +29367,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -29079,7 +29417,8 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -29100,7 +29439,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -29147,7 +29486,8 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -29168,7 +29508,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -29215,7 +29555,8 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -29562,7 +29903,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -29612,7 +29953,8 @@ class _$GetVaccinScheduleLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -29633,7 +29975,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -29680,7 +30022,8 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -29701,7 +30044,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -29748,7 +30091,8 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -30126,7 +30470,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -30176,7 +30520,8 @@ class _$GetVaccinScheduleLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -30197,7 +30542,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -30244,7 +30589,8 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -30265,7 +30611,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -30312,7 +30658,8 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -30686,7 +31033,7 @@ class _$GetVaccinScheduleLogFailureImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -30736,7 +31083,8 @@ class _$GetVaccinScheduleLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -30757,7 +31105,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -30804,7 +31152,8 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -30825,7 +31174,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -30872,7 +31221,8 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -31219,7 +31569,7 @@ class _$GetHealthLogInformationLoadingImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -31269,7 +31619,8 @@ class _$GetHealthLogInformationLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -31290,7 +31641,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -31337,7 +31688,8 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -31358,7 +31710,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -31405,7 +31757,8 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -31784,7 +32137,7 @@ class _$GetHealthLogInformationSuccessImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -31834,7 +32187,8 @@ class _$GetHealthLogInformationSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -31855,7 +32209,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -31902,7 +32256,8 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -31923,7 +32278,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -31970,7 +32325,8 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -32346,7 +32702,7 @@ class _$GetHealthLogInformationFailureImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -32396,7 +32752,8 @@ class _$GetHealthLogInformationFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -32417,7 +32774,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -32464,7 +32821,8 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -32485,7 +32843,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -32532,7 +32890,8 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -32880,7 +33239,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -32930,7 +33289,8 @@ class _$GetTasksByScanQRCodeLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -32951,7 +33311,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -32998,7 +33358,8 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -33019,7 +33380,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -33066,7 +33427,8 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -33359,7 +33721,7 @@ abstract class _$$GetTasksByScanQRCodeSuccessImplCopyWith<$Res> {
           $Res Function(_$GetTasksByScanQRCodeSuccessImpl) then) =
       __$$GetTasksByScanQRCodeSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<TaskHaveCageName> tasks});
+  $Res call({List<TaskHaveCageName> tasks, List<TaskType> taskTypeList});
 }
 
 /// @nodoc
@@ -33377,12 +33739,17 @@ class __$$GetTasksByScanQRCodeSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tasks = null,
+    Object? taskTypeList = null,
   }) {
     return _then(_$GetTasksByScanQRCodeSuccessImpl(
       null == tasks
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as List<TaskHaveCageName>,
+      null == taskTypeList
+          ? _value._taskTypeList
+          : taskTypeList // ignore: cast_nullable_to_non_nullable
+              as List<TaskType>,
     ));
   }
 }
@@ -33391,8 +33758,10 @@ class __$$GetTasksByScanQRCodeSuccessImplCopyWithImpl<$Res>
 
 class _$GetTasksByScanQRCodeSuccessImpl
     implements _GetTasksByScanQRCodeSuccess {
-  const _$GetTasksByScanQRCodeSuccessImpl(final List<TaskHaveCageName> tasks)
-      : _tasks = tasks;
+  const _$GetTasksByScanQRCodeSuccessImpl(
+      final List<TaskHaveCageName> tasks, final List<TaskType> taskTypeList)
+      : _tasks = tasks,
+        _taskTypeList = taskTypeList;
 
   final List<TaskHaveCageName> _tasks;
   @override
@@ -33402,9 +33771,17 @@ class _$GetTasksByScanQRCodeSuccessImpl
     return EqualUnmodifiableListView(_tasks);
   }
 
+  final List<TaskType> _taskTypeList;
+  @override
+  List<TaskType> get taskTypeList {
+    if (_taskTypeList is EqualUnmodifiableListView) return _taskTypeList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_taskTypeList);
+  }
+
   @override
   String toString() {
-    return 'TaskState.getTasksByScanQRCodeSuccess(tasks: $tasks)';
+    return 'TaskState.getTasksByScanQRCodeSuccess(tasks: $tasks, taskTypeList: $taskTypeList)';
   }
 
   @override
@@ -33412,12 +33789,16 @@ class _$GetTasksByScanQRCodeSuccessImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetTasksByScanQRCodeSuccessImpl &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
+            const DeepCollectionEquality()
+                .equals(other._taskTypeList, _taskTypeList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tasks));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tasks),
+      const DeepCollectionEquality().hash(_taskTypeList));
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -33439,7 +33820,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -33489,14 +33870,15 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
   }) {
-    return getTasksByScanQRCodeSuccess(tasks);
+    return getTasksByScanQRCodeSuccess(tasks, taskTypeList);
   }
 
   @override
@@ -33510,7 +33892,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -33557,14 +33939,15 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
   }) {
-    return getTasksByScanQRCodeSuccess?.call(tasks);
+    return getTasksByScanQRCodeSuccess?.call(tasks, taskTypeList);
   }
 
   @override
@@ -33578,7 +33961,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -33625,7 +34008,8 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -33633,7 +34017,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCodeSuccess != null) {
-      return getTasksByScanQRCodeSuccess(tasks);
+      return getTasksByScanQRCodeSuccess(tasks, taskTypeList);
     }
     return orElse();
   }
@@ -33907,10 +34291,11 @@ class _$GetTasksByScanQRCodeSuccessImpl
 }
 
 abstract class _GetTasksByScanQRCodeSuccess implements TaskState {
-  const factory _GetTasksByScanQRCodeSuccess(
-      final List<TaskHaveCageName> tasks) = _$GetTasksByScanQRCodeSuccessImpl;
+  const factory _GetTasksByScanQRCodeSuccess(final List<TaskHaveCageName> tasks,
+      final List<TaskType> taskTypeList) = _$GetTasksByScanQRCodeSuccessImpl;
 
   List<TaskHaveCageName> get tasks;
+  List<TaskType> get taskTypeList;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -33999,7 +34384,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -34049,7 +34434,8 @@ class _$GetTasksByScanQRCodeFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -34070,7 +34456,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -34117,7 +34503,8 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -34138,7 +34525,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -34185,7 +34572,8 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -34531,7 +34919,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -34581,7 +34969,8 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -34602,7 +34991,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -34649,7 +35038,8 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -34670,7 +35060,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -34717,7 +35107,8 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -35054,7 +35445,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -35104,7 +35495,8 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -35125,7 +35517,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -35172,7 +35564,8 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -35193,7 +35586,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -35240,7 +35633,8 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
@@ -35604,7 +35998,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
     required TResult Function(String error) getTasksFailure,
     required TResult Function() testConnectSuccess,
@@ -35654,7 +36048,8 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
     required TResult Function(String error) getHealthLogInformationFailure,
     required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(List<TaskHaveCageName> tasks)
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
         getTasksByScanQRCodeSuccess,
     required TResult Function(String error) getTasksByScanQRCodeFailure,
     required TResult Function() updateMultipleTaskLoading,
@@ -35675,7 +36070,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult? Function(String error)? getTasksFailure,
     TResult? Function()? testConnectSuccess,
@@ -35722,7 +36117,8 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult? Function(String error)? getHealthLogInformationFailure,
     TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(List<TaskHaveCageName> tasks)?
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
         getTasksByScanQRCodeSuccess,
     TResult? Function(String error)? getTasksByScanQRCodeFailure,
     TResult? Function()? updateMultipleTaskLoading,
@@ -35743,7 +36139,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
     TResult Function(String error)? getTasksFailure,
     TResult Function()? testConnectSuccess,
@@ -35790,7 +36186,8 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
     TResult Function(String error)? getHealthLogInformationFailure,
     TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks)? getTasksByScanQRCodeSuccess,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
     TResult Function(String error)? getTasksByScanQRCodeFailure,
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,

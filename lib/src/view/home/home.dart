@@ -258,6 +258,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ],
                             ),
                             ListView.builder(
+                              padding: const EdgeInsets.only(top: 8),
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: cages.isEmpty ? 1 : cages.length,
