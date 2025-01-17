@@ -350,7 +350,10 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(message),
+                        Text(message == 'Exception: no-symptom-found'
+                            ? 'Không tìm thấy báo cáo nào'
+                            : 'Đã xảy ra lỗi khi tải dữ liệu'),
+                        const SizedBox(height: 8),
                         ElevatedButton(
                           onPressed: () {
                             context

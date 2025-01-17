@@ -1397,16 +1397,18 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                         Checkbox(
                           value: _affectedController.text ==
                               _affectedQuantity.toString(),
-                          onChanged: (bool? value) {
-                            setState(() {
-                              if (value == true) {
-                                _affectedController.text =
-                                    _affectedQuantity.toString();
-                              } else {
-                                _affectedController.text = '0';
-                              }
-                            });
-                          },
+                          onChanged: (_isCageSelected && _hasFarmingBatch)
+                              ? (bool? value) {
+                                  setState(() {
+                                    if (value == true) {
+                                      _affectedController.text =
+                                          _affectedQuantity.toString();
+                                    } else {
+                                      _affectedController.text = '0';
+                                    }
+                                  });
+                                }
+                              : null,
                         ),
                         const SizedBox(width: 4),
                         const Text('Cả đàn đều bị bệnh'),

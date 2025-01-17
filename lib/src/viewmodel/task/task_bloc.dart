@@ -2,10 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/entity/task/next_task/next_task.dart';
+import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:data_layer/model/request/task/get_task/get_task.dart';
 import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 
@@ -81,7 +83,18 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
                 cageId: task.cageId));
           }
         }
-        emit(TaskState.getTasksSuccess(tasksMap, cageList));
+
+        // Tạo danh sách task type không trùng lặp
+        List<TaskType> taskTypeList = [];
+        for (var task in tasksMap.values.expand((element) => element)) {
+          if (!taskTypeList.any(
+              (element) => element.taskTypeId == task.taskType.taskTypeId)) {
+            taskTypeList.add(TaskType(
+                taskTypeId: task.taskType.taskTypeId,
+                taskTypeName: task.taskType.taskTypeName));
+          }
+        }
+        emit(TaskState.getTasksSuccess(tasksMap, cageList, taskTypeList));
       } catch (e) {
         emit(TaskState.getTasksFailure(e.toString()));
       }
@@ -103,7 +116,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         } else if (hour >= 18 && hour < 23) {
           currentSession = 4;
         } else {
-          currentSession = 1;
+          currentSession = -1;
         }
 
         final userBox = await Hive.openBox(UserDataConstant.userBoxName);
@@ -118,9 +131,23 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           PageNumber: 1,
           PageSize: 20,
         );
+
         final tasks = await repository.fetchTasks(request);
+
+        // Tạo danh sách task type không trùng lặp
+        List<TaskType> taskTypeList = [];
+        for (var task in tasks) {
+          if (!taskTypeList.any(
+              (element) => element.taskTypeId == task.taskType.taskTypeId)) {
+            taskTypeList.add(TaskType(
+                taskTypeId: task.taskType.taskTypeId,
+                taskTypeName: task.taskType.taskTypeName));
+          }
+        }
+
         _sortTasksByStatusWithoutSession(tasks);
-        emit(TaskState.getTasksByScanQRCodeSuccess(tasks));
+
+        emit(TaskState.getTasksByScanQRCodeSuccess(tasks, taskTypeList));
       } catch (e) {
         emit(TaskState.getTasksByScanQRCodeFailure(e.toString()));
       }
@@ -444,22 +471,25 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   // Hàm sắp xếp các công việc trong một danh sách theo trạng thái
-  void _sortTasksByStatusWithoutSession(List<TaskHaveCageName> tasks) {
-    tasks.sort((a, b) {
+  List<TaskHaveCageName> _sortTasksByStatusWithoutSession(
+      List<TaskHaveCageName> tasks) {
+    final mutableTasks = List<TaskHaveCageName>.from(tasks);
+    mutableTasks.sort((a, b) {
       // Ánh xạ trạng thái thành giá trị số để sắp xếp
       int priorityA = _getStatusPriority(a.status);
       int priorityB = _getStatusPriority(b.status);
 
-      return priorityA.compareTo(priorityB);
+      return priorityB.compareTo(priorityA); // Đảo ngược thứ tự sắp xếp
     });
+    return mutableTasks;
   }
 
 // Hàm ánh xạ trạng thái task thành giá trị số
   int _getStatusPriority(String status) {
-    switch (status.toLowerCase()) {
-      case 'overschedules': // Task hết hạn
+    switch (status) {
+      case StatusDataConstant.overdue: // Task hết hạn
         return 2; // Ưu tiên thấp nhất
-      case 'done': // Task đã hoàn thành
+      case StatusDataConstant.done: // Task đã hoàn thành
         return 1; // Ưu tiên trung bình
       default: // Các trạng thái khác
         return 0; // Ưu tiên cao nhất

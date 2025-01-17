@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -72,29 +73,38 @@ class _TaskWidgetState extends State<TaskWidget>
     },
   ];
 
-  // Task type options
-  final List<Map<String, dynamic>> _taskTypes = [
-    {
-      'id': 'all',
-      'name': 'Tất cả',
-      'icon': Icons.all_inclusive,
-    },
-    {
-      'id': TaskTypeDataConstant.feeding,
-      'name': 'Cho ăn',
-      'icon': Icons.restaurant,
-    },
-    {
-      'id': TaskTypeDataConstant.health,
-      'name': 'Cho uống thuốc',
-      'icon': Icons.medical_services,
-    },
-    {
-      'id': TaskTypeDataConstant.vaccin,
-      'name': 'Tiêm vacxin',
-      'icon': Icons.vaccines,
-    },
-  ];
+  // Thay thế _taskTypes hardcode bằng danh sách từ API
+  List<TaskType> availableTaskTypeFilters = [];
+
+  // Xóa _taskTypes hardcode và thay bằng hàm build từ availableTaskTypeFilters
+  List<Map<String, dynamic>> _buildTaskTypeOptions() {
+    return [
+      {
+        'id': 'all',
+        'name': 'Tất cả',
+        'icon': Icons.all_inclusive,
+      },
+      ...availableTaskTypeFilters.map((type) => {
+            'id': type.taskTypeId,
+            'name': type.taskTypeName,
+            'icon': _getTaskTypeIcon(type.taskTypeId),
+          }),
+    ];
+  }
+
+  // Helper function để map taskTypeId sang icon
+  IconData _getTaskTypeIcon(String taskTypeId) {
+    switch (taskTypeId) {
+      case TaskTypeDataConstant.feeding:
+        return Icons.restaurant;
+      case TaskTypeDataConstant.health:
+        return Icons.medical_services;
+      case TaskTypeDataConstant.vaccin:
+        return Icons.vaccines;
+      default:
+        return Icons.work_outline;
+    }
+  }
 
   // Session options
   final List<Map<String, dynamic>> _sessions = [
@@ -204,6 +214,20 @@ class _TaskWidgetState extends State<TaskWidget>
     context
         .read<TaskBloc>()
         .add(TaskEvent.getTasks('', '', '', '', DateTime.now(), null, 1, 20));
+    _refreshTasks();
+  }
+
+  void _refreshTasks() {
+    context.read<TaskBloc>().add(TaskEvent.getTasks(
+          _searchController.text,
+          _selectedStatus == 'all' ? null : _selectedStatus,
+          _selectedTaskType == 'all' ? null : _selectedTaskType,
+          _selectedCage == 'all' ? null : _selectedCage,
+          selectedDate,
+          _selectedSession,
+          1,
+          20,
+        ));
   }
 
   @override
@@ -293,10 +317,12 @@ class _TaskWidgetState extends State<TaskWidget>
           ),
           Expanded(
             child: ListView(
-              children: _taskTypes
+              children: _buildTaskTypeOptions()
                   .map((type) => RadioListTile(
                         title: Row(
                           children: [
+                            Icon(type['icon'] as IconData),
+                            const SizedBox(width: 8),
                             Text(type['name']),
                           ],
                         ),
@@ -648,11 +674,16 @@ class _TaskWidgetState extends State<TaskWidget>
           loading: () {
             log("Đang lấy danh sách công việc...");
           },
-          getTasksSuccess: (tasks, cageList) {
+          getTasksSuccess: (tasks, cageList, taskTypeList) {
             log("Lấy danh sách công việc thành công!");
             setState(() {
               taskSorted = tasks;
-              availableCageFilters = cageList;
+              if (availableTaskTypeFilters.isEmpty) {
+                availableTaskTypeFilters = taskTypeList;
+              }
+              if (availableCageFilters.isEmpty) {
+                availableCageFilters = cageList;
+              }
             });
           },
           getTasksFailure: (e) {
@@ -703,6 +734,10 @@ class _TaskWidgetState extends State<TaskWidget>
             log(e.toString());
             LoadingDialog.hide(context);
           },
+          updateStatusTaskSuccess: () async {
+            log("Cập nhật trạng thái công việc thành công!");
+            _refreshTasks();
+          },
           orElse: () {},
         );
       },
@@ -712,305 +747,305 @@ class _TaskWidgetState extends State<TaskWidget>
           onRefresh: () async {
             context.read<TaskBloc>().add(TaskEvent.getTasks(
                 _searchController.text,
-                _selectedTaskType,
-                _selectedCage,
-                _selectedStatus,
+                _selectedTaskType == 'all' ? null : _selectedTaskType,
+                _selectedCage == 'all' ? null : _selectedCage,
+                _selectedStatus == 'all' ? null : _selectedStatus,
                 selectedDate,
                 _selectedSession,
                 1,
                 20));
           },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .primaryContainer
-                      .withOpacity(0.4),
-                  image: DecorationImage(
-                    image: const AssetImage('assets/images/leaf.jpg'),
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.1),
-                      BlendMode.dstATop,
-                    ),
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(24),
-                    bottomRight: Radius.circular(24),
-                  ),
-                ),
-                padding: const EdgeInsets.only(top: 24.0, bottom: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8.0),
-                    // Date Selection - với animation ẩn/hiện
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                      height: _showSearchAndFilter ? null : 0,
-                      child: ClipRect(
-                        child: AnimatedSize(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                          child: AnimatedOpacity(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                            opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    isToday ? 'Hôm nay' : dayOfWeek,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(fontSize: 22),
-                                  ),
-                                  InkWell(
-                                    onTap: () => _selectDate(context),
-                                    child: Chip(
-                                      shape: const StadiumBorder(
-                                          side: BorderSide(
-                                              width: 0,
-                                              color: Colors.transparent)),
-                                      label: Text(
-                                        formattedDate,
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                      ),
-                                      avatar: LinearIcons.calendarIcon,
-                                      backgroundColor: Theme.of(context)
-                                          .colorScheme
-                                          .primaryContainer,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+          child: WillPopScope(
+            onWillPop: () async {
+              Navigator.pop(context, true); // Pass true to indicate success
+              return false;
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withOpacity(0.4),
+                    image: DecorationImage(
+                      image: const AssetImage('assets/images/leaf.jpg'),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.1),
+                        BlendMode.dstATop,
                       ),
                     ),
-                    const SizedBox(height: 8),
-
-                    // Search and Filter section - không có animation
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Column(
-                        children: [
-                          // Search bar - luôn hiển thị
-                          TextField(
-                            controller: _searchController,
-                            onChanged: _onSearchChanged,
-                            decoration: InputDecoration(
-                              hintText: 'Tìm kiếm theo tên công việc...',
-                              prefixIcon: const Icon(Icons.search),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              filled: true,
-                              fillColor: Colors.white,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24),
+                    ),
+                  ),
+                  padding: const EdgeInsets.only(top: 24.0, bottom: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 8.0),
+                      // Date Selection - với animation ẩn/hiện
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              isToday ? 'Hôm nay' : dayOfWeek,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(fontSize: 22),
                             ),
-                          ),
-                          const SizedBox(height: 12),
+                            InkWell(
+                              onTap: () => _selectDate(context),
+                              child: Chip(
+                                shape: const StadiumBorder(
+                                    side: BorderSide(
+                                        width: 0, color: Colors.transparent)),
+                                label: Text(
+                                  formattedDate,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                                avatar: LinearIcons.calendarIcon,
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
 
-                          // Filter chips - có animation ẩn/hiện
-                          AnimatedContainer(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,
-                            height: _showSearchAndFilter ? 40 : 0,
-                            child: ClipRect(
-                              child: AnimatedSize(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                                child: AnimatedOpacity(
-                                  duration: const Duration(milliseconds: 300),
+                      // Search and Filter section - không có animation
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Column(
+                          children: [
+                            // Search bar - luôn hiển thị
+                            TextField(
+                              controller: _searchController,
+                              onChanged: _onSearchChanged,
+                              decoration: InputDecoration(
+                                hintText: 'Tìm kiếm theo tên công việc...',
+                                prefixIcon: const Icon(Icons.search),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+
+                            // Filter chips - có animation ẩn/hiện
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                              height: _showSearchAndFilter ? 40 : 0,
+                              child: ClipRect(
+                                child: AnimatedSize(
+                                  duration: const Duration(milliseconds: 500),
                                   curve: Curves.easeInOut,
-                                  opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        FilterChip(
-                                          showCheckmark: false,
-                                          label: Text(_getTaskTypeLabel()),
-                                          selected: _selectedTaskType != 'all',
-                                          onSelected: (_) =>
-                                              _showTaskTypeBottomSheet(),
-                                          avatar:
-                                              const Icon(Icons.work_outline),
-                                          labelStyle: TextStyle(
-                                            color: _selectedTaskType != 'all'
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .primary
-                                                : null,
+                                  child: AnimatedOpacity(
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut,
+                                    opacity: _showSearchAndFilter ? 1.0 : 0.0,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          FilterChip(
+                                            showCheckmark: false,
+                                            label: Text(_getTaskTypeLabel()),
+                                            selected:
+                                                _selectedTaskType != 'all',
+                                            onSelected: (_) =>
+                                                _showTaskTypeBottomSheet(),
+                                            avatar: const Icon(
+                                                Icons.task_alt_outlined),
+                                            deleteIcon: const Icon(
+                                                Icons.arrow_drop_down),
+                                            onDeleted: _showTaskTypeBottomSheet,
+                                            labelStyle: TextStyle(
+                                              color: _selectedCage != 'all'
+                                                  ? Theme.of(context)
+                                                      .colorScheme
+                                                      .primary
+                                                  : null,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        FilterChip(
-                                          showCheckmark: false,
-                                          label: Text(_getCageLabel()),
-                                          selected: _selectedCage != 'all',
-                                          onSelected: (_) =>
-                                              _showCageBottomSheet(),
-                                          avatar: LinearIcons.chickenIcon,
-                                          labelStyle: TextStyle(
-                                            color: _selectedCage != 'all'
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .primary
-                                                : null,
+                                          const SizedBox(width: 8),
+                                          FilterChip(
+                                            showCheckmark: false,
+                                            label: Text(_getCageLabel()),
+                                            selected: _selectedCage != 'all',
+                                            onSelected: (_) =>
+                                                _showCageBottomSheet(),
+                                            avatar: LinearIcons.chickenIcon,
+                                            deleteIcon: const Icon(
+                                                Icons.arrow_drop_down),
+                                            onDeleted: _showCageBottomSheet,
+                                            labelStyle: TextStyle(
+                                              color: _selectedCage != 'all'
+                                                  ? Theme.of(context)
+                                                      .colorScheme
+                                                      .primary
+                                                  : null,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        FilterChip(
-                                          showCheckmark: false,
-                                          label: Text(_getSessionLabel()),
-                                          selected: _selectedSession != null,
-                                          onSelected: (_) =>
-                                              _showSessionBottomSheet(),
-                                          avatar: const Icon(Icons.access_time),
-                                          labelStyle: TextStyle(
-                                            color: _selectedSession != null
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .primary
-                                                : null,
+                                          const SizedBox(width: 8),
+                                          FilterChip(
+                                            showCheckmark: false,
+                                            label: Text(_getSessionLabel()),
+                                            selected: _selectedSession != null,
+                                            onSelected: (_) =>
+                                                _showSessionBottomSheet(),
+                                            avatar:
+                                                const Icon(Icons.access_time),
+                                            deleteIcon: const Icon(
+                                                Icons.arrow_drop_down),
+                                            onDeleted: _showSessionBottomSheet,
+                                            labelStyle: TextStyle(
+                                              color: _selectedSession != null
+                                                  ? Theme.of(context)
+                                                      .colorScheme
+                                                      .primary
+                                                  : null,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        FilterChip(
-                                          showCheckmark: false,
-                                          label: Text(_getStatusLabel()),
-                                          selected: _selectedStatus != 'all',
-                                          onSelected: (_) =>
-                                              _showStatusBottomSheet(),
-                                          avatar:
-                                              const Icon(Icons.flag_outlined),
-                                          labelStyle: TextStyle(
-                                            color: _selectedStatus != 'all'
-                                                ? _statuses.firstWhere((s) =>
-                                                    s['id'] ==
-                                                    _selectedStatus)['color']
-                                                : null,
+                                          const SizedBox(width: 8),
+                                          FilterChip(
+                                            showCheckmark: false,
+                                            label: Text(_getStatusLabel()),
+                                            selected: _selectedStatus != 'all',
+                                            onSelected: (_) =>
+                                                _showStatusBottomSheet(),
+                                            avatar:
+                                                const Icon(Icons.flag_outlined),
+                                            deleteIcon: const Icon(
+                                                Icons.arrow_drop_down),
+                                            onDeleted: _showStatusBottomSheet,
+                                            labelStyle: TextStyle(
+                                              color: _selectedStatus != 'all'
+                                                  ? _statuses.firstWhere((s) =>
+                                                      s['id'] ==
+                                                      _selectedStatus)['color']
+                                                  : null,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Sort chips - có animation ẩn/hiện
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-                height: _showSearchAndFilter ? null : 0,
-                child: ClipRect(
-                  child: AnimatedSize(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                    child: AnimatedOpacity(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 8.0),
-                        child: Row(
-                          children: [
-                            const Spacer(),
-                            Text(
-                              'Sắp xếp theo:',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            ..._sortOptions.map((option) => Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: FilterChip(
-                                    showCheckmark: false,
-                                    selected: _sortBy == option['id'],
-                                    onSelected: (_) {
-                                      setState(() {
-                                        if (_sortBy == option['id']) {
-                                          _sortAscending = !_sortAscending;
-                                        } else {
-                                          _sortBy = option['id'];
-                                          _sortAscending = true;
-                                        }
-                                      });
-                                      _sortTasks();
-                                    },
-                                    avatar: null,
-                                    labelStyle: TextStyle(
-                                      color: _sortBy == option['id']
-                                          ? Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                          : null,
-                                    ),
-                                    label: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(
-                                          option['icon'] as IconData,
-                                          size: 20,
-                                          color: _sortBy == option['id']
-                                              ? Theme.of(context)
-                                                  .colorScheme
-                                                  .primary
-                                              : null,
-                                        ),
-                                        if (_sortBy == option['id'])
-                                          Icon(
-                                            _sortAscending
-                                                ? Icons.arrow_upward
-                                                : Icons.arrow_downward,
-                                            size: 16,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ),
-                                      ],
-                                    ),
-                                  ),
-                                )),
                           ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Sort chips - có animation ẩn/hiện
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                  height: _showSearchAndFilter ? null : 0,
+                  child: ClipRect(
+                    child: AnimatedSize(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                        opacity: _showSearchAndFilter ? 1.0 : 0.0,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
+                          child: Row(
+                            children: [
+                              const Spacer(),
+                              Text(
+                                'Sắp xếp theo:',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              ..._sortOptions.map((option) => Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: FilterChip(
+                                      showCheckmark: false,
+                                      selected: _sortBy == option['id'],
+                                      onSelected: (_) {
+                                        setState(() {
+                                          if (_sortBy == option['id']) {
+                                            _sortAscending = !_sortAscending;
+                                          } else {
+                                            _sortBy = option['id'];
+                                            _sortAscending = true;
+                                          }
+                                        });
+                                        _sortTasks();
+                                      },
+                                      avatar: null,
+                                      labelStyle: TextStyle(
+                                        color: _sortBy == option['id']
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                            : null,
+                                      ),
+                                      label: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            option['icon'] as IconData,
+                                            size: 20,
+                                            color: _sortBy == option['id']
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .primary
+                                                : null,
+                                          ),
+                                          if (_sortBy == option['id'])
+                                            Icon(
+                                              _sortAscending
+                                                  ? Icons.arrow_upward
+                                                  : Icons.arrow_downward,
+                                              size: 16,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  )),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
 
-              // Task List
-              Expanded(
-                child: _buildTaskList(),
-              ),
-            ],
+                // Task List
+                Expanded(
+                  child: _buildTaskList(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1026,7 +1061,7 @@ class _TaskWidgetState extends State<TaskWidget>
     return ListView(
       controller: _scrollController,
       physics: const AlwaysScrollableScrollPhysics(),
-      padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
+      padding: const EdgeInsets.only(top: 8.0, bottom: 96.0),
       children: [
         ..._buildSessionSections(),
       ],
@@ -1124,6 +1159,25 @@ class _TaskWidgetState extends State<TaskWidget>
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                         ),
+                        const SizedBox(width: 8),
+                        GestureDetector(
+                          onTap: () {
+                            context.read<TaskBloc>().add(TaskEvent.getTasks(
+                                _searchController.text,
+                                _selectedTaskType == 'all'
+                                    ? null
+                                    : _selectedTaskType,
+                                _selectedCage == 'all' ? null : _selectedCage,
+                                _selectedStatus == 'all'
+                                    ? null
+                                    : _selectedStatus,
+                                selectedDate,
+                                _selectedSession,
+                                1,
+                                20));
+                          },
+                          child: Icon(Icons.refresh_outlined, size: 16),
+                        ),
                         Spacer(),
                         Container(
                           padding: const EdgeInsets.symmetric(
@@ -1156,8 +1210,13 @@ class _TaskWidgetState extends State<TaskWidget>
   // Helper methods to get labels
   String _getTaskTypeLabel() {
     if (_selectedTaskType == 'all') return 'Loại công việc';
-    return _taskTypes.firstWhere((t) => t['id'] == _selectedTaskType)['name'] ??
-        '';
+    final taskType = availableTaskTypeFilters.firstWhere(
+      (t) => t.taskTypeId == _selectedTaskType,
+      orElse: () => TaskType(taskTypeId: '', taskTypeName: ''),
+    );
+    return taskType.taskTypeName.isNotEmpty
+        ? taskType.taskTypeName
+        : 'Loại công việc';
   }
 
   String _getCageLabel() {
@@ -1174,6 +1233,7 @@ class _TaskWidgetState extends State<TaskWidget>
   }
 
   // Thêm helper method để lấy label cho status chip
+
   String _getStatusLabel() {
     if (_selectedStatus == 'all') return 'Trạng thái';
     return _statuses.firstWhere((s) => s['id'] == _selectedStatus)['name'];

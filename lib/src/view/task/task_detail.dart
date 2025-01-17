@@ -55,6 +55,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   // Assume this is the logged-in user ID
   String loggedInUserId = '';
 
+  // Thêm biến để lưu trạng thái checkbox
+  final Map<String, bool> _medicationChecked = {};
+
   @override
   void initState() {
     super.initState();
@@ -83,8 +86,50 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     }
   }
 
+  // Function to check if all medications are checked
+  bool _areAllMedicationsChecked() {
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
+      return prescription?.medications?.every((medication) =>
+              _medicationChecked[medication.medicationId] ?? false) ??
+          false;
+    }
+    return true;
+  }
+
+  // Function to check if at least one medication is checked
+  bool _areAnyMedicationsChecked() {
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
+      return prescription?.medications?.any((medication) =>
+              _medicationChecked[medication.medicationId] ?? false) ??
+          false;
+    }
+    return true;
+  }
+
+  bool _isWithinWorkingHours() {
+    if (task == null) return false;
+    final now = DateTime.now();
+    final startHour = task!.session == 1
+        ? 6
+        : task!.session == 2
+            ? 12
+            : task!.session == 3
+                ? 18
+                : 0;
+    final endHour = startHour + 6;
+    return now.hour >= startHour && now.hour < endHour;
+  }
+
   // Function to update task status
   void _updateTaskStatus() {
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
+        taskStatus == StatusDataConstant.inProgressVn &&
+        !_areAnyMedicationsChecked()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Vui lòng xác nhận đã uống thuốc.')),
+      );
+      return;
+    }
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -149,10 +194,18 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         );
                   }
                 } else if (taskStatus == StatusDataConstant.pendingVn) {
-                  context.read<TaskBloc>().add(
-                        TaskEvent.updateTask(
-                            widget.taskId, StatusDataConstant.inProgress),
-                      );
+                  if (_isWithinWorkingHours()) {
+                    context.read<TaskBloc>().add(
+                          TaskEvent.updateTask(
+                              widget.taskId, StatusDataConstant.inProgress),
+                        );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content:
+                              Text('Chưa đến giờ làm việc của phiên này.')),
+                    );
+                  }
                 }
               },
               child: const Text('Xác nhận'),
@@ -291,22 +344,18 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 log("Lấy thông tin công việc thất bại!");
               },
               updateStatusTaskLoading: () {
-                LoadingDialog.show(
-                    context, "Đang cập nhật trạng thái công việc...");
                 log("Đang cập nhật trạng thái công việc...");
               },
               updateStatusTaskSuccess: () async {
-                LoadingDialog.hide(context);
                 log("Cập nhật trạng thái công việc thành công!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content:
                           Text('Cập nhật trạng thái công việc thành công!')),
                 );
-                context.pop();
+                context.pop(true); // Pass true to indicate success
               },
               updateStatusTaskFailure: (e) async {
-                LoadingDialog.hide(context);
                 log("Cập nhật trạng thái công việc thất bại!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -504,7 +553,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            // Refresh the task details
+            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
           },
           child: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
@@ -683,16 +732,22 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 child: FilledButton(
                   onPressed: (taskStatus == StatusDataConstant.doneVn ||
                           taskStatus == StatusDataConstant.overdueVn ||
-                          taskStatus == StatusDataConstant.pendingVn)
+                          (taskStatus == StatusDataConstant.pendingVn &&
+                                  !_isWithinWorkingHours() ||
+                              !_areAnyMedicationsChecked()))
                       ? null
                       : _updateTaskStatus,
                   child: Text(taskStatus == StatusDataConstant.inProgressVn
-                      ? 'Xác nhận hoàn thành'
+                      ? (_areAnyMedicationsChecked()
+                          ? 'Xác nhận hoàn thành'
+                          : 'Chưa ghi nhận đã cho uống thuốc')
                       : taskStatus == StatusDataConstant.doneVn
                           ? 'Công việc đã hoàn thành'
                           : taskStatus == StatusDataConstant.overdueVn
                               ? 'Công việc đã quá hạn'
-                              : 'Chưa đến giờ làm việc'),
+                              : _isWithinWorkingHours()
+                                  ? 'Bắt đầu làm việc'
+                                  : 'Chưa đến giờ làm việc'),
                 ),
               )
             : null,
@@ -756,7 +811,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      taskStatus == StatusDataConstant.pendingVn
+                      taskStatus == StatusDataConstant.pendingVn &&
+                              !_isWithinWorkingHours()
                           ? 'Bạn chỉ có thể bắt đầu công việc trong đúng buổi đã được phân công.'
                           : 'Xác nhận bắt đầu để có thể tạo đơn báo cáo và hoàn thành công việc.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -1043,8 +1099,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),
-                      ...prescription?.medications?.map((medication) =>
-                              Container(
+                      ...prescription?.medications?.where((medication) {
+                            // Chỉ hiển thị thuốc có liều > 0 theo session
+                            int dose = task?.session == 1
+                                ? medication.morning
+                                : task?.session == 2
+                                    ? medication.noon
+                                    : task?.session == 3
+                                        ? medication.afternoon
+                                        : medication.evening;
+                            return dose > 0;
+                          }).map((medication) => Container(
                                 margin: const EdgeInsets.only(bottom: 12),
                                 padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
@@ -1061,6 +1126,37 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                   children: [
                                     Row(
                                       children: [
+                                        // Thêm checkbox với alignment center
+                                        if (task?.status !=
+                                            StatusDataConstant.done)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 8.0),
+                                            child: Center(
+                                              child: SizedBox(
+                                                width: 24,
+                                                height: 24,
+                                                child: Checkbox(
+                                                  value: _medicationChecked[
+                                                          medication
+                                                              .medicationId] ??
+                                                      false,
+                                                  onChanged: task?.status ==
+                                                          StatusDataConstant
+                                                              .inProgress
+                                                      ? (bool? value) {
+                                                          setState(() {
+                                                            _medicationChecked[
+                                                                    medication
+                                                                        .medicationId] =
+                                                                value ?? false;
+                                                          });
+                                                        }
+                                                      : null,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         Container(
                                           padding: const EdgeInsets.all(8),
                                           decoration: BoxDecoration(
@@ -1109,7 +1205,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                         ),
                                         const SizedBox(width: 8),
                                         Text(
-                                            '${task?.session == 1 ? medication.morning : task?.session == 2 ? medication.noon : task?.session == 3 ? medication.afternoon : medication.evening} liều'),
+                                          '${task?.session == 1 ? medication.morning : task?.session == 2 ? medication.noon : task?.session == 3 ? medication.afternoon : medication.evening} liều',
+                                        ),
                                       ],
                                     ),
                                   ],
