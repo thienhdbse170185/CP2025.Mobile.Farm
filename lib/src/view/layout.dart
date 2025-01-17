@@ -76,40 +76,8 @@ class _LayoutScaffoldState extends State<LayoutScaffold> {
                       if (cage.id.isNotEmpty) {
                         context.push(RouteName.taskQRCode, extra: cage);
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Row(
-                              children: [
-                                Icon(Icons.error_outline, color: Colors.white),
-                                const SizedBox(width: 8),
-                                const Expanded(
-                                  child: Text(
-                                      'Không tìm thấy thông tin chuồng, hãy thử lại.'),
-                                ),
-                              ],
-                            ),
-                            behavior: SnackBarBehavior.floating,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.error,
-                            margin: EdgeInsets.only(
-                              bottom: MediaQuery.of(context).size.height - 150,
-                              left: 16,
-                              right: 16,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            dismissDirection: DismissDirection.horizontal,
-                            action: SnackBarAction(
-                              label: 'Đóng',
-                              textColor: Colors.white,
-                              onPressed: () {
-                                ScaffoldMessenger.of(context)
-                                    .hideCurrentSnackBar();
-                              },
-                            ),
-                          ),
-                        );
+                        throw Exception(
+                            'Không tìm thấy thông tin chuồng, \nvui lòng thử lại.');
                       }
                     },
                   ),
