@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 
 class QRScannerWidget extends StatefulWidget {
   final String title;
@@ -34,6 +35,7 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
   static const int _totalSteps = 4; // 5 mức (0-4)
   late AnimationController _animationController;
   late Animation<double> _animation;
+  late ScaffoldMessengerState scaffoldMessenger;
 
   @override
   void initState() {
@@ -45,6 +47,12 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
     )..repeat(reverse: true);
     _animation =
         Tween<double>(begin: -50.0, end: 50.0).animate(_animationController);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    scaffoldMessenger = ScaffoldMessenger.of(context);
   }
 
   Future<void> _requestCameraPermission() async {
@@ -71,7 +79,7 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
       log("Zoom level: ${value.toInt()}, Zoom value: ${zoomValue.toStringAsFixed(2)}");
       await controller.setZoomScale(zoomValue);
     } catch (e) {
-      _showErrorBanner('Không thể điều chỉnh zoom');
+      _showWarningDialog('Không thể điều chỉnh zoom');
     }
   }
 
@@ -82,28 +90,33 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
     controller.start();
   }
 
-  void _showErrorBanner(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.error_outline, color: Colors.white),
-            const SizedBox(width: 8),
-            Expanded(child: Text(message)),
-          ],
-        ),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.red,
-        duration: const Duration(seconds: 2),
-        margin: EdgeInsets.only(
-          bottom: MediaQuery.of(context).size.height - 150,
-          left: 16,
-          right: 16,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
+  void _retryScanning() {
+    setState(() {
+      isScanning = true;
+    });
+    controller.start();
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  }
+
+  void _showWarningDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return WarningConfirmationDialog(
+          title: 'Lỗi',
+          content: message,
+          secondaryButtonText: 'Thoát',
+          primaryButtonText: 'Thử lại',
+          onPrimaryButtonPressed: () {
+            Navigator.of(context).pop();
+            _retryScanning();
+          },
+          onSecondaryButtonPressed: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+          },
+        );
+      },
     );
   }
 
@@ -120,19 +133,20 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
           if (code.isNotEmpty) {
             widget.onScanned(code);
           } else {
-            _showErrorBanner('Không thể đọc mã QR từ ảnh');
+            _showWarningDialog('Không thể đọc mã QR từ ảnh');
           }
         } else {
-          _showErrorBanner('Không tìm thấy mã QR trong ảnh');
+          _showWarningDialog('Không tìm thấy mã QR trong ảnh');
         }
       } catch (e) {
-        _showErrorBanner('Có lỗi xảy ra khi đọc ảnh');
+        _showWarningDialog('Có lỗi xảy ra khi đọc ảnh');
       }
     }
   }
 
   @override
   void dispose() {
+    scaffoldMessenger.hideCurrentSnackBar();
     _animationController.dispose();
     controller.dispose();
     super.dispose();
@@ -162,7 +176,7 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
                   if (code.isNotEmpty) {
                     widget.onScanned(code);
                   } else {
-                    _showErrorBanner('Không thể đọc mã QR');
+                    _showWarningDialog('Không thể đọc mã QR');
                     await Future.delayed(const Duration(seconds: 2));
                     if (mounted) {
                       setState(() {
@@ -176,7 +190,8 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
                   isScanning = false;
                 });
 
-                _showErrorBanner('Có lỗi xảy ra khi quét mã');
+                _showWarningDialog(
+                    e.toString().replaceFirst('Exception: ', ''));
                 await Future.delayed(const Duration(seconds: 2));
                 if (mounted) {
                   setState(() {

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/user/user_bloc.dart';
@@ -66,49 +67,18 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
     if (_hasChanges) {
       final result = await showDialog<bool>(
         context: context,
-        builder: (context) => AlertDialog(
-          title: Center(
-            child: LinearIcons.warningAboutIcon,
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Thông tin chưa được lưu',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                textAlign: TextAlign.center,
-                'Những thay đổi của bạn chưa được lưu, \nbạn có chắc chắn hủy thay đổi ?',
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(false);
-                      },
-                      child: const Text('Đóng'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.32,
-                    child: FilledButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(true);
-                      },
-                      child: const Text('Xác nhận'),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
+        builder: (context) => WarningConfirmationDialog(
+          title: 'Thông tin chưa được lưu',
+          content:
+              'Những thay đổi của bạn chưa được lưu, \nbạn có chắc chắn hủy thay đổi ?',
+          secondaryButtonText: 'Đóng',
+          primaryButtonText: 'Xác nhận',
+          onSecondaryButtonPressed: () {
+            Navigator.of(context).pop(false);
+          },
+          onPrimaryButtonPressed: () {
+            Navigator.of(context).pop(true);
+          },
         ),
       );
       return result ?? false;
