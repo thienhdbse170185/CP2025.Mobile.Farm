@@ -1317,6 +1317,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 log("Đang tạo log cho ăn...");
               },
               createDailyFoodUsageLogSuccess: () {
+                Navigator.pop(context); // Close log form
                 log("Tạo log cho ăn thành công!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Tạo log cho ăn thành công!')),
@@ -1327,6 +1328,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 }
               },
               createDailyFoodUsageLogFailure: (e) async {
+                Navigator.pop(context); // Close log form
                 log("Tạo log cho ăn thất bại!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(e.toString())),
@@ -1336,6 +1338,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 log("Đang tạo log uống thuốc...");
               },
               createHealthLogSuccess: () {
+                Navigator.pop(context); // Close log form
                 log("Tạo log uống thuốc thành công!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -1347,6 +1350,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 }
               },
               createHealthLogFailure: (e) async {
+                Navigator.pop(context); // Close log form
                 log("Tạo log uống thuốc thất bại!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Tạo log uống thuốc thất bại!')),
@@ -1356,6 +1360,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 log("Đang tạo log lịch tiêm chủng...");
               },
               createVaccinScheduleLogSuccess: () {
+                Navigator.pop(context); // Close log form
                 log("Tạo log lịch tiêm chủng thành công!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -1367,6 +1372,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 }
               },
               createVaccinScheduleLogFailure: (e) async {
+                Navigator.pop(context); // Close log form
                 if (e.toString().contains('vaccinschedule-not-found')) {
                   log("Vaccine schedule không tồn tại!");
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -2011,6 +2017,8 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                             builder: (context) => WarningConfirmationDialog(
                                   title: 'Lưu công việc',
                                   content: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       const Text(
                                         'Bạn có chắc chắn muốn cập nhật trạng thái cho các công việc đã chọn?',
