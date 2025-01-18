@@ -15,12 +15,14 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
+import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
+import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
@@ -56,6 +58,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   String _selectedTaskType = 'all';
   Timer? _debounce;
   final String _selectedCage = 'all';
+  String? _username;
 
   // Thêm biến cho status filter
   String _selectedStatus = 'all';
@@ -262,6 +265,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   @override
   void initState() {
     super.initState();
+    context.read<UserBloc>().add(const UserEvent.getUserProfile());
     context
         .read<TaskBloc>()
         .add(TaskEvent.getTasksByScanQRCode('', '', '', widget.cage.id, 1, 20));
@@ -296,15 +300,6 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
     setState(() {
       _selectedTaskIds.clear();
     });
-
-    // Refresh task list after saving
-    context.read<TaskBloc>().add(TaskEvent.getTasksByScanQRCode(
-        _searchController.text,
-        _selectedStatus,
-        _selectedTaskType,
-        widget.cage.id,
-        1,
-        20));
   }
 
   // Function to pick an image from the camera
@@ -441,7 +436,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   Widget _buildLogForm(TaskHaveCageName task, StateSetter setState) {
     switch (task.taskType.taskTypeId) {
       case TaskTypeDataConstant.feeding:
-        return _buildFeedingLogForm(task);
+        return _buildFeedingLogForm(task, setState);
       case TaskTypeDataConstant.health:
         return _buildHealthLogForm(task, setState);
       case TaskTypeDataConstant.vaccin:
@@ -484,7 +479,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
     );
   }
 
-  Widget _buildFeedingLogForm(TaskHaveCageName task) {
+  Widget _buildFeedingLogForm(TaskHaveCageName task, StateSetter setState) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -1143,7 +1138,6 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
           FilledButton(
             onPressed: () {
               Navigator.pop(context); // Close dialog
-              Navigator.pop(context); // Close bottom sheet
 
               // Create log based on task type
               switch (task.taskType.taskTypeId) {
@@ -1298,7 +1292,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
               updateMultipleTaskSuccess: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Đã cập nhật trạng thái công việc'),
+                    content: Text('Cập nhật trạng thái công việc thành công'),
                     behavior: SnackBarBehavior.floating,
                   ),
                 );
@@ -1493,6 +1487,27 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             );
           },
         ),
+        BlocListener<UserBloc, UserState>(listener: (context, state) {
+          state.maybeWhen(
+            getUserProfileInProgress: () {
+              log('Đang lấy thông tin người dùng...');
+            },
+            getUserProfileSuccess: (username, email) {
+              log('Lấy thông tin người dùng thành công!');
+              setState(() {
+                _username = username;
+              });
+            },
+            getUserProfileFailure: (e) {
+              log('Lấy thông tin người dùng thất bại!');
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                    content: Text('Lỗi: Không thể lấy thông tin người dùng')),
+              );
+            },
+            orElse: () {},
+          );
+        })
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -1558,20 +1573,77 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    widget.cage.name,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                  if (_selectedTaskIds.isNotEmpty)
-                                    TextButton.icon(
-                                      onPressed: _saveSelectedTasks,
-                                      icon: const Icon(Icons.save),
-                                      label: Text(
-                                          'Lưu (${_selectedTaskIds.length})'),
+                                  Chip(
+                                    backgroundColor: Theme.of(context)
+                                        .colorScheme
+                                        .primaryContainer,
+                                    shape: StadiumBorder(
+                                      side: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
                                     ),
+                                    label: Text(
+                                      widget.cage.name,
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text('Chào buổi sáng',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelMedium
+                                                  ?.copyWith(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .outline)),
+                                          Text(_username ?? '',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall),
+                                          // Display the formatted date here
+                                          Text(
+                                            DateFormat('EEEE, dd/MM/yyyy', 'vi')
+                                                .format(DateTime.now()),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Container(
+                                        padding: const EdgeInsets.all(2),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: const CircleAvatar(
+                                          radius: 20,
+                                          backgroundImage: AssetImage(
+                                              'assets/images/avatar.png'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
@@ -1794,7 +1866,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Danh sách công việc',
+                      Text('Công việc hôm nay',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       Text('${_tasks?.length} công việc')
                     ],
@@ -1856,6 +1928,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                             .read<GrowthStageCubit>()
                                             .getRecommendedWeightByCageId(
                                                 task.cageId);
+                                        _showLogForm(task);
                                       } else if (task.taskType.taskTypeId ==
                                           TaskTypeDataConstant.health) {
                                         context
@@ -1880,15 +1953,107 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            context.push(RouteName.createSymptom, extra: {
-              'cageName': widget.cage.name,
-            });
-          },
-          icon: const Icon(Icons.add_alert),
-          label: const Text('Báo bệnh'),
+        floatingActionButton: Padding(
+          padding:
+              EdgeInsets.only(bottom: (_selectedTaskIds.isNotEmpty ? 80 : 0)),
+          child: FloatingActionButton.extended(
+            onPressed: () {
+              context.push(RouteName.createSymptom, extra: {
+                'cageName': widget.cage.name,
+              });
+            },
+            icon: const Icon(Icons.add_alert),
+            label: const Text('Báo bệnh'),
+          ),
         ),
+        bottomSheet: _selectedTaskIds.isNotEmpty
+            ? Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: const Offset(0, -4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Đã thực hiện',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
+                        ),
+                        Text(
+                          '${_selectedTaskIds.length} công việc',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    FilledButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => WarningConfirmationDialog(
+                                  title: 'Lưu công việc',
+                                  content: Column(
+                                    children: [
+                                      const Text(
+                                        'Bạn có chắc chắn muốn cập nhật trạng thái cho các công việc đã chọn?',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Text(
+                                        'Các công việc đã chọn:',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      ..._selectedTaskIds.map((taskId) => Text(
+                                          _filteredTasks!
+                                              .firstWhere(
+                                                  (task) => task.id == taskId)
+                                              .taskName,
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ))),
+                                    ],
+                                  ),
+                                  onPrimaryButtonPressed: () {
+                                    Navigator.pop(context); // Close dialog
+
+                                    _saveSelectedTasks();
+                                  },
+                                  onSecondaryButtonPressed: () {
+                                    Navigator.pop(context); // Close dialog
+                                  },
+                                  primaryButtonText: 'Xác nhận',
+                                  secondaryButtonText: 'Hủy',
+                                ));
+                      },
+                      child: const Text('Cập nhật trạng thái'),
+                    ),
+                  ],
+                ),
+              )
+            : null,
       ),
     );
   }
@@ -1903,19 +2068,6 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
         ? taskType.taskTypeName
         : 'Loại công việc';
   }
-
-  // String _getCageLabel() {
-  //   if (_selectedCage == 'all') return 'Chuồng nuôi';
-  //   final cage =
-  //       availableCageFilters.firstWhere((c) => c.cageId == _selectedCage);
-  //   return cage.cageName;
-  // }
-
-  // String _getSessionLabel() {
-  //   if (_selectedSession == null) return 'Buổi';
-  //   return _sessions.firstWhere((s) => s['id'] == _selectedSession)['name'] ??
-  //       '';
-  // }
 
   // Thêm helper method để lấy label cho status chip
   String _getStatusLabel() {

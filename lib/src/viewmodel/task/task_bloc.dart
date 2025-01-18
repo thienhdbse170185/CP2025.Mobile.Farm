@@ -153,15 +153,15 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       }
     });
     on<_UpdateMultipleTask>((event, emit) async {
-      emit(const TaskState.updateStatusTaskLoading());
+      emit(const TaskState.updateMultipleTaskLoading());
       try {
         // Add logic to update multiple tasks
         for (var taskId in event.taskIds) {
           await repository.update(taskId, event.statusId);
         }
-        emit(const TaskState.updateStatusTaskSuccess());
+        emit(const TaskState.updateMultipleTaskSuccess());
       } catch (e) {
-        emit(TaskState.updateStatusTaskFailure(e.toString()));
+        emit(TaskState.updateMultipleTaskFailure(e.toString()));
       }
     });
     on<_TestConnect>((event, emit) async {

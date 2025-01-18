@@ -3,7 +3,7 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 
 class WarningConfirmationDialog extends StatelessWidget {
   final String title;
-  final String content;
+  final Widget content;
   final String secondaryButtonText;
   final String primaryButtonText;
   final VoidCallback onPrimaryButtonPressed;
@@ -32,10 +32,7 @@ class WarningConfirmationDialog extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 4),
-          Text(
-            textAlign: TextAlign.center,
-            content,
-          ),
+          content,
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
