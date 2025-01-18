@@ -104,7 +104,10 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
       builder: (BuildContext context) {
         return WarningConfirmationDialog(
           title: 'Lỗi',
-          content: message,
+          content: Text(
+            message,
+            textAlign: TextAlign.center,
+          ),
           secondaryButtonText: 'Thoát',
           primaryButtonText: 'Thử lại',
           onPrimaryButtonPressed: () {
