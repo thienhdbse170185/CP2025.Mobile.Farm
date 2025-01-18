@@ -36,6 +36,7 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
   late AnimationController _animationController;
   late Animation<double> _animation;
   late ScaffoldMessengerState scaffoldMessenger;
+  bool isDialogVisible = false;
 
   @override
   void initState() {
@@ -93,12 +94,17 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
   void _retryScanning() {
     setState(() {
       isScanning = true;
+      isDialogVisible = false;
     });
     controller.start();
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
   }
 
   void _showWarningDialog(String message) {
+    setState(() {
+      isDialogVisible = true;
+      isScanning = false;
+    });
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -120,7 +126,11 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
           },
         );
       },
-    );
+    ).then((_) {
+      setState(() {
+        isDialogVisible = false;
+      });
+    });
   }
 
   Future<void> _pickImage() async {
@@ -164,7 +174,7 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
           MobileScanner(
             controller: controller,
             onDetect: (capture) async {
-              if (!isScanning) return;
+              if (!isScanning || isDialogVisible) return;
               try {
                 final List<Barcode> barcodes = capture.barcodes;
                 if (barcodes.isNotEmpty) {

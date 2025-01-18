@@ -69,8 +69,10 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
         context: context,
         builder: (context) => WarningConfirmationDialog(
           title: 'Thông tin chưa được lưu',
-          content:
-              'Những thay đổi của bạn chưa được lưu, \nbạn có chắc chắn hủy thay đổi ?',
+          content: const Text(
+            'Những thay đổi của bạn chưa được lưu, \nbạn có chắc chắn hủy thay đổi ?',
+            textAlign: TextAlign.center,
+          ),
           secondaryButtonText: 'Đóng',
           primaryButtonText: 'Xác nhận',
           onSecondaryButtonPressed: () {
