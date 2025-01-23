@@ -23,5 +23,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserState.getUserProfileFailure(e.toString()));
       }
     });
+
+    on<_GetServerTime>((event, emit) async {
+      emit(const UserState.getServerTimeInProgress());
+      try {
+        final userBox = await Hive.openBox(UserDataConstant.userBoxName);
+        final serverTime = userBox.get(UserDataConstant.serverTimeKey);
+        emit(UserState.getServerTimeSuccess(serverTime));
+      } catch (e) {
+        emit(UserState.getServerTimeFailure(e.toString()));
+      }
+    });
   }
 }

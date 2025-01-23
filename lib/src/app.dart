@@ -18,6 +18,7 @@ import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.d
 import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {
@@ -90,14 +91,21 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(create: (context) {
           return PrescriptionRepository(
               apiClient: PrescriptionApiClient(dio: dio));
-        })
+        }),
+        RepositoryProvider(
+          create: (context) {
+            return UserRepository(userApiClient: UserApiClient(dio: dio));
+          },
+        )
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => ThemeCubit()),
           BlocProvider(
-              create: (context) =>
-                  AuthBloc(authRepository: context.read<AuthRepository>())),
+              create: (context) => AuthBloc(
+                    authRepository: context.read<AuthRepository>(),
+                    userRepository: context.read<UserRepository>(),
+                  )),
           BlocProvider(
               create: (context) =>
                   TaskBloc(repository: context.read<TaskRepository>())),
@@ -142,6 +150,9 @@ class _MyAppState extends State<MyApp> {
               create: (context) => PrescriptionCubit(
                   prescriptionRepository:
                       context.read<PrescriptionRepository>())),
+          BlocProvider(
+              create: (context) =>
+                  TimeBloc(userRepository: context.read<UserRepository>())),
         ],
         child: BlocBuilder<ThemeCubit, bool>(
           builder: (context, themeMode) {

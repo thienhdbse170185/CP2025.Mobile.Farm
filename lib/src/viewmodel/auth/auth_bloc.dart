@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/repository/auth/auth_repository.dart';
+import 'package:data_layer/repository/user/local/user_repository.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
@@ -18,19 +19,26 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
-  AuthBloc({required this.authRepository}) : super(const _Initial()) {
+  final UserRepository userRepository;
+  AuthBloc({
+    required this.authRepository,
+    required this.userRepository,
+  }) : super(const _Initial()) {
     on<_AppStarted>((event, emit) async {
       try {
+        // get user info
         final authBox = await Hive.openBox(AuthDataConstant.authBoxName);
         final accessToken = authBox.get(AuthDataConstant.accessTokenKey);
         final decodedToken = JwtDecoder.decode(accessToken);
 
+        // put userInfo to userBox
         final userBox = await Hive.openBox(UserDataConstant.userBoxName);
         userBox.putAll({
           UserDataConstant.userIdKey: decodedToken['nameid'],
           UserDataConstant.emailKey: decodedToken['email'],
           UserDataConstant.roleKey: decodedToken['role'],
-          UserDataConstant.userNameKey: decodedToken['unique_name']
+          UserDataConstant.userNameKey: decodedToken['unique_name'],
+          // UserDataConstant.serverTimeKey: dateTime,
         });
 
         if (accessToken != null && accessToken.isNotEmpty) {

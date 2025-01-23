@@ -12,6 +12,7 @@ import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -49,14 +50,15 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     context.read<AuthBloc>().add(const AuthEvent.appStarted());
+    context.read<TimeBloc>().add(const TimeEvent.getServerTime());
     context.read<TaskBloc>().add(const TaskEvent.getNextTask());
   }
 
   @override
   Widget build(BuildContext context) {
     // Get the current date and format it
-    final String formattedDate =
-        DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
+    // final String formattedDate =
+    //     DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
 
     return BlocListener<TaskBloc, TaskState>(
       listener: (context, state) {
@@ -137,9 +139,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                             Text('Bảo Thiên',
                                 style: Theme.of(context).textTheme.titleSmall),
                             // Display the formatted date here
-                            Text(
-                              formattedDate,
-                              style: Theme.of(context).textTheme.bodySmall,
+                            StreamBuilder(
+                              stream:
+                                  Stream.periodic(const Duration(minutes: 1)),
+                              builder: (context, snapshot) {
+                                return Text(
+                                  DateFormat('HH:mm, dd/MM/yyyy')
+                                      .format(TimeUtils.now()),
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                );
+                              },
                             ),
                           ],
                         ),
