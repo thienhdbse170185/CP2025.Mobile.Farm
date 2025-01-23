@@ -9,4 +9,9 @@ class UserState with _$UserState {
       _GetUserProfileSuccess;
   const factory UserState.getUserProfileFailure(String message) =
       _GetUserProfileFailure;
+  const factory UserState.getServerTimeInProgress() = _GetServerTimeInProgress;
+  const factory UserState.getServerTimeSuccess(String serverTime) =
+      _GetServerTimeSuccess;
+  const factory UserState.getServerTimeFailure(String message) =
+      _GetServerTimeFailure;
 }

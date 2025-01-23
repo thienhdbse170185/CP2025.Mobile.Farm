@@ -20,18 +20,21 @@ mixin _$UserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserProfile,
+    required TResult Function() getServerTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserProfile,
+    TResult? Function()? getServerTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserProfile,
+    TResult Function()? getServerTime,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$UserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserProfile value) getUserProfile,
+    required TResult Function(_GetServerTime value) getServerTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserProfile value)? getUserProfile,
+    TResult? Function(_GetServerTime value)? getServerTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserProfile value)? getUserProfile,
+    TResult Function(_GetServerTime value)? getServerTime,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +125,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserProfile,
+    required TResult Function() getServerTime,
   }) {
     return started();
   }
@@ -128,6 +135,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserProfile,
+    TResult? Function()? getServerTime,
   }) {
     return started?.call();
   }
@@ -137,6 +145,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserProfile,
+    TResult Function()? getServerTime,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -150,6 +159,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserProfile value) getUserProfile,
+    required TResult Function(_GetServerTime value) getServerTime,
   }) {
     return started(this);
   }
@@ -159,6 +169,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserProfile value)? getUserProfile,
+    TResult? Function(_GetServerTime value)? getServerTime,
   }) {
     return started?.call(this);
   }
@@ -168,6 +179,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserProfile value)? getUserProfile,
+    TResult Function(_GetServerTime value)? getServerTime,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -224,6 +236,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserProfile,
+    required TResult Function() getServerTime,
   }) {
     return getUserProfile();
   }
@@ -233,6 +246,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserProfile,
+    TResult? Function()? getServerTime,
   }) {
     return getUserProfile?.call();
   }
@@ -242,6 +256,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserProfile,
+    TResult Function()? getServerTime,
     required TResult orElse(),
   }) {
     if (getUserProfile != null) {
@@ -255,6 +270,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserProfile value) getUserProfile,
+    required TResult Function(_GetServerTime value) getServerTime,
   }) {
     return getUserProfile(this);
   }
@@ -264,6 +280,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserProfile value)? getUserProfile,
+    TResult? Function(_GetServerTime value)? getServerTime,
   }) {
     return getUserProfile?.call(this);
   }
@@ -273,6 +290,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserProfile value)? getUserProfile,
+    TResult Function(_GetServerTime value)? getServerTime,
     required TResult orElse(),
   }) {
     if (getUserProfile != null) {
@@ -287,6 +305,117 @@ abstract class _GetUserProfile implements UserEvent {
 }
 
 /// @nodoc
+abstract class _$$GetServerTimeImplCopyWith<$Res> {
+  factory _$$GetServerTimeImplCopyWith(
+          _$GetServerTimeImpl value, $Res Function(_$GetServerTimeImpl) then) =
+      __$$GetServerTimeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetServerTimeImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$GetServerTimeImpl>
+    implements _$$GetServerTimeImplCopyWith<$Res> {
+  __$$GetServerTimeImplCopyWithImpl(
+      _$GetServerTimeImpl _value, $Res Function(_$GetServerTimeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetServerTimeImpl implements _GetServerTime {
+  const _$GetServerTimeImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.getServerTime()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetServerTimeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getUserProfile,
+    required TResult Function() getServerTime,
+  }) {
+    return getServerTime();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getUserProfile,
+    TResult? Function()? getServerTime,
+  }) {
+    return getServerTime?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getUserProfile,
+    TResult Function()? getServerTime,
+    required TResult orElse(),
+  }) {
+    if (getServerTime != null) {
+      return getServerTime();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetUserProfile value) getUserProfile,
+    required TResult Function(_GetServerTime value) getServerTime,
+  }) {
+    return getServerTime(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetUserProfile value)? getUserProfile,
+    TResult? Function(_GetServerTime value)? getServerTime,
+  }) {
+    return getServerTime?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetUserProfile value)? getUserProfile,
+    TResult Function(_GetServerTime value)? getServerTime,
+    required TResult orElse(),
+  }) {
+    if (getServerTime != null) {
+      return getServerTime(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetServerTime implements UserEvent {
+  const factory _GetServerTime() = _$GetServerTimeImpl;
+}
+
+/// @nodoc
 mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -295,6 +424,9 @@ mixin _$UserState {
     required TResult Function(String userName, String email)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -303,6 +435,9 @@ mixin _$UserState {
     TResult? Function()? getUserProfileInProgress,
     TResult? Function(String userName, String email)? getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -311,6 +446,9 @@ mixin _$UserState {
     TResult Function()? getUserProfileInProgress,
     TResult Function(String userName, String email)? getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -323,6 +461,10 @@ mixin _$UserState {
         getUserProfileSuccess,
     required TResult Function(_GetUserProfileFailure value)
         getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -332,6 +474,9 @@ mixin _$UserState {
         getUserProfileInProgress,
     TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -340,6 +485,9 @@ mixin _$UserState {
     TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
     TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -411,6 +559,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(String userName, String email)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
   }) {
     return initial();
   }
@@ -422,6 +573,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? getUserProfileInProgress,
     TResult? Function(String userName, String email)? getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
   }) {
     return initial?.call();
   }
@@ -433,6 +587,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? getUserProfileInProgress,
     TResult Function(String userName, String email)? getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -451,6 +608,10 @@ class _$InitialImpl implements _Initial {
         getUserProfileSuccess,
     required TResult Function(_GetUserProfileFailure value)
         getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
   }) {
     return initial(this);
   }
@@ -463,6 +624,9 @@ class _$InitialImpl implements _Initial {
         getUserProfileInProgress,
     TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
   }) {
     return initial?.call(this);
   }
@@ -474,6 +638,9 @@ class _$InitialImpl implements _Initial {
     TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
     TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -536,6 +703,9 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
     required TResult Function(String userName, String email)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
   }) {
     return getUserProfileInProgress();
   }
@@ -547,6 +717,9 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
     TResult? Function()? getUserProfileInProgress,
     TResult? Function(String userName, String email)? getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
   }) {
     return getUserProfileInProgress?.call();
   }
@@ -558,6 +731,9 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
     TResult Function()? getUserProfileInProgress,
     TResult Function(String userName, String email)? getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileInProgress != null) {
@@ -576,6 +752,10 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
         getUserProfileSuccess,
     required TResult Function(_GetUserProfileFailure value)
         getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
   }) {
     return getUserProfileInProgress(this);
   }
@@ -588,6 +768,9 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
         getUserProfileInProgress,
     TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
   }) {
     return getUserProfileInProgress?.call(this);
   }
@@ -599,6 +782,9 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
     TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
     TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileInProgress != null) {
@@ -696,6 +882,9 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     required TResult Function(String userName, String email)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
   }) {
     return getUserProfileSuccess(userName, email);
   }
@@ -707,6 +896,9 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     TResult? Function()? getUserProfileInProgress,
     TResult? Function(String userName, String email)? getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
   }) {
     return getUserProfileSuccess?.call(userName, email);
   }
@@ -718,6 +910,9 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     TResult Function()? getUserProfileInProgress,
     TResult Function(String userName, String email)? getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileSuccess != null) {
@@ -736,6 +931,10 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
         getUserProfileSuccess,
     required TResult Function(_GetUserProfileFailure value)
         getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
   }) {
     return getUserProfileSuccess(this);
   }
@@ -748,6 +947,9 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
         getUserProfileInProgress,
     TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
   }) {
     return getUserProfileSuccess?.call(this);
   }
@@ -759,6 +961,9 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
     TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileSuccess != null) {
@@ -857,6 +1062,9 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
     required TResult Function(String userName, String email)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
   }) {
     return getUserProfileFailure(message);
   }
@@ -868,6 +1076,9 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
     TResult? Function()? getUserProfileInProgress,
     TResult? Function(String userName, String email)? getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
   }) {
     return getUserProfileFailure?.call(message);
   }
@@ -879,6 +1090,9 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
     TResult Function()? getUserProfileInProgress,
     TResult Function(String userName, String email)? getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileFailure != null) {
@@ -897,6 +1111,10 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
         getUserProfileSuccess,
     required TResult Function(_GetUserProfileFailure value)
         getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
   }) {
     return getUserProfileFailure(this);
   }
@@ -909,6 +1127,9 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
         getUserProfileInProgress,
     TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
   }) {
     return getUserProfileFailure?.call(this);
   }
@@ -920,6 +1141,9 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
     TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
     TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
     TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileFailure != null) {
@@ -939,5 +1163,508 @@ abstract class _GetUserProfileFailure implements UserState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetUserProfileFailureImplCopyWith<_$GetUserProfileFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetServerTimeInProgressImplCopyWith<$Res> {
+  factory _$$GetServerTimeInProgressImplCopyWith(
+          _$GetServerTimeInProgressImpl value,
+          $Res Function(_$GetServerTimeInProgressImpl) then) =
+      __$$GetServerTimeInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetServerTimeInProgressImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$GetServerTimeInProgressImpl>
+    implements _$$GetServerTimeInProgressImplCopyWith<$Res> {
+  __$$GetServerTimeInProgressImplCopyWithImpl(
+      _$GetServerTimeInProgressImpl _value,
+      $Res Function(_$GetServerTimeInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
+  const _$GetServerTimeInProgressImpl();
+
+  @override
+  String toString() {
+    return 'UserState.getServerTimeInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetServerTimeInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getUserProfileInProgress,
+    required TResult Function(String userName, String email)
+        getUserProfileSuccess,
+    required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
+  }) {
+    return getServerTimeInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getUserProfileInProgress,
+    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
+  }) {
+    return getServerTimeInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getUserProfileInProgress,
+    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
+    required TResult orElse(),
+  }) {
+    if (getServerTimeInProgress != null) {
+      return getServerTimeInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetUserProfileInProgress value)
+        getUserProfileInProgress,
+    required TResult Function(_GetUserProfileSuccess value)
+        getUserProfileSuccess,
+    required TResult Function(_GetUserProfileFailure value)
+        getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
+  }) {
+    return getServerTimeInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetUserProfileInProgress value)?
+        getUserProfileInProgress,
+    TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
+  }) {
+    return getServerTimeInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
+    TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    required TResult orElse(),
+  }) {
+    if (getServerTimeInProgress != null) {
+      return getServerTimeInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetServerTimeInProgress implements UserState {
+  const factory _GetServerTimeInProgress() = _$GetServerTimeInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$GetServerTimeSuccessImplCopyWith<$Res> {
+  factory _$$GetServerTimeSuccessImplCopyWith(_$GetServerTimeSuccessImpl value,
+          $Res Function(_$GetServerTimeSuccessImpl) then) =
+      __$$GetServerTimeSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String serverTime});
+}
+
+/// @nodoc
+class __$$GetServerTimeSuccessImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$GetServerTimeSuccessImpl>
+    implements _$$GetServerTimeSuccessImplCopyWith<$Res> {
+  __$$GetServerTimeSuccessImplCopyWithImpl(_$GetServerTimeSuccessImpl _value,
+      $Res Function(_$GetServerTimeSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? serverTime = null,
+  }) {
+    return _then(_$GetServerTimeSuccessImpl(
+      null == serverTime
+          ? _value.serverTime
+          : serverTime // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
+  const _$GetServerTimeSuccessImpl(this.serverTime);
+
+  @override
+  final String serverTime;
+
+  @override
+  String toString() {
+    return 'UserState.getServerTimeSuccess(serverTime: $serverTime)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetServerTimeSuccessImpl &&
+            (identical(other.serverTime, serverTime) ||
+                other.serverTime == serverTime));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, serverTime);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetServerTimeSuccessImplCopyWith<_$GetServerTimeSuccessImpl>
+      get copyWith =>
+          __$$GetServerTimeSuccessImplCopyWithImpl<_$GetServerTimeSuccessImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getUserProfileInProgress,
+    required TResult Function(String userName, String email)
+        getUserProfileSuccess,
+    required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
+  }) {
+    return getServerTimeSuccess(serverTime);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getUserProfileInProgress,
+    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
+  }) {
+    return getServerTimeSuccess?.call(serverTime);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getUserProfileInProgress,
+    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
+    required TResult orElse(),
+  }) {
+    if (getServerTimeSuccess != null) {
+      return getServerTimeSuccess(serverTime);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetUserProfileInProgress value)
+        getUserProfileInProgress,
+    required TResult Function(_GetUserProfileSuccess value)
+        getUserProfileSuccess,
+    required TResult Function(_GetUserProfileFailure value)
+        getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
+  }) {
+    return getServerTimeSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetUserProfileInProgress value)?
+        getUserProfileInProgress,
+    TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
+  }) {
+    return getServerTimeSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
+    TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    required TResult orElse(),
+  }) {
+    if (getServerTimeSuccess != null) {
+      return getServerTimeSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetServerTimeSuccess implements UserState {
+  const factory _GetServerTimeSuccess(final String serverTime) =
+      _$GetServerTimeSuccessImpl;
+
+  String get serverTime;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetServerTimeSuccessImplCopyWith<_$GetServerTimeSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetServerTimeFailureImplCopyWith<$Res> {
+  factory _$$GetServerTimeFailureImplCopyWith(_$GetServerTimeFailureImpl value,
+          $Res Function(_$GetServerTimeFailureImpl) then) =
+      __$$GetServerTimeFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$GetServerTimeFailureImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$GetServerTimeFailureImpl>
+    implements _$$GetServerTimeFailureImplCopyWith<$Res> {
+  __$$GetServerTimeFailureImplCopyWithImpl(_$GetServerTimeFailureImpl _value,
+      $Res Function(_$GetServerTimeFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$GetServerTimeFailureImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
+  const _$GetServerTimeFailureImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'UserState.getServerTimeFailure(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetServerTimeFailureImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetServerTimeFailureImplCopyWith<_$GetServerTimeFailureImpl>
+      get copyWith =>
+          __$$GetServerTimeFailureImplCopyWithImpl<_$GetServerTimeFailureImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getUserProfileInProgress,
+    required TResult Function(String userName, String email)
+        getUserProfileSuccess,
+    required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
+  }) {
+    return getServerTimeFailure(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getUserProfileInProgress,
+    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
+  }) {
+    return getServerTimeFailure?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getUserProfileInProgress,
+    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
+    required TResult orElse(),
+  }) {
+    if (getServerTimeFailure != null) {
+      return getServerTimeFailure(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetUserProfileInProgress value)
+        getUserProfileInProgress,
+    required TResult Function(_GetUserProfileSuccess value)
+        getUserProfileSuccess,
+    required TResult Function(_GetUserProfileFailure value)
+        getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
+  }) {
+    return getServerTimeFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetUserProfileInProgress value)?
+        getUserProfileInProgress,
+    TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
+  }) {
+    return getServerTimeFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
+    TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    required TResult orElse(),
+  }) {
+    if (getServerTimeFailure != null) {
+      return getServerTimeFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetServerTimeFailure implements UserState {
+  const factory _GetServerTimeFailure(final String message) =
+      _$GetServerTimeFailureImpl;
+
+  String get message;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetServerTimeFailureImplCopyWith<_$GetServerTimeFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
