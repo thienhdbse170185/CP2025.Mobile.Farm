@@ -1039,7 +1039,6 @@ class _TaskWidgetState extends State<TaskWidget>
                     ),
                   ),
                 ),
-
                 // Task List
                 Expanded(
                   child: _buildTaskList(),

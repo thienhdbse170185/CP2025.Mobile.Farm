@@ -535,7 +535,8 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
               _startDate != null ||
               _selectedStatus != 'Tất cả') ...[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, top: 16, bottom: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

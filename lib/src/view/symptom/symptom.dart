@@ -113,6 +113,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                       padding: const EdgeInsets.only(
                           left: 16.0, right: 16.0, top: 8.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
                             onTap: () {
@@ -120,8 +121,6 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                             },
                             child: LinearIcons.arrowBackIcon,
                           ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.13),
                           Text(
                             'Báo cáo triệu chứng',
                             style: Theme.of(context)
@@ -129,27 +128,13 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                                 .titleMedium
                                 ?.copyWith(fontSize: 22),
                           ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: TextField(
-                        controller: _searchController,
-                        readOnly: true,
-                        onTap: () {
-                          context.push(RouteName.symptomSearch);
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'Tìm kiếm theo triệu chứng...',
-                          prefixIcon: const Icon(Icons.search),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
+                          IconButton(
+                            icon: LinearIcons.searchIcon,
+                            onPressed: () {
+                              context.push(RouteName.symptomSearch);
+                            },
                           ),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -181,8 +166,9 @@ class _SymptomWidgetState extends State<SymptomWidget> {
               const SizedBox(height: 24),
               Expanded(
                 child: state.maybeWhen(
-                  getMedicalSymptomsByBatchInProress: () =>
-                      const Center(child: CircularProgressIndicator()),
+                  getMedicalSymptomsByBatchInProress: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                   getMedicalSymptomsByBatchSuccess: (symptoms) {
                     // Filter symptoms based on search and status
                     final filteredSymptoms = symptoms.where((symptom) {
@@ -239,8 +225,8 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                           const SizedBox(height: 8),
                           Expanded(
                             child: ListView.separated(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, bottom: 80),
                               itemCount: filteredSymptoms.length,
                               separatorBuilder: (context, index) =>
                                   const SizedBox(height: 8),

@@ -62,7 +62,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
 
   // Thêm biến cho status filter
   String _selectedStatus = 'all';
-  String _sortBy = 'time'; // 'time', 'name', 'status'
+  String _sortBy = 'status'; // 'time', 'name', 'status'
   bool _sortAscending = true;
   int? _selectedSession;
 
@@ -1680,100 +1680,74 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                             ),
                           ),
                           const SizedBox(height: 12),
-
                           // Filter chips - có animation ẩn/hiện
-                          AnimatedContainer(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,
-                            height: _showSearchAndFilter ? 40 : 0,
-                            child: ClipRect(
-                              child: AnimatedSize(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                                child: AnimatedOpacity(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeInOut,
-                                  opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        FilterChip(
-                                          showCheckmark: false,
-                                          label: Text(_getTaskTypeLabel()),
-                                          selected: _selectedTaskType != 'all',
-                                          onSelected: (_) =>
-                                              _showTaskTypeBottomSheet(),
-                                          avatar:
-                                              const Icon(Icons.work_outline),
-                                          deleteIcon:
-                                              const Icon(Icons.arrow_drop_down),
-                                          onDeleted: _showTaskTypeBottomSheet,
-                                          labelStyle: TextStyle(
-                                            color: _selectedTaskType != 'all'
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .primary
-                                                : null,
-                                          ),
-                                        ),
-                                        // const SizedBox(width: 8),
-                                        // FilterChip(
-                                        //   showCheckmark: false,
-                                        //   label: Text(_getCageLabel()),
-                                        //   selected: _selectedCage != 'all',
-                                        //   onSelected: (_) =>
-                                        //       _showCageBottomSheet(),
-                                        //   avatar: LinearIcons.chickenIcon,
-                                        //   labelStyle: TextStyle(
-                                        //     color: _selectedCage != 'all'
-                                        //         ? Theme.of(context)
-                                        //             .colorScheme
-                                        //             .primary
-                                        //         : null,
-                                        //   ),
-                                        // ),
-                                        // const SizedBox(width: 8),
-                                        // FilterChip(
-                                        //   showCheckmark: false,
-                                        //   label: Text(_getSessionLabel()),
-                                        //   selected: _selectedSession != null,
-                                        //   onSelected: (_) =>
-                                        //       _showSessionBottomSheet(),
-                                        //   avatar: const Icon(Icons.access_time),
-                                        //   labelStyle: TextStyle(
-                                        //     color: _selectedSession != null
-                                        //         ? Theme.of(context)
-                                        //             .colorScheme
-                                        //             .primary
-                                        //         : null,
-                                        //   ),
-                                        // ),
-                                        const SizedBox(width: 8),
-                                        FilterChip(
-                                          showCheckmark: false,
-                                          label: Text(_getStatusLabel()),
-                                          selected: _selectedStatus != 'all',
-                                          onSelected: (_) =>
-                                              _showStatusBottomSheet(),
-                                          avatar:
-                                              const Icon(Icons.flag_outlined),
-                                          deleteIcon:
-                                              const Icon(Icons.arrow_drop_down),
-                                          onDeleted: _showStatusBottomSheet,
-                                          labelStyle: TextStyle(
-                                            color: _selectedStatus != 'all'
-                                                ? _statuses.firstWhere((s) =>
-                                                    s['id'] ==
-                                                    _selectedStatus)['color']
-                                                : null,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                FilterChip(
+                                  showCheckmark: false,
+                                  label: Text(_getTaskTypeLabel()),
+                                  selected: _selectedTaskType != 'all',
+                                  onSelected: (_) => _showTaskTypeBottomSheet(),
+                                  avatar: const Icon(Icons.work_outline),
+                                  deleteIcon: const Icon(Icons.arrow_drop_down),
+                                  onDeleted: _showTaskTypeBottomSheet,
+                                  labelStyle: TextStyle(
+                                    color: _selectedTaskType != 'all'
+                                        ? Theme.of(context).colorScheme.primary
+                                        : null,
                                   ),
                                 ),
-                              ),
+                                // const SizedBox(width: 8),
+                                // FilterChip(
+                                //   showCheckmark: false,
+                                //   label: Text(_getCageLabel()),
+                                //   selected: _selectedCage != 'all',
+                                //   onSelected: (_) =>
+                                //       _showCageBottomSheet(),
+                                //   avatar: LinearIcons.chickenIcon,
+                                //   labelStyle: TextStyle(
+                                //     color: _selectedCage != 'all'
+                                //         ? Theme.of(context)
+                                //             .colorScheme
+                                //             .primary
+                                //         : null,
+                                //   ),
+                                // ),
+                                // const SizedBox(width: 8),
+                                // FilterChip(
+                                //   showCheckmark: false,
+                                //   label: Text(_getSessionLabel()),
+                                //   selected: _selectedSession != null,
+                                //   onSelected: (_) =>
+                                //       _showSessionBottomSheet(),
+                                //   avatar: const Icon(Icons.access_time),
+                                //   labelStyle: TextStyle(
+                                //     color: _selectedSession != null
+                                //         ? Theme.of(context)
+                                //             .colorScheme
+                                //             .primary
+                                //         : null,
+                                //   ),
+                                // ),
+                                const SizedBox(width: 8),
+                                FilterChip(
+                                  showCheckmark: false,
+                                  label: Text(_getStatusLabel()),
+                                  selected: _selectedStatus != 'all',
+                                  onSelected: (_) => _showStatusBottomSheet(),
+                                  avatar: const Icon(Icons.flag_outlined),
+                                  deleteIcon: const Icon(Icons.arrow_drop_down),
+                                  onDeleted: _showStatusBottomSheet,
+                                  labelStyle: TextStyle(
+                                    color: _selectedStatus != 'all'
+                                        ? _statuses.firstWhere((s) =>
+                                            s['id'] == _selectedStatus)['color']
+                                        : null,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -1868,7 +1842,8 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
               ),
 
               Padding(
-                  padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
+                  padding: const EdgeInsets.only(
+                      left: 16, top: 16, right: 16, bottom: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -1904,7 +1879,8 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                           )
                         : ListView.builder(
                             itemCount: _filteredTasks!.length,
-                            padding: const EdgeInsets.all(16),
+                            padding: const EdgeInsets.only(
+                                left: 16, top: 16, right: 16, bottom: 80),
                             itemBuilder: (context, index) {
                               final task = _filteredTasks![index];
                               return TaskCard(
@@ -2020,28 +1996,52 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: Card.outlined(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 8),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                              left: 16.0,
+                                              top: 16.0,
+                                              bottom: 16.0,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Các công việc đã chọn:',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 8),
+                                                ..._selectedTaskIds.map(
+                                                    (taskId) => Text(
+                                                        _filteredTasks!
+                                                            .firstWhere(
+                                                                (task) =>
+                                                                    task.id ==
+                                                                    taskId)
+                                                            .taskName,
+                                                        style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .primary,
+                                                        ))),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
                                       const Text(
                                         'Bạn có chắc chắn muốn cập nhật trạng thái cho các công việc đã chọn?',
                                         textAlign: TextAlign.center,
                                       ),
-                                      const SizedBox(height: 16),
-                                      Text(
-                                        'Các công việc đã chọn:',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      ..._selectedTaskIds.map((taskId) => Text(
-                                          _filteredTasks!
-                                              .firstWhere(
-                                                  (task) => task.id == taskId)
-                                              .taskName,
-                                          style: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ))),
                                     ],
                                   ),
                                   onPrimaryButtonPressed: () {
