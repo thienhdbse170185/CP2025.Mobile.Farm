@@ -145,7 +145,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               builder: (context, snapshot) {
                                 return Text(
                                   DateFormat('HH:mm, dd/MM/yyyy')
-                                      .format(TimeUtils.now()),
+                                      .format(TimeUtils.customNow()),
                                   style: Theme.of(context).textTheme.bodySmall,
                                 );
                               },
