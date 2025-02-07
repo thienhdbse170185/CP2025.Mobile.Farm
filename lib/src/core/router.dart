@@ -17,6 +17,7 @@ import 'package:smart_farm/src/view/symptom/symptom_success.dart';
 import 'package:smart_farm/src/view/task/task.dart';
 import 'package:smart_farm/src/view/task/task_history.dart';
 import 'package:smart_farm/src/view/task/task_qr_code.dart';
+import 'package:smart_farm/src/view/test_widget.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -47,6 +48,7 @@ class RouteName {
   static const String security = '/security';
   static const String testNotification = '/test-notification';
   static const String taskQRCode = '/task-qr-code';
+  static const String testWidget = '/test-widget';
 
   static const publicRoutes = [
     welcome,
@@ -297,4 +299,10 @@ final router = GoRouter(
           return _buildPageWithSlideTransition(TaskQRCodeWidget(cage: cage));
         },
       ),
+
+      GoRoute(
+          path: RouteName.testWidget,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(const TestWidget());
+          }),
     ]);

@@ -5,11 +5,13 @@ import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_nam
 import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
+import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 import 'package:smart_farm/src/view/widgets/task_list.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
@@ -794,12 +796,17 @@ class _TaskWidgetState extends State<TaskWidget>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              isToday ? 'Hôm nay' : dayOfWeek,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(fontSize: 22),
+                            GestureDetector(
+                              onTap: () {
+                                context.push(RouteName.testWidget);
+                              },
+                              child: Text(
+                                isToday ? 'Hôm nay' : dayOfWeek,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(fontSize: 22),
+                              ),
                             ),
                             InkWell(
                               onTap: () => _selectDate(context),
