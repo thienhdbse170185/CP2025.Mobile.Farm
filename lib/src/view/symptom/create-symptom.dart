@@ -1434,7 +1434,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
-                                  'Số con hiện bình thường: $_affectedQuantity con.',
+                                  'Số con hiện bình thường: ${_farmingBatch!.quantity} con.',
                                   style: TextStyle(
                                     color: Colors.grey[600],
                                     fontSize: 13,
