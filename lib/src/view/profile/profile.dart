@@ -150,7 +150,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Quản lý cá nhân',
+                            'Cài đặt',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
@@ -163,15 +163,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () {
-                              // Navigate to help
-                              // context.push(RouteName.help);
+                              // Navigate to about
+                              context.push(RouteName.notificationSetting);
                             },
                             child: Row(
                               children: [
-                                LinearIcons.helpIcon,
+                                Icon(Icons.notifications_none_outlined),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Trợ giúp',
+                                  'Thông báo',
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                                 const Spacer(),
@@ -184,15 +184,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () {
-                              // Navigate to about
-                              // context.push(RouteName.about);
+                              // Navigate to help
+                              context.push(RouteName.changePassword);
                             },
                             child: Row(
                               children: [
-                                LinearIcons.aboutIcon,
+                                Icon(Icons.lock_outline),
                                 const SizedBox(width: 16),
                                 Text(
-                                  'Giới thiệu',
+                                  'Đổi mật khẩu',
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                                 const Spacer(),
@@ -204,50 +204,50 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Card.outlined(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: BorderSide(color: Colors.grey.shade300),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 20, bottom: 20, left: 16, right: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              context.push(RouteName.setting);
-                            },
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      LinearIcons.settingIconGreen,
-                                      const SizedBox(width: 16),
-                                      Text(
-                                        'Cài đặt',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                LinearIcons.chevronRightIcon
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // const SizedBox(height: 10),
+                  // Card.outlined(
+                  //   color: Colors.white,
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(16),
+                  //     side: BorderSide(color: Colors.grey.shade300),
+                  //   ),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(
+                  //         top: 20, bottom: 20, left: 16, right: 16),
+                  //     child: Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         InkWell(
+                  //           splashColor: Colors.transparent,
+                  //           highlightColor: Colors.transparent,
+                  //           onTap: () {
+                  //             context.push(RouteName.setting);
+                  //           },
+                  //           child: Row(
+                  //             crossAxisAlignment: CrossAxisAlignment.center,
+                  //             children: [
+                  //               Expanded(
+                  //                 child: Row(
+                  //                   children: [
+                  //                     LinearIcons.settingIconGreen,
+                  //                     const SizedBox(width: 16),
+                  //                     Text(
+                  //                       'Cài đặt',
+                  //                       style: Theme.of(context)
+                  //                           .textTheme
+                  //                           .bodyLarge,
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //               LinearIcons.chevronRightIcon
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(height: 30),
                   InkWell(
                     splashColor: Colors.transparent,

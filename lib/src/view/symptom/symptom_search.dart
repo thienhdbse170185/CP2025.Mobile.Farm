@@ -1,4 +1,4 @@
-import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
+import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -320,11 +320,12 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
   }
 
   // Add filter logic
-  List<MedicalSymptomDto> _filterSymptoms(List<MedicalSymptomDto> symptoms) {
+  List<MedicalSymptomResponse> _filterSymptoms(
+      List<MedicalSymptomResponse> symptoms) {
     return symptoms.where((symptom) {
       // Text search filter
       final matchesSearch = _searchController.text.isEmpty ||
-          symptom.symtom
+          symptom.symtom!
               .toLowerCase()
               .contains(_searchController.text.toLowerCase());
 
@@ -341,7 +342,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
       // Symptoms filter
       final matchesSymptoms = _selectedFilters.isEmpty ||
           _selectedFilters.any((filter) =>
-              symptom.symtom.toLowerCase().contains(filter.toLowerCase()));
+              symptom.symtom!.toLowerCase().contains(filter.toLowerCase()));
 
       return matchesSearch && matchesStatus && matchesDate && matchesSymptoms;
     }).toList();

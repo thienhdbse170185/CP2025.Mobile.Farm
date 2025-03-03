@@ -613,6 +613,9 @@ mixin _$AuthState {
     required TResult Function() success,
     required TResult Function(String message) failure,
     required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -622,6 +625,9 @@ mixin _$AuthState {
     TResult? Function()? success,
     TResult? Function(String message)? failure,
     TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -631,6 +637,9 @@ mixin _$AuthState {
     TResult Function()? success,
     TResult Function(String message)? failure,
     TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -641,6 +650,9 @@ mixin _$AuthState {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -650,6 +662,9 @@ mixin _$AuthState {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -659,6 +674,9 @@ mixin _$AuthState {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -730,6 +748,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function() success,
     required TResult Function(String message) failure,
     required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
   }) {
     return initial();
   }
@@ -742,6 +763,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? success,
     TResult? Function(String message)? failure,
     TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
   }) {
     return initial?.call();
   }
@@ -754,6 +778,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? success,
     TResult Function(String message)? failure,
     TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -770,6 +797,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
   }) {
     return initial(this);
   }
@@ -782,6 +812,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
   }) {
     return initial?.call(this);
   }
@@ -794,6 +827,9 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -853,6 +889,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() success,
     required TResult Function(String message) failure,
     required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
   }) {
     return loading();
   }
@@ -865,6 +904,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? success,
     TResult? Function(String message)? failure,
     TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
   }) {
     return loading?.call();
   }
@@ -877,6 +919,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? success,
     TResult Function(String message)? failure,
     TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -893,6 +938,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
   }) {
     return loading(this);
   }
@@ -905,6 +953,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
   }) {
     return loading?.call(this);
   }
@@ -917,6 +968,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -976,6 +1030,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function() success,
     required TResult Function(String message) failure,
     required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
   }) {
     return success();
   }
@@ -988,6 +1045,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? success,
     TResult? Function(String message)? failure,
     TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
   }) {
     return success?.call();
   }
@@ -1000,6 +1060,9 @@ class _$SuccessImpl implements _Success {
     TResult Function()? success,
     TResult Function(String message)? failure,
     TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1016,6 +1079,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
   }) {
     return success(this);
   }
@@ -1028,6 +1094,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
   }) {
     return success?.call(this);
   }
@@ -1040,6 +1109,9 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1126,6 +1198,9 @@ class _$FailureImpl implements _Failure {
     required TResult Function() success,
     required TResult Function(String message) failure,
     required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
   }) {
     return failure(message);
   }
@@ -1138,6 +1213,9 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? success,
     TResult? Function(String message)? failure,
     TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
   }) {
     return failure?.call(message);
   }
@@ -1150,6 +1228,9 @@ class _$FailureImpl implements _Failure {
     TResult Function()? success,
     TResult Function(String message)? failure,
     TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1166,6 +1247,9 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
   }) {
     return failure(this);
   }
@@ -1178,6 +1262,9 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
   }) {
     return failure?.call(this);
   }
@@ -1190,6 +1277,9 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1257,6 +1347,9 @@ class _$LogoutSuccessImpl implements _LogoutSuccess {
     required TResult Function() success,
     required TResult Function(String message) failure,
     required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
   }) {
     return logoutSuccess();
   }
@@ -1269,6 +1362,9 @@ class _$LogoutSuccessImpl implements _LogoutSuccess {
     TResult? Function()? success,
     TResult? Function(String message)? failure,
     TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
   }) {
     return logoutSuccess?.call();
   }
@@ -1281,6 +1377,9 @@ class _$LogoutSuccessImpl implements _LogoutSuccess {
     TResult Function()? success,
     TResult Function(String message)? failure,
     TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (logoutSuccess != null) {
@@ -1297,6 +1396,9 @@ class _$LogoutSuccessImpl implements _LogoutSuccess {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
   }) {
     return logoutSuccess(this);
   }
@@ -1309,6 +1411,9 @@ class _$LogoutSuccessImpl implements _LogoutSuccess {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
   }) {
     return logoutSuccess?.call(this);
   }
@@ -1321,6 +1426,9 @@ class _$LogoutSuccessImpl implements _LogoutSuccess {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
     required TResult orElse(),
   }) {
     if (logoutSuccess != null) {
@@ -1332,4 +1440,465 @@ class _$LogoutSuccessImpl implements _LogoutSuccess {
 
 abstract class _LogoutSuccess implements AuthState {
   const factory _LogoutSuccess() = _$LogoutSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$AppStartedInProgressImplCopyWith<$Res> {
+  factory _$$AppStartedInProgressImplCopyWith(_$AppStartedInProgressImpl value,
+          $Res Function(_$AppStartedInProgressImpl) then) =
+      __$$AppStartedInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppStartedInProgressImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AppStartedInProgressImpl>
+    implements _$$AppStartedInProgressImplCopyWith<$Res> {
+  __$$AppStartedInProgressImplCopyWithImpl(_$AppStartedInProgressImpl _value,
+      $Res Function(_$AppStartedInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AppStartedInProgressImpl implements _AppStartedInProgress {
+  const _$AppStartedInProgressImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.appStartedInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppStartedInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String message) failure,
+    required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
+  }) {
+    return appStartedInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String message)? failure,
+    TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
+  }) {
+    return appStartedInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String message)? failure,
+    TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
+    required TResult orElse(),
+  }) {
+    if (appStartedInProgress != null) {
+      return appStartedInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
+  }) {
+    return appStartedInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
+  }) {
+    return appStartedInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
+    required TResult orElse(),
+  }) {
+    if (appStartedInProgress != null) {
+      return appStartedInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppStartedInProgress implements AuthState {
+  const factory _AppStartedInProgress() = _$AppStartedInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$AppStartedSuccessImplCopyWith<$Res> {
+  factory _$$AppStartedSuccessImplCopyWith(_$AppStartedSuccessImpl value,
+          $Res Function(_$AppStartedSuccessImpl) then) =
+      __$$AppStartedSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppStartedSuccessImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AppStartedSuccessImpl>
+    implements _$$AppStartedSuccessImplCopyWith<$Res> {
+  __$$AppStartedSuccessImplCopyWithImpl(_$AppStartedSuccessImpl _value,
+      $Res Function(_$AppStartedSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AppStartedSuccessImpl implements _AppStartedSuccess {
+  const _$AppStartedSuccessImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.appStartedSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AppStartedSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String message) failure,
+    required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
+  }) {
+    return appStartedSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String message)? failure,
+    TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
+  }) {
+    return appStartedSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String message)? failure,
+    TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
+    required TResult orElse(),
+  }) {
+    if (appStartedSuccess != null) {
+      return appStartedSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
+  }) {
+    return appStartedSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
+  }) {
+    return appStartedSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
+    required TResult orElse(),
+  }) {
+    if (appStartedSuccess != null) {
+      return appStartedSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppStartedSuccess implements AuthState {
+  const factory _AppStartedSuccess() = _$AppStartedSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$AppStartedFailureImplCopyWith<$Res> {
+  factory _$$AppStartedFailureImplCopyWith(_$AppStartedFailureImpl value,
+          $Res Function(_$AppStartedFailureImpl) then) =
+      __$$AppStartedFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$AppStartedFailureImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AppStartedFailureImpl>
+    implements _$$AppStartedFailureImplCopyWith<$Res> {
+  __$$AppStartedFailureImplCopyWithImpl(_$AppStartedFailureImpl _value,
+      $Res Function(_$AppStartedFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$AppStartedFailureImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AppStartedFailureImpl implements _AppStartedFailure {
+  const _$AppStartedFailureImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'AuthState.appStartedFailure(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppStartedFailureImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AppStartedFailureImplCopyWith<_$AppStartedFailureImpl> get copyWith =>
+      __$$AppStartedFailureImplCopyWithImpl<_$AppStartedFailureImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String message) failure,
+    required TResult Function() logoutSuccess,
+    required TResult Function() appStartedInProgress,
+    required TResult Function() appStartedSuccess,
+    required TResult Function(String message) appStartedFailure,
+  }) {
+    return appStartedFailure(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String message)? failure,
+    TResult? Function()? logoutSuccess,
+    TResult? Function()? appStartedInProgress,
+    TResult? Function()? appStartedSuccess,
+    TResult? Function(String message)? appStartedFailure,
+  }) {
+    return appStartedFailure?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String message)? failure,
+    TResult Function()? logoutSuccess,
+    TResult Function()? appStartedInProgress,
+    TResult Function()? appStartedSuccess,
+    TResult Function(String message)? appStartedFailure,
+    required TResult orElse(),
+  }) {
+    if (appStartedFailure != null) {
+      return appStartedFailure(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_LogoutSuccess value) logoutSuccess,
+    required TResult Function(_AppStartedInProgress value) appStartedInProgress,
+    required TResult Function(_AppStartedSuccess value) appStartedSuccess,
+    required TResult Function(_AppStartedFailure value) appStartedFailure,
+  }) {
+    return appStartedFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_LogoutSuccess value)? logoutSuccess,
+    TResult? Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult? Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult? Function(_AppStartedFailure value)? appStartedFailure,
+  }) {
+    return appStartedFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_LogoutSuccess value)? logoutSuccess,
+    TResult Function(_AppStartedInProgress value)? appStartedInProgress,
+    TResult Function(_AppStartedSuccess value)? appStartedSuccess,
+    TResult Function(_AppStartedFailure value)? appStartedFailure,
+    required TResult orElse(),
+  }) {
+    if (appStartedFailure != null) {
+      return appStartedFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppStartedFailure implements AuthState {
+  const factory _AppStartedFailure(final String message) =
+      _$AppStartedFailureImpl;
+
+  String get message;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AppStartedFailureImplCopyWith<_$AppStartedFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

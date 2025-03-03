@@ -1,0 +1,2 @@
+D:/Capstone Project/smart_farm/android/app/.cxx/RelWithDebInfo/1n2q4q3q/x86/CMakeFiles/edit_cache.dir
+D:/Capstone Project/smart_farm/android/app/.cxx/RelWithDebInfo/1n2q4q3q/x86/CMakeFiles/rebuild_cache.dir

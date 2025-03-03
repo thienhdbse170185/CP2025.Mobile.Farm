@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
@@ -51,7 +53,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       }
     });
     on<_GetTasks>((event, emit) async {
-      emit(const TaskState.loading());
+      emit(const TaskState.getTasksInProgress());
       try {
         final formattedDate = _formatDateSlash(event.date);
         final userBox = await Hive.openBox(UserDataConstant.userBoxName);
@@ -193,6 +195,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_GetTaskById>((event, emit) async {
       emit(const TaskState.getTaskByIdLoading());
       try {
+        log('[GET_TASK_BY_ID] Đang lấy thông tin cho task có ID: ${event.taskId}');
         final task = await repository.getById(event.taskId);
         final box = await Hive.openBox(UserDataConstant.userBoxName);
         final userId = box.get(UserDataConstant.userIdKey);
@@ -306,26 +309,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         }
       } catch (e) {
         emit(TaskState.createHealthLogFailure(e.toString()));
-      }
-    });
-    on<_CreateVaccinScheduleLog>((event, emit) async {
-      emit(const TaskState.createVaccinScheduleLogLoading());
-      try {
-        final request = VaccinScheduleLogDto(
-            notes: event.log.notes,
-            date: event.log.date,
-            photo: event.log.photo,
-            taskId: event.log.taskId);
-        final result =
-            await repository.createVaccinScheduleLog(event.cageId, request);
-        if (result) {
-          emit(const TaskState.createVaccinScheduleLogSuccess());
-        } else {
-          emit(const TaskState.createVaccinScheduleLogFailure(
-              'Tạo log cho lịch tiêm chủng thất bại!'));
-        }
-      } catch (e) {
-        emit(TaskState.createVaccinScheduleLogFailure(e.toString()));
       }
     });
     on<_GetDailyFoodUsageLog>((event, emit) async {

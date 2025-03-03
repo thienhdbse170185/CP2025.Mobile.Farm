@@ -26,3 +26,12 @@ linter:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+analyzer:
+  exclude:
+    - build/**
+    - .dart_tool/**
+    - .idea/**
+    - .vscode/**
+    - test/**  # Nếu không cần phân tích thư mục test
+

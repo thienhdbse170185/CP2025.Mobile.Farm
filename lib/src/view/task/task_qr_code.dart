@@ -7,7 +7,6 @@ import 'package:data_layer/model/dto/prescription/prescription.dart';
 import 'package:data_layer/model/dto/task/daily_food_usage_log/daily_food_usage_log_dto.dart';
 import 'package:data_layer/model/dto/task/health_log/health_log_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:data_layer/model/dto/task/vaccin_schedule_log/vaccin_schedule_log_dto.dart';
 import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -1174,19 +1173,19 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                       );
                   break;
 
-                case TaskTypeDataConstant.vaccin:
-                  final log = VaccinScheduleLogDto(
-                    date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                    notes: _logController.text,
-                    photo: "",
-                    taskId: task.id,
-                  );
-                  context.read<TaskBloc>().add(
-                        TaskEvent.createVaccinScheduleLog(
-                          cageId: task.cageId,
-                          log: log,
-                        ),
-                      );
+                  // case TaskTypeDataConstant.vaccin:
+                  //   final log = VaccineScheduleLogDto(
+                  //     date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                  //     notes: _logController.text,
+                  //     photo: "",
+                  //     taskId: task.id,
+                  //   );
+                  //   context.read<TaskBloc>().add(
+                  //         TaskEvent.createVaccinScheduleLog(
+                  //           cageId: task.cageId,
+                  //           log: log,
+                  //         ),
+                  //       );
                   break;
               }
             },

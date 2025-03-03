@@ -4,16 +4,18 @@ import 'dart:io';
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
 import 'package:data_layer/model/request/symptom/symptom/get_symptom_request.dart';
+import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
-import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
+import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/view/widgets/qr_scanner.dart'
     show QRScannerWidget;
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
@@ -21,6 +23,8 @@ import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart'
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
+import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
+import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 
 class CreateSymptomWidget extends StatefulWidget {
   final String cageName;
@@ -41,12 +45,15 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       TextEditingController();
 
   FarmingBatchDto? _farmingBatch;
-  GrowthStageDto? _growthStage;
   List<SymptomDto> _symptoms = [];
   List<CageOption> _cages = [];
+  UploadImageDto? _uploadedImage;
+
   String? _selectedCage;
   int? _affectedQuantity;
   String? _selectedCageId;
+  bool _isLoading = false;
+  bool _isProcessing = false;
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   bool isScanning = false;
@@ -76,15 +83,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     context.read<CageCubit>().getCagesByUserId();
   }
 
-  // Function to pick multiple images
-  // Future<void> _pickImages() async {
-  //   final picker = ImagePicker();
-  //   final pickedFiles = await picker.pickMultiImage();
-  //   setState(() {
-  //     _images.addAll(pickedFiles.map((file) => File(file.path)));
-  //   });
-  // }
-
   String get formattedDate {
     return DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
   }
@@ -112,23 +110,33 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   void _submitForm() {
-    final request = CreateSymptomRequest(
-      farmingBatchId: _farmingBatch?.id ?? '',
-      prescriptionId: '95e72b29-6a93-4da9-b2d4-e5956c75622e',
-      symptoms: _symptomsName.join(', '),
-      status: 'Pending',
-      affectedQuantity: int.parse(_affectedController.text),
-      notes: _noteController.text,
-      pictures: _images
-          .map((image) => PictureSymptom(
-                image: "image.png",
-                dateCaptured: DateTime.now(),
-              ))
-          .toList(),
-      medicalSymptomDetails: _enteredSymptoms,
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Xác nhận'),
+          content: const Text(
+              'Bạn có chắc chắn muốn tạo báo cáo triệu chứng này không?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Hủy'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                context
+                    .read<UploadImageCubit>()
+                    .uploadImage(file: _images.first);
+              },
+              child: const Text('Xác nhận'),
+            ),
+          ],
+        );
+      },
     );
-
-    context.read<HealthyCubit>().createSymptom(request);
   }
 
   void _showCageSelectionSheet() {
@@ -821,15 +829,15 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             ),
             const SizedBox(height: 12),
           ],
-          FilledButton(
-            onPressed: _isFormValid ? _submitForm : null,
-            style: FilledButton.styleFrom(
-              minimumSize: const Size(double.infinity, 52),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed:
+                  _isProcessing ? null : (_isFormValid ? _submitForm : null),
+              child: _isProcessing
+                  ? ProcessingButtonWidget(loadingMessage: 'Đang xử lý...')
+                  : const Text('Tạo báo cáo'),
             ),
-            child: const Text('Tạo báo cáo'),
           ),
         ],
       ),
@@ -857,40 +865,43 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           listener: (context, state) {
             state.maybeWhen(
               createLoading: () {
-                LoadingDialog.show(context, "Đang tạo báo cáo...");
+                setState(() {
+                  _isProcessing = true;
+                });
               },
-              createSuccess: () {
+              createSuccess: (medicalSymptom) {
+                setState(() {
+                  _isProcessing = false;
+                });
                 log("Tạo báo cáo thành công");
-                LoadingDialog.hide(context);
 
                 // Create MedicalSymptomDto from form data
-                final symptom = MedicalSymptomDto(
-                  id: _selectedCage ?? '', // Using cage name as temporary ID
-                  farmingBatchId: _farmingBatch?.id ?? '',
-                  prescriptionId: '95e72b29-6a93-4da9-b2d4-e5956c75622e',
+                final symptom = MedicalSymptomResponse(
+                  id: medicalSymptom.id, // Using cage name as temporary ID
+                  farmingBatchId: medicalSymptom.farmingBatchId,
                   symtom: _symptomsName.join(', '),
-                  status: 'Pending',
-                  diagnosis: 'Pending',
-                  nameAnimal: 'Pending',
-                  prescriptions: [],
-                  affectedQuantity: int.parse(_affectedController.text),
+                  status: medicalSymptom.status,
+                  diagnosis: medicalSymptom.diagnosis,
+                  nameAnimal: medicalSymptom.nameAnimal,
+                  prescriptions: medicalSymptom.prescriptions,
+                  affectedQuantity: medicalSymptom.affectedQuantity,
                   quantity: _farmingBatch?.quantity ?? 0,
-                  notes: _noteController.text,
-                  createAt: DateTime.now(),
-                  pictures: _images
-                      .map((image) => PictureSymptom(
-                            image: "image.png",
-                            dateCaptured: DateTime.now(),
-                          ))
-                      .toList(),
-                  medicalSymptomDetails: [],
+                  notes: medicalSymptom.notes,
+                  createAt: medicalSymptom.createAt,
+                  pictures: medicalSymptom.pictures,
+                  medicalSymptomDetails: medicalSymptom.medicalSymptomDetails,
                 );
 
                 // Navigate to success screen with created symptom
-                context.go(RouteName.symptomSuccess, extra: symptom);
+                context.go(RouteName.symptomSuccess, extra: {
+                  'symptom': symptom,
+                  'cageName': _selectedCage,
+                });
               },
               createFailure: (error) {
-                LoadingDialog.hide(context);
+                context
+                    .read<UploadImageCubit>()
+                    .deleteImage(id: _uploadedImage!.id);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(error),
@@ -976,7 +987,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             getGrowthStageByCageIdSuccess: (growthStage) {
               log('Lấy thông tin growth-stage thành công');
               setState(() {
-                _growthStage = growthStage;
                 _affectedQuantity =
                     _farmingBatch!.quantity - growthStage.affectQuantity;
               });
@@ -986,43 +996,88 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             },
             orElse: () {},
           );
-        })
+        }),
+        BlocListener<UploadImageCubit, UploadImageState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              uploadImageInProgress: () {
+                setState(() {
+                  _isProcessing = true;
+                });
+              },
+              uploadImageSuccess: (imageDto) {
+                setState(() {
+                  _isProcessing = false;
+                  _uploadedImage = imageDto;
+                });
+                final imagePath =
+                    "https://imageservice.fjourney.site${imageDto.path}";
+                final request = CreateSymptomRequest(
+                  farmingBatchId: _farmingBatch?.id ?? '',
+                  symptoms: _symptomsName.join(', '),
+                  status: 'Pending',
+                  affectedQuantity: int.parse(_affectedController.text),
+                  notes: _noteController.text,
+                  pictures: _images
+                      .map((image) => PictureSymptom(
+                            image: imagePath,
+                            dateCaptured: TimeUtils.customNow(),
+                          ))
+                      .toList(),
+                  medicalSymptomDetails: _enteredSymptoms,
+                );
+
+                context.read<HealthyCubit>().createSymptom(request);
+              },
+              uploadImageFailure: (error) {
+                setState(() {
+                  _isProcessing = false;
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Lỗi upload ảnh: $error'),
+                  ),
+                );
+              },
+              deleteImageInProgress: () {
+                setState(() {
+                  _isProcessing = true;
+                });
+              },
+              deleteImageSuccess: () {
+                setState(() {
+                  _isProcessing = false;
+                });
+              },
+              deleteImageFailure: (error) {
+                setState(() {
+                  _isProcessing = false;
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Lỗi xóa ảnh: $error'),
+                  ),
+                );
+              },
+              orElse: () {},
+            );
+          },
+        )
       ],
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: CustomAppBar(
-          appBarHeight: MediaQuery.of(context).size.height * 0.08,
-          title: Column(
-            children: [
-              const Text('Tạo báo cáo triệu chứng'),
-              const SizedBox(height: 2),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Ngày báo cáo',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                            decoration: TextDecoration.underline,
-                          ),
-                    ),
-                    TextSpan(
-                      text: ': $formattedDate',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          appBarHeight: 70,
           leading: IconButton(
-            icon: LinearIcons.arrowBackIcon,
-            onPressed: () => context.pop(),
-          ),
+              onPressed: () {
+                context.pop();
+              },
+              icon: Icon(Icons.arrow_back)),
+          title: Column(children: [
+            const Text('Tạo báo cáo triệu chứng'),
+            Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
+                style: Theme.of(context).textTheme.bodyMedium)
+          ]),
         ),
         body: SingleChildScrollView(
           child: Column(

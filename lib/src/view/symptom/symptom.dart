@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
+import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 
 class SymptomWidget extends StatefulWidget {
   const SymptomWidget({super.key});
@@ -119,17 +121,28 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                             onTap: () {
                               context.pop();
                             },
-                            child: LinearIcons.arrowBackIcon,
+                            child: Icon(Icons.arrow_back),
                           ),
-                          Text(
-                            'Báo cáo triệu chứng',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(fontSize: 22),
+                          Row(
+                            children: [
+                              const SizedBox(width: 24),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Báo cáo triệu chứng',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(fontSize: 22),
+                                  ),
+                                  Text(CustomDateUtils.formatDate(
+                                      TimeUtils.customNow()))
+                                ],
+                              ),
+                            ],
                           ),
                           IconButton(
-                            icon: LinearIcons.searchIcon,
+                            icon: Icon(Icons.search_rounded),
                             onPressed: () {
                               context.push(RouteName.symptomSearch);
                             },
@@ -137,8 +150,15 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 16),
                     // [APPBAR] Location Filter
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Text(
+                        'Bộ lọc tìm kiếm',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.only(left: 16.0),
@@ -173,7 +193,7 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                     // Filter symptoms based on search and status
                     final filteredSymptoms = symptoms.where((symptom) {
                       final matchesSearch = _searchController.text.isEmpty ||
-                          symptom.symtom
+                          symptom.symtom!
                               .toLowerCase()
                               .contains(_searchController.text.toLowerCase());
                       final matchesStatus = _selectedStatus == 'Tất cả' ||

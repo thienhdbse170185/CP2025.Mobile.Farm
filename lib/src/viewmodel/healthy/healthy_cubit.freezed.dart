@@ -20,7 +20,7 @@ mixin _$HealthyState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() createLoading,
-    required TResult Function() createSuccess,
+    required TResult Function(MedicalSymptomDto medicalSymptom) createSuccess,
     required TResult Function(String error) createFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$HealthyState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? createLoading,
-    TResult? Function()? createSuccess,
+    TResult? Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult? Function(String error)? createFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$HealthyState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? createLoading,
-    TResult Function()? createSuccess,
+    TResult Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult Function(String error)? createFailure,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() createLoading,
-    required TResult Function() createSuccess,
+    required TResult Function(MedicalSymptomDto medicalSymptom) createSuccess,
     required TResult Function(String error) createFailure,
   }) {
     return initial();
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? createLoading,
-    TResult? Function()? createSuccess,
+    TResult? Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult? Function(String error)? createFailure,
   }) {
     return initial?.call();
@@ -154,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? createLoading,
-    TResult Function()? createSuccess,
+    TResult Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult Function(String error)? createFailure,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() createLoading,
-    required TResult Function() createSuccess,
+    required TResult Function(MedicalSymptomDto medicalSymptom) createSuccess,
     required TResult Function(String error) createFailure,
   }) {
     return createLoading();
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? createLoading,
-    TResult? Function()? createSuccess,
+    TResult? Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult? Function(String error)? createFailure,
   }) {
     return createLoading?.call();
@@ -271,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? createLoading,
-    TResult Function()? createSuccess,
+    TResult Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult Function(String error)? createFailure,
     required TResult orElse(),
   }) {
@@ -328,6 +328,10 @@ abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({MedicalSymptomDto medicalSymptom});
+
+  $MedicalSymptomDtoCopyWith<$Res> get medicalSymptom;
 }
 
 /// @nodoc
@@ -340,36 +344,72 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
   /// Create a copy of HealthyState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? medicalSymptom = null,
+  }) {
+    return _then(_$SuccessImpl(
+      null == medicalSymptom
+          ? _value.medicalSymptom
+          : medicalSymptom // ignore: cast_nullable_to_non_nullable
+              as MedicalSymptomDto,
+    ));
+  }
+
+  /// Create a copy of HealthyState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MedicalSymptomDtoCopyWith<$Res> get medicalSymptom {
+    return $MedicalSymptomDtoCopyWith<$Res>(_value.medicalSymptom, (value) {
+      return _then(_value.copyWith(medicalSymptom: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+  const _$SuccessImpl(this.medicalSymptom);
+
+  @override
+  final MedicalSymptomDto medicalSymptom;
 
   @override
   String toString() {
-    return 'HealthyState.createSuccess()';
+    return 'HealthyState.createSuccess(medicalSymptom: $medicalSymptom)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            (identical(other.medicalSymptom, medicalSymptom) ||
+                other.medicalSymptom == medicalSymptom));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, medicalSymptom);
+
+  /// Create a copy of HealthyState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() createLoading,
-    required TResult Function() createSuccess,
+    required TResult Function(MedicalSymptomDto medicalSymptom) createSuccess,
     required TResult Function(String error) createFailure,
   }) {
-    return createSuccess();
+    return createSuccess(medicalSymptom);
   }
 
   @override
@@ -377,10 +417,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? createLoading,
-    TResult? Function()? createSuccess,
+    TResult? Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult? Function(String error)? createFailure,
   }) {
-    return createSuccess?.call();
+    return createSuccess?.call(medicalSymptom);
   }
 
   @override
@@ -388,12 +428,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? createLoading,
-    TResult Function()? createSuccess,
+    TResult Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult Function(String error)? createFailure,
     required TResult orElse(),
   }) {
     if (createSuccess != null) {
-      return createSuccess();
+      return createSuccess(medicalSymptom);
     }
     return orElse();
   }
@@ -437,7 +477,16 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements HealthyState {
-  const factory _Success() = _$SuccessImpl;
+  const factory _Success(final MedicalSymptomDto medicalSymptom) =
+      _$SuccessImpl;
+
+  MedicalSymptomDto get medicalSymptom;
+
+  /// Create a copy of HealthyState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -510,7 +559,7 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() createLoading,
-    required TResult Function() createSuccess,
+    required TResult Function(MedicalSymptomDto medicalSymptom) createSuccess,
     required TResult Function(String error) createFailure,
   }) {
     return createFailure(error);
@@ -521,7 +570,7 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? createLoading,
-    TResult? Function()? createSuccess,
+    TResult? Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult? Function(String error)? createFailure,
   }) {
     return createFailure?.call(error);
@@ -532,7 +581,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? createLoading,
-    TResult Function()? createSuccess,
+    TResult Function(MedicalSymptomDto medicalSymptom)? createSuccess,
     TResult Function(String error)? createFailure,
     required TResult orElse(),
   }) {

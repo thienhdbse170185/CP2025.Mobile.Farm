@@ -9,6 +9,7 @@ class TaskState with _$TaskState {
   const factory TaskState.taskCreated() = _TaskCreated;
   const factory TaskState.taskUpdated() = _TaskUpdated;
   const factory TaskState.taskDeleted() = _TaskDeleted;
+  const factory TaskState.getTasksInProgress() = _GetTasksInProgress;
   const factory TaskState.getTasksSuccess(
       Map<String, List<TaskHaveCageName>> tasks,
       List<CageFilter> cageList,
@@ -76,7 +77,7 @@ class TaskState with _$TaskState {
   const factory TaskState.getVaccinScheduleLogLoading() =
       _GetVaccinScheduleLogLoading;
   const factory TaskState.getVaccinScheduleLogSuccess(
-      VaccinScheduleLogDto log) = _GetVaccinScheduleLogSuccess;
+      VaccineScheduleLogDto log) = _GetVaccinScheduleLogSuccess;
   const factory TaskState.getVaccinScheduleLogFailure(String error) =
       _GetVaccinScheduleLogFailure;
   const factory TaskState.getHealthLogInformationLoading() =

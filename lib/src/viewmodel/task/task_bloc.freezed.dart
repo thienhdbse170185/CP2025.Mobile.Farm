@@ -44,7 +44,7 @@ mixin _$TaskEvent {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -83,7 +83,7 @@ mixin _$TaskEvent {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -122,7 +122,7 @@ mixin _$TaskEvent {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -302,7 +302,7 @@ class _$StartedImpl implements _Started {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -344,7 +344,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -386,7 +386,7 @@ class _$StartedImpl implements _Started {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -593,7 +593,7 @@ class _$CreateTaskImpl implements _CreateTask {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -635,7 +635,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -677,7 +677,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -901,7 +901,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -943,7 +943,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -985,7 +985,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -1202,7 +1202,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -1244,7 +1244,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -1286,7 +1286,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -1571,7 +1571,7 @@ class _$GetTasksImpl implements _GetTasks {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -1614,7 +1614,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -1657,7 +1657,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -1861,7 +1861,7 @@ class _$TestConnectImpl implements _TestConnect {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -1903,7 +1903,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -1945,7 +1945,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -2161,7 +2161,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -2203,7 +2203,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -2245,7 +2245,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -2462,7 +2462,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -2504,7 +2504,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -2546,7 +2546,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -2734,7 +2734,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -2776,7 +2776,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -2818,7 +2818,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -3036,7 +3036,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -3078,7 +3078,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -3120,7 +3120,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -3358,7 +3358,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -3400,7 +3400,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -3442,7 +3442,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -3686,7 +3686,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -3728,7 +3728,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -3770,7 +3770,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -4011,7 +4011,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -4053,7 +4053,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -4095,7 +4095,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -4226,9 +4226,9 @@ abstract class _$$CreateVaccinScheduleLogImplCopyWith<$Res> {
           $Res Function(_$CreateVaccinScheduleLogImpl) then) =
       __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String cageId, VaccinScheduleLogDto log});
+  $Res call({String cageId, VaccineScheduleLogDto log});
 
-  $VaccinScheduleLogDtoCopyWith<$Res> get log;
+  $VaccineScheduleLogDtoCopyWith<$Res> get log;
 }
 
 /// @nodoc
@@ -4256,7 +4256,7 @@ class __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>
       log: null == log
           ? _value.log
           : log // ignore: cast_nullable_to_non_nullable
-              as VaccinScheduleLogDto,
+              as VaccineScheduleLogDto,
     ));
   }
 
@@ -4264,8 +4264,8 @@ class __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $VaccinScheduleLogDtoCopyWith<$Res> get log {
-    return $VaccinScheduleLogDtoCopyWith<$Res>(_value.log, (value) {
+  $VaccineScheduleLogDtoCopyWith<$Res> get log {
+    return $VaccineScheduleLogDtoCopyWith<$Res>(_value.log, (value) {
       return _then(_value.copyWith(log: value));
     });
   }
@@ -4280,7 +4280,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
   @override
   final String cageId;
   @override
-  final VaccinScheduleLogDto log;
+  final VaccineScheduleLogDto log;
 
   @override
   String toString() {
@@ -4337,7 +4337,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -4379,7 +4379,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -4421,7 +4421,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -4532,11 +4532,12 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
 
 abstract class _CreateVaccinScheduleLog implements TaskEvent {
   const factory _CreateVaccinScheduleLog(
-      {required final String cageId,
-      required final VaccinScheduleLogDto log}) = _$CreateVaccinScheduleLogImpl;
+          {required final String cageId,
+          required final VaccineScheduleLogDto log}) =
+      _$CreateVaccinScheduleLogImpl;
 
   String get cageId;
-  VaccinScheduleLogDto get log;
+  VaccineScheduleLogDto get log;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -4641,7 +4642,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -4683,7 +4684,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -4725,7 +4726,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -4941,7 +4942,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -4983,7 +4984,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -5025,7 +5026,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -5242,7 +5243,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -5284,7 +5285,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -5326,7 +5327,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -5545,7 +5546,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -5587,7 +5588,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -5629,7 +5630,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -5899,7 +5900,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -5942,7 +5943,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -5985,7 +5986,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -6230,7 +6231,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         createDailyFoodUsageLog,
     required TResult Function(String prescriptionId, HealthLogDto log)
         createHealthLog,
-    required TResult Function(String cageId, VaccinScheduleLogDto log)
+    required TResult Function(String cageId, VaccineScheduleLogDto log)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -6272,7 +6273,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult? Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccinScheduleLogDto log)?
+    TResult? Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -6314,7 +6315,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult Function(String cageId, DailyFoodUsageLogDto log)?
         createDailyFoodUsageLog,
     TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccinScheduleLogDto log)?
+    TResult Function(String cageId, VaccineScheduleLogDto log)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -6449,6 +6450,7 @@ mixin _$TaskState {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -6493,7 +6495,7 @@ mixin _$TaskState {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -6518,6 +6520,7 @@ mixin _$TaskState {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -6560,7 +6563,7 @@ mixin _$TaskState {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -6584,6 +6587,7 @@ mixin _$TaskState {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -6626,7 +6630,7 @@ mixin _$TaskState {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -6650,6 +6654,7 @@ mixin _$TaskState {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -6740,6 +6745,7 @@ mixin _$TaskState {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -6822,6 +6828,7 @@ mixin _$TaskState {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -6966,6 +6973,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -7010,7 +7018,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -7038,6 +7046,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -7080,7 +7089,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -7107,6 +7116,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -7149,7 +7159,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -7179,6 +7189,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -7272,6 +7283,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -7357,6 +7369,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -7489,6 +7502,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -7533,7 +7547,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -7561,6 +7575,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -7603,7 +7618,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -7630,6 +7645,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -7672,7 +7688,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -7702,6 +7718,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -7795,6 +7812,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -7880,6 +7898,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -8012,6 +8031,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -8056,7 +8076,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -8084,6 +8104,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -8126,7 +8147,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -8153,6 +8174,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -8195,7 +8217,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -8225,6 +8247,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -8318,6 +8341,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -8403,6 +8427,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -8562,6 +8587,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -8606,7 +8632,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -8634,6 +8660,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -8676,7 +8703,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -8703,6 +8730,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -8745,7 +8773,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -8775,6 +8803,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -8868,6 +8897,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -8953,6 +8983,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -9093,6 +9124,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -9137,7 +9169,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -9165,6 +9197,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -9207,7 +9240,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -9234,6 +9267,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -9276,7 +9310,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -9306,6 +9340,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -9399,6 +9434,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -9484,6 +9520,7 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -9616,6 +9653,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -9660,7 +9698,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -9688,6 +9726,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -9730,7 +9769,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -9757,6 +9796,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -9799,7 +9839,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -9829,6 +9869,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -9922,6 +9963,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -10007,6 +10049,7 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -10139,6 +10182,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -10183,7 +10227,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -10211,6 +10255,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -10253,7 +10298,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -10280,6 +10325,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -10322,7 +10368,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -10352,6 +10398,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -10445,6 +10492,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -10530,6 +10578,7 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -10612,6 +10661,535 @@ class _$TaskDeletedImpl implements _TaskDeleted {
 
 abstract class _TaskDeleted implements TaskState {
   const factory _TaskDeleted() = _$TaskDeletedImpl;
+}
+
+/// @nodoc
+abstract class _$$GetTasksInProgressImplCopyWith<$Res> {
+  factory _$$GetTasksInProgressImplCopyWith(_$GetTasksInProgressImpl value,
+          $Res Function(_$GetTasksInProgressImpl) then) =
+      __$$GetTasksInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetTasksInProgressImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$GetTasksInProgressImpl>
+    implements _$$GetTasksInProgressImplCopyWith<$Res> {
+  __$$GetTasksInProgressImplCopyWithImpl(_$GetTasksInProgressImpl _value,
+      $Res Function(_$GetTasksInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetTasksInProgressImpl implements _GetTasksInProgress {
+  const _$GetTasksInProgressImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.getTasksInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetTasksInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
+        getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+    required TResult Function() getDailyFoodUsageLogLoading,
+    required TResult Function(DailyFoodUsageLogDto log)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(String error) getDailyFoodUsageLogFailure,
+    required TResult Function() getHealthLogLoading,
+    required TResult Function(HealthLogDto log) getHealthLogSuccess,
+    required TResult Function(String error) getHealthLogFailure,
+    required TResult Function() getVaccinScheduleLogLoading,
+    required TResult Function(VaccineScheduleLogDto log)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(String error) getVaccinScheduleLogFailure,
+    required TResult Function() getHealthLogInformationLoading,
+    required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
+    required TResult Function(String error) getHealthLogInformationFailure,
+    required TResult Function() getTasksByScanQRCodeLoading,
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(String error) getTasksByScanQRCodeFailure,
+    required TResult Function() updateMultipleTaskLoading,
+    required TResult Function() updateMultipleTaskSuccess,
+    required TResult Function(String error) updateMultipleTaskFailure,
+  }) {
+    return getTasksInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+    TResult? Function()? getDailyFoodUsageLogLoading,
+    TResult? Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? getDailyFoodUsageLogFailure,
+    TResult? Function()? getHealthLogLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult? Function(String error)? getHealthLogFailure,
+    TResult? Function()? getVaccinScheduleLogLoading,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(String error)? getVaccinScheduleLogFailure,
+    TResult? Function()? getHealthLogInformationLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult? Function(String error)? getHealthLogInformationFailure,
+    TResult? Function()? getTasksByScanQRCodeLoading,
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(String error)? getTasksByScanQRCodeFailure,
+    TResult? Function()? updateMultipleTaskLoading,
+    TResult? Function()? updateMultipleTaskSuccess,
+    TResult? Function(String error)? updateMultipleTaskFailure,
+  }) {
+    return getTasksInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    TResult Function()? getDailyFoodUsageLogLoading,
+    TResult Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult Function(String error)? getDailyFoodUsageLogFailure,
+    TResult Function()? getHealthLogLoading,
+    TResult Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult Function(String error)? getHealthLogFailure,
+    TResult Function()? getVaccinScheduleLogLoading,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(String error)? getVaccinScheduleLogFailure,
+    TResult Function()? getHealthLogInformationLoading,
+    TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult Function(String error)? getHealthLogInformationFailure,
+    TResult Function()? getTasksByScanQRCodeLoading,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(String error)? getTasksByScanQRCodeFailure,
+    TResult Function()? updateMultipleTaskLoading,
+    TResult Function()? updateMultipleTaskSuccess,
+    TResult Function(String error)? updateMultipleTaskFailure,
+    required TResult orElse(),
+  }) {
+    if (getTasksInProgress != null) {
+      return getTasksInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+    required TResult Function(_GetDailyFoodUsageLogLoading value)
+        getDailyFoodUsageLogLoading,
+    required TResult Function(_GetDailyFoodUsageLogSuccess value)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(_GetDailyFoodUsageLogFailure value)
+        getDailyFoodUsageLogFailure,
+    required TResult Function(_GetHealthLogLoading value) getHealthLogLoading,
+    required TResult Function(_GetHealthLogSuccess value) getHealthLogSuccess,
+    required TResult Function(_GetHealthLogFailure value) getHealthLogFailure,
+    required TResult Function(_GetVaccinScheduleLogLoading value)
+        getVaccinScheduleLogLoading,
+    required TResult Function(_GetVaccinScheduleLogSuccess value)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(_GetVaccinScheduleLogFailure value)
+        getVaccinScheduleLogFailure,
+    required TResult Function(_GetHealthLogInformationLoading value)
+        getHealthLogInformationLoading,
+    required TResult Function(_GetHealthLogInformationSuccess value)
+        getHealthLogInformationSuccess,
+    required TResult Function(_GetHealthLogInformationFailure value)
+        getHealthLogInformationFailure,
+    required TResult Function(_GetTasksByScanQRCodeLoading value)
+        getTasksByScanQRCodeLoading,
+    required TResult Function(_GetTasksByScanQRCodeSuccess value)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(_GetTasksByScanQRCodeFailure value)
+        getTasksByScanQRCodeFailure,
+    required TResult Function(_UpdateMultipleTaskLoading value)
+        updateMultipleTaskLoading,
+    required TResult Function(_UpdateMultipleTaskSuccess value)
+        updateMultipleTaskSuccess,
+    required TResult Function(_UpdateMultipleTaskFailure value)
+        updateMultipleTaskFailure,
+  }) {
+    return getTasksInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult? Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult? Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult? Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult? Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult? Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult? Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult? Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult? Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult? Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult? Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult? Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult? Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult? Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult? Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult? Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult? Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult? Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+  }) {
+    return getTasksInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+    required TResult orElse(),
+  }) {
+    if (getTasksInProgress != null) {
+      return getTasksInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetTasksInProgress implements TaskState {
+  const factory _GetTasksInProgress() = _$GetTasksInProgressImpl;
 }
 
 /// @nodoc
@@ -10735,6 +11313,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -10779,7 +11358,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -10807,6 +11386,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -10849,7 +11429,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -10876,6 +11456,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -10918,7 +11499,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -10948,6 +11529,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -11041,6 +11623,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -11126,6 +11709,7 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -11299,6 +11883,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -11343,7 +11928,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -11371,6 +11956,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -11413,7 +11999,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -11440,6 +12026,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -11482,7 +12069,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -11512,6 +12099,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -11605,6 +12193,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -11690,6 +12279,7 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -11830,6 +12420,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -11874,7 +12465,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -11902,6 +12493,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -11944,7 +12536,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -11971,6 +12563,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -12013,7 +12606,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -12043,6 +12636,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -12136,6 +12730,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -12221,6 +12816,7 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -12356,6 +12952,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -12400,7 +12997,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -12428,6 +13025,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -12470,7 +13068,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -12497,6 +13095,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -12539,7 +13138,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -12569,6 +13168,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -12662,6 +13262,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -12747,6 +13348,7 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -12917,6 +13519,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -12961,7 +13564,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -12989,6 +13592,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -13031,7 +13635,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -13058,6 +13662,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -13100,7 +13705,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -13130,6 +13735,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -13223,6 +13829,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -13308,6 +13915,7 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -13450,6 +14058,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -13494,7 +14103,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -13522,6 +14131,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -13564,7 +14174,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -13591,6 +14201,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -13633,7 +14244,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -13663,6 +14274,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -13756,6 +14368,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -13841,6 +14454,7 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -14021,6 +14635,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -14065,7 +14680,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -14093,6 +14708,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -14135,7 +14751,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -14162,6 +14778,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -14204,7 +14821,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -14234,6 +14851,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -14327,6 +14945,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -14412,6 +15031,7 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -14583,6 +15203,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -14627,7 +15248,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -14655,6 +15276,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -14697,7 +15319,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -14724,6 +15346,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -14766,7 +15389,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -14796,6 +15419,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -14889,6 +15513,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -14974,6 +15599,7 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -15115,6 +15741,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -15159,7 +15786,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -15187,6 +15814,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -15229,7 +15857,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -15256,6 +15884,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -15298,7 +15927,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -15328,6 +15957,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -15421,6 +16051,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -15506,6 +16137,7 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -15672,6 +16304,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -15716,7 +16349,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -15744,6 +16377,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -15786,7 +16420,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -15813,6 +16447,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -15855,7 +16490,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -15885,6 +16520,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -15978,6 +16614,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -16063,6 +16700,7 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -16232,6 +16870,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -16276,7 +16915,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -16304,6 +16943,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -16346,7 +16986,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -16373,6 +17013,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -16415,7 +17056,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -16445,6 +17086,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -16538,6 +17180,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -16623,6 +17266,7 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -16768,6 +17412,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -16812,7 +17457,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -16840,6 +17485,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -16882,7 +17528,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -16909,6 +17555,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -16951,7 +17598,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -16981,6 +17628,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -17074,6 +17722,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -17159,6 +17808,7 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -17351,6 +18001,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -17395,7 +18046,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -17423,6 +18074,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -17465,7 +18117,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -17492,6 +18144,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -17534,7 +18187,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -17564,6 +18217,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -17657,6 +18311,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -17742,6 +18397,7 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -17918,6 +18574,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -17962,7 +18619,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -17990,6 +18647,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -18032,7 +18690,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -18059,6 +18717,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -18101,7 +18760,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -18131,6 +18790,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -18224,6 +18884,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -18309,6 +18970,7 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -18452,6 +19114,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -18496,7 +19159,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -18524,6 +19187,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -18566,7 +19230,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -18593,6 +19257,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -18635,7 +19300,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -18665,6 +19330,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -18758,6 +19424,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -18843,6 +19510,7 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -19012,6 +19680,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -19056,7 +19725,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -19084,6 +19753,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -19126,7 +19796,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -19153,6 +19823,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -19195,7 +19866,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -19225,6 +19896,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -19318,6 +19990,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -19403,6 +20076,7 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -19574,6 +20248,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -19618,7 +20293,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -19646,6 +20321,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -19688,7 +20364,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -19715,6 +20391,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -19757,7 +20434,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -19787,6 +20464,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -19880,6 +20558,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -19965,6 +20644,7 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -20109,6 +20789,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -20153,7 +20834,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -20181,6 +20862,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -20223,7 +20905,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -20250,6 +20932,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -20292,7 +20975,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -20322,6 +21005,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -20415,6 +21099,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -20500,6 +21185,7 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -20635,6 +21321,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -20679,7 +21366,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -20707,6 +21394,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -20749,7 +21437,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -20776,6 +21464,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -20818,7 +21507,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -20848,6 +21537,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -20941,6 +21631,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -21026,6 +21717,7 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -21188,6 +21880,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -21232,7 +21925,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -21260,6 +21953,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -21302,7 +21996,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -21329,6 +22023,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -21371,7 +22066,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -21401,6 +22096,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -21494,6 +22190,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -21579,6 +22276,7 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -21724,6 +22422,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -21768,7 +22467,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -21796,6 +22495,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -21838,7 +22538,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -21865,6 +22565,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -21907,7 +22608,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -21937,6 +22638,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -22030,6 +22732,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -22115,6 +22818,7 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -22252,6 +22956,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -22296,7 +23001,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -22324,6 +23029,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -22366,7 +23072,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -22393,6 +23099,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -22435,7 +23142,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -22465,6 +23172,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -22558,6 +23266,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -22643,6 +23352,7 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -22808,6 +23518,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -22852,7 +23563,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -22880,6 +23591,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -22922,7 +23634,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -22949,6 +23661,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -22991,7 +23704,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -23021,6 +23734,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -23114,6 +23828,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -23199,6 +23914,7 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -23344,6 +24060,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -23388,7 +24105,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -23416,6 +24133,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -23458,7 +24176,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -23485,6 +24203,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -23527,7 +24246,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -23557,6 +24276,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -23650,6 +24370,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -23735,6 +24456,7 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -23870,6 +24592,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -23914,7 +24637,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -23942,6 +24665,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -23984,7 +24708,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -24011,6 +24735,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -24053,7 +24778,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -24083,6 +24808,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -24176,6 +24902,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -24261,6 +24988,7 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -24423,6 +25151,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -24467,7 +25196,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -24495,6 +25224,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -24537,7 +25267,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -24564,6 +25294,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -24606,7 +25337,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -24636,6 +25367,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -24729,6 +25461,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -24814,6 +25547,7 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -24959,6 +25693,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -25003,7 +25738,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -25031,6 +25766,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -25073,7 +25809,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -25100,6 +25836,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -25142,7 +25879,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -25172,6 +25909,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -25265,6 +26003,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -25350,6 +26089,7 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -25487,6 +26227,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -25531,7 +26272,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -25559,6 +26300,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -25601,7 +26343,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -25628,6 +26370,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -25670,7 +26413,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -25700,6 +26443,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -25793,6 +26537,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -25878,6 +26623,7 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -26043,6 +26789,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -26087,7 +26834,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -26115,6 +26862,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -26157,7 +26905,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -26184,6 +26932,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -26226,7 +26975,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -26256,6 +27005,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -26349,6 +27099,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -26434,6 +27185,7 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -26580,6 +27332,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -26624,7 +27377,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -26652,6 +27405,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -26694,7 +27448,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -26721,6 +27475,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -26763,7 +27518,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -26793,6 +27548,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -26886,6 +27642,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -26971,6 +27728,7 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -27147,6 +27905,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -27191,7 +27950,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -27219,6 +27978,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -27261,7 +28021,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -27288,6 +28048,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -27330,7 +28091,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -27360,6 +28121,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -27453,6 +28215,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -27538,6 +28301,7 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -27710,6 +28474,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -27754,7 +28519,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -27782,6 +28547,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -27824,7 +28590,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -27851,6 +28617,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -27893,7 +28660,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -27923,6 +28690,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -28016,6 +28784,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -28101,6 +28870,7 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -28243,6 +29013,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -28287,7 +29058,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -28315,6 +29086,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -28357,7 +29129,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -28384,6 +29156,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -28426,7 +29199,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -28456,6 +29229,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -28549,6 +29323,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -28634,6 +29409,7 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -28806,6 +29582,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -28850,7 +29627,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -28878,6 +29655,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -28920,7 +29698,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -28947,6 +29725,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -28989,7 +29768,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -29019,6 +29798,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -29112,6 +29892,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -29197,6 +29978,7 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -29366,6 +30148,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -29410,7 +30193,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -29438,6 +30221,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -29480,7 +30264,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -29507,6 +30291,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -29549,7 +30334,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -29579,6 +30364,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -29672,6 +30458,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -29757,6 +30544,7 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -29902,6 +30690,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -29946,7 +30735,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -29974,6 +30763,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -30016,7 +30806,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -30043,6 +30833,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -30085,7 +30876,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -30115,6 +30906,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -30208,6 +31000,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -30293,6 +31086,7 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -30385,9 +31179,9 @@ abstract class _$$GetVaccinScheduleLogSuccessImplCopyWith<$Res> {
           $Res Function(_$GetVaccinScheduleLogSuccessImpl) then) =
       __$$GetVaccinScheduleLogSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({VaccinScheduleLogDto log});
+  $Res call({VaccineScheduleLogDto log});
 
-  $VaccinScheduleLogDtoCopyWith<$Res> get log;
+  $VaccineScheduleLogDtoCopyWith<$Res> get log;
 }
 
 /// @nodoc
@@ -30410,7 +31204,7 @@ class __$$GetVaccinScheduleLogSuccessImplCopyWithImpl<$Res>
       null == log
           ? _value.log
           : log // ignore: cast_nullable_to_non_nullable
-              as VaccinScheduleLogDto,
+              as VaccineScheduleLogDto,
     ));
   }
 
@@ -30418,8 +31212,8 @@ class __$$GetVaccinScheduleLogSuccessImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $VaccinScheduleLogDtoCopyWith<$Res> get log {
-    return $VaccinScheduleLogDtoCopyWith<$Res>(_value.log, (value) {
+  $VaccineScheduleLogDtoCopyWith<$Res> get log {
+    return $VaccineScheduleLogDtoCopyWith<$Res>(_value.log, (value) {
       return _then(_value.copyWith(log: value));
     });
   }
@@ -30432,7 +31226,7 @@ class _$GetVaccinScheduleLogSuccessImpl
   const _$GetVaccinScheduleLogSuccessImpl(this.log);
 
   @override
-  final VaccinScheduleLogDto log;
+  final VaccineScheduleLogDto log;
 
   @override
   String toString() {
@@ -30469,6 +31263,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -30513,7 +31308,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -30541,6 +31336,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -30583,7 +31379,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -30610,6 +31406,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -30652,7 +31449,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -30682,6 +31479,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -30775,6 +31573,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -30860,6 +31659,7 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -30941,10 +31741,10 @@ class _$GetVaccinScheduleLogSuccessImpl
 }
 
 abstract class _GetVaccinScheduleLogSuccess implements TaskState {
-  const factory _GetVaccinScheduleLogSuccess(final VaccinScheduleLogDto log) =
+  const factory _GetVaccinScheduleLogSuccess(final VaccineScheduleLogDto log) =
       _$GetVaccinScheduleLogSuccessImpl;
 
-  VaccinScheduleLogDto get log;
+  VaccineScheduleLogDto get log;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -31032,6 +31832,7 @@ class _$GetVaccinScheduleLogFailureImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -31076,7 +31877,7 @@ class _$GetVaccinScheduleLogFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -31104,6 +31905,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -31146,7 +31948,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -31173,6 +31975,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -31215,7 +32018,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -31245,6 +32048,7 @@ class _$GetVaccinScheduleLogFailureImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -31338,6 +32142,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -31423,6 +32228,7 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -31568,6 +32374,7 @@ class _$GetHealthLogInformationLoadingImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -31612,7 +32419,7 @@ class _$GetHealthLogInformationLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -31640,6 +32447,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -31682,7 +32490,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -31709,6 +32517,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -31751,7 +32560,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -31781,6 +32590,7 @@ class _$GetHealthLogInformationLoadingImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -31874,6 +32684,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -31959,6 +32770,7 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -32136,6 +32948,7 @@ class _$GetHealthLogInformationSuccessImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -32180,7 +32993,7 @@ class _$GetHealthLogInformationSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -32208,6 +33021,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -32250,7 +33064,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -32277,6 +33091,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -32319,7 +33134,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -32349,6 +33164,7 @@ class _$GetHealthLogInformationSuccessImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -32442,6 +33258,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -32527,6 +33344,7 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -32701,6 +33519,7 @@ class _$GetHealthLogInformationFailureImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -32745,7 +33564,7 @@ class _$GetHealthLogInformationFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -32773,6 +33592,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -32815,7 +33635,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -32842,6 +33662,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -32884,7 +33705,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -32914,6 +33735,7 @@ class _$GetHealthLogInformationFailureImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -33007,6 +33829,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -33092,6 +33915,7 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -33238,6 +34062,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -33282,7 +34107,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -33310,6 +34135,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -33352,7 +34178,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -33379,6 +34205,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -33421,7 +34248,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -33451,6 +34278,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -33544,6 +34372,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -33629,6 +34458,7 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -33819,6 +34649,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -33863,7 +34694,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -33891,6 +34722,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -33933,7 +34765,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -33960,6 +34792,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -34002,7 +34835,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -34032,6 +34865,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -34125,6 +34959,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -34210,6 +35045,7 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -34383,6 +35219,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -34427,7 +35264,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -34455,6 +35292,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -34497,7 +35335,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -34524,6 +35362,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -34566,7 +35405,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -34596,6 +35435,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -34689,6 +35529,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -34774,6 +35615,7 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -34918,6 +35760,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -34962,7 +35805,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -34990,6 +35833,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -35032,7 +35876,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -35059,6 +35903,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -35101,7 +35946,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -35131,6 +35976,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -35224,6 +36070,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -35309,6 +36156,7 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -35444,6 +36292,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -35488,7 +36337,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -35516,6 +36365,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -35558,7 +36408,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -35585,6 +36435,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -35627,7 +36478,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -35657,6 +36508,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -35750,6 +36602,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -35835,6 +36688,7 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -35997,6 +36851,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     required TResult Function() taskCreated,
     required TResult Function() taskUpdated,
     required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
     required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)
         getTasksSuccess,
@@ -36041,7 +36896,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     required TResult Function(HealthLogDto log) getHealthLogSuccess,
     required TResult Function(String error) getHealthLogFailure,
     required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccinScheduleLogDto log)
+    required TResult Function(VaccineScheduleLogDto log)
         getVaccinScheduleLogSuccess,
     required TResult Function(String error) getVaccinScheduleLogFailure,
     required TResult Function() getHealthLogInformationLoading,
@@ -36069,6 +36924,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function()? taskCreated,
     TResult? Function()? taskUpdated,
     TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
     TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -36111,7 +36967,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function(HealthLogDto log)? getHealthLogSuccess,
     TResult? Function(String error)? getHealthLogFailure,
     TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult? Function(String error)? getVaccinScheduleLogFailure,
     TResult? Function()? getHealthLogInformationLoading,
     TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -36138,6 +36994,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function()? taskCreated,
     TResult Function()? taskUpdated,
     TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
     TResult Function(Map<String, List<TaskHaveCageName>> tasks,
             List<CageFilter> cageList, List<TaskType> taskTypeList)?
         getTasksSuccess,
@@ -36180,7 +37037,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function(HealthLogDto log)? getHealthLogSuccess,
     TResult Function(String error)? getHealthLogFailure,
     TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccinScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
     TResult Function(String error)? getVaccinScheduleLogFailure,
     TResult Function()? getHealthLogInformationLoading,
     TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
@@ -36210,6 +37067,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     required TResult Function(_TaskCreated value) taskCreated,
     required TResult Function(_TaskUpdated value) taskUpdated,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
     required TResult Function(_GetTasksSuccess value) getTasksSuccess,
     required TResult Function(_GetTasksFailure value) getTasksFailure,
     required TResult Function(_TestConnectSuccess value) testConnectSuccess,
@@ -36303,6 +37161,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function(_TaskCreated value)? taskCreated,
     TResult? Function(_TaskUpdated value)? taskUpdated,
     TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult? Function(_GetTasksFailure value)? getTasksFailure,
     TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
@@ -36388,6 +37247,7 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function(_TaskCreated value)? taskCreated,
     TResult Function(_TaskUpdated value)? taskUpdated,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
     TResult Function(_GetTasksSuccess value)? getTasksSuccess,
     TResult Function(_GetTasksFailure value)? getTasksFailure,
     TResult Function(_TestConnectSuccess value)? testConnectSuccess,
