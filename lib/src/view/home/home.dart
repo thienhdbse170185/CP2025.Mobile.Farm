@@ -8,9 +8,9 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
-import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
+import 'package:smart_farm/src/view/widgets/avatar_round.dart';
+import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 
@@ -34,8 +34,14 @@ class HomeFeatures {
       required this.routeName});
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
-  List<NextTask> cages = [];
+class _HomeWidgetState extends State<HomeWidget>
+    with SingleTickerProviderStateMixin {
+  final List<NextTask> _nextTaskList = [];
+  bool? _isProcessing = false;
+  bool? _isError = false;
+  String? _userName = '';
+
+  late AnimationController _controller;
 
   final List<HomeFeatures> features = [
     HomeFeatures(
@@ -49,42 +55,109 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
     context.read<AuthBloc>().add(const AuthEvent.appStarted());
     context.read<TimeBloc>().add(const TimeEvent.getServerTime());
-    context.read<TaskBloc>().add(const TaskEvent.getNextTask());
+    context.read<UserBloc>().add(const UserEvent.getUserProfile());
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Get the current date and format it
-    // final String formattedDate =
-    //     DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
-
-    return BlocListener<TaskBloc, TaskState>(
-      listener: (context, state) {
-        state.maybeWhen(
-          getNextTaskSuccess: (tasks) {
-            log('Lấy danh sách chuồng thành công!');
-            LoadingDialog.hide(context);
-            setState(() {
-              cages = tasks;
-            });
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+          state.maybeWhen(
+            appStartedInProgress: () {
+              setState(() {
+                _isProcessing = true;
+              });
+            },
+            appStartedSuccess: () {
+              log('App started successfully!');
+              context.read<UserBloc>().add(const UserEvent.updateDeviceToken());
+            },
+            appStartedFailure: (error) {
+              log('App started failed: $error');
+              setState(() {
+                _isProcessing = false;
+              });
+            },
+            orElse: () {},
+          );
+        }),
+        BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              updateDeviceTokenInProgress: () {
+                log('Đang cập nhật token thiết bị...');
+              },
+              updateDeviceTokenSuccess: () {
+                log('Cập nhật token thiết bị thành công!');
+                SnackBar(
+                  content: const Text('Cập nhật token thiết bị thành công!'),
+                  backgroundColor: Colors.green,
+                );
+                context.read<TaskBloc>().add(const TaskEvent.getNextTask());
+              },
+              updateDeviceTokenFailure: (error) {
+                log('Lỗi khi cập nhật token thiết bị: $error');
+              },
+              getUserProfileInProgress: () {
+                log('Đang lấy thông tin user...');
+              },
+              getUserProfileSuccess: (userName, email) {
+                log('Lấy thông tin user thành công: $userName - $email');
+                setState(() {
+                  _userName = userName;
+                });
+              },
+              getUserProfileFailure: (error) {
+                log('Lấy thông tin user thất bại: $error');
+              },
+              orElse: () {},
+            );
           },
-          getNextTaskLoading: () {
-            log('Đang tải dữ liệu...');
-            LoadingDialog.show(context, "Đang tải dữ liệu...");
+        ),
+        BlocListener<TaskBloc, TaskState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getNextTaskLoading: () {
+                log('Đang tải danh sách các công việc tiếp theo...');
+                setState(() {
+                  _isProcessing = true;
+                });
+              },
+              getNextTaskSuccess: (nextTaskList) {
+                log('Tải danh sách công việc tiếp theo thành công!');
+                setState(() {
+                  _nextTaskList.clear();
+                  _nextTaskList.addAll(nextTaskList);
+                  _isProcessing = false;
+                });
+              },
+              getNextTaskFailure: (error) {
+                log('Lỗi khi tải danh sách công việc tiếp theo: $error');
+                setState(() {
+                  _isProcessing = false;
+                  _isError = true;
+                });
+              },
+              orElse: () {},
+            );
           },
-          getNextTaskFailure: (error) {
-            log('Lỗi khi tải dữ liệu: $error');
-            LoadingDialog.hide(context);
-          },
-          testConnectSuccess: () {
-            log('Kết nối thành công!');
-            LoadingDialog.hide(context);
-          },
-          orElse: () {},
-        );
-      },
+        )
+      ],
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -136,12 +209,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .outline)),
-                            Text('Bảo Thiên',
+                            Text(_userName ?? 'Đang tải...',
                                 style: Theme.of(context).textTheme.titleSmall),
                             // Display the formatted date here
                             StreamBuilder(
                               stream:
-                                  Stream.periodic(const Duration(minutes: 1)),
+                                  Stream.periodic(const Duration(seconds: 10)),
                               builder: (context, snapshot) {
                                 return Text(
                                   DateFormat('HH:mm, dd/MM/yyyy')
@@ -153,21 +226,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ],
                         ),
                         const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.all(2),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 2,
-                            ),
-                          ),
-                          child: const CircleAvatar(
-                            radius: 20,
-                            backgroundImage:
-                                AssetImage('assets/images/avatar.png'),
-                          ),
-                        ),
+                        AvatarRoundWidget(),
                       ],
                     ),
                   ),
@@ -179,6 +238,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   top: MediaQuery.of(context).size.height * 0.165),
               child: RefreshIndicator(
                 onRefresh: () async {
+                  setState(() {
+                    _isError = false;
+                  });
+                  context.read<TimeBloc>().add(const TimeEvent.getServerTime());
                   context.read<TaskBloc>().add(const TaskEvent.getNextTask());
                   return;
                 },
@@ -244,7 +307,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                       const SizedBox(height: 16),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -252,190 +315,119 @@ class _HomeWidgetState extends State<HomeWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text(
-                                  'Chuồng được cung cấp',
+                                  'Công việc tiếp theo',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18),
+                                      fontSize: 16),
                                 ),
                                 IconButton(
                                     onPressed: () {
+                                      setState(() {
+                                        _isError = false;
+                                      });
                                       context
                                           .read<TaskBloc>()
                                           .add(const TaskEvent.getNextTask());
+                                      context.read<UserBloc>().add(
+                                          const UserEvent.getUserProfile());
+                                      context
+                                          .read<TimeBloc>()
+                                          .add(const TimeEvent.getServerTime());
+                                      context.read<UserBloc>().add(
+                                          const UserEvent.updateDeviceToken());
                                     },
                                     icon: LinearIcons.refreshIcon)
                               ],
                             ),
-                            ListView.builder(
-                              padding: const EdgeInsets.only(top: 8),
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: cages.isEmpty ? 1 : cages.length,
-                              itemBuilder: (context, index) {
-                                if (cages.isEmpty) {
-                                  return Center(
-                                    child: Text(
-                                      'Hôm nay bạn không có công việc.',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
-                                    ),
-                                  );
-                                }
-                                final cage = cages[index];
-                                return Column(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        context.push(RouteName.cage, extra: {
-                                          'cageId': cage.cageId,
-                                        });
-                                      },
-                                      child: Card(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/images/line_background.png'),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          LinearIcons
-                                                              .chickenIcon,
-                                                          const SizedBox(
-                                                              width: 8),
-                                                          Text(
-                                                            cage.cagename,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .titleMedium
-                                                                ?.copyWith(
-                                                                    color: Colors
-                                                                        .white),
-                                                          )
-                                                        ],
-                                                      ),
-                                                      const SizedBox(height: 8),
-                                                      Text(
-                                                        'Task tiếp theo:',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium
-                                                            ?.copyWith(
-                                                                color: Colors
-                                                                    .white70),
-                                                      ),
-                                                      const SizedBox(height: 4),
-                                                      SizedBox(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.6,
-                                                        child: Row(
-                                                          children: [
-                                                            const Icon(
-                                                                Icons.circle,
-                                                                size: 8,
-                                                                color: Colors
-                                                                    .white),
-                                                            const SizedBox(
-                                                                width: 8),
-                                                            Expanded(
-                                                              child: Text(
-                                                                cage.taskName,
-                                                                style: const TextStyle(
-                                                                    color: Colors
-                                                                        .white),
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .visible,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            'Tiến độ công việc',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .titleMedium
-                                                                ?.copyWith(
-                                                                    color: Colors
-                                                                        .white),
-                                                          ),
-                                                          Text(
-                                                            "${cage.taskDone}/${cage.total}",
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .titleMedium
-                                                                ?.copyWith(
-                                                                    color: Colors
-                                                                        .white),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      const SizedBox(height: 8),
-                                                      LinearProgressIndicator(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        value: cage.taskDone /
-                                                            cage.total,
-                                                        backgroundColor:
-                                                            Colors.white30,
-                                                        valueColor:
-                                                            const AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                                Colors.white),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 16),
-                                                Lottie.asset(
-                                                  'assets/animations/chicken_adult.json',
-                                                  width: 100,
-                                                  height: 100,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
+                            if (_isProcessing == true)
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              )
+                            else if (_nextTaskList.isNotEmpty)
+                              _buildNextTaskList(nextTaskList: _nextTaskList)
+                            else if (_isError == true)
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.error_outline,
+                                          color: Colors.red, size: 48),
+                                      const SizedBox(height: 16),
+                                      Text(
+                                        'Lỗi khi tải dữ liệu. Vui lòng thử lại.',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                        textAlign: TextAlign.center,
                                       ),
-                                    ),
-                                    const SizedBox(height: 8)
-                                  ],
-                                );
-                              },
-                            ),
+                                      const SizedBox(height: 16),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          context.read<TaskBloc>().add(
+                                                const TaskEvent.getNextTask(),
+                                              );
+                                        },
+                                        child: const Text('Thử lại'),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            else if (_isError == false)
+                              Center(
+                                  child: Column(children: [
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const SizedBox(height: 24),
+                                      LinearIcons.emptyBoxIcon,
+                                      const SizedBox(height: 16),
+                                      Text('Không có việc',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        'Hôm nay bạn không có công việc.',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      ElevatedButton(
+                                          onPressed: () {},
+                                          child: const Text(
+                                              'Xem công việc ngày mai'))
+                                    ],
+                                  ),
+                                ),
+                              ]))
+                            else
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircularProgressIndicator(),
+                                      const SizedBox(height: 24),
+                                      const Text(
+                                          'Đang chuẩn bị dữ liệu, vui lòng đợi...')
+                                    ],
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       )
@@ -446,14 +438,215 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
           ],
         ),
-        // floatingActionButton: FloatingActionButton.extended(
-        //   onPressed: () {
-        //     context.push(RouteName.symptom);
-        //   },
-        //   icon: LinearIcons.addCircleIcon,
-        //   label: const Text('Báo bệnh'),
         // )
       ),
+    );
+  }
+
+  Widget _buildNextTaskList({required List<NextTask> nextTaskList}) {
+    return ListView.builder(
+      padding: const EdgeInsets.only(top: 8),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: nextTaskList.isEmpty ? 1 : nextTaskList.length,
+      itemBuilder: (context, index) {
+        if (nextTaskList.isEmpty) {
+          return Center(
+            child: Text(
+              'Hôm nay bạn không có công việc.',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          );
+        }
+        final nextTask = nextTaskList[index];
+        return Column(
+          children: [
+            if (nextTask.taskName != "No Task Available") ...[
+              Card(
+                color: Theme.of(context).colorScheme.primary,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/line_background.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  LinearIcons.chickenIcon,
+                                  const SizedBox(width: 8),
+                                  GestureDetector(
+                                    onTap: () {
+                                      context.push(RouteName.cage, extra: {
+                                        'cageId': nextTask.cageId,
+                                      });
+                                    },
+                                    child: Text(
+                                      nextTask.cagename,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(color: Colors.white),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Công việc tiếp theo:',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(color: Colors.white70),
+                              ),
+                              const SizedBox(height: 4),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.circle,
+                                        size: 8, color: Colors.white),
+                                    const SizedBox(width: 8),
+                                    GestureDetector(
+                                      onTap: () {
+                                        context
+                                            .push(RouteName.taskDetail, extra: {
+                                          'taskId': nextTask.taskId,
+                                        });
+                                      },
+                                      child: Text(
+                                        nextTask.taskName,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                        overflow: TextOverflow.visible,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Tiến độ công việc',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "${nextTask.taskDone}/${nextTask.total}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              LinearProgressIndicator(
+                                borderRadius: BorderRadius.circular(10),
+                                value: nextTask.taskDone / nextTask.total,
+                                backgroundColor: Colors.white30,
+                                valueColor: const AlwaysStoppedAnimation<Color>(
+                                    Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Lottie.asset(
+                          'assets/animations/chicken_adult.json',
+                          width: 100,
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ] else ...[
+              if (nextTask.total != 0) ...[
+                Center(
+                    child: Column(children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Lottie.asset(
+                          'assets/animations/success.json',
+                          controller: _controller,
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.contain,
+                          onLoaded: (composition) {
+                            _controller
+                              ..duration = composition.duration
+                              ..forward();
+                          },
+                        ),
+                        Text(
+                          'Chúc mừng!',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Bạn đã làm hết công việc hôm nay',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Xem công việc đã làm'))
+                      ],
+                    ),
+                  ),
+                ])),
+              ] else ...[
+                Center(
+                    child: Column(children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LinearIcons.emptyBoxIcon,
+                        const SizedBox(height: 16),
+                        Text('Không có việc',
+                            style: Theme.of(context).textTheme.titleLarge),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Hôm nay bạn không có công việc.',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Xem công việc ngày mai'))
+                      ],
+                    ),
+                  ),
+                ])),
+              ],
+            ],
+            const SizedBox(height: 8)
+          ],
+        );
+      },
     );
   }
 }

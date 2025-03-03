@@ -10,6 +10,7 @@ class TextFieldRequired extends StatefulWidget {
       this.onTap,
       this.isDisabled,
       this.controller,
+      this.helperText,
       this.content,
       this.isReadOnly = false,
       this.isObscureText = false, // Add this line
@@ -32,6 +33,7 @@ class TextFieldRequired extends StatefulWidget {
   final bool? isRequired;
   final bool isObscureText; // Add this line
   final bool isPassword;
+  final String? helperText;
 
   @override
   State<TextFieldRequired> createState() => _TextFieldRequiredState();
@@ -95,6 +97,7 @@ class _TextFieldRequiredState extends State<TextFieldRequired> {
                     ? Icons.visibility_off_rounded
                     : Icons.visibility_rounded))
             : widget.suffixIcon, // Hiển thị suffixIcon
+        helperText: widget.helperText,
       ),
       obscureText: _isObscureText,
     );

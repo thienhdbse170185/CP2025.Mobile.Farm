@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
@@ -21,14 +22,16 @@ class MedicalSymptomCubit extends Cubit<MedicalSymptomState> {
       final userId = box.get(UserDataConstant.userIdKey);
       final farmingBatches =
           await farmingBatchRepository.getFarmingBatchesByUserId(userId);
-      List<MedicalSymptomDto> medicalSymptoms = [];
+      List<MedicalSymptomResponse> medicalSymptoms = [];
 
       for (var batch in farmingBatches) {
         final batchSymptoms = await repository.getSymptomsByBatch(
           userId,
           batch.id,
         );
-        medicalSymptoms.addAll(batchSymptoms);
+        if (batchSymptoms != null) {
+          medicalSymptoms.addAll(batchSymptoms);
+        }
       }
 
       // Sort by createAt in descending order (newest first)

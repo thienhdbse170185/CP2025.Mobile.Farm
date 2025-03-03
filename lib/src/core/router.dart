@@ -1,8 +1,12 @@
-import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
+import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
+import 'package:smart_farm/src/view/auth/change_password.dart';
+import 'package:smart_farm/src/view/auth/change_password_newbie.dart';
+import 'package:smart_farm/src/view/auth/forgot_password.dart';
+import 'package:smart_farm/src/view/auth/otp_verify.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
 import 'package:smart_farm/src/view/notification/test.dart';
@@ -15,9 +19,9 @@ import 'package:smart_farm/src/view/symptom/symptom_detail.dart';
 import 'package:smart_farm/src/view/symptom/symptom_search.dart';
 import 'package:smart_farm/src/view/symptom/symptom_success.dart';
 import 'package:smart_farm/src/view/task/task.dart';
+import 'package:smart_farm/src/view/task/task_demo_widget.dart';
 import 'package:smart_farm/src/view/task/task_history.dart';
 import 'package:smart_farm/src/view/task/task_qr_code.dart';
-import 'package:smart_farm/src/view/test_widget.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -49,12 +53,19 @@ class RouteName {
   static const String testNotification = '/test-notification';
   static const String taskQRCode = '/task-qr-code';
   static const String testWidget = '/test-widget';
+  static const String forgotPassword = '/forgot-password';
+  static const String otpVerification = '/otp-verification';
+  static const String changePasswordNewbie = '/change-password-newbie';
+  static const String changePassword = '/change-password';
 
   static const publicRoutes = [
     welcome,
     support,
     newbie,
     login,
+    forgotPassword,
+    otpVerification,
+    changePasswordNewbie,
   ];
 }
 
@@ -254,7 +265,7 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             final symptom = state.extra as Map<String, dynamic>;
             return _buildPageWithSlideTransition(SymptomDetailWidget(
-              symptom: symptom['symptom'] as MedicalSymptomDto,
+              symptom: symptom['symptom'] as MedicalSymptomResponse,
             ));
           }),
 
@@ -269,9 +280,12 @@ final router = GoRouter(
       GoRoute(
         path: RouteName.symptomSuccess,
         pageBuilder: (context, state) {
-          final symptom = state.extra as MedicalSymptomDto;
+          final extra = state.extra as Map<String, dynamic>;
           return _buildPageWithSlideTransition(
-            SymptomSuccessWidget(symptom: symptom),
+            SymptomSuccessWidget(
+              symptom: extra['symptom'] as MedicalSymptomResponse,
+              cageName: extra['cageName'] as String,
+            ),
           );
         },
       ),
@@ -303,6 +317,42 @@ final router = GoRouter(
       GoRoute(
           path: RouteName.testWidget,
           pageBuilder: (context, state) {
-            return _buildPageWithSlideTransition(const TestWidget());
+            return _buildPageWithSlideTransition(const TaskDemoWidget());
+          }),
+
+      GoRoute(
+          path: RouteName.forgotPassword,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(const ForgotPasswordScreen());
+          }),
+
+      GoRoute(
+          path: RouteName.otpVerification,
+          pageBuilder: (context, state) {
+            final params = state.extra as Map<String, dynamic>;
+            final email = params['email'] as String;
+            // 0: forgot password, 1: change password newbie, 2: change password, 3: verify_account
+            final otpType = params['otpType'] as int;
+            final oldPassword = params['oldPassword'] as String?;
+            final newPassword = params['newPassword'] as String?;
+            return _buildPageWithSlideTransition(OtpVerifyScreen(
+              email: email,
+              otpType: otpType,
+              oldPassword: oldPassword,
+              newPassword: newPassword,
+            ));
+          }),
+
+      GoRoute(
+          path: RouteName.changePasswordNewbie,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(
+                const ChangePasswordNewbieScreen());
+          }),
+
+      GoRoute(
+          path: RouteName.changePassword,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(const ChangePasswordScreen());
           }),
     ]);

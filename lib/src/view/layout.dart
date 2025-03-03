@@ -1,13 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/model/destination.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
+import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/view/widgets/qr_scanner.dart';
-import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 
 class LayoutScaffold extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -20,40 +19,16 @@ class LayoutScaffold extends StatefulWidget {
 }
 
 class _LayoutScaffoldState extends State<LayoutScaffold> {
-  List<CageOption> _cages = [];
+  final List<CageOption> _cages = [];
 
   @override
   void initState() {
     super.initState();
-    context.read<CageCubit>().getCagesByUserId();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CageCubit, CageState>(
-      listener: (context, state) {
-        state.maybeWhen(
-          loadByUserIdInProgress: () {
-            log("Đang lấy thông tin chuồng...");
-          },
-          loadByUserIdSuccess: (cages) {
-            log("Lấy thông tin chuồng thành công");
-            setState(() {
-              _cages = cages
-                  .map((cage) => CageOption(id: cage.id, name: cage.name))
-                  .toList();
-            });
-          },
-          loadByUserIdFailure: (error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Lỗi fetch chuồng: //'),
-              ),
-            );
-          },
-          orElse: () {},
-        );
-      },
+    return AdaptiveSafeArea(
       child: Scaffold(
         body: widget.navigationShell,
         bottomNavigationBar: NavigationBar(

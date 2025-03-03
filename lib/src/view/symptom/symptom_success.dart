@@ -1,4 +1,4 @@
-import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
+import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -7,11 +7,13 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
 
 class SymptomSuccessWidget extends StatefulWidget {
-  final MedicalSymptomDto symptom;
+  final MedicalSymptomResponse symptom;
+  final String cageName;
 
   const SymptomSuccessWidget({
     super.key,
     required this.symptom,
+    required this.cageName,
   });
 
   @override
@@ -181,19 +183,19 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                         children: [
                           _buildDetailRow(
                             'Chuồng nuôi',
-                            widget.symptom.id,
+                            widget.cageName,
                             LinearIcons.chickenIconMedium,
                           ),
                           const SizedBox(height: 16),
                           _buildDetailRow(
                             'Số lượng bị bệnh',
-                            '${widget.symptom.affectedQuantity}/${widget.symptom.quantity} con',
+                            '${widget.symptom.affectedQuantity}/${widget.symptom.quantity! - widget.symptom.affectedQuantity} con',
                             LinearIcons.warningAboutIcon,
                           ),
                           const SizedBox(height: 16),
                           _buildDetailRow(
                             'Triệu chứng',
-                            widget.symptom.symtom,
+                            widget.symptom.symtom ?? "",
                             Image.asset('assets/images/corona-virus.png',
                                 width: 32),
                           ),
@@ -232,16 +234,10 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
               Expanded(
                 child: OutlinedButton(
                   onPressed: () => context.go(RouteName.home),
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 52),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
                   child: const Text('Về trang chủ'),
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 8),
               Expanded(
                 child: FilledButton(
                   onPressed: () {
@@ -249,12 +245,6 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                       'cageName': widget.symptom.id,
                     });
                   },
-                  style: FilledButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 52),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
                   child: const Text('Tạo báo cáo mới'),
                 ),
               ),

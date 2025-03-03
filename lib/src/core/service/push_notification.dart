@@ -43,6 +43,15 @@ class PushNotifications {
     }
   }
 
+  // static Future<void> forceRefreshToken() async {
+  //   await FirebaseMessaging.instance.deleteToken(); // Xóa token cũ
+  //   log("⚠️ Token cũ đã bị xóa");
+
+  //   String? newToken =
+  //       await FirebaseMessaging.instance.getToken(); // Lấy token mới
+  //   log("✅ Token mới: $newToken");
+  // }
+
   // Initialize local notifications
   static Future<void> localNotiInit() async {
     const AndroidInitializationSettings initializationSettingsAndroid =

@@ -18,4 +18,11 @@ class GrowthStageState with _$GrowthStageState {
       _GetRecommendedWeightByCageIdSuccess;
   const factory GrowthStageState.getRecommendedWeightByCageIdFailure(
       String error) = _GetRecommendedWeightByCageIdFailure;
+
+  const factory GrowthStageState.updateWeightInProgress() =
+      _UpdateWeightInProgress;
+  const factory GrowthStageState.updateWeightSuccess(bool result) =
+      _UpdateWeightSuccess;
+  const factory GrowthStageState.updateWeightFailure(String error) =
+      _UpdateWeightFailure;
 }

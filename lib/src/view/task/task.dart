@@ -8,13 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
-import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 import 'package:smart_farm/src/view/widgets/task_list.dart';
-import 'package:smart_farm/src/viewmodel/task/task_bloc.dart'; // Import the TaskCard widget
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/time/time_bloc.dart'; // Import the TaskCard widget
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({super.key});
@@ -25,10 +25,11 @@ class TaskWidget extends StatefulWidget {
 
 class _TaskWidgetState extends State<TaskWidget>
     with SingleTickerProviderStateMixin {
-  DateTime selectedDate = DateTime.now(); // Store the selected date
+  DateTime selectedDate = TimeUtils.customNow(); // Store the selected date
   String selectedFilter = 'Tất cả'; // Default filter
   List<CageFilter> availableCageFilters = []; // List of available cage filters
   Map<String, List<TaskHaveCageName>> taskSorted = {}; // Updated to Map
+  bool _isProcessing = false;
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -136,14 +137,8 @@ class _TaskWidgetState extends State<TaskWidget>
     },
   ];
 
-  // Animation controllers
-  late AnimationController _animationController;
-  late Animation<double> _slideAnimation;
-
   // Thêm các biến để kiểm soát hiển thị và animation
   final ScrollController _scrollController = ScrollController();
-  bool _showSearchAndFilter = true;
-  double _lastOffset = 0;
 
   // Function to format the selected date to a string (e.g., "Nov 19, 2024")
   String get formattedDate {
@@ -158,7 +153,7 @@ class _TaskWidgetState extends State<TaskWidget>
 
   // Function to check if the selected date is today
   bool get isToday {
-    final DateTime now = DateTime.now();
+    final DateTime now = TimeUtils.customNow();
     return selectedDate.year == now.year &&
         selectedDate.month == now.month &&
         selectedDate.day == now.day;
@@ -188,34 +183,14 @@ class _TaskWidgetState extends State<TaskWidget>
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_onScroll);
-
-    // Khởi tạo animation controller
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-
-    // Tạo animation slide
-    _slideAnimation = Tween<double>(
-      begin: 0,
-      end:
-          -140, // Điều chỉnh giá trị này tùy theo chiều cao của phần search và filter
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
-
-    // Khởi động với trạng thái hiện
-    _animationController.value = 0;
+    // _scrollController.addListener(_onScroll);
 
     // Fetch tasks for the selected date when the widget is initialized
     // context
     //     .read<TaskBloc>()
     //     .add(TaskEvent.getTasksByUserIdAndDate(DateTime.now(), null));
-    context
-        .read<TaskBloc>()
-        .add(TaskEvent.getTasks('', '', '', '', DateTime.now(), null, 1, 20));
+    context.read<TaskBloc>().add(
+        TaskEvent.getTasks('', '', '', '', TimeUtils.customNow(), null, 1, 20));
     _refreshTasks();
   }
 
@@ -234,28 +209,11 @@ class _TaskWidgetState extends State<TaskWidget>
 
   @override
   void dispose() {
-    _animationController.dispose();
-    _scrollController.removeListener(_onScroll);
+    // _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
     _searchController.dispose();
     _debounce?.cancel();
     super.dispose();
-  }
-
-  void _onScroll() {
-    final currentOffset = _scrollController.offset;
-    if (currentOffset < 0) return;
-
-    if (currentOffset > _lastOffset &&
-        _showSearchAndFilter &&
-        currentOffset > 10) {
-      setState(() => _showSearchAndFilter = false);
-      _animationController.forward();
-    } else if (currentOffset < _lastOffset && !_showSearchAndFilter) {
-      setState(() => _showSearchAndFilter = true);
-      _animationController.reverse();
-    }
-    _lastOffset = currentOffset;
   }
 
   // Hàm xử lý search với debounce
@@ -673,8 +631,11 @@ class _TaskWidgetState extends State<TaskWidget>
     return BlocListener<TaskBloc, TaskState>(
       listener: (context, state) {
         state.maybeWhen(
-          loading: () {
+          getTasksInProgress: () {
             log("Đang lấy danh sách công việc...");
+            setState(() {
+              _isProcessing = true;
+            });
           },
           getTasksSuccess: (tasks, cageList, taskTypeList) {
             log("Lấy danh sách công việc thành công!");
@@ -686,55 +647,65 @@ class _TaskWidgetState extends State<TaskWidget>
               if (availableCageFilters.isEmpty) {
                 availableCageFilters = cageList;
               }
+              _isProcessing = false;
             });
           },
           getTasksFailure: (e) {
             log("Lấy danh sách công việc thất bại! Message:");
             log(e.toString());
+            setState(() {
+              taskSorted = {};
+              _isProcessing = false;
+            });
           },
           getTasksByUserIdAndDateLoading: () {
             log("Đang lấy danh sách công việc...");
-            LoadingDialog.show(context, "Đang lấy danh sách công việc...");
+            setState(() {
+              _isProcessing = true;
+            });
           },
           getTasksByUserIdAndDateSuccess: (tasks, cageList) {
             // Update the tasksByDate list with the new tasks
             setState(() {
               taskSorted = tasks;
               availableCageFilters = cageList;
+              _isProcessing = false;
             });
-
-            LoadingDialog.hide(context);
           },
           getTasksByUserIdAndDateFailure: (e) {
-            LoadingDialog.hide(context);
             if (e.contains('no-task-found')) {
               log("Không tìm thấy công việc!");
               setState(() {
                 taskSorted = {};
                 availableCageFilters = [];
+                _isProcessing = false;
               });
             } else {
               log("Lấy danh sách công việc thất bại! Message:");
               log(e.toString());
               SnackBar(content: Text('Lỗi: ${e.toString()}'));
+              _isProcessing = false;
             }
           },
           filteredTaskLoading: () {
             log("Đang lọc công việc...");
-            LoadingDialog.show(context, "Đang lọc công việc...");
+            setState(() {
+              _isProcessing = true;
+            });
           },
           filteredTasksSuccess: (filteredTasks) {
             log("Lọc công việc thành công!");
             setState(() {
               taskSorted = filteredTasks;
+              _isProcessing = false;
             });
-
-            LoadingDialog.hide(context);
           },
           filteredTasksFailure: (e) {
             log("Lọc công việc thất bại! Message:");
             log(e.toString());
-            LoadingDialog.hide(context);
+            setState(() {
+              _isProcessing = false;
+            });
           },
           updateStatusTaskSuccess: () async {
             log("Cập nhật trạng thái công việc thành công!");
@@ -854,106 +825,84 @@ class _TaskWidgetState extends State<TaskWidget>
                             const SizedBox(height: 12),
 
                             // Filter chips - có animation ẩn/hiện
-                            AnimatedContainer(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                              height: _showSearchAndFilter ? 40 : 0,
-                              child: ClipRect(
-                                child: AnimatedSize(
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut,
-                                  child: AnimatedOpacity(
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeInOut,
-                                    opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                        children: [
-                                          FilterChip(
-                                            showCheckmark: false,
-                                            label: Text(_getTaskTypeLabel()),
-                                            selected:
-                                                _selectedTaskType != 'all',
-                                            onSelected: (_) =>
-                                                _showTaskTypeBottomSheet(),
-                                            avatar: const Icon(
-                                                Icons.task_alt_outlined),
-                                            deleteIcon: const Icon(
-                                                Icons.arrow_drop_down),
-                                            onDeleted: _showTaskTypeBottomSheet,
-                                            labelStyle: TextStyle(
-                                              color: _selectedCage != 'all'
-                                                  ? Theme.of(context)
-                                                      .colorScheme
-                                                      .primary
-                                                  : null,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          FilterChip(
-                                            showCheckmark: false,
-                                            label: Text(_getCageLabel()),
-                                            selected: _selectedCage != 'all',
-                                            onSelected: (_) =>
-                                                _showCageBottomSheet(),
-                                            avatar: LinearIcons.chickenIcon,
-                                            deleteIcon: const Icon(
-                                                Icons.arrow_drop_down),
-                                            onDeleted: _showCageBottomSheet,
-                                            labelStyle: TextStyle(
-                                              color: _selectedCage != 'all'
-                                                  ? Theme.of(context)
-                                                      .colorScheme
-                                                      .primary
-                                                  : null,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          FilterChip(
-                                            showCheckmark: false,
-                                            label: Text(_getSessionLabel()),
-                                            selected: _selectedSession != null,
-                                            onSelected: (_) =>
-                                                _showSessionBottomSheet(),
-                                            avatar:
-                                                const Icon(Icons.access_time),
-                                            deleteIcon: const Icon(
-                                                Icons.arrow_drop_down),
-                                            onDeleted: _showSessionBottomSheet,
-                                            labelStyle: TextStyle(
-                                              color: _selectedSession != null
-                                                  ? Theme.of(context)
-                                                      .colorScheme
-                                                      .primary
-                                                  : null,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          FilterChip(
-                                            showCheckmark: false,
-                                            label: Text(_getStatusLabel()),
-                                            selected: _selectedStatus != 'all',
-                                            onSelected: (_) =>
-                                                _showStatusBottomSheet(),
-                                            avatar:
-                                                const Icon(Icons.flag_outlined),
-                                            deleteIcon: const Icon(
-                                                Icons.arrow_drop_down),
-                                            onDeleted: _showStatusBottomSheet,
-                                            labelStyle: TextStyle(
-                                              color: _selectedStatus != 'all'
-                                                  ? _statuses.firstWhere((s) =>
-                                                      s['id'] ==
-                                                      _selectedStatus)['color']
-                                                  : null,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  FilterChip(
+                                    showCheckmark: false,
+                                    label: Text(_getTaskTypeLabel()),
+                                    selected: _selectedTaskType != 'all',
+                                    onSelected: (_) =>
+                                        _showTaskTypeBottomSheet(),
+                                    avatar: const Icon(Icons.task_alt_outlined),
+                                    deleteIcon:
+                                        const Icon(Icons.arrow_drop_down),
+                                    onDeleted: _showTaskTypeBottomSheet,
+                                    labelStyle: TextStyle(
+                                      color: _selectedCage != 'all'
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                          : null,
                                     ),
                                   ),
-                                ),
+                                  const SizedBox(width: 8),
+                                  FilterChip(
+                                    showCheckmark: false,
+                                    label: Text(_getCageLabel()),
+                                    selected: _selectedCage != 'all',
+                                    onSelected: (_) => _showCageBottomSheet(),
+                                    avatar: LinearIcons.chickenIcon,
+                                    deleteIcon:
+                                        const Icon(Icons.arrow_drop_down),
+                                    onDeleted: _showCageBottomSheet,
+                                    labelStyle: TextStyle(
+                                      color: _selectedCage != 'all'
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                          : null,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  FilterChip(
+                                    showCheckmark: false,
+                                    label: Text(_getSessionLabel()),
+                                    selected: _selectedSession != null,
+                                    onSelected: (_) =>
+                                        _showSessionBottomSheet(),
+                                    avatar: const Icon(Icons.access_time),
+                                    deleteIcon:
+                                        const Icon(Icons.arrow_drop_down),
+                                    onDeleted: _showSessionBottomSheet,
+                                    labelStyle: TextStyle(
+                                      color: _selectedSession != null
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                          : null,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  FilterChip(
+                                    showCheckmark: false,
+                                    label: Text(_getStatusLabel()),
+                                    selected: _selectedStatus != 'all',
+                                    onSelected: (_) => _showStatusBottomSheet(),
+                                    avatar: const Icon(Icons.flag_outlined),
+                                    deleteIcon:
+                                        const Icon(Icons.arrow_drop_down),
+                                    onDeleted: _showStatusBottomSheet,
+                                    labelStyle: TextStyle(
+                                      color: _selectedStatus != 'all'
+                                          ? _statuses.firstWhere((s) =>
+                                              s['id'] ==
+                                              _selectedStatus)['color']
+                                          : null,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -963,87 +912,68 @@ class _TaskWidgetState extends State<TaskWidget>
                   ),
                 ),
                 // Sort chips - có animation ẩn/hiện
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                  height: _showSearchAndFilter ? null : 0,
-                  child: ClipRect(
-                    child: AnimatedSize(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                      child: AnimatedOpacity(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                        opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 8.0),
-                          child: Row(
-                            children: [
-                              const Spacer(),
-                              Text(
-                                'Sắp xếp theo:',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              ..._sortOptions.map((option) => Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: FilterChip(
-                                      showCheckmark: false,
-                                      selected: _sortBy == option['id'],
-                                      onSelected: (_) {
-                                        setState(() {
-                                          if (_sortBy == option['id']) {
-                                            _sortAscending = !_sortAscending;
-                                          } else {
-                                            _sortBy = option['id'];
-                                            _sortAscending = true;
-                                          }
-                                        });
-                                        _sortTasks();
-                                      },
-                                      avatar: null,
-                                      labelStyle: TextStyle(
-                                        color: _sortBy == option['id']
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .primary
-                                            : null,
-                                      ),
-                                      label: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            option['icon'] as IconData,
-                                            size: 20,
-                                            color: _sortBy == option['id']
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .primary
-                                                : null,
-                                          ),
-                                          if (_sortBy == option['id'])
-                                            Icon(
-                                              _sortAscending
-                                                  ? Icons.arrow_upward
-                                                  : Icons.arrow_downward,
-                                              size: 16,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                  )),
-                            ],
-                          ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      Text(
+                        'Sắp xếp theo:',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
                         ),
                       ),
-                    ),
+                      const SizedBox(width: 8),
+                      ..._sortOptions.map((option) => Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: FilterChip(
+                              showCheckmark: false,
+                              selected: _sortBy == option['id'],
+                              onSelected: (_) {
+                                setState(() {
+                                  if (_sortBy == option['id']) {
+                                    _sortAscending = !_sortAscending;
+                                  } else {
+                                    _sortBy = option['id'];
+                                    _sortAscending = true;
+                                  }
+                                });
+                                _sortTasks();
+                              },
+                              avatar: null,
+                              labelStyle: TextStyle(
+                                color: _sortBy == option['id']
+                                    ? Theme.of(context).colorScheme.primary
+                                    : null,
+                              ),
+                              label: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    option['icon'] as IconData,
+                                    size: 20,
+                                    color: _sortBy == option['id']
+                                        ? Theme.of(context).colorScheme.primary
+                                        : null,
+                                  ),
+                                  if (_sortBy == option['id'])
+                                    Icon(
+                                      _sortAscending
+                                          ? Icons.arrow_upward
+                                          : Icons.arrow_downward,
+                                      size: 16,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                                ],
+                              ),
+                            ),
+                          )),
+                    ],
                   ),
                 ),
                 // Task List
@@ -1060,18 +990,25 @@ class _TaskWidgetState extends State<TaskWidget>
 
   // Hàm build task list với empty state
   Widget _buildTaskList() {
-    if (taskSorted.isEmpty) {
+    if (_isProcessing) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height * 0.5,
+        child: Center(child: CircularProgressIndicator()),
+      );
+    } else if (taskSorted.isEmpty) {
       return _buildEmptyState();
+    } else if (taskSorted.values.every((tasks) => tasks.isEmpty)) {
+      return _buildEmptyState();
+    } else {
+      return SingleChildScrollView(
+        controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Column(
+          children: _buildSessionSections(),
+        ),
+      );
     }
-
-    return ListView(
-      controller: _scrollController,
-      physics: const AlwaysScrollableScrollPhysics(),
-      padding: const EdgeInsets.only(top: 8.0, bottom: 96.0),
-      children: [
-        ..._buildSessionSections(),
-      ],
-    );
   }
 
   // Hàm build empty state
@@ -1107,6 +1044,22 @@ class _TaskWidgetState extends State<TaskWidget>
                   color: Theme.of(context).colorScheme.outlineVariant,
                 ),
             textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              context.read<TaskBloc>().add(TaskEvent.getTasks(
+                    _searchController.text,
+                    _selectedTaskType == 'all' ? null : _selectedTaskType,
+                    _selectedCage == 'all' ? null : _selectedCage,
+                    _selectedStatus == 'all' ? null : _selectedStatus,
+                    selectedDate,
+                    _selectedSession,
+                    1,
+                    20,
+                  ));
+            },
+            child: const Text('Tải lại'),
           ),
         ],
       ),

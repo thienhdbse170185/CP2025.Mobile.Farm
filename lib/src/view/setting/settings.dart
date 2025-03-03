@@ -12,11 +12,24 @@ class _SettingWidgetState extends State<SettingWidget> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.white,
-      appBar: CustomAppBar(
-        title: Text('Cài đặt'),
-      ),
-      body: Center(child: Text('Màn hình Setting')),
-    );
+        backgroundColor: Colors.white,
+        appBar: CustomAppBar(
+          title: Text('Cài đặt'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListTile(
+                title: Text('Thông báo'),
+              ),
+              ListTile(
+                title: Text('Ngôn ngữ'),
+              ),
+              ListTile(
+                title: Text('Đổi mật khẩu'),
+              ),
+            ],
+          ),
+        ));
   }
 }

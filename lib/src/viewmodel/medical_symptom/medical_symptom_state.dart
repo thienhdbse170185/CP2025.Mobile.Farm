@@ -7,7 +7,7 @@ class MedicalSymptomState with _$MedicalSymptomState {
   const factory MedicalSymptomState.getMedicalSymptomsByBatchInProress() =
       _GetMedicalSymptomsByBatchInProress;
   const factory MedicalSymptomState.getMedicalSymptomsByBatchSuccess(
-          List<MedicalSymptomDto> medicalSymptoms) =
+          List<MedicalSymptomResponse> medicalSymptoms) =
       _GetMedicalSymptomsByBatchSuccess;
   const factory MedicalSymptomState.getMedicalSymptomsByBatchFailure(
       String message) = _GetMedicalSymptomsByBatchFailure;

@@ -136,7 +136,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     width: double.infinity,
                     child: OutlinedButton(
                       onPressed: () {
-                        // Handle login for new employees
+                        context.push(RouteName.newbie);
                       },
                       child: const Text('Đăng nhập dành cho nhân viên mới'),
                     ),

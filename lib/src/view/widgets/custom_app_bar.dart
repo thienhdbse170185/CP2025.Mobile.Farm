@@ -57,7 +57,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             image: const AssetImage('assets/images/leaf.jpg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.2), // Adjust the opacity here
+              Colors.black.withOpacity(0.1), // Adjust the opacity here
               BlendMode.dstATop,
             ),
           ),

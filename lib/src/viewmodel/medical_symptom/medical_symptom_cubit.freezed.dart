@@ -20,7 +20,7 @@ mixin _$MedicalSymptomState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getMedicalSymptomsByBatchInProress,
-    required TResult Function(List<MedicalSymptomDto> medicalSymptoms)
+    required TResult Function(List<MedicalSymptomResponse> medicalSymptoms)
         getMedicalSymptomsByBatchSuccess,
     required TResult Function(String message) getMedicalSymptomsByBatchFailure,
   }) =>
@@ -29,7 +29,7 @@ mixin _$MedicalSymptomState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getMedicalSymptomsByBatchInProress,
-    TResult? Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult? Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult? Function(String message)? getMedicalSymptomsByBatchFailure,
   }) =>
@@ -38,7 +38,7 @@ mixin _$MedicalSymptomState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getMedicalSymptomsByBatchInProress,
-    TResult Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult Function(String message)? getMedicalSymptomsByBatchFailure,
     required TResult orElse(),
@@ -144,7 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getMedicalSymptomsByBatchInProress,
-    required TResult Function(List<MedicalSymptomDto> medicalSymptoms)
+    required TResult Function(List<MedicalSymptomResponse> medicalSymptoms)
         getMedicalSymptomsByBatchSuccess,
     required TResult Function(String message) getMedicalSymptomsByBatchFailure,
   }) {
@@ -156,7 +156,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getMedicalSymptomsByBatchInProress,
-    TResult? Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult? Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult? Function(String message)? getMedicalSymptomsByBatchFailure,
   }) {
@@ -168,7 +168,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getMedicalSymptomsByBatchInProress,
-    TResult Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult Function(String message)? getMedicalSymptomsByBatchFailure,
     required TResult orElse(),
@@ -278,7 +278,7 @@ class _$GetMedicalSymptomsByBatchInProressImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getMedicalSymptomsByBatchInProress,
-    required TResult Function(List<MedicalSymptomDto> medicalSymptoms)
+    required TResult Function(List<MedicalSymptomResponse> medicalSymptoms)
         getMedicalSymptomsByBatchSuccess,
     required TResult Function(String message) getMedicalSymptomsByBatchFailure,
   }) {
@@ -290,7 +290,7 @@ class _$GetMedicalSymptomsByBatchInProressImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getMedicalSymptomsByBatchInProress,
-    TResult? Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult? Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult? Function(String message)? getMedicalSymptomsByBatchFailure,
   }) {
@@ -302,7 +302,7 @@ class _$GetMedicalSymptomsByBatchInProressImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getMedicalSymptomsByBatchInProress,
-    TResult Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult Function(String message)? getMedicalSymptomsByBatchFailure,
     required TResult orElse(),
@@ -373,7 +373,7 @@ abstract class _$$GetMedicalSymptomsByBatchSuccessImplCopyWith<$Res> {
           $Res Function(_$GetMedicalSymptomsByBatchSuccessImpl) then) =
       __$$GetMedicalSymptomsByBatchSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<MedicalSymptomDto> medicalSymptoms});
+  $Res call({List<MedicalSymptomResponse> medicalSymptoms});
 }
 
 /// @nodoc
@@ -397,7 +397,7 @@ class __$$GetMedicalSymptomsByBatchSuccessImplCopyWithImpl<$Res>
       null == medicalSymptoms
           ? _value._medicalSymptoms
           : medicalSymptoms // ignore: cast_nullable_to_non_nullable
-              as List<MedicalSymptomDto>,
+              as List<MedicalSymptomResponse>,
     ));
   }
 }
@@ -407,12 +407,12 @@ class __$$GetMedicalSymptomsByBatchSuccessImplCopyWithImpl<$Res>
 class _$GetMedicalSymptomsByBatchSuccessImpl
     implements _GetMedicalSymptomsByBatchSuccess {
   const _$GetMedicalSymptomsByBatchSuccessImpl(
-      final List<MedicalSymptomDto> medicalSymptoms)
+      final List<MedicalSymptomResponse> medicalSymptoms)
       : _medicalSymptoms = medicalSymptoms;
 
-  final List<MedicalSymptomDto> _medicalSymptoms;
+  final List<MedicalSymptomResponse> _medicalSymptoms;
   @override
-  List<MedicalSymptomDto> get medicalSymptoms {
+  List<MedicalSymptomResponse> get medicalSymptoms {
     if (_medicalSymptoms is EqualUnmodifiableListView) return _medicalSymptoms;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_medicalSymptoms);
@@ -451,7 +451,7 @@ class _$GetMedicalSymptomsByBatchSuccessImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getMedicalSymptomsByBatchInProress,
-    required TResult Function(List<MedicalSymptomDto> medicalSymptoms)
+    required TResult Function(List<MedicalSymptomResponse> medicalSymptoms)
         getMedicalSymptomsByBatchSuccess,
     required TResult Function(String message) getMedicalSymptomsByBatchFailure,
   }) {
@@ -463,7 +463,7 @@ class _$GetMedicalSymptomsByBatchSuccessImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getMedicalSymptomsByBatchInProress,
-    TResult? Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult? Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult? Function(String message)? getMedicalSymptomsByBatchFailure,
   }) {
@@ -475,7 +475,7 @@ class _$GetMedicalSymptomsByBatchSuccessImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getMedicalSymptomsByBatchInProress,
-    TResult Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult Function(String message)? getMedicalSymptomsByBatchFailure,
     required TResult orElse(),
@@ -536,10 +536,10 @@ class _$GetMedicalSymptomsByBatchSuccessImpl
 abstract class _GetMedicalSymptomsByBatchSuccess
     implements MedicalSymptomState {
   const factory _GetMedicalSymptomsByBatchSuccess(
-          final List<MedicalSymptomDto> medicalSymptoms) =
+          final List<MedicalSymptomResponse> medicalSymptoms) =
       _$GetMedicalSymptomsByBatchSuccessImpl;
 
-  List<MedicalSymptomDto> get medicalSymptoms;
+  List<MedicalSymptomResponse> get medicalSymptoms;
 
   /// Create a copy of MedicalSymptomState
   /// with the given fields replaced by the non-null parameter values.
@@ -625,7 +625,7 @@ class _$GetMedicalSymptomsByBatchFailureImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getMedicalSymptomsByBatchInProress,
-    required TResult Function(List<MedicalSymptomDto> medicalSymptoms)
+    required TResult Function(List<MedicalSymptomResponse> medicalSymptoms)
         getMedicalSymptomsByBatchSuccess,
     required TResult Function(String message) getMedicalSymptomsByBatchFailure,
   }) {
@@ -637,7 +637,7 @@ class _$GetMedicalSymptomsByBatchFailureImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getMedicalSymptomsByBatchInProress,
-    TResult? Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult? Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult? Function(String message)? getMedicalSymptomsByBatchFailure,
   }) {
@@ -649,7 +649,7 @@ class _$GetMedicalSymptomsByBatchFailureImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getMedicalSymptomsByBatchInProress,
-    TResult Function(List<MedicalSymptomDto> medicalSymptoms)?
+    TResult Function(List<MedicalSymptomResponse> medicalSymptoms)?
         getMedicalSymptomsByBatchSuccess,
     TResult Function(String message)? getMedicalSymptomsByBatchFailure,
     required TResult orElse(),

@@ -1,4 +1,4 @@
-import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
+import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -6,7 +6,7 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 
 class SymptomDetailWidget extends StatelessWidget {
-  final MedicalSymptomDto symptom;
+  final MedicalSymptomResponse symptom;
 
   const SymptomDetailWidget({
     super.key,
@@ -160,7 +160,7 @@ class SymptomDetailWidget extends StatelessWidget {
                   // Symptom
                   _buildInfoRow(
                     'Triệu chứng',
-                    symptom.symtom,
+                    symptom.symtom!,
                     Image.asset('assets/images/corona-virus.png', width: 24),
                   ),
                   const SizedBox(height: 16),

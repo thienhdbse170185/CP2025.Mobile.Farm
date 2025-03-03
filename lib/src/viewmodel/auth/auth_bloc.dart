@@ -25,6 +25,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.userRepository,
   }) : super(const _Initial()) {
     on<_AppStarted>((event, emit) async {
+      emit(const AuthState.appStartedInProgress());
+      log('[APP_STARTED] Đang khởi tạo dữ liệu cần thiết...');
       try {
         // get user info
         final authBox = await Hive.openBox(AuthDataConstant.authBoxName);
@@ -47,12 +49,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           //     SignalRService(flutterLocalNotificationsPlugin);
           // await signalRService.connect(
           //     accessToken, dotenv.env['BASE_SIGNALR_URL']!);
-          emit(const AuthState.success());
+          emit(const AuthState.appStartedSuccess());
         } else {
-          emit(const AuthState.initial());
+          emit(const AuthState.appStartedFailure(
+              'Có lỗi xảy ra khi giải mã token'));
         }
       } catch (e) {
         log("Error: $e");
+        emit(AuthState.appStartedFailure(e.toString()));
       }
     });
 
@@ -62,9 +66,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final loginTokens =
             await authRepository.login(event.username, event.password);
         final box = await Hive.openBox(AuthDataConstant.authBoxName);
+        log('[LOGIN] accessToken: ${loginTokens.accessToken}');
+        log('[LOGIN] refreshToken: ${loginTokens.refreshToken}');
         await box.put(AuthDataConstant.accessTokenKey, loginTokens.accessToken);
         await box.put(
-            AuthDataConstant.refreshTokenKey, loginTokens.refreshToken);
+          AuthDataConstant.refreshTokenKey,
+          loginTokens.refreshToken,
+        );
         emit(const AuthState.success());
       } catch (e) {
         emit(AuthState.failure(e.toString()));

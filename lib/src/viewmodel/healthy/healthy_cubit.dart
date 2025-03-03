@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:data_layer/repository/healthy/healthy_repository.dart';
+import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
 import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
+import 'package:data_layer/repository/healthy/healthy_repository.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'healthy_state.dart';
 part 'healthy_cubit.freezed.dart';
+part 'healthy_state.dart';
 
 class HealthyCubit extends Cubit<HealthyState> {
   final HealthyRepository healthyRepository;
@@ -15,8 +16,8 @@ class HealthyCubit extends Cubit<HealthyState> {
   Future<void> createSymptom(CreateSymptomRequest request) async {
     try {
       emit(const HealthyState.createLoading());
-      await healthyRepository.create(request);
-      emit(const HealthyState.createSuccess());
+      final response = await healthyRepository.create(request);
+      emit(HealthyState.createSuccess(response));
     } catch (e) {
       emit(HealthyState.createFailure(e.toString()));
     }
