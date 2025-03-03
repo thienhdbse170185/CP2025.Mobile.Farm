@@ -2773,7 +2773,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                         color: Theme.of(context).primaryColor),
                                     const SizedBox(width: 8),
                                     Text(
-                                      'Thông tin về vụ nuôi',
+                                      'Thông tin về giai đoạn phát triển',
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium
@@ -2792,7 +2792,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                           0.38,
                                       child: _buildInfoItem(
                                         context: context,
-                                        label: 'Tên vụ nuôi',
+                                        label: 'Tên giai đoạn',
                                         value: growthStage.name,
                                         icon: Icons.label,
                                       ),
@@ -2866,7 +2866,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                     _buildInfoItem(
                                       context: context,
                                       label: 'Độ tuổi bắt đầu',
-                                      value: '${growthStage.ageStart} tuổi',
+                                      value:
+                                          '${growthStage.ageStart} ngày tuổi',
                                       icon: Icons.health_and_safety_rounded,
                                     ),
                                     SizedBox(
@@ -2876,7 +2877,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                     _buildInfoItem(
                                       context: context,
                                       label: 'Độ tuổi kết thúc',
-                                      value: '${growthStage.ageEnd} tuổi',
+                                      value: '${growthStage.ageEnd} ngày tuổi',
                                       icon: Icons.health_and_safety_rounded,
                                     ),
                                   ],
@@ -3471,7 +3472,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                         color: Theme.of(context).primaryColor),
                                     const SizedBox(width: 8),
                                     Text(
-                                      'Thông tin về vụ nuôi',
+                                      'Giai đoạn phát triển hiện hành',
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium
@@ -3490,7 +3491,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                           0.38,
                                       child: _buildInfoItem(
                                         context: context,
-                                        label: 'Tên vụ nuôi',
+                                        label: 'Tên giai đoạn',
                                         value: growthStage.name,
                                         icon: Icons.label,
                                       ),
@@ -3564,7 +3565,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                     _buildInfoItem(
                                       context: context,
                                       label: 'Độ tuổi bắt đầu',
-                                      value: '${growthStage.ageStart} tuổi',
+                                      value:
+                                          '${growthStage.ageStart} ngày tuổi',
                                       icon: Icons.health_and_safety_rounded,
                                     ),
                                     SizedBox(
@@ -3574,7 +3576,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                     _buildInfoItem(
                                       context: context,
                                       label: 'Độ tuổi kết thúc',
-                                      value: '${growthStage.ageEnd} tuổi',
+                                      value: '${growthStage.ageEnd} ngày tuổi',
                                       icon: Icons.health_and_safety_rounded,
                                     ),
                                   ],
@@ -3936,7 +3938,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                     _buildInfoItem(
                                       context: context,
                                       label: 'Độ tuổi bắt đầu',
-                                      value: '${growthStage.ageStart} tuổi',
+                                      value:
+                                          '${growthStage.ageStart} ngày tuổi',
                                       icon: Icons.health_and_safety_rounded,
                                     ),
                                     SizedBox(
@@ -3946,7 +3949,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                     _buildInfoItem(
                                       context: context,
                                       label: 'Độ tuổi kết thúc',
-                                      value: '${growthStage.ageEnd} tuổi',
+                                      value: '${growthStage.ageEnd} ngày tuổi',
                                       icon: Icons.health_and_safety_rounded,
                                     ),
                                   ],
