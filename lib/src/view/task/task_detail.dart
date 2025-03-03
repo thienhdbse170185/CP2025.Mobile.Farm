@@ -780,8 +780,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 log('Lấy giai đoạn phát triển thành công!');
                 setState(() {
                   this.growthStage = growthStage;
-                  _weightAnimalController.text =
-                      growthStage.weightAnimal.toString();
                 });
                 if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin &&
                     task?.status == StatusDataConstant.inProgress) {
@@ -802,6 +800,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   context
                       .read<SaleTypeCubit>()
                       .getSaleTypeByName(saleTypeName: 'EggSale');
+                } else if (task?.taskType.taskTypeId ==
+                        TaskTypeDataConstant.weighing &&
+                    task?.status == StatusDataConstant.done) {
+                  setState(() {
+                    _weightAnimalController.text =
+                        growthStage.weightAnimal.toString();
+                  });
                 }
               },
               getGrowthStageByCageIdFailure: (e) {
