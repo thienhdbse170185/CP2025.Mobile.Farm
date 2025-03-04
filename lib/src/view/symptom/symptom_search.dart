@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
 
 class SymptomSearchWidget extends StatefulWidget {
@@ -354,392 +355,396 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
         _startDate != null ||
         _selectedStatus != 'Tất cả';
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        leadingWidth: 40,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: IconButton(
-            padding: EdgeInsets.zero,
-            icon: LinearIcons.arrowBackIcon,
-            onPressed: () => context.pop(),
-          ),
-        ),
-        titleSpacing: 0,
-        title: Container(
-          height: kToolbarHeight,
-          padding: const EdgeInsets.only(right: 8),
-          child: TextField(
-            controller: _searchController,
-            autofocus: true,
-            decoration: InputDecoration(
-              hintText: 'Ví dụ: ho, sốt cao, khó thở...',
-              hintStyle: TextStyle(
-                color: Colors.grey[400],
-                fontSize: 14,
-              ),
-              border: InputBorder.none,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              labelText: 'Tìm kiếm theo triệu chứng',
-              labelStyle: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
+    return AdaptiveSafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          leadingWidth: 40,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              icon: LinearIcons.arrowBackIcon,
+              onPressed: () => context.pop(),
             ),
-            style: const TextStyle(fontSize: 16),
-            onChanged: (value) {
-              setState(() {});
-            },
           ),
-        ),
-        actions: [
-          // Enhanced Filter Button
-          Padding(
+          titleSpacing: 0,
+          title: Container(
+            height: kToolbarHeight,
             padding: const EdgeInsets.only(right: 8),
-            child: InkWell(
-              onTap: _showFilterBottomSheet,
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: hasActiveFilters
-                      ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
-                      : Colors.grey[100],
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: hasActiveFilters
-                        ? Theme.of(context).colorScheme.primary
-                        : Colors.grey[300]!,
-                  ),
+            child: TextField(
+              controller: _searchController,
+              autofocus: true,
+              decoration: InputDecoration(
+                hintText: 'Ví dụ: ho, sốt cao, khó thở...',
+                hintStyle: TextStyle(
+                  color: Colors.grey[400],
+                  fontSize: 14,
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.tune,
-                      size: 20,
+                border: InputBorder.none,
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                labelText: 'Tìm kiếm theo triệu chứng',
+                labelStyle: TextStyle(
+                  color: Colors.grey[700],
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+              ),
+              style: const TextStyle(fontSize: 16),
+              onChanged: (value) {
+                setState(() {});
+              },
+            ),
+          ),
+          actions: [
+            // Enhanced Filter Button
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: InkWell(
+                onTap: _showFilterBottomSheet,
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: hasActiveFilters
+                        ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+                        : Colors.grey[100],
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
                       color: hasActiveFilters
                           ? Theme.of(context).colorScheme.primary
-                          : Colors.grey[600],
+                          : Colors.grey[300]!,
                     ),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Bộ lọc',
-                      style: TextStyle(
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.tune,
+                        size: 20,
                         color: hasActiveFilters
                             ? Theme.of(context).colorScheme.primary
                             : Colors.grey[600],
-                        fontSize: 14,
                       ),
-                    ),
-                    if (hasActiveFilters) ...[
                       const SizedBox(width: 4),
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          shape: BoxShape.circle,
+                      Text(
+                        'Bộ lọc',
+                        style: TextStyle(
+                          color: hasActiveFilters
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.grey[600],
+                          fontSize: 14,
                         ),
-                        child: Text(
-                          _getActiveFiltersCount().toString(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      if (hasActiveFilters) ...[
+                        const SizedBox(width: 4),
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            _getActiveFiltersCount().toString(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (_searchController.text.isNotEmpty)
+              IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  setState(() {
+                    _searchController.clear();
+                  });
+                },
+              ),
+          ],
+        ),
+        body: Column(
+          children: [
+            // Active Filters Display (optional)
+            if (_selectedFilters.isNotEmpty ||
+                _startDate != null ||
+                _selectedStatus != 'Tất cả')
+              Container(
+                width: double.infinity,
+                color: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      if (_startDate != null)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Chip(
+                            label: Text(
+                              '${DateFormat('dd/MM').format(_startDate!)} - ${DateFormat('dd/MM').format(_endDate!)}',
+                            ),
+                            onDeleted: () {
+                              setState(() {
+                                _startDate = null;
+                                _endDate = null;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_selectedStatus != 'Tất cả')
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Chip(
+                            label: Text(_selectedStatus),
+                            onDeleted: () {
+                              setState(() {
+                                _selectedStatus = 'Tất cả';
+                              });
+                            },
+                          ),
+                        ),
+                      ..._selectedFilters.map(
+                        (filter) => Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Chip(
+                            label: Text(filter),
+                            onDeleted: () {
+                              setState(() {
+                                _selectedFilters.remove(filter);
+                              });
+                            },
                           ),
                         ),
                       ),
                     ],
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-          if (_searchController.text.isNotEmpty)
-            IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () {
-                setState(() {
-                  _searchController.clear();
-                });
-              },
-            ),
-        ],
-      ),
-      body: Column(
-        children: [
-          // Active Filters Display (optional)
-          if (_selectedFilters.isNotEmpty ||
-              _startDate != null ||
-              _selectedStatus != 'Tất cả')
-            Container(
-              width: double.infinity,
-              color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+
+            // Add results count only when searching or filtering
+            if (_searchController.text.isNotEmpty ||
+                _selectedFilters.isNotEmpty ||
+                _startDate != null ||
+                _selectedStatus != 'Tất cả') ...[
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 16, right: 16, top: 16, bottom: 8),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    if (_startDate != null)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: Chip(
-                          label: Text(
-                            '${DateFormat('dd/MM').format(_startDate!)} - ${DateFormat('dd/MM').format(_endDate!)}',
-                          ),
-                          onDeleted: () {
-                            setState(() {
-                              _startDate = null;
-                              _endDate = null;
-                            });
-                          },
-                        ),
-                      ),
-                    if (_selectedStatus != 'Tất cả')
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: Chip(
-                          label: Text(_selectedStatus),
-                          onDeleted: () {
-                            setState(() {
-                              _selectedStatus = 'Tất cả';
-                            });
-                          },
-                        ),
-                      ),
-                    ..._selectedFilters.map(
-                      (filter) => Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: Chip(
-                          label: Text(filter),
-                          onDeleted: () {
-                            setState(() {
-                              _selectedFilters.remove(filter);
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-          // Add results count only when searching or filtering
-          if (_searchController.text.isNotEmpty ||
-              _selectedFilters.isNotEmpty ||
-              _startDate != null ||
-              _selectedStatus != 'Tất cả') ...[
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16, right: 16, top: 16, bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Kết quả tìm kiếm',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                  ),
-                  BlocBuilder<MedicalSymptomCubit, MedicalSymptomState>(
-                    builder: (context, state) {
-                      final resultCount = state.maybeWhen(
-                        getMedicalSymptomsByBatchSuccess: (symptoms) =>
-                            _filterSymptoms(symptoms).length,
-                        orElse: () => 0,
-                      );
-
-                      return Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          '$resultCount báo cáo',
-                          style: TextStyle(
+                    Text(
+                      'Kết quả tìm kiếm',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: Theme.of(context).colorScheme.primary,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-            const Divider(),
-          ],
+                    ),
+                    BlocBuilder<MedicalSymptomCubit, MedicalSymptomState>(
+                      builder: (context, state) {
+                        final resultCount = state.maybeWhen(
+                          getMedicalSymptomsByBatchSuccess: (symptoms) =>
+                              _filterSymptoms(symptoms).length,
+                          orElse: () => 0,
+                        );
 
-          // Updated Search Results
-          Expanded(
-            child: BlocBuilder<MedicalSymptomCubit, MedicalSymptomState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  getMedicalSymptomsByBatchInProress: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  getMedicalSymptomsByBatchSuccess: (symptoms) {
-                    final filteredSymptoms = _filterSymptoms(symptoms);
-
-                    if (_searchController.text.isEmpty &&
-                        _selectedFilters.isEmpty &&
-                        _startDate == null &&
-                        _selectedStatus == 'Tất cả') {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.search,
-                                size: 64, color: Colors.grey[400]),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Nhập từ khóa để tìm kiếm\nhoặc sử dụng bộ lọc',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.grey[600]),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-
-                    if (filteredSymptoms.isEmpty) {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.search_off,
-                                size: 64, color: Colors.grey[400]),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Không tìm thấy kết quả phù hợp',
-                              style: TextStyle(color: Colors.grey[600]),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-
-                    return ListView.separated(
-                      padding: const EdgeInsets.all(16),
-                      itemCount: filteredSymptoms.length,
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 8),
-                      itemBuilder: (context, index) {
-                        final symptom = filteredSymptoms[index];
-                        return Card(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(color: Colors.grey[200]!),
                           ),
-                          child: InkWell(
-                            onTap: () {
-                              context.push(RouteName.symptomDetail,
-                                  extra: {'symptom': symptom});
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Báo cáo #${index + 1}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8, vertical: 4),
-                                        decoration: BoxDecoration(
-                                          color: _getStatusColor(symptom.status)
-                                              .withOpacity(0.1),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          border: Border.all(
-                                              color: _getStatusColor(
-                                                  symptom.status)),
-                                        ),
-                                        child: Text(
-                                          _getStatusText(symptom.status),
-                                          style: TextStyle(
-                                            color:
-                                                _getStatusColor(symptom.status),
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    'Triệu chứng: ${symptom.symtom}',
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Số lượng: ${symptom.affectedQuantity}/${symptom.quantity}',
-                                        style:
-                                            const TextStyle(color: Colors.grey),
-                                      ),
-                                      Text(
-                                        DateFormat('dd/MM/yyyy HH:mm')
-                                            .format(symptom.createAt),
-                                        style:
-                                            const TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                          child: Text(
+                            '$resultCount báo cáo',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         );
                       },
-                    );
-                  },
-                  getMedicalSymptomsByBatchFailure: (message) => Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(message),
-                        ElevatedButton(
-                          onPressed: () {
-                            context
-                                .read<MedicalSymptomCubit>()
-                                .getMedicalSymptomsByBatch();
-                          },
-                          child: const Text('Thử lại'),
-                        ),
-                      ],
                     ),
-                  ),
-                  orElse: () => const SizedBox(),
-                );
-              },
+                  ],
+                ),
+              ),
+              const Divider(),
+            ],
+
+            // Updated Search Results
+            Expanded(
+              child: BlocBuilder<MedicalSymptomCubit, MedicalSymptomState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    getMedicalSymptomsByBatchInProress: () =>
+                        const Center(child: CircularProgressIndicator()),
+                    getMedicalSymptomsByBatchSuccess: (symptoms) {
+                      final filteredSymptoms = _filterSymptoms(symptoms);
+
+                      if (_searchController.text.isEmpty &&
+                          _selectedFilters.isEmpty &&
+                          _startDate == null &&
+                          _selectedStatus == 'Tất cả') {
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.search,
+                                  size: 64, color: Colors.grey[400]),
+                              const SizedBox(height: 16),
+                              Text(
+                                'Nhập từ khóa để tìm kiếm\nhoặc sử dụng bộ lọc',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.grey[600]),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+
+                      if (filteredSymptoms.isEmpty) {
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.search_off,
+                                  size: 64, color: Colors.grey[400]),
+                              const SizedBox(height: 16),
+                              Text(
+                                'Không tìm thấy kết quả phù hợp',
+                                style: TextStyle(color: Colors.grey[600]),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+
+                      return ListView.separated(
+                        padding: const EdgeInsets.all(16),
+                        itemCount: filteredSymptoms.length,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 8),
+                        itemBuilder: (context, index) {
+                          final symptom = filteredSymptoms[index];
+                          return Card(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: BorderSide(color: Colors.grey[200]!),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                context.push(RouteName.symptomDetail,
+                                    extra: {'symptom': symptom});
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Báo cáo #${index + 1}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium,
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8, vertical: 4),
+                                          decoration: BoxDecoration(
+                                            color:
+                                                _getStatusColor(symptom.status)
+                                                    .withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color: _getStatusColor(
+                                                    symptom.status)),
+                                          ),
+                                          child: Text(
+                                            _getStatusText(symptom.status),
+                                            style: TextStyle(
+                                              color: _getStatusColor(
+                                                  symptom.status),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Triệu chứng: ${symptom.symtom}',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Số lượng: ${symptom.affectedQuantity}/${symptom.quantity}',
+                                          style: const TextStyle(
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          DateFormat('dd/MM/yyyy HH:mm')
+                                              .format(symptom.createAt),
+                                          style: const TextStyle(
+                                              color: Colors.grey),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    getMedicalSymptomsByBatchFailure: (message) => Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(message),
+                          ElevatedButton(
+                            onPressed: () {
+                              context
+                                  .read<MedicalSymptomCubit>()
+                                  .getMedicalSymptomsByBatch();
+                            },
+                            child: const Text('Thử lại'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    orElse: () => const SizedBox(),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
