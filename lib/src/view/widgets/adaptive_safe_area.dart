@@ -9,6 +9,7 @@ class AdaptiveSafeArea extends StatelessWidget {
     bool hasNavigationBar = MediaQuery.of(context).viewInsets.bottom > 0;
     if (hasNavigationBar) {
       return SafeArea(
+        top: false,
         child: child,
       );
     }
