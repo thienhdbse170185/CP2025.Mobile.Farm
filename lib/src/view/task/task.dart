@@ -809,18 +809,23 @@ class _TaskWidgetState extends State<TaskWidget>
                         child: Column(
                           children: [
                             // Search bar - luôn hiển thị
-                            TextField(
+                            SearchBar(
                               controller: _searchController,
                               onChanged: _onSearchChanged,
-                              decoration: InputDecoration(
-                                hintText: 'Tìm kiếm theo tên công việc...',
-                                prefixIcon: const Icon(Icons.search),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
+                              backgroundColor: WidgetStateProperty.all(
+                                Theme.of(context).colorScheme.surface,
                               ),
+                              shape: WidgetStateProperty.all(StadiumBorder(
+                                  side: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                              ))),
+                              hintText: 'Tìm kiếm công việc',
+                              leading: Icon(Icons.search),
+                              trailing: [Icon(Icons.mic)],
+                              padding: WidgetStateProperty.all(
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                              ),
+                              elevation: WidgetStateProperty.all(0),
                             ),
                             const SizedBox(height: 12),
 

@@ -523,11 +523,16 @@ class _HomeWidgetState extends State<HomeWidget>
                                           'taskId': nextTask.taskId,
                                         });
                                       },
-                                      child: Text(
-                                        nextTask.taskName,
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                        overflow: TextOverflow.visible,
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        child: Text(
+                                          nextTask.taskName,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          overflow: TextOverflow.visible,
+                                        ),
                                       ),
                                     ),
                                   ],

@@ -50,6 +50,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final List<GetSymptomRequest> _enteredSymptoms = [];
   final List<String> _symptomsName = [];
   FarmingBatchDto? _farmingBatch;
+  GrowthStageDto? _growthStage;
   List<SymptomDto> _symptoms = [];
   List<CageOption> _cages = [];
   UploadImageDto? _uploadedImage;
@@ -138,6 +139,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       symptoms: _symptomsName.join(', '),
       status: 'Pending',
       affectedQuantity: int.parse(_affectedController.text),
+      isEmergency: _isEmergency,
+      quantityInCage:
+          _growthStage!.quantity! - (_farmingBatch!.affectedQuantity ?? 0),
       notes: _noteController.text,
       pictures: imagePath != null
           ? [
@@ -178,7 +182,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         symptoms: _symptoms,
         selectedSymptoms: _symptomsName,
         enteredSymptoms: _enteredSymptoms,
-        noteController: _noteController,
+        noteController: _searchSymptomController,
         onSymptomToggled: (symptom, selected) {
           setState(() {
             if (selected) {
@@ -361,9 +365,13 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         ),
         BlocListener<GrowthStageCubit, GrowthStageState>(
           listener: (context, state) => state.maybeWhen(
-            getGrowthStageByCageIdSuccess: (growthStage) => setState(() =>
+            getGrowthStageByCageIdSuccess: (growthStage) {
+              setState(() {
+                _growthStage = growthStage;
                 _affectedQuantity =
-                    _farmingBatch!.quantity - growthStage.affectQuantity),
+                    _farmingBatch!.quantity - growthStage.affectQuantity;
+              });
+            },
             getGrowthStageByCageIdFailure: (error) => setState(() =>
                 _affectedQuantity =
                     _farmingBatch!.quantity), // Fallback to total quantity
@@ -427,7 +435,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       nameAnimal: medicalSymptom.nameAnimal,
       prescriptions: medicalSymptom.prescriptions,
       affectedQuantity: medicalSymptom.affectedQuantity,
-      quantity: _farmingBatch?.quantity ?? 0,
+      quantity: _growthStage?.quantity ?? 0,
       notes: medicalSymptom.notes,
       createAt: medicalSymptom.createAt,
       pictures: medicalSymptom.pictures,
@@ -503,7 +511,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     return false;
   }
 
-  Future<bool> _validateEmergencyAffectedQuantityForm(String value) async {
+  Future<bool> _isEmergencyAffectedQuantityForm(String value) async {
     if (_farmingBatch != null) {
       final enteredQuantity = int.tryParse(value) ?? 0;
       final threshold = (_farmingBatch!.quantity * 0.5).toInt();
@@ -686,8 +694,8 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
   Timer? _debounceTimer;
   bool _isSearching = false;
 
-  List<SymptomDto> filterSymptoms() => searchQuery.isEmpty
-      ? []
+  List<SymptomDto> get filteredSymptoms => searchQuery.isEmpty
+      ? widget.symptoms
       : widget.symptoms
           .where((symptom) => symptom.symptomName
               .toLowerCase()
@@ -707,36 +715,6 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
     });
   }
 
-  Widget _buildSymptomGroup(String title, List<SymptomDto> symptoms) {
-    if (symptoms.isEmpty) return const SizedBox.shrink();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: Text(title,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        ),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: symptoms.map((symptom) {
-            final isSelected =
-                widget.selectedSymptoms.contains(symptom.symptomName);
-            return FilterChip(
-              selected: isSelected,
-              label: Text(symptom.symptomName),
-              onSelected: (selected) =>
-                  widget.onSymptomToggled(symptom, selected),
-            );
-          }).toList(),
-        ),
-        const SizedBox(height: 8),
-      ],
-    );
-  }
-
   @override
   void dispose() {
     _debounceTimer?.cancel();
@@ -745,7 +723,6 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredSymptoms = filterSymptoms();
     return Container(
       height: MediaQuery.of(context).size.height * 0.8,
       decoration: const BoxDecoration(
@@ -883,6 +860,39 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSymptomGroup(String title, List<SymptomDto> symptoms) {
+    if (symptoms.isEmpty) return const SizedBox.shrink();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Text(title,
+              style:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: symptoms.map((symptom) {
+            final isSelected =
+                widget.selectedSymptoms.contains(symptom.symptomName);
+            return FilterChip(
+              selected: isSelected,
+              label: Text(symptom.symptomName),
+              onSelected: (selected) {
+                setState(() {
+                  widget.onSymptomToggled(symptom, selected);
+                });
+              },
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 8),
+      ],
     );
   }
 }
@@ -1374,9 +1384,8 @@ class _FormBody extends StatelessWidget {
                             onChanged: (value) async {
                               if (await state
                                       ._validateAffectedQuantityForm(value) &&
-                                  !(await state
-                                      ._validateEmergencyAffectedQuantityForm(
-                                          value))) {
+                                  await state._isEmergencyAffectedQuantityForm(
+                                      value)) {
                                 state.setState(() => state._isEmergency = true);
                               }
                             },
@@ -1393,9 +1402,9 @@ class _FormBody extends StatelessWidget {
                                 state._affectedController.text)) {
                               state.setState(() => state._affectedController
                                   .text = (currentValue + 1).toString());
-                            } else if (!(await state
-                                ._validateEmergencyAffectedQuantityForm(
-                                    state._affectedController.text))) {
+                            } else if (await state
+                                ._isEmergencyAffectedQuantityForm(
+                                    state._affectedController.text)) {
                               state.setState(() => state._isEmergency = true);
                             }
                           },
@@ -1421,67 +1430,101 @@ class _FormBody extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Row(
-                children: [
-                  Checkbox(
-                    value: state._affectedController.text ==
-                        (state._affectedQuantity ?? 0).toString(),
-                    onChanged: (state._isCageSelected &&
-                            state._hasFarmingBatch &&
-                            state._affectedQuantity != null)
-                        ? (bool? value) async {
-                            if (value == true) {
-                              await showDialog(
-                                context: context,
-                                builder: (context) => WarningConfirmationDialog(
-                                  title: 'Xác nhận trường hợp khẩn cấp',
-                                  content: const Text(
-                                    'Bạn đang chọn "Cả đàn đều bị bệnh", điều này báo hiệu tình trạng khẩn cấp. Bạn có chắc chắn không?',
-                                    textAlign: TextAlign.center,
+              // --- Checkbox cả đàn đều bị bệnh
+              if (state._isEmergency == false) ...[
+                Row(
+                  children: [
+                    Checkbox(
+                      value: state._affectedController.text ==
+                          (state._affectedQuantity ?? 0).toString(),
+                      onChanged: (state._isFormValid)
+                          ? (bool? value) async {
+                              if (value == true) {
+                                final confirmed = await showDialog<bool>(
+                                  context: context,
+                                  builder: (context) =>
+                                      WarningConfirmationDialog(
+                                    title: 'Xác nhận trường hợp khẩn cấp',
+                                    content: const Text(
+                                      'Bạn đang chọn "Cả đàn đều bị bệnh", điều này báo hiệu tình trạng khẩn cấp. Bạn có chắc chắn không?',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    primaryButtonText: 'Xác nhận',
+                                    secondaryButtonText: 'Hủy',
+                                    onPrimaryButtonPressed: () {
+                                      state.setState(() {
+                                        state._affectedController.text = state
+                                            ._farmingBatch!.quantity
+                                            .toString();
+                                        state._isEmergency = true;
+                                      });
+                                      Navigator.pop(context, true);
+                                    },
+                                    onSecondaryButtonPressed: () =>
+                                        Navigator.pop(context, false),
+                                    isEmergency: true,
                                   ),
-                                  primaryButtonText: 'Xác nhận',
-                                  secondaryButtonText: 'Hủy',
-                                  onPrimaryButtonPressed: () {
-                                    state.setState(() {
-                                      state._affectedController.text =
-                                          state._affectedQuantity.toString();
-                                      state._isEmergency = true;
-                                    });
-                                    Navigator.pop(context);
-                                  },
-                                  onSecondaryButtonPressed: () =>
-                                      Navigator.pop(context),
-                                  isEmergency: true,
-                                ),
-                              );
-                            } else {
-                              state.setState(
-                                  () => state._affectedController.text = '0');
+                                );
+                                if (confirmed == true) {
+                                  state._submitForm();
+                                }
+                              } else {
+                                state.setState(
+                                    () => state._affectedController.text = '0');
+                              }
                             }
-                          }
-                        : null,
+                          : null,
+                    ),
+                    const SizedBox(width: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.warning, color: Colors.red, size: 16),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Cả đàn đều bị bệnh',
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 8),
+                    Tooltip(
+                      message:
+                          'Chọn nếu toàn bộ đàn gặp triệu chứng bất thường (khẩn cấp)',
+                      child: Icon(Icons.info_outline,
+                          size: 16, color: Colors.grey[600]),
+                    ),
+                  ],
+                )
+              ],
+              if (state._isEmergency) ...[
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.errorContainer,
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  const SizedBox(width: 4),
-                  Row(
+                  child: Row(
                     children: [
-                      Icon(Icons.warning, color: Colors.red, size: 16),
-                      const SizedBox(width: 4),
-                      Text(
-                        'Cả đàn đều bị bệnh',
-                        style: TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold),
+                      Icon(
+                        Icons.warning_amber_rounded,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Đã xác nhận trường hợp khẩn cấp! \nTriệu chứng sẽ được khám ngay.',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(width: 8),
-                  Tooltip(
-                    message:
-                        'Chọn nếu toàn bộ đàn gặp triệu chứng bất thường (khẩn cấp)',
-                    child: Icon(Icons.info_outline,
-                        size: 16, color: Colors.grey[600]),
-                  ),
-                ],
-              ),
+                )
+              ],
             ],
           ),
         ),
