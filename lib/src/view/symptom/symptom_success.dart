@@ -191,7 +191,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                             const SizedBox(height: 16),
                             _buildDetailRow(
                               'Số lượng bị bệnh',
-                              '${widget.symptom.affectedQuantity}/${widget.symptom.quantity! - widget.symptom.affectedQuantity} con',
+                              '${widget.symptom.affectedQuantity}/${widget.symptom.quantity} con',
                               LinearIcons.warningAboutIcon,
                             ),
                             const SizedBox(height: 16),

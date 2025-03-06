@@ -22,7 +22,7 @@ class WarningConfirmationDialog extends StatefulWidget {
     required this.onPrimaryButtonPressed,
     required this.onSecondaryButtonPressed,
     this.isEmergency = false,
-    this.countdownDuration = 10,
+    this.countdownDuration = 5,
   });
 
   @override
