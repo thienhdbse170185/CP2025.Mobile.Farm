@@ -68,9 +68,10 @@ class _LoginWidgetState extends State<LoginWidget> {
               success: () {
                 log('[LOGIN] Đăng nhập thành công!');
                 // context.go(RouteName.otpVerification);
-                context
-                    .read<UserBloc>()
-                    .add(const UserEvent.sendOTP(isResend: false));
+                // context
+                //     .read<UserBloc>()
+                //     .add(const UserEvent.sendOTP(isResend: false));
+                context.go(RouteName.home);
               },
               failure: (message) {
                 setState(() {

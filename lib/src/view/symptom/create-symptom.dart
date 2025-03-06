@@ -46,6 +46,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final _farmingBatchController = TextEditingController();
   final _searchSymptomController = TextEditingController();
 
+  final _noteFocusNode = FocusNode();
+  final _affectedFocusNode = FocusNode();
+  final _farmingBatchFocusNode = FocusNode();
+  final _searchSymptomFocusNode = FocusNode();
+
   final List<File> _images = [];
   final List<GetSymptomRequest> _enteredSymptoms = [];
   final List<String> _symptomsName = [];
@@ -60,6 +65,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   bool _isLoading = false;
   bool _isProcessing = false;
   bool _isEmergency = false;
+  int _availableQuantity = 0;
 
   bool get _isCageSelected => _selectedCage != null;
   bool get _hasFarmingBatch => _farmingBatch != null;
@@ -86,6 +92,10 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     _affectedController.dispose();
     _farmingBatchController.dispose();
     _searchSymptomController.dispose();
+    _noteFocusNode.dispose();
+    _affectedFocusNode.dispose();
+    _farmingBatchFocusNode.dispose();
+    _searchSymptomFocusNode.dispose();
     super.dispose();
   }
 
@@ -128,7 +138,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             _submitSymptomRequest(null);
           }
         },
-        isEmergency: _isEmergency,
       ),
     );
   }
@@ -370,6 +379,8 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 _growthStage = growthStage;
                 _affectedQuantity =
                     _farmingBatch!.quantity - growthStage.affectQuantity;
+                _availableQuantity = (_growthStage!.quantity! -
+                    (_farmingBatch?.affectedQuantity ?? 0));
               });
             },
             getGrowthStageByCageIdFailure: (error) => setState(() =>
@@ -392,32 +403,35 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         ),
       ],
       child: AdaptiveSafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.grey[50],
-          appBar: CustomAppBar(
-            appBarHeight: 70,
-            leading: IconButton(
-                onPressed: () => context.pop(),
-                icon: const Icon(Icons.arrow_back)),
-            title: Column(
-              children: [
-                const Text('Tạo báo cáo triệu chứng'),
-                Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
-                    style: Theme.of(context).textTheme.bodyMedium),
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            backgroundColor: Colors.grey[50],
+            appBar: CustomAppBar(
+              appBarHeight: 70,
+              leading: IconButton(
+                  onPressed: () => context.pop(),
+                  icon: const Icon(Icons.arrow_back)),
+              title: Column(
+                children: [
+                  const Text('Tạo báo cáo triệu chứng'),
+                  Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
+                      style: Theme.of(context).textTheme.bodyMedium),
+                ],
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.refresh),
+                  onPressed: _isLoading ? null : _fetchInitialData,
+                  tooltip: 'Tải lại dữ liệu',
+                ),
               ],
             ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.refresh),
-                onPressed: _isLoading ? null : _fetchInitialData,
-                tooltip: 'Tải lại dữ liệu',
-              ),
-            ],
+            body: _isLoading
+                ? const LoadingWidget()
+                : SingleChildScrollView(child: _FormBody(state: this)),
+            bottomNavigationBar: _buildSubmitButton(),
           ),
-          body: _isLoading
-              ? const LoadingWidget()
-              : SingleChildScrollView(child: _FormBody(state: this)),
-          bottomNavigationBar: _buildSubmitButton(),
         ),
       ),
     );
@@ -435,7 +449,8 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       nameAnimal: medicalSymptom.nameAnimal,
       prescriptions: medicalSymptom.prescriptions,
       affectedQuantity: medicalSymptom.affectedQuantity,
-      quantity: _growthStage?.quantity ?? 0,
+      quantity: (_growthStage?.quantity ?? 0) -
+          (_farmingBatch?.affectedQuantity ?? 0),
       notes: medicalSymptom.notes,
       createAt: medicalSymptom.createAt,
       pictures: medicalSymptom.pictures,
@@ -1374,6 +1389,7 @@ class _FormBody extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(horizontal: 16),
                           child: TextField(
                             controller: state._affectedController,
+                            // focusNode: state._affectedFocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
                             inputFormatters: [
@@ -1420,7 +1436,7 @@ class _FormBody extends StatelessWidget {
                               size: 16, color: Colors.grey[600]),
                           const SizedBox(width: 4),
                           Text(
-                              'Số con hiện có: ${state._farmingBatch!.quantity} con.',
+                              'Số con hiện có: ${state._availableQuantity} con.',
                               style: TextStyle(
                                   color: Colors.grey[600], fontSize: 13)),
                         ],
@@ -1437,10 +1453,12 @@ class _FormBody extends StatelessWidget {
                     Checkbox(
                       value: state._affectedController.text ==
                           (state._affectedQuantity ?? 0).toString(),
-                      onChanged: (state._isFormValid)
+                      onChanged: (state._isCageSelected &&
+                              state._hasFarmingBatch &&
+                              state._hasSymptoms)
                           ? (bool? value) async {
                               if (value == true) {
-                                final confirmed = await showDialog<bool>(
+                                await showDialog<bool>(
                                   context: context,
                                   builder: (context) =>
                                       WarningConfirmationDialog(
@@ -1453,9 +1471,8 @@ class _FormBody extends StatelessWidget {
                                     secondaryButtonText: 'Hủy',
                                     onPrimaryButtonPressed: () {
                                       state.setState(() {
-                                        state._affectedController.text = state
-                                            ._farmingBatch!.quantity
-                                            .toString();
+                                        state._affectedController.text =
+                                            state._availableQuantity.toString();
                                         state._isEmergency = true;
                                       });
                                       Navigator.pop(context, true);
@@ -1465,9 +1482,6 @@ class _FormBody extends StatelessWidget {
                                     isEmergency: true,
                                   ),
                                 );
-                                if (confirmed == true) {
-                                  state._submitForm();
-                                }
                               } else {
                                 state.setState(
                                     () => state._affectedController.text = '0');
@@ -1547,6 +1561,7 @@ class _FormBody extends StatelessWidget {
               const SizedBox(height: 8),
               TextField(
                 controller: state._noteController,
+                // focusNode: state._noteFocusNode,
                 maxLines: 4,
                 decoration: InputDecoration(
                   hintText: 'Nhập ghi chú về tình trạng...',
