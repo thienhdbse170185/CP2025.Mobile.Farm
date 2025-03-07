@@ -56,9 +56,17 @@ class _WarningConfirmationDialogState extends State<WarningConfirmationDialog> {
           if (countdown == 0) {
             isButtonDisabled = false;
             timer.cancel();
+            // Reset button widths to normal
+            _resetButtonWidths();
           }
         });
       }
+    });
+  }
+
+  void _resetButtonWidths() {
+    setState(() {
+      // Reset button widths to normal
     });
   }
 
@@ -83,10 +91,12 @@ class _WarningConfirmationDialogState extends State<WarningConfirmationDialog> {
     // Giới hạn chiều rộng tối đa của nút primary
     final double screenWidth = MediaQuery.of(context).size.width;
     final double maxPrimaryWidth = screenWidth * 0.45;
-    final double secondaryWidth =
-        widget.isEmergency ? screenWidth * 0.25 : screenWidth * 0.3;
-    final double primaryWidthBase =
-        widget.isEmergency ? screenWidth * 0.38 : screenWidth * 0.32;
+    final double secondaryWidth = widget.isEmergency && countdown > 0
+        ? screenWidth * 0.25
+        : screenWidth * 0.3;
+    final double primaryWidthBase = widget.isEmergency && countdown > 0
+        ? screenWidth * 0.38
+        : screenWidth * 0.32;
     final double primaryWidth =
         primaryWidthBase > maxPrimaryWidth ? maxPrimaryWidth : primaryWidthBase;
 
