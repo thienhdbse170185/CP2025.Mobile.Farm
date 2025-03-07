@@ -312,8 +312,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
 
   String _getValidationMessage() {
     if (!_isCageSelected) return 'Vui lòng chọn chuồng nuôi';
-    if (!_hasFarmingBatch)
+    if (!_hasFarmingBatch) {
       return 'Không tìm thấy thông tin vụ nuôi cho chuồng này';
+    }
     if (!_hasSymptoms) return 'Vui lòng chọn ít nhất một triệu chứng';
     if (!_hasValidQuantity) {
       return int.tryParse(_affectedController.text) == 0
@@ -498,7 +499,10 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   Future<bool> _validateAffectedQuantityForm(String value) async {
     if (_farmingBatch != null) {
       final enteredQuantity = int.tryParse(value) ?? 0;
-      if (enteredQuantity > _farmingBatch!.quantity) {
+      final quantityReal =
+          _growthStage!.quantity! - _farmingBatch!.affectedQuantity!;
+      log('Quantity real: $quantityReal');
+      if (enteredQuantity > quantityReal) {
         await showDialog(
           context: context,
           builder: (context) => WarningConfirmationDialog(

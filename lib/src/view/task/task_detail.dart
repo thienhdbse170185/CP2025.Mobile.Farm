@@ -6,6 +6,7 @@ import 'package:data_layer/model/dto/egg_harvest/egg_harvest_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/request/egg_harvest/egg_harvest_request.dart';
 import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
+import 'package:data_layer/model/request/prescription/update_status_prescription_request.dart';
 import 'package:data_layer/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
+import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/constants/vaccine_schedule_status_constant.dart';
@@ -50,6 +52,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     with SingleTickerProviderStateMixin {
   bool _isProcessing = false;
   bool _isLoading = false;
+  bool _isHealthyAfterTreatment = false;
 
   // --- Task related variables ---
   TaskHaveCageName? task;
@@ -91,6 +94,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   // --- Upload image related variables ---
   UploadImageDto? uploadImage;
 
+  // --- After treatment variables ---
+  int _lastSessionQuantity = 0;
+
   // --- Controllers ---
   final TextEditingController _affectedController = TextEditingController();
   final TextEditingController logController = TextEditingController();
@@ -124,6 +130,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   final TextEditingController _countEggCollectedController =
       TextEditingController();
 
+  final TextEditingController _lastSessionQuantityController =
+      TextEditingController();
+
   // --- Image upload ---
   final List<File> _images = [];
 
@@ -143,6 +152,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     _weightMeatSellController.text = "0";
     _countEggCollectedController.text = '0';
     _countEggSellController.text = '0';
+    _lastSessionQuantityController.text = '0';
     _dateAnimalSellController.text =
         DateFormat('dd/MM/yyyy').format(TimeUtils.customNow());
     saleDate = TimeUtils.customNow();
@@ -168,6 +178,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     _countEggSellController.dispose();
     _priceEggSellController.dispose();
     _countEggCollectedController.dispose();
+    _lastSessionQuantityController.dispose();
     super.dispose();
   }
 
@@ -250,16 +261,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               TaskEvent.createDailyFoodUsageLog(cageId: task!.cageId, log: log),
             );
       } else if (task!.taskType.taskTypeId == TaskTypeDataConstant.health) {
-        final log = HealthLogDto(
-            prescriptionId: prescriptionId ?? '',
-            date: DateTime.now(),
-            notes: logController.text,
-            photo: uploadImage?.path != null
-                ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
-                : '',
-            taskId: widget.taskId);
-        context.read<TaskBloc>().add(TaskEvent.createHealthLog(
-            prescriptionId: prescriptionId ?? '', log: log));
+        if (prescriptionId != null) {
+          context
+              .read<PrescriptionCubit>()
+              .checkPrescriptionLastSession(prescriptionId: prescriptionId!);
+        }
       } else if (task!.taskType.taskTypeId == TaskTypeDataConstant.vaccin) {
         final request = VaccineScheduleLogRequest(
           date: TimeUtils.customNow().toIso8601String(),
@@ -629,11 +635,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 );
               },
               createHealthLogLoading: () {
-                LoadingDialog.show(context, "Đang tạo log uống thuốc...");
+                setState(() {
+                  _isProcessing = true;
+                });
                 log("Đang tạo log uống thuốc...");
               },
               createHealthLogSuccess: () async {
-                LoadingDialog.hide(context);
                 log("Tạo log uống thuốc thành công!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -849,10 +856,139 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 log('Lấy thuốc thành công!');
                 setState(() {
                   this.prescription = prescription;
+                  _lastSessionQuantity = prescription.quantityAnimal;
                 });
               },
               getPrescriptionFailure: (e) {
                 log('Lấy thuốc thất bại!');
+              },
+              updatePrescriptionStatusInProgress: () {
+                LoadingDialog.show(context, 'Đang cập nhật tình trạng...');
+              },
+              updatePrescriptionStatusSuccess: () {
+                LoadingDialog.hide(context);
+                context.pop();
+                ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
+                  content: const Text('Đã cập nhật tình trạng!'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context)
+                            .hideCurrentMaterialBanner();
+                      },
+                      child: const Text('Đóng'),
+                    ),
+                  ],
+                ));
+              },
+              updatePrescriptionStatusFailure: (e) {
+                LoadingDialog.hide(context);
+                ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
+                  content: const Text('Cập nhật tình trạng thất bại!'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context)
+                            .hideCurrentMaterialBanner();
+                      },
+                      child: const Text('Đóng'),
+                    ),
+                  ],
+                ));
+              },
+              checkPrescriptionLastSessionInProgress: () {
+                setState(() {
+                  _isProcessing = true;
+                });
+              },
+              checkPrescriptionLastSessionSuccess: (isLastSession) {
+                setState(() {
+                  _isProcessing = false;
+                });
+                // if (isLastSession == false) {
+                //   final log = HealthLogDto(
+                //     prescriptionId: prescriptionId ?? '',
+                //     date: DateTime.now(),
+                //     notes: logController.text,
+                //     photo: uploadImage?.path != null
+                //         ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
+                //         : '',
+                //     taskId: widget.taskId);
+                // context.read<TaskBloc>().add(TaskEvent.createHealthLog(
+                //     prescriptionId: prescriptionId ?? '', log: log));
+                // } else {
+                //   showDialog(
+                //       context: context,
+                //       builder: (context) => WarningConfirmationDialog(
+                //           title: 'Cập nhật sau điều trị',
+                //           content: _buildLastSessionForm(),
+                //           secondaryButtonText: 'Đóng',
+                //           primaryButtonText: 'Xác nhận',
+                //           onPrimaryButtonPressed: () {},
+                //           onSecondaryButtonPressed: () {
+                //             context.pop();
+                //           }));
+                // }
+                showDialog(
+                    context: context,
+                    builder: (context) => WarningConfirmationDialog(
+                        isEmergency: true,
+                        title: 'Cập nhật sau điều trị',
+                        content: _buildLastSessionForm(),
+                        secondaryButtonText: 'Đóng',
+                        primaryButtonText: 'Xác nhận',
+                        onPrimaryButtonPressed: () {
+                          final request = UpdateStatusPrescriptionRequest(
+                              status: 'Complete',
+                              remainingQuantity: _lastSessionQuantity);
+                          context
+                              .read<PrescriptionCubit>()
+                              .updateQuantityAnimalAfterTreatment(
+                                  prescriptionId: prescriptionId!,
+                                  request: request);
+                        },
+                        onSecondaryButtonPressed: () {
+                          _lastSessionQuantityController.text = '0';
+                          setState(() {
+                            _lastSessionQuantity = prescription!.quantityAnimal;
+                            _isHealthyAfterTreatment = false;
+                          });
+                          context.pop();
+                        }));
+              },
+              checkPrescriptionLastSessionFailure: (message) {
+                setState(() {
+                  _isProcessing = false;
+                });
+              },
+              updateQuantityAnimalAfterTreatmentInProgress: () {},
+              updateQuantityAnimalAfterTreatmentSuccess: () {
+                context.pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Text(
+                          'Cập nhật số lượng gia cầm sau điều trị thành công!')),
+                );
+                final log = HealthLogDto(
+                    prescriptionId: prescriptionId ?? '',
+                    date: DateTime.now(),
+                    notes: logController.text,
+                    photo: uploadImage?.path != null
+                        ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
+                        : '',
+                    taskId: widget.taskId);
+                context.read<TaskBloc>().add(TaskEvent.createHealthLog(
+                    prescriptionId: prescriptionId ?? '', log: log));
+              },
+              updateQuantityAnimalAfterTreatmentFailure: (message) {
+                setState(() {
+                  _isProcessing = false;
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Text(
+                          'Cập nhật số lượng gia cầm sau điều trị thất bại!')),
+                );
               },
               orElse: () {},
             );
@@ -1127,6 +1263,112 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
                   style: Theme.of(context).textTheme.bodyMedium)
             ]),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.more_vert),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SafeArea(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              leading: Icon(Icons.power_settings_new_rounded),
+                              title: Text('Kết thúc điều trị'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return WarningConfirmationDialog(
+                                      isEmergency: true,
+                                      title: 'Kết thúc điều trị',
+                                      content: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Text(
+                                              'Bạn đã chắc chắn xác nhận kết thúc điều trị?. Chủ trang trại sẽ nhận được việc kết thúc điều trị với lý do sau: '),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  top: 12),
+                                              padding: const EdgeInsets.all(16),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primaryContainer,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                border: Border.all(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .outlineVariant,
+                                                ),
+                                              ),
+                                              child: Row(children: [
+                                                Text(
+                                                  'Lý do: ',
+                                                ),
+                                                Text('Đàn gà chết hết',
+                                                    style: TextStyle(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    )),
+                                              ])),
+                                        ],
+                                      ),
+                                      secondaryButtonText: 'Hủy',
+                                      primaryButtonText: 'Xác nhận',
+                                      onPrimaryButtonPressed: () {
+                                        if (prescriptionId != null) {
+                                          final request =
+                                              UpdateStatusPrescriptionRequest(
+                                            status: 'Dead',
+                                            remainingQuantity: 0,
+                                          );
+                                          context
+                                              .read<PrescriptionCubit>()
+                                              .updatePrescriptionStatus(
+                                                prescriptionId:
+                                                    prescriptionId ?? '',
+                                                request: request,
+                                              );
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showMaterialBanner(
+                                                  MaterialBanner(
+                                            content: const Text(
+                                                'Không nhận được mã đơn thuốc!'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  ScaffoldMessenger.of(context)
+                                                      .hideCurrentMaterialBanner();
+                                                },
+                                                child: const Text('Đóng'),
+                                              ),
+                                            ],
+                                          ));
+                                        }
+                                      },
+                                      onSecondaryButtonPressed: () {
+                                        context.pop();
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+              )
+            ],
           ),
           body: RefreshIndicator(
             onRefresh: () async {
@@ -1698,7 +1940,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                   value: '${prescription?.daysToTake} ngày',
                                   icon: Icons.calendar_today,
                                 ),
-                                const SizedBox(width: 16),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.16),
                                 _buildInfoItem(
                                   context: context,
                                   label: 'Số lượng',
@@ -4371,5 +4615,167 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 : _isWithinWorkingHours()
                     ? 'Xác nhận làm việc'
                     : 'Chưa đến giờ làm việc');
+  }
+
+  Widget _buildLastSessionForm() {
+    return Column(children: [
+      const Text(
+          'Vì đây là đơn thuốc cuối cùng nên điền số lượng gia cầm sau điều trị vào mẫu bên dưới. '),
+      const SizedBox(height: 16),
+      StatefulBuilder(builder: (context, setState) {
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey[200]!),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Opacity(
+                opacity: _isHealthyAfterTreatment ? 0.5 : 1,
+                child: Row(
+                  children: [
+                    const Text('Số gia cầm '),
+                    Text(
+                      'đã chết',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const Text(' sau điều trị: '),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildQuantityButton(
+                    icon: Icons.remove,
+                    onPressed: () {
+                      final currentValue =
+                          int.tryParse(_lastSessionQuantityController.text) ??
+                              0;
+                      if (currentValue > 0) {
+                        setState(() {
+                          _lastSessionQuantityController.text =
+                              (currentValue - 1).toString();
+                          _lastSessionQuantity = _lastSessionQuantity + 1;
+                        });
+                      }
+                    },
+                    isDisable: _isHealthyAfterTreatment,
+                  ),
+                  Container(
+                    width: 80,
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: TextField(
+                      controller: _lastSessionQuantityController,
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        suffixText: '(con)',
+                        suffixStyle:
+                            TextStyle(color: Colors.grey[600], fontSize: 18),
+                      ),
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      onChanged: _onChangedQuantityLastSession,
+                      enabled: !_isHealthyAfterTreatment,
+                    ),
+                  ),
+                  _buildQuantityButton(
+                    icon: Icons.add,
+                    onPressed: () {
+                      final currentValue =
+                          int.tryParse(_lastSessionQuantityController.text) ??
+                              0;
+                      setState(() {
+                        _lastSessionQuantityController.text =
+                            (currentValue + 1).toString();
+                        _lastSessionQuantity = _lastSessionQuantity - 1;
+                      });
+                    },
+                    isAdd: true,
+                    isDisable: _isHealthyAfterTreatment,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                  '- Tick vào ô bên dưới nếu tất cả khỏe mạnh sau điều trị.'),
+              const SizedBox(height: 8),
+              CheckboxListTile(
+                title: const Text('Tất cả gia cầm khỏe mạnh sau điều trị'),
+                value: _isHealthyAfterTreatment,
+                onChanged: (bool? value) {
+                  if (value == true) {
+                    setState(() {
+                      _isHealthyAfterTreatment = true;
+                      _lastSessionQuantityController.text = '0';
+                    });
+                  } else {
+                    setState(() {
+                      _isHealthyAfterTreatment = false;
+                      _lastSessionQuantityController.text = '0';
+                    });
+                  }
+                },
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    size: 16,
+                    color: Colors.grey[600],
+                  ),
+                  const SizedBox(width: 10),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Số gia cầm khỏe mạnh',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          '$_lastSessionQuantity con',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ])
+                ],
+              ),
+            ],
+          ),
+        );
+      }),
+    ]);
+  }
+
+  _onChangedQuantityLastSession(String value) {
+    if (int.tryParse(value) == null) {
+      return;
+    }
+    final newValue = int.parse(value);
+    if (newValue > prescription!.quantityAnimal) {
+      _lastSessionQuantityController.text =
+          prescription!.quantityAnimal.toString();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              'Số gia cầm còn sống sau điều trị không thể lớn hơn số gia cầm ban đầu.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      setState(() {
+        _lastSessionQuantity = newValue;
+      });
+    }
   }
 }
