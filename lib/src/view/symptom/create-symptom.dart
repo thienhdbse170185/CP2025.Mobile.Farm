@@ -65,6 +65,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   bool _isLoading = false;
   bool _isProcessing = false;
   bool _isEmergency = false;
+  bool _isCheckAllAnimalSick = false;
   int _availableQuantity = 0;
 
   bool get _isCageSelected => _selectedCage != null;
@@ -515,11 +516,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             secondaryButtonText: 'Đặt lại',
             onPrimaryButtonPressed: () {
               _affectedController.text = _farmingBatch!.quantity.toString();
-              Navigator.pop(context);
+              context.pop();
             },
             onSecondaryButtonPressed: () {
               _affectedController.text = '0';
-              Navigator.pop(context);
+              context.pop();
             },
           ),
         );
@@ -1117,20 +1118,26 @@ class _FormBody extends StatelessWidget {
     );
   }
 
-  Widget _buildQuantityButton(
-      {required BuildContext context,
-      required IconData icon,
-      required VoidCallback onPressed,
-      bool isAdd = false}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isAdd ? Theme.of(context).colorScheme.primary : Colors.grey[200],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: IconButton(
-        onPressed: onPressed,
-        icon: Icon(icon, color: isAdd ? Colors.white : Colors.grey[700]),
-        iconSize: 24,
+  Widget _buildQuantityButton({
+    required BuildContext context,
+    required IconData icon,
+    required VoidCallback onPressed,
+    bool isAdd = false,
+    bool isDisable = false,
+  }) {
+    return Opacity(
+      opacity: isDisable ? 0.5 : 1,
+      child: Container(
+        decoration: BoxDecoration(
+          color:
+              isAdd ? Theme.of(context).colorScheme.primary : Colors.grey[200],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: IconButton(
+          onPressed: isDisable ? null : onPressed,
+          icon: Icon(icon, color: isAdd ? Colors.white : Colors.grey[700]),
+          iconSize: 24,
+        ),
       ),
     );
   }
@@ -1260,397 +1267,421 @@ class _FormBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Container(
-          color: Colors.white,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              state._buildSectionTitle('Triệu chứng và số lượng',
-                  isCompleted: state._hasSymptoms && state._hasValidQuantity),
-              const SizedBox(height: 8),
-              const Text(
-                  'Chọn triệu chứng và nhập số lượng gia cầm bị bệnh (bắt buộc)',
-                  style: TextStyle(fontSize: 12, color: Colors.grey)),
-              const SizedBox(height: 8),
-              if (state._symptomsName.isNotEmpty) ...[
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey[200]!),
+        Opacity(
+            opacity: state._hasFarmingBatch == true ? 1 : 0.5,
+            child: Container(
+              color: Colors.white,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  state._buildSectionTitle(
+                    'Triệu chứng và số lượng',
+                    isCompleted: state._hasSymptoms && state._hasValidQuantity,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                  const SizedBox(height: 8),
+                  const Text(
+                      'Chọn triệu chứng và nhập số lượng gia cầm bị bệnh (bắt buộc)',
+                      style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  const SizedBox(height: 8),
+                  if (state._symptomsName.isNotEmpty) ...[
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[50],
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.grey[200]!),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.medical_information_outlined,
-                              size: 20,
+                          Row(
+                            children: [
+                              Icon(Icons.medical_information_outlined,
+                                  size: 20,
+                                  color: Theme.of(context).colorScheme.primary),
+                              const SizedBox(width: 8),
+                              Text('Triệu chứng đã chọn',
+                                  style: TextStyle(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: state._symptomsName
+                                .map((symptom) => Chip(
+                                      label: Text(symptom,
+                                          style: const TextStyle(fontSize: 13)),
+                                      deleteIcon:
+                                          const Icon(Icons.close, size: 16),
+                                      onDeleted: () => state.setState(() {
+                                        state._symptomsName.remove(symptom);
+                                        state._enteredSymptoms.removeWhere(
+                                            (s) =>
+                                                state._symptoms
+                                                    .firstWhere((sym) =>
+                                                        sym.symptomName ==
+                                                        symptom)
+                                                    .id ==
+                                                s.symptomId);
+                                      }),
+                                      backgroundColor: Theme.of(context)
+                                          .colorScheme
+                                          .primaryContainer,
+                                      side:
+                                          BorderSide(color: Colors.grey[300]!),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                    ))
+                                .toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                  InkWell(
+                    onTap: state._showSymptomSelectionSheet,
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 16),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 1.5),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.add_circle_outline,
                               color: Theme.of(context).colorScheme.primary),
                           const SizedBox(width: 8),
-                          Text('Triệu chứng đã chọn',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.w500)),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: state._symptomsName
-                            .map((symptom) => Chip(
-                                  label: Text(symptom,
-                                      style: const TextStyle(fontSize: 13)),
-                                  deleteIcon: const Icon(Icons.close, size: 16),
-                                  onDeleted: () => state.setState(() {
-                                    state._symptomsName.remove(symptom);
-                                    state._enteredSymptoms.removeWhere((s) =>
-                                        state._symptoms
-                                            .firstWhere((sym) =>
-                                                sym.symptomName == symptom)
-                                            .id ==
-                                        s.symptomId);
-                                  }),
-                                  backgroundColor: Theme.of(context)
-                                      .colorScheme
-                                      .primaryContainer,
-                                  side: BorderSide(color: Colors.grey[300]!),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                ))
-                            .toList(),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
-              ],
-              InkWell(
-                onTap: state._showSymptomSelectionSheet,
-                borderRadius: BorderRadius.circular(12),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 1.5),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add_circle_outline,
-                          color: Theme.of(context).colorScheme.primary),
-                      const SizedBox(width: 8),
-                      Text(
-                        state._symptomsName.isEmpty
-                            ? 'Thêm triệu chứng'
-                            : 'Thêm triệu chứng khác',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.grey[50],
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey[200]!),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Số lượng con vật bị bệnh',
-                        style: Theme.of(context).textTheme.titleSmall),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildQuantityButton(
-                          context: context,
-                          icon: Icons.remove,
-                          onPressed: () {
-                            final currentValue =
-                                int.tryParse(state._affectedController.text) ??
-                                    0;
-                            if (currentValue > 0) {
-                              state.setState(() => state._affectedController
-                                  .text = (currentValue - 1).toString());
-                            }
-                          },
-                        ),
-                        Container(
-                          width: 80,
-                          margin: const EdgeInsets.symmetric(horizontal: 16),
-                          child: TextField(
-                            controller: state._affectedController,
-                            // focusNode: state._affectedFocusNode,
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ], // Chỉ cho phép số
-                            style: const TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.w600),
-                            onChanged: (value) async {
-                              if (await state
-                                      ._validateAffectedQuantityForm(value) &&
-                                  await state._isEmergencyAffectedQuantityForm(
-                                      value)) {
-                                state.setState(() => state._isEmergency = true);
-                              }
-                            },
-                          ),
-                        ),
-                        _buildQuantityButton(
-                          context: context,
-                          icon: Icons.add,
-                          onPressed: () async {
-                            final currentValue =
-                                int.tryParse(state._affectedController.text) ??
-                                    0;
-                            if (await state._validateAffectedQuantityForm(
-                                state._affectedController.text)) {
-                              state.setState(() => state._affectedController
-                                  .text = (currentValue + 1).toString());
-                            } else if (await state
-                                ._isEmergencyAffectedQuantityForm(
-                                    state._affectedController.text)) {
-                              state.setState(() => state._isEmergency = true);
-                            }
-                          },
-                          isAdd: true,
-                        ),
-                      ],
-                    ),
-                    if (state._farmingBatch != null) ...[
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Icon(Icons.info_outline,
-                              size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
                           Text(
-                              'Số con hiện có: ${state._availableQuantity} con.',
-                              style: TextStyle(
-                                  color: Colors.grey[600], fontSize: 13)),
+                            state._symptomsName.isEmpty
+                                ? 'Thêm triệu chứng'
+                                : 'Thêm triệu chứng khác',
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ],
                       ),
-                    ],
-                  ],
-                ),
-              ),
-              const SizedBox(height: 8),
-              // --- Checkbox cả đàn đều bị bệnh
-              if (state._isEmergency == false) ...[
-                Row(
-                  children: [
-                    Checkbox(
-                      value: state._affectedController.text ==
-                          (state._affectedQuantity ?? 0).toString(),
-                      onChanged: (state._isCageSelected &&
-                              state._hasFarmingBatch &&
-                              state._hasSymptoms)
-                          ? (bool? value) async {
-                              if (value == true) {
-                                await showDialog<bool>(
-                                  context: context,
-                                  builder: (context) =>
-                                      WarningConfirmationDialog(
-                                    title: 'Xác nhận trường hợp khẩn cấp',
-                                    content: const Text(
-                                      'Bạn đang chọn "Cả đàn đều bị bệnh", điều này báo hiệu tình trạng khẩn cấp. Bạn có chắc chắn không?',
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    primaryButtonText: 'Xác nhận',
-                                    secondaryButtonText: 'Hủy',
-                                    onPrimaryButtonPressed: () {
-                                      state.setState(() {
-                                        state._affectedController.text =
-                                            state._availableQuantity.toString();
-                                        state._isEmergency = true;
-                                      });
-                                      Navigator.pop(context, true);
-                                    },
-                                    onSecondaryButtonPressed: () =>
-                                        Navigator.pop(context, false),
-                                    isEmergency: true,
-                                  ),
-                                );
-                              } else {
-                                state.setState(
-                                    () => state._affectedController.text = '0');
-                              }
-                            }
-                          : null,
                     ),
-                    const SizedBox(width: 4),
-                    Row(
+                  ),
+                  const SizedBox(height: 24),
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[50],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey[200]!),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(Icons.warning, color: Colors.red, size: 16),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Cả đàn đều bị bệnh',
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 8),
-                    Tooltip(
-                      message:
-                          'Chọn nếu toàn bộ đàn gặp triệu chứng bất thường (khẩn cấp)',
-                      child: Icon(Icons.info_outline,
-                          size: 16, color: Colors.grey[600]),
-                    ),
-                  ],
-                )
-              ],
-              if (state._isEmergency) ...[
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.errorContainer,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.warning_amber_rounded,
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          'Đã xác nhận trường hợp khẩn cấp! \nTriệu chứng sẽ được khám ngay.',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Theme.of(context).colorScheme.error,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ],
-          ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          color: Colors.white,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              state._buildSectionTitle(
-                'Ghi chú và hình ảnh',
-                isRequired: false,
-                isCompleted: state._images.isNotEmpty ||
-                    state._noteController.text.isNotEmpty,
-              ),
-              const SizedBox(height: 8),
-              const Text('Thêm ghi chú hoặc hình ảnh nếu cần (tùy chọn)',
-                  style: TextStyle(fontSize: 12, color: Colors.grey)),
-              const SizedBox(height: 8),
-              TextField(
-                controller: state._noteController,
-                // focusNode: state._noteFocusNode,
-                maxLines: 4,
-                decoration: InputDecoration(
-                  hintText: 'Nhập ghi chú về tình trạng...',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text('Hình ảnh đính kèm (tối đa 5 ảnh)',
-                  style: Theme.of(context).textTheme.titleSmall),
-              const SizedBox(height: 12),
-              state._images.isEmpty
-                  ? InkWell(
-                      onTap: () => _showImagePickerOptions(context),
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(24),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey[300]!),
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Column(
+                        Text('Số lượng con vật bị bệnh',
+                            style: Theme.of(context).textTheme.titleSmall),
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.add_photo_alternate_outlined,
-                                size: 40, color: Colors.grey[400]),
-                            const SizedBox(height: 12),
-                            Text('Thêm hình ảnh',
-                                style: TextStyle(color: Colors.grey[600])),
-                          ],
-                        ),
-                      ),
-                    )
-                  : GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8),
-                      itemCount: state._images.length +
-                          (state._images.length < 5 ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        if (index == state._images.length) {
-                          return InkWell(
-                            onTap: () => _showImagePickerOptions(context),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey[300]!),
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: Icon(Icons.add_photo_alternate_outlined,
-                                  color: Colors.grey[400]),
+                            _buildQuantityButton(
+                              context: context,
+                              icon: Icons.remove,
+                              onPressed: () {
+                                final currentValue = int.tryParse(
+                                        state._affectedController.text) ??
+                                    0;
+                                if (currentValue > 0) {
+                                  state.setState(() => state._affectedController
+                                      .text = (currentValue - 1).toString());
+                                }
+                              },
+                              isDisable: state._isEmergency,
                             ),
-                          );
-                        }
-                        return Stack(
-                          children: [
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.file(state._images[index],
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
-                                    height: double.infinity)),
-                            Positioned(
-                              top: 4,
-                              right: 4,
-                              child: InkWell(
-                                onTap: () => state.setState(
-                                    () => state._images.removeAt(index)),
-                                child: Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: const BoxDecoration(
-                                      color: Colors.black54,
-                                      shape: BoxShape.circle),
-                                  child: const Icon(Icons.close,
-                                      size: 16, color: Colors.white),
-                                ),
+                            Container(
+                              width: 80,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: TextField(
+                                enabled: !state._isEmergency,
+                                controller: state._affectedController,
+                                // focusNode: state._affectedFocusNode,
+                                textAlign: TextAlign.center,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ], // Chỉ cho phép số
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.w600),
+                                onChanged: (value) async {
+                                  if (await state._validateAffectedQuantityForm(
+                                          value) &&
+                                      await state
+                                          ._isEmergencyAffectedQuantityForm(
+                                              value)) {
+                                    state.setState(
+                                        () => state._isEmergency = true);
+                                  }
+                                },
                               ),
                             ),
+                            _buildQuantityButton(
+                              context: context,
+                              icon: Icons.add,
+                              onPressed: () async {
+                                final currentValue = int.tryParse(
+                                        state._affectedController.text) ??
+                                    0;
+                                if (await state._validateAffectedQuantityForm(
+                                    state._affectedController.text)) {
+                                  state.setState(() => state._affectedController
+                                      .text = (currentValue + 1).toString());
+                                } else if (await state
+                                    ._isEmergencyAffectedQuantityForm(
+                                        state._affectedController.text)) {
+                                  state.setState(
+                                      () => state._isEmergency = true);
+                                }
+                              },
+                              isAdd: true,
+                              isDisable: state._isEmergency,
+                            ),
                           ],
-                        );
-                      },
+                        ),
+                        if (state._farmingBatch != null) ...[
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Icon(Icons.info_outline,
+                                  size: 16, color: Colors.grey[600]),
+                              const SizedBox(width: 4),
+                              Text(
+                                  'Số con hiện có: ${state._availableQuantity} con.',
+                                  style: TextStyle(
+                                      color: Colors.grey[600], fontSize: 13)),
+                            ],
+                          ),
+                        ],
+                      ],
                     ),
-            ],
-          ),
-        ),
+                  ),
+                  const SizedBox(height: 8),
+                  // --- Checkbox cả đàn đều bị bệnh
+                  if (state._isEmergency == false) ...[
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: state._isCheckAllAnimalSick,
+                          onChanged: (state._isCageSelected &&
+                                  state._hasFarmingBatch &&
+                                  state._hasSymptoms)
+                              ? (bool? value) async {
+                                  if (value == true) {
+                                    await showDialog<bool>(
+                                      context: context,
+                                      builder: (context) =>
+                                          WarningConfirmationDialog(
+                                        title: 'Xác nhận trường hợp khẩn cấp',
+                                        content: const Text(
+                                          'Bạn đang chọn "Cả đàn đều bị bệnh", điều này báo hiệu tình trạng khẩn cấp. Bạn có chắc chắn không?',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        primaryButtonText: 'Xác nhận',
+                                        secondaryButtonText: 'Hủy',
+                                        onPrimaryButtonPressed: () {
+                                          state.setState(() {
+                                            state._affectedController.text =
+                                                state._availableQuantity
+                                                    .toString();
+                                            state._isEmergency = true;
+                                            state._isCheckAllAnimalSick = true;
+                                          });
+                                          Navigator.pop(context, true);
+                                        },
+                                        onSecondaryButtonPressed: () =>
+                                            Navigator.pop(context, false),
+                                        isEmergency: true,
+                                      ),
+                                    );
+                                  } else {
+                                    state.setState(() {
+                                      state._affectedController.text = '0';
+                                      state._isCheckAllAnimalSick = false;
+                                    });
+                                  }
+                                }
+                              : null,
+                        ),
+                        const SizedBox(width: 4),
+                        Row(
+                          children: [
+                            Icon(Icons.warning, color: Colors.red, size: 16),
+                            const SizedBox(width: 4),
+                            Text(
+                              'Cả đàn đều bị bệnh',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                  if (state._isEmergency) ...[
+                    const SizedBox(height: 16),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.errorContainer,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.warning_amber_rounded,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              'Đã xác nhận trường hợp khẩn cấp! \nTriệu chứng sẽ được khám ngay.',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ],
+              ),
+            )),
+        const SizedBox(height: 8),
+        Opacity(
+            opacity: state._hasFarmingBatch &&
+                    state._hasSymptoms &&
+                    state._hasValidQuantity
+                ? 1
+                : 0.5,
+            child: Container(
+              color: Colors.white,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  state._buildSectionTitle(
+                    'Ghi chú và hình ảnh',
+                    isRequired: false,
+                    isCompleted: state._images.isNotEmpty ||
+                        state._noteController.text.isNotEmpty,
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Thêm ghi chú hoặc hình ảnh nếu cần (tùy chọn)',
+                      style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: state._noteController,
+                    // focusNode: state._noteFocusNode,
+                    maxLines: 4,
+                    decoration: InputDecoration(
+                      hintText: 'Nhập ghi chú về tình trạng...',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text('Hình ảnh đính kèm (tối đa 5 ảnh)',
+                      style: Theme.of(context).textTheme.titleSmall),
+                  const SizedBox(height: 12),
+                  state._images.isEmpty
+                      ? InkWell(
+                          onTap: () => _showImagePickerOptions(context),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(24),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[300]!),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Column(
+                              children: [
+                                Icon(Icons.add_photo_alternate_outlined,
+                                    size: 40, color: Colors.grey[400]),
+                                const SizedBox(height: 12),
+                                Text('Thêm hình ảnh',
+                                    style: TextStyle(color: Colors.grey[600])),
+                              ],
+                            ),
+                          ),
+                        )
+                      : GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 8,
+                                  mainAxisSpacing: 8),
+                          itemCount: state._images.length +
+                              (state._images.length < 5 ? 1 : 0),
+                          itemBuilder: (context, index) {
+                            if (index == state._images.length) {
+                              return InkWell(
+                                onTap: () => _showImagePickerOptions(context),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border.all(color: Colors.grey[300]!),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: Icon(
+                                      Icons.add_photo_alternate_outlined,
+                                      color: Colors.grey[400]),
+                                ),
+                              );
+                            }
+                            return Stack(
+                              children: [
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.file(state._images[index],
+                                        fit: BoxFit.cover,
+                                        width: double.infinity,
+                                        height: double.infinity)),
+                                Positioned(
+                                  top: 4,
+                                  right: 4,
+                                  child: InkWell(
+                                    onTap: () => state.setState(
+                                        () => state._images.removeAt(index)),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.black54,
+                                          shape: BoxShape.circle),
+                                      child: const Icon(Icons.close,
+                                          size: 16, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                ],
+              ),
+            )),
       ],
     );
   }
