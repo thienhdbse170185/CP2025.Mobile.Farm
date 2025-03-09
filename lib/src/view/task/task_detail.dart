@@ -948,12 +948,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                   request: request);
                         },
                         onSecondaryButtonPressed: () {
-                          _lastSessionQuantityController.text = '0';
                           setState(() {
                             _lastSessionQuantity = prescription!.quantityAnimal;
                             _isHealthyAfterTreatment = false;
                           });
                           context.pop();
+                          _lastSessionQuantityController.text = '0';
                         }));
               },
               checkPrescriptionLastSessionFailure: (message) {
@@ -1264,110 +1264,115 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   style: Theme.of(context).textTheme.bodyMedium)
             ]),
             actions: [
-              IconButton(
-                icon: Icon(Icons.more_vert),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SafeArea(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            ListTile(
-                              leading: Icon(Icons.power_settings_new_rounded),
-                              title: Text('Kết thúc điều trị'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return WarningConfirmationDialog(
-                                      isEmergency: true,
-                                      title: 'Kết thúc điều trị',
-                                      content: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        children: [
-                                          Text(
-                                              'Bạn đã chắc chắn xác nhận kết thúc điều trị?. Chủ trang trại sẽ nhận được việc kết thúc điều trị với lý do sau: '),
-                                          Container(
-                                              margin: const EdgeInsets.only(
-                                                  top: 12),
-                                              padding: const EdgeInsets.all(16),
-                                              decoration: BoxDecoration(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primaryContainer,
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                                border: Border.all(
+              if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
+                  task?.status == StatusDataConstant.inProgress) ...[
+                IconButton(
+                  icon: Icon(Icons.more_vert),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SafeArea(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              ListTile(
+                                leading: Icon(Icons.power_settings_new_rounded),
+                                title: Text('Kết thúc điều trị'),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return WarningConfirmationDialog(
+                                        isEmergency: true,
+                                        title: 'Kết thúc điều trị',
+                                        content: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: [
+                                            Text(
+                                                'Bạn đã chắc chắn xác nhận kết thúc điều trị?. Chủ trang trại sẽ nhận được việc kết thúc điều trị với lý do sau: '),
+                                            Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 12),
+                                                padding:
+                                                    const EdgeInsets.all(16),
+                                                decoration: BoxDecoration(
                                                   color: Theme.of(context)
                                                       .colorScheme
-                                                      .outlineVariant,
+                                                      .primaryContainer,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  border: Border.all(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .outlineVariant,
+                                                  ),
                                                 ),
-                                              ),
-                                              child: Row(children: [
-                                                Text(
-                                                  'Lý do: ',
+                                                child: Row(children: [
+                                                  Text(
+                                                    'Lý do: ',
+                                                  ),
+                                                  Text('Đàn gà chết hết',
+                                                      style: TextStyle(
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                      )),
+                                                ])),
+                                          ],
+                                        ),
+                                        secondaryButtonText: 'Hủy',
+                                        primaryButtonText: 'Xác nhận',
+                                        onPrimaryButtonPressed: () {
+                                          if (prescriptionId != null) {
+                                            final request =
+                                                UpdateStatusPrescriptionRequest(
+                                              status: 'Dead',
+                                              remainingQuantity: 0,
+                                            );
+                                            context
+                                                .read<PrescriptionCubit>()
+                                                .updatePrescriptionStatus(
+                                                  prescriptionId:
+                                                      prescriptionId ?? '',
+                                                  request: request,
+                                                );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showMaterialBanner(
+                                                    MaterialBanner(
+                                              content: const Text(
+                                                  'Không nhận được mã đơn thuốc!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .hideCurrentMaterialBanner();
+                                                  },
+                                                  child: const Text('Đóng'),
                                                 ),
-                                                Text('Đàn gà chết hết',
-                                                    style: TextStyle(
-                                                      fontStyle:
-                                                          FontStyle.italic,
-                                                    )),
-                                              ])),
-                                        ],
-                                      ),
-                                      secondaryButtonText: 'Hủy',
-                                      primaryButtonText: 'Xác nhận',
-                                      onPrimaryButtonPressed: () {
-                                        if (prescriptionId != null) {
-                                          final request =
-                                              UpdateStatusPrescriptionRequest(
-                                            status: 'Dead',
-                                            remainingQuantity: 0,
-                                          );
-                                          context
-                                              .read<PrescriptionCubit>()
-                                              .updatePrescriptionStatus(
-                                                prescriptionId:
-                                                    prescriptionId ?? '',
-                                                request: request,
-                                              );
-                                        } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showMaterialBanner(
-                                                  MaterialBanner(
-                                            content: const Text(
-                                                'Không nhận được mã đơn thuốc!'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  ScaffoldMessenger.of(context)
-                                                      .hideCurrentMaterialBanner();
-                                                },
-                                                child: const Text('Đóng'),
-                                              ),
-                                            ],
-                                          ));
-                                        }
-                                      },
-                                      onSecondaryButtonPressed: () {
-                                        context.pop();
-                                      },
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-              )
+                                              ],
+                                            ));
+                                          }
+                                        },
+                                        onSecondaryButtonPressed: () {
+                                          context.pop();
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                )
+              ]
             ],
           ),
           body: RefreshIndicator(
@@ -1415,11 +1420,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                 Row(
                                   children: [
                                     const SizedBox(width: 4),
-                                    Text(
-                                      task?.taskName ?? "",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge,
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.7,
+                                      child: Text(
+                                        task?.taskName ?? "",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -4743,10 +4752,19 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                             fontSize: 13,
                           ),
                         ),
-                        Text(
-                          '$_lastSessionQuantity con',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
+                        Row(children: [
+                          Text(
+                            '$_lastSessionQuantity con',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            ' (sau điều trị)',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 13,
+                            ),
+                          ),
+                        ])
                       ])
                 ],
               ),

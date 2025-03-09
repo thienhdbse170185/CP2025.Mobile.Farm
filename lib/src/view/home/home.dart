@@ -63,7 +63,6 @@ class _HomeWidgetState extends State<HomeWidget>
 
     context.read<AuthBloc>().add(const AuthEvent.appStarted());
     context.read<TimeBloc>().add(const TimeEvent.getServerTime());
-    context.read<UserBloc>().add(const UserEvent.getUserProfile());
   }
 
   @override
@@ -85,7 +84,7 @@ class _HomeWidgetState extends State<HomeWidget>
             },
             appStartedSuccess: () {
               log('App started successfully!');
-              context.read<UserBloc>().add(const UserEvent.updateDeviceToken());
+              context.read<UserBloc>().add(const UserEvent.getUserProfile());
             },
             appStartedFailure: (error) {
               log('App started failed: $error');
@@ -121,6 +120,9 @@ class _HomeWidgetState extends State<HomeWidget>
                 setState(() {
                   _userName = userName;
                 });
+                context
+                    .read<UserBloc>()
+                    .add(const UserEvent.updateDeviceToken());
               },
               getUserProfileFailure: (error) {
                 log('Lấy thông tin user thất bại: $error');

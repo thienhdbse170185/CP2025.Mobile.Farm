@@ -404,7 +404,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       final task = TaskHaveCageName(
         id: item.id,
         cageId: item.cageId,
-        cageName: item.cageName,
+        cageName: item.isTreatmentTask ? 'Chuồng cách ly' : item.cageName,
         taskName: item.taskName,
         description: item.description,
         status: item.status,

@@ -22,6 +22,10 @@ mixin _$UploadImageState {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -33,6 +37,9 @@ mixin _$UploadImageState {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -44,6 +51,9 @@ mixin _$UploadImageState {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -57,6 +67,12 @@ mixin _$UploadImageState {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -69,6 +85,12 @@ mixin _$UploadImageState {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -80,6 +102,12 @@ mixin _$UploadImageState {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -154,6 +182,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -168,6 +200,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -182,6 +217,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -201,6 +239,12 @@ class _$InitialImpl implements _Initial {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -216,6 +260,12 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -230,6 +280,12 @@ class _$InitialImpl implements _Initial {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -293,6 +349,10 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -307,6 +367,9 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -321,6 +384,9 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -340,6 +406,12 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -355,6 +427,12 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -369,6 +447,12 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -470,6 +554,10 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -484,6 +572,9 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -498,6 +589,9 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -517,6 +611,12 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -532,6 +632,12 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -546,6 +652,12 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -644,6 +756,10 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -658,6 +774,9 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -672,6 +791,9 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -691,6 +813,12 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -706,6 +834,12 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -720,6 +854,12 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -743,6 +883,594 @@ abstract class _UploadImageFailure implements UploadImageState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UploadImageFailureImplCopyWith<_$UploadImageFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UploadMultipleImageInProgressImplCopyWith<$Res> {
+  factory _$$UploadMultipleImageInProgressImplCopyWith(
+          _$UploadMultipleImageInProgressImpl value,
+          $Res Function(_$UploadMultipleImageInProgressImpl) then) =
+      __$$UploadMultipleImageInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UploadMultipleImageInProgressImplCopyWithImpl<$Res>
+    extends _$UploadImageStateCopyWithImpl<$Res,
+        _$UploadMultipleImageInProgressImpl>
+    implements _$$UploadMultipleImageInProgressImplCopyWith<$Res> {
+  __$$UploadMultipleImageInProgressImplCopyWithImpl(
+      _$UploadMultipleImageInProgressImpl _value,
+      $Res Function(_$UploadMultipleImageInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UploadMultipleImageInProgressImpl
+    implements _UploadMultipleImageInProgress {
+  const _$UploadMultipleImageInProgressImpl();
+
+  @override
+  String toString() {
+    return 'UploadImageState.uploadMultipleImageInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadMultipleImageInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() uploadImageInProgress,
+    required TResult Function(UploadImageDto image) uploadImageSuccess,
+    required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
+    required TResult Function() deleteImageInProgress,
+    required TResult Function() deleteImageSuccess,
+    required TResult Function(String message) deleteImageFailure,
+  }) {
+    return uploadMultipleImageInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? uploadImageInProgress,
+    TResult? Function(UploadImageDto image)? uploadImageSuccess,
+    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
+    TResult? Function()? deleteImageInProgress,
+    TResult? Function()? deleteImageSuccess,
+    TResult? Function(String message)? deleteImageFailure,
+  }) {
+    return uploadMultipleImageInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? uploadImageInProgress,
+    TResult Function(UploadImageDto image)? uploadImageSuccess,
+    TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
+    TResult Function()? deleteImageInProgress,
+    TResult Function()? deleteImageSuccess,
+    TResult Function(String message)? deleteImageFailure,
+    required TResult orElse(),
+  }) {
+    if (uploadMultipleImageInProgress != null) {
+      return uploadMultipleImageInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_UploadImageInProgress value)
+        uploadImageInProgress,
+    required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
+    required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
+    required TResult Function(_DeleteImageInProgress value)
+        deleteImageInProgress,
+    required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
+    required TResult Function(_DeleteImageFailure value) deleteImageFailure,
+  }) {
+    return uploadMultipleImageInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
+    TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
+    TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
+    TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
+    TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
+    TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
+  }) {
+    return uploadMultipleImageInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
+    TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
+    TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
+    TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
+    TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
+    TResult Function(_DeleteImageFailure value)? deleteImageFailure,
+    required TResult orElse(),
+  }) {
+    if (uploadMultipleImageInProgress != null) {
+      return uploadMultipleImageInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadMultipleImageInProgress implements UploadImageState {
+  const factory _UploadMultipleImageInProgress() =
+      _$UploadMultipleImageInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$UploadMultipleImageSuccessImplCopyWith<$Res> {
+  factory _$$UploadMultipleImageSuccessImplCopyWith(
+          _$UploadMultipleImageSuccessImpl value,
+          $Res Function(_$UploadMultipleImageSuccessImpl) then) =
+      __$$UploadMultipleImageSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<UploadImageDto> images});
+}
+
+/// @nodoc
+class __$$UploadMultipleImageSuccessImplCopyWithImpl<$Res>
+    extends _$UploadImageStateCopyWithImpl<$Res,
+        _$UploadMultipleImageSuccessImpl>
+    implements _$$UploadMultipleImageSuccessImplCopyWith<$Res> {
+  __$$UploadMultipleImageSuccessImplCopyWithImpl(
+      _$UploadMultipleImageSuccessImpl _value,
+      $Res Function(_$UploadMultipleImageSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? images = null,
+  }) {
+    return _then(_$UploadMultipleImageSuccessImpl(
+      null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<UploadImageDto>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UploadMultipleImageSuccessImpl implements _UploadMultipleImageSuccess {
+  const _$UploadMultipleImageSuccessImpl(final List<UploadImageDto> images)
+      : _images = images;
+
+  final List<UploadImageDto> _images;
+  @override
+  List<UploadImageDto> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
+
+  @override
+  String toString() {
+    return 'UploadImageState.uploadMultipleImageSuccess(images: $images)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadMultipleImageSuccessImpl &&
+            const DeepCollectionEquality().equals(other._images, _images));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_images));
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadMultipleImageSuccessImplCopyWith<_$UploadMultipleImageSuccessImpl>
+      get copyWith => __$$UploadMultipleImageSuccessImplCopyWithImpl<
+          _$UploadMultipleImageSuccessImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() uploadImageInProgress,
+    required TResult Function(UploadImageDto image) uploadImageSuccess,
+    required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
+    required TResult Function() deleteImageInProgress,
+    required TResult Function() deleteImageSuccess,
+    required TResult Function(String message) deleteImageFailure,
+  }) {
+    return uploadMultipleImageSuccess(images);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? uploadImageInProgress,
+    TResult? Function(UploadImageDto image)? uploadImageSuccess,
+    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
+    TResult? Function()? deleteImageInProgress,
+    TResult? Function()? deleteImageSuccess,
+    TResult? Function(String message)? deleteImageFailure,
+  }) {
+    return uploadMultipleImageSuccess?.call(images);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? uploadImageInProgress,
+    TResult Function(UploadImageDto image)? uploadImageSuccess,
+    TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
+    TResult Function()? deleteImageInProgress,
+    TResult Function()? deleteImageSuccess,
+    TResult Function(String message)? deleteImageFailure,
+    required TResult orElse(),
+  }) {
+    if (uploadMultipleImageSuccess != null) {
+      return uploadMultipleImageSuccess(images);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_UploadImageInProgress value)
+        uploadImageInProgress,
+    required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
+    required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
+    required TResult Function(_DeleteImageInProgress value)
+        deleteImageInProgress,
+    required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
+    required TResult Function(_DeleteImageFailure value) deleteImageFailure,
+  }) {
+    return uploadMultipleImageSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
+    TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
+    TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
+    TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
+    TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
+    TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
+  }) {
+    return uploadMultipleImageSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
+    TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
+    TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
+    TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
+    TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
+    TResult Function(_DeleteImageFailure value)? deleteImageFailure,
+    required TResult orElse(),
+  }) {
+    if (uploadMultipleImageSuccess != null) {
+      return uploadMultipleImageSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadMultipleImageSuccess implements UploadImageState {
+  const factory _UploadMultipleImageSuccess(final List<UploadImageDto> images) =
+      _$UploadMultipleImageSuccessImpl;
+
+  List<UploadImageDto> get images;
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UploadMultipleImageSuccessImplCopyWith<_$UploadMultipleImageSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UploadMultipleImageFailureImplCopyWith<$Res> {
+  factory _$$UploadMultipleImageFailureImplCopyWith(
+          _$UploadMultipleImageFailureImpl value,
+          $Res Function(_$UploadMultipleImageFailureImpl) then) =
+      __$$UploadMultipleImageFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$UploadMultipleImageFailureImplCopyWithImpl<$Res>
+    extends _$UploadImageStateCopyWithImpl<$Res,
+        _$UploadMultipleImageFailureImpl>
+    implements _$$UploadMultipleImageFailureImplCopyWith<$Res> {
+  __$$UploadMultipleImageFailureImplCopyWithImpl(
+      _$UploadMultipleImageFailureImpl _value,
+      $Res Function(_$UploadMultipleImageFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$UploadMultipleImageFailureImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UploadMultipleImageFailureImpl implements _UploadMultipleImageFailure {
+  const _$UploadMultipleImageFailureImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'UploadImageState.uploadMultipleImageFailure(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadMultipleImageFailureImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadMultipleImageFailureImplCopyWith<_$UploadMultipleImageFailureImpl>
+      get copyWith => __$$UploadMultipleImageFailureImplCopyWithImpl<
+          _$UploadMultipleImageFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() uploadImageInProgress,
+    required TResult Function(UploadImageDto image) uploadImageSuccess,
+    required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
+    required TResult Function() deleteImageInProgress,
+    required TResult Function() deleteImageSuccess,
+    required TResult Function(String message) deleteImageFailure,
+  }) {
+    return uploadMultipleImageFailure(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? uploadImageInProgress,
+    TResult? Function(UploadImageDto image)? uploadImageSuccess,
+    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
+    TResult? Function()? deleteImageInProgress,
+    TResult? Function()? deleteImageSuccess,
+    TResult? Function(String message)? deleteImageFailure,
+  }) {
+    return uploadMultipleImageFailure?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? uploadImageInProgress,
+    TResult Function(UploadImageDto image)? uploadImageSuccess,
+    TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
+    TResult Function()? deleteImageInProgress,
+    TResult Function()? deleteImageSuccess,
+    TResult Function(String message)? deleteImageFailure,
+    required TResult orElse(),
+  }) {
+    if (uploadMultipleImageFailure != null) {
+      return uploadMultipleImageFailure(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_UploadImageInProgress value)
+        uploadImageInProgress,
+    required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
+    required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
+    required TResult Function(_DeleteImageInProgress value)
+        deleteImageInProgress,
+    required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
+    required TResult Function(_DeleteImageFailure value) deleteImageFailure,
+  }) {
+    return uploadMultipleImageFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
+    TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
+    TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
+    TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
+    TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
+    TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
+  }) {
+    return uploadMultipleImageFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
+    TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
+    TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
+    TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
+    TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
+    TResult Function(_DeleteImageFailure value)? deleteImageFailure,
+    required TResult orElse(),
+  }) {
+    if (uploadMultipleImageFailure != null) {
+      return uploadMultipleImageFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadMultipleImageFailure implements UploadImageState {
+  const factory _UploadMultipleImageFailure(final String message) =
+      _$UploadMultipleImageFailureImpl;
+
+  String get message;
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UploadMultipleImageFailureImplCopyWith<_$UploadMultipleImageFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -792,6 +1520,10 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -806,6 +1538,9 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -820,6 +1555,9 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -839,6 +1577,12 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -854,6 +1598,12 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -868,6 +1618,12 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -929,6 +1685,10 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -943,6 +1703,9 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -957,6 +1720,9 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -976,6 +1742,12 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -991,6 +1763,12 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -1005,6 +1783,12 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -1094,6 +1878,10 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
     required TResult Function() uploadImageInProgress,
     required TResult Function(UploadImageDto image) uploadImageSuccess,
     required TResult Function(String message) uploadImageFailure,
+    required TResult Function() uploadMultipleImageInProgress,
+    required TResult Function(List<UploadImageDto> images)
+        uploadMultipleImageSuccess,
+    required TResult Function(String message) uploadMultipleImageFailure,
     required TResult Function() deleteImageInProgress,
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
@@ -1108,6 +1896,9 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
     TResult? Function()? uploadImageInProgress,
     TResult? Function(UploadImageDto image)? uploadImageSuccess,
     TResult? Function(String message)? uploadImageFailure,
+    TResult? Function()? uploadMultipleImageInProgress,
+    TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult? Function(String message)? uploadMultipleImageFailure,
     TResult? Function()? deleteImageInProgress,
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
@@ -1122,6 +1913,9 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
     TResult Function()? uploadImageInProgress,
     TResult Function(UploadImageDto image)? uploadImageSuccess,
     TResult Function(String message)? uploadImageFailure,
+    TResult Function()? uploadMultipleImageInProgress,
+    TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
+    TResult Function(String message)? uploadMultipleImageFailure,
     TResult Function()? deleteImageInProgress,
     TResult Function()? deleteImageSuccess,
     TResult Function(String message)? deleteImageFailure,
@@ -1141,6 +1935,12 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
         uploadImageInProgress,
     required TResult Function(_UploadImageSuccess value) uploadImageSuccess,
     required TResult Function(_UploadImageFailure value) uploadImageFailure,
+    required TResult Function(_UploadMultipleImageInProgress value)
+        uploadMultipleImageInProgress,
+    required TResult Function(_UploadMultipleImageSuccess value)
+        uploadMultipleImageSuccess,
+    required TResult Function(_UploadMultipleImageFailure value)
+        uploadMultipleImageFailure,
     required TResult Function(_DeleteImageInProgress value)
         deleteImageInProgress,
     required TResult Function(_DeleteImageSuccess value) deleteImageSuccess,
@@ -1156,6 +1956,12 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
     TResult? Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult? Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult? Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult? Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult? Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult? Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult? Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult? Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult? Function(_DeleteImageFailure value)? deleteImageFailure,
@@ -1170,6 +1976,12 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
     TResult Function(_UploadImageInProgress value)? uploadImageInProgress,
     TResult Function(_UploadImageSuccess value)? uploadImageSuccess,
     TResult Function(_UploadImageFailure value)? uploadImageFailure,
+    TResult Function(_UploadMultipleImageInProgress value)?
+        uploadMultipleImageInProgress,
+    TResult Function(_UploadMultipleImageSuccess value)?
+        uploadMultipleImageSuccess,
+    TResult Function(_UploadMultipleImageFailure value)?
+        uploadMultipleImageFailure,
     TResult Function(_DeleteImageInProgress value)? deleteImageInProgress,
     TResult Function(_DeleteImageSuccess value)? deleteImageSuccess,
     TResult Function(_DeleteImageFailure value)? deleteImageFailure,

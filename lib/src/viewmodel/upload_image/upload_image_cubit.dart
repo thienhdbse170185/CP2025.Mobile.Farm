@@ -39,4 +39,16 @@ class UploadImageCubit extends Cubit<UploadImageState> {
       emit(UploadImageState.deleteImageFailure(e.toString()));
     }
   }
+
+  Future<void> uploadImages({required List<File> files}) async {
+    emit(UploadImageState.uploadMultipleImageInProgress());
+    try {
+      log('[UPLOAD_IMAGE_CUBIT] Uploading images...');
+      final response = await _uploadImageRepository.uploadImages(files: files);
+      emit(UploadImageState.uploadMultipleImageSuccess(response.images));
+    } catch (e) {
+      log('[UPLOAD_IMAGE_CUBIT] Error: $e');
+      emit(UploadImageState.uploadMultipleImageFailure(e.toString()));
+    }
+  }
 }
