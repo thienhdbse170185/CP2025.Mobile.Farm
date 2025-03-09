@@ -24,7 +24,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         final userBox = await Hive.openBox(UserDataConstant.userBoxName);
         final userName = userBox.get(UserDataConstant.userNameKey);
         final email = userBox.get(UserDataConstant.emailKey);
-        log('[GET_USER_PROFILE] Lấy thông tin user thành công: $userName - $email');
+        final userId = userBox.get(UserDataConstant.userIdKey);
+        log('[GET_USER_PROFILE] Lấy thông tin user thành công: $userName - $email - $userId');
         emit(UserState.getUserProfileSuccess(userName, email));
       } catch (e) {
         log('[GET_USER_PROFILE] Lấy thông tin user thất bại: $e');

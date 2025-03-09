@@ -54,11 +54,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final List<File> _images = [];
   final List<GetSymptomRequest> _enteredSymptoms = [];
   final List<String> _symptomsName = [];
+  final List<UploadImageDto> _uploadedImages = [];
+
   FarmingBatchDto? _farmingBatch;
   GrowthStageDto? _growthStage;
   List<SymptomDto> _symptoms = [];
   List<CageOption> _cages = [];
   UploadImageDto? _uploadedImage;
+
   String? _selectedCage;
   String? _selectedCageId;
   int? _affectedQuantity;
@@ -78,7 +81,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   bool get _isFormValid =>
-      _isCageSelected && _hasFarmingBatch && _hasSymptoms && _hasValidQuantity;
+      _isCageSelected &&
+      _hasFarmingBatch &&
+      _hasSymptoms &&
+      _hasValidQuantity &&
+      (!_isEmergency || _images.isNotEmpty);
 
   @override
   void initState() {
@@ -134,7 +141,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           if (_images.isNotEmpty) {
             context
                 .read<UploadImageCubit>()
-                .uploadImage(file: _images.first); // Chỉ upload ảnh đầu tiên
+                .uploadImages(files: _images); // Chỉ upload ảnh đầu tiên
           } else {
             _submitSymptomRequest(null);
           }
@@ -159,6 +166,25 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                   image: imagePath, dateCaptured: TimeUtils.customNow())
             ]
           : [],
+      medicalSymptomDetails: _enteredSymptoms,
+    );
+    context.read<HealthyCubit>().createSymptom(request);
+  }
+
+  void _submitSymptomRequestMultipleImage(List<String?> imagePaths) {
+    final request = CreateSymptomRequest(
+      farmingBatchId: _farmingBatch?.id ?? '',
+      symptoms: _symptomsName.join(', '),
+      status: 'Pending',
+      affectedQuantity: int.parse(_affectedController.text),
+      isEmergency: _isEmergency,
+      quantityInCage:
+          _growthStage!.quantity! - (_farmingBatch!.affectedQuantity ?? 0),
+      notes: _noteController.text,
+      pictures: imagePaths
+          .map((imagePath) => PictureSymptom(
+              image: imagePath!, dateCaptured: TimeUtils.customNow()))
+          .toList(),
       medicalSymptomDetails: _enteredSymptoms,
     );
     context.read<HealthyCubit>().createSymptom(request);
@@ -322,6 +348,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           ? 'Vui lòng nhập số lượng con vật bị bệnh'
           : 'Số lượng con vật bị bệnh không hợp lệ';
     }
+    if (_isEmergency && _images.isEmpty) {
+      return 'Trường hợp khẩn cấp yêu cầu phải đính kèm ít nhất 1 hình ảnh';
+    }
     return '';
   }
 
@@ -396,11 +425,18 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             uploadImageInProgress: () => setState(() => _isProcessing = true),
             uploadImageSuccess: (imageDto) => _handleUploadSuccess(imageDto),
             uploadImageFailure: (error) => _handleUploadFailure(error),
+            uploadMultipleImageInProgress: () =>
+                setState(() => _isProcessing = true),
+            uploadMultipleImageSuccess: (images) =>
+                _handleUploadMultipleImageSuccess(images),
+            uploadMultipleImageFailure: (error) => _handleUploadFailure(error),
+            // uploadMultipleImageSuccess: (images) => ,
             deleteImageInProgress: () => setState(() => _isProcessing = true),
             deleteImageSuccess: () => setState(() => _isProcessing = false),
-            deleteImageFailure: (error) =>
-                _showErrorSnackBar('Lỗi xóa ảnh: $error'),
-            orElse: () {},
+            deleteImageFailure: (error) => _handleDeleteImageFailure(error),
+            orElse: () {
+              return null;
+            },
           ),
         ),
       ],
@@ -408,7 +444,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
-            backgroundColor: Colors.grey[50],
             appBar: CustomAppBar(
               appBarHeight: 70,
               leading: IconButton(
@@ -492,41 +527,60 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     _submitSymptomRequest(imagePath);
   }
 
+  void _handleUploadMultipleImageSuccess(List<UploadImageDto> images) {
+    setState(() {
+      _isProcessing = false;
+      _uploadedImages.clear();
+      _uploadedImages.addAll(images);
+    });
+    final imagePaths = _uploadedImages
+        .map((image) => "https://imageservice.fjourney.site${image.path}")
+        .toList();
+    _submitSymptomRequestMultipleImage(imagePaths);
+  }
+
   void _handleUploadFailure(String error) {
     setState(() => _isProcessing = false);
     _showErrorSnackBar('Lỗi upload ảnh: $error');
   }
 
+  void _handleDeleteImageFailure(String error) {
+    setState(() => _isProcessing = false);
+    _showErrorSnackBar('Lỗi xóa ảnh: $error');
+  }
+
   Future<bool> _validateAffectedQuantityForm(String value) async {
     if (_farmingBatch != null) {
-      final enteredQuantity = int.tryParse(value) ?? 0;
-      final quantityReal =
-          _growthStage!.quantity! - _farmingBatch!.affectedQuantity!;
-      log('Quantity real: $quantityReal');
-      if (enteredQuantity > quantityReal) {
-        await showDialog(
-          context: context,
-          builder: (context) => WarningConfirmationDialog(
-            title: 'Số lượng vượt mức',
-            content: const Text(
-              'Số lượng bị bệnh không thể lớn hơn số lượng gia cầm có trong chuồng.',
-              textAlign: TextAlign.center,
+      if (value.isNotEmpty) {
+        final enteredQuantity = int.tryParse(value) ?? 0;
+        final quantityReal =
+            _growthStage!.quantity! - _farmingBatch!.affectedQuantity!;
+        log('Quantity real: $quantityReal');
+        if (enteredQuantity > quantityReal) {
+          await showDialog(
+            context: context,
+            builder: (context) => WarningConfirmationDialog(
+              title: 'Số lượng vượt mức',
+              content: const Text(
+                'Số lượng bị bệnh không thể lớn hơn số lượng gia cầm có trong chuồng.',
+                textAlign: TextAlign.center,
+              ),
+              primaryButtonText: 'Đã hiểu',
+              secondaryButtonText: 'Đặt lại',
+              onPrimaryButtonPressed: () {
+                _affectedController.text = _farmingBatch!.quantity.toString();
+                context.pop();
+              },
+              onSecondaryButtonPressed: () {
+                _affectedController.text = '0';
+                context.pop();
+              },
             ),
-            primaryButtonText: 'Đã hiểu',
-            secondaryButtonText: 'Đặt lại',
-            onPrimaryButtonPressed: () {
-              _affectedController.text = _farmingBatch!.quantity.toString();
-              context.pop();
-            },
-            onSecondaryButtonPressed: () {
-              _affectedController.text = '0';
-              context.pop();
-            },
-          ),
-        );
-        return false;
+          );
+          return false;
+        }
+        return true;
       }
-      return true;
     }
     return false;
   }
@@ -534,7 +588,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   Future<bool> _isEmergencyAffectedQuantityForm(String value) async {
     if (_farmingBatch != null) {
       final enteredQuantity = int.tryParse(value) ?? 0;
-      final threshold = (_farmingBatch!.quantity * 0.5).toInt();
+      final quantityReal =
+          _growthStage!.quantity! - _farmingBatch!.affectedQuantity!;
+      final threshold = (quantityReal * 0.5).toInt();
       if (enteredQuantity > threshold) {
         final confirmed = await showDialog<bool>(
           context: context,
@@ -552,17 +608,18 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               Navigator.pop(context, true);
             },
             onSecondaryButtonPressed: () {
-              _affectedController.text = threshold.toString();
+              _affectedController.text = '0';
               setState(() => _isEmergency = false);
               Navigator.pop(context, false);
+              FocusScope.of(context).unfocus();
             },
           ),
         );
         return confirmed ?? false;
       } else {
         setState(() => _isEmergency = false); // Reset if below threshold
+        return false;
       }
-      return true;
     }
     return false;
   }
@@ -1386,8 +1443,15 @@ class _FormBody extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Số lượng con vật bị bệnh',
+                        Text('Nhập số lượng con vật bị bệnh',
                             style: Theme.of(context).textTheme.titleSmall),
+                        if (state._farmingBatch != null) ...[
+                          const SizedBox(height: 4),
+                          Text(
+                              'Chuồng ${state._selectedCage} có: ${state._availableQuantity} (con)',
+                              style: TextStyle(
+                                  color: Colors.grey[600], fontSize: 13)),
+                        ],
                         const SizedBox(height: 12),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -1407,28 +1471,48 @@ class _FormBody extends StatelessWidget {
                               isDisable: state._isEmergency,
                             ),
                             Container(
-                              width: 80,
+                              width: MediaQuery.of(context).size.width * 0.3,
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: TextField(
                                 enabled: !state._isEmergency,
                                 controller: state._affectedController,
-                                // focusNode: state._affectedFocusNode,
-                                textAlign: TextAlign.center,
+                                focusNode: state._affectedFocusNode,
+                                textAlign: TextAlign.right,
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.digitsOnly
                                 ], // Chỉ cho phép số
+                                decoration: InputDecoration(
+                                  suffixText: '(con)',
+                                  suffixStyle: TextStyle(
+                                      color: Colors.grey[600], fontSize: 18),
+                                  contentPadding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                ),
                                 style: const TextStyle(
                                     fontSize: 24, fontWeight: FontWeight.w600),
                                 onChanged: (value) async {
-                                  if (await state._validateAffectedQuantityForm(
-                                          value) &&
+                                  if (value.isEmpty) {
+                                    state.setState(() {
+                                      state._affectedController.text = '0';
+                                      state._affectedController.selection =
+                                          TextSelection.fromPosition(
+                                              const TextPosition(offset: 1));
+                                    });
+                                  } else if (await state
+                                          ._validateAffectedQuantityForm(
+                                              value) &&
                                       await state
                                           ._isEmergencyAffectedQuantityForm(
                                               value)) {
                                     state.setState(
                                         () => state._isEmergency = true);
+                                  }
+                                },
+                                onTap: () {
+                                  if (state._affectedController.text == '0') {
+                                    state._affectedController.clear();
                                   }
                                 },
                               ),
@@ -1444,11 +1528,12 @@ class _FormBody extends StatelessWidget {
                                     state._affectedController.text)) {
                                   state.setState(() => state._affectedController
                                       .text = (currentValue + 1).toString());
-                                } else if (await state
-                                    ._isEmergencyAffectedQuantityForm(
-                                        state._affectedController.text)) {
-                                  state.setState(
-                                      () => state._isEmergency = true);
+                                  if (await state
+                                      ._isEmergencyAffectedQuantityForm(
+                                          state._affectedController.text)) {
+                                    state.setState(
+                                        () => state._isEmergency = true);
+                                  }
                                 }
                               },
                               isAdd: true,
@@ -1457,16 +1542,29 @@ class _FormBody extends StatelessWidget {
                           ],
                         ),
                         if (state._farmingBatch != null) ...[
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 16),
                           Row(
                             children: [
                               Icon(Icons.info_outline,
                                   size: 16, color: Colors.grey[600]),
-                              const SizedBox(width: 4),
-                              Text(
-                                  'Số con hiện có: ${state._availableQuantity} con.',
-                                  style: TextStyle(
-                                      color: Colors.grey[600], fontSize: 13)),
+                              const SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Dấu (-) để giảm số lượng.',
+                                      style: TextStyle(
+                                          color: Colors.grey[600],
+                                          fontSize: 13)),
+                                  Text('Dấu (+) để tăng số lượng.',
+                                      style: TextStyle(
+                                          color: Colors.grey[600],
+                                          fontSize: 13)),
+                                  Text('Bấm vào ô để nhập số bất kỳ.',
+                                      style: TextStyle(
+                                          color: Colors.grey[600],
+                                          fontSize: 13)),
+                                ],
+                              ),
                             ],
                           ),
                         ],
@@ -1476,65 +1574,145 @@ class _FormBody extends StatelessWidget {
                   const SizedBox(height: 8),
                   // --- Checkbox cả đàn đều bị bệnh
                   if (state._isEmergency == false) ...[
+                    Opacity(
+                      opacity: (state._isCageSelected &&
+                              state._hasFarmingBatch &&
+                              state._hasSymptoms)
+                          ? 1
+                          : 0.5,
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: state._isCheckAllAnimalSick,
+                            onChanged: (bool? value) async {
+                              if (state._isCageSelected &&
+                                  state._hasFarmingBatch &&
+                                  state._hasSymptoms) {
+                                if (value == true) {
+                                  await showDialog<bool>(
+                                    context: context,
+                                    builder: (context) =>
+                                        WarningConfirmationDialog(
+                                      title: 'Xác nhận trường hợp khẩn cấp',
+                                      content: const Text(
+                                        'Bạn đang chọn "Cả đàn đều bị bệnh", điều này báo hiệu tình trạng khẩn cấp. Bạn có chắc chắn không?',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      primaryButtonText: 'Xác nhận',
+                                      secondaryButtonText: 'Hủy',
+                                      onPrimaryButtonPressed: () {
+                                        state.setState(() {
+                                          state._affectedController.text = state
+                                              ._availableQuantity
+                                              .toString();
+                                          state._isEmergency = true;
+                                          state._isCheckAllAnimalSick = true;
+                                        });
+                                        Navigator.pop(context, true);
+                                      },
+                                      onSecondaryButtonPressed: () =>
+                                          Navigator.pop(context, false),
+                                      isEmergency: true,
+                                    ),
+                                  );
+                                } else {
+                                  state.setState(() {
+                                    state._affectedController.text = '0';
+                                    state._isCheckAllAnimalSick = false;
+                                  });
+                                }
+                              } else if (!state._isCageSelected) {
+                                ScaffoldMessenger.of(context)
+                                    .showMaterialBanner(
+                                  MaterialBanner(
+                                    content: const Text(
+                                        'Vui lòng chọn chuồng nuôi trước khi xác nhận.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            ScaffoldMessenger.of(context)
+                                                .hideCurrentMaterialBanner(),
+                                        child: const Text('Đóng'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else if (!state._hasFarmingBatch) {
+                                ScaffoldMessenger.of(context)
+                                    .showMaterialBanner(
+                                  MaterialBanner(
+                                    content: const Text(
+                                      'Vui lòng chọn vụ nuôi trước khi xác nhận.',
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            ScaffoldMessenger.of(context)
+                                                .hideCurrentMaterialBanner(),
+                                        child: const Text('Đóng'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else if (!state._hasSymptoms) {
+                                ScaffoldMessenger.of(context)
+                                    .showMaterialBanner(
+                                  MaterialBanner(
+                                    content: const Text(
+                                        'Vui lòng chọn triệu chứng trước khi xác nhận.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            ScaffoldMessenger.of(context)
+                                                .hideCurrentMaterialBanner(),
+                                        child: const Text('Đóng'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.warning, color: Colors.red, size: 16),
+                              const SizedBox(width: 4),
+                              Text(
+                                'Cả đàn đều bị bệnh',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                     Row(
                       children: [
-                        Checkbox(
-                          value: state._isCheckAllAnimalSick,
-                          onChanged: (state._isCageSelected &&
-                                  state._hasFarmingBatch &&
-                                  state._hasSymptoms)
-                              ? (bool? value) async {
-                                  if (value == true) {
-                                    await showDialog<bool>(
-                                      context: context,
-                                      builder: (context) =>
-                                          WarningConfirmationDialog(
-                                        title: 'Xác nhận trường hợp khẩn cấp',
-                                        content: const Text(
-                                          'Bạn đang chọn "Cả đàn đều bị bệnh", điều này báo hiệu tình trạng khẩn cấp. Bạn có chắc chắn không?',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        primaryButtonText: 'Xác nhận',
-                                        secondaryButtonText: 'Hủy',
-                                        onPrimaryButtonPressed: () {
-                                          state.setState(() {
-                                            state._affectedController.text =
-                                                state._availableQuantity
-                                                    .toString();
-                                            state._isEmergency = true;
-                                            state._isCheckAllAnimalSick = true;
-                                          });
-                                          Navigator.pop(context, true);
-                                        },
-                                        onSecondaryButtonPressed: () =>
-                                            Navigator.pop(context, false),
-                                        isEmergency: true,
-                                      ),
-                                    );
-                                  } else {
-                                    state.setState(() {
-                                      state._affectedController.text = '0';
-                                      state._isCheckAllAnimalSick = false;
-                                    });
-                                  }
-                                }
-                              : null,
-                        ),
-                        const SizedBox(width: 4),
-                        Row(
-                          children: [
-                            Icon(Icons.warning, color: Colors.red, size: 16),
-                            const SizedBox(width: 4),
-                            Text(
-                              'Cả đàn đều bị bệnh',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
+                        Icon(Icons.info_outline,
+                            size: 16, color: Colors.grey[600]),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text.rich(
+                            TextSpan(
+                              text:
+                                  'Vui lòng chọn chuồng nuôi và triệu chứng trước khi xác nhận ',
+                              children: [
+                                TextSpan(
+                                  text: 'tình trạng khẩn cấp',
+                                  style: TextStyle(fontStyle: FontStyle.italic),
+                                ),
+                                TextSpan(text: '.'),
+                              ],
                             ),
-                          ],
+                            style: TextStyle(
+                                color: Colors.grey[600], fontSize: 13),
+                          ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                   if (state._isEmergency) ...[
                     const SizedBox(height: 16),
@@ -1561,6 +1739,18 @@ class _FormBody extends StatelessWidget {
                                     color: Theme.of(context).colorScheme.error,
                                   ),
                             ),
+                          ),
+                          const SizedBox(width: 8),
+                          TextButton(
+                            onPressed: () {
+                              state.setState(() {
+                                state._isEmergency = false;
+                                state._isCheckAllAnimalSick = false;
+                              });
+                              state._affectedController.text = '0';
+                            },
+                            child: const Text('Hủy',
+                                style: TextStyle(color: Colors.red)),
                           ),
                         ],
                       ),

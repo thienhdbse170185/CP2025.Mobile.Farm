@@ -11,6 +11,13 @@ class UploadImageState with _$UploadImageState {
   const factory UploadImageState.uploadImageFailure(String message) =
       _UploadImageFailure;
 
+  const factory UploadImageState.uploadMultipleImageInProgress() =
+      _UploadMultipleImageInProgress;
+  const factory UploadImageState.uploadMultipleImageSuccess(
+      List<UploadImageDto> images) = _UploadMultipleImageSuccess;
+  const factory UploadImageState.uploadMultipleImageFailure(String message) =
+      _UploadMultipleImageFailure;
+
   const factory UploadImageState.deleteImageInProgress() =
       _DeleteImageInProgress;
   const factory UploadImageState.deleteImageSuccess() = _DeleteImageSuccess;
