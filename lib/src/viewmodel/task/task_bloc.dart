@@ -11,6 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 
 part 'task_bloc.freezed.dart';
@@ -105,7 +106,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       emit(const TaskState.getTasksByScanQRCodeLoading());
       try {
         // Get current session based on time
-        final now = DateTime.now();
+        final now = TimeUtils.customNow();
         final hour = now.hour;
         int currentSession;
 

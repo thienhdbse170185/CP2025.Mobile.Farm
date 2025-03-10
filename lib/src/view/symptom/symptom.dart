@@ -6,9 +6,9 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
-import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 
 class SymptomWidget extends StatefulWidget {
   const SymptomWidget({super.key});

@@ -16,6 +16,7 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
@@ -28,7 +29,6 @@ import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart'
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
-import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 
 class CreateSymptomWidget extends StatefulWidget {
@@ -118,11 +118,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
-    if (pickedFile != null && _images.length < 5) {
+    if (pickedFile != null && _images.length <= 10) {
       // Giới hạn 5 ảnh
       setState(() => _images.add(File(pickedFile.path)));
-    } else if (_images.length >= 5) {
-      _showErrorSnackBar('Bạn chỉ có thể thêm tối đa 5 ảnh.');
+    } else if (_images.length > 10) {
+      _showErrorSnackBar('Bạn chỉ có thể thêm tối đa 10 ảnh.');
     }
   }
 
@@ -1403,7 +1403,9 @@ class _FormBody extends StatelessWidget {
                     const SizedBox(height: 16),
                   ],
                   InkWell(
-                    onTap: state._showSymptomSelectionSheet,
+                    onTap: state._isCageSelected
+                        ? () => state._showSymptomSelectionSheet()
+                        : null,
                     borderRadius: BorderRadius.circular(12),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -1786,6 +1788,10 @@ class _FormBody extends StatelessWidget {
                     controller: state._noteController,
                     // focusNode: state._noteFocusNode,
                     maxLines: 4,
+                    enabled: state._isCageSelected &&
+                        state._hasFarmingBatch &&
+                        state._hasSymptoms &&
+                        state._hasValidQuantity,
                     decoration: InputDecoration(
                       hintText: 'Nhập ghi chú về tình trạng...',
                       border: OutlineInputBorder(
@@ -1793,12 +1799,14 @@ class _FormBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text('Hình ảnh đính kèm (tối đa 5 ảnh)',
+                  Text('Hình ảnh đính kèm (tối đa 10 ảnh)',
                       style: Theme.of(context).textTheme.titleSmall),
                   const SizedBox(height: 12),
                   state._images.isEmpty
                       ? InkWell(
-                          onTap: () => _showImagePickerOptions(context),
+                          onTap: state._isCageSelected && state._hasFarmingBatch
+                              ? () => _showImagePickerOptions(context)
+                              : null,
                           child: Container(
                             width: double.infinity,
                             padding: const EdgeInsets.all(24),
@@ -1825,7 +1833,7 @@ class _FormBody extends StatelessWidget {
                                   crossAxisSpacing: 8,
                                   mainAxisSpacing: 8),
                           itemCount: state._images.length +
-                              (state._images.length < 5 ? 1 : 0),
+                              (state._images.length < 10 ? 1 : 0),
                           itemBuilder: (context, index) {
                             if (index == state._images.length) {
                               return InkWell(

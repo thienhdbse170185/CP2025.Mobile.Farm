@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/widgets/avatar_round.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
@@ -520,10 +521,8 @@ class _HomeWidgetState extends State<HomeWidget>
                                     const SizedBox(width: 8),
                                     GestureDetector(
                                       onTap: () {
-                                        context
-                                            .push(RouteName.taskDetail, extra: {
-                                          'taskId': nextTask.taskId,
-                                        });
+                                        context.push(RouteName.taskDetail,
+                                            extra: nextTask.taskId);
                                       },
                                       child: SizedBox(
                                         width:

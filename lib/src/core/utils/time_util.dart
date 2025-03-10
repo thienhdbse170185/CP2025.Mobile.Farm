@@ -1,0 +1,39 @@
+class TimeUtils {
+  static DateTime Function() customNow = () => DateTime.now();
+
+  static int getCurrentSession() {
+    final now = TimeUtils.customNow();
+    final hour = now.hour;
+    int currentSession;
+
+    if (hour >= 6 && hour < 12) {
+      currentSession = 1;
+    } else if (hour >= 12 && hour < 14) {
+      currentSession = 2;
+    } else if (hour >= 14 && hour < 18) {
+      currentSession = 3;
+    } else if (hour >= 18 && hour < 23) {
+      currentSession = 4;
+    } else {
+      currentSession = -1;
+    }
+
+    return currentSession;
+  }
+
+  static String getCurrentSessionName() {
+    int currentSession = TimeUtils.getCurrentSession();
+    switch (currentSession) {
+      case 1:
+        return 'Buổi sáng';
+      case 2:
+        return 'Buổi trưa';
+      case 3:
+        return 'Buổi chiều';
+      case 4:
+        return 'Buổi tối';
+      default:
+        return 'Buổi khuya';
+    }
+  }
+}
