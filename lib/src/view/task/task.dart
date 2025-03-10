@@ -11,10 +11,10 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 import 'package:smart_farm/src/view/widgets/task_list.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
-import 'package:smart_farm/src/viewmodel/time/time_bloc.dart'; // Import the TaskCard widget
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({super.key});
@@ -107,6 +107,40 @@ class _TaskWidgetState extends State<TaskWidget>
       default:
         return Icons.work_outline;
     }
+  }
+
+  String _getCurrentSessionName() {
+    int currentSession = TimeUtils.getCurrentSession();
+    switch (currentSession) {
+      case 1:
+        return 'Buổi sáng';
+      case 2:
+        return 'Buổi trưa';
+      case 3:
+        return 'Buổi chiều';
+      case 4:
+        return 'Buổi tối';
+      default:
+        return 'Buổi khuya';
+    }
+  }
+
+  String _getCurrentSessionImage() {
+    int currentSession = TimeUtils.getCurrentSession();
+    String imagePath = '';
+    switch (currentSession) {
+      case 1:
+        imagePath = 'assets/images/morning.png';
+      case 2:
+        imagePath = 'assets/images/noon.png';
+      case 3:
+        imagePath = 'assets/images/afternoon.png';
+      case 4:
+        imagePath = 'assets/images/moon.png';
+      default:
+        imagePath = 'assets/images/moon.png';
+    }
+    return imagePath;
   }
 
   // Session options
@@ -771,12 +805,37 @@ class _TaskWidgetState extends State<TaskWidget>
                               onTap: () {
                                 context.push(RouteName.testWidget);
                               },
-                              child: Text(
-                                isToday ? 'Hôm nay' : dayOfWeek,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(fontSize: 22),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    _getCurrentSessionImage(),
+                                    width: 32,
+                                    height: 32,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Buổi hiện tại',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                      ),
+                                      Text(
+                                        _getCurrentSessionName(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.copyWith(fontSize: 22),
+                                      ),
+                                    ],
+                                  )
+                                ],
                               ),
                             ),
                             InkWell(

@@ -4,14 +4,11 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/repository/user/local/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 
 part 'time_bloc.freezed.dart';
 part 'time_event.dart';
 part 'time_state.dart';
-
-class TimeUtils {
-  static DateTime Function() customNow = () => DateTime.now();
-}
 
 class TimeBloc extends Bloc<TimeEvent, TimeState> {
   final UserRepository userRepository;

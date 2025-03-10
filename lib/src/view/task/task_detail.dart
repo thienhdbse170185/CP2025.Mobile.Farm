@@ -21,6 +21,7 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/constants/vaccine_schedule_status_constant.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
@@ -33,7 +34,6 @@ import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
 import 'package:smart_farm/src/viewmodel/sale_type/sale_type_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_schedule_log_cubit.dart';
-import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 import 'package:smart_farm/src/viewmodel/vaccine_schedule/vaccine_schedule_cubit.dart'; // To handle file
 
@@ -205,14 +205,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   }
 
   // Function to check if all medications are checked
-  bool _areAllMedicationsChecked() {
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
-      return prescription?.medications?.every((medication) =>
-              _medicationChecked[medication.medicationId] ?? false) ??
-          false;
-    }
-    return true;
-  }
+  // bool _areAllMedicationsChecked() {
+  //   if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
+  //     return prescription?.medications?.every((medication) =>
+  //             _medicationChecked[medication.medicationId] ?? false) ??
+  //         false;
+  //   }
+  //   return true;
+  // }
 
   // Function to check if at least one medication is checked
   bool _areAnyMedicationsChecked() {
@@ -1489,7 +1489,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               context,
                               icon: LinearIcons.homeHashtagIcon,
                               label: 'Tên chuồng',
-                              value: task?.cageName ?? "",
+                              value: task?.isTreatmentTask == true
+                                  ? 'Chuồng cách ly'
+                                  : task?.cageName ?? "",
                             );
                           case 1:
                             return _buildGridItem(
@@ -1522,7 +1524,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               value: formatDate(task?.dueDate ?? ""),
                             );
                           case 5:
-                            return Container(); // Phần tử trống
+                            return _buildGridItem(
+                              context,
+                              icon: Icon(Icons.wb_sunny_outlined),
+                              label: 'Buổi',
+                              value: TimeUtils.getCurrentSessionName(),
+                            );
                           default:
                             return Container();
                         }
@@ -1728,7 +1735,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                '${recommendedWeight != null ? recommendedWeight?.toInt() : 0}g',
+                                '${recommendedWeight != null ? recommendedWeight?.toInt() : 0} (kg)',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -1767,7 +1774,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               return FilterChip(
                                 selected: isSelected,
                                 showCheckmark: false,
-                                label: Text('${weight}g'),
+                                label: Text('$weight (kg)'),
                                 labelStyle: TextStyle(
                                   color: isDisabled
                                       ? (isSelected
@@ -1842,7 +1849,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       ),
                                 ),
                                 Text(
-                                  '${actualWeight}g',
+                                  '$actualWeight (kg)',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -1931,7 +1938,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                           children: [
                             Row(
                               children: [
-                                LinearIcons.healthIconGreen,
+                                Icon(Icons.info_outline,
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                                 const SizedBox(width: 8),
                                 Text(
                                   'Thông tin đơn thuốc',
@@ -1957,6 +1966,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                   label: 'Số lượng',
                                   value: '${prescription?.quantityAnimal} con',
                                   icon: Icons.pets,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                _buildInfoItem(
+                                  context: context,
+                                  label: 'Chuồng ban đầu',
+                                  value: task?.cageAnimalName ?? "Đang tải",
+                                  icon: Icons.warehouse_rounded,
                                 ),
                               ],
                             ),
