@@ -1749,7 +1749,7 @@ class _FormBody extends StatelessWidget {
                                 state._isEmergency = false;
                                 state._isCheckAllAnimalSick = false;
                               });
-                              state._affectedController.text = '0';
+                              // state._affectedController.text = '0';
                             },
                             child: const Text('Hủy',
                                 style: TextStyle(color: Colors.red)),

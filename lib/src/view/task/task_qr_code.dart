@@ -2,11 +2,17 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:data_layer/model/dto/egg_harvest/egg_harvest_dto.dart';
+import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
 import 'package:data_layer/model/dto/medication/medication.dart';
 import 'package:data_layer/model/dto/prescription/prescription.dart';
+import 'package:data_layer/model/dto/sale_type/sale_type_dto.dart';
 import 'package:data_layer/model/dto/task/daily_food_usage_log/daily_food_usage_log_dto.dart';
 import 'package:data_layer/model/dto/task/health_log/health_log_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:data_layer/model/dto/task/vaccin_schedule_log/vaccin_schedule_log_dto.dart';
+import 'package:data_layer/model/dto/upload_image/upload_image_dto.dart';
+import 'package:data_layer/model/dto/vaccine_schedule/vaccine_schedule_dto.dart';
 import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,11 +24,14 @@ import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/date_util.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
+import 'package:smart_farm/src/viewmodel/sale_type/sale_type_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class TaskQRCodeWidget extends StatefulWidget {
@@ -34,36 +43,96 @@ class TaskQRCodeWidget extends StatefulWidget {
 }
 
 class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
+  bool _isProcessing = false;
+  bool _isLoading = false;
+  bool _isHealthyAfterTreatment = false;
+
   List<TaskHaveCageName>? _tasks;
   List<TaskHaveCageName>? _filteredTasks;
-  // final TextEditingController _searchController = TextEditingController();
+
+  final TextEditingController _affectedController = TextEditingController();
+  final TextEditingController logController = TextEditingController();
+  final TextEditingController morningController = TextEditingController();
+  final TextEditingController noonController = TextEditingController();
+  final TextEditingController afternoonController = TextEditingController();
+  final TextEditingController eveningController = TextEditingController();
+
+  final TextEditingController _countAnimalVaccineController =
+      TextEditingController();
+
+  final TextEditingController _nameFoodController = TextEditingController();
+  final TextEditingController _priceFoodController = TextEditingController();
+
+  final TextEditingController _countAnimalSellControler =
+      TextEditingController();
+  final TextEditingController _priceAnimalSellController =
+      TextEditingController();
+  final TextEditingController _dateAnimalSellController =
+      TextEditingController();
+
+  final TextEditingController _weightAnimalController = TextEditingController();
+
+  final TextEditingController _weightMeatSellController =
+      TextEditingController();
+  final TextEditingController _priceMeatSellController =
+      TextEditingController();
+  final TextEditingController _countEggSellController = TextEditingController();
+  final TextEditingController _priceEggSellController = TextEditingController();
+
+  final TextEditingController _countEggCollectedController =
+      TextEditingController();
+
   final Set<String> _selectedTaskIds = {};
   final TextEditingController _logController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
+  final Map<String, bool> _medicationChecked = {};
+  final List<File> _images = [];
+  final bool _showSearchAndFilter = true;
+
+  List<int> weightList = [];
+
   double? recommendedWeight;
   int actualWeight = 0;
   PrescriptionDto? _prescription;
-  final Map<String, bool> _medicationChecked = {};
-  List<int> weightList = [];
   DateTime? logTime;
-  // Controller for log input
-  TextEditingController logController = TextEditingController();
-  final List<File> _images = [];
-  // Thêm biến để track loading state
-  bool _isLoadingRecommendedWeight = false;
-  // Thêm biến để lưu task đang được xử lý
   TaskHaveCageName? _processingTask;
-  final bool _showSearchAndFilter = true;
-  final TextEditingController _searchController = TextEditingController();
   String _selectedTaskType = 'all';
-  Timer? _debounce;
-  final String _selectedCage = 'all';
-  String? _username;
-
-  // Thêm biến cho status filter
   String _selectedStatus = 'all';
   String _sortBy = 'status'; // 'time', 'name', 'status'
   bool _sortAscending = true;
-  int? _selectedSession;
+  Timer? _debounce;
+  String? _username;
+  GrowthStageDto? growthStage;
+  String? userName = '';
+  String taskStatus = 'Loading...'; // Start directly at 'in progress'
+
+  // --- Prescription related variables ---
+  PrescriptionDto? prescription;
+  String? prescriptionId;
+
+  // --- Food related variables ---
+  List<String> foodList = [
+    "--- Chọn loại thức ăn ---",
+    "Loại thức ăn 1",
+    "Loại thức ăn 2",
+    "Loại thức ăn 3"
+  ];
+  String? selectedFood = "--- Chọn loại thức ăn ---";
+
+  // --- Vaccine related variables ---
+  List<VaccineScheduleDto> vaccineScheduleList = [];
+  VaccineScheduleLogDto? vaccineScheduleLog;
+  VaccineScheduleDto? vaccineSchedule;
+
+  // --- Animal sale related variables ---
+  SaleTypeDto? saleType;
+  DateTime? saleDate;
+
+  // --- Egg harvest related variables ---
+  EggHarvestDto? eggHarvest;
+
+  // --- Upload image related variables ---
+  UploadImageDto? uploadImage;
 
   // Thêm danh sách status options
   final List<Map<String, dynamic>> _statuses = [
@@ -327,7 +396,6 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
     if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
       // Show loading dialog
       setState(() {
-        _isLoadingRecommendedWeight = true;
         _processingTask = task; // Lưu task đang xử lý
       });
 
@@ -336,15 +404,9 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
           .read<GrowthStageCubit>()
           .getRecommendedWeightByCageId(task.cageId)
           .then((_) {
-        setState(() {
-          _isLoadingRecommendedWeight = false;
-        });
         // Hiển thị form sau khi lấy cân nặng khuyến nghị
         _showLogFormBottomSheet(task);
       }).catchError((error) {
-        setState(() {
-          _isLoadingRecommendedWeight = false;
-        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content:
@@ -439,7 +501,15 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
       case TaskTypeDataConstant.health:
         return _buildHealthLogForm(task, setState);
       case TaskTypeDataConstant.vaccin:
-        return _buildVaccinLogForm(task);
+        return _buildVaccinLogForm(task, setState);
+      case TaskTypeDataConstant.eggHarvest:
+        return _buildEggHarvestLogForm(task, setState);
+      case TaskTypeDataConstant.sellAnimal:
+        return _buildSellLogForm(task, setState);
+      case TaskTypeDataConstant.sellEgg:
+        return _buildSellLogForm(task, setState);
+      case TaskTypeDataConstant.weighing:
+        return _buildWeighingLogForm(task, setState);
       default:
         return const SizedBox.shrink();
     }
@@ -640,7 +710,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                   const SizedBox(height: 24),
                   TextFieldRequired(
                     isRequired: false,
-                    controller: logController,
+                    controller: _logController,
                     maxLines: 3,
                     isDisabled: task.status == StatusDataConstant.done ||
                         task.status == StatusDataConstant.overdue,
@@ -788,17 +858,17 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                   Row(
                     children: [
                       _buildInfoItem(
-                        context,
-                        'Số ngày uống',
-                        '${_prescription?.daysToTake} ngày',
-                        Icons.calendar_today,
+                        context: context,
+                        label: 'Số ngày uống',
+                        value: '${_prescription?.daysToTake} ngày',
+                        icon: Icons.calendar_today,
                       ),
                       const SizedBox(width: 16),
                       _buildInfoItem(
-                        context,
-                        'Số lượng',
-                        '${_prescription?.quantityAnimal} con',
-                        Icons.pets,
+                        context: context,
+                        label: 'Số lượng',
+                        value: '${_prescription?.quantityAnimal} con',
+                        icon: Icons.pets,
                       ),
                     ],
                   ),
@@ -915,42 +985,429 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
     );
   }
 
-  Widget _buildInfoItem(
-      BuildContext context, String label, String value, IconData icon) {
-    return Expanded(
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 20,
-            color: Theme.of(context).colorScheme.primary,
+  Widget _buildVaccinLogForm(TaskHaveCageName task, StateSetter setState) {
+    return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: Theme.of(context).colorScheme.outlineVariant,
           ),
-          const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.outline,
-                  fontSize: 12,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.vaccines_rounded,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
+                const SizedBox(width: 10),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    'Tên báo cáo công việc',
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.outline),
+                  ),
+                  Text('Đơn báo cáo tiêm vắc xin',
+                      style: Theme.of(context).textTheme.titleLarge)
+                ]),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Tên người báo cáo',
+                value: _username ?? 'Đang tải...',
               ),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
+              const SizedBox(width: 24),
+              _buildInfoItem(
+                  context: context,
+                  label: 'Ngày báo cáo',
+                  value: CustomDateUtils.formatDate(TimeUtils.customNow())),
+            ]),
+            const SizedBox(height: 16),
+            if (_isLoading)
+              Center(
+                child: CircularProgressIndicator(),
+              )
+            else if (vaccineScheduleList.isNotEmpty)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Danh sách lịch tiêm chủng',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  ...vaccineScheduleList.map(
+                    (vaccineSchedule) {
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        margin: const EdgeInsets.only(bottom: 16),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primaryContainer
+                              .withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.info_outline,
+                                    color: Theme.of(context).primaryColor),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Thông tin về vắc xin',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                _buildInfoItem(
+                                  context: context,
+                                  label: 'Ngày tiêm',
+                                  value: DateFormat('dd/MM/yyyy')
+                                      .format(vaccineSchedule.date),
+                                  icon: Icons.calendar_month,
+                                ),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.1),
+                                _buildInfoItem(
+                                  context: context,
+                                  label: 'Giai đoạn phát triển',
+                                  value: growthStage?.name ?? "Đang tải...",
+                                  icon: Icons.pets,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                _buildInfoItem(
+                                  context: context,
+                                  label: 'Độ tuổi tiêm',
+                                  value:
+                                      '${vaccineSchedule.applicationAge} tuổi',
+                                  icon: Icons.health_and_safety_rounded,
+                                ),
+                                SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.12),
+                                _buildInfoItem(
+                                  context: context,
+                                  label: 'Buổi tiêm',
+                                  value: vaccineSchedule.session == 1
+                                      ? 'Sáng'
+                                      : vaccineSchedule.session == 2
+                                          ? 'Trưa'
+                                          : vaccineSchedule.session == 3
+                                              ? 'Chiều'
+                                              : 'Tối',
+                                  icon: Icons.wb_sunny_rounded,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 12),
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant,
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary
+                                            .withOpacity(0.1),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/medicine.png',
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Tên vắc xin',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .outline)),
+                                        Text(
+                                          vaccineSchedule.vaccineName,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium,
+                                        ),
+                                      ],
+                                    ),
+                                  ]),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              )
+            else if (vaccineSchedule != null)
+              Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.only(bottom: 16),
+                decoration: BoxDecoration(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .primaryContainer
+                      .withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(8),
                 ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.info_outline,
+                            color: Theme.of(context).primaryColor),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Thông tin về vắc xin',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Ngày tiêm',
+                          value: DateFormat('dd/MM/yyyy')
+                              .format(vaccineSchedule!.date),
+                          icon: Icons.calendar_month,
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.1),
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Giai đoạn phát triển',
+                          value: growthStage?.name ?? "Đang tải...",
+                          icon: Icons.pets,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Độ tuổi tiêm',
+                          value: '${vaccineSchedule!.applicationAge} tuổi',
+                          icon: Icons.health_and_safety_rounded,
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.12),
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Buổi tiêm',
+                          value: vaccineSchedule!.session == 1
+                              ? 'Sáng'
+                              : vaccineSchedule!.session == 2
+                                  ? 'Trưa'
+                                  : vaccineSchedule!.session == 3
+                                      ? 'Chiều'
+                                      : 'Tối',
+                          icon: Icons.wb_sunny_rounded,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.outlineVariant,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(children: [
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Image.asset(
+                                'assets/images/medicine.png',
+                                width: 24,
+                                height: 24,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Tên vắc xin',
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outline)),
+                                Text(
+                                  vaccineSchedule!.vaccineName,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+                          ]),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            else
+              const Center(
+                child: Text('Chưa có dữ liệu lịch tiêm'),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[50],
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.grey[200]!),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Số lượng gia cầm đã tiêm',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildQuantityButton(
+                        icon: Icons.remove,
+                        onPressed: () {
+                          final currentValue = int.tryParse(
+                                  _countAnimalVaccineController.text) ??
+                              0;
+                          setState(() {
+                            _countAnimalVaccineController.text =
+                                (currentValue - 1).toString();
+                          });
+                        },
+                        isDisable: vaccineScheduleLog != null,
+                      ),
+                      Container(
+                        width: 80,
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
+                        child: TextField(
+                          controller: _countAnimalVaccineController,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                        ),
+                      ),
+                      _buildQuantityButton(
+                        icon: Icons.add,
+                        onPressed: () {
+                          final currentValue = int.tryParse(
+                                  _countAnimalVaccineController.text) ??
+                              0;
+                          setState(() {
+                            _countAnimalVaccineController.text =
+                                (currentValue + 1).toString();
+                          });
+                        },
+                        isAdd: true,
+                        isDisable: vaccineScheduleLog != null,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        size: 16,
+                        color: Colors.grey[600],
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Ước lượng: 5 con.',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ));
   }
 
-  Widget _buildVaccinLogForm(TaskHaveCageName task) {
+  Widget _buildAddFoodLogForm(TaskHaveCageName task, StateSetter setState) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -966,35 +1423,1963 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
           Row(
             children: [
               Icon(
-                Icons.vaccines_rounded,
+                Icons.warehouse_rounded,
                 color: Theme.of(context).colorScheme.primary,
               ),
-              const SizedBox(width: 8),
-              Text(
-                'Đơn log công việc tiêm vắc xin',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+              const SizedBox(width: 10),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(
+                  'Tên báo cáo công việc',
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.outline),
+                ),
+                Text('Đơn báo cáo nhập thức ăn',
+                    style: Theme.of(context).textTheme.titleLarge)
+              ]),
             ],
           ),
           const SizedBox(height: 8),
-          Text(
-            'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now())}',
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.outline,
+          Row(children: [
+            _buildInfoItem(
+              context: context,
+              label: 'Tên người báo cáo',
+              value: userName ?? 'Đang tải...',
+            ),
+            const SizedBox(width: 24),
+            _buildInfoItem(
+                context: context,
+                label: 'Ngày báo cáo',
+                value: CustomDateUtils.formatDate(TimeUtils.customNow())),
+          ]),
+          const SizedBox(height: 20),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Theme.of(context)
+                  .colorScheme
+                  .primaryContainer
+                  .withOpacity(0.2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.info_outline,
+                        color: Theme.of(context).primaryColor),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Thông tin về kho thức ăn',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    _buildInfoItem(
+                      context: context,
+                      label: 'Khối lượng hiện tại',
+                      value: '200 (kg)',
+                      icon: Icons.calendar_month,
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width * 0.07),
+                    _buildInfoItem(
+                      context: context,
+                      label: 'Giá trung bình/kg',
+                      value: '20.000 (VND)',
+                      icon: Icons.pets,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    _buildInfoItem(
+                      context: context,
+                      label: 'Mức cảnh báo tồn kho',
+                      value: 'Cảnh báo thấp',
+                      icon: Icons.medical_services_rounded,
+                      warningLevel: 1,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                _buildInfoItem(
+                  context: context,
+                  label: 'Ngày cập nhật gần nhất',
+                  value: '21/02/2025',
+                  icon: Icons.calendar_today,
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 16),
-          TextField(
-            controller: _logController,
-            maxLines: 3,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Ghi chú (nếu có)',
-              hintText: 'Nhập ghi chú',
+          Text('Form nhập liệu',
+              style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.outlineVariant,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText: 'Chọn loại thức ăn',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    value: selectedFood,
+                    onChanged: (String? value) {
+                      setState(() {
+                        selectedFood = value;
+                      });
+                    },
+                    items: foodList
+                        .map((food) => DropdownMenuItem(
+                              value: food,
+                              child: Text(food),
+                            ))
+                        .toList(),
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _nameFoodController,
+                    decoration: InputDecoration(
+                      labelText: 'Nhập tên thức ăn',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Khối lượng thức ăn nhập vào',
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildQuantityButton(
+                            icon: Icons.remove,
+                            onPressed: () {
+                              final currentValue =
+                                  double.tryParse(_affectedController.text) ??
+                                      0;
+                              if (currentValue > 0) {
+                                setState(() {
+                                  _affectedController.text =
+                                      (currentValue - 1).toString();
+                                });
+                              }
+                            },
+                          ),
+                          Container(
+                            width: 80,
+                            margin: const EdgeInsets.symmetric(horizontal: 16),
+                            child: TextField(
+                              controller: _affectedController,
+                              textAlign: TextAlign.center,
+                              keyboardType: TextInputType.number,
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.zero,
+                              ),
+                            ),
+                          ),
+                          _buildQuantityButton(
+                            icon: Icons.add,
+                            onPressed: () {
+                              final currentValue =
+                                  double.tryParse(_affectedController.text) ??
+                                      0;
+                              setState(() {
+                                _affectedController.text =
+                                    (currentValue + 1).toString();
+                              });
+                            },
+                            isAdd: true,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.info_outline,
+                            size: 16,
+                            color: Colors.grey[600],
+                          ),
+                          const SizedBox(width: 4),
+                          Row(children: [
+                            Text(
+                              'Đơn vị tính: ',
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 13,
+                              ),
+                            ),
+                            Text(
+                              'kg.',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
+                          ])
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  TextFormField(
+                    controller: _priceFoodController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: 'Nhập giá tiền (VND)',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      suffixText: 'VND',
+                    ),
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        final formatter = NumberFormat('#,###');
+                        final newValue = formatter
+                            .format(int.parse(value.replaceAll(',', '')));
+                        _priceFoodController.value = TextEditingValue(
+                          text: newValue,
+                          selection:
+                              TextSelection.collapsed(offset: newValue.length),
+                        );
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        size: 16,
+                        color: Colors.grey[600],
+                      ),
+                      const SizedBox(width: 4),
+                      Row(children: [
+                        Text(
+                          'Đơn vị tiền: ',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          'VND.',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ])
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  TextFormField(
+                    controller: TextEditingController(
+                      text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                    ),
+                    decoration: InputDecoration(
+                      labelText: 'Ngày nhập kho',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      suffixIcon: Icon(Icons.calendar_today),
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: TimeUtils.customNow(),
+                        firstDate: DateTime(2024),
+                        lastDate: DateTime(2030),
+                      );
+                      if (pickedDate != null) {
+                        setState(() {
+                          _nameFoodController.text =
+                              DateFormat('dd/MM/yyyy').format(pickedDate);
+                        });
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        size: 16,
+                        color: Colors.grey[600],
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Bấm vào để sửa ngày nhập kho (nếu có thay đổi).',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSellLogForm(TaskHaveCageName task, StateSetter setState) {
+    return BlocBuilder<GrowthStageCubit, GrowthStageState>(
+      builder: (context, state) {
+        return state.maybeWhen(getGrowthStageByCageIdInProgress: () {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              const Text('Đang tải báo cáo...')
+            ])),
+          );
+        }, getGrowthStageByCageIdSuccess: (growthStage) {
+          return Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.outlineVariant,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.sell_rounded,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Tên báo cáo công việc',
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.outline),
+                          ),
+                          if (task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.sellAnimal)
+                            Text('Đơn báo cáo bán gia cầm',
+                                style: Theme.of(context).textTheme.titleLarge)
+                          else
+                            Text('Đơn báo cáo bán trứng',
+                                style: Theme.of(context).textTheme.titleLarge)
+                        ]),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(children: [
+                  _buildInfoItem(
+                    context: context,
+                    label: 'Tên người báo cáo',
+                    value: userName ?? 'Đang tải...',
+                  ),
+                  const SizedBox(width: 24),
+                  _buildInfoItem(
+                      context: context,
+                      label: 'Ngày báo cáo',
+                      value: CustomDateUtils.formatDate(TimeUtils.customNow())),
+                ]),
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.info_outline,
+                              color: Theme.of(context).primaryColor),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Thông tin về giai đoạn phát triển',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.38,
+                            child: _buildInfoItem(
+                              context: context,
+                              label: 'Tên giai đoạn',
+                              value: growthStage.name,
+                              icon: Icons.label,
+                            ),
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.05),
+                          if (growthStage.quantity != null) ...[
+                            _buildInfoItem(
+                              context: context,
+                              label: 'Tổng số con',
+                              value: '${growthStage.quantity.toString()} (con)',
+                              icon: Icons.warehouse,
+                            ),
+                          ]
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bình thường',
+                            value:
+                                '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                            icon: Icons.pets,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.084),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bị bệnh',
+                            value: '${growthStage.affectQuantity} (con)',
+                            icon: Icons.medical_services_rounded,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày bắt đầu',
+                            value: DateFormat('dd/MM/yyyy').format(
+                                DateTime.parse(growthStage.ageStartDate)),
+                            icon: Icons.calendar_month,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.163),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày kết thúc',
+                            value: DateFormat('dd/MM/yyyy')
+                                .format(DateTime.parse(growthStage.ageEndDate)),
+                            icon: Icons.calendar_month,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi bắt đầu',
+                            value: '${growthStage.ageStart} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.143),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi kết thúc',
+                            value: '${growthStage.ageEnd} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+                BlocBuilder<SaleTypeCubit, SaleTypeState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(getByNameInProgress: () {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        child: Center(
+                            child: Column(children: [
+                          CircularProgressIndicator(),
+                          const SizedBox(height: 16),
+                          const Text('Đang tải form nhập liệu...')
+                        ])),
+                      );
+                    }, getByNameSuccess: (saleTypes) {
+                      return Column(children: [
+                        if (task?.taskType.taskTypeId ==
+                            TaskTypeDataConstant.sellAnimal)
+                          Text('Form nhập liệu bán thịt',
+                              style: Theme.of(context).textTheme.titleLarge)
+                        else
+                          Text('Form nhập liệu bán trứng',
+                              style: Theme.of(context).textTheme.titleLarge),
+                        const SizedBox(height: 16),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color:
+                                  Theme.of(context).colorScheme.outlineVariant,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (task?.taskType.taskTypeId ==
+                                    TaskTypeDataConstant.sellAnimal)
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Khối lượng thịt đã bán',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          _buildQuantityButton(
+                                            icon: Icons.remove,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _weightMeatSellController
+                                                          .text) ??
+                                                  0;
+                                              if (currentValue > 0) {
+                                                setState(() {
+                                                  _weightMeatSellController
+                                                          .text =
+                                                      (currentValue - 1)
+                                                          .toString();
+                                                });
+                                              }
+                                            },
+                                          ),
+                                          Container(
+                                            width: 80,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 16),
+                                            child: TextField(
+                                              controller:
+                                                  _weightMeatSellController,
+                                              textAlign: TextAlign.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              decoration: const InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.zero,
+                                              ),
+                                            ),
+                                          ),
+                                          _buildQuantityButton(
+                                            icon: Icons.add,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _weightMeatSellController
+                                                          .text) ??
+                                                  0;
+                                              setState(() {
+                                                _weightMeatSellController.text =
+                                                    (currentValue + 1)
+                                                        .toString();
+                                              });
+                                            },
+                                            isAdd: true,
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tính: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'kg.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                      const SizedBox(height: 24),
+                                      TextFormField(
+                                        controller: _priceMeatSellController,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          labelText: 'Nhập giá tiền',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          suffixText: 'VND',
+                                          helperText: 'Giá tiền trên 1 trứng.',
+                                        ),
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            final formatter =
+                                                NumberFormat('#,###');
+                                            final newValue = formatter.format(
+                                                int.parse(
+                                                    value.replaceAll(',', '')));
+                                            _priceMeatSellController.value =
+                                                TextEditingValue(
+                                              text: newValue,
+                                              selection:
+                                                  TextSelection.collapsed(
+                                                      offset: newValue.length),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tiền: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'VND.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                else
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Số trứng đã bán',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          _buildQuantityButton(
+                                            icon: Icons.remove,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _countEggSellController
+                                                          .text) ??
+                                                  0;
+                                              if (currentValue > 0) {
+                                                setState(() {
+                                                  _countEggSellController.text =
+                                                      (currentValue - 1)
+                                                          .toString();
+                                                });
+                                              }
+                                            },
+                                          ),
+                                          Container(
+                                            width: 80,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 16),
+                                            child: TextField(
+                                              controller:
+                                                  _countEggSellController,
+                                              textAlign: TextAlign.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              decoration: const InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.zero,
+                                              ),
+                                            ),
+                                          ),
+                                          _buildQuantityButton(
+                                            icon: Icons.add,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _countEggSellController
+                                                          .text) ??
+                                                  0;
+                                              setState(() {
+                                                _countEggSellController.text =
+                                                    (currentValue + 1)
+                                                        .toString();
+                                              });
+                                            },
+                                            isAdd: true,
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tính: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'trứng.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                      const SizedBox(height: 24),
+                                      TextFormField(
+                                        controller: _priceEggSellController,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          labelText: 'Nhập giá tiền',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          suffixText: 'VND',
+                                          helperText: 'Giá tiền trên 1 trứng.',
+                                        ),
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            final formatter =
+                                                NumberFormat('#,###');
+                                            final newValue = formatter.format(
+                                                int.parse(
+                                                    value.replaceAll(',', '')));
+                                            _priceEggSellController.value =
+                                                TextEditingValue(
+                                              text: newValue,
+                                              selection:
+                                                  TextSelection.collapsed(
+                                                      offset: newValue.length),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tiền: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'VND.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                const SizedBox(height: 24),
+                                TextFormField(
+                                  controller: TextEditingController(
+                                    text: _dateAnimalSellController.text,
+                                  ),
+                                  decoration: InputDecoration(
+                                    labelText: 'Ngày bán',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    suffixIcon: Icon(Icons.calendar_today),
+                                  ),
+                                  readOnly: true,
+                                  onTap: () async {
+                                    DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: TimeUtils.customNow(),
+                                      firstDate: DateTime(2024),
+                                      lastDate: DateTime(2030),
+                                    );
+                                    if (pickedDate != null) {
+                                      setState(() {
+                                        _dateAnimalSellController.text =
+                                            DateFormat('dd/MM/yyyy')
+                                                .format(pickedDate);
+                                        saleDate = pickedDate;
+                                      });
+                                    }
+                                  },
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.info_outline,
+                                      size: 16,
+                                      color: Colors.grey[600],
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      'Bấm vào để sửa ngày bán (nếu có thay đổi).',
+                                      style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ]);
+                    }, orElse: () {
+                      return Container();
+                    });
+                  },
+                )
+              ],
+            ),
+          );
+        }, getGrowthStageByCageIdFailure: (message) {
+          log(message);
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              const Icon(Icons.error_outline, color: Colors.red),
+              const SizedBox(height: 8),
+              Text('Đã xảy ra lỗi: $message'),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () {
+                  if (task?.cageId != null) {
+                    context
+                        .read<GrowthStageCubit>()
+                        .getGrowthStageByCageId(task!.cageId);
+                  }
+                },
+                child: const Text('Thử lại'),
+              )
+            ])),
+          );
+        }, updateWeightInProgress: () {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              const Text('Đang xử lý báo cáo...')
+            ])),
+          );
+        }, orElse: () {
+          return Container();
+        });
+      },
+    );
+  }
+
+  Widget _buildWeighingLogForm(TaskHaveCageName task, StateSetter setState) {
+    return BlocBuilder<GrowthStageCubit, GrowthStageState>(
+      builder: (context, state) {
+        return state.maybeWhen(getGrowthStageByCageIdInProgress: () {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              const Text('Đang tải báo cáo...')
+            ])),
+          );
+        }, getGrowthStageByCageIdSuccess: (growthStage) {
+          return Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.outlineVariant,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.sell_rounded,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Tên báo cáo công việc',
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.outline),
+                          ),
+                          if (task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.sellAnimal)
+                            Text('Đơn báo cáo bán gia cầm',
+                                style: Theme.of(context).textTheme.titleLarge)
+                          else
+                            Text('Đơn báo cáo bán trứng',
+                                style: Theme.of(context).textTheme.titleLarge)
+                        ]),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(children: [
+                  _buildInfoItem(
+                    context: context,
+                    label: 'Tên người báo cáo',
+                    value: userName ?? 'Đang tải...',
+                  ),
+                  const SizedBox(width: 24),
+                  _buildInfoItem(
+                      context: context,
+                      label: 'Ngày báo cáo',
+                      value: CustomDateUtils.formatDate(TimeUtils.customNow())),
+                ]),
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.info_outline,
+                              color: Theme.of(context).primaryColor),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Thông tin về giai đoạn phát triển',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.38,
+                            child: _buildInfoItem(
+                              context: context,
+                              label: 'Tên giai đoạn',
+                              value: growthStage.name,
+                              icon: Icons.label,
+                            ),
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.05),
+                          if (growthStage.quantity != null) ...[
+                            _buildInfoItem(
+                              context: context,
+                              label: 'Tổng số con',
+                              value: '${growthStage.quantity.toString()} (con)',
+                              icon: Icons.warehouse,
+                            ),
+                          ]
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bình thường',
+                            value:
+                                '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                            icon: Icons.pets,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.084),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bị bệnh',
+                            value: '${growthStage.affectQuantity} (con)',
+                            icon: Icons.medical_services_rounded,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày bắt đầu',
+                            value: DateFormat('dd/MM/yyyy').format(
+                                DateTime.parse(growthStage.ageStartDate)),
+                            icon: Icons.calendar_month,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.163),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày kết thúc',
+                            value: DateFormat('dd/MM/yyyy')
+                                .format(DateTime.parse(growthStage.ageEndDate)),
+                            icon: Icons.calendar_month,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi bắt đầu',
+                            value: '${growthStage.ageStart} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.143),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi kết thúc',
+                            value: '${growthStage.ageEnd} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30),
+                BlocBuilder<SaleTypeCubit, SaleTypeState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(getByNameInProgress: () {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        child: Center(
+                            child: Column(children: [
+                          CircularProgressIndicator(),
+                          const SizedBox(height: 16),
+                          const Text('Đang tải form nhập liệu...')
+                        ])),
+                      );
+                    }, getByNameSuccess: (saleTypes) {
+                      return Column(children: [
+                        if (task?.taskType.taskTypeId ==
+                            TaskTypeDataConstant.sellAnimal)
+                          Text('Form nhập liệu bán thịt',
+                              style: Theme.of(context).textTheme.titleLarge)
+                        else
+                          Text('Form nhập liệu bán trứng',
+                              style: Theme.of(context).textTheme.titleLarge),
+                        const SizedBox(height: 16),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color:
+                                  Theme.of(context).colorScheme.outlineVariant,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (task?.taskType.taskTypeId ==
+                                    TaskTypeDataConstant.sellAnimal)
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Khối lượng thịt đã bán',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          _buildQuantityButton(
+                                            icon: Icons.remove,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _weightMeatSellController
+                                                          .text) ??
+                                                  0;
+                                              if (currentValue > 0) {
+                                                setState(() {
+                                                  _weightMeatSellController
+                                                          .text =
+                                                      (currentValue - 1)
+                                                          .toString();
+                                                });
+                                              }
+                                            },
+                                          ),
+                                          Container(
+                                            width: 80,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 16),
+                                            child: TextField(
+                                              controller:
+                                                  _weightMeatSellController,
+                                              textAlign: TextAlign.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              decoration: const InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.zero,
+                                              ),
+                                            ),
+                                          ),
+                                          _buildQuantityButton(
+                                            icon: Icons.add,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _weightMeatSellController
+                                                          .text) ??
+                                                  0;
+                                              setState(() {
+                                                _weightMeatSellController.text =
+                                                    (currentValue + 1)
+                                                        .toString();
+                                              });
+                                            },
+                                            isAdd: true,
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tính: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'kg.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                      const SizedBox(height: 24),
+                                      TextFormField(
+                                        controller: _priceMeatSellController,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          labelText: 'Nhập giá tiền',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          suffixText: 'VND',
+                                          helperText: 'Giá tiền trên 1 trứng.',
+                                        ),
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            final formatter =
+                                                NumberFormat('#,###');
+                                            final newValue = formatter.format(
+                                                int.parse(
+                                                    value.replaceAll(',', '')));
+                                            _priceMeatSellController.value =
+                                                TextEditingValue(
+                                              text: newValue,
+                                              selection:
+                                                  TextSelection.collapsed(
+                                                      offset: newValue.length),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tiền: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'VND.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                else
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Số trứng đã bán',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall,
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          _buildQuantityButton(
+                                            icon: Icons.remove,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _countEggSellController
+                                                          .text) ??
+                                                  0;
+                                              if (currentValue > 0) {
+                                                setState(() {
+                                                  _countEggSellController.text =
+                                                      (currentValue - 1)
+                                                          .toString();
+                                                });
+                                              }
+                                            },
+                                          ),
+                                          Container(
+                                            width: 80,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 16),
+                                            child: TextField(
+                                              controller:
+                                                  _countEggSellController,
+                                              textAlign: TextAlign.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              style: const TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              decoration: const InputDecoration(
+                                                border: InputBorder.none,
+                                                contentPadding: EdgeInsets.zero,
+                                              ),
+                                            ),
+                                          ),
+                                          _buildQuantityButton(
+                                            icon: Icons.add,
+                                            onPressed: () {
+                                              final currentValue = int.tryParse(
+                                                      _countEggSellController
+                                                          .text) ??
+                                                  0;
+                                              setState(() {
+                                                _countEggSellController.text =
+                                                    (currentValue + 1)
+                                                        .toString();
+                                              });
+                                            },
+                                            isAdd: true,
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tính: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'trứng.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                      const SizedBox(height: 24),
+                                      TextFormField(
+                                        controller: _priceEggSellController,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          labelText: 'Nhập giá tiền',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          suffixText: 'VND',
+                                          helperText: 'Giá tiền trên 1 trứng.',
+                                        ),
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            final formatter =
+                                                NumberFormat('#,###');
+                                            final newValue = formatter.format(
+                                                int.parse(
+                                                    value.replaceAll(',', '')));
+                                            _priceEggSellController.value =
+                                                TextEditingValue(
+                                              text: newValue,
+                                              selection:
+                                                  TextSelection.collapsed(
+                                                      offset: newValue.length),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: Colors.grey[600],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Row(children: [
+                                            Text(
+                                              'Đơn vị tiền: ',
+                                              style: TextStyle(
+                                                color: Colors.grey[600],
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            Text(
+                                              'VND.',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ])
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                const SizedBox(height: 24),
+                                TextFormField(
+                                  controller: TextEditingController(
+                                    text: _dateAnimalSellController.text,
+                                  ),
+                                  decoration: InputDecoration(
+                                    labelText: 'Ngày bán',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    suffixIcon: Icon(Icons.calendar_today),
+                                  ),
+                                  readOnly: true,
+                                  onTap: () async {
+                                    DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: TimeUtils.customNow(),
+                                      firstDate: DateTime(2024),
+                                      lastDate: DateTime(2030),
+                                    );
+                                    if (pickedDate != null) {
+                                      setState(() {
+                                        _dateAnimalSellController.text =
+                                            DateFormat('dd/MM/yyyy')
+                                                .format(pickedDate);
+                                        saleDate = pickedDate;
+                                      });
+                                    }
+                                  },
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.info_outline,
+                                      size: 16,
+                                      color: Colors.grey[600],
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      'Bấm vào để sửa ngày bán (nếu có thay đổi).',
+                                      style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ]);
+                    }, orElse: () {
+                      return Container();
+                    });
+                  },
+                )
+              ],
+            ),
+          );
+        }, getGrowthStageByCageIdFailure: (message) {
+          log(message);
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              const Icon(Icons.error_outline, color: Colors.red),
+              const SizedBox(height: 8),
+              Text('Đã xảy ra lỗi: $message'),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () {
+                  if (task?.cageId != null) {
+                    context
+                        .read<GrowthStageCubit>()
+                        .getGrowthStageByCageId(task!.cageId);
+                  }
+                },
+                child: const Text('Thử lại'),
+              )
+            ])),
+          );
+        }, updateWeightInProgress: () {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              const Text('Đang xử lý báo cáo...')
+            ])),
+          );
+        }, orElse: () {
+          return Container();
+        });
+      },
+    );
+  }
+
+  Widget _buildEggHarvestLogForm(TaskHaveCageName task, StateSetter setState) {
+    return BlocBuilder<GrowthStageCubit, GrowthStageState>(
+      builder: (context, state) {
+        return state.maybeWhen(getGrowthStageByCageIdInProgress: () {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              const Text('Đang tải báo cáo...')
+            ])),
+          );
+        }, getGrowthStageByCageIdSuccess: (growthStage) {
+          return Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.outlineVariant,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.sell_rounded,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Tên báo cáo công việc',
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.outline),
+                          ),
+                          Text('Đơn báo cáo thu hoạch trứng',
+                              style: Theme.of(context).textTheme.titleLarge)
+                        ]),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(children: [
+                  _buildInfoItem(
+                    context: context,
+                    label: 'Tên người báo cáo',
+                    value: userName ?? 'Đang tải...',
+                  ),
+                  const SizedBox(width: 24),
+                  _buildInfoItem(
+                      context: context,
+                      label: 'Ngày báo cáo',
+                      value: CustomDateUtils.formatDate(TimeUtils.customNow())),
+                ]),
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.info_outline,
+                              color: Theme.of(context).primaryColor),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Thông tin về vụ nuôi',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.38,
+                            child: _buildInfoItem(
+                              context: context,
+                              label: 'Tên vụ nuôi',
+                              value: growthStage.name,
+                              icon: Icons.label,
+                            ),
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.05),
+                          if (growthStage.quantity != null) ...[
+                            _buildInfoItem(
+                              context: context,
+                              label: 'Tổng số con',
+                              value: '${growthStage.quantity.toString()} (con)',
+                              icon: Icons.warehouse,
+                            ),
+                          ]
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bình thường',
+                            value:
+                                '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                            icon: Icons.pets,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.084),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bị bệnh',
+                            value: '${growthStage.affectQuantity} (con)',
+                            icon: Icons.medical_services_rounded,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày bắt đầu',
+                            value: DateFormat('dd/MM/yyyy').format(
+                                DateTime.parse(growthStage.ageStartDate)),
+                            icon: Icons.calendar_month,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.163),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày kết thúc',
+                            value: DateFormat('dd/MM/yyyy')
+                                .format(DateTime.parse(growthStage.ageEndDate)),
+                            icon: Icons.calendar_month,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi bắt đầu',
+                            value: '${growthStage.ageStart} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.143),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi kết thúc',
+                            value: '${growthStage.ageEnd} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text('Form nhập liệu',
+                            style: Theme.of(context).textTheme.titleLarge),
+                        if (taskStatus == StatusDataConstant.doneVn) ...[
+                          const SizedBox(width: 8),
+                          const Icon(Icons.check_circle, color: Colors.green),
+                        ]
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.outlineVariant,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Số trứng thu hoạch được',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            const SizedBox(height: 16),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildQuantityButton(
+                                    icon: Icons.remove,
+                                    onPressed: () {
+                                      final currentValue = int.tryParse(
+                                              _countEggCollectedController
+                                                  .text) ??
+                                          0;
+                                      if (currentValue > 0) {
+                                        setState(() {
+                                          _countEggCollectedController.text =
+                                              (currentValue - 1).toString();
+                                        });
+                                      }
+                                    },
+                                    isDisable: taskStatus !=
+                                        StatusDataConstant.inProgressVn),
+                                Container(
+                                  width: 80,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: TextField(
+                                    controller: _countEggCollectedController,
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    decoration: const InputDecoration(
+                                      border: InputBorder.none,
+                                      contentPadding: EdgeInsets.zero,
+                                    ),
+                                  ),
+                                ),
+                                _buildQuantityButton(
+                                    icon: Icons.add,
+                                    onPressed: () {
+                                      final currentValue = int.tryParse(
+                                              _countEggCollectedController
+                                                  .text) ??
+                                          0;
+                                      setState(() {
+                                        _countEggCollectedController.text =
+                                            (currentValue + 1).toString();
+                                      });
+                                    },
+                                    isAdd: true,
+                                    isDisable: taskStatus !=
+                                        StatusDataConstant.inProgressVn),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.info_outline,
+                                  size: 16,
+                                  color: Colors.grey[600],
+                                ),
+                                const SizedBox(width: 4),
+                                Row(children: [
+                                  Text(
+                                    'Đơn vị tính: ',
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Text(
+                                    'quả.',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )
+                                ])
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }, getGrowthStageByCageIdFailure: (message) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: Center(
+                child: Column(children: [
+              const Icon(Icons.error_outline, color: Colors.red),
+              const SizedBox(height: 8),
+              Text('Đã xảy ra lỗi: $message'),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () {
+                  if (task?.cageId != null) {
+                    context
+                        .read<GrowthStageCubit>()
+                        .getGrowthStageByCageId(task!.cageId);
+                  }
+                },
+                child: const Text('Thử lại'),
+              )
+            ])),
+          );
+        }, orElse: () {
+          return Container();
+        });
+      },
+    );
+  }
+
+  Widget _buildInfoItem(
+      {required BuildContext context,
+      required String label,
+      required String value,
+      IconData? icon,
+      int warningLevel = 0}) {
+    return Row(
+      children: [
+        if (icon != null)
+          Icon(
+            icon,
+            size: 20,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        const SizedBox(width: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              Text(
+                label,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.outline,
+                  fontSize: 12,
+                ),
+              ),
+            ]),
+            Row(
+              children: [
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                  ),
+                ),
+                if (warningLevel != 0) ...[
+                  const SizedBox(width: 4),
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.yellow,
+                    ),
+                  ),
+                ],
+              ],
+            )
+          ],
+        ),
+      ],
     );
   }
 
@@ -1392,7 +3777,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
               getDailyFoodUsageLogSuccess: (log) async {
                 setState(() {
                   actualWeight = log.actualWeight;
-                  logController.text = log.notes;
+                  _logController.text = log.notes;
                   logTime = log.logTime;
                 });
               },
@@ -1404,7 +3789,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
               },
               getHealthLogSuccess: (log) async {
                 setState(() {
-                  logController.text = log.notes;
+                  _logController.text = log.notes;
                 });
               },
               getHealthLogFailure: (e) async {
@@ -1415,7 +3800,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
               },
               getVaccinScheduleLogSuccess: (log) async {
                 setState(() {
-                  logController.text = log.notes;
+                  _logController.text = log.notes;
                 });
               },
               getVaccinScheduleLogFailure: (e) async {
@@ -1438,7 +3823,6 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                   this.recommendedWeight = recommendedWeight;
                   actualWeight = recommendedWeight.toInt();
                   this.weightList = weightList;
-                  _isLoadingRecommendedWeight = false;
                 });
 
                 // Sử dụng _processingTask thay vì tìm trong _selectedTaskIds
@@ -1450,7 +3834,6 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
               getRecommendedWeightByCageIdFailure: (e) {
                 log('Lấy cân nặng khuyến nghị thất bại!');
                 setState(() {
-                  _isLoadingRecommendedWeight = false;
                   _processingTask = null; // Reset khi có lỗi
                 });
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -2080,6 +4463,32 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   String _getStatusLabel() {
     if (_selectedStatus == 'all') return 'Trạng thái';
     return _statuses.firstWhere((s) => s['id'] == _selectedStatus)['name'];
+  }
+
+  Widget _buildQuantityButton({
+    required IconData icon,
+    required VoidCallback onPressed,
+    bool isAdd = false,
+    bool isDisable = false,
+  }) {
+    return Opacity(
+      opacity: isDisable ? 0.5 : 1,
+      child: Container(
+        decoration: BoxDecoration(
+          color:
+              isAdd ? Theme.of(context).colorScheme.primary : Colors.grey[200],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: IconButton(
+          onPressed: isDisable ? null : onPressed,
+          icon: Icon(
+            icon,
+            color: isAdd ? Colors.white : Colors.grey[700],
+          ),
+          iconSize: 24,
+        ),
+      ),
+    );
   }
 }
 
