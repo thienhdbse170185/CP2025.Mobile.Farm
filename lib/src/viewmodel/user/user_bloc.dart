@@ -69,12 +69,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(const UserState.sendOTPInProgress());
       try {
         log('[Send_OTP]: Đang lấy email để gửi OTP...');
-        final authBox = await Hive.openBox(AuthDataConstant.authBoxName);
-        final accessToken = authBox.get(AuthDataConstant.accessTokenKey);
-        final decodedToken = JwtDecoder.decode(accessToken);
-        final email = decodedToken['email'];
+        String email = '';
+        if (event.email == null) {
+          final authBox = await Hive.openBox(AuthDataConstant.authBoxName);
+          final accessToken = authBox.get(AuthDataConstant.accessTokenKey);
+          final decodedToken = JwtDecoder.decode(accessToken);
+          email = decodedToken['email'];
+        } else {
+          email = event.email!;
+        }
+
         log('[Email Send_OTP]: $email');
-        final result = await userRepository.sendOTP(email, event.isResend);
+        final result =
+            await userRepository.sendOTP(email, event.username, event.isResend);
         if (result) {
           emit(UserState.sendOTPSuccess(email));
         } else {

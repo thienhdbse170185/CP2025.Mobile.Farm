@@ -6,7 +6,10 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.getUserProfile() = _GetUserProfile;
   const factory UserEvent.getServerTime() = _GetServerTime;
   const factory UserEvent.updateDeviceToken() = _UpdateDeviceToken;
-  const factory UserEvent.sendOTP({required bool isResend}) = _SendOTP;
+  const factory UserEvent.sendOTP(
+      {required String username,
+      required bool isResend,
+      String? email}) = _SendOTP;
   const factory UserEvent.updatePassword({
     required String oldPassword,
     required String newPassword,

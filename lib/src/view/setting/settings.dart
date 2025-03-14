@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 
 class SettingWidget extends StatefulWidget {
@@ -11,22 +13,21 @@ class SettingWidget extends StatefulWidget {
 class _SettingWidgetState extends State<SettingWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           title: Text('Cài đặt'),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               ListTile(
-                title: Text('Thông báo'),
-              ),
-              ListTile(
-                title: Text('Ngôn ngữ'),
-              ),
-              ListTile(
-                title: Text('Đổi mật khẩu'),
+                onTap: () {
+                  context.push(RouteName.timeSetting);
+                },
+                leading: const Icon(Icons.timelapse_rounded),
+                title: const Text('Đổi ngày giờ'),
+                trailing: const Icon(Icons.chevron_right_rounded),
               ),
             ],
           ),

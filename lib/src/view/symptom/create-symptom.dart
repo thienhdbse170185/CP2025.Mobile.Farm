@@ -76,8 +76,12 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   bool get _hasSymptoms => _symptomsName.isNotEmpty;
   bool get _hasValidQuantity {
     final quantity = int.tryParse(_affectedController.text) ?? 0;
+    log('Quantity: $quantity');
     return quantity > 0 &&
-        (_farmingBatch == null || quantity <= _farmingBatch!.quantity);
+        (_farmingBatch == null ||
+            quantity <=
+                ((_growthStage?.quantity ?? 0) -
+                    (_farmingBatch?.affectedQuantity ?? 0)));
   }
 
   bool get _isFormValid =>

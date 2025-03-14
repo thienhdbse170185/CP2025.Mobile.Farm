@@ -22,7 +22,8 @@ mixin _$UserEvent {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
@@ -34,7 +35,7 @@ mixin _$UserEvent {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) =>
@@ -45,7 +46,7 @@ mixin _$UserEvent {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),
@@ -152,7 +153,8 @@ class _$StartedImpl implements _Started {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
@@ -167,7 +169,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
@@ -181,7 +183,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),
@@ -288,7 +290,8 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
@@ -303,7 +306,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
@@ -317,7 +320,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),
@@ -424,7 +427,8 @@ class _$GetServerTimeImpl implements _GetServerTime {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
@@ -439,7 +443,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
@@ -453,7 +457,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),
@@ -560,7 +564,8 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
@@ -575,7 +580,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
@@ -589,7 +594,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),
@@ -657,7 +662,7 @@ abstract class _$$SendOTPImplCopyWith<$Res> {
           _$SendOTPImpl value, $Res Function(_$SendOTPImpl) then) =
       __$$SendOTPImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool isResend});
+  $Res call({String username, bool isResend, String? email});
 }
 
 /// @nodoc
@@ -673,13 +678,23 @@ class __$$SendOTPImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? username = null,
     Object? isResend = null,
+    Object? email = freezed,
   }) {
     return _then(_$SendOTPImpl(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       isResend: null == isResend
           ? _value.isResend
           : isResend // ignore: cast_nullable_to_non_nullable
               as bool,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -687,14 +702,19 @@ class __$$SendOTPImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SendOTPImpl implements _SendOTP {
-  const _$SendOTPImpl({required this.isResend});
+  const _$SendOTPImpl(
+      {required this.username, required this.isResend, this.email});
 
   @override
+  final String username;
+  @override
   final bool isResend;
+  @override
+  final String? email;
 
   @override
   String toString() {
-    return 'UserEvent.sendOTP(isResend: $isResend)';
+    return 'UserEvent.sendOTP(username: $username, isResend: $isResend, email: $email)';
   }
 
   @override
@@ -702,12 +722,15 @@ class _$SendOTPImpl implements _SendOTP {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendOTPImpl &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.isResend, isResend) ||
-                other.isResend == isResend));
+                other.isResend == isResend) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isResend);
+  int get hashCode => Object.hash(runtimeType, username, isResend, email);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -724,12 +747,13 @@ class _$SendOTPImpl implements _SendOTP {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
   }) {
-    return sendOTP(isResend);
+    return sendOTP(username, isResend, email);
   }
 
   @override
@@ -739,11 +763,11 @@ class _$SendOTPImpl implements _SendOTP {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
-    return sendOTP?.call(isResend);
+    return sendOTP?.call(username, isResend, email);
   }
 
   @override
@@ -753,13 +777,13 @@ class _$SendOTPImpl implements _SendOTP {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),
   }) {
     if (sendOTP != null) {
-      return sendOTP(isResend);
+      return sendOTP(username, isResend, email);
     }
     return orElse();
   }
@@ -812,9 +836,14 @@ class _$SendOTPImpl implements _SendOTP {
 }
 
 abstract class _SendOTP implements UserEvent {
-  const factory _SendOTP({required final bool isResend}) = _$SendOTPImpl;
+  const factory _SendOTP(
+      {required final String username,
+      required final bool isResend,
+      final String? email}) = _$SendOTPImpl;
 
+  String get username;
   bool get isResend;
+  String? get email;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -907,7 +936,8 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
@@ -922,7 +952,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
@@ -936,7 +966,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),
@@ -1089,7 +1119,8 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     required TResult Function() getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
-    required TResult Function(bool isResend) sendOTP,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
     required TResult Function(String oldPassword, String newPassword)
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
@@ -1104,7 +1135,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     TResult? Function()? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
-    TResult? Function(bool isResend)? sendOTP,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
@@ -1118,7 +1149,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     TResult Function()? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
-    TResult Function(bool isResend)? sendOTP,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     required TResult orElse(),

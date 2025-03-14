@@ -4005,7 +4005,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                           // Display the formatted date here
                                           Text(
                                             DateFormat('EEEE, dd/MM/yyyy', 'vi')
-                                                .format(DateTime.now()),
+                                                .format(TimeUtils.customNow()),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodySmall,

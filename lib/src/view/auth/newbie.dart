@@ -58,9 +58,9 @@ class _NewbieLoginWidgetState extends State<NewbieLoginWidget> {
               success: () {
                 log('[LOGIN] Đăng nhập thành công!');
                 log('[Send_OTP]: Chuẩn bị tiến hành gửi OTP...');
-                context
-                    .read<UserBloc>()
-                    .add(const UserEvent.sendOTP(isResend: false));
+                final username = _usernameController.text;
+                context.read<UserBloc>().add(
+                    UserEvent.sendOTP(username: username, isResend: false));
               },
               failure: (message) {
                 LoadingDialog.hide(context);
@@ -82,6 +82,7 @@ class _NewbieLoginWidgetState extends State<NewbieLoginWidget> {
                 log('[Send_OTP]: Gửi OTP thành công');
                 context.push(RouteName.otpVerification, extra: {
                   'email': email,
+                  'username': _usernameController.text,
                   'otpType': 1,
                 });
                 SnackBar(

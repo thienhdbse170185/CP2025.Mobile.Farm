@@ -127,8 +127,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
         final request = GetTaskRequest(
           CageId: event.cageId,
-          DueDateFrom: _formatDateSlash(DateTime.now()),
-          DueDateTo: _formatDateSlash(DateTime.now()),
+          DueDateFrom: _formatDateSlash(TimeUtils.customNow()),
+          DueDateTo: _formatDateSlash(TimeUtils.customNow()),
           AssignedToUserId: userId,
           Session: currentSession,
           PageNumber: 1,
@@ -276,7 +276,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             recommendedWeight: event.log.recommendedWeight,
             actualWeight: event.log.actualWeight,
             notes: event.log.notes,
-            logTime: DateTime.now(),
+            logTime: TimeUtils.customNow(),
             photo: event.log.photo,
             taskId: event.log.taskId);
         final result =
@@ -297,7 +297,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         final request = HealthLogDto(
             prescriptionId: event.prescriptionId,
             notes: event.log.notes,
-            date: DateTime.now(),
+            date: TimeUtils.customNow(),
             photo: event.log.photo,
             taskId: event.log.taskId);
         final result =
