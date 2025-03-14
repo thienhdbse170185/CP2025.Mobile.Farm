@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart'; // Import the common icons
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/viewmodel/auth/auth_bloc.dart';
+import 'package:smart_farm/src/viewmodel/index.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({super.key});
@@ -16,6 +16,9 @@ class ProfileWidget extends StatefulWidget {
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
+  String? _username;
+  bool _isLoading = false;
+
   void _showLogoutConfirmationBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -72,21 +75,55 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<UserBloc>().add(const UserEvent.getUserProfile());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        state.maybeWhen(
-          loading: () {
-            LoadingDialog.show(context, 'Đang đăng xuất...');
-            log('[AUTH] Đang đăng xuất...');
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              loading: () {
+                LoadingDialog.show(context, 'Đang đăng xuất...');
+                log('[AUTH] Đang đăng xuất...');
+              },
+              logoutSuccess: () {
+                log('[AUTH] Đăng xuất thành công');
+                context.go(RouteName.welcome);
+              },
+              orElse: () {},
+            );
           },
-          logoutSuccess: () {
-            log('[AUTH] Đăng xuất thành công');
-            context.go(RouteName.welcome);
+        ),
+        BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getUserProfileInProgress: () {
+                setState(() {
+                  _isLoading = true;
+                });
+              },
+              getUserProfileSuccess: (userName, _) {
+                setState(() {
+                  _username = userName;
+                  _isLoading = false;
+                });
+              },
+              getUserProfileFailure: (_) {
+                setState(() {
+                  _isLoading = false;
+                });
+                log('[USER] Lấy thông tin người dùng thất bại');
+              },
+              orElse: () {},
+            );
           },
-          orElse: () {},
-        );
-      },
+        ),
+      ],
       child: Scaffold(
         body: Stack(
           clipBehavior: Clip.none, // Ensures elements can overflow the Stack
@@ -111,21 +148,25 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: ListTile(
-                      leading: Image.asset(
-                        'assets/images/avatar.png',
-                        width: 64,
-                        height: 64,
-                      ),
-                      title: const Text(
-                        'Bảo Thiên',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      trailing: LinearIcons.chevronRightIcon,
-                    ),
+                    child: _isLoading
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ListTile(
+                            leading: Image.asset(
+                              'assets/images/avatar.png',
+                              width: 64,
+                              height: 64,
+                            ),
+                            title: Text(
+                              _username ?? 'Tên người dùng',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            trailing: Icon(Icons.chevron_right_rounded),
+                          ),
                   ),
                 ),
               ),
@@ -175,7 +216,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                                 const Spacer(),
-                                LinearIcons.chevronRightThinIcon
+                                Icon(Icons.chevron_right_rounded)
                               ],
                             ),
                           ),
@@ -185,7 +226,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () {
                               // Navigate to help
-                              context.push(RouteName.changePassword);
+                              context.push(RouteName.changePassword, extra: {
+                                'username': _username,
+                              });
                             },
                             child: Row(
                               children: [
@@ -196,7 +239,28 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                                 const Spacer(),
-                                LinearIcons.chevronRightThinIcon
+                                Icon(Icons.chevron_right_rounded)
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () {
+                              // Navigate to help
+                              context.push(RouteName.setting);
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.settings_outlined),
+                                const SizedBox(width: 16),
+                                Text(
+                                  'Cài đặt khác',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                const Spacer(),
+                                Icon(Icons.chevron_right_rounded)
                               ],
                             ),
                           ),

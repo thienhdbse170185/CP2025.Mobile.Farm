@@ -5,7 +5,8 @@ import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key});
+  final String username;
+  const ChangePasswordScreen({super.key, required this.username});
 
   @override
   State<ChangePasswordScreen> createState() =>
@@ -47,7 +48,9 @@ class _ChangePasswordNewbieScreenState extends State<ChangePasswordScreen> {
       //   'oldPassword': _oldController.text,
       //   'newPassword': _newPasswordController.text,
       // });
-      context.read<UserBloc>().add(const UserEvent.sendOTP(isResend: false));
+      context
+          .read<UserBloc>()
+          .add(UserEvent.sendOTP(username: widget.username, isResend: false));
     }
   }
 
@@ -70,6 +73,7 @@ class _ChangePasswordNewbieScreenState extends State<ChangePasswordScreen> {
             );
             context.push(RouteName.otpVerification, extra: {
               'email': email,
+              'username': widget.username,
               'otpType': 2,
               'oldPassword': _oldController.text,
               'newPassword': _newPasswordController.text,

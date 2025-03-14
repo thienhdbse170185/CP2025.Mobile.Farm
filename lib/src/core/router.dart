@@ -13,6 +13,7 @@ import 'package:smart_farm/src/view/notification/test.dart';
 import 'package:smart_farm/src/view/profile/edit_user.dart';
 import 'package:smart_farm/src/view/profile/security.dart';
 import 'package:smart_farm/src/view/profile/user.dart';
+import 'package:smart_farm/src/view/setting/time.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/symptom/symptom.dart';
 import 'package:smart_farm/src/view/symptom/symptom_detail.dart';
@@ -57,6 +58,7 @@ class RouteName {
   static const String otpVerification = '/otp-verification';
   static const String changePasswordNewbie = '/change-password-newbie';
   static const String changePassword = '/change-password';
+  static const String timeSetting = '/time-setting';
 
   static const publicRoutes = [
     welcome,
@@ -331,12 +333,14 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             final params = state.extra as Map<String, dynamic>;
             final email = params['email'] as String;
+            final username = params['username'] as String;
             // 0: forgot password, 1: change password newbie, 2: change password, 3: verify_account
             final otpType = params['otpType'] as int;
             final oldPassword = params['oldPassword'] as String?;
             final newPassword = params['newPassword'] as String?;
             return _buildPageWithSlideTransition(OtpVerifyScreen(
               email: email,
+              username: username,
               otpType: otpType,
               oldPassword: oldPassword,
               newPassword: newPassword,
@@ -353,6 +357,15 @@ final router = GoRouter(
       GoRoute(
           path: RouteName.changePassword,
           pageBuilder: (context, state) {
-            return _buildPageWithSlideTransition(const ChangePasswordScreen());
+            final params = state.extra as Map<String, dynamic>;
+            final username = params['username'] as String;
+            return _buildPageWithSlideTransition(
+                ChangePasswordScreen(username: username));
           }),
+
+      GoRoute(
+          path: RouteName.timeSetting,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(const TimeSettingWidget());
+          })
     ]);

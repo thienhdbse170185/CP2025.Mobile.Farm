@@ -25,7 +25,8 @@ class TimeBloc extends Bloc<TimeEvent, TimeState> {
         final serverTimeResponse = await userRepository.getServerTime();
         log("[SERVER_TIME] Before convert: $serverTimeResponse");
 
-        final serverTime = DateTime.parse(serverTimeResponse).toLocal();
+        final serverTime =
+            DateTime.parse(serverTimeResponse.serverTime).toLocal();
         log("[SERVER_TIME] Server time: $serverTime");
 
         // Lưu lại thời gian đồng bộ

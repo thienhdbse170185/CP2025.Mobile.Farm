@@ -10,6 +10,7 @@ import 'package:smart_farm/src/viewmodel/index.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
   final String email;
+  final String username;
   // 0 - forgot password, 1 - change password newbie, 2 - change password
   final int otpType;
   final String? oldPassword;
@@ -17,6 +18,7 @@ class OtpVerifyScreen extends StatefulWidget {
   const OtpVerifyScreen({
     super.key,
     required this.email,
+    required this.username,
     required this.otpType,
     this.oldPassword,
     this.newPassword,
@@ -109,6 +111,8 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                   ));
             } else if (widget.otpType == 3) {
               context.go(RouteName.home);
+            } else if (widget.otpType == 0) {
+              context.go(RouteName.changePassword);
             }
           },
           verifyOTPFailure: (message) {
@@ -229,9 +233,8 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                     TextButton(
                       onPressed: _remainingTime == 0
                           ? () {
-                              context
-                                  .read<UserBloc>()
-                                  .add(const UserEvent.sendOTP(isResend: true));
+                              context.read<UserBloc>().add(UserEvent.sendOTP(
+                                  username: widget.username, isResend: true));
                             }
                           : null,
                       child: Text(
