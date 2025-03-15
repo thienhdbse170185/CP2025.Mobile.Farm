@@ -243,27 +243,27 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              // Navigate to help
-                              context.push(RouteName.setting);
-                            },
-                            child: Row(
-                              children: [
-                                Icon(Icons.settings_outlined),
-                                const SizedBox(width: 16),
-                                Text(
-                                  'Cài đặt khác',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                                const Spacer(),
-                                Icon(Icons.chevron_right_rounded)
-                              ],
-                            ),
-                          ),
+                          // const SizedBox(height: 20),
+                          // InkWell(
+                          //   splashColor: Colors.transparent,
+                          //   highlightColor: Colors.transparent,
+                          //   onTap: () {
+                          //     // Navigate to help
+                          //     context.push(RouteName.setting);
+                          //   },
+                          //   child: Row(
+                          //     children: [
+                          //       Icon(Icons.settings_outlined),
+                          //       const SizedBox(width: 16),
+                          //       Text(
+                          //         'Cài đặt khác',
+                          //         style: Theme.of(context).textTheme.bodyLarge,
+                          //       ),
+                          //       const Spacer(),
+                          //       Icon(Icons.chevron_right_rounded)
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

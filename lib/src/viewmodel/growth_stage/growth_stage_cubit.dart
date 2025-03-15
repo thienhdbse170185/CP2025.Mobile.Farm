@@ -32,8 +32,9 @@ class GrowthStageCubit extends Cubit<GrowthStageState> {
     try {
       final growthStage =
           await growthStageRepository.getGrowthStageByCageId(cageId);
-      double recommendedWeight =
-          growthStage.recommendedWeightPerSession * (growthStage.quantity ?? 0);
+      double recommendedWeight = growthStage.recommendedWeightPerSession *
+          (growthStage.quantity ?? 0) *
+          1000;
       List<int> weightList = [
         (recommendedWeight - 10).toInt(),
         (recommendedWeight - 5).toInt(),

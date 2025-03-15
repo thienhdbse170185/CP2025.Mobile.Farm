@@ -445,34 +445,31 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         ),
       ],
       child: AdaptiveSafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            appBar: CustomAppBar(
-              appBarHeight: 70,
-              leading: IconButton(
-                  onPressed: () => context.pop(),
-                  icon: const Icon(Icons.arrow_back)),
-              title: Column(
-                children: [
-                  const Text('Tạo báo cáo triệu chứng'),
-                  Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
-                      style: Theme.of(context).textTheme.bodyMedium),
-                ],
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.refresh),
-                  onPressed: _isLoading ? null : _fetchInitialData,
-                  tooltip: 'Tải lại dữ liệu',
-                ),
+        child: Scaffold(
+          appBar: CustomAppBar(
+            appBarHeight: 70,
+            leading: IconButton(
+                onPressed: () => context.pop(),
+                icon: const Icon(Icons.arrow_back)),
+            title: Column(
+              children: [
+                const Text('Tạo báo cáo triệu chứng'),
+                Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
+                    style: Theme.of(context).textTheme.bodyMedium),
               ],
             ),
-            body: _isLoading
-                ? const LoadingWidget()
-                : SingleChildScrollView(child: _FormBody(state: this)),
-            bottomNavigationBar: _buildSubmitButton(),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: _isLoading ? null : _fetchInitialData,
+                tooltip: 'Tải lại dữ liệu',
+              ),
+            ],
           ),
+          body: _isLoading
+              ? const LoadingWidget()
+              : SingleChildScrollView(child: _FormBody(state: this)),
+          bottomNavigationBar: _buildSubmitButton(),
         ),
       ),
     );
