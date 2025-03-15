@@ -1735,7 +1735,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                '${recommendedWeight != null ? recommendedWeight?.toInt() : 0} (kg)',
+                                '${recommendedWeight != null ? recommendedWeight?.toInt() : 0} (g)',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -1774,7 +1774,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               return FilterChip(
                                 selected: isSelected,
                                 showCheckmark: false,
-                                label: Text('$weight (kg)'),
+                                label: Text('$weight (g)'),
                                 labelStyle: TextStyle(
                                   color: isDisabled
                                       ? (isSelected

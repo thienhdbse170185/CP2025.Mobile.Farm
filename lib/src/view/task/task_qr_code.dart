@@ -3938,105 +3938,79 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                   children: [
                     const SizedBox(height: 8.0),
                     // Date Selection - với animation ẩn/hiện
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                      height: _showSearchAndFilter ? null : 0,
-                      child: ClipRect(
-                        child: AnimatedSize(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                          child: AnimatedOpacity(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                            opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 24.0,
-                                right: 24.0,
-                                top: 16.0,
-                                bottom: 8.0,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 24.0,
+                        right: 24.0,
+                        top: 16.0,
+                        bottom: 8.0,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Chip(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primaryContainer,
+                            shape: StadiumBorder(
+                              side: BorderSide(
+                                color: Theme.of(context).colorScheme.primary,
                               ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Chip(
-                                    backgroundColor: Theme.of(context)
-                                        .colorScheme
-                                        .primaryContainer,
-                                    shape: StadiumBorder(
-                                      side: BorderSide(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                    ),
-                                    label: Text(
-                                      widget.cage.name,
-                                      style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text('Chào buổi sáng',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .labelMedium
-                                                  ?.copyWith(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .outline)),
-                                          Text(_username ?? '',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .titleSmall),
-                                          // Display the formatted date here
-                                          Text(
-                                            DateFormat('EEEE, dd/MM/yyyy', 'vi')
-                                                .format(TimeUtils.customNow()),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Container(
-                                        padding: const EdgeInsets.all(2),
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                            width: 2,
-                                          ),
-                                        ),
-                                        child: const CircleAvatar(
-                                          radius: 20,
-                                          backgroundImage: AssetImage(
-                                              'assets/images/avatar.png'),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                            ),
+                            label: Text(
+                              widget.cage.name,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
                           ),
-                        ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Chào buổi sáng',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .outline)),
+                                  Text(_username ?? '',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall),
+                                  // Display the formatted date here
+                                  Text(
+                                    DateFormat('EEEE, dd/MM/yyyy', 'vi')
+                                        .format(TimeUtils.customNow()),
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    width: 2,
+                                  ),
+                                ),
+                                child: const CircleAvatar(
+                                  radius: 20,
+                                  backgroundImage:
+                                      AssetImage('assets/images/avatar.png'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -4048,18 +4022,23 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Search bar - luôn hiển thị
-                          TextField(
+                          SearchBar(
                             controller: _searchController,
                             onChanged: _onSearchChanged,
-                            decoration: InputDecoration(
-                              hintText: 'Tìm kiếm theo tên công việc...',
-                              prefixIcon: const Icon(Icons.search),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              filled: true,
-                              fillColor: Colors.white,
+                            backgroundColor: WidgetStateProperty.all(
+                              Theme.of(context).colorScheme.surface,
                             ),
+                            shape: WidgetStateProperty.all(StadiumBorder(
+                                side: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                            ))),
+                            hintText: 'Tìm kiếm công việc',
+                            leading: Icon(Icons.search),
+                            trailing: [Icon(Icons.mic)],
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.symmetric(horizontal: 16.0),
+                            ),
+                            elevation: WidgetStateProperty.all(0),
                           ),
                           const SizedBox(height: 12),
                           // Filter chips - có animation ẩn/hiện
@@ -4139,87 +4118,66 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 ),
               ),
               // Sort chips - có animation ẩn/hiện
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-                height: _showSearchAndFilter ? null : 0,
-                child: ClipRect(
-                  child: AnimatedSize(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                    child: AnimatedOpacity(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      opacity: _showSearchAndFilter ? 1.0 : 0.0,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 8.0),
-                        child: Row(
-                          children: [
-                            const Spacer(),
-                            Text(
-                              'Sắp xếp theo:',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            ..._sortOptions.map((option) => Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: FilterChip(
-                                    showCheckmark: false,
-                                    selected: _sortBy == option['id'],
-                                    onSelected: (_) {
-                                      setState(() {
-                                        if (_sortBy == option['id']) {
-                                          _sortAscending = !_sortAscending;
-                                        } else {
-                                          _sortBy = option['id'];
-                                          _sortAscending = true;
-                                        }
-                                      });
-                                      _sortTasks();
-                                    },
-                                    avatar: null,
-                                    labelStyle: TextStyle(
-                                      color: _sortBy == option['id']
-                                          ? Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                          : null,
-                                    ),
-                                    label: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(
-                                          option['icon'] as IconData,
-                                          size: 20,
-                                          color: _sortBy == option['id']
-                                              ? Theme.of(context)
-                                                  .colorScheme
-                                                  .primary
-                                              : null,
-                                        ),
-                                        if (_sortBy == option['id'])
-                                          Icon(
-                                            _sortAscending
-                                                ? Icons.arrow_upward
-                                                : Icons.arrow_downward,
-                                            size: 16,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ),
-                                      ],
-                                    ),
-                                  ),
-                                )),
-                          ],
-                        ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    Text(
+                      'Sắp xếp theo:',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
                       ),
                     ),
-                  ),
+                    const SizedBox(width: 8),
+                    ..._sortOptions.map((option) => Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: FilterChip(
+                            showCheckmark: false,
+                            selected: _sortBy == option['id'],
+                            onSelected: (_) {
+                              setState(() {
+                                if (_sortBy == option['id']) {
+                                  _sortAscending = !_sortAscending;
+                                } else {
+                                  _sortBy = option['id'];
+                                  _sortAscending = true;
+                                }
+                              });
+                              _sortTasks();
+                            },
+                            avatar: null,
+                            labelStyle: TextStyle(
+                              color: _sortBy == option['id']
+                                  ? Theme.of(context).colorScheme.primary
+                                  : null,
+                            ),
+                            label: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  option['icon'] as IconData,
+                                  size: 20,
+                                  color: _sortBy == option['id']
+                                      ? Theme.of(context).colorScheme.primary
+                                      : null,
+                                ),
+                                if (_sortBy == option['id'])
+                                  Icon(
+                                    _sortAscending
+                                        ? Icons.arrow_upward
+                                        : Icons.arrow_downward,
+                                    size: 16,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                              ],
+                            ),
+                          ),
+                        )),
+                  ],
                 ),
               ),
 
@@ -4230,7 +4188,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Công việc hôm nay',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: Theme.of(context).textTheme.titleLarge),
                       Text('${_tasks?.length} công việc')
                     ],
                   )),
