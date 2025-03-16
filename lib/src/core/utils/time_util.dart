@@ -36,4 +36,22 @@ class TimeUtils {
         return 'Buổi khuya';
     }
   }
+
+  static String getCurrentSessionImage() {
+    int currentSession = TimeUtils.getCurrentSession();
+    String imagePath = '';
+    switch (currentSession) {
+      case 1:
+        imagePath = 'assets/images/morning.png';
+      case 2:
+        imagePath = 'assets/images/noon.png';
+      case 3:
+        imagePath = 'assets/images/afternoon.png';
+      case 4:
+        imagePath = 'assets/images/moon.png';
+      default:
+        imagePath = 'assets/images/moon.png';
+    }
+    return imagePath;
+  }
 }

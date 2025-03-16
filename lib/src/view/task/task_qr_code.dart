@@ -33,6 +33,7 @@ import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
 import 'package:smart_farm/src/viewmodel/sale_type/sale_type_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/task_qr_code/task_qr_code_cubit.dart';
 
 class TaskQRCodeWidget extends StatefulWidget {
   const TaskQRCodeWidget({super.key, required this.cage});
@@ -399,30 +400,11 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
         _processingTask = task; // Lưu task đang xử lý
       });
 
-      // Lấy cân nặng khuyến nghị trước
-      context
-          .read<GrowthStageCubit>()
-          .getRecommendedWeightByCageId(task.cageId)
-          .then((_) {
-        // Hiển thị form sau khi lấy cân nặng khuyến nghị
-        _showLogFormBottomSheet(task);
-      }).catchError((error) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content:
-                  Text('Lỗi: Không thể lấy cân nặng khuyến nghị - $error')),
-        );
-      });
-
       return;
     } else if (task.taskType.taskTypeId == TaskTypeDataConstant.health) {
       setState(() {
         _processingTask = task;
       });
-
-      context
-          .read<PrescriptionCubit>()
-          .getPrescription(task.prescriptionId ?? '');
 
       return;
     }
@@ -483,7 +465,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                       _submitLog(task);
                       this.setState(() => _selectedTaskIds.add(task.id));
                     },
-                    child: const Text('Xác nhận'),
+                    child: const Text('Lưu báo cáo'),
                   ),
                 ),
               ],
@@ -550,247 +532,261 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
 
   Widget _buildFeedingLogForm(TaskHaveCageName task, StateSetter setState) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Theme.of(context).colorScheme.outlineVariant,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: Theme.of(context).colorScheme.outlineVariant,
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.restaurant_rounded,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Đơn log công việc cho ăn',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Ngày tạo log: ${DateFormat('EEEE, dd/MM/yyyy', 'vi').format(logTime ?? DateTime.now())}',
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-          const SizedBox(height: 24),
-          Card.outlined(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        color: Theme.of(context).colorScheme.primary,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Khuyến cáo cho ăn:',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${recommendedWeight != null ? recommendedWeight?.toInt() : 0}g',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.restaurant_rounded,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    'Chọn lượng thức ăn:',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: (task.status == StatusDataConstant.done ||
-                                  DateTime.parse(task.dueDate ?? "")
-                                      .isBefore(DateTime.now()))
-                              ? Theme.of(context).colorScheme.outline
-                              : null,
-                        ),
+                    'Tên báo cáo công việc',
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.outline),
                   ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 4,
-                    runSpacing: 4,
-                    children: weightList.map((weight) {
-                      bool isSelected = actualWeight == weight;
-                      bool isDisabled =
-                          task.status == StatusDataConstant.done ||
-                              task.status == StatusDataConstant.overdue;
-                      return FilterChip(
-                        selected: isSelected,
-                        showCheckmark: false,
-                        label: Text('${weight}g'),
-                        labelStyle: TextStyle(
+                  Text('Đơn báo cáo cho ăn',
+                      style: Theme.of(context).textTheme.titleLarge)
+                ]),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Tên người báo cáo',
+                value: userName ?? 'Đang tải...',
+              ),
+              const SizedBox(width: 24),
+              _buildInfoItem(
+                  context: context,
+                  label: 'Ngày báo cáo',
+                  value: CustomDateUtils.formatDate(TimeUtils.customNow())),
+            ]),
+            const SizedBox(height: 24),
+            Card.outlined(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          color: Theme.of(context).colorScheme.primary,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Khuyến cáo cho ăn:',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${recommendedWeight != null ? recommendedWeight?.toInt() : 0} (g)',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Chọn lượng thức ăn:',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: (task?.status == StatusDataConstant.done ||
+                                    DateTime.parse(task?.dueDate ?? "")
+                                        .isBefore(DateTime.now()))
+                                ? Theme.of(context).colorScheme.outline
+                                : null,
+                          ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 4,
+                      runSpacing: 4,
+                      children: weightList.map((weight) {
+                        bool isSelected = actualWeight == weight;
+                        bool isDisabled =
+                            task?.status == StatusDataConstant.done ||
+                                task?.status == StatusDataConstant.overdue;
+                        return FilterChip(
+                          selected: isSelected,
+                          showCheckmark: false,
+                          label: Text('$weight (g)'),
+                          labelStyle: TextStyle(
                             color: isDisabled
                                 ? (isSelected
                                     ? Theme.of(context).colorScheme.onPrimary
                                     : Theme.of(context).colorScheme.outline)
                                 : (isSelected
                                     ? Theme.of(context).colorScheme.onPrimary
-                                    : Theme.of(context).colorScheme.onSurface)),
-                        selectedColor: Theme.of(context).colorScheme.primary,
-                        onSelected: isDisabled
-                            ? null
-                            : (bool selected) {
-                                if (selected) {
-                                  setState(() {
-                                    actualWeight = weight;
-                                  });
-                                }
+                                    : Theme.of(context).colorScheme.onSurface),
+                          ),
+                          selectedColor: Theme.of(context).colorScheme.primary,
+                          onSelected: isDisabled
+                              ? null
+                              : (bool selected) {
+                                  if (selected) {
+                                    setState(() {
+                                      actualWeight = weight;
+                                    });
+                                  }
+                                },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 16),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primaryContainer
+                            .withOpacity(task?.status == StatusDataConstant.done
+                                ? 0.5
+                                : 1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.check_circle_outline,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(
+                                    task?.status == StatusDataConstant.done
+                                        ? 0.5
+                                        : 1),
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Đã cho ăn: ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: task?.status == StatusDataConstant.done
+                                      ? Theme.of(context).colorScheme.outline
+                                      : null,
+                                ),
+                          ),
+                          Text(
+                            '$actualWeight (g)',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: task.status == StatusDataConstant.done
+                                      ? Theme.of(context).colorScheme.outline
+                                      : null,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            TextFieldRequired(
+              isRequired: false,
+              controller: _logController,
+              maxLines: 3,
+              isDisabled: task.status == StatusDataConstant.done ||
+                  task.status == StatusDataConstant.overdue,
+              label: 'Ghi chú (nếu có)',
+              hintText: 'Nhập ghi chú',
+            ),
+            const SizedBox(height: 32),
+            if (task.status != StatusDataConstant.overdue)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Tập tin đính kèm',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 10),
+                  if (_images.isEmpty)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildImagePickerButton(
+                          context: context,
+                          icon: LinearIcons.cameraIcon,
+                          label: 'Chụp ảnh',
+                          // onTap: isEditable ? _pickImageFromCamera : null,
+                          onTap: _pickImageFromCamera,
+                        ),
+                        _buildImagePickerButton(
+                          context: context,
+                          icon: LinearIcons.folderAddIcon,
+                          label: 'Chọn tập tin',
+                          // onTap:
+                          //     isEditable ? _pickImageFromGallery : null,
+                          onTap: _pickImageFromGallery,
+                        ),
+                      ],
+                    ),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: _images.map((image) {
+                      return Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.file(
+                              image,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.remove_circle,
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _images.remove(image);
+                                });
                               },
+                            ),
+                          ),
+                        ],
                       );
                     }).toList(),
                   ),
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withOpacity(
-                              task.status == StatusDataConstant.done ? 0.5 : 1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.check_circle_outline,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(
-                                  task.status == StatusDataConstant.done
-                                      ? 0.5
-                                      : 1),
-                          size: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'Đã cho ăn: ',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                color: task.status == StatusDataConstant.done
-                                    ? Theme.of(context).colorScheme.outline
-                                    : null,
-                              ),
-                        ),
-                        Text(
-                          '${actualWeight}g',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: task.status == StatusDataConstant.done
-                                    ? Theme.of(context).colorScheme.outline
-                                    : null,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  TextFieldRequired(
-                    isRequired: false,
-                    controller: _logController,
-                    maxLines: 3,
-                    isDisabled: task.status == StatusDataConstant.done ||
-                        task.status == StatusDataConstant.overdue,
-                    label: 'Ghi chú (nếu có)',
-                    hintText: 'Nhập ghi chú',
-                  ),
-                  const SizedBox(height: 32),
-                  if (task.status != StatusDataConstant.overdue)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Tập tin đính kèm',
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 10),
-                        if (_images.isEmpty)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              _buildImagePickerButton(
-                                context: context,
-                                icon: LinearIcons.cameraIcon,
-                                label: 'Chụp ảnh',
-                                // onTap: isEditable ? _pickImageFromCamera : null,
-                                onTap: _pickImageFromCamera,
-                              ),
-                              _buildImagePickerButton(
-                                context: context,
-                                icon: LinearIcons.folderAddIcon,
-                                label: 'Chọn tập tin',
-                                // onTap:
-                                //     isEditable ? _pickImageFromGallery : null,
-                                onTap: _pickImageFromGallery,
-                              ),
-                            ],
-                          ),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: _images.map((image) {
-                            return Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.file(
-                                    image,
-                                    width: 100,
-                                    height: 100,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Positioned(
-                                  right: 0,
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.remove_circle,
-                                      color:
-                                          Theme.of(context).colorScheme.error,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _images.remove(image);
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ],
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    )
                 ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+              )
+          ],
+        ));
   }
 
   Widget _buildHealthLogForm(TaskHaveCageName task, StateSetter setState) {
@@ -3464,8 +3460,8 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
     // Show confirmation dialog
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Xác nhận'),
+      builder: (context) => WarningConfirmationDialog(
+        title: 'Xác nhận',
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -3514,69 +3510,53 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             ],
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          FilledButton(
-            onPressed: () {
-              Navigator.pop(context); // Close dialog
+        secondaryButtonText: 'Hủy',
+        onSecondaryButtonPressed: () => Navigator.pop(context),
+        primaryButtonText: 'Xác nhận',
+        onPrimaryButtonPressed: () {
+          Navigator.pop(context); // Close dialog
 
-              // Create log based on task type
-              switch (task.taskType.taskTypeId) {
-                case TaskTypeDataConstant.feeding:
-                  final log = DailyFoodUsageLogDto(
-                    recommendedWeight: recommendedWeight?.toInt() ?? 0,
-                    actualWeight: actualWeight,
-                    notes: _logController.text,
-                    logTime: DateTime.now(),
-                    photo: '',
+          // Create log based on task type
+          switch (task.taskType.taskTypeId) {
+            case TaskTypeDataConstant.feeding:
+              final log = DailyFoodUsageLogDto(
+                recommendedWeight: recommendedWeight?.toInt() ?? 0,
+                actualWeight: actualWeight,
+                notes: _logController.text,
+                logTime: DateTime.now(),
+                photo: '',
+                taskId: task.id,
+              );
+              // context.read<TaskBloc>().add(
+              //       TaskEvent.createDailyFoodUsageLog(
+              //         cageId: task.cageId,
+              //         log: log,
+              //       ),
+              //     );
+              context.read<TaskQrCodeCubit>().createFoodLog(
                     taskId: task.id,
+                    cageId: task.cageId,
+                    foodLog: log,
                   );
-                  context.read<TaskBloc>().add(
-                        TaskEvent.createDailyFoodUsageLog(
-                          cageId: task.cageId,
-                          log: log,
-                        ),
-                      );
-                  break;
+              break;
 
-                case TaskTypeDataConstant.health:
-                  final log = HealthLogDto(
-                    prescriptionId: task.prescriptionId ?? '',
-                    date: DateTime.now(),
-                    notes: _logController.text,
-                    photo: '',
-                    taskId: task.id,
+            case TaskTypeDataConstant.health:
+              final log = HealthLogDto(
+                prescriptionId: task.prescriptionId ?? '',
+                date: DateTime.now(),
+                notes: _logController.text,
+                photo: '',
+                taskId: task.id,
+              );
+              context.read<TaskBloc>().add(
+                    TaskEvent.createHealthLog(
+                      prescriptionId: task.prescriptionId ?? '',
+                      log: log,
+                    ),
                   );
-                  context.read<TaskBloc>().add(
-                        TaskEvent.createHealthLog(
-                          prescriptionId: task.prescriptionId ?? '',
-                          log: log,
-                        ),
-                      );
-                  break;
-
-                  // case TaskTypeDataConstant.vaccin:
-                  //   final log = VaccineScheduleLogDto(
-                  //     date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                  //     notes: _logController.text,
-                  //     photo: "",
-                  //     taskId: task.id,
-                  //   );
-                  //   context.read<TaskBloc>().add(
-                  //         TaskEvent.createVaccinScheduleLog(
-                  //           cageId: task.cageId,
-                  //           log: log,
-                  //         ),
-                  //       );
-                  break;
-              }
-            },
-            child: const Text('Xác nhận'),
-          ),
-        ],
+              break;
+          }
+        },
       ),
     );
   }
@@ -3895,7 +3875,34 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             },
             orElse: () {},
           );
-        })
+        }),
+        BlocListener<TaskQrCodeCubit, TaskQrCodeState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              createFoodLogInProgress: () {
+                setState(() {
+                  _isProcessing = true;
+                });
+              },
+              createFoodLogSuccess: () {
+                context.pop();
+                setState(() {
+                  _isProcessing = false;
+                });
+                if (_processingTask != null) {
+                  setState(() => _selectedTaskIds.add(_processingTask!.id));
+                }
+              },
+              createFoodLogFailure: () async {
+                context.pop();
+                setState(() {
+                  _isProcessing = false;
+                });
+              },
+              orElse: () {},
+            );
+          },
+        )
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -3948,20 +3955,50 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Chip(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.primaryContainer,
-                            shape: StadiumBorder(
-                              side: BorderSide(
-                                color: Theme.of(context).colorScheme.primary,
+                          // Chip(
+                          //   backgroundColor:
+                          //       Theme.of(context).colorScheme.primaryContainer,
+                          //   shape: StadiumBorder(
+                          //     side: BorderSide(
+                          //       color: Theme.of(context).colorScheme.primary,
+                          //     ),
+                          //   ),
+                          //   label: Text(
+                          //     widget.cage.name,
+                          //     style: TextStyle(
+                          //       color: Theme.of(context).colorScheme.primary,
+                          //     ),
+                          //   ),
+                          // ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                TimeUtils.getCurrentSessionImage(),
+                                width: 32,
+                                height: 32,
                               ),
-                            ),
-                            label: Text(
-                              widget.cage.name,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
+                              const SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Buổi hiện tại',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                                  ),
+                                  Text(
+                                    TimeUtils.getCurrentSessionName(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(fontSize: 22),
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.min,
@@ -3984,7 +4021,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                           .titleSmall),
                                   // Display the formatted date here
                                   Text(
-                                    DateFormat('EEEE, dd/MM/yyyy', 'vi')
+                                    DateFormat('HH:mm, dd/MM/yyyy', 'vi')
                                         .format(TimeUtils.customNow()),
                                     style:
                                         Theme.of(context).textTheme.bodySmall,
@@ -4183,12 +4220,37 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
 
               Padding(
                   padding: const EdgeInsets.only(
-                      left: 16, top: 16, right: 16, bottom: 8.0),
+                      left: 16, top: 8, right: 16, bottom: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Công việc hôm nay',
-                          style: Theme.of(context).textTheme.titleLarge),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Công việc hôm nay',
+                              style: Theme.of(context).textTheme.titleLarge),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              Text(
+                                'Tại chuồng: ',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                              Text(
+                                widget.cage.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                       Text('${_tasks?.length} công việc')
                     ],
                   )),
@@ -4257,7 +4319,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                             .read<PrescriptionCubit>()
                                             .getPrescription(
                                                 task.prescriptionId ?? '');
-                                        _showLogForm(task);
+                                        // _showLogForm(task);
                                       }
                                     } else {
                                       setState(
@@ -4396,7 +4458,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                   secondaryButtonText: 'Hủy',
                                 ));
                       },
-                      child: const Text('Cập nhật trạng thái'),
+                      child: const Text('Xác nhận hoàn thành'),
                     ),
                   ],
                 ),
@@ -4515,12 +4577,12 @@ class TaskCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: color ?? Colors.grey),
+        border: Border.all(color: color),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          icon ?? const SizedBox.shrink(),
+          icon,
           const SizedBox(width: 4),
           Text(
             logInfo,
@@ -4560,9 +4622,11 @@ class TaskCard extends StatelessWidget {
         onTap: () {
           context.push(RouteName.taskDetail, extra: task.id);
         },
-        borderRadius: BorderRadius.circular(12),
+        // borderRadius: BorderRadius.circular(12),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 10),
+          // padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -4601,7 +4665,6 @@ class TaskCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
               Text(
                 task.description,
                 style: TextStyle(
@@ -4609,7 +4672,7 @@ class TaskCard extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
               Row(
                 children: [
                   Icon(

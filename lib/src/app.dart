@@ -29,6 +29,7 @@ import 'package:smart_farm/src/viewmodel/sale_type/sale_type_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_schedule_log_cubit.dart';
+import 'package:smart_farm/src/viewmodel/task_qr_code/task_qr_code_cubit.dart';
 import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 import 'package:smart_farm/src/viewmodel/vaccine_schedule/vaccine_schedule_cubit.dart';
@@ -213,6 +214,9 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(create: (context) {
             return UploadImageCubit(
                 uploadImageRepository: context.read<UploadImageRepository>());
+          }),
+          BlocProvider(create: (context) {
+            return TaskQrCodeCubit();
           })
         ],
         child: BlocBuilder<ThemeCubit, bool>(
