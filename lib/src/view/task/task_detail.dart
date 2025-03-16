@@ -1560,11 +1560,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                             task?.taskType.taskTypeId ==
                                 TaskTypeDataConstant.vaccin ||
                             task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.addAnimal ||
-                            task?.taskType.taskTypeId ==
                                 TaskTypeDataConstant.sellAnimal ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.addFood ||
                             task?.taskType.taskTypeId ==
                                 TaskTypeDataConstant.weighing ||
                             task?.taskType.taskTypeId ==
@@ -1849,7 +1845,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       ),
                                 ),
                                 Text(
-                                  '$actualWeight (kg)',
+                                  '$actualWeight (g)',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -2595,365 +2591,365 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                           ),
                         ],
                       ))
-            else if (task?.taskType.taskTypeId == TaskTypeDataConstant.addFood)
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.outlineVariant,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.warehouse_rounded,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        const SizedBox(width: 10),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Tên báo cáo công việc',
-                                style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.outline),
-                              ),
-                              Text('Đơn báo cáo nhập thức ăn',
-                                  style: Theme.of(context).textTheme.titleLarge)
-                            ]),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Row(children: [
-                      _buildInfoItem(
-                        context: context,
-                        label: 'Tên người báo cáo',
-                        value: userName ?? 'Đang tải...',
-                      ),
-                      const SizedBox(width: 24),
-                      _buildInfoItem(
-                          context: context,
-                          label: 'Ngày báo cáo',
-                          value: CustomDateUtils.formatDate(
-                              TimeUtils.customNow())),
-                    ]),
-                    const SizedBox(height: 20),
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primaryContainer
-                            .withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.info_outline,
-                                  color: Theme.of(context).primaryColor),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Thông tin về kho thức ăn',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Row(
-                            children: [
-                              _buildInfoItem(
-                                context: context,
-                                label: 'Khối lượng hiện tại',
-                                value: '200 (kg)',
-                                icon: Icons.calendar_month,
-                              ),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.07),
-                              _buildInfoItem(
-                                context: context,
-                                label: 'Giá trung bình/kg',
-                                value: '20.000 (VND)',
-                                icon: Icons.pets,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Row(
-                            children: [
-                              _buildInfoItem(
-                                context: context,
-                                label: 'Mức cảnh báo tồn kho',
-                                value: 'Cảnh báo thấp',
-                                icon: Icons.medical_services_rounded,
-                                warningLevel: 1,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          _buildInfoItem(
-                            context: context,
-                            label: 'Ngày cập nhật gần nhất',
-                            value: '21/02/2025',
-                            icon: Icons.calendar_today,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text('Form nhập liệu',
-                        style: Theme.of(context).textTheme.titleMedium),
-                    const SizedBox(height: 8),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.outlineVariant,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            DropdownButtonFormField<String>(
-                              decoration: InputDecoration(
-                                labelText: 'Chọn loại thức ăn',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              value: selectedFood,
-                              onChanged: (String? value) {
-                                setState(() {
-                                  selectedFood = value;
-                                });
-                              },
-                              items: foodList
-                                  .map((food) => DropdownMenuItem(
-                                        value: food,
-                                        child: Text(food),
-                                      ))
-                                  .toList(),
-                            ),
-                            const SizedBox(height: 16),
-                            TextFormField(
-                              controller: _nameFoodController,
-                              decoration: InputDecoration(
-                                labelText: 'Nhập tên thức ăn',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Khối lượng thức ăn nhập vào',
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                ),
-                                const SizedBox(height: 16),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    _buildQuantityButton(
-                                      icon: Icons.remove,
-                                      onPressed: () {
-                                        final currentValue = double.tryParse(
-                                                _affectedController.text) ??
-                                            0;
-                                        if (currentValue > 0) {
-                                          setState(() {
-                                            _affectedController.text =
-                                                (currentValue - 1).toString();
-                                          });
-                                        }
-                                      },
-                                    ),
-                                    Container(
-                                      width: 80,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 16),
-                                      child: TextField(
-                                        controller: _affectedController,
-                                        textAlign: TextAlign.center,
-                                        keyboardType: TextInputType.number,
-                                        style: const TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                        decoration: const InputDecoration(
-                                          border: InputBorder.none,
-                                          contentPadding: EdgeInsets.zero,
-                                        ),
-                                      ),
-                                    ),
-                                    _buildQuantityButton(
-                                      icon: Icons.add,
-                                      onPressed: () {
-                                        final currentValue = double.tryParse(
-                                                _affectedController.text) ??
-                                            0;
-                                        setState(() {
-                                          _affectedController.text =
-                                              (currentValue + 1).toString();
-                                        });
-                                      },
-                                      isAdd: true,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 16),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.info_outline,
-                                      size: 16,
-                                      color: Colors.grey[600],
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Row(children: [
-                                      Text(
-                                        'Đơn vị tính: ',
-                                        style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                      Text(
-                                        'kg.',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ])
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 24),
-                            TextFormField(
-                              controller: _priceFoodController,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                labelText: 'Nhập giá tiền (VND)',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                suffixText: 'VND',
-                              ),
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  final formatter = NumberFormat('#,###');
-                                  final newValue = formatter.format(
-                                      int.parse(value.replaceAll(',', '')));
-                                  _priceFoodController.value = TextEditingValue(
-                                    text: newValue,
-                                    selection: TextSelection.collapsed(
-                                        offset: newValue.length),
-                                  );
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.info_outline,
-                                  size: 16,
-                                  color: Colors.grey[600],
-                                ),
-                                const SizedBox(width: 4),
-                                Row(children: [
-                                  Text(
-                                    'Đơn vị tiền: ',
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                  Text(
-                                    'VND.',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  )
-                                ])
-                              ],
-                            ),
-                            const SizedBox(height: 24),
-                            TextFormField(
-                              controller: TextEditingController(
-                                text: DateFormat('dd/MM/yyyy')
-                                    .format(DateTime.now()),
-                              ),
-                              decoration: InputDecoration(
-                                labelText: 'Ngày nhập kho',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                suffixIcon: Icon(Icons.calendar_today),
-                              ),
-                              readOnly: true,
-                              onTap: () async {
-                                DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: TimeUtils.customNow(),
-                                  firstDate: DateTime(2024),
-                                  lastDate: DateTime(2030),
-                                );
-                                if (pickedDate != null) {
-                                  setState(() {
-                                    _nameFoodController.text =
-                                        DateFormat('dd/MM/yyyy')
-                                            .format(pickedDate);
-                                  });
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.info_outline,
-                                  size: 16,
-                                  color: Colors.grey[600],
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  'Bấm vào để sửa ngày nhập kho (nếu có thay đổi).',
-                                  style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+            // else if (task?.taskType.taskTypeId == TaskTypeDataConstant.addFood)
+            //   Container(
+            //     padding: const EdgeInsets.all(16),
+            //     decoration: BoxDecoration(
+            //       color: Theme.of(context).colorScheme.surface,
+            //       borderRadius: BorderRadius.circular(12),
+            //       border: Border.all(
+            //         color: Theme.of(context).colorScheme.outlineVariant,
+            //       ),
+            //     ),
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Row(
+            //           children: [
+            //             Icon(
+            //               Icons.warehouse_rounded,
+            //               color: Theme.of(context).colorScheme.primary,
+            //             ),
+            //             const SizedBox(width: 10),
+            //             Column(
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   Text(
+            //                     'Tên báo cáo công việc',
+            //                     style: TextStyle(
+            //                         color:
+            //                             Theme.of(context).colorScheme.outline),
+            //                   ),
+            //                   Text('Đơn báo cáo nhập thức ăn',
+            //                       style: Theme.of(context).textTheme.titleLarge)
+            //                 ]),
+            //           ],
+            //         ),
+            //         const SizedBox(height: 8),
+            //         Row(children: [
+            //           _buildInfoItem(
+            //             context: context,
+            //             label: 'Tên người báo cáo',
+            //             value: userName ?? 'Đang tải...',
+            //           ),
+            //           const SizedBox(width: 24),
+            //           _buildInfoItem(
+            //               context: context,
+            //               label: 'Ngày báo cáo',
+            //               value: CustomDateUtils.formatDate(
+            //                   TimeUtils.customNow())),
+            //         ]),
+            //         const SizedBox(height: 20),
+            //         Container(
+            //           padding: const EdgeInsets.all(12),
+            //           decoration: BoxDecoration(
+            //             color: Theme.of(context)
+            //                 .colorScheme
+            //                 .primaryContainer
+            //                 .withOpacity(0.2),
+            //             borderRadius: BorderRadius.circular(8),
+            //           ),
+            //           child: Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Row(
+            //                 children: [
+            //                   Icon(Icons.info_outline,
+            //                       color: Theme.of(context).primaryColor),
+            //                   const SizedBox(width: 8),
+            //                   Text(
+            //                     'Thông tin về kho thức ăn',
+            //                     style: Theme.of(context)
+            //                         .textTheme
+            //                         .titleMedium
+            //                         ?.copyWith(
+            //                             color: Theme.of(context)
+            //                                 .colorScheme
+            //                                 .primary),
+            //                   ),
+            //                 ],
+            //               ),
+            //               const SizedBox(height: 12),
+            //               Row(
+            //                 children: [
+            //                   _buildInfoItem(
+            //                     context: context,
+            //                     label: 'Khối lượng hiện tại',
+            //                     value: '200 (kg)',
+            //                     icon: Icons.calendar_month,
+            //                   ),
+            //                   SizedBox(
+            //                       width:
+            //                           MediaQuery.of(context).size.width * 0.07),
+            //                   _buildInfoItem(
+            //                     context: context,
+            //                     label: 'Giá trung bình/kg',
+            //                     value: '20.000 (VND)',
+            //                     icon: Icons.pets,
+            //                   ),
+            //                 ],
+            //               ),
+            //               const SizedBox(height: 12),
+            //               Row(
+            //                 children: [
+            //                   _buildInfoItem(
+            //                     context: context,
+            //                     label: 'Mức cảnh báo tồn kho',
+            //                     value: 'Cảnh báo thấp',
+            //                     icon: Icons.medical_services_rounded,
+            //                     warningLevel: 1,
+            //                   ),
+            //                 ],
+            //               ),
+            //               const SizedBox(height: 12),
+            //               _buildInfoItem(
+            //                 context: context,
+            //                 label: 'Ngày cập nhật gần nhất',
+            //                 value: '21/02/2025',
+            //                 icon: Icons.calendar_today,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //         const SizedBox(height: 16),
+            //         Text('Form nhập liệu',
+            //             style: Theme.of(context).textTheme.titleMedium),
+            //         const SizedBox(height: 8),
+            //         Container(
+            //           margin: const EdgeInsets.only(bottom: 12),
+            //           padding: const EdgeInsets.all(12),
+            //           decoration: BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.circular(12),
+            //             border: Border.all(
+            //               color: Theme.of(context).colorScheme.outlineVariant,
+            //             ),
+            //           ),
+            //           child: Padding(
+            //             padding: const EdgeInsets.symmetric(vertical: 8.0),
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 DropdownButtonFormField<String>(
+            //                   decoration: InputDecoration(
+            //                     labelText: 'Chọn loại thức ăn',
+            //                     border: OutlineInputBorder(
+            //                       borderRadius: BorderRadius.circular(8),
+            //                     ),
+            //                   ),
+            //                   value: selectedFood,
+            //                   onChanged: (String? value) {
+            //                     setState(() {
+            //                       selectedFood = value;
+            //                     });
+            //                   },
+            //                   items: foodList
+            //                       .map((food) => DropdownMenuItem(
+            //                             value: food,
+            //                             child: Text(food),
+            //                           ))
+            //                       .toList(),
+            //                 ),
+            //                 const SizedBox(height: 16),
+            //                 TextFormField(
+            //                   controller: _nameFoodController,
+            //                   decoration: InputDecoration(
+            //                     labelText: 'Nhập tên thức ăn',
+            //                     border: OutlineInputBorder(
+            //                       borderRadius: BorderRadius.circular(8),
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 const SizedBox(height: 24),
+            //                 Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: [
+            //                     Text(
+            //                       'Khối lượng thức ăn nhập vào',
+            //                       style: Theme.of(context).textTheme.titleSmall,
+            //                     ),
+            //                     const SizedBox(height: 16),
+            //                     Row(
+            //                       mainAxisAlignment: MainAxisAlignment.center,
+            //                       children: [
+            //                         _buildQuantityButton(
+            //                           icon: Icons.remove,
+            //                           onPressed: () {
+            //                             final currentValue = double.tryParse(
+            //                                     _affectedController.text) ??
+            //                                 0;
+            //                             if (currentValue > 0) {
+            //                               setState(() {
+            //                                 _affectedController.text =
+            //                                     (currentValue - 1).toString();
+            //                               });
+            //                             }
+            //                           },
+            //                         ),
+            //                         Container(
+            //                           width: 80,
+            //                           margin: const EdgeInsets.symmetric(
+            //                               horizontal: 16),
+            //                           child: TextField(
+            //                             controller: _affectedController,
+            //                             textAlign: TextAlign.center,
+            //                             keyboardType: TextInputType.number,
+            //                             style: const TextStyle(
+            //                               fontSize: 24,
+            //                               fontWeight: FontWeight.w600,
+            //                             ),
+            //                             decoration: const InputDecoration(
+            //                               border: InputBorder.none,
+            //                               contentPadding: EdgeInsets.zero,
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         _buildQuantityButton(
+            //                           icon: Icons.add,
+            //                           onPressed: () {
+            //                             final currentValue = double.tryParse(
+            //                                     _affectedController.text) ??
+            //                                 0;
+            //                             setState(() {
+            //                               _affectedController.text =
+            //                                   (currentValue + 1).toString();
+            //                             });
+            //                           },
+            //                           isAdd: true,
+            //                         ),
+            //                       ],
+            //                     ),
+            //                     const SizedBox(height: 16),
+            //                     Row(
+            //                       children: [
+            //                         Icon(
+            //                           Icons.info_outline,
+            //                           size: 16,
+            //                           color: Colors.grey[600],
+            //                         ),
+            //                         const SizedBox(width: 4),
+            //                         Row(children: [
+            //                           Text(
+            //                             'Đơn vị tính: ',
+            //                             style: TextStyle(
+            //                               color: Colors.grey[600],
+            //                               fontSize: 13,
+            //                             ),
+            //                           ),
+            //                           Text(
+            //                             'kg.',
+            //                             style: TextStyle(
+            //                                 fontWeight: FontWeight.bold),
+            //                           )
+            //                         ])
+            //                       ],
+            //                     ),
+            //                   ],
+            //                 ),
+            //                 const SizedBox(height: 24),
+            //                 TextFormField(
+            //                   controller: _priceFoodController,
+            //                   keyboardType: TextInputType.number,
+            //                   decoration: InputDecoration(
+            //                     labelText: 'Nhập giá tiền (VND)',
+            //                     border: OutlineInputBorder(
+            //                       borderRadius: BorderRadius.circular(8),
+            //                     ),
+            //                     suffixText: 'VND',
+            //                   ),
+            //                   onChanged: (value) {
+            //                     if (value.isNotEmpty) {
+            //                       final formatter = NumberFormat('#,###');
+            //                       final newValue = formatter.format(
+            //                           int.parse(value.replaceAll(',', '')));
+            //                       _priceFoodController.value = TextEditingValue(
+            //                         text: newValue,
+            //                         selection: TextSelection.collapsed(
+            //                             offset: newValue.length),
+            //                       );
+            //                     }
+            //                   },
+            //                 ),
+            //                 const SizedBox(height: 8),
+            //                 Row(
+            //                   children: [
+            //                     Icon(
+            //                       Icons.info_outline,
+            //                       size: 16,
+            //                       color: Colors.grey[600],
+            //                     ),
+            //                     const SizedBox(width: 4),
+            //                     Row(children: [
+            //                       Text(
+            //                         'Đơn vị tiền: ',
+            //                         style: TextStyle(
+            //                           color: Colors.grey[600],
+            //                           fontSize: 13,
+            //                         ),
+            //                       ),
+            //                       Text(
+            //                         'VND.',
+            //                         style:
+            //                             TextStyle(fontWeight: FontWeight.bold),
+            //                       )
+            //                     ])
+            //                   ],
+            //                 ),
+            //                 const SizedBox(height: 24),
+            //                 TextFormField(
+            //                   controller: TextEditingController(
+            //                     text: DateFormat('dd/MM/yyyy')
+            //                         .format(DateTime.now()),
+            //                   ),
+            //                   decoration: InputDecoration(
+            //                     labelText: 'Ngày nhập kho',
+            //                     border: OutlineInputBorder(
+            //                       borderRadius: BorderRadius.circular(8),
+            //                     ),
+            //                     suffixIcon: Icon(Icons.calendar_today),
+            //                   ),
+            //                   readOnly: true,
+            //                   onTap: () async {
+            //                     DateTime? pickedDate = await showDatePicker(
+            //                       context: context,
+            //                       initialDate: TimeUtils.customNow(),
+            //                       firstDate: DateTime(2024),
+            //                       lastDate: DateTime(2030),
+            //                     );
+            //                     if (pickedDate != null) {
+            //                       setState(() {
+            //                         _nameFoodController.text =
+            //                             DateFormat('dd/MM/yyyy')
+            //                                 .format(pickedDate);
+            //                       });
+            //                     }
+            //                   },
+            //                 ),
+            //                 const SizedBox(height: 8),
+            //                 Row(
+            //                   children: [
+            //                     Icon(
+            //                       Icons.info_outline,
+            //                       size: 16,
+            //                       color: Colors.grey[600],
+            //                     ),
+            //                     const SizedBox(width: 4),
+            //                     Text(
+            //                       'Bấm vào để sửa ngày nhập kho (nếu có thay đổi).',
+            //                       style: TextStyle(
+            //                         color: Colors.grey[600],
+            //                         fontSize: 13,
+            //                       ),
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   )
             else if (task?.taskType.taskTypeId ==
                     TaskTypeDataConstant.sellAnimal ||
                 task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg)
