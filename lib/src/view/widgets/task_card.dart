@@ -41,13 +41,17 @@ class TaskCard extends StatelessWidget {
           return StatusDataConstant.doneVn;
         case StatusDataConstant.overdue:
           return StatusDataConstant.overdueVn;
+        case StatusDataConstant.cancelled:
+          return StatusDataConstant.cancelledVn;
         default:
           return status;
       }
     }
 
+    final bool isCancelled = task.status == StatusDataConstant.cancelled;
+
     return Opacity(
-      opacity: isCompleted || isOverdue ? 0.5 : 1.0,
+      opacity: isCompleted || isOverdue || isCancelled ? 0.5 : 1.0,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
         child: GestureDetector(
@@ -60,7 +64,9 @@ class TaskCard extends StatelessWidget {
                 ? Theme.of(context).colorScheme.primaryContainer
                 : isOverdue
                     ? Colors.red.withOpacity(0.1)
-                    : null,
+                    : isCancelled
+                        ? Colors.grey.withOpacity(0.1)
+                        : null,
             child: ListTile(
               leading: isCompleted
                   ? LinearIcons.doneTaskIcon
@@ -68,7 +74,9 @@ class TaskCard extends StatelessWidget {
                       ? LinearIcons.inprogressTaskIcon
                       : (isOverdue
                           ? LinearIcons.deadlineIcon
-                          : LinearIcons.pendingTaskIcon)),
+                          : (isCancelled
+                              ? Icon(Icons.cancel_outlined, color: Colors.grey)
+                              : LinearIcons.pendingTaskIcon))),
               title: Text(
                 task.taskName,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -76,7 +84,9 @@ class TaskCard extends StatelessWidget {
                           ? Colors.red
                           : isCompleted
                               ? Colors.green
-                              : null, // Change text color based on status
+                              : isCancelled
+                                  ? Colors.grey
+                                  : null,
                     ),
               ),
               subtitle: Column(
@@ -96,16 +106,18 @@ class TaskCard extends StatelessWidget {
                           color: task.status == StatusDataConstant.pending
                               ? Colors.grey
                               : task.status == StatusDataConstant.inProgress
-                                  ? Colors
-                                      .amber // Changed from Colors.yellow to Colors.amber
+                                  ? Colors.amber
                                   : task.status == StatusDataConstant.done
                                       ? Colors.green
                                       : task.status ==
                                               StatusDataConstant.overdue
                                           ? Colors.red
-                                          : Theme.of(context)
-                                              .colorScheme
-                                              .primary,
+                                          : task.status ==
+                                                  StatusDataConstant.cancelled
+                                              ? Colors.grey
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
                           fontWeight: FontWeight.bold,
                           fontStyle: FontStyle.normal,
                         ),

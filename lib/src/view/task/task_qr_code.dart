@@ -90,10 +90,10 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   final List<File> _images = [];
   final bool _showSearchAndFilter = true;
 
-  List<int> weightList = [];
+  List<double> weightList = [];
 
   double? recommendedWeight;
-  int actualWeight = 0;
+  double actualWeight = 0;
   PrescriptionDto? _prescription;
   DateTime? logTime;
   TaskHaveCageName? _processingTask;
@@ -610,8 +610,8 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                     Text(
                       'Chọn lượng thức ăn:',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: (task?.status == StatusDataConstant.done ||
-                                    DateTime.parse(task?.dueDate ?? "")
+                            color: (task.status == StatusDataConstant.done ||
+                                    DateTime.parse(task.dueDate)
                                         .isBefore(DateTime.now()))
                                 ? Theme.of(context).colorScheme.outline
                                 : null,
@@ -624,8 +624,8 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                       children: weightList.map((weight) {
                         bool isSelected = actualWeight == weight;
                         bool isDisabled =
-                            task?.status == StatusDataConstant.done ||
-                                task?.status == StatusDataConstant.overdue;
+                            task.status == StatusDataConstant.done ||
+                                task.status == StatusDataConstant.overdue;
                         return FilterChip(
                           selected: isSelected,
                           showCheckmark: false,
@@ -3521,7 +3521,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             case TaskTypeDataConstant.feeding:
               final log = DailyFoodUsageLogDto(
                 recommendedWeight: recommendedWeight?.toInt() ?? 0,
-                actualWeight: actualWeight,
+                actualWeight: (actualWeight * 1000).toInt(),
                 notes: _logController.text,
                 logTime: DateTime.now(),
                 photo: '',
@@ -3756,7 +3756,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
               },
               getDailyFoodUsageLogSuccess: (log) async {
                 setState(() {
-                  actualWeight = log.actualWeight;
+                  actualWeight = log.actualWeight.toDouble() / 1000;
                   _logController.text = log.notes;
                   logTime = log.logTime;
                 });
@@ -3801,7 +3801,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                 log('Lấy cân nặng khuyến nghị thành công!');
                 setState(() {
                   this.recommendedWeight = recommendedWeight;
-                  actualWeight = recommendedWeight.toInt();
+                  actualWeight = recommendedWeight;
                   this.weightList = weightList;
                 });
 
