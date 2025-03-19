@@ -413,7 +413,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               setState(() {
                 _growthStage = growthStage;
                 _affectedQuantity =
-                    _farmingBatch!.quantity - growthStage.affectQuantity;
+                    _farmingBatch!.quantity - growthStage.affectQuantity!;
                 _availableQuantity = (_growthStage!.quantity! -
                     (_farmingBatch?.affectedQuantity ?? 0));
               });
@@ -421,7 +421,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             getGrowthStageByCageIdFailure: (error) => setState(() =>
                 _affectedQuantity =
                     _farmingBatch!.quantity), // Fallback to total quantity
-            orElse: () {},
+            orElse: () {
+              return null;
+            },
           ),
         ),
         BlocListener<UploadImageCubit, UploadImageState>(
