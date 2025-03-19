@@ -1872,7 +1872,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                             context: context,
                             label: 'Số con bình thường',
                             value:
-                                '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                                '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
                             icon: Icons.pets,
                           ),
                           SizedBox(
@@ -2495,7 +2495,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                             context: context,
                             label: 'Số con bình thường',
                             value:
-                                '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                                '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
                             icon: Icons.pets,
                           ),
                           SizedBox(
@@ -3113,7 +3113,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                             context: context,
                             label: 'Số con bình thường',
                             value:
-                                '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                                '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
                             icon: Icons.pets,
                           ),
                           SizedBox(

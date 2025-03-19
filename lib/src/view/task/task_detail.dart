@@ -3088,7 +3088,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       context: context,
                                       label: 'Số con bình thường',
                                       value:
-                                          '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                                          '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
                                       icon: Icons.pets,
                                     ),
                                     SizedBox(
@@ -3787,7 +3787,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       context: context,
                                       label: 'Số con bình thường',
                                       value:
-                                          '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                                          '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
                                       icon: Icons.pets,
                                     ),
                                     SizedBox(
@@ -4160,7 +4160,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       context: context,
                                       label: 'Số con bình thường',
                                       value:
-                                          '${growthStage.quantity! - growthStage.affectQuantity} (con)',
+                                          '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
                                       icon: Icons.pets,
                                     ),
                                     SizedBox(
