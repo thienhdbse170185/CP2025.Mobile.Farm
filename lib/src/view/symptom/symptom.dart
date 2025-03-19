@@ -7,7 +7,6 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
-import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
 
 class SymptomWidget extends StatefulWidget {
@@ -82,316 +81,309 @@ class _SymptomWidgetState extends State<SymptomWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<MedicalSymptomCubit, MedicalSymptomState>(
       builder: (context, state) {
-        return AdaptiveSafeArea(
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .primaryContainer
-                        .withOpacity(0.5),
-                    image: DecorationImage(
-                      image: const AssetImage('assets/images/leaf.jpg'),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.1),
-                        BlendMode.dstATop,
-                      ),
-                    ),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16),
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .primaryContainer
+                      .withOpacity(0.5),
+                  image: DecorationImage(
+                    image: const AssetImage('assets/images/leaf.jpg'),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.1),
+                      BlendMode.dstATop,
                     ),
                   ),
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // [APPBAR] Time
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 16.0, right: 16.0, top: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                context.pop();
-                              },
-                              child: Icon(Icons.arrow_back),
-                            ),
-                            Row(
-                              children: [
-                                const SizedBox(width: 24),
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Báo cáo triệu chứng',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium
-                                          ?.copyWith(fontSize: 22),
-                                    ),
-                                    Text(CustomDateUtils.formatDate(
-                                        TimeUtils.customNow()))
-                                  ],
-                                ),
-                              ],
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.search_rounded),
-                              onPressed: () {
-                                context.push(RouteName.symptomSearch);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      // [APPBAR] Location Filter
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Text(
-                          'Bộ lọc tìm kiếm',
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Row(
-                          children: _statusFilters.map((status) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: FilterChip(
-                                selected: _selectedStatus == status,
-                                label: Text(status),
-                                onSelected: (selected) {
-                                  setState(() {
-                                    _selectedStatus =
-                                        selected ? status : 'Tất cả';
-                                  });
-                                },
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ],
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
                   ),
                 ),
-                const SizedBox(height: 24),
-                Expanded(
-                  child: state.maybeWhen(
-                    getMedicalSymptomsByBatchInProress: () => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    getMedicalSymptomsByBatchSuccess: (symptoms) {
-                      // Filter symptoms based on search and status
-                      final filteredSymptoms = symptoms.where((symptom) {
-                        final matchesSearch = _searchController.text.isEmpty ||
-                            symptom.symtom!
-                                .toLowerCase()
-                                .contains(_searchController.text.toLowerCase());
-                        final matchesStatus = _selectedStatus == 'Tất cả' ||
-                            symptom.status == _getStatusValue(_selectedStatus);
-                        return matchesSearch && matchesStatus;
-                      }).toList();
-
-                      if (filteredSymptoms.isEmpty) {
-                        return const Center(
-                          child: Text('Không tìm thấy báo cáo nào'),
-                        );
-                      }
-
-                      return RefreshIndicator(
-                        onRefresh: () async {
-                          context
-                              .read<MedicalSymptomCubit>()
-                              .getMedicalSymptomsByBatch();
-                        },
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 24),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // [APPBAR] Time
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              context.pop();
+                            },
+                            child: Icon(Icons.arrow_back),
+                          ),
+                          Row(
+                            children: [
+                              const SizedBox(width: 24),
+                              Column(
                                 children: [
                                   Text(
-                                    'Danh sách báo cáo',
+                                    'Báo cáo triệu chứng',
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium
-                                        ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary),
+                                        ?.copyWith(fontSize: 22),
                                   ),
-                                  Text(
-                                    '${filteredSymptoms.length} báo cáo',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          color: Colors.grey,
-                                        ),
-                                  ),
+                                  Text(CustomDateUtils.formatDate(
+                                      TimeUtils.customNow()))
                                 ],
                               ),
-                            ),
-                            const SizedBox(height: 8),
-                            Expanded(
-                              child: ListView.separated(
-                                padding: const EdgeInsets.only(
-                                    left: 16, right: 16, bottom: 80),
-                                itemCount: filteredSymptoms.length,
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(height: 8),
-                                itemBuilder: (context, index) {
-                                  final symptom = filteredSymptoms[index];
-                                  return Card(
-                                    elevation: 1,
-                                    child: InkWell(
-                                      onTap: () {
-                                        context.push(RouteName.symptomDetail,
-                                            extra: {
-                                              'symptom': symptom,
-                                            });
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(children: [
-                                                  Image.asset(
-                                                    'assets/images/medical-report.png',
-                                                    width: 24,
-                                                  ),
-                                                  const SizedBox(width: 8),
-                                                  Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 2),
-                                                      child: Text(
-                                                        'Báo cáo #${index + 1}',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleMedium,
-                                                      )),
-                                                ]),
-                                                Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 8,
-                                                      vertical: 4),
-                                                  decoration: BoxDecoration(
-                                                    color: _getStatusColor(
-                                                            symptom.status)
-                                                        .withOpacity(0.1),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                    border: Border.all(
-                                                      color: _getStatusColor(
-                                                          symptom.status),
-                                                    ),
-                                                  ),
-                                                  child: Text(
-                                                    _getStatusText(
-                                                        symptom.status),
-                                                    style: TextStyle(
-                                                      color: _getStatusColor(
-                                                          symptom.status),
-                                                      fontSize: 12,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 10),
-                                            Text(
-                                              'Triệu chứng: ${symptom.symtom}',
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            const SizedBox(height: 8),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  'Số lượng: ${symptom.affectedQuantity}/${symptom.quantity}',
-                                                  style: const TextStyle(
-                                                      color: Colors.grey),
-                                                ),
-                                                Text(
-                                                  _formatDate(symptom.createAt
-                                                      .toString()),
-                                                  style: const TextStyle(
-                                                      color: Colors.grey),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    getMedicalSymptomsByBatchFailure: (message) => Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(message == 'Exception: no-symptom-found'
-                              ? 'Không tìm thấy báo cáo nào'
-                              : 'Đã xảy ra lỗi khi tải dữ liệu'),
-                          const SizedBox(height: 8),
-                          ElevatedButton(
+                            ],
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.search_rounded),
                             onPressed: () {
-                              context
-                                  .read<MedicalSymptomCubit>()
-                                  .getMedicalSymptomsByBatch();
+                              context.push(RouteName.symptomSearch);
                             },
-                            child: const Text('Thử lại'),
                           ),
                         ],
                       ),
                     ),
-                    orElse: () => const SizedBox(),
-                  ),
+                    const SizedBox(height: 16),
+                    // [APPBAR] Location Filter
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Text(
+                        'Bộ lọc tìm kiếm',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Row(
+                        children: _statusFilters.map((status) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: FilterChip(
+                              selected: _selectedStatus == status,
+                              label: Text(status),
+                              onSelected: (selected) {
+                                setState(() {
+                                  _selectedStatus =
+                                      selected ? status : 'Tất cả';
+                                });
+                              },
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton.extended(
-              onPressed: () {
-                context.push(RouteName.createSymptom, extra: {
-                  'cageName': '',
-                });
-              },
-              icon: LinearIcons.addCircleIcon,
-              label: const Text('Tạo báo cáo'),
-            ),
+              ),
+              const SizedBox(height: 24),
+              Expanded(
+                child: state.maybeWhen(
+                  getMedicalSymptomsByBatchInProress: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  getMedicalSymptomsByBatchSuccess: (symptoms) {
+                    // Filter symptoms based on search and status
+                    final filteredSymptoms = symptoms.where((symptom) {
+                      final matchesSearch = _searchController.text.isEmpty ||
+                          symptom.symtom!
+                              .toLowerCase()
+                              .contains(_searchController.text.toLowerCase());
+                      final matchesStatus = _selectedStatus == 'Tất cả' ||
+                          symptom.status == _getStatusValue(_selectedStatus);
+                      return matchesSearch && matchesStatus;
+                    }).toList();
+
+                    if (filteredSymptoms.isEmpty) {
+                      return const Center(
+                        child: Text('Không tìm thấy báo cáo nào'),
+                      );
+                    }
+
+                    return RefreshIndicator(
+                      onRefresh: () async {
+                        context
+                            .read<MedicalSymptomCubit>()
+                            .getMedicalSymptomsByBatch();
+                      },
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Danh sách báo cáo',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+                                ),
+                                Text(
+                                  '${filteredSymptoms.length} báo cáo',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        color: Colors.grey,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Expanded(
+                            child: ListView.separated(
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, bottom: 80),
+                              itemCount: filteredSymptoms.length,
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(height: 8),
+                              itemBuilder: (context, index) {
+                                final symptom = filteredSymptoms[index];
+                                return Card(
+                                  elevation: 1,
+                                  child: InkWell(
+                                    onTap: () {
+                                      context.push(RouteName.symptomDetail,
+                                          extra: {
+                                            'symptom': symptom,
+                                          });
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(children: [
+                                                Image.asset(
+                                                  'assets/images/medical-report.png',
+                                                  width: 24,
+                                                ),
+                                                const SizedBox(width: 8),
+                                                Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 2),
+                                                    child: Text(
+                                                      'Báo cáo #${index + 1}',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium,
+                                                    )),
+                                              ]),
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8,
+                                                        vertical: 4),
+                                                decoration: BoxDecoration(
+                                                  color: _getStatusColor(
+                                                          symptom.status)
+                                                      .withOpacity(0.1),
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  border: Border.all(
+                                                    color: _getStatusColor(
+                                                        symptom.status),
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                  _getStatusText(
+                                                      symptom.status),
+                                                  style: TextStyle(
+                                                    color: _getStatusColor(
+                                                        symptom.status),
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Text(
+                                            'Triệu chứng: ${symptom.symtom}',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Số lượng: ${symptom.affectedQuantity}/${symptom.quantity}',
+                                                style: const TextStyle(
+                                                    color: Colors.grey),
+                                              ),
+                                              Text(
+                                                _formatDate(symptom.createAt
+                                                    .toString()),
+                                                style: const TextStyle(
+                                                    color: Colors.grey),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  getMedicalSymptomsByBatchFailure: (message) => Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(message == 'Exception: no-symptom-found'
+                            ? 'Không tìm thấy báo cáo nào'
+                            : 'Đã xảy ra lỗi khi tải dữ liệu'),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () {
+                            context
+                                .read<MedicalSymptomCubit>()
+                                .getMedicalSymptomsByBatch();
+                          },
+                          child: const Text('Thử lại'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  orElse: () => const SizedBox(),
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              context.push(RouteName.createSymptom, extra: {
+                'cageName': '',
+              });
+            },
+            icon: LinearIcons.addCircleIcon,
+            label: const Text('Tạo báo cáo'),
           ),
         );
       },

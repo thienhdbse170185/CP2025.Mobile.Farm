@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 
 class SymptomSuccessWidget extends StatefulWidget {
   final MedicalSymptomResponse symptom;
@@ -47,211 +46,209 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
         context.go(RouteName.symptom);
         return false;
       },
-      child: AdaptiveSafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => context.go(RouteName.symptom),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () => context.go(RouteName.symptom),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Success Animation
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 32),
+                child: Column(
+                  children: [
+                    Lottie.asset(
+                      'assets/animations/success.json',
+                      controller: _controller,
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.contain,
+                      onLoaded: (composition) {
+                        _controller
+                          ..duration = composition.duration
+                          ..forward();
+                      },
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Tạo báo cáo thành công!',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Báo cáo của bạn đã được ghi nhận',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Report Details
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey[200]!),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.grey[200]!),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.1),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                                'assets/images/medical-report.png',
+                                width: 32),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Chi tiết báo cáo',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium),
+                                Text(
+                                  DateFormat('dd/MM/yyyy HH:mm')
+                                      .format(widget.symptom.createAt),
+                                  style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.orange),
+                            ),
+                            child: const Text(
+                              'Pending',
+                              style: TextStyle(
+                                color: Colors.orange,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Content
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildDetailRow(
+                            'Chuồng nuôi',
+                            widget.cageName,
+                            LinearIcons.chickenIconMedium,
+                          ),
+                          const SizedBox(height: 16),
+                          _buildDetailRow(
+                            'Số lượng bị bệnh',
+                            '${widget.symptom.affectedQuantity}/${widget.symptom.quantity} con',
+                            LinearIcons.warningAboutIcon,
+                          ),
+                          const SizedBox(height: 16),
+                          _buildDetailRow(
+                            'Triệu chứng',
+                            widget.symptom.symtom ?? "",
+                            Image.asset('assets/images/corona-virus.png',
+                                width: 32),
+                          ),
+                          if (widget.symptom.notes.isNotEmpty) ...[
+                            const SizedBox(height: 16),
+                            _buildDetailRow(
+                                'Ghi chú',
+                                widget.symptom.notes,
+                                Image.asset('assets/images/notes.png',
+                                    width: 32)),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                // Success Animation
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 32),
-                  child: Column(
-                    children: [
-                      Lottie.asset(
-                        'assets/animations/success.json',
-                        controller: _controller,
-                        width: 200,
-                        height: 200,
-                        fit: BoxFit.contain,
-                        onLoaded: (composition) {
-                          _controller
-                            ..duration = composition.duration
-                            ..forward();
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      Text(
-                        'Tạo báo cáo thành công!',
-                        style:
-                            Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Báo cáo của bạn đã được ghi nhận',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Report Details
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.grey[200]!),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Header
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(color: Colors.grey[200]!),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withOpacity(0.1),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                  'assets/images/medical-report.png',
-                                  width: 32),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Chi tiết báo cáo',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium),
-                                  Text(
-                                    DateFormat('dd/MM/yyyy HH:mm')
-                                        .format(widget.symptom.createAt),
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: Colors.orange.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: Colors.orange),
-                              ),
-                              child: const Text(
-                                'Pending',
-                                style: TextStyle(
-                                  color: Colors.orange,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      // Content
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildDetailRow(
-                              'Chuồng nuôi',
-                              widget.cageName,
-                              LinearIcons.chickenIconMedium,
-                            ),
-                            const SizedBox(height: 16),
-                            _buildDetailRow(
-                              'Số lượng bị bệnh',
-                              '${widget.symptom.affectedQuantity}/${widget.symptom.quantity} con',
-                              LinearIcons.warningAboutIcon,
-                            ),
-                            const SizedBox(height: 16),
-                            _buildDetailRow(
-                              'Triệu chứng',
-                              widget.symptom.symtom ?? "",
-                              Image.asset('assets/images/corona-virus.png',
-                                  width: 32),
-                            ),
-                            if (widget.symptom.notes.isNotEmpty) ...[
-                              const SizedBox(height: 16),
-                              _buildDetailRow(
-                                  'Ghi chú',
-                                  widget.symptom.notes,
-                                  Image.asset('assets/images/notes.png',
-                                      width: 32)),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+        ),
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                spreadRadius: 1,
+                blurRadius: 4,
+                offset: const Offset(0, -1),
+              ),
+            ],
           ),
-          bottomNavigationBar: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
-                  spreadRadius: 1,
-                  blurRadius: 4,
-                  offset: const Offset(0, -1),
+          child: Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () => context.go(RouteName.home),
+                  child: const Text('Về trang chủ'),
                 ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () => context.go(RouteName.home),
-                    child: const Text('Về trang chủ'),
-                  ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: FilledButton(
+                  onPressed: () {
+                    context.push(RouteName.createSymptom, extra: {
+                      'cageName': widget.symptom.id,
+                    });
+                  },
+                  child: const Text('Tạo báo cáo mới'),
                 ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: FilledButton(
-                    onPressed: () {
-                      context.push(RouteName.createSymptom, extra: {
-                        'cageName': widget.symptom.id,
-                      });
-                    },
-                    child: const Text('Tạo báo cáo mới'),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

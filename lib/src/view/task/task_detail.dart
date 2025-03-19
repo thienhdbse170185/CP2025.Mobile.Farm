@@ -22,7 +22,6 @@ import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/constants/vaccine_schedule_status_constant.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
-import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';
@@ -1249,353 +1248,347 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           },
         )
       ],
-      child: AdaptiveSafeArea(
-        child: Scaffold(
-          appBar: CustomAppBar(
-            appBarHeight: 70,
-            leading: IconButton(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          appBarHeight: 70,
+          leading: IconButton(
+              onPressed: () {
+                context.pop();
+              },
+              icon: Icon(Icons.arrow_back)),
+          title: Column(children: [
+            const Text('Chi tiết công việc'),
+            Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
+                style: Theme.of(context).textTheme.bodyMedium)
+          ]),
+          actions: [
+            if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
+                task?.status == StatusDataConstant.inProgress) ...[
+              IconButton(
+                icon: Icon(Icons.more_vert),
                 onPressed: () {
-                  context.pop();
-                },
-                icon: Icon(Icons.arrow_back)),
-            title: Column(children: [
-              const Text('Chi tiết công việc'),
-              Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
-                  style: Theme.of(context).textTheme.bodyMedium)
-            ]),
-            actions: [
-              if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
-                  task?.status == StatusDataConstant.inProgress) ...[
-                IconButton(
-                  icon: Icon(Icons.more_vert),
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return SafeArea(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              ListTile(
-                                leading: Icon(Icons.power_settings_new_rounded),
-                                title: Text('Kết thúc điều trị'),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return WarningConfirmationDialog(
-                                        isEmergency: true,
-                                        title: 'Kết thúc điều trị',
-                                        content: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: [
-                                            Text(
-                                                'Bạn đã chắc chắn xác nhận kết thúc điều trị?. Chủ trang trại sẽ nhận được việc kết thúc điều trị với lý do sau: '),
-                                            Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 12),
-                                                padding:
-                                                    const EdgeInsets.all(16),
-                                                decoration: BoxDecoration(
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SafeArea(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              leading: Icon(Icons.power_settings_new_rounded),
+                              title: Text('Kết thúc điều trị'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return WarningConfirmationDialog(
+                                      isEmergency: true,
+                                      title: 'Kết thúc điều trị',
+                                      content: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Text(
+                                              'Bạn đã chắc chắn xác nhận kết thúc điều trị?. Chủ trang trại sẽ nhận được việc kết thúc điều trị với lý do sau: '),
+                                          Container(
+                                              margin: const EdgeInsets.only(
+                                                  top: 12),
+                                              padding: const EdgeInsets.all(16),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primaryContainer,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                border: Border.all(
                                                   color: Theme.of(context)
                                                       .colorScheme
-                                                      .primaryContainer,
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                  border: Border.all(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .outlineVariant,
-                                                  ),
+                                                      .outlineVariant,
                                                 ),
-                                                child: Row(children: [
-                                                  Text(
-                                                    'Lý do: ',
-                                                  ),
-                                                  Text('Đàn gà chết hết',
-                                                      style: TextStyle(
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      )),
-                                                ])),
-                                          ],
-                                        ),
-                                        secondaryButtonText: 'Hủy',
-                                        primaryButtonText: 'Xác nhận',
-                                        onPrimaryButtonPressed: () {
-                                          if (prescriptionId != null) {
-                                            final request =
-                                                UpdateStatusPrescriptionRequest(
-                                              status: 'Dead',
-                                              remainingQuantity: 0,
-                                            );
-                                            context
-                                                .read<PrescriptionCubit>()
-                                                .updatePrescriptionStatus(
-                                                  prescriptionId:
-                                                      prescriptionId ?? '',
-                                                  request: request,
-                                                );
-                                          } else {
-                                            ScaffoldMessenger.of(context)
-                                                .showMaterialBanner(
-                                                    MaterialBanner(
-                                              content: const Text(
-                                                  'Không nhận được mã đơn thuốc!'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .hideCurrentMaterialBanner();
-                                                  },
-                                                  child: const Text('Đóng'),
+                                              ),
+                                              child: Row(children: [
+                                                Text(
+                                                  'Lý do: ',
                                                 ),
-                                              ],
-                                            ));
-                                          }
-                                        },
-                                        onSecondaryButtonPressed: () {
-                                          context.pop();
-                                        },
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                )
-              ]
-            ],
-          ),
-          body: RefreshIndicator(
-            onRefresh: () async {
-              context.read<UserBloc>().add(const UserEvent.getUserProfile());
-              context
-                  .read<TaskBloc>()
-                  .add(TaskEvent.getTaskById(widget.taskId));
-            },
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.only(bottom: 80),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(
-                        top: 24, left: 20, right: 20, bottom: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Thông tin công việc',
-                            style: TextStyle(fontSize: 20)),
-                        const SizedBox(height: 16),
-                        Row(children: [
-                          Icon(
-                            Icons.task_rounded,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          const SizedBox(width: 8),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Tên công việc',
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.outline,
-                                      fontSize: 13,
-                                    )),
-                                const SizedBox(height: 2),
-                                Row(
-                                  children: [
-                                    const SizedBox(width: 4),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.7,
-                                      child: Text(
-                                        task?.taskName ?? "",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleLarge,
+                                                Text('Đàn gà chết hết',
+                                                    style: TextStyle(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    )),
+                                              ])),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ])
-                        ]),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Mô tả',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.outline,
-                            fontSize: 13,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Row(
-                          children: [
-                            const SizedBox(width: 4),
-                            Expanded(
-                              child: Text(
-                                task?.description ?? "",
-                                style: const TextStyle(fontSize: 16),
-                              ),
+                                      secondaryButtonText: 'Hủy',
+                                      primaryButtonText: 'Xác nhận',
+                                      onPrimaryButtonPressed: () {
+                                        if (prescriptionId != null) {
+                                          final request =
+                                              UpdateStatusPrescriptionRequest(
+                                            status: 'Dead',
+                                            remainingQuantity: 0,
+                                          );
+                                          context
+                                              .read<PrescriptionCubit>()
+                                              .updatePrescriptionStatus(
+                                                prescriptionId:
+                                                    prescriptionId ?? '',
+                                                request: request,
+                                              );
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showMaterialBanner(
+                                                  MaterialBanner(
+                                            content: const Text(
+                                                'Không nhận được mã đơn thuốc!'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  ScaffoldMessenger.of(context)
+                                                      .hideCurrentMaterialBanner();
+                                                },
+                                                child: const Text('Đóng'),
+                                              ),
+                                            ],
+                                          ));
+                                        }
+                                      },
+                                      onSecondaryButtonPressed: () {
+                                        context.pop();
+                                      },
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
+                  );
+                },
+              )
+            ]
+          ],
+        ),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            context.read<UserBloc>().add(const UserEvent.getUserProfile());
+            context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(bottom: 80),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(
+                      top: 24, left: 20, right: 20, bottom: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
                   ),
-                  Container(
-                    width: double.infinity,
-                    padding:
-                        const EdgeInsets.only(left: 20, bottom: 24, right: 20),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: Theme.of(context).colorScheme.outlineVariant,
-                          width: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Thông tin công việc',
+                          style: TextStyle(fontSize: 20)),
+                      const SizedBox(height: 16),
+                      Row(children: [
+                        Icon(
+                          Icons.task_rounded,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        const SizedBox(width: 8),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Tên công việc',
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.outline,
+                                    fontSize: 13,
+                                  )),
+                              const SizedBox(height: 2),
+                              Row(
+                                children: [
+                                  const SizedBox(width: 4),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.7,
+                                    child: Text(
+                                      task?.taskName ?? "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ])
+                      ]),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Mô tả',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.outline,
+                          fontSize: 13,
                         ),
                       ),
-                      color: Colors.white,
-                    ),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, // Số cột
-                        mainAxisSpacing: 16, // Khoảng cách giữa các hàng
-                        crossAxisSpacing: 16, // Khoảng cách giữa các cột
-                        childAspectRatio: 3, // Tỉ lệ chiều rộng / chiều cao
-                      ),
-                      itemCount: 6,
-                      // Tổng số phần tử trong lưới
-                      itemBuilder: (context, index) {
-                        switch (index) {
-                          case 0:
-                            return _buildGridItem(
-                              context,
-                              icon: LinearIcons.homeHashtagIcon,
-                              label: 'Tên chuồng',
-                              value: task?.isTreatmentTask == true
-                                  ? 'Chuồng cách ly'
-                                  : task?.cageName ?? "",
-                            );
-                          case 1:
-                            return _buildGridItem(
-                              context,
-                              icon: LinearIcons.categoryIcon,
-                              label: 'Loại công việc',
-                              value: task?.taskType.taskTypeName ?? "",
-                            );
-                          case 2:
-                            return _buildGridItem(
-                              context,
-                              icon: LinearIcons.taskSquareIcon,
-                              label: 'Độ ưu tiên',
-                              value: getPriorityText(task?.priorityNum ?? 0),
-                              color: getPriorityColor(task?.priorityNum ?? 0),
-                            );
-                          case 3:
-                            return _buildGridItem(
-                              context,
-                              icon: LinearIcons.notiStatusIcon,
-                              label: 'Trạng thái',
-                              value: getStatusText(task?.status ?? ""),
-                              color: getStatusColor(task?.status ?? ""),
-                            );
-                          case 4:
-                            return _buildGridItem(
-                              context,
-                              icon: LinearIcons.calendarRemoveIcon,
-                              label: 'Hạn chót',
-                              value: formatDate(task?.dueDate ?? ""),
-                            );
-                          case 5:
-                            return _buildGridItem(
-                              context,
-                              icon: Icon(Icons.wb_sunny_outlined),
-                              label: 'Buổi',
-                              value: TimeUtils.getCurrentSessionName(),
-                            );
-                          default:
-                            return Container();
-                        }
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 24),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: Theme.of(context).colorScheme.outlineVariant,
-                          width: 1,
-                        ),
-                        bottom: BorderSide(
-                          color: Theme.of(context).colorScheme.outlineVariant,
-                          width: 1,
-                        ),
-                      ),
-                      color: Colors.white,
-                    ),
-                    child: (task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.feeding ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.health ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.vaccin ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.sellAnimal ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.weighing ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.eggHarvest ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.sellEgg)
-                        ? _buildWorkTab(context)
-                        : const Text(
-                            '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              task?.description ?? "",
+                              style: const TextStyle(fontSize: 16),
+                            ),
                           ),
-                  )
-                ],
-              ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.only(left: 20, bottom: 24, right: 20),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // Số cột
+                      mainAxisSpacing: 16, // Khoảng cách giữa các hàng
+                      crossAxisSpacing: 16, // Khoảng cách giữa các cột
+                      childAspectRatio: 3, // Tỉ lệ chiều rộng / chiều cao
+                    ),
+                    itemCount: 6,
+                    // Tổng số phần tử trong lưới
+                    itemBuilder: (context, index) {
+                      switch (index) {
+                        case 0:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.homeHashtagIcon,
+                            label: 'Tên chuồng',
+                            value: task?.isTreatmentTask == true
+                                ? 'Chuồng cách ly'
+                                : task?.cageName ?? "",
+                          );
+                        case 1:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.categoryIcon,
+                            label: 'Loại công việc',
+                            value: task?.taskType.taskTypeName ?? "",
+                          );
+                        case 2:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.taskSquareIcon,
+                            label: 'Độ ưu tiên',
+                            value: getPriorityText(task?.priorityNum ?? 0),
+                            color: getPriorityColor(task?.priorityNum ?? 0),
+                          );
+                        case 3:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.notiStatusIcon,
+                            label: 'Trạng thái',
+                            value: getStatusText(task?.status ?? ""),
+                            color: getStatusColor(task?.status ?? ""),
+                          );
+                        case 4:
+                          return _buildGridItem(
+                            context,
+                            icon: LinearIcons.calendarRemoveIcon,
+                            label: 'Hạn chót',
+                            value: formatDate(task?.dueDate ?? ""),
+                          );
+                        case 5:
+                          return _buildGridItem(
+                            context,
+                            icon: Icon(Icons.wb_sunny_outlined),
+                            label: 'Buổi',
+                            value: TimeUtils.getCurrentSessionName(),
+                          );
+                        default:
+                          return Container();
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                      bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: (task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.feeding ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.health ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.vaccin ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.sellAnimal ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.weighing ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.eggHarvest ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.sellEgg)
+                      ? _buildWorkTab(context)
+                      : const Text(
+                          '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
+                        ),
+                )
+              ],
             ),
           ),
-          bottomSheet: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: FilledButton(
-              onPressed: _isProcessing
-                  ? null
-                  : (taskStatus == StatusDataConstant.doneVn ||
-                          taskStatus == StatusDataConstant.overdueVn ||
-                          (taskStatus == StatusDataConstant.pendingVn &&
-                                  !_isWithinWorkingHours() ||
-                              taskStatus == StatusDataConstant.inProgressVn &&
-                                  task?.taskType.taskTypeId ==
-                                      TaskTypeDataConstant.health &&
-                                  !_areAnyMedicationsChecked()))
-                      ? null
-                      : _updateTaskStatus,
-              child: _isProcessing
-                  ? ProcessingButtonWidget(loadingMessage: 'Đang xác nhận...')
-                  : _contentButton(),
-            ),
+        ),
+        bottomSheet: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: FilledButton(
+            onPressed: _isProcessing
+                ? null
+                : (taskStatus == StatusDataConstant.doneVn ||
+                        taskStatus == StatusDataConstant.overdueVn ||
+                        (taskStatus == StatusDataConstant.pendingVn &&
+                                !_isWithinWorkingHours() ||
+                            taskStatus == StatusDataConstant.inProgressVn &&
+                                task?.taskType.taskTypeId ==
+                                    TaskTypeDataConstant.health &&
+                                !_areAnyMedicationsChecked()))
+                    ? null
+                    : _updateTaskStatus,
+            child: _isProcessing
+                ? ProcessingButtonWidget(loadingMessage: 'Đang xác nhận...')
+                : _contentButton(),
           ),
         ),
       ),

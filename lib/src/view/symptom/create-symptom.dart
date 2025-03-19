@@ -18,7 +18,6 @@ import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
-import 'package:smart_farm/src/view/widgets/adaptive_safe_area.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/loading_widget.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
@@ -45,11 +44,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final _affectedController = TextEditingController(text: '0');
   final _farmingBatchController = TextEditingController();
   final _searchSymptomController = TextEditingController();
-
-  final _noteFocusNode = FocusNode();
-  final _affectedFocusNode = FocusNode();
-  final _farmingBatchFocusNode = FocusNode();
-  final _searchSymptomFocusNode = FocusNode();
 
   final List<File> _images = [];
   final List<GetSymptomRequest> _enteredSymptoms = [];
@@ -104,10 +98,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     _affectedController.dispose();
     _farmingBatchController.dispose();
     _searchSymptomController.dispose();
-    _noteFocusNode.dispose();
-    _affectedFocusNode.dispose();
-    _farmingBatchFocusNode.dispose();
-    _searchSymptomFocusNode.dispose();
     super.dispose();
   }
 
@@ -446,33 +436,31 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           ),
         ),
       ],
-      child: AdaptiveSafeArea(
-        child: Scaffold(
-          appBar: CustomAppBar(
-            appBarHeight: 70,
-            leading: IconButton(
-                onPressed: () => context.pop(),
-                icon: const Icon(Icons.arrow_back)),
-            title: Column(
-              children: [
-                const Text('Tạo báo cáo triệu chứng'),
-                Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
-                    style: Theme.of(context).textTheme.bodyMedium),
-              ],
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.refresh),
-                onPressed: _isLoading ? null : _fetchInitialData,
-                tooltip: 'Tải lại dữ liệu',
-              ),
+      child: Scaffold(
+        appBar: CustomAppBar(
+          appBarHeight: 70,
+          leading: IconButton(
+              onPressed: () => context.pop(),
+              icon: const Icon(Icons.arrow_back)),
+          title: Column(
+            children: [
+              const Text('Tạo báo cáo triệu chứng'),
+              Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
+                  style: Theme.of(context).textTheme.bodyMedium),
             ],
           ),
-          body: _isLoading
-              ? const LoadingWidget()
-              : SingleChildScrollView(child: _FormBody(state: this)),
-          bottomNavigationBar: _buildSubmitButton(),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              onPressed: _isLoading ? null : _fetchInitialData,
+              tooltip: 'Tải lại dữ liệu',
+            ),
+          ],
         ),
+        body: _isLoading
+            ? const LoadingWidget()
+            : SingleChildScrollView(child: _FormBody(state: this)),
+        bottomNavigationBar: _buildSubmitButton(),
       ),
     );
   }
@@ -1144,11 +1132,16 @@ class _ValidationMessage extends StatelessWidget {
   }
 }
 
-class _FormBody extends StatelessWidget {
+class _FormBody extends StatefulWidget {
   final _CreateSymptomWidgetState state;
 
   const _FormBody({required this.state});
 
+  @override
+  State<_FormBody> createState() => _FormBodyState();
+}
+
+class _FormBodyState extends State<_FormBody> {
   void _showImagePickerOptions(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -1161,7 +1154,7 @@ class _FormBody extends StatelessWidget {
               title: const Text('Chụp ảnh'),
               onTap: () {
                 Navigator.pop(context);
-                state._pickImage(ImageSource.camera);
+                widget.state._pickImage(ImageSource.camera);
               },
             ),
             ListTile(
@@ -1169,7 +1162,7 @@ class _FormBody extends StatelessWidget {
               title: const Text('Chọn từ thư viện'),
               onTap: () {
                 Navigator.pop(context);
-                state._pickImage(ImageSource.gallery);
+                widget.state._pickImage(ImageSource.gallery);
               },
             ),
           ],
@@ -1215,9 +1208,9 @@ class _FormBody extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: state._buildSectionTitle('Thông tin cơ bản',
-                        isCompleted:
-                            state._isCageSelected && state._hasFarmingBatch),
+                    child: widget.state._buildSectionTitle('Thông tin cơ bản',
+                        isCompleted: widget.state._isCageSelected &&
+                            widget.state._hasFarmingBatch),
                   ),
                   const SizedBox(width: 12),
                   Material(
@@ -1225,7 +1218,7 @@ class _FormBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(12),
-                      onTap: state._showQRScanner,
+                      onTap: widget.state._showQRScanner,
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -1249,7 +1242,7 @@ class _FormBody extends StatelessWidget {
                   style: TextStyle(fontSize: 12, color: Colors.grey)),
               const SizedBox(height: 8),
               InkWell(
-                onTap: state._showCageSelectionSheet,
+                onTap: widget.state._showCageSelectionSheet,
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -1267,7 +1260,9 @@ class _FormBody extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.grey[600], fontSize: 13)),
                             const SizedBox(height: 4),
-                            Text(state._selectedCage ?? 'Chọn chuồng báo cáo',
+                            Text(
+                                widget.state._selectedCage ??
+                                    'Chọn chuồng báo cáo',
                                 style: const TextStyle(fontSize: 16)),
                           ],
                         ),
@@ -1278,7 +1273,7 @@ class _FormBody extends StatelessWidget {
                   ),
                 ),
               ),
-              if (state._selectedCage == null)
+              if (widget.state._selectedCage == null)
                 const Padding(
                   padding: EdgeInsets.only(top: 8),
                   child: Row(
@@ -1291,7 +1286,7 @@ class _FormBody extends StatelessWidget {
                     ],
                   ),
                 ),
-              if (state._hasFarmingBatch) ...[
+              if (widget.state._hasFarmingBatch) ...[
                 const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(16),
@@ -1311,7 +1306,7 @@ class _FormBody extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.blue[700], fontSize: 13)),
                             const SizedBox(height: 4),
-                            Text(state._farmingBatch!.name,
+                            Text(widget.state._farmingBatch!.name,
                                 style: TextStyle(
                                     color: Colors.blue[900],
                                     fontSize: 16,
@@ -1328,23 +1323,24 @@ class _FormBody extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Opacity(
-            opacity: state._hasFarmingBatch == true ? 1 : 0.5,
+            opacity: widget.state._hasFarmingBatch == true ? 1 : 0.5,
             child: Container(
               color: Colors.white,
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  state._buildSectionTitle(
+                  widget.state._buildSectionTitle(
                     'Triệu chứng và số lượng',
-                    isCompleted: state._hasSymptoms && state._hasValidQuantity,
+                    isCompleted: widget.state._hasSymptoms &&
+                        widget.state._hasValidQuantity,
                   ),
                   const SizedBox(height: 8),
                   const Text(
                       'Chọn triệu chứng và nhập số lượng gia cầm bị bệnh (bắt buộc)',
                       style: TextStyle(fontSize: 12, color: Colors.grey)),
                   const SizedBox(height: 8),
-                  if (state._symptomsName.isNotEmpty) ...[
+                  if (widget.state._symptomsName.isNotEmpty) ...[
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -1372,17 +1368,19 @@ class _FormBody extends StatelessWidget {
                           Wrap(
                             spacing: 8,
                             runSpacing: 8,
-                            children: state._symptomsName
+                            children: widget.state._symptomsName
                                 .map((symptom) => Chip(
                                       label: Text(symptom,
                                           style: const TextStyle(fontSize: 13)),
                                       deleteIcon:
                                           const Icon(Icons.close, size: 16),
-                                      onDeleted: () => state.setState(() {
-                                        state._symptomsName.remove(symptom);
-                                        state._enteredSymptoms.removeWhere(
-                                            (s) =>
-                                                state._symptoms
+                                      onDeleted: () =>
+                                          widget.state.setState(() {
+                                        widget.state._symptomsName
+                                            .remove(symptom);
+                                        widget.state._enteredSymptoms
+                                            .removeWhere((s) =>
+                                                widget.state._symptoms
                                                     .firstWhere((sym) =>
                                                         sym.symptomName ==
                                                         symptom)
@@ -1406,8 +1404,8 @@ class _FormBody extends StatelessWidget {
                     const SizedBox(height: 16),
                   ],
                   InkWell(
-                    onTap: state._isCageSelected
-                        ? () => state._showSymptomSelectionSheet()
+                    onTap: widget.state._isCageSelected
+                        ? () => widget.state._showSymptomSelectionSheet()
                         : null,
                     borderRadius: BorderRadius.circular(12),
                     child: Container(
@@ -1426,7 +1424,7 @@ class _FormBody extends StatelessWidget {
                               color: Theme.of(context).colorScheme.primary),
                           const SizedBox(width: 8),
                           Text(
-                            state._symptomsName.isEmpty
+                            widget.state._symptomsName.isEmpty
                                 ? 'Thêm triệu chứng'
                                 : 'Thêm triệu chứng khác',
                             style: TextStyle(
@@ -1450,10 +1448,10 @@ class _FormBody extends StatelessWidget {
                       children: [
                         Text('Nhập số lượng con vật bị bệnh',
                             style: Theme.of(context).textTheme.titleSmall),
-                        if (state._farmingBatch != null) ...[
+                        if (widget.state._farmingBatch != null) ...[
                           const SizedBox(height: 4),
                           Text(
-                              'Chuồng ${state._selectedCage} có: ${state._availableQuantity} (con)',
+                              'Chuồng ${widget.state._selectedCage} có: ${widget.state._availableQuantity} (con)',
                               style: TextStyle(
                                   color: Colors.grey[600], fontSize: 13)),
                         ],
@@ -1465,29 +1463,30 @@ class _FormBody extends StatelessWidget {
                               context: context,
                               icon: Icons.remove,
                               onPressed: () {
-                                final currentValue = int.tryParse(
-                                        state._affectedController.text) ??
+                                final currentValue = int.tryParse(widget
+                                        .state._affectedController.text) ??
                                     0;
                                 if (currentValue > 0) {
-                                  state.setState(() => state._affectedController
+                                  widget.state.setState(() => widget
+                                      .state
+                                      ._affectedController
                                       .text = (currentValue - 1).toString());
                                 }
                               },
-                              isDisable: state._isEmergency,
+                              isDisable: widget.state._isEmergency,
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.3,
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: TextField(
-                                enabled: !state._isEmergency,
-                                controller: state._affectedController,
-                                focusNode: state._affectedFocusNode,
+                                enabled: !widget.state._isEmergency,
+                                controller: widget.state._affectedController,
                                 textAlign: TextAlign.right,
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly
-                                ], // Chỉ cho phép số
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
                                 decoration: InputDecoration(
                                   suffixText: '(con)',
                                   suffixStyle: TextStyle(
@@ -1499,25 +1498,28 @@ class _FormBody extends StatelessWidget {
                                     fontSize: 24, fontWeight: FontWeight.w600),
                                 onChanged: (value) async {
                                   if (value.isEmpty) {
-                                    state.setState(() {
-                                      state._affectedController.text = '0';
-                                      state._affectedController.selection =
+                                    widget.state.setState(() {
+                                      widget.state._affectedController.text =
+                                          '0';
+                                      widget.state._affectedController
+                                              .selection =
                                           TextSelection.fromPosition(
                                               const TextPosition(offset: 1));
                                     });
-                                  } else if (await state
+                                  } else if (await widget.state
                                           ._validateAffectedQuantityForm(
                                               value) &&
-                                      await state
+                                      await widget.state
                                           ._isEmergencyAffectedQuantityForm(
                                               value)) {
-                                    state.setState(
-                                        () => state._isEmergency = true);
+                                    widget.state.setState(
+                                        () => widget.state._isEmergency = true);
                                   }
                                 },
                                 onTap: () {
-                                  if (state._affectedController.text == '0') {
-                                    state._affectedController.clear();
+                                  if (widget.state._affectedController.text ==
+                                      '0') {
+                                    widget.state._affectedController.clear();
                                   }
                                 },
                               ),
@@ -1526,27 +1528,30 @@ class _FormBody extends StatelessWidget {
                               context: context,
                               icon: Icons.add,
                               onPressed: () async {
-                                final currentValue = int.tryParse(
-                                        state._affectedController.text) ??
+                                final currentValue = int.tryParse(widget
+                                        .state._affectedController.text) ??
                                     0;
-                                if (await state._validateAffectedQuantityForm(
-                                    state._affectedController.text)) {
-                                  state.setState(() => state._affectedController
+                                if (await widget.state
+                                    ._validateAffectedQuantityForm(widget
+                                        .state._affectedController.text)) {
+                                  widget.state.setState(() => widget
+                                      .state
+                                      ._affectedController
                                       .text = (currentValue + 1).toString());
-                                  if (await state
-                                      ._isEmergencyAffectedQuantityForm(
-                                          state._affectedController.text)) {
-                                    state.setState(
-                                        () => state._isEmergency = true);
+                                  if (await widget.state
+                                      ._isEmergencyAffectedQuantityForm(widget
+                                          .state._affectedController.text)) {
+                                    widget.state.setState(
+                                        () => widget.state._isEmergency = true);
                                   }
                                 }
                               },
                               isAdd: true,
-                              isDisable: state._isEmergency,
+                              isDisable: widget.state._isEmergency,
                             ),
                           ],
                         ),
-                        if (state._farmingBatch != null) ...[
+                        if (widget.state._farmingBatch != null) ...[
                           const SizedBox(height: 16),
                           Row(
                             children: [
@@ -1578,21 +1583,21 @@ class _FormBody extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   // --- Checkbox cả đàn đều bị bệnh
-                  if (state._isEmergency == false) ...[
+                  if (widget.state._isEmergency == false) ...[
                     Opacity(
-                      opacity: (state._isCageSelected &&
-                              state._hasFarmingBatch &&
-                              state._hasSymptoms)
+                      opacity: (widget.state._isCageSelected &&
+                              widget.state._hasFarmingBatch &&
+                              widget.state._hasSymptoms)
                           ? 1
                           : 0.5,
                       child: Row(
                         children: [
                           Checkbox(
-                            value: state._isCheckAllAnimalSick,
+                            value: widget.state._isCheckAllAnimalSick,
                             onChanged: (bool? value) async {
-                              if (state._isCageSelected &&
-                                  state._hasFarmingBatch &&
-                                  state._hasSymptoms) {
+                              if (widget.state._isCageSelected &&
+                                  widget.state._hasFarmingBatch &&
+                                  widget.state._hasSymptoms) {
                                 if (value == true) {
                                   await showDialog<bool>(
                                     context: context,
@@ -1606,12 +1611,14 @@ class _FormBody extends StatelessWidget {
                                       primaryButtonText: 'Xác nhận',
                                       secondaryButtonText: 'Hủy',
                                       onPrimaryButtonPressed: () {
-                                        state.setState(() {
-                                          state._affectedController.text = state
-                                              ._availableQuantity
-                                              .toString();
-                                          state._isEmergency = true;
-                                          state._isCheckAllAnimalSick = true;
+                                        widget.state.setState(() {
+                                          widget.state._affectedController
+                                                  .text =
+                                              widget.state._availableQuantity
+                                                  .toString();
+                                          widget.state._isEmergency = true;
+                                          widget.state._isCheckAllAnimalSick =
+                                              true;
                                         });
                                         Navigator.pop(context, true);
                                       },
@@ -1621,12 +1628,12 @@ class _FormBody extends StatelessWidget {
                                     ),
                                   );
                                 } else {
-                                  state.setState(() {
-                                    state._affectedController.text = '0';
-                                    state._isCheckAllAnimalSick = false;
+                                  widget.state.setState(() {
+                                    widget.state._affectedController.text = '0';
+                                    widget.state._isCheckAllAnimalSick = false;
                                   });
                                 }
-                              } else if (!state._isCageSelected) {
+                              } else if (!widget.state._isCageSelected) {
                                 ScaffoldMessenger.of(context)
                                     .showMaterialBanner(
                                   MaterialBanner(
@@ -1642,7 +1649,7 @@ class _FormBody extends StatelessWidget {
                                     ],
                                   ),
                                 );
-                              } else if (!state._hasFarmingBatch) {
+                              } else if (!widget.state._hasFarmingBatch) {
                                 ScaffoldMessenger.of(context)
                                     .showMaterialBanner(
                                   MaterialBanner(
@@ -1659,7 +1666,7 @@ class _FormBody extends StatelessWidget {
                                     ],
                                   ),
                                 );
-                              } else if (!state._hasSymptoms) {
+                              } else if (!widget.state._hasSymptoms) {
                                 ScaffoldMessenger.of(context)
                                     .showMaterialBanner(
                                   MaterialBanner(
@@ -1719,7 +1726,7 @@ class _FormBody extends StatelessWidget {
                       ],
                     ),
                   ],
-                  if (state._isEmergency) ...[
+                  if (widget.state._isEmergency) ...[
                     const SizedBox(height: 16),
                     Container(
                       padding: const EdgeInsets.all(12),
@@ -1748,9 +1755,9 @@ class _FormBody extends StatelessWidget {
                           const SizedBox(width: 8),
                           TextButton(
                             onPressed: () {
-                              state.setState(() {
-                                state._isEmergency = false;
-                                state._isCheckAllAnimalSick = false;
+                              widget.state.setState(() {
+                                widget.state._isEmergency = false;
+                                widget.state._isCheckAllAnimalSick = false;
                               });
                               // state._affectedController.text = '0';
                             },
@@ -1766,9 +1773,9 @@ class _FormBody extends StatelessWidget {
             )),
         const SizedBox(height: 8),
         Opacity(
-            opacity: state._hasFarmingBatch &&
-                    state._hasSymptoms &&
-                    state._hasValidQuantity
+            opacity: widget.state._hasFarmingBatch &&
+                    widget.state._hasSymptoms &&
+                    widget.state._hasValidQuantity
                 ? 1
                 : 0.5,
             child: Container(
@@ -1777,24 +1784,23 @@ class _FormBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  state._buildSectionTitle(
+                  widget.state._buildSectionTitle(
                     'Ghi chú và hình ảnh',
                     isRequired: false,
-                    isCompleted: state._images.isNotEmpty ||
-                        state._noteController.text.isNotEmpty,
+                    isCompleted: widget.state._images.isNotEmpty ||
+                        widget.state._noteController.text.isNotEmpty,
                   ),
                   const SizedBox(height: 8),
                   const Text('Thêm ghi chú hoặc hình ảnh nếu cần (tùy chọn)',
                       style: TextStyle(fontSize: 12, color: Colors.grey)),
                   const SizedBox(height: 8),
                   TextField(
-                    controller: state._noteController,
-                    // focusNode: state._noteFocusNode,
+                    controller: widget.state._noteController,
                     maxLines: 4,
-                    enabled: state._isCageSelected &&
-                        state._hasFarmingBatch &&
-                        state._hasSymptoms &&
-                        state._hasValidQuantity,
+                    enabled: widget.state._isCageSelected &&
+                        widget.state._hasFarmingBatch &&
+                        widget.state._hasSymptoms &&
+                        widget.state._hasValidQuantity,
                     decoration: InputDecoration(
                       hintText: 'Nhập ghi chú về tình trạng...',
                       border: OutlineInputBorder(
@@ -1805,9 +1811,10 @@ class _FormBody extends StatelessWidget {
                   Text('Hình ảnh đính kèm (tối đa 10 ảnh)',
                       style: Theme.of(context).textTheme.titleSmall),
                   const SizedBox(height: 12),
-                  state._images.isEmpty
+                  widget.state._images.isEmpty
                       ? InkWell(
-                          onTap: state._isCageSelected && state._hasFarmingBatch
+                          onTap: widget.state._isCageSelected &&
+                                  widget.state._hasFarmingBatch
                               ? () => _showImagePickerOptions(context)
                               : null,
                           child: Container(
@@ -1835,10 +1842,10 @@ class _FormBody extends StatelessWidget {
                                   crossAxisCount: 3,
                                   crossAxisSpacing: 8,
                                   mainAxisSpacing: 8),
-                          itemCount: state._images.length +
-                              (state._images.length < 10 ? 1 : 0),
+                          itemCount: widget.state._images.length +
+                              (widget.state._images.length < 10 ? 1 : 0),
                           itemBuilder: (context, index) {
-                            if (index == state._images.length) {
+                            if (index == widget.state._images.length) {
                               return InkWell(
                                 onTap: () => _showImagePickerOptions(context),
                                 child: Container(
@@ -1856,7 +1863,8 @@ class _FormBody extends StatelessWidget {
                               children: [
                                 ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
-                                    child: Image.file(state._images[index],
+                                    child: Image.file(
+                                        widget.state._images[index],
                                         fit: BoxFit.cover,
                                         width: double.infinity,
                                         height: double.infinity)),
@@ -1864,8 +1872,8 @@ class _FormBody extends StatelessWidget {
                                   top: 4,
                                   right: 4,
                                   child: InkWell(
-                                    onTap: () => state.setState(
-                                        () => state._images.removeAt(index)),
+                                    onTap: () => widget.state.setState(() =>
+                                        widget.state._images.removeAt(index)),
                                     child: Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: const BoxDecoration(
