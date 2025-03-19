@@ -66,8 +66,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   // --- Weight related variables ---
   DateTime? logTime;
   double? recommendedWeight;
-  int actualWeight = 0;
-  List<int> weightList = [];
+  double actualWeight = 0;
+  List<double> weightList = [];
 
   // --- Food related variables ---
   List<String> foodList = [
@@ -246,10 +246,10 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   void _onCreateLog() {
     if (taskStatus == StatusDataConstant.inProgressVn) {
       if (task!.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
-        int actualWeight = this.actualWeight;
+        double actualWeight = this.actualWeight * 1000;
         final log = DailyFoodUsageLogDto(
             recommendedWeight: recommendedWeight?.toInt() ?? 0,
-            actualWeight: actualWeight,
+            actualWeight: actualWeight.toInt(),
             notes: logController.text,
             logTime: DateTime.now(),
             photo: uploadImage?.path != null
@@ -698,7 +698,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               getDailyFoodUsageLogSuccess: (log) async {
                 setState(() {
-                  actualWeight = log.actualWeight;
+                  actualWeight = log.actualWeight / 1000;
                   logController.text = log.notes;
                   logTime = log.logTime;
                 });
@@ -751,7 +751,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 log('Lấy cân nặng khuyến nghị thành công!');
                 setState(() {
                   this.recommendedWeight = recommendedWeight;
-                  actualWeight = recommendedWeight.toInt();
+                  actualWeight = recommendedWeight;
                   this.weightList = weightList;
                 });
                 if (task?.status == StatusDataConstant.done) {
@@ -904,56 +904,46 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 setState(() {
                   _isProcessing = false;
                 });
-                // if (isLastSession == false) {
-                //   final log = HealthLogDto(
-                //     prescriptionId: prescriptionId ?? '',
-                //     date: DateTime.now(),
-                //     notes: logController.text,
-                //     photo: uploadImage?.path != null
-                //         ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
-                //         : '',
-                //     taskId: widget.taskId);
-                // context.read<TaskBloc>().add(TaskEvent.createHealthLog(
-                //     prescriptionId: prescriptionId ?? '', log: log));
-                // } else {
-                //   showDialog(
-                //       context: context,
-                //       builder: (context) => WarningConfirmationDialog(
-                //           title: 'Cập nhật sau điều trị',
-                //           content: _buildLastSessionForm(),
-                //           secondaryButtonText: 'Đóng',
-                //           primaryButtonText: 'Xác nhận',
-                //           onPrimaryButtonPressed: () {},
-                //           onSecondaryButtonPressed: () {
-                //             context.pop();
-                //           }));
-                // }
-                showDialog(
-                    context: context,
-                    builder: (context) => WarningConfirmationDialog(
-                        isEmergency: true,
-                        title: 'Cập nhật sau điều trị',
-                        content: _buildLastSessionForm(),
-                        secondaryButtonText: 'Đóng',
-                        primaryButtonText: 'Xác nhận',
-                        onPrimaryButtonPressed: () {
-                          final request = UpdateStatusPrescriptionRequest(
-                              status: 'Complete',
-                              remainingQuantity: _lastSessionQuantity);
-                          context
-                              .read<PrescriptionCubit>()
-                              .updateQuantityAnimalAfterTreatment(
-                                  prescriptionId: prescriptionId!,
-                                  request: request);
-                        },
-                        onSecondaryButtonPressed: () {
-                          setState(() {
-                            _lastSessionQuantity = prescription!.quantityAnimal;
-                            _isHealthyAfterTreatment = false;
-                          });
-                          context.pop();
-                          _lastSessionQuantityController.text = '0';
-                        }));
+                if (isLastSession == false) {
+                  final log = HealthLogDto(
+                      prescriptionId: prescriptionId ?? '',
+                      date: DateTime.now(),
+                      notes: logController.text,
+                      photo: uploadImage?.path != null
+                          ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
+                          : '',
+                      taskId: widget.taskId);
+                  context.read<TaskBloc>().add(TaskEvent.createHealthLog(
+                      prescriptionId: prescriptionId ?? '', log: log));
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) => WarningConfirmationDialog(
+                          isEmergency: true,
+                          title: 'Cập nhật sau điều trị',
+                          content: _buildLastSessionForm(),
+                          secondaryButtonText: 'Đóng',
+                          primaryButtonText: 'Xác nhận',
+                          onPrimaryButtonPressed: () {
+                            final request = UpdateStatusPrescriptionRequest(
+                                status: 'Complete',
+                                remainingQuantity: _lastSessionQuantity);
+                            context
+                                .read<PrescriptionCubit>()
+                                .updateQuantityAnimalAfterTreatment(
+                                    prescriptionId: prescriptionId!,
+                                    request: request);
+                          },
+                          onSecondaryButtonPressed: () {
+                            setState(() {
+                              _lastSessionQuantity =
+                                  prescription!.quantityAnimal;
+                              _isHealthyAfterTreatment = false;
+                            });
+                            context.pop();
+                            _lastSessionQuantityController.text = '0';
+                          }));
+                }
               },
               checkPrescriptionLastSessionFailure: (message) {
                 setState(() {

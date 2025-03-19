@@ -506,7 +506,37 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       _farmingBatch = null;
       _farmingBatchController.text = '';
     });
-    _showErrorSnackBar('Không tìm thấy thông tin vụ nuôi: $error');
+
+    // Display a user-friendly error dialog when no farming batch is found
+    if (error.contains("farming-batch-not-found") ||
+        error.toLowerCase().contains("không tìm thấy")) {
+      showDialog(
+        context: context,
+        builder: (context) => WarningConfirmationDialog(
+          title: "Không tìm thấy vụ nuôi",
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                  "Chuồng $_selectedCage hiện không có vụ nuôi nào đang hoạt động."),
+              const SizedBox(height: 12),
+              const Text(
+                  "Vui lòng chọn chuồng khác hoặc tạo vụ nuôi mới cho chuồng này."),
+            ],
+          ),
+          primaryButtonText: "Thay đổi",
+          onPrimaryButtonPressed: () {
+            Navigator.pop(context);
+            _showCageSelectionSheet();
+          },
+          secondaryButtonText: "Đóng",
+          onSecondaryButtonPressed: () => Navigator.pop(context),
+        ),
+      );
+    } else {
+      _showErrorSnackBar('Không tìm thấy thông tin vụ nuôi: $error');
+    }
   }
 
   void _handleUploadSuccess(UploadImageDto imageDto) {
@@ -803,7 +833,7 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
             count: widget.selectedSymptoms.length,
             countLabel: 'đã chọn',
             searchController: widget.noteController,
-            searchHint: 'Khó thở, tiêu chảy,...',
+            searchHint: 'Bụng căng tròn, phình to...',
             onSearchChanged: _onSearchChanged,
             isSearching: _isSearching,
             selectedItems: widget.selectedSymptoms.isNotEmpty
@@ -849,78 +879,56 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
                 : null,
           ),
           Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: searchQuery.isEmpty
-                    ? const _EmptyState(
-                        message: 'Nhập từ khóa để tìm kiếm\ntriệu chứng')
-                    : Column(
+            child: searchQuery.isEmpty && filteredSymptoms.isEmpty
+                ? const _EmptyState(
+                    message: 'Nhập từ khóa để tìm kiếm\ntriệu chứng')
+                : SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildSymptomGroup(
-                              'Triệu chứng hô hấp',
-                              filteredSymptoms
-                                  .where((s) => [
-                                        'Ho',
-                                        'Khó thở',
-                                        'Mũi chảy nước'
-                                      ].contains(s.symptomName))
-                                  .toList()),
-                          _buildSymptomGroup(
-                              'Triệu chứng tiêu hóa',
-                              filteredSymptoms
-                                  .where((s) => [
-                                        'Chán ăn',
-                                        'Tiêu chảy',
-                                        'Phân có màu trắng',
-                                        'Phân có màu xanh lá cây'
-                                      ].contains(s.symptomName))
-                                  .toList()),
-                          _buildSymptomGroup(
-                              'Triệu chứng bên ngoài',
-                              filteredSymptoms
-                                  .where((s) => [
-                                        'Lông rụng bất thường',
-                                        'Lông xù lên',
-                                        'Da chuyển màu tím',
-                                        'Sưng mặt',
-                                        'Mắt chảy nước'
-                                      ].contains(s.symptomName))
-                                  .toList()),
-                          _buildSymptomGroup(
-                              'Triệu chứng vận động',
-                              filteredSymptoms
-                                  .where((s) => [
-                                        'Co giật',
-                                        'Run cơ',
-                                        'Đầu lắc lư bất thường',
-                                        'Mệt mỏi hoặc lừ đừ'
-                                      ].contains(s.symptomName))
-                                  .toList()),
-                          _buildSymptomGroup(
-                              'Triệu chứng khác',
-                              filteredSymptoms
-                                  .where((s) => [
-                                        'Giảm cân',
-                                        'Sốt cao',
-                                        'Khát nước liên tục',
-                                        'Chảy máu nội tạng'
-                                      ].contains(s.symptomName))
-                                  .toList()),
-                          _buildSymptomGroup(
-                              'Triệu chứng sinh sản',
-                              filteredSymptoms
-                                  .where((s) => [
-                                        'Giảm năng suất đẻ trứng',
-                                        'Trứng vỏ mỏng hoặc biến dạng'
-                                      ].contains(s.symptomName))
-                                  .toList()),
+                          if (filteredSymptoms.isNotEmpty) ...[
+                            Text(
+                              'Danh sách triệu chứng',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child: Wrap(
+                                  spacing: 8.0,
+                                  runSpacing: 8.0,
+                                  children: filteredSymptoms.map((symptom) {
+                                    final isSelected = widget.selectedSymptoms
+                                        .contains(symptom.symptomName);
+                                    return FilterChip(
+                                      selected: isSelected,
+                                      label: Text(symptom.symptomName),
+                                      onSelected: (selected) {
+                                        setState(() {
+                                          widget.onSymptomToggled(
+                                              symptom, selected);
+                                        });
+                                      },
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ] else if (searchQuery.isNotEmpty) ...[
+                            const _EmptyState(
+                              message: 'Không tìm thấy triệu chứng phù hợp',
+                            ),
+                          ],
                         ],
                       ),
-              ),
-            ),
+                    ),
+                  ),
           ),
           _SheetFooter(
             onClose: () => Navigator.pop(context),
@@ -928,39 +936,6 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildSymptomGroup(String title, List<SymptomDto> symptoms) {
-    if (symptoms.isEmpty) return const SizedBox.shrink();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: Text(title,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        ),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: symptoms.map((symptom) {
-            final isSelected =
-                widget.selectedSymptoms.contains(symptom.symptomName);
-            return FilterChip(
-              selected: isSelected,
-              label: Text(symptom.symptomName),
-              onSelected: (selected) {
-                setState(() {
-                  widget.onSymptomToggled(symptom, selected);
-                });
-              },
-            );
-          }).toList(),
-        ),
-        const SizedBox(height: 8),
-      ],
     );
   }
 }
@@ -1023,8 +998,8 @@ class _SheetHeader extends StatelessWidget {
               prefixIcon: const Icon(Icons.search),
               suffixIcon: isSearching
                   ? const SizedBox(
-                      width: 16,
-                      height: 16,
+                      width: 8,
+                      height: 8,
                       child: CircularProgressIndicator(strokeWidth: 2))
                   : null,
               border:
