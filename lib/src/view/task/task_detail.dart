@@ -248,7 +248,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
       if (task!.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
         double actualWeight = this.actualWeight * 1000;
         final log = DailyFoodUsageLogDto(
-            recommendedWeight: recommendedWeight?.toInt() ?? 0,
+            recommendedWeight: (recommendedWeight!.toInt() * 1000),
             actualWeight: actualWeight.toInt(),
             notes: logController.text,
             logTime: DateTime.now(),
@@ -443,6 +443,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         return StatusDataConstant.pendingVn;
       case StatusDataConstant.overdue:
         return StatusDataConstant.overdueVn;
+      case StatusDataConstant.cancelled:
+        return StatusDataConstant.cancelledVn;
       default:
         return status;
     }
@@ -458,6 +460,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         return Colors.grey.shade300;
       case StatusDataConstant.overdue:
         return Colors.red.shade200;
+      case StatusDataConstant.cancelled:
+        return Colors.grey.shade400;
       default:
         return Colors.grey.shade300;
     }
@@ -473,6 +477,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         return Colors.black;
       case StatusDataConstant.overdue:
         return Colors.white;
+      case StatusDataConstant.cancelled:
+        return Colors.black;
       default:
         return Colors.black;
     }
@@ -1568,6 +1574,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 ? null
                 : (taskStatus == StatusDataConstant.doneVn ||
                         taskStatus == StatusDataConstant.overdueVn ||
+                        taskStatus == StatusDataConstant.cancelledVn ||
                         (taskStatus == StatusDataConstant.pendingVn &&
                                 !_isWithinWorkingHours() ||
                             taskStatus == StatusDataConstant.inProgressVn &&
@@ -1624,7 +1631,32 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (isPending)
+          if (taskStatus == StatusDataConstant.cancelledVn)
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.errorContainer,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.cancel,
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Công việc đã bị hủy, không thể tạo đơn báo cáo.',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          else if (isPending)
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -1714,7 +1746,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                '${recommendedWeight != null ? recommendedWeight?.toInt() : 0} (g)',
+                                '${recommendedWeight != null ? recommendedWeight?.toInt() : 0} (kg)',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -1753,7 +1785,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                               return FilterChip(
                                 selected: isSelected,
                                 showCheckmark: false,
-                                label: Text('$weight (g)'),
+                                label: Text('$weight (kg)'),
                                 labelStyle: TextStyle(
                                   color: isDisabled
                                       ? (isSelected
@@ -1828,7 +1860,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                       ),
                                 ),
                                 Text(
-                                  '$actualWeight (g)',
+                                  '$actualWeight (kg)',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -4620,9 +4652,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ? 'Công việc đã hoàn thành'
             : taskStatus == StatusDataConstant.overdueVn
                 ? 'Công việc đã quá hạn'
-                : _isWithinWorkingHours()
-                    ? 'Xác nhận làm việc'
-                    : 'Chưa đến giờ làm việc');
+                : taskStatus == StatusDataConstant.cancelledVn
+                    ? 'Công việc đã bị hủy'
+                    : _isWithinWorkingHours()
+                        ? 'Xác nhận làm việc'
+                        : 'Chưa đến giờ làm việc');
   }
 
   Widget _buildLastSessionForm() {

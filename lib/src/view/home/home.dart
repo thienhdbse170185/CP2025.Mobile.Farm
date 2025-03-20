@@ -447,47 +447,127 @@ class _HomeWidgetState extends State<HomeWidget>
   }
 
   Widget _buildNextTaskList({required List<NextTask> nextTaskList}) {
+    // Check if all tasks are completed
+    bool allTasksCompleted = nextTaskList.isNotEmpty &&
+        nextTaskList
+            .every((task) => task.taskDone == task.total && task.total > 0);
+
+    // Check if there are no tasks available
+    bool noTasksAvailable = nextTaskList.isEmpty ||
+        (nextTaskList.length == 1 &&
+            nextTaskList[0].taskName == "No Task Available" &&
+            nextTaskList[0].total == 0);
+
+    if (allTasksCompleted) {
+      return Center(
+        child: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset(
+                    'assets/animations/success.json',
+                    controller: _controller,
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.contain,
+                    onLoaded: (composition) {
+                      _controller
+                        ..duration = composition.duration
+                        ..forward();
+                    },
+                  ),
+                  Text(
+                    'Chúc mừng!',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Bạn đã làm hết công việc hôm nay',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Xem công việc đã làm'))
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (noTasksAvailable) {
+      return Center(
+        child: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LinearIcons.emptyBoxIcon,
+                  const SizedBox(height: 16),
+                  Text('Không có việc',
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Hôm nay bạn không có công việc.',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Xem công việc ngày mai'))
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return ListView.builder(
       padding: const EdgeInsets.only(top: 8),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: nextTaskList.isEmpty ? 1 : nextTaskList.length,
+      itemCount: nextTaskList.length,
       itemBuilder: (context, index) {
-        if (nextTaskList.isEmpty) {
-          return Center(
-            child: Text(
-              'Hôm nay bạn không có công việc.',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          );
-        }
         final nextTask = nextTaskList[index];
+        if (nextTask.taskName == "No Task Available") {
+          return const SizedBox.shrink(); // Skip if no task available
+        }
+
         return Column(
           children: [
-            if (nextTask.taskName != "No Task Available") ...[
-              Card(
-                color: Theme.of(context).colorScheme.primary,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/line_background.png'),
-                      fit: BoxFit.cover,
-                    ),
+            Card(
+              color: Theme.of(context).colorScheme.primary,
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/line_background.png'),
+                    fit: BoxFit.cover,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  LinearIcons.chickenIcon,
-                                  const SizedBox(width: 8),
-                                  GestureDetector(
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                LinearIcons.chickenIcon,
+                                const SizedBox(width: 8),
+                                GestureDetector(
                                     onTap: () {
                                       context.push(RouteName.cage, extra: {
                                         'cageId': nextTask.cageId,
@@ -499,156 +579,86 @@ class _HomeWidgetState extends State<HomeWidget>
                                           .textTheme
                                           .titleMedium
                                           ?.copyWith(color: Colors.white),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Công việc tiếp theo:',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(color: Colors.white70),
-                              ),
-                              const SizedBox(height: 4),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                child: Row(
-                                  children: [
-                                    const Icon(Icons.circle,
-                                        size: 8, color: Colors.white),
-                                    const SizedBox(width: 8),
-                                    GestureDetector(
-                                      onTap: () {
-                                        context.push(RouteName.taskDetail,
-                                            extra: nextTask.taskId);
-                                      },
-                                      child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.4,
-                                        child: Text(
-                                          nextTask.taskName,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          overflow: TextOverflow.visible,
-                                        ),
+                                    ))
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Công việc tiếp theo:',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: Colors.white70),
+                            ),
+                            const SizedBox(height: 4),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.circle,
+                                      size: 8, color: Colors.white),
+                                  const SizedBox(width: 8),
+                                  GestureDetector(
+                                    onTap: () {
+                                      context.push(RouteName.taskDetail,
+                                          extra: nextTask.taskId);
+                                    },
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
+                                      child: Text(
+                                        nextTask.taskName,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                        overflow: TextOverflow.visible,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Tiến độ công việc',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(color: Colors.white),
-                                  ),
-                                  Text(
-                                    "${nextTask.taskDone}/${nextTask.total}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(color: Colors.white),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 8),
-                              LinearProgressIndicator(
-                                borderRadius: BorderRadius.circular(10),
-                                value: nextTask.taskDone / nextTask.total,
-                                backgroundColor: Colors.white30,
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Colors.white),
-                              ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Tiến độ công việc',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(color: Colors.white),
+                                ),
+                                Text(
+                                  "${nextTask.taskDone}/${nextTask.total}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            LinearProgressIndicator(
+                              borderRadius: BorderRadius.circular(10),
+                              value: nextTask.taskDone / nextTask.total,
+                              backgroundColor: Colors.white30,
+                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                  Colors.white),
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 16),
-                        Lottie.asset(
-                          'assets/animations/chicken_adult.json',
-                          width: 100,
-                          height: 100,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 16),
+                      Lottie.asset(
+                        'assets/animations/chicken_adult.json',
+                        width: 100,
+                        height: 100,
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ] else ...[
-              if (nextTask.total != 0) ...[
-                Center(
-                    child: Column(children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Lottie.asset(
-                          'assets/animations/success.json',
-                          controller: _controller,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.contain,
-                          onLoaded: (composition) {
-                            _controller
-                              ..duration = composition.duration
-                              ..forward();
-                          },
-                        ),
-                        Text(
-                          'Chúc mừng!',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Bạn đã làm hết công việc hôm nay',
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('Xem công việc đã làm'))
-                      ],
-                    ),
-                  ),
-                ])),
-              ] else ...[
-                Center(
-                    child: Column(children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        LinearIcons.emptyBoxIcon,
-                        const SizedBox(height: 16),
-                        Text('Không có việc',
-                            style: Theme.of(context).textTheme.titleLarge),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Hôm nay bạn không có công việc.',
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('Xem công việc ngày mai'))
-                      ],
-                    ),
-                  ),
-                ])),
-              ],
-            ],
+            ),
             const SizedBox(height: 8)
           ],
         );
