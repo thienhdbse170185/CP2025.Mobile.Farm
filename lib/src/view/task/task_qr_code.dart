@@ -3973,7 +3973,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                           Row(
                             children: [
                               Image.asset(
-                                TimeUtils.getCurrentSessionImage(),
+                                TimeUtils.getCurrentSessionPathImage(),
                                 width: 32,
                                 height: 32,
                               ),

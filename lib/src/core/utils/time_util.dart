@@ -37,7 +37,7 @@ class TimeUtils {
     }
   }
 
-  static String getCurrentSessionImage() {
+  static String getCurrentSessionPathImage() {
     int currentSession = TimeUtils.getCurrentSession();
     String imagePath = '';
     switch (currentSession) {
