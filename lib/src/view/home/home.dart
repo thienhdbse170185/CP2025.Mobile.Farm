@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
+import 'package:smart_farm/src/core/constants/session_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/widgets/avatar_round.dart';
@@ -70,6 +71,22 @@ class _HomeWidgetState extends State<HomeWidget>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  String _handleSessionMessage() {
+    final currentSession = TimeUtils.getCurrentSession();
+    switch (currentSession) {
+      case SessionDataConstant.MORNING_INDEX:
+        return SessionDataConstant.MORNING_MESSAGE;
+      case SessionDataConstant.NOON_INDEX:
+        return SessionDataConstant.NOON_MESSAGE;
+      case SessionDataConstant.AFTERNOON_INDEX:
+        return SessionDataConstant.AFTERNOON_MESSAGE;
+      case SessionDataConstant.EVENING_INDEX:
+        return SessionDataConstant.EVENING_MESSAGE;
+      default:
+        return 'Chúc bạn ngủ ngon';
+    }
   }
 
   @override
@@ -194,7 +211,7 @@ class _HomeWidgetState extends State<HomeWidget>
                   child: ListTile(
                     leading: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Image.asset('assets/images/morning.png',
+                      child: Image.asset(TimeUtils.getCurrentSessionPathImage(),
                           width: 32, height: 32),
                     ),
                     trailing: Row(
@@ -204,7 +221,7 @@ class _HomeWidgetState extends State<HomeWidget>
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Chào buổi sáng',
+                            Text(_handleSessionMessage(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
