@@ -339,6 +339,44 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(TaskState.getVaccinScheduleLogFailure(e.toString()));
       }
     });
+    /*
+    // Commented out since the API isn't ready yet
+    on<_MarkTaskHasProblem>((event, emit) async {
+      emit(const TaskState.markTaskHasProblemLoading());
+      try {
+        // Call repository to mark task as having a problem
+        // This depends on your API implementation
+        // For now, we'll assume we update the task description to include the problem
+        await repository.markTaskHasProblem(
+            taskId: event.taskId, problemDescription: event.problemDescription);
+        emit(const TaskState.markTaskHasProblemSuccess());
+      } catch (e) {
+        emit(TaskState.markTaskHasProblemFailure(e.toString()));
+      }
+    });
+    
+    on<_MarkTaskAsComplete>((event, emit) async {
+      emit(const TaskState.markTaskAsCompleteLoading());
+      try {
+        // Depending on your API, you might want to add a special flag or update
+        // both the status and problem status in a single call
+        if (event.hasProblem) {
+          await repository.markTaskHasProblem(
+            taskId: event.taskId,
+            problemDescription:
+                event.problemDescription ?? 'Gia cầm có biểu hiện bất thường',
+          );
+        }
+
+        // Mark the task as completed
+        await repository.update(event.taskId, StatusDataConstant.done);
+
+        emit(const TaskState.markTaskAsCompleteSuccess());
+      } catch (e) {
+        emit(TaskState.markTaskAsCompleteFailure(e.toString()));
+      }
+    });
+    */
   }
 
   String _formatDate(DateTime? date) {
@@ -373,6 +411,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             priorityNum: taskItem.priorityNum,
             dueDate: taskItem.dueDate,
             session: taskItem.session,
+            // hasAnimalDesease: taskItem.hasAnimalDesease,
+            // cageAnimalName: taskItem.cageAnimalName,
             completedAt: taskItem.completedAt,
             assignedToUser: taskItem.assignedToUser,
             taskType: taskItem.taskType,
@@ -413,6 +453,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         priorityNum: item.priorityNum,
         dueDate: item.dueDate,
         session: item.session,
+        // hasAnimalDesease: item.hasAnimalDesease,
+        // cageAnimalName: item.cageAnimalName,
         completedAt: item.completedAt,
         assignedToUser: item.assignedToUser,
         taskType: item.taskType,

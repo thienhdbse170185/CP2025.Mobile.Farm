@@ -12,6 +12,9 @@ class FoodLogWidget extends StatelessWidget {
   final TextEditingController logController;
   final String taskStatus;
   final DateTime? logTime;
+  final bool hasAnimalDesease;
+  final bool isIsolationFed;
+  final Function(bool) onIsolationFedChanged;
 
   const FoodLogWidget({
     super.key,
@@ -23,10 +26,16 @@ class FoodLogWidget extends StatelessWidget {
     required this.logController,
     required this.taskStatus,
     this.logTime,
+    required this.hasAnimalDesease,
+    required this.isIsolationFed,
+    required this.onIsolationFedChanged,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bool isCompleted =
+        taskStatus == "Đã hoàn thành" || taskStatus == "Quá hạn";
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -92,7 +101,7 @@ class FoodLogWidget extends StatelessWidget {
                 Text(
                   'Chọn lượng thức ăn:',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: (taskStatus == "Đã hoàn thành")
+                        color: isCompleted
                             ? Theme.of(context).colorScheme.outline
                             : null,
                       ),
@@ -103,8 +112,7 @@ class FoodLogWidget extends StatelessWidget {
                   runSpacing: 4,
                   children: weightList.map((weight) {
                     bool isSelected = actualWeight == weight;
-                    bool isDisabled = taskStatus == "Đã hoàn thành" ||
-                        taskStatus == "Quá hạn";
+                    bool isDisabled = isCompleted;
                     return FilterChip(
                       selected: isSelected,
                       showCheckmark: false,
@@ -134,7 +142,7 @@ class FoodLogWidget extends StatelessWidget {
                     color: Theme.of(context)
                         .colorScheme
                         .primaryContainer
-                        .withOpacity(taskStatus == "Đã hoàn thành" ? 0.5 : 1),
+                        .withOpacity(isCompleted ? 0.5 : 1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
@@ -161,6 +169,85 @@ class FoodLogWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+
+                // Add isolation cage feeding confirmation section if needed
+                if (hasAnimalDesease) ...[
+                  const SizedBox(height: 24),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .errorContainer
+                          .withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .error
+                            .withOpacity(0.5),
+                        width: 1,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.medical_services_outlined,
+                              color: Theme.of(context).colorScheme.error,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                'Chuồng này có gia cầm bị bệnh ở chuồng cách ly',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          Theme.of(context).colorScheme.error,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'Vui lòng đảm bảo bạn đã cho ăn cả chuồng hiện tại và chuồng cách ly.',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const SizedBox(height: 8),
+                        CheckboxListTile(
+                          title: Text(
+                            'Tôi đã cho ăn ở cả chuồng cách ly',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: isCompleted
+                                  ? Theme.of(context).colorScheme.outline
+                                  : null,
+                            ),
+                          ),
+                          activeColor: Theme.of(context).colorScheme.primary,
+                          value: isIsolationFed,
+                          onChanged: isCompleted
+                              ? null
+                              : (bool? value) {
+                                  if (value != null) {
+                                    onIsolationFedChanged(value);
+                                  }
+                                },
+                          contentPadding: EdgeInsets.zero,
+                          controlAffinity: ListTileControlAffinity.leading,
+                          dense: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
