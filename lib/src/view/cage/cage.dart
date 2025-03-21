@@ -9,12 +9,9 @@ import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
-import 'package:smart_farm/src/core/router.dart';
-import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
-import 'package:smart_farm/src/view/widgets/custom_divider.dart';
 import 'package:smart_farm/src/view/widgets/task_list.dart';
-import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart'; // Import the TaskCard widget
+import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class CageWidget extends StatefulWidget {
@@ -26,40 +23,13 @@ class CageWidget extends StatefulWidget {
 }
 
 class _CageWidgetState extends State<CageWidget> {
-  DateTime selectedDate = DateTime.now(); // Store the selected date
-
+  DateTime selectedDate = DateTime.now();
   Map<String, List<TaskHaveCageName>> tasks = {};
   Cage? cage;
-
-  List<String> cageNames = [
-    "-- Chọn chuồng --",
-    "Cage 1",
-    "Cage 2",
-    "Cage 3"
-  ]; // Add this line
-  String selectedCageName = "-- Chọn chuồng --"; // Add this line
 
   String get formattedDate {
     return DateFormat('EEEE, dd/MM/yyyy', 'vi').format(selectedDate);
   }
-
-  final List<HomeFeatures> features = [
-    HomeFeatures(
-      icon: LinearIcons.aboutIcon,
-      title: 'Báo cáo vấn đề',
-      routeName: RouteName.createTicket,
-    ),
-    HomeFeatures(
-      icon: LinearIcons.healthIconGreen,
-      title: 'Vật nuôi bị bệnh',
-      routeName: RouteName.createSymptom,
-    ),
-    HomeFeatures(
-      title: 'Gọi khẩn cấp',
-      icon: LinearIcons.phoneCallingIconGreen,
-      routeName: RouteName.support,
-    )
-  ];
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = (await showDatePicker(
@@ -74,7 +44,6 @@ class _CageWidgetState extends State<CageWidget> {
       setState(() {
         selectedDate = picked;
       });
-      // Call the API to fetch tasks for the selected date
       context
           .read<TaskBloc>()
           .add(TaskEvent.getTasksByCageId(picked, widget.cageId));
@@ -103,6 +72,11 @@ class _CageWidgetState extends State<CageWidget> {
         tasks.values.expand((element) => element).where((task) {
       return task.status == StatusDataConstant.pending;
     }).toList();
+
+    final totalTasks =
+        doneTasks.length + inProgressTasks.length + pendingTasks.length;
+    final completionPercentage =
+        totalTasks > 0 ? (doneTasks.length / totalTasks * 100).round() : 0;
 
     return MultiBlocListener(
       listeners: [
@@ -153,7 +127,7 @@ class _CageWidgetState extends State<CageWidget> {
         }),
       ],
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[50],
         appBar: CustomAppBar(
           leading: IconButton(
             icon: LinearIcons.arrowBackIcon,
@@ -166,47 +140,33 @@ class _CageWidgetState extends State<CageWidget> {
             children: [
               Text(
                 cage?.name ?? 'Đang tải...',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  LinearIcons.calendarIcon,
-                  const SizedBox(width: 4),
-                  Text(
-                    formattedDate,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(width: 8),
-                  InkWell(
-                    onTap: () => _selectDate(context),
-                    child: Text('Thay đổi',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              decoration: TextDecoration.underline,
-                            )),
-                  )
-                ],
+              const SizedBox(height: 4),
+              InkWell(
+                onTap: () => _selectDate(context),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.calendar_today,
+                      size: 16,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      formattedDate,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
-          // centerTitle: false,
-          // actions: [
-          //   InkWell(
-          //     onTap: () => _selectDate(context),
-          //     child: Chip(
-          //       shape: const StadiumBorder(
-          //           side: BorderSide(width: 0, color: Colors.transparent)),
-          //       label: Text(
-          //         formattedDate,
-          //         style: TextStyle(
-          //           color: Theme.of(context).colorScheme.primary,
-          //         ),
-          //       ),
-          //       avatar: LinearIcons.calendarIcon,
-          //       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          //     ),
-          //   ),
-          // ],
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -216,117 +176,85 @@ class _CageWidgetState extends State<CageWidget> {
                 ));
           },
           child: SingleChildScrollView(
-            padding: const EdgeInsets.only(top: 16),
             physics: const AlwaysScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header
+                // Summary Card
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                   child: Card(
-                    color: Theme.of(context).colorScheme.primary,
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Theme.of(context).colorScheme.primary,
+                            Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.8),
+                          ],
+                        ),
+                        image: const DecorationImage(
                           image:
                               AssetImage('assets/images/line_background.png'),
                           fit: BoxFit.cover,
+                          opacity: 0.2,
                         ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (inProgressTasks.isEmpty &&
-                                      doneTasks.isEmpty &&
-                                      pendingTasks.isEmpty) ...[
-                                    const SizedBox(height: 8),
-                                    Text('Không có Task',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(color: Colors.white)),
-                                    const SizedBox(height: 8)
+                                  if (totalTasks == 0) ...[
+                                    const Text(
+                                      'Không có công việc hôm nay',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ] else ...[
+                                    const Text(
+                                      'Tiến độ công việc',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Tiến độ công việc',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .titleMedium
-                                                  ?.copyWith(
-                                                      color: Colors.white),
-                                            ),
-                                            RichText(
-                                              text: TextSpan(
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium
-                                                    ?.copyWith(
-                                                        color: Colors.white),
-                                                children: [
-                                                  const TextSpan(
-                                                      text: 'Đã làm: '),
-                                                  TextSpan(
-                                                    text:
-                                                        '${doneTasks.length}', // Số task đã làm
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                        '/${doneTasks.length + inProgressTasks.length + pendingTasks.length} task.',
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
+                                        _buildStatusBadge(
+                                          'Hoàn thành',
+                                          doneTasks.length,
+                                          Colors.green,
                                         ),
-                                        const SizedBox(width: 16),
-                                        Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width: 50,
-                                              height: 50,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 5,
-                                                value: doneTasks.isNotEmpty
-                                                    ? doneTasks.length /
-                                                        (doneTasks.length +
-                                                            inProgressTasks
-                                                                .length +
-                                                            pendingTasks.length)
-                                                    : 0.0,
-                                                backgroundColor: Colors.white30,
-                                                valueColor:
-                                                    const AlwaysStoppedAnimation<
-                                                        Color>(Colors.white),
-                                              ),
-                                            ),
-                                            Text(
-                                              '${((doneTasks.length / (doneTasks.length + inProgressTasks.length + pendingTasks.length).clamp(1, double.infinity)) * 100).round()}%',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium
-                                                  ?.copyWith(
-                                                      color: Colors.white),
-                                            ),
-                                          ],
+                                        const SizedBox(width: 8),
+                                        _buildStatusBadge(
+                                          'Đang làm',
+                                          inProgressTasks.length,
+                                          Colors.amber,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        _buildStatusBadge(
+                                          'Chưa làm',
+                                          pendingTasks.length,
+                                          Colors.red,
                                         ),
                                       ],
                                     ),
@@ -334,12 +262,55 @@ class _CageWidgetState extends State<CageWidget> {
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 16),
-                            Lottie.asset(
-                              'assets/animations/chicken_adult.json',
-                              width: 100,
-                              height: 100,
-                            ),
+                            if (totalTasks > 0) ...[
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          CircularProgressIndicator(
+                                            strokeWidth: 6,
+                                            value: completionPercentage / 100,
+                                            backgroundColor: Colors.grey[300],
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                            ),
+                                          ),
+                                          Text(
+                                            '$completionPercentage%',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ] else ...[
+                              Lottie.asset(
+                                'assets/animations/chicken_adult.json',
+                                width: 80,
+                                height: 80,
+                              ),
+                            ],
                           ],
                         ),
                       ),
@@ -347,115 +318,90 @@ class _CageWidgetState extends State<CageWidget> {
                   ),
                 ),
 
-                // Container(
-                //   color: const Color(0xFFFFFFFF),
-                //   width: MediaQuery.of(context).size.width,
-                //   child: Padding(
-                //     padding:
-                //         const EdgeInsets.only(top: 24, left: 16, right: 16),
-                //     child: Column(
-                //       children: [
-                //         SizedBox(
-                //           height: MediaQuery.of(context).size.height * 0.12,
-                //           child: GridView.builder(
-                //               gridDelegate:
-                //                   const SliverGridDelegateWithFixedCrossAxisCount(
-                //                       crossAxisCount: 3,
-                //                       mainAxisSpacing: 32,
-                //                       crossAxisSpacing: 12,
-                //                       childAspectRatio: 1),
-                //               itemBuilder: (context, index) {
-                //                 if (index < features.length) {
-                //                   final feature = features[index];
-                //                   return GestureDetector(
-                //                       onTap: () => context
-                //                               .push(feature.routeName, extra: {
-                //                             'cageName': cage?.name ?? ''
-                //                           }), // Update this line
-                //                       child: MenuFeatureWidget(
-                //                         title: feature.title,
-                //                         icon: feature.icon,
-                //                       ));
-                //                 }
-                //                 return null;
-                //               }),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-
-                const SizedBox(height: 16),
-                const CustomDividerWidget(),
                 if (tasks.values.every((tasks) => tasks.isEmpty)) ...[
-                  Container(
-                    color: Colors.white,
-                    height: MediaQuery.of(context).size.height * 0.6,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
                     child: Center(
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.1),
                           Container(
+                            padding: const EdgeInsets.all(24),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primaryContainer
-                                    .withOpacity(0.4)),
-                            width: 120,
-                            height: 120,
-                            child: Icon(
-                              Icons.task_alt_outlined,
-                              size: 64,
                               color: Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(0.4),
+                                  .colorScheme
+                                  .primaryContainer
+                                  .withOpacity(0.3),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.assignment_outlined,
+                              size: 72,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.7),
                             ),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 24),
                           Text(
-                            'Không có công việc nào\n trong hôm nay',
+                            'Không có công việc hôm nay',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
                                   color: Theme.of(context)
                                       .colorScheme
-                                      .outlineVariant,
+                                      .onSurfaceVariant,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 12),
+                          TextButton.icon(
+                            onPressed: () {
+                              context.read<TaskBloc>().add(
+                                  TaskEvent.getTasksByCageId(
+                                      selectedDate, widget.cageId));
+                            },
+                            icon: const Icon(Icons.refresh),
+                            label: const Text('Làm mới'),
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.primary,
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
                 ] else ...[
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.only(top: 16, bottom: 32),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Move the date display to be inline with the "Công việc" text
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Công việc',
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
-                              ),
-                            ],
-                          ),
+                        Text(
+                          'Danh sách công việc',
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
-                        const SizedBox(height: 16),
-                        ..._buildSessionSections(tasks),
+                        Text(
+                          'Tổng: $totalTasks',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                        ),
                       ],
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 8),
+                  ..._buildSessionSections(tasks),
+                  const SizedBox(height: 24),
                 ],
               ],
             ),
@@ -465,70 +411,160 @@ class _CageWidgetState extends State<CageWidget> {
     );
   }
 
+  Widget _buildStatusBadge(String title, int count, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withOpacity(0.5)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '$count',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 4),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   List<Widget> _buildSessionSections(
       Map<String, List<TaskHaveCageName>> tasks) {
-    return tasks.entries.map((entry) {
-      final session = entry.key;
-      final sessionTasks = entry.value;
+    final sessionOrder = ['Morning', 'Noon', 'Afternoon', 'Evening'];
 
-      // Tính tổng số lượng tasks trong session
-      int totalTasks = sessionTasks.length;
+    // Sort the entries by the custom order
+    final sortedEntries = tasks.entries.toList()
+      ..sort((a, b) {
+        final indexA = sessionOrder.indexOf(a.key);
+        final indexB = sessionOrder.indexOf(b.key);
+        return indexA.compareTo(indexB);
+      });
 
-      String sessionTitle, image = 'assets/images/default.png';
-      switch (session) {
-        case 'Morning':
-          sessionTitle = 'Buổi sáng';
-          image = 'assets/images/morning.png';
-          break;
-        case 'Noon':
-          sessionTitle = 'Buổi trưa';
-          image = 'assets/images/noon.png';
-          break;
-        case 'Afternoon':
-          sessionTitle = 'Buổi chiều';
-          image = 'assets/images/afternoon.png';
-          break;
-        case 'Evening':
-          sessionTitle = 'Buổi tối';
-          image = 'assets/images/moon.png';
-          break;
-        default:
-          sessionTitle = 'Khác';
-      }
+    return sortedEntries
+        .map((entry) {
+          final session = entry.key;
+          final sessionTasks = entry.value;
 
-      return Container(
-        color: Colors.white,
-        padding: const EdgeInsets.only(bottom: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Image.asset(image, width: 32, height: 32),
-                  const SizedBox(width: 8),
-                  Text(
-                    sessionTitle,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    '$totalTasks công việc',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                  ),
-                ],
-              ),
+          if (sessionTasks.isEmpty) return const SizedBox.shrink();
+
+          String sessionTitle;
+          IconData sessionIcon;
+          Color sessionColor;
+
+          switch (session) {
+            case 'Morning':
+              sessionTitle = 'Buổi sáng';
+              sessionIcon = Icons.wb_sunny;
+              sessionColor = Colors.orange;
+              break;
+            case 'Noon':
+              sessionTitle = 'Buổi trưa';
+              sessionIcon = Icons.wb_sunny_outlined;
+              sessionColor = Colors.amber;
+              break;
+            case 'Afternoon':
+              sessionTitle = 'Buổi chiều';
+              sessionIcon = Icons.brightness_4;
+              sessionColor = Colors.deepOrange;
+              break;
+            case 'Evening':
+              sessionTitle = 'Buổi tối';
+              sessionIcon = Icons.nights_stay;
+              sessionColor = Colors.indigo;
+              break;
+            default:
+              sessionTitle = 'Khác';
+              sessionIcon = Icons.access_time;
+              sessionColor = Colors.grey;
+          }
+
+          return Container(
+            margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
-            ...sessionTasks.map((task) => TaskListWidget(tasks: [task])),
-          ],
-        ),
-      );
-    }).toList();
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: sessionColor.withOpacity(0.1),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                    ),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: sessionColor.withOpacity(0.3),
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        sessionIcon,
+                        color: sessionColor,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        sessionTitle,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: sessionColor,
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: sessionColor.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border:
+                              Border.all(color: sessionColor.withOpacity(0.3)),
+                        ),
+                        child: Text(
+                          '${sessionTasks.length} công việc',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: sessionColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ...sessionTasks.map((task) => TaskListWidget(tasks: [task])),
+              ],
+            ),
+          );
+        })
+        .where((widget) => widget is! SizedBox)
+        .toList();
   }
 }

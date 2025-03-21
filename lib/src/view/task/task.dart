@@ -285,317 +285,317 @@ class _TaskWidgetState extends State<TaskWidget>
     }
   }
 
-  void _showTaskTypeBottomSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: const Row(
-              children: [
-                Icon(Icons.work_outline),
-                SizedBox(width: 16),
-                Text(
-                  'Chọn loại công việc',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              children: _buildTaskTypeOptions()
-                  .map((type) => RadioListTile(
-                        title: Row(
-                          children: [
-                            Icon(type['icon'] as IconData),
-                            const SizedBox(width: 8),
-                            Text(type['name']),
-                          ],
-                        ),
-                        value: type['id'],
-                        groupValue: _selectedTaskType,
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedTaskType = value.toString();
-                          });
-                          Navigator.pop(context);
-                          _filterTasks();
-                        },
-                      ))
-                  .toList(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // void _showTaskTypeBottomSheet() {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) => Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Container(
+  //           padding: const EdgeInsets.all(16),
+  //           child: const Row(
+  //             children: [
+  //               Icon(Icons.work_outline),
+  //               SizedBox(width: 16),
+  //               Text(
+  //                 'Chọn loại công việc',
+  //                 style: TextStyle(
+  //                   fontSize: 18,
+  //                   fontWeight: FontWeight.bold,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         Expanded(
+  //           child: ListView(
+  //             children: _buildTaskTypeOptions()
+  //                 .map((type) => RadioListTile(
+  //                       title: Row(
+  //                         children: [
+  //                           Icon(type['icon'] as IconData),
+  //                           const SizedBox(width: 8),
+  //                           Text(type['name']),
+  //                         ],
+  //                       ),
+  //                       value: type['id'],
+  //                       groupValue: _selectedTaskType,
+  //                       onChanged: (value) {
+  //                         setState(() {
+  //                           _selectedTaskType = value.toString();
+  //                         });
+  //                         Navigator.pop(context);
+  //                         _filterTasks();
+  //                       },
+  //                     ))
+  //                 .toList(),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  void _showSessionBottomSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                const Icon(Icons.access_time),
-                const SizedBox(width: 8),
-                const Text(
-                  'Chọn buổi',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              children: [
-                RadioListTile(
-                  title: const Row(
-                    children: [
-                      Icon(Icons.all_inclusive),
-                      SizedBox(width: 12),
-                      Text('Tất cả'),
-                    ],
-                  ),
-                  value: null,
-                  groupValue: _selectedSession,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedSession = null;
-                    });
-                    Navigator.pop(context);
-                    _filterTasks();
-                  },
-                ),
-                RadioListTile(
-                  title: Row(
-                    children: [
-                      Image.asset('assets/images/morning.png',
-                          width: 24, height: 24),
-                      const SizedBox(width: 12),
-                      const Text('Buổi sáng'),
-                    ],
-                  ),
-                  value: 1,
-                  groupValue: _selectedSession,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedSession = 1;
-                    });
-                    Navigator.pop(context);
-                    _filterTasks();
-                  },
-                ),
-                RadioListTile(
-                  title: Row(
-                    children: [
-                      Image.asset('assets/images/noon.png',
-                          width: 24, height: 24),
-                      const SizedBox(width: 12),
-                      const Text('Buổi trưa'),
-                    ],
-                  ),
-                  value: 2,
-                  groupValue: _selectedSession,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedSession = 2;
-                    });
-                    Navigator.pop(context);
-                    _filterTasks();
-                  },
-                ),
-                RadioListTile(
-                  title: Row(
-                    children: [
-                      Image.asset('assets/images/afternoon.png',
-                          width: 24, height: 24),
-                      const SizedBox(width: 12),
-                      const Text('Buổi trưa'),
-                    ],
-                  ),
-                  value: 3,
-                  groupValue: _selectedSession,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedSession = 3;
-                    });
-                    Navigator.pop(context);
-                    _filterTasks();
-                  },
-                ),
-                RadioListTile(
-                  title: Row(
-                    children: [
-                      Image.asset('assets/images/moon.png',
-                          width: 24, height: 24),
-                      const SizedBox(width: 12),
-                      const Text('Buổi tối'),
-                    ],
-                  ),
-                  value: 4,
-                  groupValue: _selectedSession,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedSession = 4;
-                    });
-                    Navigator.pop(context);
-                    _filterTasks();
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // void _showSessionBottomSheet() {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) => Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Container(
+  //           padding: const EdgeInsets.all(16),
+  //           child: Row(
+  //             children: [
+  //               const Icon(Icons.access_time),
+  //               const SizedBox(width: 8),
+  //               const Text(
+  //                 'Chọn buổi',
+  //                 style: TextStyle(
+  //                   fontSize: 18,
+  //                   fontWeight: FontWeight.bold,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         Expanded(
+  //           child: ListView(
+  //             children: [
+  //               RadioListTile(
+  //                 title: const Row(
+  //                   children: [
+  //                     Icon(Icons.all_inclusive),
+  //                     SizedBox(width: 12),
+  //                     Text('Tất cả'),
+  //                   ],
+  //                 ),
+  //                 value: null,
+  //                 groupValue: _selectedSession,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     _selectedSession = null;
+  //                   });
+  //                   Navigator.pop(context);
+  //                   _filterTasks();
+  //                 },
+  //               ),
+  //               RadioListTile(
+  //                 title: Row(
+  //                   children: [
+  //                     Image.asset('assets/images/morning.png',
+  //                         width: 24, height: 24),
+  //                     const SizedBox(width: 12),
+  //                     const Text('Buổi sáng'),
+  //                   ],
+  //                 ),
+  //                 value: 1,
+  //                 groupValue: _selectedSession,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     _selectedSession = 1;
+  //                   });
+  //                   Navigator.pop(context);
+  //                   _filterTasks();
+  //                 },
+  //               ),
+  //               RadioListTile(
+  //                 title: Row(
+  //                   children: [
+  //                     Image.asset('assets/images/noon.png',
+  //                         width: 24, height: 24),
+  //                     const SizedBox(width: 12),
+  //                     const Text('Buổi trưa'),
+  //                   ],
+  //                 ),
+  //                 value: 2,
+  //                 groupValue: _selectedSession,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     _selectedSession = 2;
+  //                   });
+  //                   Navigator.pop(context);
+  //                   _filterTasks();
+  //                 },
+  //               ),
+  //               RadioListTile(
+  //                 title: Row(
+  //                   children: [
+  //                     Image.asset('assets/images/afternoon.png',
+  //                         width: 24, height: 24),
+  //                     const SizedBox(width: 12),
+  //                     const Text('Buổi trưa'),
+  //                   ],
+  //                 ),
+  //                 value: 3,
+  //                 groupValue: _selectedSession,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     _selectedSession = 3;
+  //                   });
+  //                   Navigator.pop(context);
+  //                   _filterTasks();
+  //                 },
+  //               ),
+  //               RadioListTile(
+  //                 title: Row(
+  //                   children: [
+  //                     Image.asset('assets/images/moon.png',
+  //                         width: 24, height: 24),
+  //                     const SizedBox(width: 12),
+  //                     const Text('Buổi tối'),
+  //                   ],
+  //                 ),
+  //                 value: 4,
+  //                 groupValue: _selectedSession,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     _selectedSession = 4;
+  //                   });
+  //                   Navigator.pop(context);
+  //                   _filterTasks();
+  //                 },
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  void _showCageBottomSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                LinearIcons.chickenIcon,
-                const SizedBox(width: 8),
-                const Text(
-                  'Chọn chuồng nuôi',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              children: [
-                RadioListTile(
-                  title: Row(
-                    children: [
-                      LinearIcons.farmHouseIcon,
-                      const SizedBox(width: 12),
-                      const Text('Tất cả'),
-                    ],
-                  ),
-                  value: 'all',
-                  groupValue: _selectedCage,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedCage = value.toString();
-                    });
-                    Navigator.pop(context);
-                    _filterTasks();
-                  },
-                ),
-                ...availableCageFilters.map((cage) => RadioListTile(
-                      title: Row(
-                        children: [
-                          LinearIcons.chickenIcon,
-                          const SizedBox(width: 12),
-                          Text(cage.cageName),
-                        ],
-                      ),
-                      value: cage.cageId,
-                      groupValue: _selectedCage,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedCage = value.toString();
-                        });
-                        Navigator.pop(context);
-                        _filterTasks();
-                      },
-                    )),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // void _showCageBottomSheet() {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) => Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Container(
+  //           padding: const EdgeInsets.all(16),
+  //           child: Row(
+  //             children: [
+  //               LinearIcons.chickenIcon,
+  //               const SizedBox(width: 8),
+  //               const Text(
+  //                 'Chọn chuồng nuôi',
+  //                 style: TextStyle(
+  //                   fontSize: 18,
+  //                   fontWeight: FontWeight.bold,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         Expanded(
+  //           child: ListView(
+  //             children: [
+  //               RadioListTile(
+  //                 title: Row(
+  //                   children: [
+  //                     LinearIcons.farmHouseIcon,
+  //                     const SizedBox(width: 12),
+  //                     const Text('Tất cả'),
+  //                   ],
+  //                 ),
+  //                 value: 'all',
+  //                 groupValue: _selectedCage,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     _selectedCage = value.toString();
+  //                   });
+  //                   Navigator.pop(context);
+  //                   _filterTasks();
+  //                 },
+  //               ),
+  //               ...availableCageFilters.map((cage) => RadioListTile(
+  //                     title: Row(
+  //                       children: [
+  //                         LinearIcons.chickenIcon,
+  //                         const SizedBox(width: 12),
+  //                         Text(cage.cageName),
+  //                       ],
+  //                     ),
+  //                     value: cage.cageId,
+  //                     groupValue: _selectedCage,
+  //                     onChanged: (value) {
+  //                       setState(() {
+  //                         _selectedCage = value.toString();
+  //                       });
+  //                       Navigator.pop(context);
+  //                       _filterTasks();
+  //                     },
+  //                   )),
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  // Thêm hàm show bottom sheet cho status
-  void _showStatusBottomSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: const Row(
-              children: [
-                Icon(Icons.flag_outlined),
-                SizedBox(width: 16),
-                Text(
-                  'Chọn trạng thái',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              children: _statuses
-                  .map((status) => RadioListTile(
-                        title: Row(
-                          children: [
-                            Icon(
-                              status['id'] == 'all'
-                                  ? Icons.all_inclusive
-                                  : Icons.circle,
-                              color: status['color'],
-                              size: status['id'] == 'all' ? 24 : 12,
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              status['name'],
-                              style: TextStyle(
-                                color: status['color'],
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                        value: status['id'],
-                        groupValue: _selectedStatus,
-                        activeColor: status['color'],
-                        onChanged: (value) {
-                          setState(() {
-                            _selectedStatus = value.toString();
-                          });
-                          Navigator.pop(context);
-                          _filterTasks();
-                        },
-                      ))
-                  .toList(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // // Thêm hàm show bottom sheet cho status
+  // void _showStatusBottomSheet() {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) => Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Container(
+  //           padding: const EdgeInsets.all(16),
+  //           child: const Row(
+  //             children: [
+  //               Icon(Icons.flag_outlined),
+  //               SizedBox(width: 16),
+  //               Text(
+  //                 'Chọn trạng thái',
+  //                 style: TextStyle(
+  //                   fontSize: 18,
+  //                   fontWeight: FontWeight.bold,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         Expanded(
+  //           child: ListView(
+  //             children: _statuses
+  //                 .map((status) => RadioListTile(
+  //                       title: Row(
+  //                         children: [
+  //                           Icon(
+  //                             status['id'] == 'all'
+  //                                 ? Icons.all_inclusive
+  //                                 : Icons.circle,
+  //                             color: status['color'],
+  //                             size: status['id'] == 'all' ? 24 : 12,
+  //                           ),
+  //                           const SizedBox(width: 12),
+  //                           Text(
+  //                             status['name'],
+  //                             style: TextStyle(
+  //                               color: status['color'],
+  //                               fontWeight: FontWeight.w500,
+  //                             ),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                       value: status['id'],
+  //                       groupValue: _selectedStatus,
+  //                       activeColor: status['color'],
+  //                       onChanged: (value) {
+  //                         setState(() {
+  //                           _selectedStatus = value.toString();
+  //                         });
+  //                         Navigator.pop(context);
+  //                         _filterTasks();
+  //                       },
+  //                     ))
+  //                 .toList(),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   // Hàm sort tasks
   void _sortTasks() {
@@ -793,7 +793,7 @@ class _TaskWidgetState extends State<TaskWidget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 8.0),
-                      // Date Selection - với animation ẩn/hiện
+                      // Date Selection row with session info
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Row(
@@ -854,181 +854,65 @@ class _TaskWidgetState extends State<TaskWidget>
                       ),
                       const SizedBox(height: 8),
 
-                      // Search and Filter section - không có animation
+                      // Optimized Search and Filter Bar
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Column(
+                        child: Row(
                           children: [
-                            // Search bar - luôn hiển thị
-                            SearchBar(
-                              controller: _searchController,
-                              onChanged: _onSearchChanged,
-                              backgroundColor: WidgetStateProperty.all(
-                                Theme.of(context).colorScheme.surface,
-                              ),
-                              shape: WidgetStateProperty.all(StadiumBorder(
-                                  side: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                              ))),
-                              hintText: 'Tìm kiếm công việc',
-                              leading: Icon(Icons.search),
-                              trailing: [Icon(Icons.mic)],
-                              padding: WidgetStateProperty.all(
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                              ),
-                              elevation: WidgetStateProperty.all(0),
-                            ),
-                            const SizedBox(height: 12),
-
-                            // Filter chips - có animation ẩn/hiện
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  FilterChip(
-                                    showCheckmark: false,
-                                    label: Text(_getTaskTypeLabel()),
-                                    selected: _selectedTaskType != 'all',
-                                    onSelected: (_) =>
-                                        _showTaskTypeBottomSheet(),
-                                    avatar: const Icon(Icons.task_alt_outlined),
-                                    deleteIcon:
-                                        const Icon(Icons.arrow_drop_down),
-                                    onDeleted: _showTaskTypeBottomSheet,
-                                    labelStyle: TextStyle(
-                                      color: _selectedCage != 'all'
-                                          ? Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                          : null,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  FilterChip(
-                                    showCheckmark: false,
-                                    label: Text(_getCageLabel()),
-                                    selected: _selectedCage != 'all',
-                                    onSelected: (_) => _showCageBottomSheet(),
-                                    avatar: LinearIcons.chickenIcon,
-                                    deleteIcon:
-                                        const Icon(Icons.arrow_drop_down),
-                                    onDeleted: _showCageBottomSheet,
-                                    labelStyle: TextStyle(
-                                      color: _selectedCage != 'all'
-                                          ? Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                          : null,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  FilterChip(
-                                    showCheckmark: false,
-                                    label: Text(_getSessionLabel()),
-                                    selected: _selectedSession != null,
-                                    onSelected: (_) =>
-                                        _showSessionBottomSheet(),
-                                    avatar: const Icon(Icons.access_time),
-                                    deleteIcon:
-                                        const Icon(Icons.arrow_drop_down),
-                                    onDeleted: _showSessionBottomSheet,
-                                    labelStyle: TextStyle(
-                                      color: _selectedSession != null
-                                          ? Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                          : null,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  FilterChip(
-                                    showCheckmark: false,
-                                    label: Text(_getStatusLabel()),
-                                    selected: _selectedStatus != 'all',
-                                    onSelected: (_) => _showStatusBottomSheet(),
-                                    avatar: const Icon(Icons.flag_outlined),
-                                    deleteIcon:
-                                        const Icon(Icons.arrow_drop_down),
-                                    onDeleted: _showStatusBottomSheet,
-                                    labelStyle: TextStyle(
-                                      color: _selectedStatus != 'all'
-                                          ? _statuses.firstWhere((s) =>
-                                              s['id'] ==
-                                              _selectedStatus)['color']
-                                          : null,
-                                    ),
-                                  ),
+                            // Expanded Search Bar
+                            Expanded(
+                              child: SearchBar(
+                                controller: _searchController,
+                                onChanged: _onSearchChanged,
+                                backgroundColor: WidgetStateProperty.all(
+                                  Theme.of(context).colorScheme.surface,
+                                ),
+                                shape: WidgetStateProperty.all(StadiumBorder(
+                                    side: BorderSide(
+                                  color: Theme.of(context).primaryColor,
+                                ))),
+                                hintText: 'Tìm kiếm công việc',
+                                leading: Icon(Icons.search, size: 20),
+                                trailing: [
+                                  _searchController.text.isNotEmpty
+                                      ? IconButton(
+                                          icon: Icon(Icons.clear, size: 20),
+                                          onPressed: () {
+                                            setState(() {
+                                              _searchController.clear();
+                                            });
+                                            _filterTasks(searchQuery: '');
+                                          },
+                                        )
+                                      : SizedBox.shrink(),
                                 ],
+                                padding: WidgetStateProperty.all(
+                                  EdgeInsets.symmetric(horizontal: 12.0),
+                                ),
+                                elevation: WidgetStateProperty.all(0),
                               ),
                             ),
+                            // Filter Button with Active Filter Count Badge
+                            const SizedBox(width: 8),
+                            _buildFilterButton(),
+                            // Sort Button
+                            const SizedBox(width: 8),
+                            _buildSortButton(),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                // Sort chips - có animation ẩn/hiện
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
-                  ),
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      Text(
-                        'Sắp xếp theo:',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      ..._sortOptions.map((option) => Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: FilterChip(
-                              showCheckmark: false,
-                              selected: _sortBy == option['id'],
-                              onSelected: (_) {
-                                setState(() {
-                                  if (_sortBy == option['id']) {
-                                    _sortAscending = !_sortAscending;
-                                  } else {
-                                    _sortBy = option['id'];
-                                    _sortAscending = true;
-                                  }
-                                });
-                                _sortTasks();
-                              },
-                              avatar: null,
-                              labelStyle: TextStyle(
-                                color: _sortBy == option['id']
-                                    ? Theme.of(context).colorScheme.primary
-                                    : null,
-                              ),
-                              label: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    option['icon'] as IconData,
-                                    size: 20,
-                                    color: _sortBy == option['id']
-                                        ? Theme.of(context).colorScheme.primary
-                                        : null,
-                                  ),
-                                  if (_sortBy == option['id'])
-                                    Icon(
-                                      _sortAscending
-                                          ? Icons.arrow_upward
-                                          : Icons.arrow_downward,
-                                      size: 16,
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                    ),
-                                ],
-                              ),
+                      // Active Filter Chips Row (only show if filters are applied)
+                      if (_hasActiveFilters())
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16.0, right: 16.0, top: 8.0),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: _buildActiveFilterChips(),
                             ),
-                          )),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -1042,6 +926,553 @@ class _TaskWidgetState extends State<TaskWidget>
         ),
       ),
     );
+  }
+
+  // Check if any filter is active
+  bool _hasActiveFilters() {
+    return _selectedTaskType != 'all' ||
+        _selectedCage != 'all' ||
+        _selectedStatus != 'all' ||
+        _selectedSession != null;
+  }
+
+  // Count number of active filters
+  int _getActiveFilterCount() {
+    int count = 0;
+    if (_selectedTaskType != 'all') count++;
+    if (_selectedCage != 'all') count++;
+    if (_selectedStatus != 'all') count++;
+    if (_selectedSession != null) count++;
+    return count;
+  }
+
+  // Build filter button with badge
+  Widget _buildFilterButton() {
+    final activeCount = _getActiveFilterCount();
+
+    return Material(
+      color: Theme.of(context).colorScheme.primaryContainer,
+      borderRadius: BorderRadius.circular(24),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: _showFilterBottomSheet,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.filter_list,
+                size: 20,
+                color: activeCount > 0
+                    ? Theme.of(context).colorScheme.primary
+                    : null,
+              ),
+              if (activeCount > 0)
+                Container(
+                  margin: EdgeInsets.only(left: 4),
+                  padding: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    activeCount.toString(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Build sort button
+  Widget _buildSortButton() {
+    return Material(
+      color: Theme.of(context).colorScheme.primaryContainer,
+      borderRadius: BorderRadius.circular(24),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: _showSortBottomSheet,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Icon(
+            _sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
+            size: 20,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Build active filter chips
+  List<Widget> _buildActiveFilterChips() {
+    List<Widget> chips = [];
+
+    // Task Type Chip
+    if (_selectedTaskType != 'all') {
+      chips.add(
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Chip(
+            labelStyle: TextStyle(fontSize: 12),
+            visualDensity: VisualDensity.compact,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            label: Text(_getTaskTypeLabel()),
+            deleteIcon: Icon(Icons.close, size: 16),
+            onDeleted: () {
+              setState(() {
+                _selectedTaskType = 'all';
+              });
+              _filterTasks();
+            },
+          ),
+        ),
+      );
+    }
+
+    // Cage Chip
+    if (_selectedCage != 'all') {
+      chips.add(
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Chip(
+            labelStyle: TextStyle(fontSize: 12),
+            visualDensity: VisualDensity.compact,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            label: Text(_getCageLabel()),
+            deleteIcon: Icon(Icons.close, size: 16),
+            onDeleted: () {
+              setState(() {
+                _selectedCage = 'all';
+              });
+              _filterTasks();
+            },
+          ),
+        ),
+      );
+    }
+
+    // Session Chip
+    if (_selectedSession != null) {
+      chips.add(
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Chip(
+            labelStyle: TextStyle(fontSize: 12),
+            visualDensity: VisualDensity.compact,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            label: Text(TimeUtils.getCurrentSessionName()),
+            deleteIcon: Icon(Icons.close, size: 16),
+            onDeleted: () {
+              setState(() {
+                _selectedSession = null;
+              });
+              _filterTasks();
+            },
+          ),
+        ),
+      );
+    }
+
+    // Status Chip
+    if (_selectedStatus != 'all') {
+      final statusColor =
+          _statuses.firstWhere((s) => s['id'] == _selectedStatus)['color'];
+      chips.add(
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Chip(
+            labelStyle: TextStyle(fontSize: 12, color: statusColor),
+            backgroundColor: statusColor.withOpacity(0.1),
+            visualDensity: VisualDensity.compact,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            label: Text(_getStatusLabel()),
+            deleteIcon: Icon(Icons.close, size: 16, color: statusColor),
+            onDeleted: () {
+              setState(() {
+                _selectedStatus = 'all';
+              });
+              _filterTasks();
+            },
+          ),
+        ),
+      );
+    }
+
+    return chips;
+  }
+
+  // Combined filter bottom sheet
+  void _showFilterBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.6,
+        minChildSize: 0.5,
+        maxChildSize: 0.9,
+        expand: false,
+        builder: (context, scrollController) => Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 8),
+              width: 40,
+              height: 5,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Lọc công việc',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (_hasActiveFilters())
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          _selectedTaskType = 'all';
+                          _selectedCage = 'all';
+                          _selectedStatus = 'all';
+                          _selectedSession = null;
+                        });
+                        _filterTasks();
+                        Navigator.pop(context);
+                      },
+                      child: Text('Xóa bộ lọc'),
+                    ),
+                ],
+              ),
+            ),
+            Divider(),
+            Expanded(
+              child: ListView(
+                controller: scrollController,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                children: [
+                  // Task Type Section
+                  _buildFilterSection(
+                    title: 'Loại công việc',
+                    icon: Icons.work_outline,
+                    options: _buildTaskTypeOptions(),
+                    selectedValue: _selectedTaskType,
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedTaskType = value;
+                      });
+                    },
+                  ),
+                  Divider(),
+
+                  // Cage Section
+                  _buildFilterSection(
+                    title: 'Chuồng nuôi',
+                    icon: Icons.home_work_outlined,
+                    options: [
+                      {'id': 'all', 'name': 'Tất cả'},
+                      ...availableCageFilters.map((cage) => {
+                            'id': cage.cageId,
+                            'name': cage.cageName,
+                          }),
+                    ],
+                    selectedValue: _selectedCage,
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedCage = value;
+                      });
+                    },
+                  ),
+                  Divider(),
+
+                  // Session Section
+                  _buildFilterSection(
+                    title: 'Buổi',
+                    icon: Icons.access_time,
+                    options: _sessions
+                        .map((s) => {
+                              'id': s['id'],
+                              'name': s['name'],
+                              'image': s['id'] == 1
+                                  ? 'assets/images/morning.png'
+                                  : s['id'] == 2
+                                      ? 'assets/images/noon.png'
+                                      : s['id'] == 3
+                                          ? 'assets/images/afternoon.png'
+                                          : s['id'] == 4
+                                              ? 'assets/images/moon.png'
+                                              : null,
+                            })
+                        .toList(),
+                    selectedValue: _selectedSession?.toString() ?? 'all',
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedSession =
+                            value == 'all' ? null : int.parse(value);
+                      });
+                    },
+                  ),
+                  Divider(),
+
+                  // Status Section
+                  _buildFilterSection(
+                    title: 'Trạng thái',
+                    icon: Icons.flag_outlined,
+                    options: _statuses,
+                    selectedValue: _selectedStatus,
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedStatus = value;
+                      });
+                    },
+                    isColoredOption: true,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  _filterTasks();
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  minimumSize: Size(double.infinity, 50),
+                ),
+                child: Text('Áp dụng'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Build filter section for the bottom sheet
+  Widget _buildFilterSection({
+    required String title,
+    required IconData icon,
+    required List<Map<String, dynamic>> options,
+    required String selectedValue,
+    required Function(String) onSelected,
+    bool isColoredOption = false,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(icon, size: 20),
+            SizedBox(width: 8),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: options.map((option) {
+            final bool isSelected =
+                option['id'].toString() == selectedValue.toString();
+
+            return InkWell(
+              onTap: () => onSelected(option['id'].toString()),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? (isColoredOption && option['id'] != 'all'
+                          ? option['color'].withOpacity(0.1)
+                          : Theme.of(context).colorScheme.primaryContainer)
+                      : Colors.grey[200],
+                  borderRadius: BorderRadius.circular(16),
+                  border: isSelected
+                      ? Border.all(
+                          color: isColoredOption && option['id'] != 'all'
+                              ? option['color']
+                              : Theme.of(context).colorScheme.primary,
+                          width: 1,
+                        )
+                      : null,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (option['image'] != null)
+                      Image.asset(option['image'], width: 16, height: 16)
+                    else if (isColoredOption && option['id'] != 'all')
+                      Icon(
+                        Icons.circle,
+                        size: 12,
+                        color: option['color'],
+                      )
+                    else if (option['icon'] != null)
+                      Icon(
+                        option['icon'],
+                        size: 16,
+                        color: isSelected
+                            ? Theme.of(context).colorScheme.primary
+                            : null,
+                      ),
+                    SizedBox(width: 6),
+                    Text(
+                      option['name'],
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: isSelected
+                            ? (isColoredOption && option['id'] != 'all'
+                                ? option['color']
+                                : Theme.of(context).colorScheme.primary)
+                            : null,
+                        fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+        SizedBox(height: 8),
+      ],
+    );
+  }
+
+  // Show sort bottom sheet
+  void _showSortBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 8),
+            width: 40,
+            height: 5,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Icon(Icons.sort),
+                SizedBox(width: 8),
+                Text(
+                  'Sắp xếp theo',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Divider(),
+          ListView(
+            shrinkWrap: true,
+            children: _sortOptions.map((option) {
+              final bool isSelected = _sortBy == option['id'];
+              return ListTile(
+                leading: Icon(
+                  option['icon'] as IconData,
+                  color:
+                      isSelected ? Theme.of(context).colorScheme.primary : null,
+                ),
+                title: Text(
+                  option['name'],
+                  style: TextStyle(
+                    color: isSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
+                trailing: isSelected
+                    ? Icon(
+                        _sortAscending
+                            ? Icons.arrow_upward
+                            : Icons.arrow_downward,
+                        color: Theme.of(context).colorScheme.primary,
+                      )
+                    : null,
+                onTap: () {
+                  setState(() {
+                    if (_sortBy == option['id']) {
+                      _sortAscending = !_sortAscending;
+                    } else {
+                      _sortBy = option['id'];
+                      _sortAscending = true;
+                    }
+                  });
+                  _sortTasks();
+                  Navigator.pop(context);
+                },
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ...existing code...
+
+  // Helper methods to get labels
+  String _getTaskTypeLabel() {
+    if (_selectedTaskType == 'all') return 'Loại công việc';
+    final taskType = availableTaskTypeFilters.firstWhere(
+      (t) => t.taskTypeId == _selectedTaskType,
+      orElse: () => TaskType(taskTypeId: '', taskTypeName: ''),
+    );
+    return taskType.taskTypeName.isNotEmpty
+        ? taskType.taskTypeName
+        : 'Loại công việc';
+  }
+
+  String _getCageLabel() {
+    if (_selectedCage == 'all') return 'Chuồng nuôi';
+    final cage = availableCageFilters.firstWhere(
+      (c) => c.cageId == _selectedCage,
+      orElse: () =>
+          CageFilter(cageId: '', cageName: 'Không xác định', cageType: ''),
+    );
+    return cage.cageName;
   }
 
   // Hàm build task list với empty state
@@ -1059,7 +1490,7 @@ class _TaskWidgetState extends State<TaskWidget>
       return SingleChildScrollView(
         controller: _scrollController,
         physics: const AlwaysScrollableScrollPhysics(),
-        padding: const EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 24.0),
         child: Column(
           children: _buildSessionSections(),
         ),
@@ -1220,31 +1651,6 @@ class _TaskWidgetState extends State<TaskWidget>
             )
           : Container();
     }).toList();
-  }
-
-  // Helper methods to get labels
-  String _getTaskTypeLabel() {
-    if (_selectedTaskType == 'all') return 'Loại công việc';
-    final taskType = availableTaskTypeFilters.firstWhere(
-      (t) => t.taskTypeId == _selectedTaskType,
-      orElse: () => TaskType(taskTypeId: '', taskTypeName: ''),
-    );
-    return taskType.taskTypeName.isNotEmpty
-        ? taskType.taskTypeName
-        : 'Loại công việc';
-  }
-
-  String _getCageLabel() {
-    if (_selectedCage == 'all') return 'Chuồng nuôi';
-    final cage =
-        availableCageFilters.firstWhere((c) => c.cageId == _selectedCage);
-    return cage.cageName;
-  }
-
-  String _getSessionLabel() {
-    if (_selectedSession == null) return 'Buổi';
-    return _sessions.firstWhere((s) => s['id'] == _selectedSession)['name'] ??
-        '';
   }
 
   // Thêm helper method để lấy label cho status chip

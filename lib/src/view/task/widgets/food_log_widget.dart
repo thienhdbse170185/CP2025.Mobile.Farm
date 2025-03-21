@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/info_item_widget.dart';
 
@@ -54,11 +54,11 @@ class FoodLogWidget extends StatelessWidget {
             label: 'Tên người báo cáo',
             value: userName ?? 'Đang tải...',
           ),
-          const SizedBox(width: 24),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.1),
           InfoItemWidget(
               context: context,
               label: 'Ngày báo cáo',
-              value: DateFormat('dd/MM/yyyy').format(TimeUtils.customNow())),
+              value: CustomDateUtils.formatDate(TimeUtils.customNow())),
         ]),
         const SizedBox(height: 24),
         Card.outlined(

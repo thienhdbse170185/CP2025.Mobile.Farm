@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
@@ -205,26 +204,26 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   }
 
   // Function to pick an image from the camera
-  Future<void> _pickImageFromCamera() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      setState(() {
-        _images.add(File(pickedFile.path));
-      });
-    }
-  }
+  // Future<void> _pickImageFromCamera() async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: ImageSource.camera);
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       _images.add(File(pickedFile.path));
+  //     });
+  //   }
+  // }
 
-  // Function to pick an image from the gallery
-  Future<void> _pickImageFromGallery() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _images.add(File(pickedFile.path));
-      });
-    }
-  }
+  // // Function to pick an image from the gallery
+  // Future<void> _pickImageFromGallery() async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       _images.add(File(pickedFile.path));
+  //     });
+  //   }
+  // }
 
   // Function to check if current time is within working hours
   bool _isWithinWorkingHours() {
@@ -1260,8 +1259,10 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               icon: Icon(Icons.arrow_back)),
           title: Column(children: [
             const Text('Chi tiết công việc'),
-            Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
-                style: Theme.of(context).textTheme.bodyMedium)
+            Text(
+              '${DateFormat('HH:mm').format(TimeUtils.customNow())} - ${CustomDateUtils.formatDate(TimeUtils.customNow())}',
+              style: Theme.of(context).textTheme.bodyMedium,
+            )
           ]),
           actions: [
             if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
@@ -1595,6 +1596,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   Widget _buildWorkTab(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (taskStatus == StatusDataConstant.cancelledVn)
             StatusNotificationWidget(
