@@ -28,16 +28,6 @@ class ImagePickerSection extends StatelessWidget {
     }
   }
 
-  Future<void> _pickImageFromGallery(BuildContext context) async {
-    if (isDisabled) return;
-
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      onImageAdded(File(pickedFile.path));
-    }
-  }
-
   Widget _buildImagePickerButton({
     required BuildContext context,
     required Widget icon,
@@ -47,25 +37,40 @@ class ImagePickerSection extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
-      child: Card.outlined(
-        child: SizedBox(
-          width: 110,
-          height: 90,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              icon,
-              const SizedBox(height: 8),
-              Text(
-                label,
-                style: TextStyle(
-                  color: onTap == null
-                      ? Theme.of(context).colorScheme.outline
-                      : Theme.of(context).colorScheme.onSurface,
-                ),
-              ),
-            ],
-          ),
+      // child: Card.outlined(
+      //   child: SizedBox(
+      //     width: 110,
+      //     height: 90,
+      //     child: Column(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       children: [
+      //         icon,
+      //         const SizedBox(height: 8),
+      //         Text(
+      //           label,
+      //           style: TextStyle(
+      //             color: onTap == null
+      //                 ? Theme.of(context).colorScheme.outline
+      //                 : Theme.of(context).colorScheme.onSurface,
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey[300]!),
+            borderRadius: BorderRadius.circular(12)),
+        child: Column(
+          children: [
+            Icon(Icons.add_photo_alternate_outlined,
+                size: 40, color: Colors.grey[400]),
+            const SizedBox(height: 12),
+            Text('Thêm hình ảnh', style: TextStyle(color: Colors.grey[600])),
+          ],
         ),
       ),
     );
@@ -82,22 +87,13 @@ class ImagePickerSection extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         if (images.isEmpty)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildImagePickerButton(
-                context: context,
-                icon: LinearIcons.cameraIcon,
-                label: 'Chụp ảnh',
-                onTap: isDisabled ? null : () => _pickImageFromCamera(context),
-              ),
-              _buildImagePickerButton(
-                context: context,
-                icon: LinearIcons.folderAddIcon,
-                label: 'Chọn tập tin',
-                onTap: isDisabled ? null : () => _pickImageFromGallery(context),
-              ),
-            ],
+          Center(
+            child: _buildImagePickerButton(
+              context: context,
+              icon: LinearIcons.cameraIcon,
+              label: 'Chụp ảnh',
+              onTap: isDisabled ? null : () => _pickImageFromCamera(context),
+            ),
           ),
         Wrap(
           spacing: 8,

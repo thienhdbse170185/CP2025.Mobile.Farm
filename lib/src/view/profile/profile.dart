@@ -1,9 +1,10 @@
 import 'dart:developer';
 
+import 'package:app_settings/app_settings.dart'; // Add the app_settings import at the top
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_farm/src/core/common/widgets/linear_icons.dart'; // Import the common icons
+import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
@@ -72,6 +73,55 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         );
       },
     );
+  }
+
+  void _openAppNotificationSettings() async {
+    // For Android and iOS, we'll use platform-specific approaches
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      // Open Android App notification settings
+      try {
+        await AppSettings.openAppSettings(type: AppSettingsType.notification);
+      } catch (e) {
+        log('Failed to open notification settings: $e');
+        // Fallback to showing an informative dialog
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Thông báo'),
+            content: const Text(
+                'Để thay đổi cài đặt thông báo, vui lòng vào Cài đặt > Ứng dụng > Smart Farm > Thông báo'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Đã hiểu'),
+              ),
+            ],
+          ),
+        );
+      }
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      // For iOS, we direct to app settings
+      try {
+        await AppSettings.openAppSettings();
+      } catch (e) {
+        log('Failed to open app settings: $e');
+        // Fallback dialog
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Thông báo'),
+            content: const Text(
+                'Để thay đổi cài đặt thông báo, vui lòng vào Cài đặt > Smart Farm > Thông báo'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Đã hiểu'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -149,7 +199,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: _isLoading
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(),
                           )
                         : ListTile(
@@ -165,7 +215,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 fontSize: 18,
                               ),
                             ),
-                            trailing: Icon(Icons.chevron_right_rounded),
+                            trailing: const Icon(Icons.chevron_right_rounded),
                           ),
                   ),
                 ),
@@ -204,19 +254,19 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () {
-                              // Navigate to about
-                              context.push(RouteName.notificationSetting);
+                              // Open system notification settings
+                              _openAppNotificationSettings();
                             },
                             child: Row(
                               children: [
-                                Icon(Icons.notifications_none_outlined),
+                                const Icon(Icons.notifications_none_outlined),
                                 const SizedBox(width: 16),
                                 Text(
                                   'Thông báo',
                                   style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                                 const Spacer(),
-                                Icon(Icons.chevron_right_rounded)
+                                const Icon(Icons.chevron_right_rounded)
                               ],
                             ),
                           ),
