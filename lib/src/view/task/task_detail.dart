@@ -42,6 +42,7 @@ import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
 import 'package:smart_farm/src/viewmodel/sale_type/sale_type_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_schedule_log_cubit.dart';
+// import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_schedule_log_cubit.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 import 'package:smart_farm/src/viewmodel/vaccine_schedule/vaccine_schedule_cubit.dart';
 
@@ -138,6 +139,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   // --- Medication check state ---
   final Map<String, bool> _medicationChecked = {};
+
+  // Add a new variable to track the isolation cage feeding status
+  bool _isIsolationFed = false;
 
   // --- Lifecycle methods ---
   @override
@@ -337,59 +341,83 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     }
   }
 
-  // Function to update task status
-  void _updateTaskStatus() {
+  // Function to check if all conditions are met to complete the task
+  bool _canCompleteTask() {
+    if (taskStatus != StatusDataConstant.inProgressVn) return true;
+
     if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
-        taskStatus == StatusDataConstant.inProgressVn &&
         !_areAnyMedicationsChecked()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Vui lòng xác nhận đã uống thuốc.')),
-      );
-      return;
-    } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin &&
-        taskStatus == StatusDataConstant.inProgressVn &&
+      return false;
+    }
+
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding &&
+        task?.hasAnimalDesease == true &&
+        !_isIsolationFed) {
+      return false;
+    }
+
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin &&
         _countAnimalVaccineController.text == '0') {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Vui lòng nhập số lượng gia cầm đã tiêm.')),
-      );
-      return;
-    } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.weighing &&
-        taskStatus == StatusDataConstant.inProgressVn &&
+      return false;
+    }
+
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.weighing &&
         _weightAnimalController.text == '0.0') {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Vui lòng nhập số cân nặng trung bình')),
-      );
-      return;
-    } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal &&
-        taskStatus == StatusDataConstant.inProgressVn &&
+      return false;
+    }
+
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal &&
         (_weightMeatSellController.text == '0' ||
             _priceMeatSellController.text.isEmpty ||
             _priceMeatSellController.text == '0')) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Vui lòng nhập khối lượng thịt và giá bán hợp lệ')),
-      );
-      return;
-    } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg &&
-        taskStatus == StatusDataConstant.inProgressVn &&
+      return false;
+    }
+
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg &&
         (_countEggSellController.text == '0' ||
             _priceEggSellController.text.isEmpty ||
             _priceEggSellController.text == '0')) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Vui lòng nhập số lượng trứng và giá bán hợp lệ')),
-      );
-      return;
-    } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest &&
-        taskStatus == StatusDataConstant.inProgressVn &&
+      return false;
+    }
+
+    if (task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest &&
         _countEggCollectedController.text == '0') {
+      return false;
+    }
+
+    return true;
+  }
+
+  // Function to update task status
+  void _updateTaskStatus() {
+    if (!_canCompleteTask()) {
+      String errorMessage = '';
+
+      if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
+        errorMessage = 'Vui lòng xác nhận đã uống thuốc.';
+      } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding &&
+          task?.hasAnimalDesease == true &&
+          !_isIsolationFed) {
+        errorMessage = 'Vui lòng xác nhận đã cho ăn ở chuồng cách ly.';
+      } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin) {
+        errorMessage = 'Vui lòng nhập số lượng gia cầm đã tiêm.';
+      } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.weighing) {
+        errorMessage = 'Vui lòng nhập số cân nặng trung bình';
+      } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal) {
+        errorMessage = 'Vui lòng nhập khối lượng thịt và giá bán hợp lệ';
+      } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg) {
+        errorMessage = 'Vui lòng nhập số lượng trứng và giá bán hợp lệ';
+      } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest) {
+        errorMessage = 'Vui lòng nhập số lượng trứng thu hoạch';
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Vui lòng nhập số lượng trứng thu hoạch')),
+        SnackBar(content: Text(errorMessage)),
       );
       return;
     }
 
+    // Continue with the existing dialog and confirmation logic
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -421,6 +449,69 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           ],
         );
       },
+    );
+  }
+
+  // Function to navigate to symptom reporting screen
+  void _navigateToSymptomReport() {
+    if (task == null) return;
+
+    showDialog(
+      context: context,
+      builder: (context) => WarningConfirmationDialog(
+        isEmergency: true,
+        title: 'Báo cáo triệu chứng bệnh',
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Bạn phát hiện gia cầm có biểu hiện bệnh và muốn báo cáo cho bác sĩ thú y?',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Công việc hiện tại sẽ được đánh dấu là "Có vấn đề" để cập nhật tình trạng bất thường.',
+              style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Icon(Icons.info_outline,
+                    color: Theme.of(context).colorScheme.primary, size: 18),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        primaryButtonText: 'Báo cáo ngay',
+        secondaryButtonText: 'Đóng',
+        onPrimaryButtonPressed: () {
+          Navigator.pop(context);
+          // Mark the task as having a problem
+          // context.read<TaskBloc>().add(
+          //       TaskEvent.markTaskHasProblem(
+          //         taskId: widget.taskId,
+          //         problemDescription: 'Phát hiện gia cầm có biểu hiện bệnh',
+          //       ),
+          //     );
+          // Navigate to symptom reporting screen
+          context.push(
+            '/symptom/create',
+            extra: {'cageName': task!.cageName, 'taskId': widget.taskId},
+          );
+        },
+        onSecondaryButtonPressed: () => Navigator.pop(context),
+      ),
     );
   }
 
@@ -744,6 +835,30 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
               getVaccinScheduleLogFailure: (e) async {
                 log("Lấy log lịch tiêm chủng thất bại!");
+              },
+              markTaskHasProblemLoading: () {
+                setState(() => _isProcessing = true);
+                log("Đang đánh dấu công việc có vấn đề...");
+              },
+              markTaskHasProblemSuccess: () {
+                setState(() => _isProcessing = false);
+                log("Đánh dấu công việc có vấn đề thành công!");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Đã đánh dấu công việc có vấn đề!'),
+                    backgroundColor: Colors.orange,
+                  ),
+                );
+              },
+              markTaskHasProblemFailure: (e) {
+                setState(() => _isProcessing = false);
+                log("Đánh dấu công việc có vấn đề thất bại! \nError: $e");
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Không thể đánh dấu công việc: $e'),
+                    backgroundColor: Colors.red,
+                  ),
+                );
               },
               orElse: () {},
             );
@@ -1371,7 +1486,16 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   );
                 },
               )
-            ]
+            ],
+            if (taskStatus == StatusDataConstant.inProgressVn &&
+                task?.taskType.taskTypeId != TaskTypeDataConstant.health) ...[
+              IconButton(
+                icon: const Icon(Icons.medical_information_outlined,
+                    color: Colors.red),
+                tooltip: 'Báo cáo triệu chứng bệnh',
+                onPressed: _navigateToSymptomReport,
+              ),
+            ],
           ],
         ),
         body: RefreshIndicator(
@@ -1563,6 +1687,67 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                           '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
                         ),
                 ),
+                if (taskStatus == StatusDataConstant.inProgressVn &&
+                    task?.taskType.taskTypeId != TaskTypeDataConstant.health)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
+                    color:
+                        Theme.of(context).colorScheme.error.withOpacity(0.08),
+                    child: InkWell(
+                      onTap: _navigateToSymptomReport,
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .error
+                                  .withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              Icons.medical_services_outlined,
+                              color: Theme.of(context).colorScheme.error,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Phát hiện gia cầm có biểu hiện bệnh?',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Báo cáo triệu chứng ngay cho bác sĩ thú y',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .error
+                                        .withOpacity(0.8),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -1579,9 +1764,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         (taskStatus == StatusDataConstant.pendingVn &&
                                 !_isWithinWorkingHours() ||
                             taskStatus == StatusDataConstant.inProgressVn &&
-                                task?.taskType.taskTypeId ==
-                                    TaskTypeDataConstant.health &&
-                                !_areAnyMedicationsChecked()))
+                                !_canCompleteTask()))
                     ? null
                     : _updateTaskStatus,
             child: _isProcessing
@@ -1632,6 +1815,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 logTime: task?.dueDate != null
                     ? DateTime.parse(task!.dueDate)
                     : null,
+                hasAnimalDesease: task?.hasAnimalDesease ?? false,
+                isIsolationFed: _isIsolationFed,
+                onIsolationFedChanged: (value) {
+                  setState(() {
+                    _isIsolationFed = value;
+                  });
+                },
               )
             else if (task?.taskType.taskTypeId == TaskTypeDataConstant.health)
               HealthLogWidget(
@@ -1965,19 +2155,28 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   }
 
   Widget _contentButton() {
-    return Text(taskStatus == StatusDataConstant.inProgressVn
-        ? (_areAnyMedicationsChecked()
-            ? 'Xác nhận hoàn thành'
-            : 'Chưa ghi nhận đã cho uống thuốc')
-        : taskStatus == StatusDataConstant.doneVn
-            ? 'Công việc đã hoàn thành'
-            : taskStatus == StatusDataConstant.overdueVn
-                ? 'Công việc đã quá hạn'
-                : taskStatus == StatusDataConstant.cancelledVn
-                    ? 'Công việc đã bị hủy'
-                    : _isWithinWorkingHours()
-                        ? 'Xác nhận làm việc'
-                        : 'Chưa đến giờ làm việc');
+    if (taskStatus == StatusDataConstant.inProgressVn) {
+      if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
+          !_areAnyMedicationsChecked()) {
+        return const Text('Chưa ghi nhận đã cho uống thuốc');
+      } else if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding &&
+          task?.hasAnimalDesease == true &&
+          !_isIsolationFed) {
+        return const Text('Vui lòng xác nhận đã cho ăn ở chuồng cách ly');
+      } else {
+        return const Text('Xác nhận hoàn thành');
+      }
+    } else if (taskStatus == StatusDataConstant.doneVn) {
+      return const Text('Công việc đã hoàn thành');
+    } else if (taskStatus == StatusDataConstant.overdueVn) {
+      return const Text('Công việc đã quá hạn');
+    } else if (taskStatus == StatusDataConstant.cancelledVn) {
+      return const Text('Công việc đã bị hủy');
+    } else {
+      return Text(_isWithinWorkingHours()
+          ? 'Xác nhận làm việc'
+          : 'Chưa đến giờ làm việc');
+    }
   }
 
   Widget _buildLastSessionForm() {

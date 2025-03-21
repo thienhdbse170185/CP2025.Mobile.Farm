@@ -101,4 +101,22 @@ class TaskState with _$TaskState {
       _UpdateMultipleTaskSuccess;
   const factory TaskState.updateMultipleTaskFailure(String error) =
       _UpdateMultipleTaskFailure;
+
+  /*
+  // Commented out since the API isn't ready yet
+  // New states for marking tasks as having problems
+  const factory TaskState.markTaskHasProblemLoading() =
+      _MarkTaskHasProblemLoading;
+  const factory TaskState.markTaskHasProblemSuccess() =
+      _MarkTaskHasProblemSuccess;
+  const factory TaskState.markTaskHasProblemFailure(String error) =
+      _MarkTaskHasProblemFailure;
+
+  const factory TaskState.markTaskAsCompleteLoading() =
+      _MarkTaskAsCompleteLoading;
+  const factory TaskState.markTaskAsCompleteSuccess() =
+      _MarkTaskAsCompleteSuccess;
+  const factory TaskState.markTaskAsCompleteFailure(String error) =
+      _MarkTaskAsCompleteFailure;
+  */
 }
