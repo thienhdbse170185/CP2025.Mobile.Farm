@@ -639,7 +639,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     if (_farmingBatch != null) {
       final enteredQuantity = int.tryParse(value) ?? 0;
       final quantityReal =
-          _growthStage!.quantity! - _farmingBatch!.affectedQuantity!;
+          _growthStage!.quantity! - (_farmingBatch?.affectedQuantity ?? 0);
       final threshold = (quantityReal * 0.5).toInt();
       if (enteredQuantity > threshold) {
         final confirmed = await showDialog<bool>(

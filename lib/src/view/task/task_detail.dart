@@ -1410,15 +1410,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 },
               )
             ],
-            if (taskStatus == StatusDataConstant.inProgressVn &&
-                task?.taskType.taskTypeId != TaskTypeDataConstant.health) ...[
-              IconButton(
-                icon: const Icon(Icons.medical_information_outlined,
-                    color: Colors.red),
-                tooltip: 'Báo cáo triệu chứng bệnh',
-                onPressed: _navigateToSymptomReport,
-              ),
-            ],
+            // if (taskStatus == StatusDataConstant.inProgressVn &&
+            //     task?.taskType.taskTypeId != TaskTypeDataConstant.health) ...[
+            //   IconButton(
+            //     icon: const Icon(Icons.medical_information_outlined,
+            //         color: Colors.red),
+            //     tooltip: 'Báo cáo triệu chứng bệnh',
+            //     onPressed: _navigateToSymptomReport,
+            //   ),
+            // ],
           ],
         ),
         body: RefreshIndicator(
@@ -1574,42 +1574,52 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     },
                   ),
                 ),
-                const SizedBox(height: 8),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: Theme.of(context).colorScheme.outlineVariant,
-                        width: 1,
-                      ),
-                      bottom: BorderSide(
-                        color: Theme.of(context).colorScheme.outlineVariant,
-                        width: 1,
-                      ),
-                    ),
-                    color: Colors.white,
-                  ),
-                  child: (task?.taskType.taskTypeId ==
-                              TaskTypeDataConstant.feeding ||
-                          task?.taskType.taskTypeId ==
-                              TaskTypeDataConstant.health ||
-                          task?.taskType.taskTypeId ==
-                              TaskTypeDataConstant.vaccin ||
-                          task?.taskType.taskTypeId ==
-                              TaskTypeDataConstant.sellAnimal ||
-                          task?.taskType.taskTypeId ==
-                              TaskTypeDataConstant.weighing ||
-                          task?.taskType.taskTypeId ==
-                              TaskTypeDataConstant.eggHarvest ||
-                          task?.taskType.taskTypeId ==
-                              TaskTypeDataConstant.sellEgg)
-                      ? _buildWorkTab(context)
-                      : const Text(
-                          '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
+                // Add Warning Notification if isWarning is true
+                if (task?.isWarning == true)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
+                    color: Theme.of(context).colorScheme.errorContainer,
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.error.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            Icons.warning_amber_rounded,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
                         ),
-                ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Cảnh báo: Công việc có vấn đề',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Đã có báo cáo triệu chứng bệnh cho chuồng này',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Theme.of(context).colorScheme.onErrorContainer,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 if (taskStatus == StatusDataConstant.inProgressVn &&
                     task?.taskType.taskTypeId != TaskTypeDataConstant.health)
                   Container(
@@ -1671,6 +1681,41 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       ),
                     ),
                   ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                      bottom: BorderSide(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                        width: 1,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: (task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.feeding ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.health ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.vaccin ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.sellAnimal ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.weighing ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.eggHarvest ||
+                          task?.taskType.taskTypeId ==
+                              TaskTypeDataConstant.sellEgg)
+                      ? _buildWorkTab(context)
+                      : const Text(
+                          '(!) Loại công việc này không cần tạo đơn báo cáo hằng ngày.',
+                        ),
+                ),
               ],
             ),
           ),
