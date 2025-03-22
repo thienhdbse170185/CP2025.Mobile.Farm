@@ -206,9 +206,18 @@ class _TaskWidgetState extends State<TaskWidget>
         selectedDate = picked;
       });
       // Call the API to fetch tasks for the selected date
-      context
-          .read<TaskBloc>()
-          .add(TaskEvent.getTasksByUserIdAndDate(picked, null));
+      // context
+      //     .read<TaskBloc>()
+      //     .add(TaskEvent.getTasksByUserIdAndDate(picked, null));
+      context.read<TaskBloc>().add(TaskEvent.getTasks(
+          _searchController.text,
+          _selectedStatus == 'all' ? null : _selectedStatus,
+          _selectedTaskType == 'all' ? null : _selectedTaskType,
+          _selectedCage == 'all' ? null : _selectedCage,
+          picked,
+          _selectedSession,
+          1,
+          20));
     }
   }
 

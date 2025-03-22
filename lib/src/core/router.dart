@@ -210,10 +210,18 @@ final router = GoRouter(
       GoRoute(
           path: RouteName.createSymptom,
           pageBuilder: (context, state) {
-            final cageName =
-                (state.extra as Map<String, dynamic>?)?['cageName'] as String;
-            return _buildPageWithSlideTransition(
-                CreateSymptomWidget(cageName: cageName));
+            final extra = state.extra as Map<String, dynamic>?;
+            final cageName = extra?['cageName'] as String? ?? '';
+            final cageId = extra?['cageId'] as String?;
+            final taskId = extra?['taskId'] as String?;
+            final fromTask = extra?['fromTask'] as bool? ?? false;
+
+            return _buildPageWithSlideTransition(CreateSymptomWidget(
+              cageName: cageName,
+              cageId: cageId,
+              taskId: taskId,
+              fromTask: fromTask,
+            ));
           }),
 
       ///create-ticket-route
@@ -283,10 +291,15 @@ final router = GoRouter(
         path: RouteName.symptomSuccess,
         pageBuilder: (context, state) {
           final extra = state.extra as Map<String, dynamic>;
+          final fromTask = extra['fromTask'] as bool? ?? false;
+          final taskId = extra['taskId'] as String?;
+
           return _buildPageWithSlideTransition(
             SymptomSuccessWidget(
               symptom: extra['symptom'] as MedicalSymptomResponse,
               cageName: extra['cageName'] as String,
+              fromTask: fromTask,
+              taskId: taskId,
             ),
           );
         },

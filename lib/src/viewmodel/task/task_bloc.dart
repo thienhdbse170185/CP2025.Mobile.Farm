@@ -339,44 +339,22 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(TaskState.getVaccinScheduleLogFailure(e.toString()));
       }
     });
-    /*
-    // Commented out since the API isn't ready yet
-    on<_MarkTaskHasProblem>((event, emit) async {
-      emit(const TaskState.markTaskHasProblemLoading());
+
+    on<_SetTaskIsTreatment>((event, emit) async {
+      emit(const TaskState.setTaskIsTreatmentInProgress());
       try {
-        // Call repository to mark task as having a problem
-        // This depends on your API implementation
-        // For now, we'll assume we update the task description to include the problem
-        await repository.markTaskHasProblem(
-            taskId: event.taskId, problemDescription: event.problemDescription);
-        emit(const TaskState.markTaskHasProblemSuccess());
-      } catch (e) {
-        emit(TaskState.markTaskHasProblemFailure(e.toString()));
-      }
-    });
-    
-    on<_MarkTaskAsComplete>((event, emit) async {
-      emit(const TaskState.markTaskAsCompleteLoading());
-      try {
-        // Depending on your API, you might want to add a special flag or update
-        // both the status and problem status in a single call
-        if (event.hasProblem) {
-          await repository.markTaskHasProblem(
-            taskId: event.taskId,
-            problemDescription:
-                event.problemDescription ?? 'Gia cầm có biểu hiện bất thường',
-          );
+        final result =
+            await repository.setTaskIsTreatment(taskId: event.taskId);
+        if (result) {
+          emit(const TaskState.setTaskIsTreatmentSuccess());
+        } else {
+          emit(const TaskState.setTaskIsTreatmentFailure(
+              'Đánh dấu công việc là công việc cách ly thất bại!'));
         }
-
-        // Mark the task as completed
-        await repository.update(event.taskId, StatusDataConstant.done);
-
-        emit(const TaskState.markTaskAsCompleteSuccess());
       } catch (e) {
-        emit(TaskState.markTaskAsCompleteFailure(e.toString()));
+        emit(TaskState.setTaskIsTreatmentFailure(e.toString()));
       }
     });
-    */
   }
 
   String _formatDate(DateTime? date) {

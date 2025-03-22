@@ -32,8 +32,17 @@ import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 
 class CreateSymptomWidget extends StatefulWidget {
   final String cageName;
+  final String? cageId;
+  final String? taskId;
+  final bool fromTask;
 
-  const CreateSymptomWidget({super.key, required this.cageName});
+  const CreateSymptomWidget({
+    super.key,
+    required this.cageName,
+    this.cageId,
+    this.taskId,
+    this.fromTask = false,
+  });
 
   @override
   State<CreateSymptomWidget> createState() => _CreateSymptomWidgetState();
@@ -89,6 +98,15 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   void initState() {
     super.initState();
     _selectedCage = widget.cageName.isNotEmpty ? widget.cageName : null;
+    _selectedCageId = widget.cageId;
+
+    // If coming from a task, automatically load the farming batch
+    if (widget.fromTask == true && widget.cageId != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<FarmingBatchCubit>().getFarmingBatchByCage(widget.cageId!);
+      });
+    }
+
     _fetchInitialData();
   }
 
@@ -484,8 +502,19 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       pictures: medicalSymptom.pictures,
       medicalSymptomDetails: medicalSymptom.medicalSymptomDetails,
     );
-    context.go(RouteName.symptomSuccess,
-        extra: {'symptom': symptom, 'cageName': _selectedCage});
+
+    // If coming from a task, return to the task screen after showing success
+    if (widget.fromTask && widget.taskId != null) {
+      context.go(RouteName.symptomSuccess, extra: {
+        'symptom': symptom,
+        'cageName': _selectedCage,
+        'fromTask': true,
+        'taskId': widget.taskId
+      });
+    } else {
+      context.go(RouteName.symptomSuccess,
+          extra: {'symptom': symptom, 'cageName': _selectedCage});
+    }
   }
 
   void _handleCreateFailure(String error) {
@@ -575,7 +604,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       if (value.isNotEmpty) {
         final enteredQuantity = int.tryParse(value) ?? 0;
         final quantityReal =
-            _growthStage!.quantity! - _farmingBatch!.affectedQuantity!;
+            _growthStage!.quantity! - (_farmingBatch?.affectedQuantity ?? 0);
         log('Quantity real: $quantityReal');
         if (enteredQuantity > quantityReal) {
           await showDialog(

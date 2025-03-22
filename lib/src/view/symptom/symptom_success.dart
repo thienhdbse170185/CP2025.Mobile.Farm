@@ -9,11 +9,15 @@ import 'package:smart_farm/src/core/router.dart';
 class SymptomSuccessWidget extends StatefulWidget {
   final MedicalSymptomResponse symptom;
   final String cageName;
+  final bool fromTask;
+  final String? taskId;
 
   const SymptomSuccessWidget({
     super.key,
     required this.symptom,
     required this.cageName,
+    this.fromTask = false,
+    this.taskId,
   });
 
   @override
@@ -43,6 +47,10 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        if (widget.fromTask && widget.taskId != null) {
+          context.go(RouteName.task); // Go back to task list
+          return false;
+        }
         context.go(RouteName.symptom);
         return false;
       },
@@ -233,17 +241,37 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
             children: [
               Expanded(
                 child: OutlinedButton(
-                  onPressed: () => context.go(RouteName.home),
-                  child: const Text('Về trang chủ'),
+                  onPressed: () {
+                    if (widget.fromTask && widget.taskId != null) {
+                      // Return to specific task detail page
+                      context.go(
+                        '${RouteName.taskDetail}?taskId=${widget.taskId}',
+                        extra: widget.taskId,
+                      );
+                    } else {
+                      context.go(RouteName.home);
+                    }
+                  },
+                  child: Text(
+                      widget.fromTask ? 'Quay lại công việc' : 'Về trang chủ'),
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: FilledButton(
                   onPressed: () {
-                    context.push(RouteName.createSymptom, extra: {
-                      'cageName': widget.symptom.id,
-                    });
+                    if (widget.fromTask && widget.taskId != null) {
+                      // Create another symptom for the same cage
+                      context.push(RouteName.createSymptom, extra: {
+                        'cageName': widget.cageName,
+                        'taskId': widget.taskId,
+                        'fromTask': true
+                      });
+                    } else {
+                      context.push(RouteName.createSymptom, extra: {
+                        'cageName': widget.symptom.id,
+                      });
+                    }
                   },
                   child: const Text('Tạo báo cáo mới'),
                 ),

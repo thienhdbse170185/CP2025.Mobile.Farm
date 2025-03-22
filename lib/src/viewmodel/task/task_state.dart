@@ -119,4 +119,11 @@ class TaskState with _$TaskState {
   const factory TaskState.markTaskAsCompleteFailure(String error) =
       _MarkTaskAsCompleteFailure;
   */
+
+  const factory TaskState.setTaskIsTreatmentInProgress() =
+      _SetTaskIsTreatmentInProgress;
+  const factory TaskState.setTaskIsTreatmentSuccess() =
+      _SetTaskIsTreatmentSuccess;
+  const factory TaskState.setTaskIsTreatmentFailure(String error) =
+      _SetTaskIsTreatmentFailure;
 }

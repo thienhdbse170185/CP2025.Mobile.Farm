@@ -19,7 +19,9 @@ import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/constants/vaccine_schedule_status_constant.dart';
+import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
+import 'package:smart_farm/src/core/utils/task_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/animal_sale_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/egg_harvest_log_widget.dart';
@@ -187,67 +189,18 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     super.dispose();
   }
 
-  // Function to check if all medications are checked
-  // bool _areAllMedicationsChecked() {
-  //   if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
-  //     return prescription?.medications?.every((medication) =>
-  //             _medicationChecked[medication.medicationId] ?? false) ??
-  //         false;
-  //   }
-  //   return true;
-  // }
-
   // Function to check if any medication is checked
   bool _areAnyMedicationsChecked() {
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
-      return prescription?.medications?.any((medication) =>
-              _medicationChecked[medication.medicationId] ?? false) ??
-          false;
-    }
-    return true;
+    return areAnyMedicationsChecked(
+      task: task,
+      prescription: prescription,
+      medicationChecked: _medicationChecked,
+    );
   }
-
-  // Function to pick an image from the camera
-  // Future<void> _pickImageFromCamera() async {
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.pickImage(source: ImageSource.camera);
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _images.add(File(pickedFile.path));
-  //     });
-  //   }
-  // }
-
-  // // Function to pick an image from the gallery
-  // Future<void> _pickImageFromGallery() async {
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _images.add(File(pickedFile.path));
-  //     });
-  //   }
-  // }
 
   // Function to check if current time is within working hours
   bool _isWithinWorkingHours() {
-    if (task == null) return false;
-    final now = TimeUtils.customNow();
-    final startHour = task!.session == 1
-        ? 6
-        : task!.session == 2
-            ? 12
-            : task!.session == 3
-                ? 14
-                : 18;
-    final endHour = task!.session == 1
-        ? 12
-        : task!.session == 2
-            ? 14
-            : task!.session == 3
-                ? 18
-                : 23;
-    return now.hour >= startHour && now.hour < endHour;
+    return isWithinWorkingHours(task);
   }
 
   // Function to create log
@@ -343,49 +296,19 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   // Function to check if all conditions are met to complete the task
   bool _canCompleteTask() {
-    if (taskStatus != StatusDataConstant.inProgressVn) return true;
-
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
-        !_areAnyMedicationsChecked()) {
-      return false;
-    }
-
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding &&
-        task?.hasAnimalDesease == true &&
-        !_isIsolationFed) {
-      return false;
-    }
-
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin &&
-        _countAnimalVaccineController.text == '0') {
-      return false;
-    }
-
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.weighing &&
-        _weightAnimalController.text == '0.0') {
-      return false;
-    }
-
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal &&
-        (_weightMeatSellController.text == '0' ||
-            _priceMeatSellController.text.isEmpty ||
-            _priceMeatSellController.text == '0')) {
-      return false;
-    }
-
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg &&
-        (_countEggSellController.text == '0' ||
-            _priceEggSellController.text.isEmpty ||
-            _priceEggSellController.text == '0')) {
-      return false;
-    }
-
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest &&
-        _countEggCollectedController.text == '0') {
-      return false;
-    }
-
-    return true;
+    return canCompleteTask(
+      taskStatus: taskStatus,
+      task: task,
+      areAnyMedicationsChecked: _areAnyMedicationsChecked(),
+      isIsolationFed: _isIsolationFed,
+      countAnimalVaccine: _countAnimalVaccineController.text,
+      weightAnimal: _weightAnimalController.text,
+      weightMeatSell: _weightMeatSellController.text,
+      priceMeatSell: _priceMeatSellController.text,
+      countEggSell: _countEggSellController.text,
+      priceEggSell: _priceEggSellController.text,
+      countEggCollected: _countEggCollectedController.text,
+    );
   }
 
   // Function to update task status
@@ -493,21 +416,20 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ),
           ],
         ),
-        primaryButtonText: 'Báo cáo ngay',
+        primaryButtonText: 'Báo cáo',
         secondaryButtonText: 'Đóng',
         onPrimaryButtonPressed: () {
           Navigator.pop(context);
           // Mark the task as having a problem
-          // context.read<TaskBloc>().add(
-          //       TaskEvent.markTaskHasProblem(
-          //         taskId: widget.taskId,
-          //         problemDescription: 'Phát hiện gia cầm có biểu hiện bệnh',
-          //       ),
-          //     );
           // Navigate to symptom reporting screen
           context.push(
-            '/symptom/create',
-            extra: {'cageName': task!.cageName, 'taskId': widget.taskId},
+            RouteName.createSymptom,
+            extra: {
+              'cageName': task!.cageName,
+              'cageId': task!.cageId,
+              'taskId': widget.taskId,
+              'fromTask': true
+            },
           );
         },
         onSecondaryButtonPressed: () => Navigator.pop(context),
@@ -836,30 +758,31 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               getVaccinScheduleLogFailure: (e) async {
                 log("Lấy log lịch tiêm chủng thất bại!");
               },
-              markTaskHasProblemLoading: () {
-                setState(() => _isProcessing = true);
-                log("Đang đánh dấu công việc có vấn đề...");
-              },
-              markTaskHasProblemSuccess: () {
-                setState(() => _isProcessing = false);
-                log("Đánh dấu công việc có vấn đề thành công!");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Đã đánh dấu công việc có vấn đề!'),
-                    backgroundColor: Colors.orange,
-                  ),
-                );
-              },
-              markTaskHasProblemFailure: (e) {
-                setState(() => _isProcessing = false);
-                log("Đánh dấu công việc có vấn đề thất bại! \nError: $e");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Không thể đánh dấu công việc: $e'),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              },
+              // markTaskHasProblemLoading: () {
+              //   setState(() => _isProcessing = true);
+              //   log("Đang đánh dấu công việc có vấn đề...");
+              // },
+              // markTaskHasProblemSuccess: () {
+              //   setState(() => _isProcessing = false);
+              //   log("Đánh dấu công việc có vấn đề thành công!");
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     const SnackBar(
+              //       content: Text('Đã đánh dấu công việc có vấn đề!'),
+              //       backgroundColor: Colors.orange,
+              //     ),
+              //   );
+              // },
+              // markTaskHasProblemFailure: (e) {
+              //   setState(() => _isProcessing = false);
+              //   log("Đánh dấu công việc có vấn đề thất bại! \nError: $e");
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     SnackBar(
+              //       content: Text('Không thể đánh dấu công việc: $e'),
+              //       backgroundColor: Colors.red,
+              //     ),
+              //   );
+              // },
+
               orElse: () {},
             );
           },
