@@ -55,11 +55,7 @@ mixin _$TaskEvent {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,11 +95,7 @@ mixin _$TaskEvent {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -142,11 +134,7 @@ mixin _$TaskEvent {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -177,8 +165,7 @@ mixin _$TaskEvent {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -203,8 +190,7 @@ mixin _$TaskEvent {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -229,8 +215,7 @@ mixin _$TaskEvent {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -334,11 +319,7 @@ class _$StartedImpl implements _Started {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return started();
   }
@@ -381,11 +362,7 @@ class _$StartedImpl implements _Started {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return started?.call();
   }
@@ -427,11 +404,7 @@ class _$StartedImpl implements _Started {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -468,8 +441,7 @@ class _$StartedImpl implements _Started {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return started(this);
   }
@@ -497,8 +469,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return started?.call(this);
   }
@@ -526,8 +497,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -646,11 +616,7 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return createTask(task);
   }
@@ -693,11 +659,7 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return createTask?.call(task);
   }
@@ -739,11 +701,7 @@ class _$CreateTaskImpl implements _CreateTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -780,8 +738,7 @@ class _$CreateTaskImpl implements _CreateTask {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return createTask(this);
   }
@@ -809,8 +766,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return createTask?.call(this);
   }
@@ -838,8 +794,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -975,11 +930,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return updateTask(taskId, statusId);
   }
@@ -1022,11 +973,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return updateTask?.call(taskId, statusId);
   }
@@ -1068,11 +1015,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -1109,8 +1052,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return updateTask(this);
   }
@@ -1138,8 +1080,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return updateTask?.call(this);
   }
@@ -1167,8 +1108,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -1297,11 +1237,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return deleteTask(taskId);
   }
@@ -1344,11 +1280,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return deleteTask?.call(taskId);
   }
@@ -1390,11 +1322,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -1431,8 +1359,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return deleteTask(this);
   }
@@ -1460,8 +1387,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return deleteTask?.call(this);
   }
@@ -1489,8 +1415,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -1687,11 +1612,7 @@ class _$GetTasksImpl implements _GetTasks {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getTasks(keySearch, status, taskType, cageId, date, session,
         pageNumber, pageSize);
@@ -1735,11 +1656,7 @@ class _$GetTasksImpl implements _GetTasks {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getTasks?.call(keySearch, status, taskType, cageId, date, session,
         pageNumber, pageSize);
@@ -1782,11 +1699,7 @@ class _$GetTasksImpl implements _GetTasks {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasks != null) {
@@ -1824,8 +1737,7 @@ class _$GetTasksImpl implements _GetTasks {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getTasks(this);
   }
@@ -1853,8 +1765,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getTasks?.call(this);
   }
@@ -1882,8 +1793,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasks != null) {
@@ -1998,11 +1908,7 @@ class _$TestConnectImpl implements _TestConnect {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return testConnect();
   }
@@ -2045,11 +1951,7 @@ class _$TestConnectImpl implements _TestConnect {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return testConnect?.call();
   }
@@ -2091,11 +1993,7 @@ class _$TestConnectImpl implements _TestConnect {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (testConnect != null) {
@@ -2132,8 +2030,7 @@ class _$TestConnectImpl implements _TestConnect {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return testConnect(this);
   }
@@ -2161,8 +2058,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return testConnect?.call(this);
   }
@@ -2190,8 +2086,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (testConnect != null) {
@@ -2319,11 +2214,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getTasksByCageId(date, cageId);
   }
@@ -2366,11 +2257,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getTasksByCageId?.call(date, cageId);
   }
@@ -2412,11 +2299,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByCageId != null) {
@@ -2453,8 +2336,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getTasksByCageId(this);
   }
@@ -2482,8 +2364,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getTasksByCageId?.call(this);
   }
@@ -2511,8 +2392,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByCageId != null) {
@@ -2641,11 +2521,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getTaskById(taskId);
   }
@@ -2688,11 +2564,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getTaskById?.call(taskId);
   }
@@ -2734,11 +2606,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTaskById != null) {
@@ -2775,8 +2643,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getTaskById(this);
   }
@@ -2804,8 +2671,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getTaskById?.call(this);
   }
@@ -2833,8 +2699,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTaskById != null) {
@@ -2934,11 +2799,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getNextTask();
   }
@@ -2981,11 +2842,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getNextTask?.call();
   }
@@ -3027,11 +2884,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getNextTask != null) {
@@ -3068,8 +2921,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getNextTask(this);
   }
@@ -3097,8 +2949,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getNextTask?.call(this);
   }
@@ -3126,8 +2977,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getNextTask != null) {
@@ -3257,11 +3107,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getTasksByUserIdAndDate(date, cageId);
   }
@@ -3304,11 +3150,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getTasksByUserIdAndDate?.call(date, cageId);
   }
@@ -3350,11 +3192,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDate != null) {
@@ -3391,8 +3229,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getTasksByUserIdAndDate(this);
   }
@@ -3420,8 +3257,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getTasksByUserIdAndDate?.call(this);
   }
@@ -3449,8 +3285,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDate != null) {
@@ -3600,11 +3435,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return filterTasksByLocation(cageId, date, cageName);
   }
@@ -3647,11 +3478,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return filterTasksByLocation?.call(cageId, date, cageName);
   }
@@ -3693,11 +3520,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (filterTasksByLocation != null) {
@@ -3734,8 +3557,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return filterTasksByLocation(this);
   }
@@ -3763,8 +3585,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return filterTasksByLocation?.call(this);
   }
@@ -3792,8 +3613,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (filterTasksByLocation != null) {
@@ -3949,11 +3769,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return createDailyFoodUsageLog(cageId, log);
   }
@@ -3996,11 +3812,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return createDailyFoodUsageLog?.call(cageId, log);
   }
@@ -4042,11 +3854,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLog != null) {
@@ -4083,8 +3891,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return createDailyFoodUsageLog(this);
   }
@@ -4112,8 +3919,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return createDailyFoodUsageLog?.call(this);
   }
@@ -4141,8 +3947,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLog != null) {
@@ -4295,11 +4100,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return createHealthLog(prescriptionId, log);
   }
@@ -4342,11 +4143,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return createHealthLog?.call(prescriptionId, log);
   }
@@ -4388,11 +4185,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createHealthLog != null) {
@@ -4429,8 +4222,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return createHealthLog(this);
   }
@@ -4458,8 +4250,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return createHealthLog?.call(this);
   }
@@ -4487,8 +4278,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createHealthLog != null) {
@@ -4642,11 +4432,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return createVaccinScheduleLog(cageId, log);
   }
@@ -4689,11 +4475,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return createVaccinScheduleLog?.call(cageId, log);
   }
@@ -4735,11 +4517,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLog != null) {
@@ -4776,8 +4554,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return createVaccinScheduleLog(this);
   }
@@ -4805,8 +4582,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return createVaccinScheduleLog?.call(this);
   }
@@ -4834,8 +4610,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLog != null) {
@@ -4968,11 +4743,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getDailyFoodUsageLog(taskId);
   }
@@ -5015,11 +4786,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getDailyFoodUsageLog?.call(taskId);
   }
@@ -5061,11 +4828,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLog != null) {
@@ -5102,8 +4865,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getDailyFoodUsageLog(this);
   }
@@ -5131,8 +4893,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getDailyFoodUsageLog?.call(this);
   }
@@ -5160,8 +4921,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLog != null) {
@@ -5289,11 +5049,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getHealthLog(taskId);
   }
@@ -5336,11 +5092,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getHealthLog?.call(taskId);
   }
@@ -5382,11 +5134,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getHealthLog != null) {
@@ -5423,8 +5171,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getHealthLog(this);
   }
@@ -5452,8 +5199,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getHealthLog?.call(this);
   }
@@ -5481,8 +5227,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getHealthLog != null) {
@@ -5611,11 +5356,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getVaccinScheduleLog(taskId);
   }
@@ -5658,11 +5399,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getVaccinScheduleLog?.call(taskId);
   }
@@ -5704,11 +5441,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLog != null) {
@@ -5745,8 +5478,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getVaccinScheduleLog(this);
   }
@@ -5774,8 +5506,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getVaccinScheduleLog?.call(this);
   }
@@ -5803,8 +5534,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLog != null) {
@@ -5935,11 +5665,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getHealthLogInformation(taskId);
   }
@@ -5982,11 +5708,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getHealthLogInformation?.call(taskId);
   }
@@ -6028,11 +5750,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getHealthLogInformation != null) {
@@ -6069,8 +5787,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getHealthLogInformation(this);
   }
@@ -6098,8 +5815,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getHealthLogInformation?.call(this);
   }
@@ -6127,8 +5843,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getHealthLogInformation != null) {
@@ -6310,11 +6025,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return getTasksByScanQRCode(
         keySearch, status, taskType, cageId, pageNumber, pageSize);
@@ -6358,11 +6069,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return getTasksByScanQRCode?.call(
         keySearch, status, taskType, cageId, pageNumber, pageSize);
@@ -6405,11 +6112,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCode != null) {
@@ -6447,8 +6150,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return getTasksByScanQRCode(this);
   }
@@ -6476,8 +6178,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return getTasksByScanQRCode?.call(this);
   }
@@ -6505,8 +6206,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCode != null) {
@@ -6662,11 +6362,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
     return updateMultipleTask(taskIds, statusId);
   }
@@ -6709,11 +6405,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
     return updateMultipleTask?.call(taskIds, statusId);
   }
@@ -6755,11 +6447,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (updateMultipleTask != null) {
@@ -6796,8 +6484,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
     return updateMultipleTask(this);
   }
@@ -6825,8 +6512,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
     return updateMultipleTask?.call(this);
   }
@@ -6854,8 +6540,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (updateMultipleTask != null) {
@@ -6881,20 +6566,20 @@ abstract class _UpdateMultipleTask implements TaskEvent {
 }
 
 /// @nodoc
-abstract class _$$MarkTaskHasProblemImplCopyWith<$Res> {
-  factory _$$MarkTaskHasProblemImplCopyWith(_$MarkTaskHasProblemImpl value,
-          $Res Function(_$MarkTaskHasProblemImpl) then) =
-      __$$MarkTaskHasProblemImplCopyWithImpl<$Res>;
+abstract class _$$SetTaskIsTreatmentImplCopyWith<$Res> {
+  factory _$$SetTaskIsTreatmentImplCopyWith(_$SetTaskIsTreatmentImpl value,
+          $Res Function(_$SetTaskIsTreatmentImpl) then) =
+      __$$SetTaskIsTreatmentImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String taskId, String problemDescription});
+  $Res call({String taskId});
 }
 
 /// @nodoc
-class __$$MarkTaskHasProblemImplCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$MarkTaskHasProblemImpl>
-    implements _$$MarkTaskHasProblemImplCopyWith<$Res> {
-  __$$MarkTaskHasProblemImplCopyWithImpl(_$MarkTaskHasProblemImpl _value,
-      $Res Function(_$MarkTaskHasProblemImpl) _then)
+class __$$SetTaskIsTreatmentImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$SetTaskIsTreatmentImpl>
+    implements _$$SetTaskIsTreatmentImplCopyWith<$Res> {
+  __$$SetTaskIsTreatmentImplCopyWithImpl(_$SetTaskIsTreatmentImpl _value,
+      $Res Function(_$SetTaskIsTreatmentImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TaskEvent
@@ -6903,16 +6588,11 @@ class __$$MarkTaskHasProblemImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? taskId = null,
-    Object? problemDescription = null,
   }) {
-    return _then(_$MarkTaskHasProblemImpl(
+    return _then(_$SetTaskIsTreatmentImpl(
       taskId: null == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
-              as String,
-      problemDescription: null == problemDescription
-          ? _value.problemDescription
-          : problemDescription // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -6920,40 +6600,35 @@ class __$$MarkTaskHasProblemImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MarkTaskHasProblemImpl implements _MarkTaskHasProblem {
-  const _$MarkTaskHasProblemImpl(
-      {required this.taskId, required this.problemDescription});
+class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
+  const _$SetTaskIsTreatmentImpl({required this.taskId});
 
   @override
   final String taskId;
-  @override
-  final String problemDescription;
 
   @override
   String toString() {
-    return 'TaskEvent.markTaskHasProblem(taskId: $taskId, problemDescription: $problemDescription)';
+    return 'TaskEvent.setTaskIsTreatment(taskId: $taskId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MarkTaskHasProblemImpl &&
-            (identical(other.taskId, taskId) || other.taskId == taskId) &&
-            (identical(other.problemDescription, problemDescription) ||
-                other.problemDescription == problemDescription));
+            other is _$SetTaskIsTreatmentImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, taskId, problemDescription);
+  int get hashCode => Object.hash(runtimeType, taskId);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MarkTaskHasProblemImplCopyWith<_$MarkTaskHasProblemImpl> get copyWith =>
-      __$$MarkTaskHasProblemImplCopyWithImpl<_$MarkTaskHasProblemImpl>(
+  _$$SetTaskIsTreatmentImplCopyWith<_$SetTaskIsTreatmentImpl> get copyWith =>
+      __$$SetTaskIsTreatmentImplCopyWithImpl<_$SetTaskIsTreatmentImpl>(
           this, _$identity);
 
   @override
@@ -6996,13 +6671,9 @@ class _$MarkTaskHasProblemImpl implements _MarkTaskHasProblem {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
+    required TResult Function(String taskId) setTaskIsTreatment,
   }) {
-    return markTaskHasProblem(taskId, problemDescription);
+    return setTaskIsTreatment(taskId);
   }
 
   @override
@@ -7043,13 +6714,9 @@ class _$MarkTaskHasProblemImpl implements _MarkTaskHasProblem {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
-    return markTaskHasProblem?.call(taskId, problemDescription);
+    return setTaskIsTreatment?.call(taskId);
   }
 
   @override
@@ -7089,15 +6756,11 @@ class _$MarkTaskHasProblemImpl implements _MarkTaskHasProblem {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
+    TResult Function(String taskId)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblem != null) {
-      return markTaskHasProblem(taskId, problemDescription);
+    if (setTaskIsTreatment != null) {
+      return setTaskIsTreatment(taskId);
     }
     return orElse();
   }
@@ -7130,10 +6793,9 @@ class _$MarkTaskHasProblemImpl implements _MarkTaskHasProblem {
         getHealthLogInformation,
     required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
     required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
   }) {
-    return markTaskHasProblem(this);
+    return setTaskIsTreatment(this);
   }
 
   @override
@@ -7159,10 +6821,9 @@ class _$MarkTaskHasProblemImpl implements _MarkTaskHasProblem {
     TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
   }) {
-    return markTaskHasProblem?.call(this);
+    return setTaskIsTreatment?.call(this);
   }
 
   @override
@@ -7188,377 +6849,26 @@ class _$MarkTaskHasProblemImpl implements _MarkTaskHasProblem {
     TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
     TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
     TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblem != null) {
-      return markTaskHasProblem(this);
+    if (setTaskIsTreatment != null) {
+      return setTaskIsTreatment(this);
     }
     return orElse();
   }
 }
 
-abstract class _MarkTaskHasProblem implements TaskEvent {
-  const factory _MarkTaskHasProblem(
-      {required final String taskId,
-      required final String problemDescription}) = _$MarkTaskHasProblemImpl;
+abstract class _SetTaskIsTreatment implements TaskEvent {
+  const factory _SetTaskIsTreatment({required final String taskId}) =
+      _$SetTaskIsTreatmentImpl;
 
   String get taskId;
-  String get problemDescription;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MarkTaskHasProblemImplCopyWith<_$MarkTaskHasProblemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$MarkTaskAsCompleteImplCopyWith<$Res> {
-  factory _$$MarkTaskAsCompleteImplCopyWith(_$MarkTaskAsCompleteImpl value,
-          $Res Function(_$MarkTaskAsCompleteImpl) then) =
-      __$$MarkTaskAsCompleteImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String taskId, bool hasProblem, String? problemDescription});
-}
-
-/// @nodoc
-class __$$MarkTaskAsCompleteImplCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$MarkTaskAsCompleteImpl>
-    implements _$$MarkTaskAsCompleteImplCopyWith<$Res> {
-  __$$MarkTaskAsCompleteImplCopyWithImpl(_$MarkTaskAsCompleteImpl _value,
-      $Res Function(_$MarkTaskAsCompleteImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? taskId = null,
-    Object? hasProblem = null,
-    Object? problemDescription = freezed,
-  }) {
-    return _then(_$MarkTaskAsCompleteImpl(
-      taskId: null == taskId
-          ? _value.taskId
-          : taskId // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasProblem: null == hasProblem
-          ? _value.hasProblem
-          : hasProblem // ignore: cast_nullable_to_non_nullable
-              as bool,
-      problemDescription: freezed == problemDescription
-          ? _value.problemDescription
-          : problemDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$MarkTaskAsCompleteImpl implements _MarkTaskAsComplete {
-  const _$MarkTaskAsCompleteImpl(
-      {required this.taskId,
-      required this.hasProblem,
-      this.problemDescription});
-
-  @override
-  final String taskId;
-  @override
-  final bool hasProblem;
-  @override
-  final String? problemDescription;
-
-  @override
-  String toString() {
-    return 'TaskEvent.markTaskAsComplete(taskId: $taskId, hasProblem: $hasProblem, problemDescription: $problemDescription)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MarkTaskAsCompleteImpl &&
-            (identical(other.taskId, taskId) || other.taskId == taskId) &&
-            (identical(other.hasProblem, hasProblem) ||
-                other.hasProblem == hasProblem) &&
-            (identical(other.problemDescription, problemDescription) ||
-                other.problemDescription == problemDescription));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, taskId, hasProblem, problemDescription);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MarkTaskAsCompleteImplCopyWith<_$MarkTaskAsCompleteImpl> get copyWith =>
-      __$$MarkTaskAsCompleteImplCopyWithImpl<_$MarkTaskAsCompleteImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
-    required TResult Function(String taskId) deleteTask,
-    required TResult Function(
-            String? keySearch,
-            String? status,
-            String? taskType,
-            String? cageId,
-            DateTime? date,
-            int? session,
-            int? pageNumber,
-            int? pageSize)
-        getTasks,
-    required TResult Function() testConnect,
-    required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
-    required TResult Function() getNextTask,
-    required TResult Function(DateTime? date, String? cageId)
-        getTasksByUserIdAndDate,
-    required TResult Function(String? cageId, DateTime date, String cageName)
-        filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
-        createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
-        createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
-        createVaccinScheduleLog,
-    required TResult Function(String taskId) getDailyFoodUsageLog,
-    required TResult Function(String taskId) getHealthLog,
-    required TResult Function(String taskId) getVaccinScheduleLog,
-    required TResult Function(String taskId) getHealthLogInformation,
-    required TResult Function(String? keySearch, String? status,
-            String? taskType, String cageId, int? pageNumber, int? pageSize)
-        getTasksByScanQRCode,
-    required TResult Function(List<String> taskIds, String statusId)
-        updateMultipleTask,
-    required TResult Function(String taskId, String problemDescription)
-        markTaskHasProblem,
-    required TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)
-        markTaskAsComplete,
-  }) {
-    return markTaskAsComplete(taskId, hasProblem, problemDescription);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
-    TResult? Function(String taskId)? deleteTask,
-    TResult? Function(
-            String? keySearch,
-            String? status,
-            String? taskType,
-            String? cageId,
-            DateTime? date,
-            int? session,
-            int? pageNumber,
-            int? pageSize)?
-        getTasks,
-    TResult? Function()? testConnect,
-    TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
-    TResult? Function()? getNextTask,
-    TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult? Function(String? cageId, DateTime date, String cageName)?
-        filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
-        createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
-        createVaccinScheduleLog,
-    TResult? Function(String taskId)? getDailyFoodUsageLog,
-    TResult? Function(String taskId)? getHealthLog,
-    TResult? Function(String taskId)? getVaccinScheduleLog,
-    TResult? Function(String taskId)? getHealthLogInformation,
-    TResult? Function(String? keySearch, String? status, String? taskType,
-            String cageId, int? pageNumber, int? pageSize)?
-        getTasksByScanQRCode,
-    TResult? Function(List<String> taskIds, String statusId)?
-        updateMultipleTask,
-    TResult? Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult? Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
-  }) {
-    return markTaskAsComplete?.call(taskId, hasProblem, problemDescription);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
-    TResult Function(String taskId)? deleteTask,
-    TResult Function(
-            String? keySearch,
-            String? status,
-            String? taskType,
-            String? cageId,
-            DateTime? date,
-            int? session,
-            int? pageNumber,
-            int? pageSize)?
-        getTasks,
-    TResult Function()? testConnect,
-    TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
-    TResult Function()? getNextTask,
-    TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
-    TResult Function(String? cageId, DateTime date, String cageName)?
-        filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
-        createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
-        createVaccinScheduleLog,
-    TResult Function(String taskId)? getDailyFoodUsageLog,
-    TResult Function(String taskId)? getHealthLog,
-    TResult Function(String taskId)? getVaccinScheduleLog,
-    TResult Function(String taskId)? getHealthLogInformation,
-    TResult Function(String? keySearch, String? status, String? taskType,
-            String cageId, int? pageNumber, int? pageSize)?
-        getTasksByScanQRCode,
-    TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId, String problemDescription)?
-        markTaskHasProblem,
-    TResult Function(
-            String taskId, bool hasProblem, String? problemDescription)?
-        markTaskAsComplete,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsComplete != null) {
-      return markTaskAsComplete(taskId, hasProblem, problemDescription);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_CreateTask value) createTask,
-    required TResult Function(_UpdateTask value) updateTask,
-    required TResult Function(_DeleteTask value) deleteTask,
-    required TResult Function(_GetTasks value) getTasks,
-    required TResult Function(_TestConnect value) testConnect,
-    required TResult Function(_GetTasksByCageId value) getTasksByCageId,
-    required TResult Function(_GetTaskById value) getTaskById,
-    required TResult Function(_GetNextTask value) getNextTask,
-    required TResult Function(_GetTasksByUserIdAndDate value)
-        getTasksByUserIdAndDate,
-    required TResult Function(_FilterTasksByLocation value)
-        filterTasksByLocation,
-    required TResult Function(_CreateDailyFoodUsageLog value)
-        createDailyFoodUsageLog,
-    required TResult Function(_CreateHealthLog value) createHealthLog,
-    required TResult Function(_CreateVaccinScheduleLog value)
-        createVaccinScheduleLog,
-    required TResult Function(_GetDailyFoodUsageLog value) getDailyFoodUsageLog,
-    required TResult Function(_GetHealthLog value) getHealthLog,
-    required TResult Function(_GetVaccinScheduleLog value) getVaccinScheduleLog,
-    required TResult Function(_GetHealthLogInformation value)
-        getHealthLogInformation,
-    required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
-    required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
-    required TResult Function(_MarkTaskHasProblem value) markTaskHasProblem,
-    required TResult Function(_MarkTaskAsComplete value) markTaskAsComplete,
-  }) {
-    return markTaskAsComplete(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_CreateTask value)? createTask,
-    TResult? Function(_UpdateTask value)? updateTask,
-    TResult? Function(_DeleteTask value)? deleteTask,
-    TResult? Function(_GetTasks value)? getTasks,
-    TResult? Function(_TestConnect value)? testConnect,
-    TResult? Function(_GetTasksByCageId value)? getTasksByCageId,
-    TResult? Function(_GetTaskById value)? getTaskById,
-    TResult? Function(_GetNextTask value)? getNextTask,
-    TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
-    TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
-    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
-    TResult? Function(_CreateHealthLog value)? createHealthLog,
-    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
-    TResult? Function(_GetDailyFoodUsageLog value)? getDailyFoodUsageLog,
-    TResult? Function(_GetHealthLog value)? getHealthLog,
-    TResult? Function(_GetVaccinScheduleLog value)? getVaccinScheduleLog,
-    TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
-    TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
-    TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult? Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult? Function(_MarkTaskAsComplete value)? markTaskAsComplete,
-  }) {
-    return markTaskAsComplete?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_CreateTask value)? createTask,
-    TResult Function(_UpdateTask value)? updateTask,
-    TResult Function(_DeleteTask value)? deleteTask,
-    TResult Function(_GetTasks value)? getTasks,
-    TResult Function(_TestConnect value)? testConnect,
-    TResult Function(_GetTasksByCageId value)? getTasksByCageId,
-    TResult Function(_GetTaskById value)? getTaskById,
-    TResult Function(_GetNextTask value)? getNextTask,
-    TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
-    TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
-    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
-    TResult Function(_CreateHealthLog value)? createHealthLog,
-    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
-    TResult Function(_GetDailyFoodUsageLog value)? getDailyFoodUsageLog,
-    TResult Function(_GetHealthLog value)? getHealthLog,
-    TResult Function(_GetVaccinScheduleLog value)? getVaccinScheduleLog,
-    TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
-    TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
-    TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
-    TResult Function(_MarkTaskHasProblem value)? markTaskHasProblem,
-    TResult Function(_MarkTaskAsComplete value)? markTaskAsComplete,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsComplete != null) {
-      return markTaskAsComplete(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _MarkTaskAsComplete implements TaskEvent {
-  const factory _MarkTaskAsComplete(
-      {required final String taskId,
-      required final bool hasProblem,
-      final String? problemDescription}) = _$MarkTaskAsCompleteImpl;
-
-  String get taskId;
-  bool get hasProblem;
-  String? get problemDescription;
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MarkTaskAsCompleteImplCopyWith<_$MarkTaskAsCompleteImpl> get copyWith =>
+  _$$SetTaskIsTreatmentImplCopyWith<_$SetTaskIsTreatmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -7632,12 +6942,9 @@ mixin _$TaskState {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -7705,12 +7012,9 @@ mixin _$TaskState {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -7777,12 +7081,9 @@ mixin _$TaskState {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -7875,18 +7176,12 @@ mixin _$TaskState {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -7970,18 +7265,12 @@ mixin _$TaskState {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -8065,18 +7354,12 @@ mixin _$TaskState {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -8209,12 +7492,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return initial();
   }
@@ -8285,12 +7565,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return initial?.call();
   }
@@ -8360,12 +7637,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -8464,18 +7738,12 @@ class _$InitialImpl implements _Initial {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return initial(this);
   }
@@ -8562,18 +7830,12 @@ class _$InitialImpl implements _Initial {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return initial?.call(this);
   }
@@ -8660,18 +7922,12 @@ class _$InitialImpl implements _Initial {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -8792,12 +8048,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return loading();
   }
@@ -8868,12 +8121,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return loading?.call();
   }
@@ -8943,12 +8193,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -9047,18 +8294,12 @@ class _$LoadingImpl implements _Loading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return loading(this);
   }
@@ -9145,18 +8386,12 @@ class _$LoadingImpl implements _Loading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return loading?.call(this);
   }
@@ -9243,18 +8478,12 @@ class _$LoadingImpl implements _Loading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -9375,12 +8604,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return success();
   }
@@ -9451,12 +8677,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return success?.call();
   }
@@ -9526,12 +8749,9 @@ class _$SuccessImpl implements _Success {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -9630,18 +8850,12 @@ class _$SuccessImpl implements _Success {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return success(this);
   }
@@ -9728,18 +8942,12 @@ class _$SuccessImpl implements _Success {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return success?.call(this);
   }
@@ -9826,18 +9034,12 @@ class _$SuccessImpl implements _Success {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -9985,12 +9187,9 @@ class _$FailureImpl implements _Failure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return failure(error);
   }
@@ -10061,12 +9260,9 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return failure?.call(error);
   }
@@ -10136,12 +9332,9 @@ class _$FailureImpl implements _Failure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -10240,18 +9433,12 @@ class _$FailureImpl implements _Failure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return failure(this);
   }
@@ -10338,18 +9525,12 @@ class _$FailureImpl implements _Failure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return failure?.call(this);
   }
@@ -10436,18 +9617,12 @@ class _$FailureImpl implements _Failure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -10576,12 +9751,9 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return taskCreated();
   }
@@ -10652,12 +9824,9 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return taskCreated?.call();
   }
@@ -10727,12 +9896,9 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (taskCreated != null) {
@@ -10831,18 +9997,12 @@ class _$TaskCreatedImpl implements _TaskCreated {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return taskCreated(this);
   }
@@ -10929,18 +10089,12 @@ class _$TaskCreatedImpl implements _TaskCreated {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return taskCreated?.call(this);
   }
@@ -11027,18 +10181,12 @@ class _$TaskCreatedImpl implements _TaskCreated {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (taskCreated != null) {
@@ -11159,12 +10307,9 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return taskUpdated();
   }
@@ -11235,12 +10380,9 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return taskUpdated?.call();
   }
@@ -11310,12 +10452,9 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (taskUpdated != null) {
@@ -11414,18 +10553,12 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return taskUpdated(this);
   }
@@ -11512,18 +10645,12 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return taskUpdated?.call(this);
   }
@@ -11610,18 +10737,12 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (taskUpdated != null) {
@@ -11742,12 +10863,9 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return taskDeleted();
   }
@@ -11818,12 +10936,9 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return taskDeleted?.call();
   }
@@ -11893,12 +11008,9 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (taskDeleted != null) {
@@ -11997,18 +11109,12 @@ class _$TaskDeletedImpl implements _TaskDeleted {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return taskDeleted(this);
   }
@@ -12095,18 +11201,12 @@ class _$TaskDeletedImpl implements _TaskDeleted {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return taskDeleted?.call(this);
   }
@@ -12193,18 +11293,12 @@ class _$TaskDeletedImpl implements _TaskDeleted {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (taskDeleted != null) {
@@ -12325,12 +11419,9 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksInProgress();
   }
@@ -12401,12 +11492,9 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksInProgress?.call();
   }
@@ -12476,12 +11564,9 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksInProgress != null) {
@@ -12580,18 +11665,12 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksInProgress(this);
   }
@@ -12678,18 +11757,12 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksInProgress?.call(this);
   }
@@ -12776,18 +11849,12 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksInProgress != null) {
@@ -12981,12 +12048,9 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksSuccess(tasks, cageList, taskTypeList);
   }
@@ -13057,12 +12121,9 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksSuccess?.call(tasks, cageList, taskTypeList);
   }
@@ -13132,12 +12193,9 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksSuccess != null) {
@@ -13236,18 +12294,12 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksSuccess(this);
   }
@@ -13334,18 +12386,12 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksSuccess?.call(this);
   }
@@ -13432,18 +12478,12 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksSuccess != null) {
@@ -13605,12 +12645,9 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksFailure(error);
   }
@@ -13681,12 +12718,9 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksFailure?.call(error);
   }
@@ -13756,12 +12790,9 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksFailure != null) {
@@ -13860,18 +12891,12 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksFailure(this);
   }
@@ -13958,18 +12983,12 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksFailure?.call(this);
   }
@@ -14056,18 +13075,12 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksFailure != null) {
@@ -14196,12 +13209,9 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return testConnectSuccess();
   }
@@ -14272,12 +13282,9 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return testConnectSuccess?.call();
   }
@@ -14347,12 +13354,9 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (testConnectSuccess != null) {
@@ -14451,18 +13455,12 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return testConnectSuccess(this);
   }
@@ -14549,18 +13547,12 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return testConnectSuccess?.call(this);
   }
@@ -14647,18 +13639,12 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (testConnectSuccess != null) {
@@ -14782,12 +13768,9 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdLoading();
   }
@@ -14858,12 +13841,9 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdLoading?.call();
   }
@@ -14933,12 +13913,9 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdLoading != null) {
@@ -15037,18 +14014,12 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdLoading(this);
   }
@@ -15135,18 +14106,12 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdLoading?.call(this);
   }
@@ -15233,18 +14198,12 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdLoading != null) {
@@ -15403,12 +14362,9 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdSuccess(tasks);
   }
@@ -15479,12 +14435,9 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdSuccess?.call(tasks);
   }
@@ -15554,12 +14507,9 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdSuccess != null) {
@@ -15658,18 +14608,12 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdSuccess(this);
   }
@@ -15756,18 +14700,12 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByCageIdSuccess?.call(this);
   }
@@ -15854,18 +14792,12 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByCageIdSuccess != null) {
@@ -15996,12 +14928,9 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdLoading();
   }
@@ -16072,12 +15001,9 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdLoading?.call();
   }
@@ -16147,12 +15073,9 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdLoading != null) {
@@ -16251,18 +15174,12 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdLoading(this);
   }
@@ -16349,18 +15266,12 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdLoading?.call(this);
   }
@@ -16447,18 +15358,12 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdLoading != null) {
@@ -16627,12 +15532,9 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdSuccess(task, userId);
   }
@@ -16703,12 +15605,9 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdSuccess?.call(task, userId);
   }
@@ -16778,12 +15677,9 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdSuccess != null) {
@@ -16882,18 +15778,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdSuccess(this);
   }
@@ -16980,18 +15870,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdSuccess?.call(this);
   }
@@ -17078,18 +15962,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdSuccess != null) {
@@ -17249,12 +16127,9 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdFailure(error);
   }
@@ -17325,12 +16200,9 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdFailure?.call(error);
   }
@@ -17400,12 +16272,9 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdFailure != null) {
@@ -17504,18 +16373,12 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdFailure(this);
   }
@@ -17602,18 +16465,12 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTaskByIdFailure?.call(this);
   }
@@ -17700,18 +16557,12 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTaskByIdFailure != null) {
@@ -17841,12 +16692,9 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getNextTaskLoading();
   }
@@ -17917,12 +16765,9 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getNextTaskLoading?.call();
   }
@@ -17992,12 +16837,9 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskLoading != null) {
@@ -18096,18 +16938,12 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getNextTaskLoading(this);
   }
@@ -18194,18 +17030,12 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getNextTaskLoading?.call(this);
   }
@@ -18292,18 +17122,12 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskLoading != null) {
@@ -18458,12 +17282,9 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getNextTaskSuccess(task);
   }
@@ -18534,12 +17355,9 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getNextTaskSuccess?.call(task);
   }
@@ -18609,12 +17427,9 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskSuccess != null) {
@@ -18713,18 +17528,12 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getNextTaskSuccess(this);
   }
@@ -18811,18 +17620,12 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getNextTaskSuccess?.call(this);
   }
@@ -18909,18 +17712,12 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskSuccess != null) {
@@ -19078,12 +17875,9 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getNextTaskFailure(error);
   }
@@ -19154,12 +17948,9 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getNextTaskFailure?.call(error);
   }
@@ -19229,12 +18020,9 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskFailure != null) {
@@ -19333,18 +18121,12 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getNextTaskFailure(this);
   }
@@ -19431,18 +18213,12 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getNextTaskFailure?.call(this);
   }
@@ -19529,18 +18305,12 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getNextTaskFailure != null) {
@@ -19674,12 +18444,9 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateLoading();
   }
@@ -19750,12 +18517,9 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateLoading?.call();
   }
@@ -19825,12 +18589,9 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateLoading != null) {
@@ -19929,18 +18690,12 @@ class _$GetTasksByUserIdAndDateLoadingImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateLoading(this);
   }
@@ -20027,18 +18782,12 @@ class _$GetTasksByUserIdAndDateLoadingImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateLoading?.call(this);
   }
@@ -20125,18 +18874,12 @@ class _$GetTasksByUserIdAndDateLoadingImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateLoading != null) {
@@ -20317,12 +19060,9 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateSuccess(tasks, cageList);
   }
@@ -20393,12 +19133,9 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateSuccess?.call(tasks, cageList);
   }
@@ -20468,12 +19205,9 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateSuccess != null) {
@@ -20572,18 +19306,12 @@ class _$GetTasksByUserIdAndDateSuccessImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateSuccess(this);
   }
@@ -20670,18 +19398,12 @@ class _$GetTasksByUserIdAndDateSuccessImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateSuccess?.call(this);
   }
@@ -20768,18 +19490,12 @@ class _$GetTasksByUserIdAndDateSuccessImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateSuccess != null) {
@@ -20944,12 +19660,9 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateFailure(error);
   }
@@ -21020,12 +19733,9 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateFailure?.call(error);
   }
@@ -21095,12 +19805,9 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateFailure != null) {
@@ -21199,18 +19906,12 @@ class _$GetTasksByUserIdAndDateFailureImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateFailure(this);
   }
@@ -21297,18 +19998,12 @@ class _$GetTasksByUserIdAndDateFailureImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByUserIdAndDateFailure?.call(this);
   }
@@ -21395,18 +20090,12 @@ class _$GetTasksByUserIdAndDateFailureImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDateFailure != null) {
@@ -21538,12 +20227,9 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return filteredTaskLoading();
   }
@@ -21614,12 +20300,9 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return filteredTaskLoading?.call();
   }
@@ -21689,12 +20372,9 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (filteredTaskLoading != null) {
@@ -21793,18 +20473,12 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return filteredTaskLoading(this);
   }
@@ -21891,18 +20565,12 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return filteredTaskLoading?.call(this);
   }
@@ -21989,18 +20657,12 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (filteredTaskLoading != null) {
@@ -22158,12 +20820,9 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return filteredTasksSuccess(tasks);
   }
@@ -22234,12 +20893,9 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return filteredTasksSuccess?.call(tasks);
   }
@@ -22309,12 +20965,9 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksSuccess != null) {
@@ -22413,18 +21066,12 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return filteredTasksSuccess(this);
   }
@@ -22511,18 +21158,12 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return filteredTasksSuccess?.call(this);
   }
@@ -22609,18 +21250,12 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksSuccess != null) {
@@ -22780,12 +21415,9 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return filteredTasksFailure(error);
   }
@@ -22856,12 +21488,9 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return filteredTasksFailure?.call(error);
   }
@@ -22931,12 +21560,9 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksFailure != null) {
@@ -23035,18 +21661,12 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return filteredTasksFailure(this);
   }
@@ -23133,18 +21753,12 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return filteredTasksFailure?.call(this);
   }
@@ -23231,18 +21845,12 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (filteredTasksFailure != null) {
@@ -23375,12 +21983,9 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskLoading();
   }
@@ -23451,12 +22056,9 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskLoading?.call();
   }
@@ -23526,12 +22128,9 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskLoading != null) {
@@ -23630,18 +22229,12 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskLoading(this);
   }
@@ -23728,18 +22321,12 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskLoading?.call(this);
   }
@@ -23826,18 +22413,12 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskLoading != null) {
@@ -23961,12 +22542,9 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskSuccess();
   }
@@ -24037,12 +22615,9 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskSuccess?.call();
   }
@@ -24112,12 +22687,9 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskSuccess != null) {
@@ -24216,18 +22788,12 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskSuccess(this);
   }
@@ -24314,18 +22880,12 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskSuccess?.call(this);
   }
@@ -24412,18 +22972,12 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskSuccess != null) {
@@ -24574,12 +23128,9 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskFailure(error);
   }
@@ -24650,12 +23201,9 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskFailure?.call(error);
   }
@@ -24725,12 +23273,9 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskFailure != null) {
@@ -24829,18 +23374,12 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskFailure(this);
   }
@@ -24927,18 +23466,12 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return updateStatusTaskFailure?.call(this);
   }
@@ -25025,18 +23558,12 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateStatusTaskFailure != null) {
@@ -25170,12 +23697,9 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogLoading();
   }
@@ -25246,12 +23770,9 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogLoading?.call();
   }
@@ -25321,12 +23842,9 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLogLoading != null) {
@@ -25425,18 +23943,12 @@ class _$CreateDailyFoodUsageLogLoadingImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogLoading(this);
   }
@@ -25523,18 +24035,12 @@ class _$CreateDailyFoodUsageLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogLoading?.call(this);
   }
@@ -25621,18 +24127,12 @@ class _$CreateDailyFoodUsageLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLogLoading != null) {
@@ -25758,12 +24258,9 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogSuccess();
   }
@@ -25834,12 +24331,9 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogSuccess?.call();
   }
@@ -25909,12 +24403,9 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLogSuccess != null) {
@@ -26013,18 +24504,12 @@ class _$CreateDailyFoodUsageLogSuccessImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogSuccess(this);
   }
@@ -26111,18 +24596,12 @@ class _$CreateDailyFoodUsageLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogSuccess?.call(this);
   }
@@ -26209,18 +24688,12 @@ class _$CreateDailyFoodUsageLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLogSuccess != null) {
@@ -26374,12 +24847,9 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogFailure(error);
   }
@@ -26450,12 +24920,9 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogFailure?.call(error);
   }
@@ -26525,12 +24992,9 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLogFailure != null) {
@@ -26629,18 +25093,12 @@ class _$CreateDailyFoodUsageLogFailureImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogFailure(this);
   }
@@ -26727,18 +25185,12 @@ class _$CreateDailyFoodUsageLogFailureImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createDailyFoodUsageLogFailure?.call(this);
   }
@@ -26825,18 +25277,12 @@ class _$CreateDailyFoodUsageLogFailureImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLogFailure != null) {
@@ -26970,12 +25416,9 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createHealthLogLoading();
   }
@@ -27046,12 +25489,9 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createHealthLogLoading?.call();
   }
@@ -27121,12 +25561,9 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createHealthLogLoading != null) {
@@ -27225,18 +25662,12 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createHealthLogLoading(this);
   }
@@ -27323,18 +25754,12 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createHealthLogLoading?.call(this);
   }
@@ -27421,18 +25846,12 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createHealthLogLoading != null) {
@@ -27556,12 +25975,9 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createHealthLogSuccess();
   }
@@ -27632,12 +26048,9 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createHealthLogSuccess?.call();
   }
@@ -27707,12 +26120,9 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createHealthLogSuccess != null) {
@@ -27811,18 +26221,12 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createHealthLogSuccess(this);
   }
@@ -27909,18 +26313,12 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createHealthLogSuccess?.call(this);
   }
@@ -28007,18 +26405,12 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createHealthLogSuccess != null) {
@@ -28169,12 +26561,9 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createHealthLogFailure(error);
   }
@@ -28245,12 +26634,9 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createHealthLogFailure?.call(error);
   }
@@ -28320,12 +26706,9 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createHealthLogFailure != null) {
@@ -28424,18 +26807,12 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createHealthLogFailure(this);
   }
@@ -28522,18 +26899,12 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createHealthLogFailure?.call(this);
   }
@@ -28620,18 +26991,12 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createHealthLogFailure != null) {
@@ -28765,12 +27130,9 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogLoading();
   }
@@ -28841,12 +27203,9 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogLoading?.call();
   }
@@ -28916,12 +27275,9 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLogLoading != null) {
@@ -29020,18 +27376,12 @@ class _$CreateVaccinScheduleLogLoadingImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogLoading(this);
   }
@@ -29118,18 +27468,12 @@ class _$CreateVaccinScheduleLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogLoading?.call(this);
   }
@@ -29216,18 +27560,12 @@ class _$CreateVaccinScheduleLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLogLoading != null) {
@@ -29353,12 +27691,9 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogSuccess();
   }
@@ -29429,12 +27764,9 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogSuccess?.call();
   }
@@ -29504,12 +27836,9 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLogSuccess != null) {
@@ -29608,18 +27937,12 @@ class _$CreateVaccinScheduleLogSuccessImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogSuccess(this);
   }
@@ -29706,18 +28029,12 @@ class _$CreateVaccinScheduleLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogSuccess?.call(this);
   }
@@ -29804,18 +28121,12 @@ class _$CreateVaccinScheduleLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLogSuccess != null) {
@@ -29969,12 +28280,9 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogFailure(error);
   }
@@ -30045,12 +28353,9 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogFailure?.call(error);
   }
@@ -30120,12 +28425,9 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLogFailure != null) {
@@ -30224,18 +28526,12 @@ class _$CreateVaccinScheduleLogFailureImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogFailure(this);
   }
@@ -30322,18 +28618,12 @@ class _$CreateVaccinScheduleLogFailureImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return createVaccinScheduleLogFailure?.call(this);
   }
@@ -30420,18 +28710,12 @@ class _$CreateVaccinScheduleLogFailureImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLogFailure != null) {
@@ -30566,12 +28850,9 @@ class _$GetDailyFoodUsageLogLoadingImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogLoading();
   }
@@ -30642,12 +28923,9 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogLoading?.call();
   }
@@ -30717,12 +28995,9 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLogLoading != null) {
@@ -30821,18 +29096,12 @@ class _$GetDailyFoodUsageLogLoadingImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogLoading(this);
   }
@@ -30919,18 +29188,12 @@ class _$GetDailyFoodUsageLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogLoading?.call(this);
   }
@@ -31017,18 +29280,12 @@ class _$GetDailyFoodUsageLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLogLoading != null) {
@@ -31193,12 +29450,9 @@ class _$GetDailyFoodUsageLogSuccessImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogSuccess(log);
   }
@@ -31269,12 +29523,9 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogSuccess?.call(log);
   }
@@ -31344,12 +29595,9 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLogSuccess != null) {
@@ -31448,18 +29696,12 @@ class _$GetDailyFoodUsageLogSuccessImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogSuccess(this);
   }
@@ -31546,18 +29788,12 @@ class _$GetDailyFoodUsageLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogSuccess?.call(this);
   }
@@ -31644,18 +29880,12 @@ class _$GetDailyFoodUsageLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLogSuccess != null) {
@@ -31816,12 +30046,9 @@ class _$GetDailyFoodUsageLogFailureImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogFailure(error);
   }
@@ -31892,12 +30119,9 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogFailure?.call(error);
   }
@@ -31967,12 +30191,9 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLogFailure != null) {
@@ -32071,18 +30292,12 @@ class _$GetDailyFoodUsageLogFailureImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogFailure(this);
   }
@@ -32169,18 +30384,12 @@ class _$GetDailyFoodUsageLogFailureImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getDailyFoodUsageLogFailure?.call(this);
   }
@@ -32267,18 +30476,12 @@ class _$GetDailyFoodUsageLogFailureImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLogFailure != null) {
@@ -32409,12 +30612,9 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getHealthLogLoading();
   }
@@ -32485,12 +30685,9 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getHealthLogLoading?.call();
   }
@@ -32560,12 +30757,9 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogLoading != null) {
@@ -32664,18 +30858,12 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogLoading(this);
   }
@@ -32762,18 +30950,12 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogLoading?.call(this);
   }
@@ -32860,18 +31042,12 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogLoading != null) {
@@ -33032,12 +31208,9 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getHealthLogSuccess(log);
   }
@@ -33108,12 +31281,9 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getHealthLogSuccess?.call(log);
   }
@@ -33183,12 +31353,9 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogSuccess != null) {
@@ -33287,18 +31454,12 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogSuccess(this);
   }
@@ -33385,18 +31546,12 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogSuccess?.call(this);
   }
@@ -33483,18 +31638,12 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogSuccess != null) {
@@ -33652,12 +31801,9 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getHealthLogFailure(error);
   }
@@ -33728,12 +31874,9 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getHealthLogFailure?.call(error);
   }
@@ -33803,12 +31946,9 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogFailure != null) {
@@ -33907,18 +32047,12 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogFailure(this);
   }
@@ -34005,18 +32139,12 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogFailure?.call(this);
   }
@@ -34103,18 +32231,12 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogFailure != null) {
@@ -34248,12 +32370,9 @@ class _$GetVaccinScheduleLogLoadingImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogLoading();
   }
@@ -34324,12 +32443,9 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogLoading?.call();
   }
@@ -34399,12 +32515,9 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLogLoading != null) {
@@ -34503,18 +32616,12 @@ class _$GetVaccinScheduleLogLoadingImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogLoading(this);
   }
@@ -34601,18 +32708,12 @@ class _$GetVaccinScheduleLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogLoading?.call(this);
   }
@@ -34699,18 +32800,12 @@ class _$GetVaccinScheduleLogLoadingImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLogLoading != null) {
@@ -34875,12 +32970,9 @@ class _$GetVaccinScheduleLogSuccessImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogSuccess(log);
   }
@@ -34951,12 +33043,9 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogSuccess?.call(log);
   }
@@ -35026,12 +33115,9 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLogSuccess != null) {
@@ -35130,18 +33216,12 @@ class _$GetVaccinScheduleLogSuccessImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogSuccess(this);
   }
@@ -35228,18 +33308,12 @@ class _$GetVaccinScheduleLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogSuccess?.call(this);
   }
@@ -35326,18 +33400,12 @@ class _$GetVaccinScheduleLogSuccessImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLogSuccess != null) {
@@ -35498,12 +33566,9 @@ class _$GetVaccinScheduleLogFailureImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogFailure(error);
   }
@@ -35574,12 +33639,9 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogFailure?.call(error);
   }
@@ -35649,12 +33711,9 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLogFailure != null) {
@@ -35753,18 +33812,12 @@ class _$GetVaccinScheduleLogFailureImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogFailure(this);
   }
@@ -35851,18 +33904,12 @@ class _$GetVaccinScheduleLogFailureImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getVaccinScheduleLogFailure?.call(this);
   }
@@ -35949,18 +33996,12 @@ class _$GetVaccinScheduleLogFailureImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLogFailure != null) {
@@ -36094,12 +34135,9 @@ class _$GetHealthLogInformationLoadingImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationLoading();
   }
@@ -36170,12 +34208,9 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationLoading?.call();
   }
@@ -36245,12 +34280,9 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogInformationLoading != null) {
@@ -36349,18 +34381,12 @@ class _$GetHealthLogInformationLoadingImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationLoading(this);
   }
@@ -36447,18 +34473,12 @@ class _$GetHealthLogInformationLoadingImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationLoading?.call(this);
   }
@@ -36545,18 +34565,12 @@ class _$GetHealthLogInformationLoadingImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogInformationLoading != null) {
@@ -36722,12 +34736,9 @@ class _$GetHealthLogInformationSuccessImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationSuccess(log);
   }
@@ -36798,12 +34809,9 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationSuccess?.call(log);
   }
@@ -36873,12 +34881,9 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogInformationSuccess != null) {
@@ -36977,18 +34982,12 @@ class _$GetHealthLogInformationSuccessImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationSuccess(this);
   }
@@ -37075,18 +35074,12 @@ class _$GetHealthLogInformationSuccessImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationSuccess?.call(this);
   }
@@ -37173,18 +35166,12 @@ class _$GetHealthLogInformationSuccessImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogInformationSuccess != null) {
@@ -37347,12 +35334,9 @@ class _$GetHealthLogInformationFailureImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationFailure(error);
   }
@@ -37423,12 +35407,9 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationFailure?.call(error);
   }
@@ -37498,12 +35479,9 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogInformationFailure != null) {
@@ -37602,18 +35580,12 @@ class _$GetHealthLogInformationFailureImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationFailure(this);
   }
@@ -37700,18 +35672,12 @@ class _$GetHealthLogInformationFailureImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getHealthLogInformationFailure?.call(this);
   }
@@ -37798,18 +35764,12 @@ class _$GetHealthLogInformationFailureImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getHealthLogInformationFailure != null) {
@@ -37944,12 +35904,9 @@ class _$GetTasksByScanQRCodeLoadingImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeLoading();
   }
@@ -38020,12 +35977,9 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeLoading?.call();
   }
@@ -38095,12 +36049,9 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCodeLoading != null) {
@@ -38199,18 +36150,12 @@ class _$GetTasksByScanQRCodeLoadingImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeLoading(this);
   }
@@ -38297,18 +36242,12 @@ class _$GetTasksByScanQRCodeLoadingImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeLoading?.call(this);
   }
@@ -38395,18 +36334,12 @@ class _$GetTasksByScanQRCodeLoadingImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCodeLoading != null) {
@@ -38585,12 +36518,9 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeSuccess(tasks, taskTypeList);
   }
@@ -38661,12 +36591,9 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeSuccess?.call(tasks, taskTypeList);
   }
@@ -38736,12 +36663,9 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCodeSuccess != null) {
@@ -38840,18 +36764,12 @@ class _$GetTasksByScanQRCodeSuccessImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeSuccess(this);
   }
@@ -38938,18 +36856,12 @@ class _$GetTasksByScanQRCodeSuccessImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeSuccess?.call(this);
   }
@@ -39036,18 +36948,12 @@ class _$GetTasksByScanQRCodeSuccessImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCodeSuccess != null) {
@@ -39209,12 +37115,9 @@ class _$GetTasksByScanQRCodeFailureImpl
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeFailure(error);
   }
@@ -39285,12 +37188,9 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeFailure?.call(error);
   }
@@ -39360,12 +37260,9 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCodeFailure != null) {
@@ -39464,18 +37361,12 @@ class _$GetTasksByScanQRCodeFailureImpl
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeFailure(this);
   }
@@ -39562,18 +37453,12 @@ class _$GetTasksByScanQRCodeFailureImpl
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return getTasksByScanQRCodeFailure?.call(this);
   }
@@ -39660,18 +37545,12 @@ class _$GetTasksByScanQRCodeFailureImpl
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCodeFailure != null) {
@@ -39804,12 +37683,9 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskLoading();
   }
@@ -39880,12 +37756,9 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskLoading?.call();
   }
@@ -39955,12 +37828,9 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateMultipleTaskLoading != null) {
@@ -40059,18 +37929,12 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskLoading(this);
   }
@@ -40157,18 +38021,12 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskLoading?.call(this);
   }
@@ -40255,18 +38113,12 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateMultipleTaskLoading != null) {
@@ -40390,12 +38242,9 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskSuccess();
   }
@@ -40466,12 +38315,9 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskSuccess?.call();
   }
@@ -40541,12 +38387,9 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateMultipleTaskSuccess != null) {
@@ -40645,18 +38488,12 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskSuccess(this);
   }
@@ -40743,18 +38580,12 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskSuccess?.call(this);
   }
@@ -40841,18 +38672,12 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateMultipleTaskSuccess != null) {
@@ -41003,12 +38828,9 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskFailure(error);
   }
@@ -41079,12 +38901,9 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskFailure?.call(error);
   }
@@ -41154,12 +38973,9 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateMultipleTaskFailure != null) {
@@ -41258,18 +39074,12 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskFailure(this);
   }
@@ -41356,18 +39166,12 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
     return updateMultipleTaskFailure?.call(this);
   }
@@ -41454,18 +39258,12 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
     if (updateMultipleTaskFailure != null) {
@@ -41489,20 +39287,20 @@ abstract class _UpdateMultipleTaskFailure implements TaskState {
 }
 
 /// @nodoc
-abstract class _$$MarkTaskHasProblemLoadingImplCopyWith<$Res> {
-  factory _$$MarkTaskHasProblemLoadingImplCopyWith(
-          _$MarkTaskHasProblemLoadingImpl value,
-          $Res Function(_$MarkTaskHasProblemLoadingImpl) then) =
-      __$$MarkTaskHasProblemLoadingImplCopyWithImpl<$Res>;
+abstract class _$$SetTaskIsTreatmentInProgressImplCopyWith<$Res> {
+  factory _$$SetTaskIsTreatmentInProgressImplCopyWith(
+          _$SetTaskIsTreatmentInProgressImpl value,
+          $Res Function(_$SetTaskIsTreatmentInProgressImpl) then) =
+      __$$SetTaskIsTreatmentInProgressImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$MarkTaskHasProblemLoadingImplCopyWithImpl<$Res>
-    extends _$TaskStateCopyWithImpl<$Res, _$MarkTaskHasProblemLoadingImpl>
-    implements _$$MarkTaskHasProblemLoadingImplCopyWith<$Res> {
-  __$$MarkTaskHasProblemLoadingImplCopyWithImpl(
-      _$MarkTaskHasProblemLoadingImpl _value,
-      $Res Function(_$MarkTaskHasProblemLoadingImpl) _then)
+class __$$SetTaskIsTreatmentInProgressImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$SetTaskIsTreatmentInProgressImpl>
+    implements _$$SetTaskIsTreatmentInProgressImplCopyWith<$Res> {
+  __$$SetTaskIsTreatmentInProgressImplCopyWithImpl(
+      _$SetTaskIsTreatmentInProgressImpl _value,
+      $Res Function(_$SetTaskIsTreatmentInProgressImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TaskState
@@ -41511,19 +39309,20 @@ class __$$MarkTaskHasProblemLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MarkTaskHasProblemLoadingImpl implements _MarkTaskHasProblemLoading {
-  const _$MarkTaskHasProblemLoadingImpl();
+class _$SetTaskIsTreatmentInProgressImpl
+    implements _SetTaskIsTreatmentInProgress {
+  const _$SetTaskIsTreatmentInProgressImpl();
 
   @override
   String toString() {
-    return 'TaskState.markTaskHasProblemLoading()';
+    return 'TaskState.setTaskIsTreatmentInProgress()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MarkTaskHasProblemLoadingImpl);
+            other is _$SetTaskIsTreatmentInProgressImpl);
   }
 
   @override
@@ -41598,14 +39397,11 @@ class _$MarkTaskHasProblemLoadingImpl implements _MarkTaskHasProblemLoading {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemLoading();
+    return setTaskIsTreatmentInProgress();
   }
 
   @override
@@ -41674,14 +39470,11 @@ class _$MarkTaskHasProblemLoadingImpl implements _MarkTaskHasProblemLoading {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemLoading?.call();
+    return setTaskIsTreatmentInProgress?.call();
   }
 
   @override
@@ -41749,16 +39542,13 @@ class _$MarkTaskHasProblemLoadingImpl implements _MarkTaskHasProblemLoading {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblemLoading != null) {
-      return markTaskHasProblemLoading();
+    if (setTaskIsTreatmentInProgress != null) {
+      return setTaskIsTreatmentInProgress();
     }
     return orElse();
   }
@@ -41853,20 +39643,14 @@ class _$MarkTaskHasProblemLoadingImpl implements _MarkTaskHasProblemLoading {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemLoading(this);
+    return setTaskIsTreatmentInProgress(this);
   }
 
   @override
@@ -41951,20 +39735,14 @@ class _$MarkTaskHasProblemLoadingImpl implements _MarkTaskHasProblemLoading {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemLoading?.call(this);
+    return setTaskIsTreatmentInProgress?.call(this);
   }
 
   @override
@@ -42049,46 +39827,41 @@ class _$MarkTaskHasProblemLoadingImpl implements _MarkTaskHasProblemLoading {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblemLoading != null) {
-      return markTaskHasProblemLoading(this);
+    if (setTaskIsTreatmentInProgress != null) {
+      return setTaskIsTreatmentInProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class _MarkTaskHasProblemLoading implements TaskState {
-  const factory _MarkTaskHasProblemLoading() = _$MarkTaskHasProblemLoadingImpl;
+abstract class _SetTaskIsTreatmentInProgress implements TaskState {
+  const factory _SetTaskIsTreatmentInProgress() =
+      _$SetTaskIsTreatmentInProgressImpl;
 }
 
 /// @nodoc
-abstract class _$$MarkTaskHasProblemSuccessImplCopyWith<$Res> {
-  factory _$$MarkTaskHasProblemSuccessImplCopyWith(
-          _$MarkTaskHasProblemSuccessImpl value,
-          $Res Function(_$MarkTaskHasProblemSuccessImpl) then) =
-      __$$MarkTaskHasProblemSuccessImplCopyWithImpl<$Res>;
+abstract class _$$SetTaskIsTreatmentSuccessImplCopyWith<$Res> {
+  factory _$$SetTaskIsTreatmentSuccessImplCopyWith(
+          _$SetTaskIsTreatmentSuccessImpl value,
+          $Res Function(_$SetTaskIsTreatmentSuccessImpl) then) =
+      __$$SetTaskIsTreatmentSuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$MarkTaskHasProblemSuccessImplCopyWithImpl<$Res>
-    extends _$TaskStateCopyWithImpl<$Res, _$MarkTaskHasProblemSuccessImpl>
-    implements _$$MarkTaskHasProblemSuccessImplCopyWith<$Res> {
-  __$$MarkTaskHasProblemSuccessImplCopyWithImpl(
-      _$MarkTaskHasProblemSuccessImpl _value,
-      $Res Function(_$MarkTaskHasProblemSuccessImpl) _then)
+class __$$SetTaskIsTreatmentSuccessImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$SetTaskIsTreatmentSuccessImpl>
+    implements _$$SetTaskIsTreatmentSuccessImplCopyWith<$Res> {
+  __$$SetTaskIsTreatmentSuccessImplCopyWithImpl(
+      _$SetTaskIsTreatmentSuccessImpl _value,
+      $Res Function(_$SetTaskIsTreatmentSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TaskState
@@ -42097,19 +39870,19 @@ class __$$MarkTaskHasProblemSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MarkTaskHasProblemSuccessImpl implements _MarkTaskHasProblemSuccess {
-  const _$MarkTaskHasProblemSuccessImpl();
+class _$SetTaskIsTreatmentSuccessImpl implements _SetTaskIsTreatmentSuccess {
+  const _$SetTaskIsTreatmentSuccessImpl();
 
   @override
   String toString() {
-    return 'TaskState.markTaskHasProblemSuccess()';
+    return 'TaskState.setTaskIsTreatmentSuccess()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MarkTaskHasProblemSuccessImpl);
+            other is _$SetTaskIsTreatmentSuccessImpl);
   }
 
   @override
@@ -42184,14 +39957,11 @@ class _$MarkTaskHasProblemSuccessImpl implements _MarkTaskHasProblemSuccess {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemSuccess();
+    return setTaskIsTreatmentSuccess();
   }
 
   @override
@@ -42260,14 +40030,11 @@ class _$MarkTaskHasProblemSuccessImpl implements _MarkTaskHasProblemSuccess {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemSuccess?.call();
+    return setTaskIsTreatmentSuccess?.call();
   }
 
   @override
@@ -42335,16 +40102,13 @@ class _$MarkTaskHasProblemSuccessImpl implements _MarkTaskHasProblemSuccess {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblemSuccess != null) {
-      return markTaskHasProblemSuccess();
+    if (setTaskIsTreatmentSuccess != null) {
+      return setTaskIsTreatmentSuccess();
     }
     return orElse();
   }
@@ -42439,20 +40203,14 @@ class _$MarkTaskHasProblemSuccessImpl implements _MarkTaskHasProblemSuccess {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemSuccess(this);
+    return setTaskIsTreatmentSuccess(this);
   }
 
   @override
@@ -42537,20 +40295,14 @@ class _$MarkTaskHasProblemSuccessImpl implements _MarkTaskHasProblemSuccess {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemSuccess?.call(this);
+    return setTaskIsTreatmentSuccess?.call(this);
   }
 
   @override
@@ -42635,48 +40387,42 @@ class _$MarkTaskHasProblemSuccessImpl implements _MarkTaskHasProblemSuccess {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblemSuccess != null) {
-      return markTaskHasProblemSuccess(this);
+    if (setTaskIsTreatmentSuccess != null) {
+      return setTaskIsTreatmentSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _MarkTaskHasProblemSuccess implements TaskState {
-  const factory _MarkTaskHasProblemSuccess() = _$MarkTaskHasProblemSuccessImpl;
+abstract class _SetTaskIsTreatmentSuccess implements TaskState {
+  const factory _SetTaskIsTreatmentSuccess() = _$SetTaskIsTreatmentSuccessImpl;
 }
 
 /// @nodoc
-abstract class _$$MarkTaskHasProblemFailureImplCopyWith<$Res> {
-  factory _$$MarkTaskHasProblemFailureImplCopyWith(
-          _$MarkTaskHasProblemFailureImpl value,
-          $Res Function(_$MarkTaskHasProblemFailureImpl) then) =
-      __$$MarkTaskHasProblemFailureImplCopyWithImpl<$Res>;
+abstract class _$$SetTaskIsTreatmentFailureImplCopyWith<$Res> {
+  factory _$$SetTaskIsTreatmentFailureImplCopyWith(
+          _$SetTaskIsTreatmentFailureImpl value,
+          $Res Function(_$SetTaskIsTreatmentFailureImpl) then) =
+      __$$SetTaskIsTreatmentFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$MarkTaskHasProblemFailureImplCopyWithImpl<$Res>
-    extends _$TaskStateCopyWithImpl<$Res, _$MarkTaskHasProblemFailureImpl>
-    implements _$$MarkTaskHasProblemFailureImplCopyWith<$Res> {
-  __$$MarkTaskHasProblemFailureImplCopyWithImpl(
-      _$MarkTaskHasProblemFailureImpl _value,
-      $Res Function(_$MarkTaskHasProblemFailureImpl) _then)
+class __$$SetTaskIsTreatmentFailureImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$SetTaskIsTreatmentFailureImpl>
+    implements _$$SetTaskIsTreatmentFailureImplCopyWith<$Res> {
+  __$$SetTaskIsTreatmentFailureImplCopyWithImpl(
+      _$SetTaskIsTreatmentFailureImpl _value,
+      $Res Function(_$SetTaskIsTreatmentFailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TaskState
@@ -42686,7 +40432,7 @@ class __$$MarkTaskHasProblemFailureImplCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$MarkTaskHasProblemFailureImpl(
+    return _then(_$SetTaskIsTreatmentFailureImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -42697,22 +40443,22 @@ class __$$MarkTaskHasProblemFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
-  const _$MarkTaskHasProblemFailureImpl(this.error);
+class _$SetTaskIsTreatmentFailureImpl implements _SetTaskIsTreatmentFailure {
+  const _$SetTaskIsTreatmentFailureImpl(this.error);
 
   @override
   final String error;
 
   @override
   String toString() {
-    return 'TaskState.markTaskHasProblemFailure(error: $error)';
+    return 'TaskState.setTaskIsTreatmentFailure(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MarkTaskHasProblemFailureImpl &&
+            other is _$SetTaskIsTreatmentFailureImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -42724,9 +40470,9 @@ class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MarkTaskHasProblemFailureImplCopyWith<_$MarkTaskHasProblemFailureImpl>
-      get copyWith => __$$MarkTaskHasProblemFailureImplCopyWithImpl<
-          _$MarkTaskHasProblemFailureImpl>(this, _$identity);
+  _$$SetTaskIsTreatmentFailureImplCopyWith<_$SetTaskIsTreatmentFailureImpl>
+      get copyWith => __$$SetTaskIsTreatmentFailureImplCopyWithImpl<
+          _$SetTaskIsTreatmentFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -42797,14 +40543,11 @@ class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
     required TResult Function() updateMultipleTaskLoading,
     required TResult Function() updateMultipleTaskSuccess,
     required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemFailure(error);
+    return setTaskIsTreatmentFailure(error);
   }
 
   @override
@@ -42873,14 +40616,11 @@ class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
     TResult? Function()? updateMultipleTaskLoading,
     TResult? Function()? updateMultipleTaskSuccess,
     TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemFailure?.call(error);
+    return setTaskIsTreatmentFailure?.call(error);
   }
 
   @override
@@ -42948,16 +40688,13 @@ class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
     TResult Function()? updateMultipleTaskLoading,
     TResult Function()? updateMultipleTaskSuccess,
     TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblemFailure != null) {
-      return markTaskHasProblemFailure(error);
+    if (setTaskIsTreatmentFailure != null) {
+      return setTaskIsTreatmentFailure(error);
     }
     return orElse();
   }
@@ -43052,20 +40789,14 @@ class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
         updateMultipleTaskSuccess,
     required TResult Function(_UpdateMultipleTaskFailure value)
         updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemFailure(this);
+    return setTaskIsTreatmentFailure(this);
   }
 
   @override
@@ -43150,20 +40881,14 @@ class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
         updateMultipleTaskSuccess,
     TResult? Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
   }) {
-    return markTaskHasProblemFailure?.call(this);
+    return setTaskIsTreatmentFailure?.call(this);
   }
 
   @override
@@ -43248,1830 +40973,30 @@ class _$MarkTaskHasProblemFailureImpl implements _MarkTaskHasProblemFailure {
         updateMultipleTaskSuccess,
     TResult Function(_UpdateMultipleTaskFailure value)?
         updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
     required TResult orElse(),
   }) {
-    if (markTaskHasProblemFailure != null) {
-      return markTaskHasProblemFailure(this);
+    if (setTaskIsTreatmentFailure != null) {
+      return setTaskIsTreatmentFailure(this);
     }
     return orElse();
   }
 }
 
-abstract class _MarkTaskHasProblemFailure implements TaskState {
-  const factory _MarkTaskHasProblemFailure(final String error) =
-      _$MarkTaskHasProblemFailureImpl;
+abstract class _SetTaskIsTreatmentFailure implements TaskState {
+  const factory _SetTaskIsTreatmentFailure(final String error) =
+      _$SetTaskIsTreatmentFailureImpl;
 
   String get error;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MarkTaskHasProblemFailureImplCopyWith<_$MarkTaskHasProblemFailureImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$MarkTaskAsCompleteLoadingImplCopyWith<$Res> {
-  factory _$$MarkTaskAsCompleteLoadingImplCopyWith(
-          _$MarkTaskAsCompleteLoadingImpl value,
-          $Res Function(_$MarkTaskAsCompleteLoadingImpl) then) =
-      __$$MarkTaskAsCompleteLoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$MarkTaskAsCompleteLoadingImplCopyWithImpl<$Res>
-    extends _$TaskStateCopyWithImpl<$Res, _$MarkTaskAsCompleteLoadingImpl>
-    implements _$$MarkTaskAsCompleteLoadingImplCopyWith<$Res> {
-  __$$MarkTaskAsCompleteLoadingImplCopyWithImpl(
-      _$MarkTaskAsCompleteLoadingImpl _value,
-      $Res Function(_$MarkTaskAsCompleteLoadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TaskState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$MarkTaskAsCompleteLoadingImpl implements _MarkTaskAsCompleteLoading {
-  const _$MarkTaskAsCompleteLoadingImpl();
-
-  @override
-  String toString() {
-    return 'TaskState.markTaskAsCompleteLoading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MarkTaskAsCompleteLoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String error) failure,
-    required TResult Function() taskCreated,
-    required TResult Function() taskUpdated,
-    required TResult Function() taskDeleted,
-    required TResult Function() getTasksInProgress,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)
-        getTasksSuccess,
-    required TResult Function(String error) getTasksFailure,
-    required TResult Function() testConnectSuccess,
-    required TResult Function() getTasksByCageIdLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
-        getTasksByCageIdSuccess,
-    required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task, String userId)
-        getTaskByIdSuccess,
-    required TResult Function(String error) getTaskByIdFailure,
-    required TResult Function() getNextTaskLoading,
-    required TResult Function(List<NextTask> task) getNextTaskSuccess,
-    required TResult Function(String error) getNextTaskFailure,
-    required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
-        getTasksByUserIdAndDateSuccess,
-    required TResult Function(String error) getTasksByUserIdAndDateFailure,
-    required TResult Function() filteredTaskLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
-        filteredTasksSuccess,
-    required TResult Function(String error) filteredTasksFailure,
-    required TResult Function() updateStatusTaskLoading,
-    required TResult Function() updateStatusTaskSuccess,
-    required TResult Function(String error) updateStatusTaskFailure,
-    required TResult Function() createDailyFoodUsageLogLoading,
-    required TResult Function() createDailyFoodUsageLogSuccess,
-    required TResult Function(String error) createDailyFoodUsageLogFailure,
-    required TResult Function() createHealthLogLoading,
-    required TResult Function() createHealthLogSuccess,
-    required TResult Function(String error) createHealthLogFailure,
-    required TResult Function() createVaccinScheduleLogLoading,
-    required TResult Function() createVaccinScheduleLogSuccess,
-    required TResult Function(String error) createVaccinScheduleLogFailure,
-    required TResult Function() getDailyFoodUsageLogLoading,
-    required TResult Function(DailyFoodUsageLogDto log)
-        getDailyFoodUsageLogSuccess,
-    required TResult Function(String error) getDailyFoodUsageLogFailure,
-    required TResult Function() getHealthLogLoading,
-    required TResult Function(HealthLogDto log) getHealthLogSuccess,
-    required TResult Function(String error) getHealthLogFailure,
-    required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccineScheduleLogDto log)
-        getVaccinScheduleLogSuccess,
-    required TResult Function(String error) getVaccinScheduleLogFailure,
-    required TResult Function() getHealthLogInformationLoading,
-    required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
-    required TResult Function(String error) getHealthLogInformationFailure,
-    required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(
-            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
-        getTasksByScanQRCodeSuccess,
-    required TResult Function(String error) getTasksByScanQRCodeFailure,
-    required TResult Function() updateMultipleTaskLoading,
-    required TResult Function() updateMultipleTaskSuccess,
-    required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteLoading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? failure,
-    TResult? Function()? taskCreated,
-    TResult? Function()? taskUpdated,
-    TResult? Function()? taskDeleted,
-    TResult? Function()? getTasksInProgress,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)?
-        getTasksSuccess,
-    TResult? Function(String error)? getTasksFailure,
-    TResult? Function()? testConnectSuccess,
-    TResult? Function()? getTasksByCageIdLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
-        getTasksByCageIdSuccess,
-    TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
-    TResult? Function(String error)? getTaskByIdFailure,
-    TResult? Function()? getNextTaskLoading,
-    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
-    TResult? Function(String error)? getNextTaskFailure,
-    TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
-        getTasksByUserIdAndDateSuccess,
-    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
-    TResult? Function()? filteredTaskLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
-        filteredTasksSuccess,
-    TResult? Function(String error)? filteredTasksFailure,
-    TResult? Function()? updateStatusTaskLoading,
-    TResult? Function()? updateStatusTaskSuccess,
-    TResult? Function(String error)? updateStatusTaskFailure,
-    TResult? Function()? createDailyFoodUsageLogLoading,
-    TResult? Function()? createDailyFoodUsageLogSuccess,
-    TResult? Function(String error)? createDailyFoodUsageLogFailure,
-    TResult? Function()? createHealthLogLoading,
-    TResult? Function()? createHealthLogSuccess,
-    TResult? Function(String error)? createHealthLogFailure,
-    TResult? Function()? createVaccinScheduleLogLoading,
-    TResult? Function()? createVaccinScheduleLogSuccess,
-    TResult? Function(String error)? createVaccinScheduleLogFailure,
-    TResult? Function()? getDailyFoodUsageLogLoading,
-    TResult? Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
-    TResult? Function(String error)? getDailyFoodUsageLogFailure,
-    TResult? Function()? getHealthLogLoading,
-    TResult? Function(HealthLogDto log)? getHealthLogSuccess,
-    TResult? Function(String error)? getHealthLogFailure,
-    TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
-    TResult? Function(String error)? getVaccinScheduleLogFailure,
-    TResult? Function()? getHealthLogInformationLoading,
-    TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
-    TResult? Function(String error)? getHealthLogInformationFailure,
-    TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(
-            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
-        getTasksByScanQRCodeSuccess,
-    TResult? Function(String error)? getTasksByScanQRCodeFailure,
-    TResult? Function()? updateMultipleTaskLoading,
-    TResult? Function()? updateMultipleTaskSuccess,
-    TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteLoading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String error)? failure,
-    TResult Function()? taskCreated,
-    TResult Function()? taskUpdated,
-    TResult Function()? taskDeleted,
-    TResult Function()? getTasksInProgress,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)?
-        getTasksSuccess,
-    TResult Function(String error)? getTasksFailure,
-    TResult Function()? testConnectSuccess,
-    TResult Function()? getTasksByCageIdLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
-        getTasksByCageIdSuccess,
-    TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
-    TResult Function(String error)? getTaskByIdFailure,
-    TResult Function()? getNextTaskLoading,
-    TResult Function(List<NextTask> task)? getNextTaskSuccess,
-    TResult Function(String error)? getNextTaskFailure,
-    TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
-        getTasksByUserIdAndDateSuccess,
-    TResult Function(String error)? getTasksByUserIdAndDateFailure,
-    TResult Function()? filteredTaskLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
-        filteredTasksSuccess,
-    TResult Function(String error)? filteredTasksFailure,
-    TResult Function()? updateStatusTaskLoading,
-    TResult Function()? updateStatusTaskSuccess,
-    TResult Function(String error)? updateStatusTaskFailure,
-    TResult Function()? createDailyFoodUsageLogLoading,
-    TResult Function()? createDailyFoodUsageLogSuccess,
-    TResult Function(String error)? createDailyFoodUsageLogFailure,
-    TResult Function()? createHealthLogLoading,
-    TResult Function()? createHealthLogSuccess,
-    TResult Function(String error)? createHealthLogFailure,
-    TResult Function()? createVaccinScheduleLogLoading,
-    TResult Function()? createVaccinScheduleLogSuccess,
-    TResult Function(String error)? createVaccinScheduleLogFailure,
-    TResult Function()? getDailyFoodUsageLogLoading,
-    TResult Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
-    TResult Function(String error)? getDailyFoodUsageLogFailure,
-    TResult Function()? getHealthLogLoading,
-    TResult Function(HealthLogDto log)? getHealthLogSuccess,
-    TResult Function(String error)? getHealthLogFailure,
-    TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
-    TResult Function(String error)? getVaccinScheduleLogFailure,
-    TResult Function()? getHealthLogInformationLoading,
-    TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
-    TResult Function(String error)? getHealthLogInformationFailure,
-    TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
-        getTasksByScanQRCodeSuccess,
-    TResult Function(String error)? getTasksByScanQRCodeFailure,
-    TResult Function()? updateMultipleTaskLoading,
-    TResult Function()? updateMultipleTaskSuccess,
-    TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsCompleteLoading != null) {
-      return markTaskAsCompleteLoading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_TaskCreated value) taskCreated,
-    required TResult Function(_TaskUpdated value) taskUpdated,
-    required TResult Function(_TaskDeleted value) taskDeleted,
-    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
-    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
-    required TResult Function(_GetTasksFailure value) getTasksFailure,
-    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
-    required TResult Function(_GetTasksByCageIdLoading value)
-        getTasksByCageIdLoading,
-    required TResult Function(_GetTasksByCageIdSuccess value)
-        getTasksByCageIdSuccess,
-    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
-    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
-    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
-    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
-    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
-    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
-    required TResult Function(_GetTasksByUserIdAndDateLoading value)
-        getTasksByUserIdAndDateLoading,
-    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
-        getTasksByUserIdAndDateSuccess,
-    required TResult Function(_GetTasksByUserIdAndDateFailure value)
-        getTasksByUserIdAndDateFailure,
-    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
-    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
-    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
-    required TResult Function(_UpdateStatusTaskLoading value)
-        updateStatusTaskLoading,
-    required TResult Function(_UpdateStatusTaskSuccess value)
-        updateStatusTaskSuccess,
-    required TResult Function(_UpdateStatusTaskFailure value)
-        updateStatusTaskFailure,
-    required TResult Function(_CreateDailyFoodUsageLogLoading value)
-        createDailyFoodUsageLogLoading,
-    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
-        createDailyFoodUsageLogSuccess,
-    required TResult Function(_CreateDailyFoodUsageLogFailure value)
-        createDailyFoodUsageLogFailure,
-    required TResult Function(_CreateHealthLogLoading value)
-        createHealthLogLoading,
-    required TResult Function(_CreateHealthLogSuccess value)
-        createHealthLogSuccess,
-    required TResult Function(_CreateHealthLogFailure value)
-        createHealthLogFailure,
-    required TResult Function(_CreateVaccinScheduleLogLoading value)
-        createVaccinScheduleLogLoading,
-    required TResult Function(_CreateVaccinScheduleLogSuccess value)
-        createVaccinScheduleLogSuccess,
-    required TResult Function(_CreateVaccinScheduleLogFailure value)
-        createVaccinScheduleLogFailure,
-    required TResult Function(_GetDailyFoodUsageLogLoading value)
-        getDailyFoodUsageLogLoading,
-    required TResult Function(_GetDailyFoodUsageLogSuccess value)
-        getDailyFoodUsageLogSuccess,
-    required TResult Function(_GetDailyFoodUsageLogFailure value)
-        getDailyFoodUsageLogFailure,
-    required TResult Function(_GetHealthLogLoading value) getHealthLogLoading,
-    required TResult Function(_GetHealthLogSuccess value) getHealthLogSuccess,
-    required TResult Function(_GetHealthLogFailure value) getHealthLogFailure,
-    required TResult Function(_GetVaccinScheduleLogLoading value)
-        getVaccinScheduleLogLoading,
-    required TResult Function(_GetVaccinScheduleLogSuccess value)
-        getVaccinScheduleLogSuccess,
-    required TResult Function(_GetVaccinScheduleLogFailure value)
-        getVaccinScheduleLogFailure,
-    required TResult Function(_GetHealthLogInformationLoading value)
-        getHealthLogInformationLoading,
-    required TResult Function(_GetHealthLogInformationSuccess value)
-        getHealthLogInformationSuccess,
-    required TResult Function(_GetHealthLogInformationFailure value)
-        getHealthLogInformationFailure,
-    required TResult Function(_GetTasksByScanQRCodeLoading value)
-        getTasksByScanQRCodeLoading,
-    required TResult Function(_GetTasksByScanQRCodeSuccess value)
-        getTasksByScanQRCodeSuccess,
-    required TResult Function(_GetTasksByScanQRCodeFailure value)
-        getTasksByScanQRCodeFailure,
-    required TResult Function(_UpdateMultipleTaskLoading value)
-        updateMultipleTaskLoading,
-    required TResult Function(_UpdateMultipleTaskSuccess value)
-        updateMultipleTaskSuccess,
-    required TResult Function(_UpdateMultipleTaskFailure value)
-        updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteLoading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_TaskCreated value)? taskCreated,
-    TResult? Function(_TaskUpdated value)? taskUpdated,
-    TResult? Function(_TaskDeleted value)? taskDeleted,
-    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
-    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
-    TResult? Function(_GetTasksFailure value)? getTasksFailure,
-    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
-    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
-    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
-    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
-    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
-    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
-    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
-    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
-    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
-    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
-        getTasksByUserIdAndDateLoading,
-    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
-        getTasksByUserIdAndDateSuccess,
-    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
-        getTasksByUserIdAndDateFailure,
-    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
-    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
-    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
-    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
-    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
-    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
-    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
-        createDailyFoodUsageLogLoading,
-    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
-        createDailyFoodUsageLogSuccess,
-    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
-        createDailyFoodUsageLogFailure,
-    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
-    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
-    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
-    TResult? Function(_CreateVaccinScheduleLogLoading value)?
-        createVaccinScheduleLogLoading,
-    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
-        createVaccinScheduleLogSuccess,
-    TResult? Function(_CreateVaccinScheduleLogFailure value)?
-        createVaccinScheduleLogFailure,
-    TResult? Function(_GetDailyFoodUsageLogLoading value)?
-        getDailyFoodUsageLogLoading,
-    TResult? Function(_GetDailyFoodUsageLogSuccess value)?
-        getDailyFoodUsageLogSuccess,
-    TResult? Function(_GetDailyFoodUsageLogFailure value)?
-        getDailyFoodUsageLogFailure,
-    TResult? Function(_GetHealthLogLoading value)? getHealthLogLoading,
-    TResult? Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
-    TResult? Function(_GetHealthLogFailure value)? getHealthLogFailure,
-    TResult? Function(_GetVaccinScheduleLogLoading value)?
-        getVaccinScheduleLogLoading,
-    TResult? Function(_GetVaccinScheduleLogSuccess value)?
-        getVaccinScheduleLogSuccess,
-    TResult? Function(_GetVaccinScheduleLogFailure value)?
-        getVaccinScheduleLogFailure,
-    TResult? Function(_GetHealthLogInformationLoading value)?
-        getHealthLogInformationLoading,
-    TResult? Function(_GetHealthLogInformationSuccess value)?
-        getHealthLogInformationSuccess,
-    TResult? Function(_GetHealthLogInformationFailure value)?
-        getHealthLogInformationFailure,
-    TResult? Function(_GetTasksByScanQRCodeLoading value)?
-        getTasksByScanQRCodeLoading,
-    TResult? Function(_GetTasksByScanQRCodeSuccess value)?
-        getTasksByScanQRCodeSuccess,
-    TResult? Function(_GetTasksByScanQRCodeFailure value)?
-        getTasksByScanQRCodeFailure,
-    TResult? Function(_UpdateMultipleTaskLoading value)?
-        updateMultipleTaskLoading,
-    TResult? Function(_UpdateMultipleTaskSuccess value)?
-        updateMultipleTaskSuccess,
-    TResult? Function(_UpdateMultipleTaskFailure value)?
-        updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteLoading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_TaskCreated value)? taskCreated,
-    TResult Function(_TaskUpdated value)? taskUpdated,
-    TResult Function(_TaskDeleted value)? taskDeleted,
-    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
-    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
-    TResult Function(_GetTasksFailure value)? getTasksFailure,
-    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
-    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
-    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
-    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
-    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
-    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
-    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
-    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
-    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
-    TResult Function(_GetTasksByUserIdAndDateLoading value)?
-        getTasksByUserIdAndDateLoading,
-    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
-        getTasksByUserIdAndDateSuccess,
-    TResult Function(_GetTasksByUserIdAndDateFailure value)?
-        getTasksByUserIdAndDateFailure,
-    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
-    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
-    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
-    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
-    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
-    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
-    TResult Function(_CreateDailyFoodUsageLogLoading value)?
-        createDailyFoodUsageLogLoading,
-    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
-        createDailyFoodUsageLogSuccess,
-    TResult Function(_CreateDailyFoodUsageLogFailure value)?
-        createDailyFoodUsageLogFailure,
-    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
-    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
-    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
-    TResult Function(_CreateVaccinScheduleLogLoading value)?
-        createVaccinScheduleLogLoading,
-    TResult Function(_CreateVaccinScheduleLogSuccess value)?
-        createVaccinScheduleLogSuccess,
-    TResult Function(_CreateVaccinScheduleLogFailure value)?
-        createVaccinScheduleLogFailure,
-    TResult Function(_GetDailyFoodUsageLogLoading value)?
-        getDailyFoodUsageLogLoading,
-    TResult Function(_GetDailyFoodUsageLogSuccess value)?
-        getDailyFoodUsageLogSuccess,
-    TResult Function(_GetDailyFoodUsageLogFailure value)?
-        getDailyFoodUsageLogFailure,
-    TResult Function(_GetHealthLogLoading value)? getHealthLogLoading,
-    TResult Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
-    TResult Function(_GetHealthLogFailure value)? getHealthLogFailure,
-    TResult Function(_GetVaccinScheduleLogLoading value)?
-        getVaccinScheduleLogLoading,
-    TResult Function(_GetVaccinScheduleLogSuccess value)?
-        getVaccinScheduleLogSuccess,
-    TResult Function(_GetVaccinScheduleLogFailure value)?
-        getVaccinScheduleLogFailure,
-    TResult Function(_GetHealthLogInformationLoading value)?
-        getHealthLogInformationLoading,
-    TResult Function(_GetHealthLogInformationSuccess value)?
-        getHealthLogInformationSuccess,
-    TResult Function(_GetHealthLogInformationFailure value)?
-        getHealthLogInformationFailure,
-    TResult Function(_GetTasksByScanQRCodeLoading value)?
-        getTasksByScanQRCodeLoading,
-    TResult Function(_GetTasksByScanQRCodeSuccess value)?
-        getTasksByScanQRCodeSuccess,
-    TResult Function(_GetTasksByScanQRCodeFailure value)?
-        getTasksByScanQRCodeFailure,
-    TResult Function(_UpdateMultipleTaskLoading value)?
-        updateMultipleTaskLoading,
-    TResult Function(_UpdateMultipleTaskSuccess value)?
-        updateMultipleTaskSuccess,
-    TResult Function(_UpdateMultipleTaskFailure value)?
-        updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsCompleteLoading != null) {
-      return markTaskAsCompleteLoading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _MarkTaskAsCompleteLoading implements TaskState {
-  const factory _MarkTaskAsCompleteLoading() = _$MarkTaskAsCompleteLoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$MarkTaskAsCompleteSuccessImplCopyWith<$Res> {
-  factory _$$MarkTaskAsCompleteSuccessImplCopyWith(
-          _$MarkTaskAsCompleteSuccessImpl value,
-          $Res Function(_$MarkTaskAsCompleteSuccessImpl) then) =
-      __$$MarkTaskAsCompleteSuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$MarkTaskAsCompleteSuccessImplCopyWithImpl<$Res>
-    extends _$TaskStateCopyWithImpl<$Res, _$MarkTaskAsCompleteSuccessImpl>
-    implements _$$MarkTaskAsCompleteSuccessImplCopyWith<$Res> {
-  __$$MarkTaskAsCompleteSuccessImplCopyWithImpl(
-      _$MarkTaskAsCompleteSuccessImpl _value,
-      $Res Function(_$MarkTaskAsCompleteSuccessImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TaskState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$MarkTaskAsCompleteSuccessImpl implements _MarkTaskAsCompleteSuccess {
-  const _$MarkTaskAsCompleteSuccessImpl();
-
-  @override
-  String toString() {
-    return 'TaskState.markTaskAsCompleteSuccess()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MarkTaskAsCompleteSuccessImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String error) failure,
-    required TResult Function() taskCreated,
-    required TResult Function() taskUpdated,
-    required TResult Function() taskDeleted,
-    required TResult Function() getTasksInProgress,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)
-        getTasksSuccess,
-    required TResult Function(String error) getTasksFailure,
-    required TResult Function() testConnectSuccess,
-    required TResult Function() getTasksByCageIdLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
-        getTasksByCageIdSuccess,
-    required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task, String userId)
-        getTaskByIdSuccess,
-    required TResult Function(String error) getTaskByIdFailure,
-    required TResult Function() getNextTaskLoading,
-    required TResult Function(List<NextTask> task) getNextTaskSuccess,
-    required TResult Function(String error) getNextTaskFailure,
-    required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
-        getTasksByUserIdAndDateSuccess,
-    required TResult Function(String error) getTasksByUserIdAndDateFailure,
-    required TResult Function() filteredTaskLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
-        filteredTasksSuccess,
-    required TResult Function(String error) filteredTasksFailure,
-    required TResult Function() updateStatusTaskLoading,
-    required TResult Function() updateStatusTaskSuccess,
-    required TResult Function(String error) updateStatusTaskFailure,
-    required TResult Function() createDailyFoodUsageLogLoading,
-    required TResult Function() createDailyFoodUsageLogSuccess,
-    required TResult Function(String error) createDailyFoodUsageLogFailure,
-    required TResult Function() createHealthLogLoading,
-    required TResult Function() createHealthLogSuccess,
-    required TResult Function(String error) createHealthLogFailure,
-    required TResult Function() createVaccinScheduleLogLoading,
-    required TResult Function() createVaccinScheduleLogSuccess,
-    required TResult Function(String error) createVaccinScheduleLogFailure,
-    required TResult Function() getDailyFoodUsageLogLoading,
-    required TResult Function(DailyFoodUsageLogDto log)
-        getDailyFoodUsageLogSuccess,
-    required TResult Function(String error) getDailyFoodUsageLogFailure,
-    required TResult Function() getHealthLogLoading,
-    required TResult Function(HealthLogDto log) getHealthLogSuccess,
-    required TResult Function(String error) getHealthLogFailure,
-    required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccineScheduleLogDto log)
-        getVaccinScheduleLogSuccess,
-    required TResult Function(String error) getVaccinScheduleLogFailure,
-    required TResult Function() getHealthLogInformationLoading,
-    required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
-    required TResult Function(String error) getHealthLogInformationFailure,
-    required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(
-            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
-        getTasksByScanQRCodeSuccess,
-    required TResult Function(String error) getTasksByScanQRCodeFailure,
-    required TResult Function() updateMultipleTaskLoading,
-    required TResult Function() updateMultipleTaskSuccess,
-    required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteSuccess();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? failure,
-    TResult? Function()? taskCreated,
-    TResult? Function()? taskUpdated,
-    TResult? Function()? taskDeleted,
-    TResult? Function()? getTasksInProgress,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)?
-        getTasksSuccess,
-    TResult? Function(String error)? getTasksFailure,
-    TResult? Function()? testConnectSuccess,
-    TResult? Function()? getTasksByCageIdLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
-        getTasksByCageIdSuccess,
-    TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
-    TResult? Function(String error)? getTaskByIdFailure,
-    TResult? Function()? getNextTaskLoading,
-    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
-    TResult? Function(String error)? getNextTaskFailure,
-    TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
-        getTasksByUserIdAndDateSuccess,
-    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
-    TResult? Function()? filteredTaskLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
-        filteredTasksSuccess,
-    TResult? Function(String error)? filteredTasksFailure,
-    TResult? Function()? updateStatusTaskLoading,
-    TResult? Function()? updateStatusTaskSuccess,
-    TResult? Function(String error)? updateStatusTaskFailure,
-    TResult? Function()? createDailyFoodUsageLogLoading,
-    TResult? Function()? createDailyFoodUsageLogSuccess,
-    TResult? Function(String error)? createDailyFoodUsageLogFailure,
-    TResult? Function()? createHealthLogLoading,
-    TResult? Function()? createHealthLogSuccess,
-    TResult? Function(String error)? createHealthLogFailure,
-    TResult? Function()? createVaccinScheduleLogLoading,
-    TResult? Function()? createVaccinScheduleLogSuccess,
-    TResult? Function(String error)? createVaccinScheduleLogFailure,
-    TResult? Function()? getDailyFoodUsageLogLoading,
-    TResult? Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
-    TResult? Function(String error)? getDailyFoodUsageLogFailure,
-    TResult? Function()? getHealthLogLoading,
-    TResult? Function(HealthLogDto log)? getHealthLogSuccess,
-    TResult? Function(String error)? getHealthLogFailure,
-    TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
-    TResult? Function(String error)? getVaccinScheduleLogFailure,
-    TResult? Function()? getHealthLogInformationLoading,
-    TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
-    TResult? Function(String error)? getHealthLogInformationFailure,
-    TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(
-            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
-        getTasksByScanQRCodeSuccess,
-    TResult? Function(String error)? getTasksByScanQRCodeFailure,
-    TResult? Function()? updateMultipleTaskLoading,
-    TResult? Function()? updateMultipleTaskSuccess,
-    TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteSuccess?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String error)? failure,
-    TResult Function()? taskCreated,
-    TResult Function()? taskUpdated,
-    TResult Function()? taskDeleted,
-    TResult Function()? getTasksInProgress,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)?
-        getTasksSuccess,
-    TResult Function(String error)? getTasksFailure,
-    TResult Function()? testConnectSuccess,
-    TResult Function()? getTasksByCageIdLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
-        getTasksByCageIdSuccess,
-    TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
-    TResult Function(String error)? getTaskByIdFailure,
-    TResult Function()? getNextTaskLoading,
-    TResult Function(List<NextTask> task)? getNextTaskSuccess,
-    TResult Function(String error)? getNextTaskFailure,
-    TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
-        getTasksByUserIdAndDateSuccess,
-    TResult Function(String error)? getTasksByUserIdAndDateFailure,
-    TResult Function()? filteredTaskLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
-        filteredTasksSuccess,
-    TResult Function(String error)? filteredTasksFailure,
-    TResult Function()? updateStatusTaskLoading,
-    TResult Function()? updateStatusTaskSuccess,
-    TResult Function(String error)? updateStatusTaskFailure,
-    TResult Function()? createDailyFoodUsageLogLoading,
-    TResult Function()? createDailyFoodUsageLogSuccess,
-    TResult Function(String error)? createDailyFoodUsageLogFailure,
-    TResult Function()? createHealthLogLoading,
-    TResult Function()? createHealthLogSuccess,
-    TResult Function(String error)? createHealthLogFailure,
-    TResult Function()? createVaccinScheduleLogLoading,
-    TResult Function()? createVaccinScheduleLogSuccess,
-    TResult Function(String error)? createVaccinScheduleLogFailure,
-    TResult Function()? getDailyFoodUsageLogLoading,
-    TResult Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
-    TResult Function(String error)? getDailyFoodUsageLogFailure,
-    TResult Function()? getHealthLogLoading,
-    TResult Function(HealthLogDto log)? getHealthLogSuccess,
-    TResult Function(String error)? getHealthLogFailure,
-    TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
-    TResult Function(String error)? getVaccinScheduleLogFailure,
-    TResult Function()? getHealthLogInformationLoading,
-    TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
-    TResult Function(String error)? getHealthLogInformationFailure,
-    TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
-        getTasksByScanQRCodeSuccess,
-    TResult Function(String error)? getTasksByScanQRCodeFailure,
-    TResult Function()? updateMultipleTaskLoading,
-    TResult Function()? updateMultipleTaskSuccess,
-    TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsCompleteSuccess != null) {
-      return markTaskAsCompleteSuccess();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_TaskCreated value) taskCreated,
-    required TResult Function(_TaskUpdated value) taskUpdated,
-    required TResult Function(_TaskDeleted value) taskDeleted,
-    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
-    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
-    required TResult Function(_GetTasksFailure value) getTasksFailure,
-    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
-    required TResult Function(_GetTasksByCageIdLoading value)
-        getTasksByCageIdLoading,
-    required TResult Function(_GetTasksByCageIdSuccess value)
-        getTasksByCageIdSuccess,
-    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
-    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
-    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
-    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
-    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
-    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
-    required TResult Function(_GetTasksByUserIdAndDateLoading value)
-        getTasksByUserIdAndDateLoading,
-    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
-        getTasksByUserIdAndDateSuccess,
-    required TResult Function(_GetTasksByUserIdAndDateFailure value)
-        getTasksByUserIdAndDateFailure,
-    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
-    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
-    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
-    required TResult Function(_UpdateStatusTaskLoading value)
-        updateStatusTaskLoading,
-    required TResult Function(_UpdateStatusTaskSuccess value)
-        updateStatusTaskSuccess,
-    required TResult Function(_UpdateStatusTaskFailure value)
-        updateStatusTaskFailure,
-    required TResult Function(_CreateDailyFoodUsageLogLoading value)
-        createDailyFoodUsageLogLoading,
-    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
-        createDailyFoodUsageLogSuccess,
-    required TResult Function(_CreateDailyFoodUsageLogFailure value)
-        createDailyFoodUsageLogFailure,
-    required TResult Function(_CreateHealthLogLoading value)
-        createHealthLogLoading,
-    required TResult Function(_CreateHealthLogSuccess value)
-        createHealthLogSuccess,
-    required TResult Function(_CreateHealthLogFailure value)
-        createHealthLogFailure,
-    required TResult Function(_CreateVaccinScheduleLogLoading value)
-        createVaccinScheduleLogLoading,
-    required TResult Function(_CreateVaccinScheduleLogSuccess value)
-        createVaccinScheduleLogSuccess,
-    required TResult Function(_CreateVaccinScheduleLogFailure value)
-        createVaccinScheduleLogFailure,
-    required TResult Function(_GetDailyFoodUsageLogLoading value)
-        getDailyFoodUsageLogLoading,
-    required TResult Function(_GetDailyFoodUsageLogSuccess value)
-        getDailyFoodUsageLogSuccess,
-    required TResult Function(_GetDailyFoodUsageLogFailure value)
-        getDailyFoodUsageLogFailure,
-    required TResult Function(_GetHealthLogLoading value) getHealthLogLoading,
-    required TResult Function(_GetHealthLogSuccess value) getHealthLogSuccess,
-    required TResult Function(_GetHealthLogFailure value) getHealthLogFailure,
-    required TResult Function(_GetVaccinScheduleLogLoading value)
-        getVaccinScheduleLogLoading,
-    required TResult Function(_GetVaccinScheduleLogSuccess value)
-        getVaccinScheduleLogSuccess,
-    required TResult Function(_GetVaccinScheduleLogFailure value)
-        getVaccinScheduleLogFailure,
-    required TResult Function(_GetHealthLogInformationLoading value)
-        getHealthLogInformationLoading,
-    required TResult Function(_GetHealthLogInformationSuccess value)
-        getHealthLogInformationSuccess,
-    required TResult Function(_GetHealthLogInformationFailure value)
-        getHealthLogInformationFailure,
-    required TResult Function(_GetTasksByScanQRCodeLoading value)
-        getTasksByScanQRCodeLoading,
-    required TResult Function(_GetTasksByScanQRCodeSuccess value)
-        getTasksByScanQRCodeSuccess,
-    required TResult Function(_GetTasksByScanQRCodeFailure value)
-        getTasksByScanQRCodeFailure,
-    required TResult Function(_UpdateMultipleTaskLoading value)
-        updateMultipleTaskLoading,
-    required TResult Function(_UpdateMultipleTaskSuccess value)
-        updateMultipleTaskSuccess,
-    required TResult Function(_UpdateMultipleTaskFailure value)
-        updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_TaskCreated value)? taskCreated,
-    TResult? Function(_TaskUpdated value)? taskUpdated,
-    TResult? Function(_TaskDeleted value)? taskDeleted,
-    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
-    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
-    TResult? Function(_GetTasksFailure value)? getTasksFailure,
-    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
-    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
-    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
-    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
-    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
-    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
-    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
-    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
-    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
-    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
-        getTasksByUserIdAndDateLoading,
-    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
-        getTasksByUserIdAndDateSuccess,
-    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
-        getTasksByUserIdAndDateFailure,
-    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
-    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
-    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
-    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
-    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
-    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
-    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
-        createDailyFoodUsageLogLoading,
-    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
-        createDailyFoodUsageLogSuccess,
-    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
-        createDailyFoodUsageLogFailure,
-    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
-    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
-    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
-    TResult? Function(_CreateVaccinScheduleLogLoading value)?
-        createVaccinScheduleLogLoading,
-    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
-        createVaccinScheduleLogSuccess,
-    TResult? Function(_CreateVaccinScheduleLogFailure value)?
-        createVaccinScheduleLogFailure,
-    TResult? Function(_GetDailyFoodUsageLogLoading value)?
-        getDailyFoodUsageLogLoading,
-    TResult? Function(_GetDailyFoodUsageLogSuccess value)?
-        getDailyFoodUsageLogSuccess,
-    TResult? Function(_GetDailyFoodUsageLogFailure value)?
-        getDailyFoodUsageLogFailure,
-    TResult? Function(_GetHealthLogLoading value)? getHealthLogLoading,
-    TResult? Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
-    TResult? Function(_GetHealthLogFailure value)? getHealthLogFailure,
-    TResult? Function(_GetVaccinScheduleLogLoading value)?
-        getVaccinScheduleLogLoading,
-    TResult? Function(_GetVaccinScheduleLogSuccess value)?
-        getVaccinScheduleLogSuccess,
-    TResult? Function(_GetVaccinScheduleLogFailure value)?
-        getVaccinScheduleLogFailure,
-    TResult? Function(_GetHealthLogInformationLoading value)?
-        getHealthLogInformationLoading,
-    TResult? Function(_GetHealthLogInformationSuccess value)?
-        getHealthLogInformationSuccess,
-    TResult? Function(_GetHealthLogInformationFailure value)?
-        getHealthLogInformationFailure,
-    TResult? Function(_GetTasksByScanQRCodeLoading value)?
-        getTasksByScanQRCodeLoading,
-    TResult? Function(_GetTasksByScanQRCodeSuccess value)?
-        getTasksByScanQRCodeSuccess,
-    TResult? Function(_GetTasksByScanQRCodeFailure value)?
-        getTasksByScanQRCodeFailure,
-    TResult? Function(_UpdateMultipleTaskLoading value)?
-        updateMultipleTaskLoading,
-    TResult? Function(_UpdateMultipleTaskSuccess value)?
-        updateMultipleTaskSuccess,
-    TResult? Function(_UpdateMultipleTaskFailure value)?
-        updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_TaskCreated value)? taskCreated,
-    TResult Function(_TaskUpdated value)? taskUpdated,
-    TResult Function(_TaskDeleted value)? taskDeleted,
-    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
-    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
-    TResult Function(_GetTasksFailure value)? getTasksFailure,
-    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
-    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
-    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
-    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
-    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
-    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
-    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
-    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
-    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
-    TResult Function(_GetTasksByUserIdAndDateLoading value)?
-        getTasksByUserIdAndDateLoading,
-    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
-        getTasksByUserIdAndDateSuccess,
-    TResult Function(_GetTasksByUserIdAndDateFailure value)?
-        getTasksByUserIdAndDateFailure,
-    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
-    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
-    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
-    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
-    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
-    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
-    TResult Function(_CreateDailyFoodUsageLogLoading value)?
-        createDailyFoodUsageLogLoading,
-    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
-        createDailyFoodUsageLogSuccess,
-    TResult Function(_CreateDailyFoodUsageLogFailure value)?
-        createDailyFoodUsageLogFailure,
-    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
-    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
-    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
-    TResult Function(_CreateVaccinScheduleLogLoading value)?
-        createVaccinScheduleLogLoading,
-    TResult Function(_CreateVaccinScheduleLogSuccess value)?
-        createVaccinScheduleLogSuccess,
-    TResult Function(_CreateVaccinScheduleLogFailure value)?
-        createVaccinScheduleLogFailure,
-    TResult Function(_GetDailyFoodUsageLogLoading value)?
-        getDailyFoodUsageLogLoading,
-    TResult Function(_GetDailyFoodUsageLogSuccess value)?
-        getDailyFoodUsageLogSuccess,
-    TResult Function(_GetDailyFoodUsageLogFailure value)?
-        getDailyFoodUsageLogFailure,
-    TResult Function(_GetHealthLogLoading value)? getHealthLogLoading,
-    TResult Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
-    TResult Function(_GetHealthLogFailure value)? getHealthLogFailure,
-    TResult Function(_GetVaccinScheduleLogLoading value)?
-        getVaccinScheduleLogLoading,
-    TResult Function(_GetVaccinScheduleLogSuccess value)?
-        getVaccinScheduleLogSuccess,
-    TResult Function(_GetVaccinScheduleLogFailure value)?
-        getVaccinScheduleLogFailure,
-    TResult Function(_GetHealthLogInformationLoading value)?
-        getHealthLogInformationLoading,
-    TResult Function(_GetHealthLogInformationSuccess value)?
-        getHealthLogInformationSuccess,
-    TResult Function(_GetHealthLogInformationFailure value)?
-        getHealthLogInformationFailure,
-    TResult Function(_GetTasksByScanQRCodeLoading value)?
-        getTasksByScanQRCodeLoading,
-    TResult Function(_GetTasksByScanQRCodeSuccess value)?
-        getTasksByScanQRCodeSuccess,
-    TResult Function(_GetTasksByScanQRCodeFailure value)?
-        getTasksByScanQRCodeFailure,
-    TResult Function(_UpdateMultipleTaskLoading value)?
-        updateMultipleTaskLoading,
-    TResult Function(_UpdateMultipleTaskSuccess value)?
-        updateMultipleTaskSuccess,
-    TResult Function(_UpdateMultipleTaskFailure value)?
-        updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsCompleteSuccess != null) {
-      return markTaskAsCompleteSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _MarkTaskAsCompleteSuccess implements TaskState {
-  const factory _MarkTaskAsCompleteSuccess() = _$MarkTaskAsCompleteSuccessImpl;
-}
-
-/// @nodoc
-abstract class _$$MarkTaskAsCompleteFailureImplCopyWith<$Res> {
-  factory _$$MarkTaskAsCompleteFailureImplCopyWith(
-          _$MarkTaskAsCompleteFailureImpl value,
-          $Res Function(_$MarkTaskAsCompleteFailureImpl) then) =
-      __$$MarkTaskAsCompleteFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
-}
-
-/// @nodoc
-class __$$MarkTaskAsCompleteFailureImplCopyWithImpl<$Res>
-    extends _$TaskStateCopyWithImpl<$Res, _$MarkTaskAsCompleteFailureImpl>
-    implements _$$MarkTaskAsCompleteFailureImplCopyWith<$Res> {
-  __$$MarkTaskAsCompleteFailureImplCopyWithImpl(
-      _$MarkTaskAsCompleteFailureImpl _value,
-      $Res Function(_$MarkTaskAsCompleteFailureImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TaskState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$MarkTaskAsCompleteFailureImpl(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$MarkTaskAsCompleteFailureImpl implements _MarkTaskAsCompleteFailure {
-  const _$MarkTaskAsCompleteFailureImpl(this.error);
-
-  @override
-  final String error;
-
-  @override
-  String toString() {
-    return 'TaskState.markTaskAsCompleteFailure(error: $error)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MarkTaskAsCompleteFailureImpl &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  /// Create a copy of TaskState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MarkTaskAsCompleteFailureImplCopyWith<_$MarkTaskAsCompleteFailureImpl>
-      get copyWith => __$$MarkTaskAsCompleteFailureImplCopyWithImpl<
-          _$MarkTaskAsCompleteFailureImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String error) failure,
-    required TResult Function() taskCreated,
-    required TResult Function() taskUpdated,
-    required TResult Function() taskDeleted,
-    required TResult Function() getTasksInProgress,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)
-        getTasksSuccess,
-    required TResult Function(String error) getTasksFailure,
-    required TResult Function() testConnectSuccess,
-    required TResult Function() getTasksByCageIdLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
-        getTasksByCageIdSuccess,
-    required TResult Function() getTaskByIdLoading,
-    required TResult Function(TaskHaveCageName task, String userId)
-        getTaskByIdSuccess,
-    required TResult Function(String error) getTaskByIdFailure,
-    required TResult Function() getNextTaskLoading,
-    required TResult Function(List<NextTask> task) getNextTaskSuccess,
-    required TResult Function(String error) getNextTaskFailure,
-    required TResult Function() getTasksByUserIdAndDateLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)
-        getTasksByUserIdAndDateSuccess,
-    required TResult Function(String error) getTasksByUserIdAndDateFailure,
-    required TResult Function() filteredTaskLoading,
-    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
-        filteredTasksSuccess,
-    required TResult Function(String error) filteredTasksFailure,
-    required TResult Function() updateStatusTaskLoading,
-    required TResult Function() updateStatusTaskSuccess,
-    required TResult Function(String error) updateStatusTaskFailure,
-    required TResult Function() createDailyFoodUsageLogLoading,
-    required TResult Function() createDailyFoodUsageLogSuccess,
-    required TResult Function(String error) createDailyFoodUsageLogFailure,
-    required TResult Function() createHealthLogLoading,
-    required TResult Function() createHealthLogSuccess,
-    required TResult Function(String error) createHealthLogFailure,
-    required TResult Function() createVaccinScheduleLogLoading,
-    required TResult Function() createVaccinScheduleLogSuccess,
-    required TResult Function(String error) createVaccinScheduleLogFailure,
-    required TResult Function() getDailyFoodUsageLogLoading,
-    required TResult Function(DailyFoodUsageLogDto log)
-        getDailyFoodUsageLogSuccess,
-    required TResult Function(String error) getDailyFoodUsageLogFailure,
-    required TResult Function() getHealthLogLoading,
-    required TResult Function(HealthLogDto log) getHealthLogSuccess,
-    required TResult Function(String error) getHealthLogFailure,
-    required TResult Function() getVaccinScheduleLogLoading,
-    required TResult Function(VaccineScheduleLogDto log)
-        getVaccinScheduleLogSuccess,
-    required TResult Function(String error) getVaccinScheduleLogFailure,
-    required TResult Function() getHealthLogInformationLoading,
-    required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
-    required TResult Function(String error) getHealthLogInformationFailure,
-    required TResult Function() getTasksByScanQRCodeLoading,
-    required TResult Function(
-            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
-        getTasksByScanQRCodeSuccess,
-    required TResult Function(String error) getTasksByScanQRCodeFailure,
-    required TResult Function() updateMultipleTaskLoading,
-    required TResult Function() updateMultipleTaskSuccess,
-    required TResult Function(String error) updateMultipleTaskFailure,
-    required TResult Function() markTaskHasProblemLoading,
-    required TResult Function() markTaskHasProblemSuccess,
-    required TResult Function(String error) markTaskHasProblemFailure,
-    required TResult Function() markTaskAsCompleteLoading,
-    required TResult Function() markTaskAsCompleteSuccess,
-    required TResult Function(String error) markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteFailure(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? failure,
-    TResult? Function()? taskCreated,
-    TResult? Function()? taskUpdated,
-    TResult? Function()? taskDeleted,
-    TResult? Function()? getTasksInProgress,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)?
-        getTasksSuccess,
-    TResult? Function(String error)? getTasksFailure,
-    TResult? Function()? testConnectSuccess,
-    TResult? Function()? getTasksByCageIdLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
-        getTasksByCageIdSuccess,
-    TResult? Function()? getTaskByIdLoading,
-    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
-    TResult? Function(String error)? getTaskByIdFailure,
-    TResult? Function()? getNextTaskLoading,
-    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
-    TResult? Function(String error)? getNextTaskFailure,
-    TResult? Function()? getTasksByUserIdAndDateLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
-        getTasksByUserIdAndDateSuccess,
-    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
-    TResult? Function()? filteredTaskLoading,
-    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
-        filteredTasksSuccess,
-    TResult? Function(String error)? filteredTasksFailure,
-    TResult? Function()? updateStatusTaskLoading,
-    TResult? Function()? updateStatusTaskSuccess,
-    TResult? Function(String error)? updateStatusTaskFailure,
-    TResult? Function()? createDailyFoodUsageLogLoading,
-    TResult? Function()? createDailyFoodUsageLogSuccess,
-    TResult? Function(String error)? createDailyFoodUsageLogFailure,
-    TResult? Function()? createHealthLogLoading,
-    TResult? Function()? createHealthLogSuccess,
-    TResult? Function(String error)? createHealthLogFailure,
-    TResult? Function()? createVaccinScheduleLogLoading,
-    TResult? Function()? createVaccinScheduleLogSuccess,
-    TResult? Function(String error)? createVaccinScheduleLogFailure,
-    TResult? Function()? getDailyFoodUsageLogLoading,
-    TResult? Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
-    TResult? Function(String error)? getDailyFoodUsageLogFailure,
-    TResult? Function()? getHealthLogLoading,
-    TResult? Function(HealthLogDto log)? getHealthLogSuccess,
-    TResult? Function(String error)? getHealthLogFailure,
-    TResult? Function()? getVaccinScheduleLogLoading,
-    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
-    TResult? Function(String error)? getVaccinScheduleLogFailure,
-    TResult? Function()? getHealthLogInformationLoading,
-    TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
-    TResult? Function(String error)? getHealthLogInformationFailure,
-    TResult? Function()? getTasksByScanQRCodeLoading,
-    TResult? Function(
-            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
-        getTasksByScanQRCodeSuccess,
-    TResult? Function(String error)? getTasksByScanQRCodeFailure,
-    TResult? Function()? updateMultipleTaskLoading,
-    TResult? Function()? updateMultipleTaskSuccess,
-    TResult? Function(String error)? updateMultipleTaskFailure,
-    TResult? Function()? markTaskHasProblemLoading,
-    TResult? Function()? markTaskHasProblemSuccess,
-    TResult? Function(String error)? markTaskHasProblemFailure,
-    TResult? Function()? markTaskAsCompleteLoading,
-    TResult? Function()? markTaskAsCompleteSuccess,
-    TResult? Function(String error)? markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteFailure?.call(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String error)? failure,
-    TResult Function()? taskCreated,
-    TResult Function()? taskUpdated,
-    TResult Function()? taskDeleted,
-    TResult Function()? getTasksInProgress,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList, List<TaskType> taskTypeList)?
-        getTasksSuccess,
-    TResult Function(String error)? getTasksFailure,
-    TResult Function()? testConnectSuccess,
-    TResult Function()? getTasksByCageIdLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
-        getTasksByCageIdSuccess,
-    TResult Function()? getTaskByIdLoading,
-    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
-    TResult Function(String error)? getTaskByIdFailure,
-    TResult Function()? getNextTaskLoading,
-    TResult Function(List<NextTask> task)? getNextTaskSuccess,
-    TResult Function(String error)? getNextTaskFailure,
-    TResult Function()? getTasksByUserIdAndDateLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
-            List<CageFilter> cageList)?
-        getTasksByUserIdAndDateSuccess,
-    TResult Function(String error)? getTasksByUserIdAndDateFailure,
-    TResult Function()? filteredTaskLoading,
-    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
-        filteredTasksSuccess,
-    TResult Function(String error)? filteredTasksFailure,
-    TResult Function()? updateStatusTaskLoading,
-    TResult Function()? updateStatusTaskSuccess,
-    TResult Function(String error)? updateStatusTaskFailure,
-    TResult Function()? createDailyFoodUsageLogLoading,
-    TResult Function()? createDailyFoodUsageLogSuccess,
-    TResult Function(String error)? createDailyFoodUsageLogFailure,
-    TResult Function()? createHealthLogLoading,
-    TResult Function()? createHealthLogSuccess,
-    TResult Function(String error)? createHealthLogFailure,
-    TResult Function()? createVaccinScheduleLogLoading,
-    TResult Function()? createVaccinScheduleLogSuccess,
-    TResult Function(String error)? createVaccinScheduleLogFailure,
-    TResult Function()? getDailyFoodUsageLogLoading,
-    TResult Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
-    TResult Function(String error)? getDailyFoodUsageLogFailure,
-    TResult Function()? getHealthLogLoading,
-    TResult Function(HealthLogDto log)? getHealthLogSuccess,
-    TResult Function(String error)? getHealthLogFailure,
-    TResult Function()? getVaccinScheduleLogLoading,
-    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
-    TResult Function(String error)? getVaccinScheduleLogFailure,
-    TResult Function()? getHealthLogInformationLoading,
-    TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
-    TResult Function(String error)? getHealthLogInformationFailure,
-    TResult Function()? getTasksByScanQRCodeLoading,
-    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
-        getTasksByScanQRCodeSuccess,
-    TResult Function(String error)? getTasksByScanQRCodeFailure,
-    TResult Function()? updateMultipleTaskLoading,
-    TResult Function()? updateMultipleTaskSuccess,
-    TResult Function(String error)? updateMultipleTaskFailure,
-    TResult Function()? markTaskHasProblemLoading,
-    TResult Function()? markTaskHasProblemSuccess,
-    TResult Function(String error)? markTaskHasProblemFailure,
-    TResult Function()? markTaskAsCompleteLoading,
-    TResult Function()? markTaskAsCompleteSuccess,
-    TResult Function(String error)? markTaskAsCompleteFailure,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsCompleteFailure != null) {
-      return markTaskAsCompleteFailure(error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_TaskCreated value) taskCreated,
-    required TResult Function(_TaskUpdated value) taskUpdated,
-    required TResult Function(_TaskDeleted value) taskDeleted,
-    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
-    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
-    required TResult Function(_GetTasksFailure value) getTasksFailure,
-    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
-    required TResult Function(_GetTasksByCageIdLoading value)
-        getTasksByCageIdLoading,
-    required TResult Function(_GetTasksByCageIdSuccess value)
-        getTasksByCageIdSuccess,
-    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
-    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
-    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
-    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
-    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
-    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
-    required TResult Function(_GetTasksByUserIdAndDateLoading value)
-        getTasksByUserIdAndDateLoading,
-    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
-        getTasksByUserIdAndDateSuccess,
-    required TResult Function(_GetTasksByUserIdAndDateFailure value)
-        getTasksByUserIdAndDateFailure,
-    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
-    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
-    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
-    required TResult Function(_UpdateStatusTaskLoading value)
-        updateStatusTaskLoading,
-    required TResult Function(_UpdateStatusTaskSuccess value)
-        updateStatusTaskSuccess,
-    required TResult Function(_UpdateStatusTaskFailure value)
-        updateStatusTaskFailure,
-    required TResult Function(_CreateDailyFoodUsageLogLoading value)
-        createDailyFoodUsageLogLoading,
-    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
-        createDailyFoodUsageLogSuccess,
-    required TResult Function(_CreateDailyFoodUsageLogFailure value)
-        createDailyFoodUsageLogFailure,
-    required TResult Function(_CreateHealthLogLoading value)
-        createHealthLogLoading,
-    required TResult Function(_CreateHealthLogSuccess value)
-        createHealthLogSuccess,
-    required TResult Function(_CreateHealthLogFailure value)
-        createHealthLogFailure,
-    required TResult Function(_CreateVaccinScheduleLogLoading value)
-        createVaccinScheduleLogLoading,
-    required TResult Function(_CreateVaccinScheduleLogSuccess value)
-        createVaccinScheduleLogSuccess,
-    required TResult Function(_CreateVaccinScheduleLogFailure value)
-        createVaccinScheduleLogFailure,
-    required TResult Function(_GetDailyFoodUsageLogLoading value)
-        getDailyFoodUsageLogLoading,
-    required TResult Function(_GetDailyFoodUsageLogSuccess value)
-        getDailyFoodUsageLogSuccess,
-    required TResult Function(_GetDailyFoodUsageLogFailure value)
-        getDailyFoodUsageLogFailure,
-    required TResult Function(_GetHealthLogLoading value) getHealthLogLoading,
-    required TResult Function(_GetHealthLogSuccess value) getHealthLogSuccess,
-    required TResult Function(_GetHealthLogFailure value) getHealthLogFailure,
-    required TResult Function(_GetVaccinScheduleLogLoading value)
-        getVaccinScheduleLogLoading,
-    required TResult Function(_GetVaccinScheduleLogSuccess value)
-        getVaccinScheduleLogSuccess,
-    required TResult Function(_GetVaccinScheduleLogFailure value)
-        getVaccinScheduleLogFailure,
-    required TResult Function(_GetHealthLogInformationLoading value)
-        getHealthLogInformationLoading,
-    required TResult Function(_GetHealthLogInformationSuccess value)
-        getHealthLogInformationSuccess,
-    required TResult Function(_GetHealthLogInformationFailure value)
-        getHealthLogInformationFailure,
-    required TResult Function(_GetTasksByScanQRCodeLoading value)
-        getTasksByScanQRCodeLoading,
-    required TResult Function(_GetTasksByScanQRCodeSuccess value)
-        getTasksByScanQRCodeSuccess,
-    required TResult Function(_GetTasksByScanQRCodeFailure value)
-        getTasksByScanQRCodeFailure,
-    required TResult Function(_UpdateMultipleTaskLoading value)
-        updateMultipleTaskLoading,
-    required TResult Function(_UpdateMultipleTaskSuccess value)
-        updateMultipleTaskSuccess,
-    required TResult Function(_UpdateMultipleTaskFailure value)
-        updateMultipleTaskFailure,
-    required TResult Function(_MarkTaskHasProblemLoading value)
-        markTaskHasProblemLoading,
-    required TResult Function(_MarkTaskHasProblemSuccess value)
-        markTaskHasProblemSuccess,
-    required TResult Function(_MarkTaskHasProblemFailure value)
-        markTaskHasProblemFailure,
-    required TResult Function(_MarkTaskAsCompleteLoading value)
-        markTaskAsCompleteLoading,
-    required TResult Function(_MarkTaskAsCompleteSuccess value)
-        markTaskAsCompleteSuccess,
-    required TResult Function(_MarkTaskAsCompleteFailure value)
-        markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_TaskCreated value)? taskCreated,
-    TResult? Function(_TaskUpdated value)? taskUpdated,
-    TResult? Function(_TaskDeleted value)? taskDeleted,
-    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
-    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
-    TResult? Function(_GetTasksFailure value)? getTasksFailure,
-    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
-    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
-    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
-    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
-    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
-    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
-    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
-    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
-    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
-    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
-        getTasksByUserIdAndDateLoading,
-    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
-        getTasksByUserIdAndDateSuccess,
-    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
-        getTasksByUserIdAndDateFailure,
-    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
-    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
-    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
-    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
-    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
-    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
-    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
-        createDailyFoodUsageLogLoading,
-    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
-        createDailyFoodUsageLogSuccess,
-    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
-        createDailyFoodUsageLogFailure,
-    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
-    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
-    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
-    TResult? Function(_CreateVaccinScheduleLogLoading value)?
-        createVaccinScheduleLogLoading,
-    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
-        createVaccinScheduleLogSuccess,
-    TResult? Function(_CreateVaccinScheduleLogFailure value)?
-        createVaccinScheduleLogFailure,
-    TResult? Function(_GetDailyFoodUsageLogLoading value)?
-        getDailyFoodUsageLogLoading,
-    TResult? Function(_GetDailyFoodUsageLogSuccess value)?
-        getDailyFoodUsageLogSuccess,
-    TResult? Function(_GetDailyFoodUsageLogFailure value)?
-        getDailyFoodUsageLogFailure,
-    TResult? Function(_GetHealthLogLoading value)? getHealthLogLoading,
-    TResult? Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
-    TResult? Function(_GetHealthLogFailure value)? getHealthLogFailure,
-    TResult? Function(_GetVaccinScheduleLogLoading value)?
-        getVaccinScheduleLogLoading,
-    TResult? Function(_GetVaccinScheduleLogSuccess value)?
-        getVaccinScheduleLogSuccess,
-    TResult? Function(_GetVaccinScheduleLogFailure value)?
-        getVaccinScheduleLogFailure,
-    TResult? Function(_GetHealthLogInformationLoading value)?
-        getHealthLogInformationLoading,
-    TResult? Function(_GetHealthLogInformationSuccess value)?
-        getHealthLogInformationSuccess,
-    TResult? Function(_GetHealthLogInformationFailure value)?
-        getHealthLogInformationFailure,
-    TResult? Function(_GetTasksByScanQRCodeLoading value)?
-        getTasksByScanQRCodeLoading,
-    TResult? Function(_GetTasksByScanQRCodeSuccess value)?
-        getTasksByScanQRCodeSuccess,
-    TResult? Function(_GetTasksByScanQRCodeFailure value)?
-        getTasksByScanQRCodeFailure,
-    TResult? Function(_UpdateMultipleTaskLoading value)?
-        updateMultipleTaskLoading,
-    TResult? Function(_UpdateMultipleTaskSuccess value)?
-        updateMultipleTaskSuccess,
-    TResult? Function(_UpdateMultipleTaskFailure value)?
-        updateMultipleTaskFailure,
-    TResult? Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult? Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult? Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult? Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult? Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult? Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
-  }) {
-    return markTaskAsCompleteFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_TaskCreated value)? taskCreated,
-    TResult Function(_TaskUpdated value)? taskUpdated,
-    TResult Function(_TaskDeleted value)? taskDeleted,
-    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
-    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
-    TResult Function(_GetTasksFailure value)? getTasksFailure,
-    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
-    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
-    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
-    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
-    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
-    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
-    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
-    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
-    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
-    TResult Function(_GetTasksByUserIdAndDateLoading value)?
-        getTasksByUserIdAndDateLoading,
-    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
-        getTasksByUserIdAndDateSuccess,
-    TResult Function(_GetTasksByUserIdAndDateFailure value)?
-        getTasksByUserIdAndDateFailure,
-    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
-    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
-    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
-    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
-    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
-    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
-    TResult Function(_CreateDailyFoodUsageLogLoading value)?
-        createDailyFoodUsageLogLoading,
-    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
-        createDailyFoodUsageLogSuccess,
-    TResult Function(_CreateDailyFoodUsageLogFailure value)?
-        createDailyFoodUsageLogFailure,
-    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
-    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
-    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
-    TResult Function(_CreateVaccinScheduleLogLoading value)?
-        createVaccinScheduleLogLoading,
-    TResult Function(_CreateVaccinScheduleLogSuccess value)?
-        createVaccinScheduleLogSuccess,
-    TResult Function(_CreateVaccinScheduleLogFailure value)?
-        createVaccinScheduleLogFailure,
-    TResult Function(_GetDailyFoodUsageLogLoading value)?
-        getDailyFoodUsageLogLoading,
-    TResult Function(_GetDailyFoodUsageLogSuccess value)?
-        getDailyFoodUsageLogSuccess,
-    TResult Function(_GetDailyFoodUsageLogFailure value)?
-        getDailyFoodUsageLogFailure,
-    TResult Function(_GetHealthLogLoading value)? getHealthLogLoading,
-    TResult Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
-    TResult Function(_GetHealthLogFailure value)? getHealthLogFailure,
-    TResult Function(_GetVaccinScheduleLogLoading value)?
-        getVaccinScheduleLogLoading,
-    TResult Function(_GetVaccinScheduleLogSuccess value)?
-        getVaccinScheduleLogSuccess,
-    TResult Function(_GetVaccinScheduleLogFailure value)?
-        getVaccinScheduleLogFailure,
-    TResult Function(_GetHealthLogInformationLoading value)?
-        getHealthLogInformationLoading,
-    TResult Function(_GetHealthLogInformationSuccess value)?
-        getHealthLogInformationSuccess,
-    TResult Function(_GetHealthLogInformationFailure value)?
-        getHealthLogInformationFailure,
-    TResult Function(_GetTasksByScanQRCodeLoading value)?
-        getTasksByScanQRCodeLoading,
-    TResult Function(_GetTasksByScanQRCodeSuccess value)?
-        getTasksByScanQRCodeSuccess,
-    TResult Function(_GetTasksByScanQRCodeFailure value)?
-        getTasksByScanQRCodeFailure,
-    TResult Function(_UpdateMultipleTaskLoading value)?
-        updateMultipleTaskLoading,
-    TResult Function(_UpdateMultipleTaskSuccess value)?
-        updateMultipleTaskSuccess,
-    TResult Function(_UpdateMultipleTaskFailure value)?
-        updateMultipleTaskFailure,
-    TResult Function(_MarkTaskHasProblemLoading value)?
-        markTaskHasProblemLoading,
-    TResult Function(_MarkTaskHasProblemSuccess value)?
-        markTaskHasProblemSuccess,
-    TResult Function(_MarkTaskHasProblemFailure value)?
-        markTaskHasProblemFailure,
-    TResult Function(_MarkTaskAsCompleteLoading value)?
-        markTaskAsCompleteLoading,
-    TResult Function(_MarkTaskAsCompleteSuccess value)?
-        markTaskAsCompleteSuccess,
-    TResult Function(_MarkTaskAsCompleteFailure value)?
-        markTaskAsCompleteFailure,
-    required TResult orElse(),
-  }) {
-    if (markTaskAsCompleteFailure != null) {
-      return markTaskAsCompleteFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _MarkTaskAsCompleteFailure implements TaskState {
-  const factory _MarkTaskAsCompleteFailure(final String error) =
-      _$MarkTaskAsCompleteFailureImpl;
-
-  String get error;
-
-  /// Create a copy of TaskState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MarkTaskAsCompleteFailureImplCopyWith<_$MarkTaskAsCompleteFailureImpl>
+  _$$SetTaskIsTreatmentFailureImplCopyWith<_$SetTaskIsTreatmentFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

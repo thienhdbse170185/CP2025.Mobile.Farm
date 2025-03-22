@@ -59,18 +59,6 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.updateMultipleTask(
       List<String> taskIds, String statusId) = _UpdateMultipleTask;
 
-  /*
-  // Commented out since the API isn't ready yet
-  // New events for marking a task as having problems
-  const factory TaskEvent.markTaskHasProblem({
-    required String taskId,
-    required String problemDescription,
-  }) = _MarkTaskHasProblem;
-
-  const factory TaskEvent.markTaskAsComplete({
-    required String taskId,
-    required bool hasProblem,
-    String? problemDescription,
-  }) = _MarkTaskAsComplete;
-  */
+  const factory TaskEvent.setTaskIsTreatment({required String taskId}) =
+      _SetTaskIsTreatment;
 }
