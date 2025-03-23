@@ -1491,6 +1491,57 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       ),
                     ),
                   ),
+                // Add Warning Notification if isWarning is true
+                if (task?.isWarning == true)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
+                    color: Theme.of(context).colorScheme.errorContainer,
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .error
+                                .withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            Icons.warning_amber_rounded,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Cảnh báo: Công việc có vấn đề',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Đã có báo cáo triệu chứng bệnh cho chuồng này',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onErrorContainer,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(
@@ -1633,57 +1684,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     },
                   ),
                 ),
-                // Add Warning Notification if isWarning is true
-                if (task?.isWarning == true)
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 16),
-                    color: Theme.of(context).colorScheme.errorContainer,
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .error
-                                .withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Icon(
-                            Icons.warning_amber_rounded,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Cảnh báo: Công việc có vấn đề',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).colorScheme.error,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Đã có báo cáo triệu chứng bệnh cho chuồng này',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onErrorContainer,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
