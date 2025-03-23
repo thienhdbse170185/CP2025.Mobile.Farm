@@ -1292,7 +1292,13 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           appBarHeight: 70,
           leading: IconButton(
               onPressed: () {
-                context.pop();
+                // Check if we can safely pop or need to redirect to task list
+                if (Navigator.of(context).canPop()) {
+                  context.pop();
+                } else {
+                  // If we can't pop, navigate to the task list
+                  context.go(RouteName.task);
+                }
               },
               icon: Icon(Icons.arrow_back)),
           title: Column(children: [
@@ -1410,15 +1416,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 },
               )
             ],
-            // if (taskStatus == StatusDataConstant.inProgressVn &&
-            //     task?.taskType.taskTypeId != TaskTypeDataConstant.health) ...[
-            //   IconButton(
-            //     icon: const Icon(Icons.medical_information_outlined,
-            //         color: Colors.red),
-            //     tooltip: 'Báo cáo triệu chứng bệnh',
-            //     onPressed: _navigateToSymptomReport,
-            //   ),
-            // ],
           ],
         ),
         body: RefreshIndicator(
@@ -1432,6 +1429,68 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (taskStatus == StatusDataConstant.inProgressVn &&
+                    task?.taskType.taskTypeId != TaskTypeDataConstant.health &&
+                    task?.isWarning == false)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
+                    color:
+                        Theme.of(context).colorScheme.error.withOpacity(0.08),
+                    child: InkWell(
+                      onTap: _navigateToSymptomReport,
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .error
+                                  .withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              Icons.medical_services_outlined,
+                              color: Theme.of(context).colorScheme.error,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Phát hiện gia cầm có biểu hiện bệnh?',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Báo cáo triệu chứng ngay cho bác sĩ thú y',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .error
+                                        .withOpacity(0.8),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(
@@ -1586,7 +1645,10 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                         Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.error.withOpacity(0.2),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .error
+                                .withOpacity(0.2),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(
@@ -1611,74 +1673,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                                 'Đã có báo cáo triệu chứng bệnh cho chuồng này',
                                 style: TextStyle(
                                   fontSize: 13,
-                                  color: Theme.of(context).colorScheme.onErrorContainer,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onErrorContainer,
                                 ),
                               ),
                             ],
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                if (taskStatus == StatusDataConstant.inProgressVn &&
-                    task?.taskType.taskTypeId != TaskTypeDataConstant.health)
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 16),
-                    color:
-                        Theme.of(context).colorScheme.error.withOpacity(0.08),
-                    child: InkWell(
-                      onTap: _navigateToSymptomReport,
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .error
-                                  .withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Icon(
-                              Icons.medical_services_outlined,
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Phát hiện gia cầm có biểu hiện bệnh?',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).colorScheme.error,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  'Báo cáo triệu chứng ngay cho bác sĩ thú y',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .error
-                                        .withOpacity(0.8),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 Container(
