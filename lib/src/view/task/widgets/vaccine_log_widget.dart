@@ -139,10 +139,11 @@ class VaccineLogWidget extends StatelessWidget {
                       InfoItemWidget(
                         context: context,
                         label: 'Độ tuổi tiêm',
-                        value: '${vaccineSchedule!.applicationAge} tuổi',
+                        value: '${vaccineSchedule!.applicationAge} ngày tuổi',
                         icon: Icons.health_and_safety_rounded,
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.12),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.095),
                       InfoItemWidget(
                         context: context,
                         label: 'Buổi tiêm',
