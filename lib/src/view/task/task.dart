@@ -72,6 +72,11 @@ class _TaskWidgetState extends State<TaskWidget>
       'name': StatusDataConstant.overdueVn,
       'color': Colors.red,
     },
+    {
+      'id': 'warning',
+      'name': 'Có vấn đề',
+      'color': Colors.amber,
+    }
   ];
 
   // Thay thế _taskTypes hardcode bằng danh sách từ API
@@ -206,9 +211,6 @@ class _TaskWidgetState extends State<TaskWidget>
         selectedDate = picked;
       });
       // Call the API to fetch tasks for the selected date
-      // context
-      //     .read<TaskBloc>()
-      //     .add(TaskEvent.getTasksByUserIdAndDate(picked, null));
       context.read<TaskBloc>().add(TaskEvent.getTasks(
           _searchController.text,
           _selectedStatus == 'all' ? null : _selectedStatus,
@@ -224,12 +226,6 @@ class _TaskWidgetState extends State<TaskWidget>
   @override
   void initState() {
     super.initState();
-    // _scrollController.addListener(_onScroll);
-
-    // Fetch tasks for the selected date when the widget is initialized
-    // context
-    //     .read<TaskBloc>()
-    //     .add(TaskEvent.getTasksByUserIdAndDate(DateTime.now(), null));
     context.read<TaskBloc>().add(
         TaskEvent.getTasks('', '', '', '', TimeUtils.customNow(), null, 1, 20));
     _refreshTasks();

@@ -1,0 +1,2 @@
+D:/Capstone Project/CP2025.Mobile/smart_farm/android/app/.cxx/RelWithDebInfo/856i4x29/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Capstone Project/CP2025.Mobile/smart_farm/android/app/.cxx/RelWithDebInfo/856i4x29/armeabi-v7a/CMakeFiles/rebuild_cache.dir

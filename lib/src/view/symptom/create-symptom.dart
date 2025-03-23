@@ -28,6 +28,7 @@ import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart'
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 
 class CreateSymptomWidget extends StatefulWidget {
@@ -503,8 +504,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       medicalSymptomDetails: medicalSymptom.medicalSymptomDetails,
     );
 
-    // If coming from a task, return to the task screen after showing success
+    // If coming from a task, mark the task as having a problem before navigating
     if (widget.fromTask && widget.taskId != null) {
+      // Mark the task as having a problem (treatment needed)
+      context
+          .read<TaskBloc>()
+          .add(TaskEvent.setTaskIsTreatment(taskId: widget.taskId!));
+
+      // Navigate to success screen after marking
       context.go(RouteName.symptomSuccess, extra: {
         'symptom': symptom,
         'cageName': _selectedCage,
