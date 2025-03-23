@@ -163,7 +163,6 @@ class TaskListWidget extends StatelessWidget {
                                 child: Icon(typeIcon, size: 16),
                               ),
                               SizedBox(width: 12),
-
                               // Task Title and Cage
                               Expanded(
                                 child: Column(

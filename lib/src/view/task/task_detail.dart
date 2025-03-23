@@ -1042,6 +1042,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               getVaccineScheduleByStageIdSuccess: (vaccineScheduleList) {
                 setState(() {
                   this.vaccineScheduleList = vaccineScheduleList;
+                  if (vaccineScheduleList.isNotEmpty) {
+                    vaccineSchedule = vaccineScheduleList.first;
+                  }
                   _isLoading = false;
                 });
               },
@@ -1648,31 +1651,24 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                           );
                         case 1:
                           return TaskInfoGridItem(
-                            icon: LinearIcons.categoryIcon,
-                            label: 'Loại công việc',
-                            value: task?.taskType.taskTypeName ?? "",
-                          );
-                        case 2:
-                          return TaskInfoGridItem(
-                            icon: LinearIcons.taskSquareIcon,
-                            label: 'Độ ưu tiên',
-                            value: getPriorityText(task?.priorityNum ?? 0),
-                            color: getPriorityColor(task?.priorityNum ?? 0),
-                          );
-                        case 3:
-                          return TaskInfoGridItem(
                             icon: LinearIcons.notiStatusIcon,
                             label: 'Trạng thái',
                             value: getStatusText(task?.status ?? ""),
                             color: getStatusColor(task?.status ?? ""),
                           );
-                        case 4:
+                        case 2:
+                          return TaskInfoGridItem(
+                            icon: LinearIcons.categoryIcon,
+                            label: 'Loại công việc',
+                            value: task?.taskType.taskTypeName ?? "",
+                          );
+                        case 3:
                           return TaskInfoGridItem(
                             icon: LinearIcons.calendarRemoveIcon,
                             label: 'Hạn chót',
                             value: formatDate(task?.dueDate ?? ""),
                           );
-                        case 5:
+                        case 4:
                           return TaskInfoGridItem(
                             icon: Icon(Icons.wb_sunny_outlined),
                             label: 'Buổi',
