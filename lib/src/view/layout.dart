@@ -58,7 +58,7 @@ class _LayoutScaffoldState extends State<LayoutScaffold> {
                     onScanned: (String qrCode) {
                       log("QR Code: $qrCode");
                       final cage = _cages.firstWhere(
-                        (cage) => cage.id == qrCode,
+                        (cage) => cage.id == qrCode.toLowerCase(),
                         orElse: () => CageOption(id: '', name: ''),
                       );
 

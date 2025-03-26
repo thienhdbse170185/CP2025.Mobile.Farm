@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
+import 'package:smart_farm/src/view/task/task_detail.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/task_list.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
@@ -72,9 +72,20 @@ class _CageWidgetState extends State<CageWidget> {
         tasks.values.expand((element) => element).where((task) {
       return task.status == StatusDataConstant.pending;
     }).toList();
+    final overdueTasks =
+        tasks.values.expand((element) => element).where((task) {
+      return task.status == StatusDataConstant.overdue;
+    }).toList();
+    final canceledTasks =
+        tasks.values.expand((element) => element).where((task) {
+      return task.status == StatusDataConstant.cancelled;
+    }).toList();
 
-    final totalTasks =
-        doneTasks.length + inProgressTasks.length + pendingTasks.length;
+    final totalTasks = doneTasks.length +
+        inProgressTasks.length +
+        pendingTasks.length +
+        overdueTasks.length +
+        canceledTasks.length;
     final completionPercentage =
         totalTasks > 0 ? (doneTasks.length / totalTasks * 100).round() : 0;
 
@@ -129,12 +140,6 @@ class _CageWidgetState extends State<CageWidget> {
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: CustomAppBar(
-          leading: IconButton(
-            icon: LinearIcons.arrowBackIcon,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
           appBarHeight: MediaQuery.of(context).size.height * 0.08,
           title: Column(
             children: [
@@ -250,11 +255,31 @@ class _CageWidgetState extends State<CageWidget> {
                                           inProgressTasks.length,
                                           Colors.amber,
                                         ),
-                                        const SizedBox(width: 8),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      children: [
                                         _buildStatusBadge(
                                           'Chưa làm',
                                           pendingTasks.length,
+                                          Colors.blue,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        _buildStatusBadge(
+                                          'Hết hạn',
+                                          overdueTasks.length,
                                           Colors.red,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      children: [
+                                        _buildStatusBadge(
+                                          'Đã hủy',
+                                          canceledTasks.length,
+                                          Colors.grey,
                                         ),
                                       ],
                                     ),
@@ -319,66 +344,12 @@ class _CageWidgetState extends State<CageWidget> {
                 ),
 
                 if (tasks.values.every((tasks) => tasks.isEmpty)) ...[
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(24),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primaryContainer
-                                  .withOpacity(0.3),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.assignment_outlined,
-                              size: 72,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.7),
-                            ),
-                          ),
-                          const SizedBox(height: 24),
-                          Text(
-                            'Không có công việc hôm nay',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
-                          const SizedBox(height: 12),
-                          TextButton.icon(
-                            onPressed: () {
-                              context.read<TaskBloc>().add(
-                                  TaskEvent.getTasksByCageId(
-                                      selectedDate, widget.cageId));
-                            },
-                            icon: const Icon(Icons.refresh),
-                            label: const Text('Làm mới'),
-                            style: TextButton.styleFrom(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  _buildEmptyState(),
                 ] else ...[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Danh sách công việc',
@@ -387,8 +358,9 @@ class _CageWidgetState extends State<CageWidget> {
                                     fontWeight: FontWeight.bold,
                                   ),
                         ),
+                        const SizedBox(height: 4),
                         Text(
-                          'Tổng: $totalTasks',
+                          'Tổng: $totalTasks (công việc)',
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Theme.of(context)
@@ -442,6 +414,56 @@ class _CageWidgetState extends State<CageWidget> {
     );
   }
 
+  // Build empty state widget for no tasks
+  Widget _buildEmptyState() {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(90),
+                color: Theme.of(context)
+                    .colorScheme
+                    .primaryContainer
+                    .withOpacity(0.4),
+              ),
+              width: 120,
+              height: 120,
+              child: Icon(
+                Icons.task_alt_outlined,
+                size: 64,
+                color: Theme.of(context).primaryColor.withOpacity(0.4),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Không có công việc nào\n trong ngày này',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            TextButton.icon(
+              onPressed: () {
+                context.read<TaskBloc>().add(
+                    TaskEvent.getTasksByCageId(selectedDate, widget.cageId));
+              },
+              icon: const Icon(Icons.refresh),
+              label: const Text('Làm mới'),
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   List<Widget> _buildSessionSections(
       Map<String, List<TaskHaveCageName>> tasks) {
     final sessionOrder = ['Morning', 'Noon', 'Afternoon', 'Evening'];
@@ -454,6 +476,10 @@ class _CageWidgetState extends State<CageWidget> {
         return indexA.compareTo(indexB);
       });
 
+    final totalTasks = sortedEntries.fold<int>(0, (total, entry) {
+      return total + entry.value.length;
+    });
+
     return sortedEntries
         .map((entry) {
           final session = entry.key;
@@ -462,107 +488,155 @@ class _CageWidgetState extends State<CageWidget> {
           if (sessionTasks.isEmpty) return const SizedBox.shrink();
 
           String sessionTitle;
-          IconData sessionIcon;
-          Color sessionColor;
+          String sessionImage;
 
           switch (session) {
             case 'Morning':
               sessionTitle = 'Buổi sáng';
-              sessionIcon = Icons.wb_sunny;
-              sessionColor = Colors.orange;
+              sessionImage = 'assets/images/morning.png';
               break;
             case 'Noon':
               sessionTitle = 'Buổi trưa';
-              sessionIcon = Icons.wb_sunny_outlined;
-              sessionColor = Colors.amber;
+              sessionImage = 'assets/images/noon.png';
               break;
             case 'Afternoon':
               sessionTitle = 'Buổi chiều';
-              sessionIcon = Icons.brightness_4;
-              sessionColor = Colors.deepOrange;
+              sessionImage = 'assets/images/afternoon.png';
               break;
             case 'Evening':
               sessionTitle = 'Buổi tối';
-              sessionIcon = Icons.nights_stay;
-              sessionColor = Colors.indigo;
+              sessionImage = 'assets/images/moon.png';
               break;
             default:
               sessionTitle = 'Khác';
-              sessionIcon = Icons.access_time;
-              sessionColor = Colors.grey;
+              sessionImage = 'assets/images/default.png';
           }
 
-          return Container(
-            margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
+          return totalTasks > 0
+              ? Container(
+                  margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                   decoration: BoxDecoration(
-                    color: sessionColor.withOpacity(0.1),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                    ),
-                    border: Border(
-                      bottom: BorderSide(
-                        color: sessionColor.withOpacity(0.3),
-                        width: 1,
-                      ),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        sessionIcon,
-                        color: sessionColor,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        sessionTitle,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: sessionColor,
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: sessionColor.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(12),
-                          border:
-                              Border.all(color: sessionColor.withOpacity(0.3)),
-                        ),
-                        child: Text(
-                          '${sessionTasks.length} công việc',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: sessionColor,
-                          ),
-                        ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
-                ),
-                ...sessionTasks.map((task) => TaskListWidget(tasks: [task])),
-              ],
-            ),
-          );
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primaryContainer
+                              .withOpacity(0.1),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            topRight: Radius.circular(12),
+                          ),
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.3),
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              sessionImage,
+                              width: 32,
+                              height: 32,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              sessionTitle,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                            ),
+                            const SizedBox(width: 8),
+                            GestureDetector(
+                              onTap: () {
+                                context
+                                    .read<TaskBloc>()
+                                    .add(TaskEvent.getTasksByCageId(
+                                      selectedDate,
+                                      widget.cageId,
+                                    ));
+                              },
+                              child: Icon(Icons.refresh_outlined, size: 16),
+                            ),
+                            Spacer(),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                '${sessionTasks.length} công việc',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ...sessionTasks.map((task) => GestureDetector(
+                            onTap: () async {
+                              // Navigate to task detail and pass 'cage' as source
+                              final result = await Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => TaskDetailWidget(
+                                    taskId: task.id,
+                                    source: 'cage', // Add this parameter
+                                  ),
+                                ),
+                              );
+
+                              // Handle result when returning from task detail
+                              if (result != null &&
+                                  result is Map<String, dynamic>) {
+                                if (result['reload'] == true &&
+                                    result['source'] == 'cage') {
+                                  // Reload tasks for this cage
+                                  context.read<TaskBloc>().add(
+                                        TaskEvent.getTasksByCageId(
+                                          selectedDate,
+                                          widget.cageId,
+                                        ),
+                                      );
+                                }
+                              }
+                            },
+                            child: TaskListWidget(
+                              tasks: [task],
+                              highlightWarning: true,
+                            ),
+                          )),
+                    ],
+                  ),
+                )
+              : Container();
         })
         .where((widget) => widget is! SizedBox)
         .toList();

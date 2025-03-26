@@ -50,8 +50,9 @@ import 'package:smart_farm/src/viewmodel/vaccine_schedule/vaccine_schedule_cubit
 
 class TaskDetailWidget extends StatefulWidget {
   final String taskId;
+  final String? source; // Add a source parameter to track where user came from
 
-  const TaskDetailWidget({super.key, required this.taskId});
+  const TaskDetailWidget({super.key, required this.taskId, this.source});
 
   @override
   State<TaskDetailWidget> createState() => _TaskDetailWidgetState();
@@ -62,6 +63,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   bool _isProcessing = false;
   bool _isLoading = false;
   bool _isHealthyAfterTreatment = false;
+  String? _sourceScreen; // Track the source screen
 
   // --- Task related variables ---
   TaskHaveCageName? task;
@@ -149,6 +151,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   @override
   void initState() {
     super.initState();
+    _sourceScreen = widget.source; // Store the source screen
     context.read<UserBloc>().add(const UserEvent.getUserProfile());
     context.read<TaskBloc>().add(TaskEvent.getTaskById(widget.taskId));
 
@@ -344,32 +347,25 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Xác nhận'),
+        return WarningConfirmationDialog(
+          title: 'Xác nhận',
           content: Text(taskStatus == StatusDataConstant.pendingVn
               ? 'Bạn có chắc chắn muốn bắt đầu công việc này không?'
-              : 'Bạn có chắc chắn muốn xác nhận hoàn thành công việc này không?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Hủy'),
-            ),
-            TextButton(
-              onPressed: () async {
-                Navigator.of(context).pop();
-                if (_images.isNotEmpty) {
-                  context
-                      .read<UploadImageCubit>()
-                      .uploadImage(file: _images.first);
-                } else {
-                  _onCreateLog();
-                }
-              },
-              child: const Text('Xác nhận'),
-            ),
-          ],
+              : 'Bạn có đảm bảo sức khỏe gà bình thường hay không?'),
+          // Bạn có đảm bảo sức khỏe gà bình thường hay không?
+          primaryButtonText: 'Xác nhận',
+          onPrimaryButtonPressed: () async {
+            Navigator.of(context).pop();
+            if (_images.isNotEmpty) {
+              context.read<UploadImageCubit>().uploadImage(file: _images.first);
+            } else {
+              _onCreateLog();
+            }
+          },
+          secondaryButtonText: 'Hủy',
+          onSecondaryButtonPressed: () {
+            Navigator.of(context).pop();
+          },
         );
       },
     );
@@ -618,7 +614,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       content:
                           Text('Cập nhật trạng thái công việc thành công!')),
                 );
-                context.pop(true); // Pass true to indicate success
+
+                // Use the new navigation handler
+                _handleTaskComplete(context, true);
               },
               updateStatusTaskFailure: (e) async {
                 setState(() {
@@ -1295,12 +1293,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           appBarHeight: 70,
           leading: IconButton(
               onPressed: () {
-                // Check if we can safely pop or need to redirect to task list
+                // Check if we can safely pop or need to redirect
                 if (Navigator.of(context).canPop()) {
-                  context.pop();
+                  Navigator.of(context)
+                      .pop({'reload': false, 'source': _sourceScreen});
                 } else {
-                  // If we can't pop, navigate to the task list
-                  context.go(RouteName.task);
+                  // If we can't pop, navigate to appropriate screen based on source
+                  if (_sourceScreen == 'cage') {
+                    context.go(RouteName.cage);
+                  } else {
+                    context.go(RouteName.task);
+                  }
                 }
               },
               icon: Icon(Icons.arrow_back)),
@@ -1432,9 +1435,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (taskStatus == StatusDataConstant.inProgressVn &&
-                    task?.taskType.taskTypeId != TaskTypeDataConstant.health &&
-                    task?.isWarning == false)
+                if (task?.taskType.taskTypeId != TaskTypeDataConstant.health &&
+                    task?.isWarning == false &&
+                    task?.isTreatmentTask == false)
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
@@ -1841,6 +1844,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                       );
                     },
                     getGrowthStageByCageIdSuccess: (growthStage) {
+                      log('Trạng thái: $taskStatus');
                       return WeighingLogWidget(
                         userName: userName,
                         growthStage: growthStage,
@@ -2328,5 +2332,28 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     setState(() {
       _images.remove(image);
     });
+  }
+
+  // Update the navigation logic when task status is updated
+  void _handleTaskComplete(BuildContext context, bool success) {
+    if (success) {
+      // Check if we need to navigate back to a specific screen
+      if (_sourceScreen == 'cage') {
+        // Navigate back to cage screen with reload indicator
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop({'reload': true, 'source': 'cage'});
+        } else {
+          // If we can't pop (e.g., after symptom reporting), go to task list
+          context.go(RouteName.cage, extra: task?.cageId);
+        }
+      } else {
+        // Default behavior - navigate back to task screen or task list
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop({'reload': true, 'source': 'task'});
+        } else {
+          context.go(RouteName.task);
+        }
+      }
+    }
   }
 }
