@@ -292,17 +292,17 @@ class TaskListWidget extends StatelessWidget {
                           SizedBox(height: 12),
                           Row(
                             children: [
-                              Icon(Icons.access_time,
-                                  size: 12, color: Colors.grey),
-                              SizedBox(width: 4),
-                              Text(
-                                'Thời gian: $formattedTime',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[700],
-                                ),
-                              ),
-                              SizedBox(width: 16),
+                              // Icon(Icons.access_time,
+                              //     size: 12, color: Colors.grey),
+                              // SizedBox(width: 4),
+                              // Text(
+                              //   'Thời gian: $formattedTime',
+                              //   style: TextStyle(
+                              //     fontSize: 12,
+                              //     color: Colors.grey[700],
+                              //   ),
+                              // ),
+                              // SizedBox(width: 16),
                               Icon(Icons.description_outlined,
                                   size: 12, color: Colors.grey),
                               SizedBox(width: 4),

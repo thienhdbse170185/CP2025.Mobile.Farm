@@ -1,6 +1,7 @@
 import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/info_item_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
@@ -143,7 +144,8 @@ class WeighingLogWidget extends StatelessWidget {
                                 onWeightChanged(currentValue - 0.1);
                               }
                             },
-                            isDisable: taskStatus != "Đang thực hiện",
+                            isDisable:
+                                taskStatus != StatusDataConstant.inProgressVn,
                           ),
                           Container(
                             width: 80,
@@ -160,7 +162,8 @@ class WeighingLogWidget extends StatelessWidget {
                               decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.zero,
                               ),
-                              enabled: taskStatus == "Đang thực hiện",
+                              enabled:
+                                  taskStatus == StatusDataConstant.inProgressVn,
                             ),
                           ),
                           QuantityButtonWidget(
@@ -172,7 +175,8 @@ class WeighingLogWidget extends StatelessWidget {
                               onWeightChanged(currentValue + 0.1);
                             },
                             isAdd: true,
-                            isDisable: taskStatus != "Đang thực hiện",
+                            isDisable:
+                                taskStatus != StatusDataConstant.inProgressVn,
                           ),
                         ],
                       ),

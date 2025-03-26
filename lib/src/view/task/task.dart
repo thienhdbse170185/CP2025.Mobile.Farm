@@ -11,6 +11,7 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
+import 'package:smart_farm/src/view/task/task_detail.dart';
 import 'package:smart_farm/src/view/widgets/task_list.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
@@ -1338,9 +1339,32 @@ class _TaskWidgetState extends State<TaskWidget>
                     ),
                   ),
                   const SizedBox(height: 8),
-                  ...sessionTasks.map((task) => TaskListWidget(
-                        tasks: [task],
-                        highlightWarning: true,
+                  ...sessionTasks.map((task) => GestureDetector(
+                        onTap: () async {
+                          // Navigate to task detail and pass 'task' as source
+                          final result = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => TaskDetailWidget(
+                                taskId: task.id,
+                                source: 'task', // Add this parameter
+                              ),
+                            ),
+                          );
+
+                          // Handle result when returning from task detail
+                          if (result != null &&
+                              result is Map<String, dynamic>) {
+                            if (result['reload'] == true &&
+                                result['source'] == 'task') {
+                              // Reload tasks
+                              _refreshTasks();
+                            }
+                          }
+                        },
+                        child: TaskListWidget(
+                          tasks: [task],
+                          highlightWarning: true,
+                        ),
                       )),
                 ],
               ),

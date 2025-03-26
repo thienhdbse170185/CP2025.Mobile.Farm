@@ -257,7 +257,8 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           instruction: 'Đặt mã QR vào khung hình để quét',
           helperText: 'Mã QR được dán trên chuồng',
           onScanned: (qrCode) {
-            final cage = _cages.firstWhere((cage) => cage.id == qrCode,
+            final cage = _cages.firstWhere(
+                (cage) => cage.id == qrCode.toLowerCase(),
                 orElse: () => CageOption(id: '', name: ''));
             if (cage.id.isNotEmpty) {
               setState(() {
@@ -915,56 +916,53 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
                 : null,
           ),
           Expanded(
-            child: searchQuery.isEmpty && filteredSymptoms.isEmpty
+            child: searchQuery.isEmpty
                 ? const _EmptyState(
                     message: 'Nhập từ khóa để tìm kiếm\ntriệu chứng')
-                : SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (filteredSymptoms.isNotEmpty) ...[
-                            Text(
-                              'Danh sách triệu chứng',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            Expanded(
-                              child: SingleChildScrollView(
-                                child: Wrap(
-                                  spacing: 8.0,
-                                  runSpacing: 8.0,
-                                  children: filteredSymptoms.map((symptom) {
-                                    final isSelected = widget.selectedSymptoms
-                                        .contains(symptom.symptomName);
-                                    return FilterChip(
-                                      selected: isSelected,
-                                      label: Text(symptom.symptomName),
-                                      onSelected: (selected) {
-                                        setState(() {
-                                          widget.onSymptomToggled(
-                                              symptom, selected);
-                                        });
-                                      },
-                                    );
-                                  }).toList(),
+                : filteredSymptoms.isEmpty
+                    ? const _EmptyState(
+                        message: 'Không tìm thấy triệu chứng phù hợp')
+                    : SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Danh sách triệu chứng',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
                                 ),
                               ),
-                            ),
-                          ] else if (searchQuery.isNotEmpty) ...[
-                            const _EmptyState(
-                              message: 'Không tìm thấy triệu chứng phù hợp',
-                            ),
-                          ],
-                        ],
+                              const SizedBox(height: 12),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Wrap(
+                                    spacing: 8.0,
+                                    runSpacing: 8.0,
+                                    children: filteredSymptoms.map((symptom) {
+                                      final isSelected = widget.selectedSymptoms
+                                          .contains(symptom.symptomName);
+                                      return FilterChip(
+                                        selected: isSelected,
+                                        label: Text(symptom.symptomName),
+                                        onSelected: (selected) {
+                                          setState(() {
+                                            widget.onSymptomToggled(
+                                                symptom, selected);
+                                          });
+                                        },
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
           ),
           _SheetFooter(
             onClose: () => Navigator.pop(context),
