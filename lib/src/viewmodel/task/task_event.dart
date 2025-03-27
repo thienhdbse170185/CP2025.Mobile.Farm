@@ -4,8 +4,8 @@ part of 'task_bloc.dart';
 class TaskEvent with _$TaskEvent {
   const factory TaskEvent.started() = _Started;
   const factory TaskEvent.createTask(String task) = _CreateTask;
-  const factory TaskEvent.updateTask(String taskId, String statusId) =
-      _UpdateTask;
+  const factory TaskEvent.updateTask(String taskId, String statusId,
+      {@Default(false) bool afterSymptomReport}) = _UpdateTask;
   const factory TaskEvent.deleteTask(String taskId) = _DeleteTask;
   const factory TaskEvent.getTasks(
     String? keySearch,
@@ -20,7 +20,8 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.testConnect() = _TestConnect;
   const factory TaskEvent.getTasksByCageId(DateTime? date, String cageId) =
       _GetTasksByCageId;
-  const factory TaskEvent.getTaskById(String taskId) = _GetTaskById;
+  const factory TaskEvent.getTaskById(String taskId,
+      {Function(TaskHaveCageName)? onSuccess}) = _GetTaskById;
   const factory TaskEvent.getNextTask() = _GetNextTask;
   const factory TaskEvent.getTasksByUserIdAndDate(
       DateTime? date, String? cageId) = _GetTasksByUserIdAndDate;
@@ -29,18 +30,18 @@ class TaskEvent with _$TaskEvent {
     required DateTime date,
     required String cageName,
   }) = _FilterTasksByLocation;
-  const factory TaskEvent.createDailyFoodUsageLog({
-    required String cageId,
-    required DailyFoodUsageLogDto log,
-  }) = _CreateDailyFoodUsageLog;
-  const factory TaskEvent.createHealthLog({
-    required String prescriptionId,
-    required HealthLogDto log,
-  }) = _CreateHealthLog;
-  const factory TaskEvent.createVaccinScheduleLog({
-    required String cageId,
-    required VaccineScheduleLogDto log,
-  }) = _CreateVaccinScheduleLog;
+  const factory TaskEvent.createDailyFoodUsageLog(
+      {required String cageId,
+      required DailyFoodUsageLogDto log,
+      @Default(false) bool afterSymptomReport}) = _CreateDailyFoodUsageLog;
+  const factory TaskEvent.createHealthLog(
+      {required String prescriptionId,
+      required HealthLogDto log,
+      @Default(false) bool afterSymptomReport}) = _CreateHealthLog;
+  const factory TaskEvent.createVaccinScheduleLog(
+      {required String cageId,
+      required VaccineScheduleLogDto log,
+      @Default(false) bool afterSymptomReport}) = _CreateVaccinScheduleLog;
   const factory TaskEvent.getDailyFoodUsageLog(String taskId) =
       _GetDailyFoodUsageLog;
   const factory TaskEvent.getHealthLog(String taskId) = _GetHealthLog;

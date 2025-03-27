@@ -3,8 +3,11 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/request/egg_harvest/egg_harvest_request.dart';
+import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
 import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
 import 'package:data_layer/model/request/symptom/symptom/get_symptom_request.dart';
+import 'package:data_layer/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
 import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +17,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
+import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
@@ -24,11 +29,13 @@ import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/view/widgets/qr_scanner.dart'
     show QRScannerWidget;
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
+import 'package:smart_farm/src/viewmodel/egg_harvest/egg_harvest_cubit.dart';
 import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
 import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
+import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_schedule_log_cubit.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 
 class CreateSymptomWidget extends StatefulWidget {
@@ -59,6 +66,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   final List<GetSymptomRequest> _enteredSymptoms = [];
   final List<String> _symptomsName = [];
   final List<UploadImageDto> _uploadedImages = [];
+  MedicalSymptomResponse? symptom;
 
   FarmingBatchDto? _farmingBatch;
   GrowthStageDto? _growthStage;
@@ -378,7 +386,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             createSuccess: (medicalSymptom) =>
                 _handleCreateSuccess(medicalSymptom),
             createFailure: (error) => _handleCreateFailure(error),
-            orElse: () {},
+            orElse: () {
+              return null;
+            },
           ),
         ),
         BlocListener<CageCubit, CageState>(
@@ -391,7 +401,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                   .toList();
             }),
             loadByUserIdFailure: (error) => _handleCageFailure(error),
-            orElse: () {},
+            orElse: () {
+              return null;
+            },
           ),
         ),
         BlocListener<FarmingBatchCubit, FarmingBatchState>(
@@ -455,6 +467,65 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             },
           ),
         ),
+        BlocListener<TaskBloc, TaskState>(listener: (context, state) {
+          state.maybeWhen(
+            setTaskIsTreatmentInProgress: () {
+              setState(() => _isProcessing = true);
+            },
+            setTaskIsTreatmentSuccess: () {
+              setState(() => _isProcessing = false);
+              // Create task log if needed based on task type
+              _createTaskLogAfterSymptomReport(widget.taskId!);
+            },
+            setTaskIsTreatmentFailure: (error) {
+              setState(() => _isProcessing = false);
+              _showErrorSnackBar('Lỗi cập nhật trạng thái công việc: $error');
+            },
+            createDailyFoodUsageLogSuccess: () {
+              setState(() => _isProcessing = false);
+              context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId!,
+                    StatusDataConstant.done,
+                    afterSymptomReport: true,
+                  ));
+            },
+            createHealthLogSuccess: () {
+              setState(() => _isProcessing = false);
+              context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId!,
+                    StatusDataConstant.done,
+                    afterSymptomReport: true,
+                  ));
+            },
+            createVaccinScheduleLogSuccess: () {
+              setState(() => _isProcessing = false);
+              context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId!,
+                    StatusDataConstant.done,
+                    afterSymptomReport: true,
+                  ));
+            },
+            updateStatusTaskLoading: () {
+              setState(() => _isProcessing = true);
+            },
+            updateStatusTaskSuccess: () {
+              setState(() => _isProcessing = false);
+              context.go(RouteName.symptomSuccess, extra: {
+                'symptom': symptom,
+                'cageName': _selectedCage,
+                'fromTask': true,
+                'taskId': widget.taskId
+              });
+            },
+            updateStatusTaskFailure: (error) {
+              setState(() => _isProcessing = false);
+              _showErrorSnackBar('Lỗi cập nhật trạng thái công việc: $error');
+            },
+            orElse: () {
+              return null;
+            },
+          );
+        })
       ],
       child: Scaffold(
         appBar: CustomAppBar(
@@ -488,7 +559,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   void _handleCreateSuccess(MedicalSymptomDto medicalSymptom) {
     setState(() => _isProcessing = false);
     log("Tạo báo cáo thành công");
-    final symptom = MedicalSymptomResponse(
+    symptom = MedicalSymptomResponse(
       id: medicalSymptom.id,
       farmingBatchId: medicalSymptom.farmingBatchId,
       symtom: _symptomsName.join(', '),
@@ -512,17 +583,102 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           .read<TaskBloc>()
           .add(TaskEvent.setTaskIsTreatment(taskId: widget.taskId!));
 
+      // // Finally, update the task status to done
+      //     context.read<TaskBloc>().add(
+      //           TaskEvent.updateTask(
+      //             taskId,
+      //             StatusDataConstant.done,
+      //             afterSymptomReport: true,
+      //           ),
+      //         );
+
       // Navigate to success screen after marking
-      context.go(RouteName.symptomSuccess, extra: {
-        'symptom': symptom,
-        'cageName': _selectedCage,
-        'fromTask': true,
-        'taskId': widget.taskId
-      });
+      // context.go(RouteName.symptomSuccess, extra: {
+      //   'symptom': symptom,
+      //   'cageName': _selectedCage,
+      //   'fromTask': true,
+      //   'taskId': widget.taskId
+      // });
     } else {
       context.go(RouteName.symptomSuccess,
           extra: {'symptom': symptom, 'cageName': _selectedCage});
     }
+  }
+
+  // Helper method to create task log after symptom report
+  void _createTaskLogAfterSymptomReport(String taskId) {
+    // Get the task details to determine which type of log to create
+    context.read<TaskBloc>().add(
+          TaskEvent.getTaskById(
+            taskId,
+            onSuccess: (task) {
+              if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
+                // Create feeding log with default values
+                final log = DailyFoodUsageLogDto(
+                  recommendedWeight: 0,
+                  actualWeight: 0,
+                  notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
+                  logTime: DateTime.now(),
+                  photo: '',
+                  taskId: taskId,
+                );
+                context.read<TaskBloc>().add(
+                      TaskEvent.createDailyFoodUsageLog(
+                        cageId: task.cageId,
+                        log: log,
+                        afterSymptomReport: true,
+                      ),
+                    );
+              } else if (task.taskType.taskTypeId ==
+                  TaskTypeDataConstant.vaccin) {
+                // For vaccine tasks, create a basic vaccine log
+                final request = VaccineScheduleLogRequest(
+                  date: TimeUtils.customNow().toIso8601String(),
+                  session: 1, // Default value
+                  vaccineId: "", // Will be populated by backend
+                  quantity: 0,
+                  notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
+                  photo: '',
+                  taskId: taskId,
+                );
+                context.read<VaccineScheduleLogCubit>().create(
+                      request: request,
+                      afterSymptomReport: true,
+                    );
+              } else if (task.taskType.taskTypeId ==
+                  TaskTypeDataConstant.weighing) {
+                // For weighing tasks, update with default values
+                context.read<GrowthStageCubit>().updateWeight(
+                      request: UpdateWeightRequest(
+                        growthStageId: "", // Will be set by backend
+                        weightAnimal: 0,
+                      ),
+                    );
+              } else if (task.taskType.taskTypeId ==
+                  TaskTypeDataConstant.eggHarvest) {
+                // For egg harvest tasks
+                final request = EggHarvestRequest(
+                  eggCount: 0,
+                  notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
+                  growthStageId: "",
+                  taskId: taskId,
+                );
+                context.read<EggHarvestCubit>().createEggHarvest(
+                      request: request,
+                    );
+              }
+
+              // Finally, update the task status to done
+              context.read<TaskBloc>().add(
+                    TaskEvent.updateTask(
+                      taskId,
+                      StatusDataConstant.done,
+                      afterSymptomReport: true,
+                    ),
+                  );
+            },
+          ),
+        );
   }
 
   void _handleCreateFailure(String error) {

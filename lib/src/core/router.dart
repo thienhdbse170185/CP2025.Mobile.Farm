@@ -1,3 +1,4 @@
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +24,7 @@ import 'package:smart_farm/src/view/task/task.dart';
 import 'package:smart_farm/src/view/task/task_demo_widget.dart';
 import 'package:smart_farm/src/view/task/task_history.dart';
 import 'package:smart_farm/src/view/task/task_qr_code.dart';
+import 'package:smart_farm/src/view/task/task_report.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -59,6 +61,7 @@ class RouteName {
   static const String changePasswordNewbie = '/change-password-newbie';
   static const String changePassword = '/change-password';
   static const String timeSetting = '/time-setting';
+  static const String taskReport = '/task-report';
 
   static const publicRoutes = [
     welcome,
@@ -156,8 +159,9 @@ final router = GoRouter(
 
       GoRoute(
         path: RouteName.task,
-        pageBuilder: (context, state) =>
-            _buildPageWithSlideTransition(const TaskWidget()),
+        pageBuilder: (context, state) {
+          return _buildPageWithSlideTransition(const TaskWidget());
+        },
       ),
 
       GoRoute(
@@ -380,5 +384,18 @@ final router = GoRouter(
           path: RouteName.timeSetting,
           pageBuilder: (context, state) {
             return _buildPageWithSlideTransition(const TimeSettingWidget());
-          })
+          }),
+
+      GoRoute(
+          path: RouteName.taskReport,
+          pageBuilder: (context, state) {
+            final params = state.extra as Map<String, dynamic>;
+            final task = params['task'] as TaskHaveCageName;
+            final source = params['source'] as String?;
+            return _buildPageWithSlideTransition(TaskReportScreen(
+              task: task,
+              taskId: task.id,
+              source: source,
+            ));
+          }),
     ]);

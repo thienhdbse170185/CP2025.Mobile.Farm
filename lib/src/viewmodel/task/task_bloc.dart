@@ -201,6 +201,11 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         final box = await Hive.openBox(UserDataConstant.userBoxName);
         final userId = box.get(UserDataConstant.userIdKey);
         emit(TaskState.getTaskByIdSuccess(task, userId));
+
+        // Call the onSuccess callback if provided
+        if (event.onSuccess != null) {
+          event.onSuccess!(task);
+        }
       } catch (e) {
         emit(TaskState.getTaskByIdFailure(e.toString()));
       }
@@ -272,20 +277,40 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_CreateDailyFoodUsageLog>((event, emit) async {
       emit(const TaskState.createDailyFoodUsageLogLoading());
       try {
-        final request = DailyFoodUsageLogDto(
-            recommendedWeight: event.log.recommendedWeight,
-            actualWeight: event.log.actualWeight,
-            notes: event.log.notes,
-            logTime: TimeUtils.customNow(),
-            photo: event.log.photo,
-            taskId: event.log.taskId);
-        final result =
-            await repository.createDailyFoodUsageLog(event.cageId, request);
-        if (result) {
-          emit(const TaskState.createDailyFoodUsageLogSuccess());
+        // If this is after symptom report, we use simplified data
+        if (event.afterSymptomReport) {
+          final request = DailyFoodUsageLogDto(
+              recommendedWeight: 0,
+              actualWeight: 0,
+              notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
+              logTime: TimeUtils.customNow(),
+              photo: "",
+              taskId: event.log.taskId);
+          final result =
+              await repository.createDailyFoodUsageLog(event.cageId, request);
+          if (result) {
+            emit(const TaskState.createDailyFoodUsageLogSuccess());
+          } else {
+            emit(const TaskState.createDailyFoodUsageLogFailure(
+                'Tạo log cho ăn thất bại!'));
+          }
         } else {
-          emit(const TaskState.createDailyFoodUsageLogFailure(
-              'Tạo log cho ăn thất bại!'));
+          // Normal flow
+          final request = DailyFoodUsageLogDto(
+              recommendedWeight: event.log.recommendedWeight,
+              actualWeight: event.log.actualWeight,
+              notes: event.log.notes,
+              logTime: TimeUtils.customNow(),
+              photo: event.log.photo,
+              taskId: event.log.taskId);
+          final result =
+              await repository.createDailyFoodUsageLog(event.cageId, request);
+          if (result) {
+            emit(const TaskState.createDailyFoodUsageLogSuccess());
+          } else {
+            emit(const TaskState.createDailyFoodUsageLogFailure(
+                'Tạo log cho ăn thất bại!'));
+          }
         }
       } catch (e) {
         emit(TaskState.createDailyFoodUsageLogFailure(e.toString()));
@@ -294,9 +319,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_CreateHealthLog>((event, emit) async {
       emit(const TaskState.createHealthLogLoading());
       try {
+        // Simplified data for after symptom report
+        final notes = event.afterSymptomReport
+            ? "Báo cáo sau khi phát hiện triệu chứng bệnh"
+            : event.log.notes;
+
         final request = HealthLogDto(
             prescriptionId: event.prescriptionId,
-            notes: event.log.notes,
+            notes: notes,
             date: TimeUtils.customNow(),
             photo: event.log.photo,
             taskId: event.log.taskId);

@@ -14,18 +14,30 @@ class VaccineScheduleLogCubit extends Cubit<VaccineScheduleLogState> {
   VaccineScheduleLogCubit({required this.repository})
       : super(VaccineScheduleLogState.initial());
 
-  Future<void> create({required VaccineScheduleLogRequest request}) async {
+  Future<void> create({
+    required VaccineScheduleLogRequest request,
+    bool afterSymptomReport = false,
+  }) async {
     emit(const VaccineScheduleLogState.createVaccineScheduleLogInProgress());
     try {
-      log('[VACCINE_SCHEDULE_LOG_CUBIT] Đang tạo mới VaccineScheduleLog...');
-      log('[VACCINE_SCHEDULE_LOG_CUBIT] req: ${request.toJson()}');
-      final result = await repository.create(request);
-      if (result) {
-        emit(const VaccineScheduleLogState.createVaccineScheduleLogSuccess());
+      // Handle after symptom report case differently
+      if (afterSymptomReport) {
+        // Create a simplified log for post-symptom reports
+        final simpleRequest = VaccineScheduleLogRequest(
+          date: request.date,
+          session: request.session,
+          vaccineId: request.vaccineId,
+          quantity: 0, // No vaccines given
+          notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
+          photo: "",
+          taskId: request.taskId,
+        );
+        await repository.create(simpleRequest);
       } else {
-        emit(const VaccineScheduleLogState.createVaccineScheduleLogFailure(
-            'Failed to create vaccine schedule log'));
+        // Normal flow
+        await repository.create(request);
       }
+      emit(const VaccineScheduleLogState.createVaccineScheduleLogSuccess());
     } catch (e) {
       emit(VaccineScheduleLogState.createVaccineScheduleLogFailure(
           e.toString()));

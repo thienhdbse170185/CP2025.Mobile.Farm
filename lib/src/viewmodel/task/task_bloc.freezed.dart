@@ -20,7 +20,9 @@ mixin _$TaskEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -34,17 +36,22 @@ mixin _$TaskEvent {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -62,7 +69,8 @@ mixin _$TaskEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -76,15 +84,21 @@ mixin _$TaskEvent {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -102,7 +116,8 @@ mixin _$TaskEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -116,15 +131,21 @@ mixin _$TaskEvent {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -284,7 +305,9 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -298,17 +321,22 @@ class _$StartedImpl implements _Started {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -329,7 +357,8 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -343,15 +372,21 @@ class _$StartedImpl implements _Started {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -372,7 +407,8 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -386,15 +422,21 @@ class _$StartedImpl implements _Started {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -581,7 +623,9 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -595,17 +639,22 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -626,7 +675,8 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -640,15 +690,21 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -669,7 +725,8 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -683,15 +740,21 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -822,7 +885,7 @@ abstract class _$$UpdateTaskImplCopyWith<$Res> {
           _$UpdateTaskImpl value, $Res Function(_$UpdateTaskImpl) then) =
       __$$UpdateTaskImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String taskId, String statusId});
+  $Res call({String taskId, String statusId, bool afterSymptomReport});
 }
 
 /// @nodoc
@@ -840,6 +903,7 @@ class __$$UpdateTaskImplCopyWithImpl<$Res>
   $Res call({
     Object? taskId = null,
     Object? statusId = null,
+    Object? afterSymptomReport = null,
   }) {
     return _then(_$UpdateTaskImpl(
       null == taskId
@@ -850,6 +914,10 @@ class __$$UpdateTaskImplCopyWithImpl<$Res>
           ? _value.statusId
           : statusId // ignore: cast_nullable_to_non_nullable
               as String,
+      afterSymptomReport: null == afterSymptomReport
+          ? _value.afterSymptomReport
+          : afterSymptomReport // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -857,16 +925,20 @@ class __$$UpdateTaskImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateTaskImpl implements _UpdateTask {
-  const _$UpdateTaskImpl(this.taskId, this.statusId);
+  const _$UpdateTaskImpl(this.taskId, this.statusId,
+      {this.afterSymptomReport = false});
 
   @override
   final String taskId;
   @override
   final String statusId;
+  @override
+  @JsonKey()
+  final bool afterSymptomReport;
 
   @override
   String toString() {
-    return 'TaskEvent.updateTask(taskId: $taskId, statusId: $statusId)';
+    return 'TaskEvent.updateTask(taskId: $taskId, statusId: $statusId, afterSymptomReport: $afterSymptomReport)';
   }
 
   @override
@@ -876,11 +948,14 @@ class _$UpdateTaskImpl implements _UpdateTask {
             other is _$UpdateTaskImpl &&
             (identical(other.taskId, taskId) || other.taskId == taskId) &&
             (identical(other.statusId, statusId) ||
-                other.statusId == statusId));
+                other.statusId == statusId) &&
+            (identical(other.afterSymptomReport, afterSymptomReport) ||
+                other.afterSymptomReport == afterSymptomReport));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, taskId, statusId);
+  int get hashCode =>
+      Object.hash(runtimeType, taskId, statusId, afterSymptomReport);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -895,7 +970,9 @@ class _$UpdateTaskImpl implements _UpdateTask {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -909,17 +986,22 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -932,7 +1014,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
         updateMultipleTask,
     required TResult Function(String taskId) setTaskIsTreatment,
   }) {
-    return updateTask(taskId, statusId);
+    return updateTask(taskId, statusId, afterSymptomReport);
   }
 
   @override
@@ -940,7 +1022,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -954,15 +1037,21 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -975,7 +1064,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
         updateMultipleTask,
     TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
-    return updateTask?.call(taskId, statusId);
+    return updateTask?.call(taskId, statusId, afterSymptomReport);
   }
 
   @override
@@ -983,7 +1072,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -997,15 +1087,21 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -1019,7 +1115,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult orElse(),
   }) {
     if (updateTask != null) {
-      return updateTask(taskId, statusId);
+      return updateTask(taskId, statusId, afterSymptomReport);
     }
     return orElse();
   }
@@ -1119,11 +1215,12 @@ class _$UpdateTaskImpl implements _UpdateTask {
 }
 
 abstract class _UpdateTask implements TaskEvent {
-  const factory _UpdateTask(final String taskId, final String statusId) =
-      _$UpdateTaskImpl;
+  const factory _UpdateTask(final String taskId, final String statusId,
+      {final bool afterSymptomReport}) = _$UpdateTaskImpl;
 
   String get taskId;
   String get statusId;
+  bool get afterSymptomReport;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -1202,7 +1299,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -1216,17 +1315,22 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -1247,7 +1351,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -1261,15 +1366,21 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -1290,7 +1401,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -1304,15 +1416,21 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -1577,7 +1695,9 @@ class _$GetTasksImpl implements _GetTasks {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -1591,17 +1711,22 @@ class _$GetTasksImpl implements _GetTasks {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -1623,7 +1748,8 @@ class _$GetTasksImpl implements _GetTasks {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -1637,15 +1763,21 @@ class _$GetTasksImpl implements _GetTasks {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -1667,7 +1799,8 @@ class _$GetTasksImpl implements _GetTasks {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -1681,15 +1814,21 @@ class _$GetTasksImpl implements _GetTasks {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -1873,7 +2012,9 @@ class _$TestConnectImpl implements _TestConnect {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -1887,17 +2028,22 @@ class _$TestConnectImpl implements _TestConnect {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -1918,7 +2064,8 @@ class _$TestConnectImpl implements _TestConnect {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -1932,15 +2079,21 @@ class _$TestConnectImpl implements _TestConnect {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -1961,7 +2114,8 @@ class _$TestConnectImpl implements _TestConnect {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -1975,15 +2129,21 @@ class _$TestConnectImpl implements _TestConnect {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -2179,7 +2339,9 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -2193,17 +2355,22 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -2224,7 +2391,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -2238,15 +2406,21 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -2267,7 +2441,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -2281,15 +2456,21 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -2422,7 +2603,7 @@ abstract class _$$GetTaskByIdImplCopyWith<$Res> {
           _$GetTaskByIdImpl value, $Res Function(_$GetTaskByIdImpl) then) =
       __$$GetTaskByIdImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String taskId});
+  $Res call({String taskId, dynamic Function(TaskHaveCageName)? onSuccess});
 }
 
 /// @nodoc
@@ -2439,12 +2620,17 @@ class __$$GetTaskByIdImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? taskId = null,
+    Object? onSuccess = freezed,
   }) {
     return _then(_$GetTaskByIdImpl(
       null == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
               as String,
+      onSuccess: freezed == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as dynamic Function(TaskHaveCageName)?,
     ));
   }
 }
@@ -2452,14 +2638,16 @@ class __$$GetTaskByIdImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetTaskByIdImpl implements _GetTaskById {
-  const _$GetTaskByIdImpl(this.taskId);
+  const _$GetTaskByIdImpl(this.taskId, {this.onSuccess});
 
   @override
   final String taskId;
+  @override
+  final dynamic Function(TaskHaveCageName)? onSuccess;
 
   @override
   String toString() {
-    return 'TaskEvent.getTaskById(taskId: $taskId)';
+    return 'TaskEvent.getTaskById(taskId: $taskId, onSuccess: $onSuccess)';
   }
 
   @override
@@ -2467,11 +2655,13 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetTaskByIdImpl &&
-            (identical(other.taskId, taskId) || other.taskId == taskId));
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, taskId);
+  int get hashCode => Object.hash(runtimeType, taskId, onSuccess);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -2486,7 +2676,9 @@ class _$GetTaskByIdImpl implements _GetTaskById {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -2500,17 +2692,22 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -2523,7 +2720,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         updateMultipleTask,
     required TResult Function(String taskId) setTaskIsTreatment,
   }) {
-    return getTaskById(taskId);
+    return getTaskById(taskId, onSuccess);
   }
 
   @override
@@ -2531,7 +2728,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -2545,15 +2743,21 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -2566,7 +2770,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         updateMultipleTask,
     TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
-    return getTaskById?.call(taskId);
+    return getTaskById?.call(taskId, onSuccess);
   }
 
   @override
@@ -2574,7 +2778,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -2588,15 +2793,21 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -2610,7 +2821,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     required TResult orElse(),
   }) {
     if (getTaskById != null) {
-      return getTaskById(taskId);
+      return getTaskById(taskId, onSuccess);
     }
     return orElse();
   }
@@ -2710,9 +2921,12 @@ class _$GetTaskByIdImpl implements _GetTaskById {
 }
 
 abstract class _GetTaskById implements TaskEvent {
-  const factory _GetTaskById(final String taskId) = _$GetTaskByIdImpl;
+  const factory _GetTaskById(final String taskId,
+          {final dynamic Function(TaskHaveCageName)? onSuccess}) =
+      _$GetTaskByIdImpl;
 
   String get taskId;
+  dynamic Function(TaskHaveCageName)? get onSuccess;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -2764,7 +2978,9 @@ class _$GetNextTaskImpl implements _GetNextTask {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -2778,17 +2994,22 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -2809,7 +3030,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -2823,15 +3045,21 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -2852,7 +3080,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -2866,15 +3095,21 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -3072,7 +3307,9 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -3086,17 +3323,22 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -3117,7 +3359,8 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -3131,15 +3374,21 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -3160,7 +3409,8 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -3174,15 +3424,21 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -3400,7 +3656,9 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -3414,17 +3672,22 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -3445,7 +3708,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -3459,15 +3723,21 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -3488,7 +3758,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -3502,15 +3773,21 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -3647,7 +3924,7 @@ abstract class _$$CreateDailyFoodUsageLogImplCopyWith<$Res> {
           $Res Function(_$CreateDailyFoodUsageLogImpl) then) =
       __$$CreateDailyFoodUsageLogImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String cageId, DailyFoodUsageLogDto log});
+  $Res call({String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport});
 
   $DailyFoodUsageLogDtoCopyWith<$Res> get log;
 }
@@ -3668,6 +3945,7 @@ class __$$CreateDailyFoodUsageLogImplCopyWithImpl<$Res>
   $Res call({
     Object? cageId = null,
     Object? log = null,
+    Object? afterSymptomReport = null,
   }) {
     return _then(_$CreateDailyFoodUsageLogImpl(
       cageId: null == cageId
@@ -3678,6 +3956,10 @@ class __$$CreateDailyFoodUsageLogImplCopyWithImpl<$Res>
           ? _value.log
           : log // ignore: cast_nullable_to_non_nullable
               as DailyFoodUsageLogDto,
+      afterSymptomReport: null == afterSymptomReport
+          ? _value.afterSymptomReport
+          : afterSymptomReport // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -3696,16 +3978,21 @@ class __$$CreateDailyFoodUsageLogImplCopyWithImpl<$Res>
 
 class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
   const _$CreateDailyFoodUsageLogImpl(
-      {required this.cageId, required this.log});
+      {required this.cageId,
+      required this.log,
+      this.afterSymptomReport = false});
 
   @override
   final String cageId;
   @override
   final DailyFoodUsageLogDto log;
+  @override
+  @JsonKey()
+  final bool afterSymptomReport;
 
   @override
   String toString() {
-    return 'TaskEvent.createDailyFoodUsageLog(cageId: $cageId, log: $log)';
+    return 'TaskEvent.createDailyFoodUsageLog(cageId: $cageId, log: $log, afterSymptomReport: $afterSymptomReport)';
   }
 
   @override
@@ -3714,11 +4001,13 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         (other.runtimeType == runtimeType &&
             other is _$CreateDailyFoodUsageLogImpl &&
             (identical(other.cageId, cageId) || other.cageId == cageId) &&
-            (identical(other.log, log) || other.log == log));
+            (identical(other.log, log) || other.log == log) &&
+            (identical(other.afterSymptomReport, afterSymptomReport) ||
+                other.afterSymptomReport == afterSymptomReport));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, cageId, log);
+  int get hashCode => Object.hash(runtimeType, cageId, log, afterSymptomReport);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -3734,7 +4023,9 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -3748,17 +4039,22 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -3771,7 +4067,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         updateMultipleTask,
     required TResult Function(String taskId) setTaskIsTreatment,
   }) {
-    return createDailyFoodUsageLog(cageId, log);
+    return createDailyFoodUsageLog(cageId, log, afterSymptomReport);
   }
 
   @override
@@ -3779,7 +4075,8 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -3793,15 +4090,21 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -3814,7 +4117,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         updateMultipleTask,
     TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
-    return createDailyFoodUsageLog?.call(cageId, log);
+    return createDailyFoodUsageLog?.call(cageId, log, afterSymptomReport);
   }
 
   @override
@@ -3822,7 +4125,8 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -3836,15 +4140,21 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -3858,7 +4168,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLog != null) {
-      return createDailyFoodUsageLog(cageId, log);
+      return createDailyFoodUsageLog(cageId, log, afterSymptomReport);
     }
     return orElse();
   }
@@ -3960,10 +4270,12 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
 abstract class _CreateDailyFoodUsageLog implements TaskEvent {
   const factory _CreateDailyFoodUsageLog(
       {required final String cageId,
-      required final DailyFoodUsageLogDto log}) = _$CreateDailyFoodUsageLogImpl;
+      required final DailyFoodUsageLogDto log,
+      final bool afterSymptomReport}) = _$CreateDailyFoodUsageLogImpl;
 
   String get cageId;
   DailyFoodUsageLogDto get log;
+  bool get afterSymptomReport;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -3978,7 +4290,7 @@ abstract class _$$CreateHealthLogImplCopyWith<$Res> {
           $Res Function(_$CreateHealthLogImpl) then) =
       __$$CreateHealthLogImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String prescriptionId, HealthLogDto log});
+  $Res call({String prescriptionId, HealthLogDto log, bool afterSymptomReport});
 
   $HealthLogDtoCopyWith<$Res> get log;
 }
@@ -3998,6 +4310,7 @@ class __$$CreateHealthLogImplCopyWithImpl<$Res>
   $Res call({
     Object? prescriptionId = null,
     Object? log = null,
+    Object? afterSymptomReport = null,
   }) {
     return _then(_$CreateHealthLogImpl(
       prescriptionId: null == prescriptionId
@@ -4008,6 +4321,10 @@ class __$$CreateHealthLogImplCopyWithImpl<$Res>
           ? _value.log
           : log // ignore: cast_nullable_to_non_nullable
               as HealthLogDto,
+      afterSymptomReport: null == afterSymptomReport
+          ? _value.afterSymptomReport
+          : afterSymptomReport // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -4026,16 +4343,21 @@ class __$$CreateHealthLogImplCopyWithImpl<$Res>
 
 class _$CreateHealthLogImpl implements _CreateHealthLog {
   const _$CreateHealthLogImpl(
-      {required this.prescriptionId, required this.log});
+      {required this.prescriptionId,
+      required this.log,
+      this.afterSymptomReport = false});
 
   @override
   final String prescriptionId;
   @override
   final HealthLogDto log;
+  @override
+  @JsonKey()
+  final bool afterSymptomReport;
 
   @override
   String toString() {
-    return 'TaskEvent.createHealthLog(prescriptionId: $prescriptionId, log: $log)';
+    return 'TaskEvent.createHealthLog(prescriptionId: $prescriptionId, log: $log, afterSymptomReport: $afterSymptomReport)';
   }
 
   @override
@@ -4045,11 +4367,14 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
             other is _$CreateHealthLogImpl &&
             (identical(other.prescriptionId, prescriptionId) ||
                 other.prescriptionId == prescriptionId) &&
-            (identical(other.log, log) || other.log == log));
+            (identical(other.log, log) || other.log == log) &&
+            (identical(other.afterSymptomReport, afterSymptomReport) ||
+                other.afterSymptomReport == afterSymptomReport));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, prescriptionId, log);
+  int get hashCode =>
+      Object.hash(runtimeType, prescriptionId, log, afterSymptomReport);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -4065,7 +4390,9 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -4079,17 +4406,22 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -4102,7 +4434,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         updateMultipleTask,
     required TResult Function(String taskId) setTaskIsTreatment,
   }) {
-    return createHealthLog(prescriptionId, log);
+    return createHealthLog(prescriptionId, log, afterSymptomReport);
   }
 
   @override
@@ -4110,7 +4442,8 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -4124,15 +4457,21 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -4145,7 +4484,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         updateMultipleTask,
     TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
-    return createHealthLog?.call(prescriptionId, log);
+    return createHealthLog?.call(prescriptionId, log, afterSymptomReport);
   }
 
   @override
@@ -4153,7 +4492,8 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -4167,15 +4507,21 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -4189,7 +4535,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     required TResult orElse(),
   }) {
     if (createHealthLog != null) {
-      return createHealthLog(prescriptionId, log);
+      return createHealthLog(prescriptionId, log, afterSymptomReport);
     }
     return orElse();
   }
@@ -4291,10 +4637,12 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
 abstract class _CreateHealthLog implements TaskEvent {
   const factory _CreateHealthLog(
       {required final String prescriptionId,
-      required final HealthLogDto log}) = _$CreateHealthLogImpl;
+      required final HealthLogDto log,
+      final bool afterSymptomReport}) = _$CreateHealthLogImpl;
 
   String get prescriptionId;
   HealthLogDto get log;
+  bool get afterSymptomReport;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -4310,7 +4658,8 @@ abstract class _$$CreateVaccinScheduleLogImplCopyWith<$Res> {
           $Res Function(_$CreateVaccinScheduleLogImpl) then) =
       __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String cageId, VaccineScheduleLogDto log});
+  $Res call(
+      {String cageId, VaccineScheduleLogDto log, bool afterSymptomReport});
 
   $VaccineScheduleLogDtoCopyWith<$Res> get log;
 }
@@ -4331,6 +4680,7 @@ class __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>
   $Res call({
     Object? cageId = null,
     Object? log = null,
+    Object? afterSymptomReport = null,
   }) {
     return _then(_$CreateVaccinScheduleLogImpl(
       cageId: null == cageId
@@ -4341,6 +4691,10 @@ class __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>
           ? _value.log
           : log // ignore: cast_nullable_to_non_nullable
               as VaccineScheduleLogDto,
+      afterSymptomReport: null == afterSymptomReport
+          ? _value.afterSymptomReport
+          : afterSymptomReport // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -4359,16 +4713,21 @@ class __$$CreateVaccinScheduleLogImplCopyWithImpl<$Res>
 
 class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
   const _$CreateVaccinScheduleLogImpl(
-      {required this.cageId, required this.log});
+      {required this.cageId,
+      required this.log,
+      this.afterSymptomReport = false});
 
   @override
   final String cageId;
   @override
   final VaccineScheduleLogDto log;
+  @override
+  @JsonKey()
+  final bool afterSymptomReport;
 
   @override
   String toString() {
-    return 'TaskEvent.createVaccinScheduleLog(cageId: $cageId, log: $log)';
+    return 'TaskEvent.createVaccinScheduleLog(cageId: $cageId, log: $log, afterSymptomReport: $afterSymptomReport)';
   }
 
   @override
@@ -4377,11 +4736,13 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         (other.runtimeType == runtimeType &&
             other is _$CreateVaccinScheduleLogImpl &&
             (identical(other.cageId, cageId) || other.cageId == cageId) &&
-            (identical(other.log, log) || other.log == log));
+            (identical(other.log, log) || other.log == log) &&
+            (identical(other.afterSymptomReport, afterSymptomReport) ||
+                other.afterSymptomReport == afterSymptomReport));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, cageId, log);
+  int get hashCode => Object.hash(runtimeType, cageId, log, afterSymptomReport);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -4397,7 +4758,9 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -4411,17 +4774,22 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -4434,7 +4802,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         updateMultipleTask,
     required TResult Function(String taskId) setTaskIsTreatment,
   }) {
-    return createVaccinScheduleLog(cageId, log);
+    return createVaccinScheduleLog(cageId, log, afterSymptomReport);
   }
 
   @override
@@ -4442,7 +4810,8 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -4456,15 +4825,21 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -4477,7 +4852,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         updateMultipleTask,
     TResult? Function(String taskId)? setTaskIsTreatment,
   }) {
-    return createVaccinScheduleLog?.call(cageId, log);
+    return createVaccinScheduleLog?.call(cageId, log, afterSymptomReport);
   }
 
   @override
@@ -4485,7 +4860,8 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -4499,15 +4875,21 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -4521,7 +4903,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLog != null) {
-      return createVaccinScheduleLog(cageId, log);
+      return createVaccinScheduleLog(cageId, log, afterSymptomReport);
     }
     return orElse();
   }
@@ -4622,12 +5004,13 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
 
 abstract class _CreateVaccinScheduleLog implements TaskEvent {
   const factory _CreateVaccinScheduleLog(
-          {required final String cageId,
-          required final VaccineScheduleLogDto log}) =
-      _$CreateVaccinScheduleLogImpl;
+      {required final String cageId,
+      required final VaccineScheduleLogDto log,
+      final bool afterSymptomReport}) = _$CreateVaccinScheduleLogImpl;
 
   String get cageId;
   VaccineScheduleLogDto get log;
+  bool get afterSymptomReport;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -4708,7 +5091,9 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -4722,17 +5107,22 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -4753,7 +5143,8 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -4767,15 +5158,21 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -4796,7 +5193,8 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -4810,15 +5208,21 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -5014,7 +5418,9 @@ class _$GetHealthLogImpl implements _GetHealthLog {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -5028,17 +5434,22 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -5059,7 +5470,8 @@ class _$GetHealthLogImpl implements _GetHealthLog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -5073,15 +5485,21 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -5102,7 +5520,8 @@ class _$GetHealthLogImpl implements _GetHealthLog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -5116,15 +5535,21 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -5321,7 +5746,9 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -5335,17 +5762,22 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -5366,7 +5798,8 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -5380,15 +5813,21 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -5409,7 +5848,8 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -5423,15 +5863,21 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -5630,7 +6076,9 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -5644,17 +6092,22 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -5675,7 +6128,8 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -5689,15 +6143,21 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -5718,7 +6178,8 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -5732,15 +6193,21 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -5990,7 +6457,9 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -6004,17 +6473,22 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -6036,7 +6510,8 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -6050,15 +6525,21 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -6080,7 +6561,8 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -6094,15 +6576,21 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -6327,7 +6815,9 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -6341,17 +6831,22 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -6372,7 +6867,8 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -6386,15 +6882,21 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -6415,7 +6917,8 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -6429,15 +6932,21 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,
@@ -6636,7 +7145,9 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String task) createTask,
-    required TResult Function(String taskId, String statusId) updateTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -6650,17 +7161,22 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
         getTasks,
     required TResult Function() testConnect,
     required TResult Function(DateTime? date, String cageId) getTasksByCageId,
-    required TResult Function(String taskId) getTaskById,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
     required TResult Function() getNextTask,
     required TResult Function(DateTime? date, String? cageId)
         getTasksByUserIdAndDate,
     required TResult Function(String? cageId, DateTime date, String cageName)
         filterTasksByLocation,
-    required TResult Function(String cageId, DailyFoodUsageLogDto log)
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
         createDailyFoodUsageLog,
-    required TResult Function(String prescriptionId, HealthLogDto log)
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
         createHealthLog,
-    required TResult Function(String cageId, VaccineScheduleLogDto log)
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
         createVaccinScheduleLog,
     required TResult Function(String taskId) getDailyFoodUsageLog,
     required TResult Function(String taskId) getHealthLog,
@@ -6681,7 +7197,8 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String task)? createTask,
-    TResult? Function(String taskId, String statusId)? updateTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -6695,15 +7212,21 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
         getTasks,
     TResult? Function()? testConnect,
     TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult? Function(String taskId)? getTaskById,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult? Function()? getNextTask,
     TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult? Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult? Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult? Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult? Function(String cageId, VaccineScheduleLogDto log)?
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult? Function(String taskId)? getDailyFoodUsageLog,
     TResult? Function(String taskId)? getHealthLog,
@@ -6724,7 +7247,8 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String task)? createTask,
-    TResult Function(String taskId, String statusId)? updateTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -6738,15 +7262,21 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
         getTasks,
     TResult Function()? testConnect,
     TResult Function(DateTime? date, String cageId)? getTasksByCageId,
-    TResult Function(String taskId)? getTaskById,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
     TResult Function()? getNextTask,
     TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
     TResult Function(String? cageId, DateTime date, String cageName)?
         filterTasksByLocation,
-    TResult Function(String cageId, DailyFoodUsageLogDto log)?
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
         createDailyFoodUsageLog,
-    TResult Function(String prescriptionId, HealthLogDto log)? createHealthLog,
-    TResult Function(String cageId, VaccineScheduleLogDto log)?
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
         createVaccinScheduleLog,
     TResult Function(String taskId)? getDailyFoodUsageLog,
     TResult Function(String taskId)? getHealthLog,

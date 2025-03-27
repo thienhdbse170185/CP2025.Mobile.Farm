@@ -475,6 +475,12 @@ class _HomeWidgetState extends State<HomeWidget>
             nextTaskList[0].taskName == "No Task Available" &&
             nextTaskList[0].total == 0);
 
+    bool isAllTaskOverdue = nextTaskList.isNotEmpty &&
+        nextTaskList.every((task) =>
+            task.taskName == "No Task Available" &&
+            task.total > 0 &&
+            task.taskDone == 0);
+
     if (allTasksCompleted) {
       return Center(
         child: Column(
@@ -518,33 +524,36 @@ class _HomeWidgetState extends State<HomeWidget>
       );
     }
 
-    if (noTasksAvailable) {
-      return Center(
-        child: Column(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LinearIcons.emptyBoxIcon,
-                  const SizedBox(height: 16),
-                  Text('Không có việc',
-                      style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Hôm nay bạn không có công việc.',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Xem công việc ngày mai'))
-                ],
+    if (noTasksAvailable || isAllTaskOverdue) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LinearIcons.emptyBoxIcon,
+                    const SizedBox(height: 16),
+                    Text('Không có việc',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Hôm nay bạn không có công việc.',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    // const SizedBox(height: 16),
+                    // ElevatedButton(
+                    //     onPressed: () {},
+                    //     child: const Text('Xem công việc ngày mai'))
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }
@@ -556,8 +565,8 @@ class _HomeWidgetState extends State<HomeWidget>
       itemCount: nextTaskList.length,
       itemBuilder: (context, index) {
         final nextTask = nextTaskList[index];
-        if (nextTask.taskName == "No Task Available") {
-          return const SizedBox.shrink(); // Skip if no task available
+        if (nextTask.taskName == 'No Task Available') {
+          return const SizedBox.shrink();
         }
 
         return Column(
