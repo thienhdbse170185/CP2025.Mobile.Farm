@@ -7,7 +7,7 @@ class StatusDataConstant {
   static const String cancelled = "Cancelled";
 
   static const String pendingVn = "Chuẩn bị";
-  static const String inProgressVn = "Đang làm";
+  static const String inProgressVn = "Đang thực hiện";
   static const String doneVn = "Đã hoàn thành";
   static const String overdueVn = "Đã quá hạn";
   static const String cancelledVn = "Đã hủy";

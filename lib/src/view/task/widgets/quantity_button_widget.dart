@@ -7,12 +7,12 @@ class QuantityButtonWidget extends StatelessWidget {
   final bool isDisable;
 
   const QuantityButtonWidget({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onPressed,
     this.isAdd = false,
     this.isDisable = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
