@@ -29,6 +29,7 @@ import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/task_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/view/task/task_validation.dart';
 import 'package:smart_farm/src/view/task/widgets/animal_sale_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/egg_harvest_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/egg_sale_log_widget.dart';
@@ -41,7 +42,6 @@ import 'package:smart_farm/src/view/task/widgets/weighing_log_widget.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/loading_widget.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
-import 'package:smart_farm/src/view/widgets/text_field_required.dart';
 import 'package:smart_farm/src/viewmodel/animal_sale/animal_sale_cubit.dart';
 import 'package:smart_farm/src/viewmodel/egg_harvest/egg_harvest_cubit.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
@@ -57,8 +57,15 @@ class TaskReportScreen extends StatefulWidget {
   final TaskHaveCageName task;
   final String taskId;
   final String? source;
-  const TaskReportScreen(
-      {super.key, required this.task, required this.taskId, this.source});
+  final bool viewMode; // Add viewMode flag
+
+  const TaskReportScreen({
+    super.key,
+    required this.task,
+    required this.taskId,
+    this.source,
+    this.viewMode = false, // Default to false (edit mode)
+  });
 
   @override
   State<TaskReportScreen> createState() => _TaskReportScreenState();
@@ -69,6 +76,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   bool _isLoading = false;
   bool _isHealthyAfterTreatment = false;
   String? _sourceScreen; // Track the source screen
+  bool _viewMode = false; // Track if we're in view mode
   String taskStatus = 'Loading...'; // Start directly at 'in progress'
   GrowthStageDto? growthStage;
   String? userName = '';
@@ -167,6 +175,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   void initState() {
     super.initState();
     _sourceScreen = widget.source; // Store the source screen
+    _viewMode = widget.viewMode; // Store view mode flag
     context.read<UserBloc>().add(const UserEvent.getUserProfile());
 
     _actualWeightController.text = '0';
@@ -181,6 +190,13 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     _dateAnimalSellController.text =
         DateFormat('dd/MM/yyyy').format(TimeUtils.customNow());
     saleDate = TimeUtils.customNow();
+
+    // If in view mode, we're certainly dealing with a completed task
+    if (_viewMode) {
+      setState(() {
+        taskStatus = StatusDataConstant.doneVn;
+      });
+    }
   }
 
   void _initDataLog() {
@@ -1253,7 +1269,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           appBarHeight: 70,
           title: Column(
             children: [
-              const Text('Báo cáo công việc'),
+              Text(_viewMode ? 'Chi tiết báo cáo' : 'Báo cáo công việc'),
               Text(
                 '${DateFormat('HH:mm').format(TimeUtils.customNow())} - ${CustomDateUtils.formatDate(TimeUtils.customNow())}',
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -1261,372 +1277,399 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.only(
-              left: 16.0, right: 16.0, top: 16.0, bottom: 80.0),
-          child: _isLoading ? LoadingWidget() : _buildTaskReport(context),
-        ),
-        bottomSheet: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: FilledButton(
-            onPressed: _isProcessing ? null : _updateTaskStatus,
-            child: _isProcessing
-                ? ProcessingButtonWidget(loadingMessage: 'Đang xác nhận...')
-                : _contentButton(),
-          ),
-        ),
+        body: _isLoading ? LoadingWidget() : _buildTaskReport(context),
+        bottomSheet: _viewMode
+            ? null
+            : Container(
+                width: MediaQuery.of(context).size.width,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: FilledButton(
+                  onPressed: _validateTaskInfo() ? _updateTaskStatus : null,
+                  child: _isProcessing
+                      ? ProcessingButtonWidget(
+                          loadingMessage: 'Đang xác nhận...')
+                      : _contentButton(),
+                ),
+              ),
       ),
     );
   }
 
   Widget _buildTaskReport(BuildContext context) {
-    return Column(
-      children: [
-        if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding)
-          FoodLogWidget(
-            userName: userName,
-            logTime: widget.task.dueDate != null
-                ? DateTime.parse(widget.task.dueDate)
-                : null,
-            hasAnimalDesease: widget.task.hasAnimalDesease ?? false,
-            isIsolationFed: _isIsolationFed,
-            onIsolationFedChanged: (value) {
-              setState(() {
-                _isIsolationFed = value;
-              });
-            },
-            actualWeight: actualWeight,
-            onWeightChanged: (double newWeight) {
-              setState(() {
-                actualWeight = newWeight;
-                _actualWeightController.text = newWeight.toString();
-              });
-            },
-            task: widget.task,
-            recommendedWeight: recommendedWeight,
-            logController: logController,
-            actualWeightController: _actualWeightController,
-          )
-        else if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health)
-          HealthLogWidget(
-            userName: userName,
-            prescription: prescription,
-            session: widget.task.session,
-            medicationChecked: _medicationChecked,
-            onMedicationCheckedChanged: (String medicationId, bool value) {
-              setState(() {
-                _medicationChecked[medicationId] = value;
-              });
-            },
-            taskStatus: taskStatus,
-          )
-        else if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.vaccin)
-          VaccineLogWidget(
-            userName: userName,
-            vaccineSchedule: vaccineSchedule,
-            growthStage: growthStage,
-            countAnimalVaccineController: _countAnimalVaccineController,
-            onIncreaseQuantity: (int currentValue) {
-              setState(() {
-                _countAnimalVaccineController.text =
-                    (currentValue + 1).toString();
-              });
-            },
-            onDecreaseQuantity: (int currentValue) {
-              setState(() {
-                _countAnimalVaccineController.text =
-                    (currentValue - 1).toString();
-              });
-            },
-            taskStatus: taskStatus,
-            isLoading: _isLoading,
-          )
-        else if (widget.task.taskType.taskTypeId ==
-            TaskTypeDataConstant.weighing)
-          BlocBuilder<GrowthStageCubit, GrowthStageState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                getGrowthStageByCageIdInProgress: () {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      const Text('Đang tải báo cáo...')
-                    ])),
-                  );
-                },
-                getGrowthStageByCageIdSuccess: (growthStage) {
-                  log('Trạng thái: $taskStatus');
-                  return WeighingLogWidget(
-                    userName: userName,
-                    growthStage: growthStage,
-                    weightAnimalController: _weightAnimalController,
-                    onWeightChanged: (double newWeight) {
+    // Adjust all input fields to be read-only if in view mode
+    final bool readOnly = _viewMode ||
+        taskStatus == StatusDataConstant.doneVn ||
+        taskStatus == StatusDataConstant.overdueVn;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.only(
+          left: 16.0, right: 16.0, top: 16.0, bottom: 80.0),
+      child: Column(
+        children: [
+          if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding)
+            FoodLogWidget(
+              userName: userName,
+              // ignore: unnecessary_null_comparison
+              logTime: widget.task.dueDate != null
+                  ? DateTime.parse(widget.task.dueDate)
+                  : null,
+              hasAnimalDesease: widget.task.hasAnimalDesease ?? false,
+              isIsolationFed: _isIsolationFed,
+              onIsolationFedChanged: readOnly
+                  ? null
+                  : (value) {
                       setState(() {
-                        _weightAnimalController.text =
-                            newWeight.toStringAsFixed(1);
+                        _isIsolationFed = value;
                       });
                     },
-                    taskStatus: taskStatus,
-                  );
-                },
-                getGrowthStageByCageIdFailure: (message) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      const Icon(Icons.error_outline, color: Colors.red),
-                      const SizedBox(height: 8),
-                      Text('Đã xảy ra lỗi: $message'),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<GrowthStageCubit>()
-                              .getGrowthStageByCageId(widget.task.cageId);
-                        },
-                        child: const Text('Thử lại'),
-                      ),
-                    ])),
-                  );
-                },
-                updateWeightInProgress: () {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      const Text('Đang xử lý báo cáo...')
-                    ])),
-                  );
-                },
-                orElse: () {
-                  return Container();
-                },
-              );
-            },
-          )
-        else if (widget.task.taskType.taskTypeId ==
-            TaskTypeDataConstant.eggHarvest)
-          BlocBuilder<GrowthStageCubit, GrowthStageState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                getGrowthStageByCageIdInProgress: () {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      const Text('Đang tải báo cáo...')
-                    ])),
-                  );
-                },
-                getGrowthStageByCageIdSuccess: (growthStage) {
-                  return EggHarvestLogWidget(
-                    userName: userName,
-                    growthStage: growthStage,
-                    countEggCollectedController: _countEggCollectedController,
-                    onCountChanged: (int value) {
+              actualWeight: actualWeight,
+              onWeightChanged: readOnly
+                  ? null
+                  : (double newWeight) {
                       setState(() {
-                        _countEggCollectedController.text = value.toString();
+                        actualWeight = newWeight;
+                        _actualWeightController.text = newWeight.toString();
                       });
                     },
-                    taskStatus: taskStatus,
-                  );
-                },
-                getGrowthStageByCageIdFailure: (message) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      const Icon(Icons.error_outline, color: Colors.red),
-                      const SizedBox(height: 8),
-                      Text('Đã xảy ra lỗi: $message'),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<GrowthStageCubit>()
-                              .getGrowthStageByCageId(widget.task.cageId);
-                        },
-                        child: const Text('Thử lại'),
-                      ),
-                    ])),
-                  );
-                },
-                updateWeightInProgress: () {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      const Text('Đang xử lý báo cáo...')
-                    ])),
-                  );
-                },
-                orElse: () {
-                  return Container();
-                },
-              );
-            },
-          )
-        else if (widget.task.taskType.taskTypeId ==
-                TaskTypeDataConstant.sellAnimal ||
-            widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg)
-          BlocBuilder<GrowthStageCubit, GrowthStageState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                getGrowthStageByCageIdInProgress: () {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      const Text('Đang tải báo cáo...')
-                    ])),
-                  );
-                },
-                getGrowthStageByCageIdSuccess: (growthStage) {
-                  if (widget.task.taskType.taskTypeId ==
-                      TaskTypeDataConstant.sellAnimal) {
-                    return AnimalSaleLogWidget(
+              task: widget.task,
+              recommendedWeight: recommendedWeight,
+              logController: logController,
+              actualWeightController: _actualWeightController,
+            )
+          else if (widget.task.taskType.taskTypeId ==
+              TaskTypeDataConstant.health)
+            HealthLogWidget(
+              userName: userName,
+              prescription: prescription,
+              session: widget.task.session,
+              medicationChecked: _medicationChecked,
+              onMedicationCheckedChanged: readOnly
+                  ? null
+                  : (String medicationId, bool value) {
+                      setState(() {
+                        _medicationChecked[medicationId] = value;
+                      });
+                    },
+              task: widget.task,
+            )
+          else if (widget.task.taskType.taskTypeId ==
+              TaskTypeDataConstant.vaccin)
+            VaccineLogWidget(
+              userName: userName,
+              vaccineSchedule: vaccineSchedule,
+              growthStage: growthStage,
+              countAnimalVaccineController: _countAnimalVaccineController,
+              onCountChanged: readOnly
+                  ? null
+                  : (int value) {
+                      setState(() {
+                        _countAnimalVaccineController.text = value.toString();
+                      });
+                    },
+              task: widget.task,
+              isLoading: _isLoading,
+            )
+          else if (widget.task.taskType.taskTypeId ==
+              TaskTypeDataConstant.weighing)
+            BlocBuilder<GrowthStageCubit, GrowthStageState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  getGrowthStageByCageIdInProgress: () {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                          child: Column(children: [
+                        CircularProgressIndicator(),
+                        const SizedBox(height: 16),
+                        const Text('Đang tải báo cáo...')
+                      ])),
+                    );
+                  },
+                  getGrowthStageByCageIdSuccess: (growthStage) {
+                    log('Trạng thái: $taskStatus');
+                    return WeighingLogWidget(
                       userName: userName,
                       growthStage: growthStage,
-                      weightMeatSellController: _weightMeatSellController,
-                      priceMeatSellController: _priceMeatSellController,
-                      dateAnimalSellController: _dateAnimalSellController,
-                      saleDate: saleDate!,
-                      onDateChanged: (date) {
-                        setState(() {
-                          saleDate = date;
-                        });
-                      },
-                      onWeightChanged: (weight) {
-                        setState(() {
-                          _weightMeatSellController.text = weight.toString();
-                        });
-                      },
+                      weightAnimalController: _weightAnimalController,
+                      onWeightChanged: readOnly
+                          ? null
+                          : (double newWeight) {
+                              setState(() {
+                                _weightAnimalController.text =
+                                    newWeight.toStringAsFixed(1);
+                              });
+                            },
                       taskStatus: taskStatus,
                     );
-                  } else {
-                    return EggSaleLogWidget(
+                  },
+                  getGrowthStageByCageIdFailure: (message) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                          child: Column(children: [
+                        const Icon(Icons.error_outline, color: Colors.red),
+                        const SizedBox(height: 8),
+                        Text('Đã xảy ra lỗi: $message'),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () {
+                            context
+                                .read<GrowthStageCubit>()
+                                .getGrowthStageByCageId(widget.task.cageId);
+                          },
+                          child: const Text('Thử lại'),
+                        ),
+                      ])),
+                    );
+                  },
+                  updateWeightInProgress: () {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            CircularProgressIndicator(),
+                            const SizedBox(height: 16),
+                            const Text('Đang xử lý báo cáo...')
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  orElse: () {
+                    return Container();
+                  },
+                );
+              },
+            )
+          else if (widget.task.taskType.taskTypeId ==
+              TaskTypeDataConstant.eggHarvest)
+            BlocBuilder<GrowthStageCubit, GrowthStageState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  getGrowthStageByCageIdInProgress: () {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                          child: Column(children: [
+                        CircularProgressIndicator(),
+                        const SizedBox(height: 16),
+                        const Text('Đang tải báo cáo...')
+                      ])),
+                    );
+                  },
+                  getGrowthStageByCageIdSuccess: (growthStage) {
+                    return EggHarvestLogWidget(
                       userName: userName,
                       growthStage: growthStage,
-                      countEggSellController: _countEggSellController,
-                      priceEggSellController: _priceEggSellController,
-                      dateEggSellController: _dateAnimalSellController,
-                      saleDate: saleDate!,
-                      onDateChanged: (date) {
-                        setState(() {
-                          saleDate = date;
-                        });
-                      },
-                      onCountChanged: (count) {
-                        setState(() {
-                          _countEggSellController.text = count.toString();
-                        });
-                      },
+                      countEggCollectedController: _countEggCollectedController,
+                      onCountChanged: readOnly
+                          ? null
+                          : (int value) {
+                              setState(() {
+                                _countEggCollectedController.text =
+                                    value.toString();
+                              });
+                            },
                       taskStatus: taskStatus,
                     );
-                  }
-                },
-                getGrowthStageByCageIdFailure: (message) {
-                  log(message);
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      const Icon(Icons.error_outline, color: Colors.red),
-                      const SizedBox(height: 8),
-                      Text('Đã xảy ra lỗi: $message'),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<GrowthStageCubit>()
-                              .getGrowthStageByCageId(widget.task.cageId);
-                        },
-                        child: const Text('Thử lại'),
+                  },
+                  getGrowthStageByCageIdFailure: (message) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                          child: Column(children: [
+                        const Icon(Icons.error_outline, color: Colors.red),
+                        const SizedBox(height: 8),
+                        Text('Đã xảy ra lỗi: $message'),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () {
+                            context
+                                .read<GrowthStageCubit>()
+                                .getGrowthStageByCageId(widget.task.cageId);
+                          },
+                          child: const Text('Thử lại'),
+                        ),
+                      ])),
+                    );
+                  },
+                  updateWeightInProgress: () {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                          child: Column(children: [
+                        CircularProgressIndicator(),
+                        const SizedBox(height: 16),
+                        const Text('Đang xử lý báo cáo...')
+                      ])),
+                    );
+                  },
+                  orElse: () {
+                    return Container();
+                  },
+                );
+              },
+            )
+          else if (widget.task.taskType.taskTypeId ==
+                  TaskTypeDataConstant.sellAnimal ||
+              widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg)
+            BlocBuilder<GrowthStageCubit, GrowthStageState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  getGrowthStageByCageIdInProgress: () {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            CircularProgressIndicator(),
+                            const SizedBox(height: 16),
+                            const Text('Đang tải báo cáo...')
+                          ],
+                        ),
                       ),
-                    ])),
-                  );
-                },
-                updateWeightInProgress: () {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Center(
-                        child: Column(children: [
-                      CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      const Text('Đang xử lý báo cáo...')
-                    ])),
-                  );
-                },
-                orElse: () {
-                  return Container();
-                },
-              );
-            },
-          ),
-        const SizedBox(height: 24),
-        TextFieldRequired(
-          isRequired: false,
-          controller: logController,
-          maxLines: 3,
-          isDisabled: taskStatus == StatusDataConstant.doneVn ||
-              taskStatus == StatusDataConstant.overdueVn,
-          label: 'Ghi chú (nếu có)',
-          hintText: 'Nhập ghi chú',
-        ),
-        const SizedBox(height: 32),
-        if (taskStatus != StatusDataConstant.overdueVn)
-          ImagePickerSection(
-            images: _images,
-            onImageAdded: _addImage,
-            onImageRemoved: _removeImage,
-            isDisabled: taskStatus == StatusDataConstant.doneVn ||
-                taskStatus == StatusDataConstant.overdueVn,
-          )
-        else
-          StatusNotificationWidget(
-            iconData: Icons.error_outline,
-            iconColor: Theme.of(context).colorScheme.error,
-            message: 'Công việc đã quá hạn, không thể tạo đơn báo cáo.',
-          ),
-      ],
+                    );
+                  },
+                  getGrowthStageByCageIdSuccess: (growthStage) {
+                    if (widget.task.taskType.taskTypeId ==
+                        TaskTypeDataConstant.sellAnimal) {
+                      return AnimalSaleLogWidget(
+                        userName: userName,
+                        growthStage: growthStage,
+                        weightMeatSellController: _weightMeatSellController,
+                        priceMeatSellController: _priceMeatSellController,
+                        dateAnimalSellController: _dateAnimalSellController,
+                        saleDate: saleDate!,
+                        onDateChanged: readOnly
+                            ? null
+                            : (date) {
+                                setState(() {
+                                  saleDate = date;
+                                });
+                              },
+                        onWeightChanged: readOnly
+                            ? null
+                            : (weight) {
+                                setState(() {
+                                  _weightMeatSellController.text =
+                                      weight.toString();
+                                });
+                              },
+                        task: widget.task,
+                      );
+                    } else {
+                      return EggSaleLogWidget(
+                        userName: userName,
+                        growthStage: growthStage,
+                        countEggSellController: _countEggSellController,
+                        priceEggSellController: _priceEggSellController,
+                        dateEggSellController: _dateAnimalSellController,
+                        saleDate: saleDate!,
+                        onDateChanged: readOnly
+                            ? null
+                            : (date) {
+                                setState(() {
+                                  saleDate = date;
+                                });
+                              },
+                        onCountChanged: readOnly
+                            ? null
+                            : (count) {
+                                setState(() {
+                                  _countEggSellController.text =
+                                      count.toString();
+                                });
+                              },
+                        task: widget.task,
+                      );
+                    }
+                  },
+                  getGrowthStageByCageIdFailure: (message) {
+                    log(message);
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                          child: Column(children: [
+                        const Icon(Icons.error_outline, color: Colors.red),
+                        const SizedBox(height: 8),
+                        Text('Đã xảy ra lỗi: $message'),
+                        const SizedBox(height: 8),
+                        ElevatedButton(
+                          onPressed: () {
+                            context
+                                .read<GrowthStageCubit>()
+                                .getGrowthStageByCageId(widget.task.cageId);
+                          },
+                          child: const Text('Thử lại'),
+                        ),
+                      ])),
+                    );
+                  },
+                  updateWeightInProgress: () {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Center(
+                          child: Column(children: [
+                        CircularProgressIndicator(),
+                        const SizedBox(height: 16),
+                        const Text('Đang xử lý báo cáo...')
+                      ])),
+                    );
+                  },
+                  orElse: () {
+                    return Container();
+                  },
+                );
+              },
+            ),
+          const SizedBox(height: 32),
+          if (!_viewMode && taskStatus != StatusDataConstant.overdueVn)
+            ImagePickerSection(
+              images: _images,
+              onImageAdded: _addImage,
+              onImageRemoved: _removeImage,
+              isDisabled: readOnly,
+            )
+          else if (taskStatus == StatusDataConstant.overdueVn)
+            StatusNotificationWidget(
+              iconData: Icons.error_outline,
+              iconColor: Theme.of(context).colorScheme.error,
+              message: 'Công việc đã quá hạn, không thể tạo đơn báo cáo.',
+            ),
+        ],
+      ),
     );
   }
 
   Widget _contentButton() {
-    if (widget.task.status == StatusDataConstant.inProgress) {
-      if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health &&
-          !_areAnyMedicationsChecked()) {
-        return const Text('Chưa ghi nhận đã cho uống thuốc');
-      } else if (widget.task.taskType.taskTypeId ==
-              TaskTypeDataConstant.feeding &&
-          widget.task.hasAnimalDesease == true &&
-          !_isIsolationFed) {
-        return const Text('Vui lòng xác nhận đã cho ăn ở chuồng cách ly');
+    if (_isLoading == false) {
+      if (widget.task.status == StatusDataConstant.inProgress) {
+        if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health &&
+            !_areAnyMedicationsChecked()) {
+          return const Text('Chưa ghi nhận đã cho uống thuốc');
+        } else if (widget.task.taskType.taskTypeId ==
+                TaskTypeDataConstant.feeding &&
+            widget.task.hasAnimalDesease == true &&
+            !_isIsolationFed) {
+          return const Text('Vui lòng xác nhận đã cho ăn ở chuồng cách ly');
+        } else {
+          return const Text('Xác nhận hoàn thành');
+        }
+      } else if (taskStatus == StatusDataConstant.doneVn) {
+        return const Text('Công việc đã hoàn thành');
+      } else if (taskStatus == StatusDataConstant.overdueVn) {
+        return const Text('Công việc đã quá hạn');
+      } else if (taskStatus == StatusDataConstant.cancelledVn) {
+        return const Text('Công việc đã bị hủy');
       } else {
-        return const Text('Xác nhận hoàn thành');
+        return Text(_isWithinWorkingHours()
+            ? 'Xác nhận làm việc'
+            : 'Chưa đến giờ làm việc');
       }
-    } else if (taskStatus == StatusDataConstant.doneVn) {
-      return const Text('Công việc đã hoàn thành');
-    } else if (taskStatus == StatusDataConstant.overdueVn) {
-      return const Text('Công việc đã quá hạn');
-    } else if (taskStatus == StatusDataConstant.cancelledVn) {
-      return const Text('Công việc đã bị hủy');
     } else {
-      return Text(_isWithinWorkingHours()
-          ? 'Xác nhận làm việc'
-          : 'Chưa đến giờ làm việc');
+      return const Text('Đang tải...');
     }
   }
 
@@ -1803,5 +1846,50 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         ),
       ),
     );
+  }
+
+  bool _validateTaskInfo() {
+    if (_isLoading == false) {
+      if (_isProcessing == false) {
+        if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
+          return TaskValidation.validateFoodLog(
+            actualWeightController: _actualWeightController,
+            hasAnimalDesease: widget.task.hasAnimalDesease ?? false,
+            isIsolationFed: _isIsolationFed,
+          );
+        } else if (widget.task.taskType.taskTypeId ==
+            TaskTypeDataConstant.health) {
+          return TaskValidation.validateHealthLog();
+        } else if (widget.task.taskType.taskTypeId ==
+            TaskTypeDataConstant.vaccin) {
+          return TaskValidation.validateVaccineLog(
+            countAnimalVaccineController: _countAnimalVaccineController,
+          );
+        } else if (widget.task.taskType.taskTypeId ==
+            TaskTypeDataConstant.eggHarvest) {
+          return TaskValidation.validateEggHarvestLog(
+            countEggCollectedController: _countEggCollectedController,
+          );
+        } else if (widget.task.taskType.taskTypeId ==
+            TaskTypeDataConstant.sellAnimal) {
+          return TaskValidation.validateAnimalSaleLog(
+            weightAnimalController: _weightMeatSellController,
+            priceAnimalController: _priceMeatSellController,
+          );
+        } else if (widget.task.taskType.taskTypeId ==
+            TaskTypeDataConstant.sellEgg) {
+          return TaskValidation.validateEggSaleLog(
+            countEggSellController: _countEggSellController,
+            priceEggSellController: _priceEggSellController,
+          );
+        } else if (widget.task.taskType.taskTypeId ==
+            TaskTypeDataConstant.weighing) {
+          return TaskValidation.validateWeighingLog(
+            weightAnimalController: _weightAnimalController,
+          );
+        }
+      }
+    }
+    return false;
   }
 }
