@@ -1,8 +1,12 @@
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:smart_farm/src/core/utils/date_util.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
 
 class EggSaleLogWidget extends StatelessWidget {
   final String? userName;
@@ -11,274 +15,337 @@ class EggSaleLogWidget extends StatelessWidget {
   final TextEditingController priceEggSellController;
   final TextEditingController dateEggSellController;
   final DateTime saleDate;
-  final Function(DateTime) onDateChanged;
-  final Function(int) onCountChanged;
-  final String taskStatus;
+  final ValueChanged<DateTime>? onDateChanged; // Make nullable
+  final ValueChanged<int>? onCountChanged; // Make nullable
+  final TaskHaveCageName task;
+  final bool readOnly; // Add readOnly flag
 
   const EggSaleLogWidget({
     super.key,
-    required this.userName,
+    this.userName,
     required this.growthStage,
     required this.countEggSellController,
     required this.priceEggSellController,
     required this.dateEggSellController,
     required this.saleDate,
-    required this.onDateChanged,
-    required this.onCountChanged,
-    required this.taskStatus,
+    this.onDateChanged, // Make optional
+    this.onCountChanged, // Make optional
+    required this.task,
+    this.readOnly = false, // Default to false
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Theme.of(context).colorScheme.outlineVariant,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildHeader(context),
+        const SizedBox(height: 8),
+        _buildReporterInfo(context),
+        const SizedBox(height: 20),
+        _buildGrowthStageInfo(context),
+        const SizedBox(height: 30),
+        _buildSaleFormSection(context),
+      ],
+    );
+  }
+
+  Widget _buildHeader(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          Icons.egg_rounded,
+          color: Theme.of(context).colorScheme.primary,
+          size: 32,
         ),
+        const SizedBox(width: 16),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Tên báo cáo công việc',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.outline,
+              ),
+            ),
+            Text(
+              'Đơn báo cáo bán trứng',
+              style: Theme.of(context).textTheme.titleLarge,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildReporterInfo(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(8),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Icon(
-                Icons.sell_rounded,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Tên báo cáo công việc',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
-                  ),
-                  Text(
-                    'Đơn báo cáo bán trứng',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  )
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              _buildInfoItem(
-                context: context,
-                label: 'Tên người báo cáo',
-                value: userName ?? 'Đang tải...',
-              ),
-              const SizedBox(width: 24),
-              _buildInfoItem(
-                context: context,
-                label: 'Ngày báo cáo',
-                value: CustomDateUtils.formatDate(TimeUtils.customNow()),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          _buildGrowthStageInfo(context),
-          const SizedBox(height: 30),
-          Text(
-            'Form nhập liệu bán trứng',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: 16),
-          Container(
-            margin: const EdgeInsets.only(bottom: 12),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: Theme.of(context).colorScheme.outlineVariant,
-              ),
+          Expanded(
+            child: _buildInfoItem(
+              context: context,
+              label: 'Tên người báo cáo',
+              value: userName ?? 'Đang tải...',
+              icon: Icons.person,
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Số trứng đã bán',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildQuantityButton(
-                        context: context,
-                        icon: Icons.remove,
-                        onPressed: () {
-                          final currentValue =
-                              int.tryParse(countEggSellController.text) ?? 0;
-                          if (currentValue > 0) {
-                            onCountChanged(currentValue - 1);
-                          }
-                        },
-                      ),
-                      Container(
-                        width: 80,
-                        margin: const EdgeInsets.symmetric(horizontal: 16),
-                        child: TextField(
-                          controller: countEggSellController,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-                      _buildQuantityButton(
-                        context: context,
-                        icon: Icons.add,
-                        onPressed: () {
-                          final currentValue =
-                              int.tryParse(countEggSellController.text) ?? 0;
-                          onCountChanged(currentValue + 1);
-                        },
-                        isAdd: true,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        size: 16,
-                        color: Colors.grey[600],
-                      ),
-                      const SizedBox(width: 4),
-                      Row(
-                        children: [
-                          Text(
-                            'Đơn vị tính: ',
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 13,
-                            ),
-                          ),
-                          Text(
-                            'trứng.',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  TextFormField(
-                    controller: priceEggSellController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: 'Nhập giá tiền',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      suffixText: 'VND',
-                      helperText: 'Giá tiền trên 1 trứng.',
-                    ),
-                    onChanged: (value) {
-                      if (value.isNotEmpty) {
-                        final formatter = NumberFormat('#,###');
-                        final newValue = formatter
-                            .format(int.parse(value.replaceAll(',', '')));
-                        priceEggSellController.value = TextEditingValue(
-                          text: newValue,
-                          selection:
-                              TextSelection.collapsed(offset: newValue.length),
-                        );
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        size: 16,
-                        color: Colors.grey[600],
-                      ),
-                      const SizedBox(width: 4),
-                      Row(
-                        children: [
-                          Text(
-                            'Đơn vị tiền: ',
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 13,
-                            ),
-                          ),
-                          Text(
-                            'VND.',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  TextFormField(
-                    controller: dateEggSellController,
-                    decoration: InputDecoration(
-                      labelText: 'Ngày bán',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      suffixIcon: Icon(Icons.calendar_today),
-                    ),
-                    readOnly: true,
-                    onTap: () async {
-                      DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: TimeUtils.customNow(),
-                        firstDate: DateTime(2024),
-                        lastDate: DateTime(2030),
-                      );
-                      if (pickedDate != null) {
-                        dateEggSellController.text =
-                            DateFormat('dd/MM/yyyy').format(pickedDate);
-                        onDateChanged(pickedDate);
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        size: 16,
-                        color: Colors.grey[600],
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'Bấm vào để sửa ngày bán (nếu có thay đổi).',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 13,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          )
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSaleFormSection(BuildContext context) {
+    final isEditable =
+        !readOnly && task.status == StatusDataConstant.inProgress;
+
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.receipt_long,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Thông tin bán trứng',
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+            const Divider(height: 24),
+            _buildEggCountInputSection(context, isEditable),
+            const SizedBox(height: 24),
+            _buildPriceInputSection(context, isEditable),
+            const SizedBox(height: 24),
+            _buildDateInputSection(context, isEditable),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEggCountInputSection(BuildContext context, bool isEditable) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.egg_outlined,
+                color: Theme.of(context).colorScheme.primary, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Số lượng trứng đã bán',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(12),
+            border:
+                Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              QuantityButtonWidget(
+                icon: Icons.remove,
+                onPressed: () {
+                  final currentValue = int.tryParse(
+                        countEggSellController.text,
+                      ) ??
+                      0;
+                  if (currentValue > 0) {
+                    onCountChanged?.call(currentValue - 1);
+                  }
+                },
+                isDisable: !isEditable,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextField(
+                  controller: countEggSellController,
+                  textAlign: TextAlign.right,
+                  keyboardType: TextInputType.number,
+                  enabled: isEditable,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  decoration: InputDecoration(
+                    suffixText: '(quả)',
+                    suffixStyle:
+                        TextStyle(color: Colors.grey[600], fontSize: 18),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.w600),
+                  onChanged: (value) async {
+                    if (value.isEmpty) {
+                      countEggSellController.text = '0';
+                      countEggSellController.selection =
+                          TextSelection.fromPosition(
+                              const TextPosition(offset: 1));
+                    }
+                    final currentValue = int.tryParse(value) ?? 0;
+                    onCountChanged?.call(currentValue);
+                  },
+                  onTap: () {
+                    if (countEggSellController.text == '0') {
+                      countEggSellController.clear();
+                    }
+                  },
+                ),
+              ),
+              QuantityButtonWidget(
+                icon: Icons.add,
+                onPressed: () {
+                  final currentValue = int.tryParse(
+                        countEggSellController.text,
+                      ) ??
+                      0;
+                  onCountChanged?.call(currentValue + 1);
+                },
+                isAdd: true,
+                isDisable: !isEditable,
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPriceInputSection(BuildContext context, bool isEditable) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.attach_money,
+                color: Theme.of(context).colorScheme.primary, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Giá bán trứng',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        TextFormField(
+          controller: priceEggSellController,
+          keyboardType: TextInputType.number,
+          enabled: isEditable,
+          decoration: InputDecoration(
+            hintText: '2,000',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            prefixIcon: Icon(Icons.currency_exchange,
+                color: Theme.of(context).colorScheme.primary),
+            suffixText: 'VND/quả',
+            helperText: 'Giá tiền trên 1 quả trứng',
+            filled: true,
+            fillColor: isEditable ? Colors.white : Colors.grey[100],
+          ),
+          onChanged: (value) {
+            if (value.isNotEmpty) {
+              final formatter = NumberFormat('#,###');
+              final newValue =
+                  formatter.format(int.parse(value.replaceAll(',', '')));
+              priceEggSellController.value = TextEditingValue(
+                text: newValue,
+                selection: TextSelection.collapsed(offset: newValue.length),
+              );
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDateInputSection(BuildContext context, bool isEditable) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.event,
+                color: Theme.of(context).colorScheme.primary, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Ngày bán',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        InkWell(
+          onTap: isEditable
+              ? () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: saleDate,
+                    firstDate: DateTime(2024),
+                    lastDate: TimeUtils.customNow(),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: ColorScheme.light(
+                            primary: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
+                  );
+                  if (pickedDate != null) {
+                    dateEggSellController.text =
+                        DateFormat('dd/MM/yyyy').format(pickedDate);
+                    onDateChanged?.call(pickedDate);
+                  }
+                }
+              : null,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            decoration: BoxDecoration(
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.outlineVariant),
+              borderRadius: BorderRadius.circular(12),
+              color: isEditable ? Colors.white : Colors.grey[100],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  dateEggSellController.text,
+                  style: const TextStyle(fontSize: 16),
+                ),
+                if (isEditable) const Icon(Icons.calendar_today),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -444,33 +511,6 @@ class EggSaleLogWidget extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildQuantityButton({
-    required BuildContext context,
-    required IconData icon,
-    required VoidCallback onPressed,
-    bool isAdd = false,
-    bool isDisable = false,
-  }) {
-    return Opacity(
-      opacity: isDisable ? 0.5 : 1,
-      child: Container(
-        decoration: BoxDecoration(
-          color:
-              isAdd ? Theme.of(context).colorScheme.primary : Colors.grey[200],
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: IconButton(
-          onPressed: isDisable ? null : onPressed,
-          icon: Icon(
-            icon,
-            color: isAdd ? Colors.white : Colors.grey[700],
-          ),
-          iconSize: 24,
-        ),
-      ),
     );
   }
 }
