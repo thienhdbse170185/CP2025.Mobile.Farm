@@ -600,8 +600,10 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       //   'taskId': widget.taskId
       // });
     } else {
-      context.go(RouteName.symptomSuccess,
-          extra: {'symptom': symptom, 'cageName': _selectedCage});
+      context.go(RouteName.symptomSuccess, extra: {
+        'symptom': symptom,
+        'cageName': _selectedCage,
+      });
     }
   }
 

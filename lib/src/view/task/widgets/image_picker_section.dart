@@ -82,7 +82,7 @@ class ImagePickerSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Tập tin đính kèm',
+          'Hình ảnh đính kèm',
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 10),
