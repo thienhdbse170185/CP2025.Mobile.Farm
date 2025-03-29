@@ -1,35 +1,40 @@
 import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
 
-class EggHarvestLogWidget extends StatelessWidget {
+class EggHarvestLogWidget extends StatefulWidget {
   final String? userName;
   final GrowthStageDto growthStage;
   final TextEditingController countEggCollectedController;
+  final TextEditingController logController;
   final ValueChanged<int>? onCountChanged; // Make nullable
-  final String? taskStatus;
   final bool readOnly; // Add readOnly flag
+  final TaskHaveCageName task;
 
   const EggHarvestLogWidget({
     super.key,
     this.userName,
     required this.growthStage,
     required this.countEggCollectedController,
-    this.onCountChanged, // Make optional
-    this.taskStatus,
-    this.readOnly = false, // Default to false
+    required this.logController,
+    this.onCountChanged,
+    this.readOnly = false,
+    required this.task,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (readOnly) {
-      return _buildReadOnlyState(context);
-    }
+  State<EggHarvestLogWidget> createState() => _EggHarvestLogWidgetState();
+}
 
-    if (growthStage == null) {
-      return _buildErrorState(context);
+class _EggHarvestLogWidgetState extends State<EggHarvestLogWidget> {
+  @override
+  Widget build(BuildContext context) {
+    if (widget.readOnly) {
+      return _buildReadOnlyState(context);
     }
 
     return Column(
@@ -39,7 +44,7 @@ class EggHarvestLogWidget extends StatelessWidget {
         const SizedBox(height: 8),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
-        _buildGrowthStageInfo(context, growthStage),
+        _buildGrowthStageInfo(context, widget.growthStage),
         const SizedBox(height: 24),
         _buildHarvestForm(context),
       ],
@@ -150,7 +155,7 @@ class EggHarvestLogWidget extends StatelessWidget {
             child: _buildInfoItem(
               context: context,
               label: 'Tên người báo cáo',
-              value: userName ?? 'Đang tải...',
+              value: widget.userName ?? 'Đang tải...',
               icon: Icons.person,
             ),
           ),
@@ -302,7 +307,7 @@ class EggHarvestLogWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                if (taskStatus == "Đã hoàn thành") ...[
+                if (widget.task.status == StatusDataConstant.done) ...[
                   const SizedBox(width: 8),
                   Icon(
                     Icons.check_circle,
@@ -355,40 +360,66 @@ class EggHarvestLogWidget extends StatelessWidget {
                 icon: Icons.remove,
                 onPressed: () {
                   final currentValue =
-                      int.tryParse(countEggCollectedController.text) ?? 0;
+                      int.tryParse(widget.countEggCollectedController.text) ??
+                          0;
                   if (currentValue > 0) {
-                    onCountChanged?.call(currentValue - 1);
+                    widget.onCountChanged?.call(currentValue - 1);
                   }
                 },
-                isDisable: taskStatus != "Đang thực hiện",
+                // isDisable: widget.taskStatus != "Đang thực hiện",
+                isDisable: widget.task.status != StatusDataConstant.inProgress,
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.25,
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
-                  controller: countEggCollectedController,
-                  textAlign: TextAlign.center,
+                  controller: widget.countEggCollectedController,
+                  textAlign: TextAlign.right,
                   keyboardType: TextInputType.number,
-                  enabled: taskStatus == "Đang thực hiện",
+                  // enabled: widget.taskStatus == "Đang thực hiện",
+                  enabled: widget.task.status == StatusDataConstant.inProgress,
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
                   ),
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.zero,
-                  ),
+                  decoration: InputDecoration(
+                      suffixText: '(quả)',
+                      suffixStyle: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 18,
+                      )),
+                  onChanged: (value) async {
+                    if (value.isEmpty) {
+                      setState(() {
+                        widget.countEggCollectedController.text = '0';
+                        widget.countEggCollectedController.selection =
+                            TextSelection.fromPosition(
+                                const TextPosition(offset: 1));
+                      });
+                    }
+                    final currentValue = int.tryParse(value) ?? 0;
+                    if (widget.onCountChanged != null) {
+                      widget.onCountChanged!(currentValue);
+                    }
+                  },
+                  onTap: () {
+                    if (widget.countEggCollectedController.text == '0') {
+                      widget.countEggCollectedController.clear();
+                    }
+                  },
                 ),
               ),
               QuantityButtonWidget(
                 icon: Icons.add,
                 onPressed: () {
                   final currentValue =
-                      int.tryParse(countEggCollectedController.text) ?? 0;
-                  onCountChanged?.call(currentValue + 1);
+                      int.tryParse(widget.countEggCollectedController.text) ??
+                          0;
+                  widget.onCountChanged?.call(currentValue + 1);
                 },
                 isAdd: true,
-                isDisable: taskStatus != "Đang thực hiện",
+                // isDisable: widget.taskStatus != "Đang thực hiện",
+                isDisable: widget.task.status != StatusDataConstant.inProgress,
               ),
             ],
           ),

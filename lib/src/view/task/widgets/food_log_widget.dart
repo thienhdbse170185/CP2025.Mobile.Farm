@@ -53,12 +53,11 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
         _buildReporterInfo(context),
         const SizedBox(height: 20),
         _buildFoodQuantityInput(context, isEditable),
-        if (widget.hasAnimalDesease) ...[
+        if (widget.hasAnimalDesease &&
+            widget.task.status == StatusDataConstant.inProgress) ...[
           const SizedBox(height: 24),
           _buildIsolationSection(context, isCompleted),
         ],
-        const SizedBox(height: 24),
-        _buildNotesSection(context, isEditable),
       ],
     );
   }
@@ -98,16 +97,38 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: _buildInfoItem(
-              context: context,
-              label: 'Tên người báo cáo',
-              value: widget.userName ?? 'Đang tải...',
-              icon: Icons.person,
-            ),
+          Row(
+            children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Tên người báo cáo',
+                value: widget.userName ?? 'Đang tải...',
+                icon: Icons.person,
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.15),
+              _buildInfoItem(
+                context: context,
+                label: 'Tên chuồng',
+                value: widget.task.cageName,
+                icon: Icons.home,
+              ),
+            ],
           ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Thời gian báo cáo',
+                value: widget.logTime != null
+                    ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
+                    : 'Đang tải...',
+                icon: Icons.access_time,
+              ),
+            ],
+          )
         ],
       ),
     );
@@ -422,56 +443,6 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                 : Colors.transparent,
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildNotesSection(BuildContext context, bool isEditable) {
-    return Card(
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.note_alt_outlined,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Ghi chú bổ sung',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            TextFormField(
-              controller: widget.logController,
-              maxLines: 3,
-              enabled: isEditable,
-              decoration: InputDecoration(
-                hintText: 'Nhập ghi chú (nếu có)...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                filled: true,
-                fillColor: isEditable ? Colors.white : Colors.grey[100],
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

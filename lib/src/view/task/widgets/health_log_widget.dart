@@ -62,9 +62,6 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
           _buildPrescriptionInfo(context),
           const SizedBox(height: 20),
           _buildMedicationsList(context, isEditable),
-          const SizedBox(height: 24),
-          if (widget.noteController != null)
-            _buildNotesSection(context, isEditable),
         ] else ...[
           _buildNoPrescriptionMessage(context),
         ]
@@ -443,56 +440,6 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildNotesSection(BuildContext context, bool isEditable) {
-    return Card(
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.note_alt_outlined,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Ghi chú bổ sung',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            TextFormField(
-              controller: widget.noteController,
-              maxLines: 3,
-              enabled: isEditable,
-              decoration: InputDecoration(
-                hintText: 'Nhập ghi chú về việc cho uống thuốc (nếu có)...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                filled: true,
-                fillColor: isEditable ? Colors.white : Colors.grey[100],
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

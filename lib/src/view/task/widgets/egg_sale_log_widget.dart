@@ -1,5 +1,4 @@
 import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,12 +7,14 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
 
-class EggSaleLogWidget extends StatelessWidget {
+class EggSaleLogWidget extends StatefulWidget {
   final String? userName;
-  final GrowthStageDto growthStage;
+  final GrowthStageDto? growthStage;
+  final FarmingBatchDto? farmingBatch;
   final TextEditingController countEggSellController;
   final TextEditingController priceEggSellController;
   final TextEditingController dateEggSellController;
+  final TextEditingController logController;
   final DateTime saleDate;
   final ValueChanged<DateTime>? onDateChanged; // Make nullable
   final ValueChanged<int>? onCountChanged; // Make nullable
@@ -23,7 +24,8 @@ class EggSaleLogWidget extends StatelessWidget {
   const EggSaleLogWidget({
     super.key,
     this.userName,
-    required this.growthStage,
+    this.growthStage,
+    this.farmingBatch,
     required this.countEggSellController,
     required this.priceEggSellController,
     required this.dateEggSellController,
@@ -32,8 +34,14 @@ class EggSaleLogWidget extends StatelessWidget {
     this.onCountChanged, // Make optional
     required this.task,
     this.readOnly = false, // Default to false
+    required this.logController,
   });
 
+  @override
+  State<EggSaleLogWidget> createState() => _EggSaleLogWidgetState();
+}
+
+class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -91,8 +99,17 @@ class EggSaleLogWidget extends StatelessWidget {
             child: _buildInfoItem(
               context: context,
               label: 'Tên người báo cáo',
-              value: userName ?? 'Đang tải...',
+              value: widget.userName ?? 'Đang tải...',
               icon: Icons.person,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: _buildInfoItem(
+              context: context,
+              label: 'Tên chuồng',
+              value: widget.task.cageName,
+              icon: Icons.house,
             ),
           ),
         ],
@@ -102,7 +119,7 @@ class EggSaleLogWidget extends StatelessWidget {
 
   Widget _buildSaleFormSection(BuildContext context) {
     final isEditable =
-        !readOnly && task.status == StatusDataConstant.inProgress;
+        !widget.readOnly && widget.task.status == StatusDataConstant.inProgress;
 
     return Card(
       elevation: 2,
@@ -172,11 +189,11 @@ class EggSaleLogWidget extends StatelessWidget {
                 icon: Icons.remove,
                 onPressed: () {
                   final currentValue = int.tryParse(
-                        countEggSellController.text,
+                        widget.countEggSellController.text,
                       ) ??
                       0;
                   if (currentValue > 0) {
-                    onCountChanged?.call(currentValue - 1);
+                    widget.onCountChanged?.call(currentValue - 1);
                   }
                 },
                 isDisable: !isEditable,
@@ -185,7 +202,7 @@ class EggSaleLogWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.25,
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
-                  controller: countEggSellController,
+                  controller: widget.countEggSellController,
                   textAlign: TextAlign.right,
                   keyboardType: TextInputType.number,
                   enabled: isEditable,
@@ -201,17 +218,17 @@ class EggSaleLogWidget extends StatelessWidget {
                       fontSize: 24, fontWeight: FontWeight.w600),
                   onChanged: (value) async {
                     if (value.isEmpty) {
-                      countEggSellController.text = '0';
-                      countEggSellController.selection =
+                      widget.countEggSellController.text = '0';
+                      widget.countEggSellController.selection =
                           TextSelection.fromPosition(
                               const TextPosition(offset: 1));
                     }
                     final currentValue = int.tryParse(value) ?? 0;
-                    onCountChanged?.call(currentValue);
+                    widget.onCountChanged?.call(currentValue);
                   },
                   onTap: () {
-                    if (countEggSellController.text == '0') {
-                      countEggSellController.clear();
+                    if (widget.countEggSellController.text == '0') {
+                      widget.countEggSellController.clear();
                     }
                   },
                 ),
@@ -220,10 +237,10 @@ class EggSaleLogWidget extends StatelessWidget {
                 icon: Icons.add,
                 onPressed: () {
                   final currentValue = int.tryParse(
-                        countEggSellController.text,
+                        widget.countEggSellController.text,
                       ) ??
                       0;
-                  onCountChanged?.call(currentValue + 1);
+                  widget.onCountChanged?.call(currentValue + 1);
                 },
                 isAdd: true,
                 isDisable: !isEditable,
@@ -252,7 +269,7 @@ class EggSaleLogWidget extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         TextFormField(
-          controller: priceEggSellController,
+          controller: widget.priceEggSellController,
           keyboardType: TextInputType.number,
           enabled: isEditable,
           decoration: InputDecoration(
@@ -272,7 +289,7 @@ class EggSaleLogWidget extends StatelessWidget {
               final formatter = NumberFormat('#,###');
               final newValue =
                   formatter.format(int.parse(value.replaceAll(',', '')));
-              priceEggSellController.value = TextEditingValue(
+              widget.priceEggSellController.value = TextEditingValue(
                 text: newValue,
                 selection: TextSelection.collapsed(offset: newValue.length),
               );
@@ -304,7 +321,7 @@ class EggSaleLogWidget extends StatelessWidget {
               ? () async {
                   DateTime? pickedDate = await showDatePicker(
                     context: context,
-                    initialDate: saleDate,
+                    initialDate: widget.saleDate,
                     firstDate: DateTime(2024),
                     lastDate: TimeUtils.customNow(),
                     builder: (context, child) {
@@ -319,9 +336,9 @@ class EggSaleLogWidget extends StatelessWidget {
                     },
                   );
                   if (pickedDate != null) {
-                    dateEggSellController.text =
+                    widget.dateEggSellController.text =
                         DateFormat('dd/MM/yyyy').format(pickedDate);
-                    onDateChanged?.call(pickedDate);
+                    widget.onDateChanged?.call(pickedDate);
                   }
                 }
               : null,
@@ -337,7 +354,7 @@ class EggSaleLogWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  dateEggSellController.text,
+                  widget.dateEggSellController.text,
                   style: const TextStyle(fontSize: 16),
                 ),
                 if (isEditable) const Icon(Icons.calendar_today),
@@ -372,85 +389,157 @@ class EggSaleLogWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          Row(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.38,
-                child: _buildInfoItem(
-                  context: context,
-                  label: 'Tên giai đoạn',
-                  value: growthStage.name,
-                  icon: Icons.label,
-                ),
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-              if (growthStage.quantity != null) ...[
-                _buildInfoItem(
-                  context: context,
-                  label: 'Tổng số con',
-                  value: '${growthStage.quantity.toString()} (con)',
-                  icon: Icons.warehouse,
-                ),
-              ]
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              _buildInfoItem(
-                context: context,
-                label: 'Số con bình thường',
-                value:
-                    '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
-                icon: Icons.pets,
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.084),
-              _buildInfoItem(
-                context: context,
-                label: 'Số con bị bệnh',
-                value: '${growthStage.affectQuantity} (con)',
-                icon: Icons.medical_services_rounded,
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              _buildInfoItem(
-                context: context,
-                label: 'Ngày bắt đầu',
-                value: DateFormat('dd/MM/yyyy')
-                    .format(DateTime.parse(growthStage.ageStartDate)),
-                icon: Icons.calendar_month,
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.163),
-              _buildInfoItem(
-                context: context,
-                label: 'Ngày kết thúc',
-                value: DateFormat('dd/MM/yyyy')
-                    .format(DateTime.parse(growthStage.ageEndDate)),
-                icon: Icons.calendar_month,
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              _buildInfoItem(
-                context: context,
-                label: 'Độ tuổi bắt đầu',
-                value: '${growthStage.ageStart} ngày tuổi',
-                icon: Icons.health_and_safety_rounded,
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.143),
-              _buildInfoItem(
-                context: context,
-                label: 'Độ tuổi kết thúc',
-                value: '${growthStage.ageEnd} ngày tuổi',
-                icon: Icons.health_and_safety_rounded,
-              ),
-            ],
-          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: (widget.growthStage == null || widget.farmingBatch == null)
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.outlineVariant,
+                            width: 1,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Thông tin vụ nuôi',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                _buildInfoItem(
+                                  context: context,
+                                  label: 'Tên vụ nuôi',
+                                  value: widget.farmingBatch?.name ?? 'N/A',
+                                  icon: Icons.assignment,
+                                ),
+                                // _buildInfoItem(
+                                //   context: context,
+                                //   label: 'Loại vật nuôi',
+                                //   value:
+                                //       widget.farmingBatch?.species ?? 'N/A',
+                                //   icon: Icons.pets,
+                                // ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.38,
+                            child: _buildInfoItem(
+                              context: context,
+                              label: 'Tên giai đoạn',
+                              value: widget.growthStage?.name ?? "",
+                              icon: Icons.label,
+                            ),
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.05),
+                          if (widget.growthStage?.quantity != null) ...[
+                            _buildInfoItem(
+                              context: context,
+                              label: 'Tổng số con',
+                              value:
+                                  '${widget.growthStage?.quantity.toString()} (con)',
+                              icon: Icons.warehouse,
+                            ),
+                          ]
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bình thường',
+                            value:
+                                '${(widget.growthStage?.quantity ?? 0) - (widget.farmingBatch?.affectedQuantity ?? 0)} (con)',
+                            icon: Icons.pets,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.084),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số con bị bệnh',
+                            value:
+                                '${widget.growthStage?.affectQuantity} (con)',
+                            icon: Icons.medical_services_rounded,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày bắt đầu',
+                            value: widget.growthStage != null &&
+                                    widget.growthStage!.ageStartDate.isNotEmpty
+                                ? DateFormat('dd/MM/yyyy').format(
+                                    DateTime.tryParse(
+                                            widget.growthStage!.ageStartDate) ??
+                                        DateTime.now())
+                                : 'N/A',
+                            icon: Icons.calendar_month,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.163),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Ngày kết thúc',
+                            value: widget.growthStage != null &&
+                                    widget.growthStage!.ageEndDate.isNotEmpty
+                                ? DateFormat('dd/MM/yyyy').format(
+                                    DateTime.tryParse(
+                                            widget.growthStage!.ageEndDate) ??
+                                        DateTime.now())
+                                : 'N/A',
+                            icon: Icons.calendar_month,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi bắt đầu',
+                            value:
+                                '${widget.growthStage?.ageStart ?? ''} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.143),
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Độ tuổi kết thúc',
+                            value:
+                                '${widget.growthStage?.ageEnd ?? ''} ngày tuổi',
+                            icon: Icons.health_and_safety_rounded,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+          )
         ],
       ),
     );

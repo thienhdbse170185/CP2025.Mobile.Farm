@@ -1,6 +1,5 @@
-import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
+import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:data_layer/model/dto/vaccine_schedule/vaccine_schedule_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -8,11 +7,13 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
 
-class VaccineLogWidget extends StatelessWidget {
+class VaccineLogWidget extends StatefulWidget {
   final String? userName;
   final VaccineScheduleDto? vaccineSchedule;
   final GrowthStageDto? growthStage;
+  final FarmingBatchDto? farmingBatch;
   final TextEditingController countAnimalVaccineController;
+  final TextEditingController logController;
   final ValueChanged<int>? onCountChanged; // Make nullable
   final TaskHaveCageName task;
   final bool isLoading;
@@ -24,6 +25,8 @@ class VaccineLogWidget extends StatelessWidget {
     this.vaccineSchedule,
     this.growthStage,
     required this.countAnimalVaccineController,
+    required this.logController,
+    this.farmingBatch,
     this.onCountChanged, // Make optional
     required this.task,
     this.isLoading = false,
@@ -31,8 +34,28 @@ class VaccineLogWidget extends StatelessWidget {
   });
 
   @override
+  State<VaccineLogWidget> createState() => _VaccineLogWidgetState();
+}
+
+class _VaccineLogWidgetState extends State<VaccineLogWidget> {
+  int expectedInjectedAnimal = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.task.status == StatusDataConstant.inProgress) {
+      setState(() {
+        expectedInjectedAnimal = widget.growthStage?.quantity ??
+            0 - (widget.farmingBatch?.affectedQuantity ?? 0);
+        widget.countAnimalVaccineController.text =
+            expectedInjectedAnimal.toString();
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (isLoading) {
+    if (widget.isLoading) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0),
         child: Center(
@@ -54,7 +77,7 @@ class VaccineLogWidget extends StatelessWidget {
         const SizedBox(height: 8),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
-        if (vaccineSchedule != null) ...[
+        if (widget.vaccineSchedule != null) ...[
           _buildVaccineInfo(context),
           const SizedBox(height: 24),
         ],
@@ -104,7 +127,7 @@ class VaccineLogWidget extends StatelessWidget {
             child: _buildInfoItem(
               context: context,
               label: 'Tên người báo cáo',
-              value: userName ?? 'Đang tải...',
+              value: widget.userName ?? 'Đang tải...',
               icon: Icons.person,
             ),
           ),
@@ -158,7 +181,7 @@ class VaccineLogWidget extends StatelessWidget {
                 child: _buildInfoItem(
                   context: context,
                   label: 'Tên vắc xin',
-                  value: vaccineSchedule!.vaccineName,
+                  value: widget.vaccineSchedule!.vaccineName,
                   icon: Icons.medication_liquid,
                 ),
               ),
@@ -171,7 +194,8 @@ class VaccineLogWidget extends StatelessWidget {
                 child: _buildInfoItem(
                   context: context,
                   label: 'Ngày tiêm',
-                  value: DateFormat('dd/MM/yyyy').format(vaccineSchedule!.date),
+                  value: DateFormat('dd/MM/yyyy')
+                      .format(widget.vaccineSchedule!.date),
                   icon: Icons.calendar_month,
                 ),
               ),
@@ -180,18 +204,18 @@ class VaccineLogWidget extends StatelessWidget {
                 child: _buildInfoItem(
                   context: context,
                   label: 'Buổi tiêm',
-                  value: vaccineSchedule!.session == 1
+                  value: widget.vaccineSchedule!.session == 1
                       ? 'Sáng'
-                      : vaccineSchedule!.session == 2
+                      : widget.vaccineSchedule!.session == 2
                           ? 'Trưa'
-                          : vaccineSchedule!.session == 3
+                          : widget.vaccineSchedule!.session == 3
                               ? 'Chiều'
                               : 'Tối',
-                  icon: vaccineSchedule!.session == 1
+                  icon: widget.vaccineSchedule!.session == 1
                       ? Icons.wb_sunny
-                      : vaccineSchedule!.session == 2
+                      : widget.vaccineSchedule!.session == 2
                           ? Icons.wb_twighlight
-                          : vaccineSchedule!.session == 3
+                          : widget.vaccineSchedule!.session == 3
                               ? Icons.wb_cloudy
                               : Icons.nightlight_round,
                 ),
@@ -205,7 +229,7 @@ class VaccineLogWidget extends StatelessWidget {
                 child: _buildInfoItem(
                   context: context,
                   label: 'Giai đoạn phát triển',
-                  value: growthStage?.name ?? "Đang tải...",
+                  value: widget.growthStage?.name ?? "Đang tải...",
                   icon: Icons.pets,
                 ),
               ),
@@ -214,7 +238,7 @@ class VaccineLogWidget extends StatelessWidget {
                 child: _buildInfoItem(
                   context: context,
                   label: 'Độ tuổi tiêm',
-                  value: '${vaccineSchedule!.applicationAge} ngày tuổi',
+                  value: '${widget.vaccineSchedule!.applicationAge} ngày tuổi',
                   icon: Icons.monitor_weight_outlined,
                 ),
               ),
@@ -227,7 +251,7 @@ class VaccineLogWidget extends StatelessWidget {
 
   Widget _buildVaccineFormSection(BuildContext context) {
     final isEditable =
-        task.status == StatusDataConstant.inProgress && !readOnly;
+        widget.task.status == StatusDataConstant.inProgress && !widget.readOnly;
 
     return Card(
       elevation: 2,
@@ -297,20 +321,20 @@ class VaccineLogWidget extends StatelessWidget {
                 icon: Icons.remove,
                 onPressed: () {
                   final currentValue = int.tryParse(
-                        countAnimalVaccineController.text,
+                        widget.countAnimalVaccineController.text,
                       ) ??
                       0;
                   if (currentValue > 0) {
-                    onCountChanged?.call(currentValue - 1);
+                    widget.onCountChanged?.call(currentValue - 1);
                   }
                 },
                 isDisable: !isEditable,
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.25,
+                width: MediaQuery.of(context).size.width * 0.3,
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
-                  controller: countAnimalVaccineController,
+                  controller: widget.countAnimalVaccineController,
                   textAlign: TextAlign.right,
                   keyboardType: TextInputType.number,
                   enabled: isEditable,
@@ -328,17 +352,17 @@ class VaccineLogWidget extends StatelessWidget {
                   ),
                   onChanged: (value) {
                     if (value.isEmpty) {
-                      countAnimalVaccineController.text = '0';
-                      countAnimalVaccineController.selection =
+                      widget.countAnimalVaccineController.text = '0';
+                      widget.countAnimalVaccineController.selection =
                           TextSelection.fromPosition(
                               const TextPosition(offset: 1));
                     }
                     final currentValue = int.tryParse(value) ?? 0;
-                    onCountChanged?.call(currentValue);
+                    widget.onCountChanged?.call(currentValue);
                   },
                   onTap: () {
-                    if (countAnimalVaccineController.text == '0') {
-                      countAnimalVaccineController.clear();
+                    if (widget.countAnimalVaccineController.text == '0') {
+                      widget.countAnimalVaccineController.clear();
                     }
                   },
                 ),
@@ -347,10 +371,10 @@ class VaccineLogWidget extends StatelessWidget {
                 icon: Icons.add,
                 onPressed: () {
                   final currentValue = int.tryParse(
-                        countAnimalVaccineController.text,
+                        widget.countAnimalVaccineController.text,
                       ) ??
                       0;
-                  onCountChanged?.call(currentValue + 1);
+                  widget.onCountChanged?.call(currentValue + 1);
                 },
                 isAdd: true,
                 isDisable: !isEditable,
@@ -358,7 +382,7 @@ class VaccineLogWidget extends StatelessWidget {
             ],
           ),
         ),
-        if (isEditable && growthStage != null)
+        if (isEditable && widget.growthStage != null)
           Padding(
             padding: const EdgeInsets.only(top: 12.0, left: 8.0),
             child: Row(
@@ -370,7 +394,7 @@ class VaccineLogWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Số con ước lượng: ${growthStage!.quantity} con',
+                  'Số con ước lượng: $expectedInjectedAnimal con',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,

@@ -18,8 +18,6 @@ import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/task_info_grid_item.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
-import 'package:smart_farm/src/view/widgets/loading_widget.dart';
-import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
@@ -107,6 +105,28 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     }
   }
 
+  void _handleTaskComplete(BuildContext context, bool success) {
+    if (success) {
+      // Check if we need to navigate back to a specific screen
+      if (_sourceScreen == 'cage') {
+        // Navigate back to cage screen with reload indicator
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop({'reload': true, 'source': 'cage'});
+        } else {
+          // If we can't pop (e.g., after symptom reporting), go to task list
+          context.go(RouteName.cage, extra: task?.cageId ?? '');
+        }
+      } else {
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop({'reload': true, 'source': _sourceScreen});
+        } else {
+          // Default behavior - navigate back to task screen or task list
+          context.go(RouteName.task);
+        }
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -179,6 +199,101 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     }
   }
 
+  void _updateTaskStatus() {
+    // Updated dialog with health status selection
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // Use a separate variable to track selected state in dialog
+        bool _dialogIsHealthy = true;
+
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return WarningConfirmationDialog(
+              title: 'Xác nhận tình trạng sức khỏe',
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Vui lòng chọn tình trạng sức khỏe của đàn gà:'),
+                  const SizedBox(height: 16),
+                  RadioListTile<bool>(
+                    title: const Text('Đàn gà bình thường, khỏe mạnh'),
+                    value: true,
+                    groupValue: _dialogIsHealthy,
+                    onChanged: (value) {
+                      setState(() {
+                        _dialogIsHealthy = value!;
+                      });
+                    },
+                  ),
+                  RadioListTile<bool>(
+                    title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
+                    value: false,
+                    groupValue: _dialogIsHealthy,
+                    onChanged: (value) {
+                      setState(() {
+                        _dialogIsHealthy = value!;
+                      });
+                    },
+                  ),
+                  if (!_dialogIsHealthy)
+                    Container(
+                      margin:
+                          const EdgeInsets.only(top: 8, left: 16, right: 16),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.amber.shade200),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.warning_amber, color: Colors.amber[700]),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng sau khi đóng hộp thoại này.',
+                              style: TextStyle(color: Colors.amber[900]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+              primaryButtonText: 'Xác nhận',
+              onPrimaryButtonPressed: () {
+                Navigator.of(context).pop();
+                if (_dialogIsHealthy) {
+                  // Normal flow - upload image if available or create log
+                  context.read<TaskBloc>().add(TaskEvent.updateTask(
+                        task?.id ?? "",
+                        StatusDataConstant.done,
+                      ));
+                } else {
+                  // Navigate to symptom reporting screen
+                  context.push(
+                    RouteName.createSymptom,
+                    extra: {
+                      'cageId': task!.cageId,
+                      'taskId': task!.id,
+                      'fromTask': true,
+                      'cageName': task!.cageName
+                    },
+                  );
+                }
+              },
+              secondaryButtonText: 'Hủy',
+              onSecondaryButtonPressed: () {
+                Navigator.of(context).pop();
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<TaskBloc, TaskState>(
@@ -207,6 +322,35 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               _isLoading = false;
             });
             log("Lấy thông tin công việc thất bại!");
+          },
+          updateStatusTaskLoading: () {
+            setState(() {
+              _isProcessing = true;
+            });
+            log("Đang cập nhật trạng thái công việc...");
+          },
+          updateStatusTaskSuccess: () async {
+            setState(() {
+              _isProcessing = false;
+            });
+            log("Cập nhật trạng thái công việc thành công!");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Cập nhật trạng thái công việc thành công!')),
+            );
+
+            // Use the new navigation handler
+            _handleTaskComplete(context, true);
+          },
+          updateStatusTaskFailure: (e) async {
+            setState(() {
+              _isProcessing = false;
+            });
+            log("Cập nhật trạng thái công việc thất bại! \nError: $e");
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Cập nhật trạng thái công việc thất bại!')),
+            );
           },
           orElse: () {},
         );
@@ -347,39 +491,45 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ],
           ],
         ),
-        body: _isLoading ? LoadingWidget() : _buildTaskBody(context),
+        body: _isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : _buildTaskBody(context),
         bottomSheet: Container(
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: FilledButton(
-            onPressed: (taskStatus == StatusDataConstant.overdueVn ||
-                    taskStatus == StatusDataConstant.cancelledVn ||
-                    taskStatus == StatusDataConstant.pendingVn)
+            onPressed: _isLoading
                 ? null
-                : ((task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.health ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.vaccin ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.sellAnimal ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.weighing ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.eggHarvest ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.sellEgg)
-                    ? () {
-                        context.push(RouteName.taskReport, extra: {
-                          'task': task,
-                          'source': widget.source,
-                          'viewMode': taskStatus == StatusDataConstant.doneVn,
-                        });
-                      }
-                    : null),
-            child: _isProcessing
-                ? ProcessingButtonWidget(loadingMessage: 'Đang xử lý...')
-                : _contentButton(),
+                : ((taskStatus == StatusDataConstant.overdueVn ||
+                        taskStatus == StatusDataConstant.cancelledVn ||
+                        taskStatus == StatusDataConstant.pendingVn)
+                    ? null
+                    : ((task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.feeding ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.health ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.vaccin ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.sellAnimal ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.weighing ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.eggHarvest ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.sellEgg)
+                        ? () {
+                            context.push(RouteName.taskReport, extra: {
+                              'task': task,
+                              'source': widget.source,
+                              'viewMode':
+                                  task?.status == StatusDataConstant.done,
+                            });
+                          }
+                        : _updateTaskStatus)),
+            child: _isLoading ? null : _contentButton(),
           ),
         ),
       ),
