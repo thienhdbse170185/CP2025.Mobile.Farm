@@ -37,27 +37,6 @@ class ImagePickerSection extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
-      // child: Card.outlined(
-      //   child: SizedBox(
-      //     width: 110,
-      //     height: 90,
-      //     child: Column(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: [
-      //         icon,
-      //         const SizedBox(height: 8),
-      //         Text(
-      //           label,
-      //           style: TextStyle(
-      //             color: onTap == null
-      //                 ? Theme.of(context).colorScheme.outline
-      //                 : Theme.of(context).colorScheme.onSurface,
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(24),
@@ -78,54 +57,57 @@ class ImagePickerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Hình ảnh đính kèm',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        const SizedBox(height: 10),
-        if (images.isEmpty)
-          Center(
-            child: _buildImagePickerButton(
-              context: context,
-              icon: LinearIcons.cameraIcon,
-              label: 'Chụp ảnh',
-              onTap: isDisabled ? null : () => _pickImageFromCamera(context),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Text(
+          //   'Hình ảnh đính kèm',
+          //   style: Theme.of(context).textTheme.titleMedium,
+          // ),
+          // const SizedBox(height: 10),
+          if (images.isEmpty)
+            Center(
+              child: _buildImagePickerButton(
+                context: context,
+                icon: LinearIcons.cameraIcon,
+                label: 'Chụp ảnh',
+                onTap: isDisabled ? null : () => _pickImageFromCamera(context),
+              ),
             ),
-          ),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: images.map((image) {
-            return Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.file(
-                    image,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                if (!isDisabled)
-                  Positioned(
-                    right: 0,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.remove_circle,
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                      onPressed: () => onImageRemoved(image),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: images.map((image) {
+              return Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.file(
+                      image,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
                     ),
                   ),
-              ],
-            );
-          }).toList(),
-        ),
-      ],
+                  if (!isDisabled)
+                    Positioned(
+                      right: 0,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.remove_circle,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        onPressed: () => onImageRemoved(image),
+                      ),
+                    ),
+                ],
+              );
+            }).toList(),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -369,7 +369,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         emit(TaskState.getVaccinScheduleLogFailure(e.toString()));
       }
     });
-
     on<_SetTaskIsTreatment>((event, emit) async {
       emit(const TaskState.setTaskIsTreatmentInProgress());
       try {
