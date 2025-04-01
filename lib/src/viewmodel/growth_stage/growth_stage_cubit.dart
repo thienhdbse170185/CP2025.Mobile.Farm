@@ -47,7 +47,7 @@ class GrowthStageCubit extends Cubit<GrowthStageState> {
       ];
 
       emit(GrowthStageState.getRecommendedWeightByCageIdSuccess(
-          recommendedWeight, weightList));
+          recommendedWeight, weightList, growthStage));
     } catch (e) {
       emit(GrowthStageState.getRecommendedWeightByCageIdFailure(e.toString()));
     }

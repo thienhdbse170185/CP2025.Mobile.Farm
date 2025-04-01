@@ -55,7 +55,7 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildHeader(context),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
         if (widget.prescription != null) ...[
@@ -104,23 +104,24 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: _buildInfoItem(
-              context: context,
-              label: 'Tên người báo cáo',
-              value: widget.userName ?? 'Đang tải...',
-              icon: Icons.person,
-            ),
-          ),
-          Expanded(
-            child: _buildInfoItem(
-              context: context,
-              label: 'Thời điểm cho uống thuốc',
-              value: _getSessionName(),
-              icon: Icons.access_time,
-            ),
+          Row(
+            children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Tên người báo cáo',
+                value: widget.userName ?? 'Đang tải...',
+                icon: Icons.person,
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.15),
+              _buildInfoItem(
+                context: context,
+                label: 'Tên chuồng',
+                value: widget.task.cageName,
+                icon: Icons.home_work_outlined,
+              ),
+            ],
           ),
         ],
       ),

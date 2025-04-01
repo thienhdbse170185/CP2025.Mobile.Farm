@@ -22,6 +22,10 @@ mixin _$AnimalSaleState {
     required TResult Function() createAnimalSaleInProgress,
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +34,9 @@ mixin _$AnimalSaleState {
     TResult? Function()? createAnimalSaleInProgress,
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +45,9 @@ mixin _$AnimalSaleState {
     TResult Function()? createAnimalSaleInProgress,
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +57,12 @@ mixin _$AnimalSaleState {
     required TResult Function(_Loading value) createAnimalSaleInProgress,
     required TResult Function(_Success value) createAnimalSaleSuccess,
     required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +71,12 @@ mixin _$AnimalSaleState {
     TResult? Function(_Loading value)? createAnimalSaleInProgress,
     TResult? Function(_Success value)? createAnimalSaleSuccess,
     TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +85,12 @@ mixin _$AnimalSaleState {
     TResult Function(_Loading value)? createAnimalSaleInProgress,
     TResult Function(_Success value)? createAnimalSaleSuccess,
     TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,6 +168,10 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function() createAnimalSaleInProgress,
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
     return initial();
   }
@@ -151,6 +183,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function()? createAnimalSaleInProgress,
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return initial?.call();
   }
@@ -162,6 +197,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? createAnimalSaleInProgress,
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -177,6 +215,12 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function(_Loading value) createAnimalSaleInProgress,
     required TResult Function(_Success value) createAnimalSaleSuccess,
     required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return initial(this);
   }
@@ -188,6 +232,12 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function(_Loading value)? createAnimalSaleInProgress,
     TResult? Function(_Success value)? createAnimalSaleSuccess,
     TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return initial?.call(this);
   }
@@ -199,6 +249,12 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function(_Loading value)? createAnimalSaleInProgress,
     TResult Function(_Success value)? createAnimalSaleSuccess,
     TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -265,6 +321,10 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     required TResult Function() createAnimalSaleInProgress,
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleInProgress();
   }
@@ -276,6 +336,9 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult? Function()? createAnimalSaleInProgress,
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleInProgress?.call();
   }
@@ -287,6 +350,9 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult Function()? createAnimalSaleInProgress,
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleInProgress != null) {
@@ -302,6 +368,12 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     required TResult Function(_Loading value) createAnimalSaleInProgress,
     required TResult Function(_Success value) createAnimalSaleSuccess,
     required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleInProgress(this);
   }
@@ -313,6 +385,12 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult? Function(_Loading value)? createAnimalSaleInProgress,
     TResult? Function(_Success value)? createAnimalSaleSuccess,
     TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleInProgress?.call(this);
   }
@@ -324,6 +402,12 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult Function(_Loading value)? createAnimalSaleInProgress,
     TResult Function(_Success value)? createAnimalSaleSuccess,
     TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleInProgress != null) {
@@ -390,6 +474,10 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     required TResult Function() createAnimalSaleInProgress,
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleSuccess();
   }
@@ -401,6 +489,9 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult? Function()? createAnimalSaleInProgress,
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleSuccess?.call();
   }
@@ -412,6 +503,9 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult Function()? createAnimalSaleInProgress,
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleSuccess != null) {
@@ -427,6 +521,12 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     required TResult Function(_Loading value) createAnimalSaleInProgress,
     required TResult Function(_Success value) createAnimalSaleSuccess,
     required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleSuccess(this);
   }
@@ -438,6 +538,12 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult? Function(_Loading value)? createAnimalSaleInProgress,
     TResult? Function(_Success value)? createAnimalSaleSuccess,
     TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleSuccess?.call(this);
   }
@@ -449,6 +555,12 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult Function(_Loading value)? createAnimalSaleInProgress,
     TResult Function(_Success value)? createAnimalSaleSuccess,
     TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleSuccess != null) {
@@ -543,6 +655,10 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     required TResult Function() createAnimalSaleInProgress,
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleFailure(error);
   }
@@ -554,6 +670,9 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult? Function()? createAnimalSaleInProgress,
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleFailure?.call(error);
   }
@@ -565,6 +684,9 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult Function()? createAnimalSaleInProgress,
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleFailure != null) {
@@ -580,6 +702,12 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     required TResult Function(_Loading value) createAnimalSaleInProgress,
     required TResult Function(_Success value) createAnimalSaleSuccess,
     required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleFailure(this);
   }
@@ -591,6 +719,12 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult? Function(_Loading value)? createAnimalSaleInProgress,
     TResult? Function(_Success value)? createAnimalSaleSuccess,
     TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleFailure?.call(this);
   }
@@ -602,6 +736,12 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult Function(_Loading value)? createAnimalSaleInProgress,
     TResult Function(_Success value)? createAnimalSaleSuccess,
     TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleFailure != null) {
@@ -621,4 +761,572 @@ abstract class _Failure implements AnimalSaleState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSaleLogByGrowthStageIdLoadingImplCopyWith<$Res> {
+  factory _$$GetSaleLogByGrowthStageIdLoadingImplCopyWith(
+          _$GetSaleLogByGrowthStageIdLoadingImpl value,
+          $Res Function(_$GetSaleLogByGrowthStageIdLoadingImpl) then) =
+      __$$GetSaleLogByGrowthStageIdLoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetSaleLogByGrowthStageIdLoadingImplCopyWithImpl<$Res>
+    extends _$AnimalSaleStateCopyWithImpl<$Res,
+        _$GetSaleLogByGrowthStageIdLoadingImpl>
+    implements _$$GetSaleLogByGrowthStageIdLoadingImplCopyWith<$Res> {
+  __$$GetSaleLogByGrowthStageIdLoadingImplCopyWithImpl(
+      _$GetSaleLogByGrowthStageIdLoadingImpl _value,
+      $Res Function(_$GetSaleLogByGrowthStageIdLoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetSaleLogByGrowthStageIdLoadingImpl
+    with DiagnosticableTreeMixin
+    implements _GetSaleLogByGrowthStageIdLoading {
+  const _$GetSaleLogByGrowthStageIdLoadingImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AnimalSaleState.getSaleLogByGrowthStageIdInProgress()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'AnimalSaleState.getSaleLogByGrowthStageIdInProgress'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSaleLogByGrowthStageIdLoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() createAnimalSaleInProgress,
+    required TResult Function() createAnimalSaleSuccess,
+    required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? createAnimalSaleInProgress,
+    TResult? Function()? createAnimalSaleSuccess,
+    TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? createAnimalSaleInProgress,
+    TResult Function()? createAnimalSaleSuccess,
+    TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByGrowthStageIdInProgress != null) {
+      return getSaleLogByGrowthStageIdInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) createAnimalSaleInProgress,
+    required TResult Function(_Success value) createAnimalSaleSuccess,
+    required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? createAnimalSaleInProgress,
+    TResult? Function(_Success value)? createAnimalSaleSuccess,
+    TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? createAnimalSaleInProgress,
+    TResult Function(_Success value)? createAnimalSaleSuccess,
+    TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByGrowthStageIdInProgress != null) {
+      return getSaleLogByGrowthStageIdInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSaleLogByGrowthStageIdLoading implements AnimalSaleState {
+  const factory _GetSaleLogByGrowthStageIdLoading() =
+      _$GetSaleLogByGrowthStageIdLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$GetSaleLogByGrowthStageIdSuccessImplCopyWith<$Res> {
+  factory _$$GetSaleLogByGrowthStageIdSuccessImplCopyWith(
+          _$GetSaleLogByGrowthStageIdSuccessImpl value,
+          $Res Function(_$GetSaleLogByGrowthStageIdSuccessImpl) then) =
+      __$$GetSaleLogByGrowthStageIdSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SaleLogDto saleLog});
+
+  $SaleLogDtoCopyWith<$Res> get saleLog;
+}
+
+/// @nodoc
+class __$$GetSaleLogByGrowthStageIdSuccessImplCopyWithImpl<$Res>
+    extends _$AnimalSaleStateCopyWithImpl<$Res,
+        _$GetSaleLogByGrowthStageIdSuccessImpl>
+    implements _$$GetSaleLogByGrowthStageIdSuccessImplCopyWith<$Res> {
+  __$$GetSaleLogByGrowthStageIdSuccessImplCopyWithImpl(
+      _$GetSaleLogByGrowthStageIdSuccessImpl _value,
+      $Res Function(_$GetSaleLogByGrowthStageIdSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? saleLog = null,
+  }) {
+    return _then(_$GetSaleLogByGrowthStageIdSuccessImpl(
+      null == saleLog
+          ? _value.saleLog
+          : saleLog // ignore: cast_nullable_to_non_nullable
+              as SaleLogDto,
+    ));
+  }
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SaleLogDtoCopyWith<$Res> get saleLog {
+    return $SaleLogDtoCopyWith<$Res>(_value.saleLog, (value) {
+      return _then(_value.copyWith(saleLog: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$GetSaleLogByGrowthStageIdSuccessImpl
+    with DiagnosticableTreeMixin
+    implements _GetSaleLogByGrowthStageIdSuccess {
+  const _$GetSaleLogByGrowthStageIdSuccessImpl(this.saleLog);
+
+  @override
+  final SaleLogDto saleLog;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AnimalSaleState.getSaleLogByGrowthStageIdSuccess(saleLog: $saleLog)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'AnimalSaleState.getSaleLogByGrowthStageIdSuccess'))
+      ..add(DiagnosticsProperty('saleLog', saleLog));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSaleLogByGrowthStageIdSuccessImpl &&
+            (identical(other.saleLog, saleLog) || other.saleLog == saleLog));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, saleLog);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSaleLogByGrowthStageIdSuccessImplCopyWith<
+          _$GetSaleLogByGrowthStageIdSuccessImpl>
+      get copyWith => __$$GetSaleLogByGrowthStageIdSuccessImplCopyWithImpl<
+          _$GetSaleLogByGrowthStageIdSuccessImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() createAnimalSaleInProgress,
+    required TResult Function() createAnimalSaleSuccess,
+    required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdSuccess(saleLog);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? createAnimalSaleInProgress,
+    TResult? Function()? createAnimalSaleSuccess,
+    TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdSuccess?.call(saleLog);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? createAnimalSaleInProgress,
+    TResult Function()? createAnimalSaleSuccess,
+    TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByGrowthStageIdSuccess != null) {
+      return getSaleLogByGrowthStageIdSuccess(saleLog);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) createAnimalSaleInProgress,
+    required TResult Function(_Success value) createAnimalSaleSuccess,
+    required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? createAnimalSaleInProgress,
+    TResult? Function(_Success value)? createAnimalSaleSuccess,
+    TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? createAnimalSaleInProgress,
+    TResult Function(_Success value)? createAnimalSaleSuccess,
+    TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByGrowthStageIdSuccess != null) {
+      return getSaleLogByGrowthStageIdSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSaleLogByGrowthStageIdSuccess implements AnimalSaleState {
+  const factory _GetSaleLogByGrowthStageIdSuccess(final SaleLogDto saleLog) =
+      _$GetSaleLogByGrowthStageIdSuccessImpl;
+
+  SaleLogDto get saleLog;
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetSaleLogByGrowthStageIdSuccessImplCopyWith<
+          _$GetSaleLogByGrowthStageIdSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSaleLogByGrowthStageIdFailureImplCopyWith<$Res> {
+  factory _$$GetSaleLogByGrowthStageIdFailureImplCopyWith(
+          _$GetSaleLogByGrowthStageIdFailureImpl value,
+          $Res Function(_$GetSaleLogByGrowthStageIdFailureImpl) then) =
+      __$$GetSaleLogByGrowthStageIdFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$GetSaleLogByGrowthStageIdFailureImplCopyWithImpl<$Res>
+    extends _$AnimalSaleStateCopyWithImpl<$Res,
+        _$GetSaleLogByGrowthStageIdFailureImpl>
+    implements _$$GetSaleLogByGrowthStageIdFailureImplCopyWith<$Res> {
+  __$$GetSaleLogByGrowthStageIdFailureImplCopyWithImpl(
+      _$GetSaleLogByGrowthStageIdFailureImpl _value,
+      $Res Function(_$GetSaleLogByGrowthStageIdFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$GetSaleLogByGrowthStageIdFailureImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSaleLogByGrowthStageIdFailureImpl
+    with DiagnosticableTreeMixin
+    implements _GetSaleLogByGrowthStageIdFailure {
+  const _$GetSaleLogByGrowthStageIdFailureImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AnimalSaleState.getSaleLogByGrowthStageIdFailure(error: $error)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'AnimalSaleState.getSaleLogByGrowthStageIdFailure'))
+      ..add(DiagnosticsProperty('error', error));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSaleLogByGrowthStageIdFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSaleLogByGrowthStageIdFailureImplCopyWith<
+          _$GetSaleLogByGrowthStageIdFailureImpl>
+      get copyWith => __$$GetSaleLogByGrowthStageIdFailureImplCopyWithImpl<
+          _$GetSaleLogByGrowthStageIdFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() createAnimalSaleInProgress,
+    required TResult Function() createAnimalSaleSuccess,
+    required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleLogDto saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? createAnimalSaleInProgress,
+    TResult? Function()? createAnimalSaleSuccess,
+    TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? createAnimalSaleInProgress,
+    TResult Function()? createAnimalSaleSuccess,
+    TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByGrowthStageIdFailure != null) {
+      return getSaleLogByGrowthStageIdFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) createAnimalSaleInProgress,
+    required TResult Function(_Success value) createAnimalSaleSuccess,
+    required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? createAnimalSaleInProgress,
+    TResult? Function(_Success value)? createAnimalSaleSuccess,
+    TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+  }) {
+    return getSaleLogByGrowthStageIdFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? createAnimalSaleInProgress,
+    TResult Function(_Success value)? createAnimalSaleSuccess,
+    TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByGrowthStageIdFailure != null) {
+      return getSaleLogByGrowthStageIdFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSaleLogByGrowthStageIdFailure implements AnimalSaleState {
+  const factory _GetSaleLogByGrowthStageIdFailure(final String error) =
+      _$GetSaleLogByGrowthStageIdFailureImpl;
+
+  String get error;
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetSaleLogByGrowthStageIdFailureImplCopyWith<
+          _$GetSaleLogByGrowthStageIdFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

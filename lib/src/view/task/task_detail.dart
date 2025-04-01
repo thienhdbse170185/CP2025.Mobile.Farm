@@ -529,7 +529,16 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                             });
                           }
                         : _updateTaskStatus)),
-            child: _isLoading ? null : _contentButton(),
+            child: _isLoading
+                ? null
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.list_alt_rounded),
+                      const SizedBox(width: 8),
+                      _contentButton(),
+                    ],
+                  ),
           ),
         ),
       ),
