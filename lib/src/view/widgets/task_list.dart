@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,7 +29,7 @@ class TaskListWidget extends StatelessWidget {
       children: tasks.map((task) {
         final bool hasWarning = task.isWarning == true;
         final bool reduceOpacity = _shouldReduceOpacity(task.status);
-        log('Task ${task.taskName} ở cage ${task.cageName} có vấn đề: $hasWarning');
+        // log('Task ${task.taskName} ở cage ${task.cageName} có vấn đề: $hasWarning');
 
         // Generate appropriate status colors and icons
         Color statusColor;
@@ -343,6 +341,8 @@ class TaskListWidget extends StatelessWidget {
         return StatusDataConstant.doneVn;
       case StatusDataConstant.overdue:
         return StatusDataConstant.overdueVn;
+      case StatusDataConstant.cancelled:
+        return StatusDataConstant.cancelledVn;
       default:
         return 'Không xác định';
     }

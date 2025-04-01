@@ -32,6 +32,7 @@ import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_sched
 import 'package:smart_farm/src/viewmodel/task_qr_code/task_qr_code_cubit.dart';
 import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
+import 'package:smart_farm/src/viewmodel/vaccine/vaccine_cubit.dart';
 import 'package:smart_farm/src/viewmodel/vaccine_schedule/vaccine_schedule_cubit.dart';
 
 /// The Widget that configures your application.
@@ -63,18 +64,6 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(
           create: (context) =>
               CageRepository(cageApiClient: CageApiClient(dio: dio)),
-        ),
-        RepositoryProvider(
-          create: (context) =>
-              TicketRepository(ticketApiClient: TicketApiClient(dio: dio)),
-        ),
-        RepositoryProvider(
-          create: (context) => WarehouseRepository(
-              warehouseApiClient: WarehouseApiClient(dio: dio)),
-        ),
-        RepositoryProvider(
-          create: (context) => FarmingCycleRepository(
-              farmingCycleApiClient: FarmingCycleApiClient(dio: dio)),
         ),
         RepositoryProvider(
           create: (context) =>
@@ -134,7 +123,13 @@ class _MyAppState extends State<MyApp> {
         RepositoryProvider(create: (context) {
           return UploadImageRepository(
               uploadImageApiClient: UploadImageApiClient(dio: Dio()));
-        })
+        }),
+        RepositoryProvider(
+          create: (context) {
+            return VaccineRepository(
+                vaccineApiClient: VaccineApiClient(dio: dio));
+          },
+        )
       ],
       child: MultiBlocProvider(
         providers: [
@@ -150,16 +145,6 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) =>
                   CageCubit(cageRepository: context.read<CageRepository>())),
-          BlocProvider(
-              create: (context) => TicketCubit(
-                  ticketRepository: context.read<TicketRepository>())),
-          BlocProvider(
-              create: (context) => WarehouseCubit(
-                  warehouseRepository: context.read<WarehouseRepository>())),
-          BlocProvider(
-              create: (context) => FarmingCycleCubit(
-                  farmingCycleRepository:
-                      context.read<FarmingCycleRepository>())),
           BlocProvider(
               create: (context) =>
                   UserBloc(userRepository: context.read<UserRepository>())),
@@ -217,7 +202,11 @@ class _MyAppState extends State<MyApp> {
           }),
           BlocProvider(create: (context) {
             return TaskQrCodeCubit();
-          })
+          }),
+          BlocProvider(create: (context) {
+            return VaccineCubit(
+                vaccineRepository: context.read<VaccineRepository>());
+          }),
         ],
         child: BlocBuilder<ThemeCubit, bool>(
           builder: (context, themeMode) {

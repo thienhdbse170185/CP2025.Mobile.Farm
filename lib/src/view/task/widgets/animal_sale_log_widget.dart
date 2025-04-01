@@ -91,15 +91,24 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: _buildInfoItem(
-              context: context,
-              label: 'Tên người báo cáo',
-              value: widget.userName ?? 'Đang tải...',
-              icon: Icons.person,
-            ),
+          Row(
+            children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Tên người báo cáo',
+                value: widget.userName ?? 'Đang tải...',
+                icon: Icons.person,
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.15),
+              _buildInfoItem(
+                context: context,
+                label: 'Tên chuồng',
+                value: widget.task.cageName,
+                icon: Icons.home_work_outlined,
+              ),
+            ],
           ),
         ],
       ),

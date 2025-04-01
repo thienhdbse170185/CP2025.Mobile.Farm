@@ -1,17 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/dto/egg_harvest/egg_harvest_dto.dart';
-import 'package:data_layer/model/dto/farming_batch/farming_batch_dto.dart';
-import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
-import 'package:data_layer/model/dto/prescription/prescription.dart';
-import 'package:data_layer/model/dto/sale_type/sale_type_dto.dart';
-import 'package:data_layer/model/dto/task/daily_food_usage_log/daily_food_usage_log_dto.dart';
-import 'package:data_layer/model/dto/task/health_log/health_log_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:data_layer/model/dto/task/vaccin_schedule_log/vaccin_schedule_log_dto.dart';
-import 'package:data_layer/model/dto/upload_image/upload_image_dto.dart';
-import 'package:data_layer/model/dto/vaccine_schedule/vaccine_schedule_dto.dart';
 import 'package:data_layer/model/request/egg_harvest/egg_harvest_request.dart';
 import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
 import 'package:data_layer/model/request/prescription/update_status_prescription_request.dart';
@@ -38,7 +30,8 @@ import 'package:smart_farm/src/view/task/widgets/food_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/health_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/image_note_section.dart';
 import 'package:smart_farm/src/view/task/widgets/status_notification_widget.dart';
-import 'package:smart_farm/src/view/task/widgets/vaccine_log_widget.dart';
+import 'package:smart_farm/src/view/task/widgets/vaccine/vaccine_detail_dialog.dart';
+import 'package:smart_farm/src/view/task/widgets/vaccine/vaccine_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/weighing_log_widget.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
@@ -52,6 +45,7 @@ import 'package:smart_farm/src/viewmodel/sale_type/sale_type_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_schedule_log_cubit.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
+import 'package:smart_farm/src/viewmodel/vaccine/vaccine_cubit.dart';
 import 'package:smart_farm/src/viewmodel/vaccine_schedule/vaccine_schedule_cubit.dart';
 
 class TaskReportScreen extends StatefulWidget {
@@ -84,6 +78,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   String? userName = '';
   bool get isPending => taskStatus == StatusDataConstant.pendingVn;
   String imageURL = '';
+  VaccineDto? vaccine;
 
   // --- Prescription related variables ---
   PrescriptionDto? prescription;
@@ -459,9 +454,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           session: vaccineSchedule!.session,
           vaccineId: vaccineSchedule!.vaccineId,
           quantity: int.parse(_countAnimalVaccineController.text),
-          notes: "notes",
+          notes: logController.text,
           photo: uploadImage?.path != null
-              ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
+              ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
               : '',
           taskId: widget.task.id,
         );
@@ -552,6 +547,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         } else {
           // If we can't pop (e.g., after symptom reporting), go to task list
           context.go(RouteName.cage, extra: widget.task.cageId);
+        }
+      } else if (_sourceScreen == 'qrcode') {
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop({'reload': true, 'source': 'qrcode'});
         }
       } else {
         // Default behavior - navigate back to task screen or task list
@@ -717,13 +716,14 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isLoading = true;
                 });
               },
-              getDailyFoodUsageLogSuccess: (log) async {
+              getDailyFoodUsageLogSuccess: (foodLog) async {
+                // log('[FoodLog] Thông tin FoodLog: id - ${foodLog.}')
                 setState(() {
                   _isLoading = false;
-                  actualWeight = log.actualWeight / 1000;
-                  logController.text = log.notes;
-                  logTime = log.logTime;
-                  imageURL = log.photo;
+                  actualWeight = foodLog.actualWeight / 1000;
+                  logController.text = foodLog.notes;
+                  logTime = foodLog.logTime;
+                  imageURL = foodLog.photo;
                 });
                 // LoadingDialog.hide(context);
               },
@@ -775,10 +775,13 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isLoading = true;
                 });
               },
-              getRecommendedWeightByCageIdSuccess: (recommendedWeight, _) {
-                log('Lấy cân nặng khuyến nghị thành công!');
+              getRecommendedWeightByCageIdSuccess:
+                  (recommendedWeight, _, growthStage) {
+                log('[RECOMMENDED_WEIGHT] Lấy cân nặng khuyến nghị thành công!');
+                log('[GROWTH_STAGE] id: ${growthStage.id}');
                 setState(() {
                   this.recommendedWeight = recommendedWeight;
+                  this.growthStage = growthStage;
                   actualWeight = recommendedWeight;
                   _actualWeightController.text = recommendedWeight.toString();
                   _isLoading = false;
@@ -813,11 +816,15 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               getGrowthStageByCageIdInProgress: () {
                 log('Đang lấy giai đoạn phát triển cho chuồng ${widget.task.cageName}...');
+                setState(() {
+                  _isLoading = true;
+                });
               },
               getGrowthStageByCageIdSuccess: (growthStage) {
                 log('Lấy giai đoạn phát triển thành công!');
                 setState(() {
                   this.growthStage = growthStage;
+                  _isLoading = false;
                 });
                 if (widget.task.taskType.taskTypeId ==
                         TaskTypeDataConstant.vaccin &&
@@ -850,6 +857,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               getGrowthStageByCageIdFailure: (e) {
                 log('Lấy giai đoạn phát triển thất bại!');
+                setState(() {
+                  _isLoading = false;
+                });
               },
               updateWeightInProgress: () {
                 setState(() {
@@ -1030,8 +1040,22 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   if (vaccineScheduleList.isNotEmpty) {
                     vaccineSchedule = vaccineScheduleList.first;
                   }
-                  _isLoading = false;
+                  // _isLoading = false;
                 });
+                if (vaccineSchedule != null) {
+                  context
+                      .read<VaccineCubit>()
+                      .getVaccineById(id: vaccineSchedule!.vaccineId);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text(
+                        'Không có lịch tiêm chủng nào cho giai đoạn này!'),
+                    backgroundColor: Colors.red,
+                  ));
+                  setState(() {
+                    _isLoading = false;
+                  });
+                }
               },
               getVaccineScheduleByStageIdFailure: (e) {
                 setState(() {
@@ -1051,6 +1075,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   // _countAnimalVaccineController.text =
                   //     vaccineSchedule.quantity.toString();
                 });
+                context
+                    .read<VaccineCubit>()
+                    .getVaccineById(id: vaccineSchedule.vaccineId);
               },
               getVaccineScheduleByIdFailure: (message) {
                 setState(() {
@@ -1098,6 +1125,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               getVaccineScheduleLogByTaskIdSuccess: (vaccineScheduleLog) {
                 setState(() {
                   this.vaccineScheduleLog = vaccineScheduleLog;
+                  _countAnimalVaccineController.text =
+                      vaccineScheduleLog.quantity.toString();
                 });
                 context
                     .read<VaccineScheduleCubit>()
@@ -1301,6 +1330,27 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               orElse: () {},
             );
           },
+        ),
+        BlocListener<VaccineCubit, VaccineState>(
+          listener: (context, state) {
+            state.maybeWhen(getVaccineByIdInProgress: () {
+              setState(() {
+                _isLoading = true;
+              });
+            }, getVaccineByIdSuccess: (vaccine) {
+              setState(() {
+                this.vaccine = vaccine;
+                _isLoading = false;
+              });
+            }, getVaccineByIdFailure: (e) {
+              setState(() {
+                _isLoading = false;
+              });
+              log('Lấy thông tin vaccine thất bại!');
+            }, orElse: () {
+              return null;
+            });
+          },
         )
       ],
       child: Scaffold(
@@ -1368,12 +1418,14 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   Widget _buildTaskReport(BuildContext context) {
     // Adjust all input fields to be read-only if in view mode
     final bool readOnly = _viewMode ||
-        taskStatus == StatusDataConstant.doneVn ||
-        taskStatus == StatusDataConstant.overdueVn;
+        // taskStatus == StatusDataConstant.doneVn ||
+        // taskStatus == StatusDataConstant.overdueVn;
+        widget.task.status == StatusDataConstant.done ||
+        widget.task.status == StatusDataConstant.overdue;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.only(
-          left: 16.0, right: 16.0, top: 16.0, bottom: 80.0),
+          left: 16.0, right: 16.0, top: 24.0, bottom: 80.0),
       child: Column(
         children: [
           if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding)
@@ -1405,6 +1457,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               recommendedWeight: recommendedWeight,
               logController: logController,
               actualWeightController: _actualWeightController,
+              foodType: growthStage?.foodType,
             )
           else if (widget.task.taskType.taskTypeId ==
               TaskTypeDataConstant.health)
@@ -1440,6 +1493,29 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               isLoading: _isLoading,
               logController: logController,
               farmingBatch: farmingBatch,
+              readOnly: readOnly,
+              vaccine: vaccine,
+              totalPrice: vaccineScheduleLog?.totalPrice,
+              onVaccineDetailPressed: () {
+                if (vaccine != null) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => VaccineDetailDialog(
+                      vaccineName: vaccineSchedule?.vaccineName,
+                      scheduleDate: vaccineSchedule?.date,
+                      scheduleSession: vaccineSchedule?.session,
+                      applicationAge: vaccineSchedule?.applicationAge,
+                      vaccineDetail: vaccine!,
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Không có thông tin vaccine!'),
+                    ),
+                  );
+                }
+              },
             )
           else if (widget.task.taskType.taskTypeId ==
               TaskTypeDataConstant.weighing)

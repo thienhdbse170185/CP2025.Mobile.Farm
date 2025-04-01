@@ -377,7 +377,8 @@ final router = GoRouter(
             final params = state.extra as Map<String, dynamic>;
             final username = params['username'] as String;
             return _buildPageWithSlideTransition(
-                ChangePasswordScreen(username: username));
+              ChangePasswordScreen(username: username),
+            );
           }),
 
       GoRoute(

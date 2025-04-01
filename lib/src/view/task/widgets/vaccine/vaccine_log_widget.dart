@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
-import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
 
 class VaccineLogWidget extends StatefulWidget {
@@ -14,10 +13,14 @@ class VaccineLogWidget extends StatefulWidget {
   final FarmingBatchDto? farmingBatch;
   final TextEditingController countAnimalVaccineController;
   final TextEditingController logController;
-  final ValueChanged<int>? onCountChanged; // Make nullable
+  final ValueChanged<int>? onCountChanged;
   final TaskHaveCageName task;
   final bool isLoading;
-  final bool readOnly; // Add readOnly flag
+  final bool readOnly;
+  final int? totalPrice;
+  final VoidCallback?
+      onVaccineDetailPressed; // Thêm callback khi nhấn vào chi tiết vắc xin
+  final VaccineDto? vaccine;
 
   const VaccineLogWidget({
     super.key,
@@ -27,10 +30,13 @@ class VaccineLogWidget extends StatefulWidget {
     required this.countAnimalVaccineController,
     required this.logController,
     this.farmingBatch,
-    this.onCountChanged, // Make optional
+    this.onCountChanged,
     required this.task,
     this.isLoading = false,
-    this.readOnly = false, // Default to false
+    this.readOnly = false,
+    this.totalPrice,
+    this.onVaccineDetailPressed, // Thêm vào constructor
+    this.vaccine,
   });
 
   @override
@@ -74,7 +80,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildHeader(context),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
         if (widget.vaccineSchedule != null) ...[
@@ -132,14 +138,21 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
             ),
           ),
           const SizedBox(width: 24),
+          // Expanded(
+          //   child: _buildInfoItem(
+          //     context: context,
+          //     label: 'Ngày báo cáo',
+          //     value: DateFormat('dd/MM/yyyy').format(TimeUtils.customNow()),
+          //     icon: Icons.today,
+          //   ),
+          // ),
           Expanded(
             child: _buildInfoItem(
-              context: context,
-              label: 'Ngày báo cáo',
-              value: DateFormat('dd/MM/yyyy').format(TimeUtils.customNow()),
-              icon: Icons.today,
-            ),
-          ),
+                context: context,
+                label: 'Tên chuồng',
+                value: widget.task.cageName,
+                icon: Icons.home_work_outlined),
+          )
         ],
       ),
     );
@@ -172,6 +185,9 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                       color: Theme.of(context).colorScheme.primary,
                     ),
               ),
+              const Spacer(),
+              // Thêm nút xem chi tiết
+              _buildDetailButton(context),
             ],
           ),
           const Divider(height: 24),
@@ -249,6 +265,25 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
     );
   }
 
+  // Tạo nút xem chi tiết
+  Widget _buildDetailButton(BuildContext context) {
+    return TextButton.icon(
+      onPressed: widget.onVaccineDetailPressed,
+      icon: const Icon(Icons.visibility),
+      label: const Text('Xem chi tiết'),
+      style: TextButton.styleFrom(
+        foregroundColor: Theme.of(context).colorScheme.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildVaccineFormSection(BuildContext context) {
     final isEditable =
         widget.task.status == StatusDataConstant.inProgress && !widget.readOnly;
@@ -280,6 +315,10 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
             ),
             const Divider(height: 24),
             _buildAnimalCountSection(context, isEditable),
+            if (widget.task.status == StatusDataConstant.done) ...[
+              const SizedBox(height: 20),
+              _buildTotalPriceSection(context),
+            ]
           ],
         ),
       ),
@@ -325,7 +364,10 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                       ) ??
                       0;
                   if (currentValue > 0) {
-                    widget.onCountChanged?.call(currentValue - 1);
+                    final newValue = currentValue - 1;
+                    widget.onCountChanged?.call(newValue);
+                    widget.countAnimalVaccineController.text =
+                        newValue.toString();
                   }
                 },
                 isDisable: !isEditable,
@@ -374,7 +416,10 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                         widget.countAnimalVaccineController.text,
                       ) ??
                       0;
-                  widget.onCountChanged?.call(currentValue + 1);
+                  final newValue = currentValue + 1;
+                  widget.onCountChanged?.call(newValue);
+                  widget.countAnimalVaccineController.text =
+                      newValue.toString();
                 },
                 isAdd: true,
                 isDisable: !isEditable,
@@ -418,6 +463,120 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
               ],
             ),
           ),
+      ],
+    );
+  }
+
+  Widget _buildTotalPriceSection(BuildContext context) {
+    // Định dạng tiền Việt Nam
+    String formatCurrency(int amount) {
+      final formatter = NumberFormat('#,###', 'vi_VN');
+      return '${formatter.format(amount)} đ';
+    }
+
+    final formattedTotalPrice = formatCurrency(widget.totalPrice ?? 0);
+    final countText = widget.countAnimalVaccineController.text.isEmpty
+        ? '0'
+        : widget.countAnimalVaccineController.text;
+    final formatter = NumberFormat('#,###', 'vi_VN');
+    final formattedPrice =
+        '${formatter.format(widget.vaccine?.price ?? 0)} đ/liều';
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(
+              Icons.monetization_on,
+              color: Theme.of(context).colorScheme.primary,
+              size: 20,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              'Chi phí vắc xin',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outlineVariant,
+            ),
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Giá:',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                  ),
+                  Text(
+                    formattedPrice,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              // Hiển thị số lượng
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Số lượng:',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                  ),
+                  Text(
+                    '$countText con',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(height: 16),
+              // Hiển thị tổng tiền
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Tổng chi phí:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  Text(
+                    formattedTotalPrice,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

@@ -16,6 +16,7 @@ class FoodLogWidget extends StatefulWidget {
   final ValueChanged<double>? onWeightChanged;
   final TextEditingController actualWeightController;
   final TaskHaveCageName task;
+  final String? foodType; // Thêm trường foodType từ API
 
   const FoodLogWidget({
     super.key,
@@ -30,6 +31,7 @@ class FoodLogWidget extends StatefulWidget {
     required this.onIsolationFedChanged,
     required this.onWeightChanged,
     required this.actualWeightController,
+    this.foodType, // Nhận foodType từ API
   });
 
   @override
@@ -49,7 +51,7 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildHeader(context),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
         _buildFoodQuantityInput(context, isEditable),
@@ -112,23 +114,23 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                 context: context,
                 label: 'Tên chuồng',
                 value: widget.task.cageName,
-                icon: Icons.home,
+                icon: Icons.home_work_outlined,
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              _buildInfoItem(
-                context: context,
-                label: 'Thời gian báo cáo',
-                value: widget.logTime != null
-                    ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
-                    : 'Đang tải...',
-                icon: Icons.access_time,
-              ),
-            ],
-          )
+          // const SizedBox(height: 16),
+          // Row(
+          //   children: [
+          //     _buildInfoItem(
+          //       context: context,
+          //       label: 'Thời gian báo cáo',
+          //       value: widget.logTime != null
+          //           ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
+          //           : 'Đang tải...',
+          //       icon: Icons.access_time,
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );
@@ -222,11 +224,92 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
               const SizedBox(height: 16),
             ],
 
+            // Food type section - Read-only display
+            if (widget.foodType != null && widget.foodType!.isNotEmpty) ...[
+              _buildFoodTypeSection(context),
+              const SizedBox(height: 20),
+            ],
+
             // Actual weight input section
             _buildWeightInputSection(context, isEditable),
           ],
         ),
       ),
+    );
+  }
+
+  // Method to build food type display section
+  Widget _buildFoodTypeSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(
+              Icons.food_bank_outlined,
+              color: Theme.of(context).colorScheme.primary,
+              size: 20,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              'Loại thức ăn',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outlineVariant,
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.agriculture_outlined,
+                color: Theme.of(context).colorScheme.primary,
+                size: 20,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  widget.foodType ?? 'Không có thông tin',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: widget.foodType != null
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Theme.of(context).colorScheme.outline,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+          child: Row(
+            children: [
+              Icon(Icons.info_outline, size: 14, color: Colors.grey[600]),
+              const SizedBox(width: 8),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: Text(
+                  'Loại thức ăn được sử dụng cho giai đoạn phát triển hiện tại',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

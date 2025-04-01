@@ -8,4 +8,11 @@ class AnimalSaleState with _$AnimalSaleState {
   const factory AnimalSaleState.createAnimalSaleSuccess() = _Success;
   const factory AnimalSaleState.createAnimalSaleFailure(String error) =
       _Failure;
+
+  const factory AnimalSaleState.getSaleLogByGrowthStageIdInProgress() =
+      _GetSaleLogByGrowthStageIdLoading;
+  const factory AnimalSaleState.getSaleLogByGrowthStageIdSuccess(
+      SaleLogDto saleLog) = _GetSaleLogByGrowthStageIdSuccess;
+  const factory AnimalSaleState.getSaleLogByGrowthStageIdFailure(String error) =
+      _GetSaleLogByGrowthStageIdFailure;
 }

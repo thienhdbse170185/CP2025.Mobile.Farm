@@ -48,7 +48,7 @@ class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildHeader(context),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
         _buildGrowthStageInfo(context),

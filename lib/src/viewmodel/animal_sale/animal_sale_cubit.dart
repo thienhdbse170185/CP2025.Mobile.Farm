@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
 import 'package:data_layer/model/request/animal_sale/animal_sale_request.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -46,6 +47,22 @@ class AnimalSaleCubit extends Cubit<AnimalSaleState> {
       }
     } catch (e) {
       emit(AnimalSaleState.createAnimalSaleFailure(e.toString()));
+    }
+  }
+
+  Future<void> getSaleLogByGrowthStageId({
+    required String growthStageId,
+  }) async {
+    emit(AnimalSaleState.getSaleLogByGrowthStageIdInProgress());
+    try {
+      log('[ANIMAL_SALE_CUBIT] Chuẩn bị lấy thông tin bán gia cầm theo ID giai đoạn phát triển');
+      final result = await repository.getSaleLogByGrowthStageId(
+        growthStageId: growthStageId,
+      );
+      log('[ANIMAL_SALE_CUBIT] Lấy thông tin bán gia cầm thành công!');
+      emit(AnimalSaleState.getSaleLogByGrowthStageIdSuccess(result));
+    } catch (e) {
+      emit(AnimalSaleState.getSaleLogByGrowthStageIdFailure(e.toString()));
     }
   }
 }
