@@ -165,7 +165,7 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
             getUserProfileInProgress: () {
               LoadingDialog.show(context, 'Đang lấy thông tin người dùng');
             },
-            getUserProfileSuccess: (String name, String email) {
+            getUserProfileSuccess: (String name, String email, _) {
               LoadingDialog.hide(context);
               _nameController.text = name;
               _emailController.text = email;

@@ -204,11 +204,11 @@ class TaskListWidget extends StatelessWidget {
                                     SizedBox(height: 4),
                                     Row(
                                       children: [
-                                        Icon(Icons.home_work_outlined,
+                                        Icon(Icons.category_outlined,
                                             size: 12, color: Colors.grey),
                                         SizedBox(width: 4),
                                         Text(
-                                          task.cageName,
+                                          task.taskType.taskTypeName,
                                           style: TextStyle(
                                             fontSize: 12,
                                             color: Colors.grey[700],
@@ -290,17 +290,26 @@ class TaskListWidget extends StatelessWidget {
                           SizedBox(height: 12),
                           Row(
                             children: [
-                              // Icon(Icons.access_time,
-                              //     size: 12, color: Colors.grey),
-                              // SizedBox(width: 4),
-                              // Text(
-                              //   'Thời gian: $formattedTime',
-                              //   style: TextStyle(
-                              //     fontSize: 12,
-                              //     color: Colors.grey[700],
-                              //   ),
-                              // ),
-                              // SizedBox(width: 16),
+                              Row(
+                                children: [
+                                  Icon(Icons.home_work_outlined,
+                                      size: 12, color: Colors.grey),
+                                  SizedBox(width: 4),
+                                  Text(
+                                    task.cageName,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                width: 1,
+                                height: 16,
+                                color: Colors.grey[400],
+                                margin: EdgeInsets.symmetric(horizontal: 8),
+                              ),
                               Icon(Icons.description_outlined,
                                   size: 12, color: Colors.grey),
                               SizedBox(width: 4),

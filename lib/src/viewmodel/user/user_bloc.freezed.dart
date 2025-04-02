@@ -19,7 +19,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -32,7 +32,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
@@ -43,7 +43,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -150,7 +150,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -166,7 +166,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
@@ -180,7 +180,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -250,6 +250,8 @@ abstract class _$$GetUserProfileImplCopyWith<$Res> {
   factory _$$GetUserProfileImplCopyWith(_$GetUserProfileImpl value,
           $Res Function(_$GetUserProfileImpl) then) =
       __$$GetUserProfileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isAppStart});
 }
 
 /// @nodoc
@@ -262,32 +264,60 @@ class __$$GetUserProfileImplCopyWithImpl<$Res>
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isAppStart = null,
+  }) {
+    return _then(_$GetUserProfileImpl(
+      isAppStart: null == isAppStart
+          ? _value.isAppStart
+          : isAppStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetUserProfileImpl implements _GetUserProfile {
-  const _$GetUserProfileImpl();
+  const _$GetUserProfileImpl({this.isAppStart = false});
+
+  @override
+  @JsonKey()
+  final bool isAppStart;
 
   @override
   String toString() {
-    return 'UserEvent.getUserProfile()';
+    return 'UserEvent.getUserProfile(isAppStart: $isAppStart)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetUserProfileImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GetUserProfileImpl &&
+            (identical(other.isAppStart, isAppStart) ||
+                other.isAppStart == isAppStart));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isAppStart);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUserProfileImplCopyWith<_$GetUserProfileImpl> get copyWith =>
+      __$$GetUserProfileImplCopyWithImpl<_$GetUserProfileImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -296,28 +326,28 @@ class _$GetUserProfileImpl implements _GetUserProfile {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
   }) {
-    return getUserProfile();
+    return getUserProfile(isAppStart);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
   }) {
-    return getUserProfile?.call();
+    return getUserProfile?.call(isAppStart);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -326,7 +356,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     required TResult orElse(),
   }) {
     if (getUserProfile != null) {
-      return getUserProfile();
+      return getUserProfile(isAppStart);
     }
     return orElse();
   }
@@ -379,7 +409,15 @@ class _$GetUserProfileImpl implements _GetUserProfile {
 }
 
 abstract class _GetUserProfile implements UserEvent {
-  const factory _GetUserProfile() = _$GetUserProfileImpl;
+  const factory _GetUserProfile({final bool isAppStart}) = _$GetUserProfileImpl;
+
+  bool get isAppStart;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetUserProfileImplCopyWith<_$GetUserProfileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -424,7 +462,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -440,7 +478,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
@@ -454,7 +492,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -561,7 +599,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -577,7 +615,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
@@ -591,7 +629,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -744,7 +782,7 @@ class _$SendOTPImpl implements _SendOTP {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -760,7 +798,7 @@ class _$SendOTPImpl implements _SendOTP {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
@@ -774,7 +812,7 @@ class _$SendOTPImpl implements _SendOTP {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -933,7 +971,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -949,7 +987,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
@@ -963,7 +1001,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -1116,7 +1154,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getUserProfile,
+    required TResult Function(bool isAppStart) getUserProfile,
     required TResult Function() getServerTime,
     required TResult Function() updateDeviceToken,
     required TResult Function(String username, bool isResend, String? email)
@@ -1132,7 +1170,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? getUserProfile,
+    TResult? Function(bool isAppStart)? getUserProfile,
     TResult? Function()? getServerTime,
     TResult? Function()? updateDeviceToken,
     TResult? Function(String username, bool isResend, String? email)? sendOTP,
@@ -1146,7 +1184,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getUserProfile,
+    TResult Function(bool isAppStart)? getUserProfile,
     TResult Function()? getServerTime,
     TResult Function()? updateDeviceToken,
     TResult Function(String username, bool isResend, String? email)? sendOTP,
@@ -1228,7 +1266,7 @@ mixin _$UserState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -1252,7 +1290,8 @@ mixin _$UserState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -1275,7 +1314,8 @@ mixin _$UserState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -1446,7 +1486,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -1473,7 +1513,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -1499,7 +1540,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -1673,7 +1715,7 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -1700,7 +1742,8 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -1726,7 +1769,8 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -1861,7 +1905,7 @@ abstract class _$$GetUserProfileSuccessImplCopyWith<$Res> {
           $Res Function(_$GetUserProfileSuccessImpl) then) =
       __$$GetUserProfileSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String userName, String email});
+  $Res call({String userName, String email, bool isAppStart});
 }
 
 /// @nodoc
@@ -1879,6 +1923,7 @@ class __$$GetUserProfileSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? userName = null,
     Object? email = null,
+    Object? isAppStart = null,
   }) {
     return _then(_$GetUserProfileSuccessImpl(
       null == userName
@@ -1889,6 +1934,10 @@ class __$$GetUserProfileSuccessImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      null == isAppStart
+          ? _value.isAppStart
+          : isAppStart // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1896,16 +1945,18 @@ class __$$GetUserProfileSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
-  const _$GetUserProfileSuccessImpl(this.userName, this.email);
+  const _$GetUserProfileSuccessImpl(this.userName, this.email, this.isAppStart);
 
   @override
   final String userName;
   @override
   final String email;
+  @override
+  final bool isAppStart;
 
   @override
   String toString() {
-    return 'UserState.getUserProfileSuccess(userName: $userName, email: $email)';
+    return 'UserState.getUserProfileSuccess(userName: $userName, email: $email, isAppStart: $isAppStart)';
   }
 
   @override
@@ -1915,11 +1966,13 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
             other is _$GetUserProfileSuccessImpl &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.isAppStart, isAppStart) ||
+                other.isAppStart == isAppStart));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userName, email);
+  int get hashCode => Object.hash(runtimeType, userName, email, isAppStart);
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -1935,7 +1988,7 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -1954,7 +2007,7 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
   }) {
-    return getUserProfileSuccess(userName, email);
+    return getUserProfileSuccess(userName, email, isAppStart);
   }
 
   @override
@@ -1962,7 +2015,8 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -1980,7 +2034,7 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
   }) {
-    return getUserProfileSuccess?.call(userName, email);
+    return getUserProfileSuccess?.call(userName, email, isAppStart);
   }
 
   @override
@@ -1988,7 +2042,8 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -2008,7 +2063,7 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     required TResult orElse(),
   }) {
     if (getUserProfileSuccess != null) {
-      return getUserProfileSuccess(userName, email);
+      return getUserProfileSuccess(userName, email, isAppStart);
     }
     return orElse();
   }
@@ -2114,10 +2169,12 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
 
 abstract class _GetUserProfileSuccess implements UserState {
   const factory _GetUserProfileSuccess(
-      final String userName, final String email) = _$GetUserProfileSuccessImpl;
+          final String userName, final String email, final bool isAppStart) =
+      _$GetUserProfileSuccessImpl;
 
   String get userName;
   String get email;
+  bool get isAppStart;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -2198,7 +2255,7 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -2225,7 +2282,8 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -2251,7 +2309,8 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -2434,7 +2493,7 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -2461,7 +2520,8 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -2487,7 +2547,8 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -2688,7 +2749,7 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -2715,7 +2776,8 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -2741,7 +2803,8 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -2950,7 +3013,7 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -2977,7 +3040,8 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -3003,7 +3067,8 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -3187,7 +3252,7 @@ class _$UpdateDeviceTokenInProgressImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -3214,7 +3279,8 @@ class _$UpdateDeviceTokenInProgressImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -3240,7 +3306,8 @@ class _$UpdateDeviceTokenInProgressImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -3415,7 +3482,7 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -3442,7 +3509,8 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -3468,7 +3536,8 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -3669,7 +3738,7 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -3696,7 +3765,8 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -3722,7 +3792,8 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -3902,7 +3973,7 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -3929,7 +4000,8 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -3955,7 +4027,8 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -4154,7 +4227,7 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -4181,7 +4254,8 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -4207,7 +4281,8 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -4414,7 +4489,7 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -4441,7 +4516,8 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -4467,7 +4543,8 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -4649,7 +4726,7 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -4676,7 +4753,8 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -4702,7 +4780,8 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -4875,7 +4954,7 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -4902,7 +4981,8 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -4928,7 +5008,8 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -5128,7 +5209,7 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -5155,7 +5236,8 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -5181,7 +5263,8 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -5362,7 +5445,7 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -5389,7 +5472,8 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -5415,7 +5499,8 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -5586,7 +5671,7 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -5613,7 +5698,8 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -5639,7 +5725,8 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,
@@ -5838,7 +5925,7 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() getUserProfileInProgress,
-    required TResult Function(String userName, String email)
+    required TResult Function(String userName, String email, bool isAppStart)
         getUserProfileSuccess,
     required TResult Function(String message) getUserProfileFailure,
     required TResult Function() getServerTimeInProgress,
@@ -5865,7 +5952,8 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? getUserProfileInProgress,
-    TResult? Function(String userName, String email)? getUserProfileSuccess,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult? Function(String message)? getUserProfileFailure,
     TResult? Function()? getServerTimeInProgress,
     TResult? Function(String serverTime)? getServerTimeSuccess,
@@ -5891,7 +5979,8 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? getUserProfileInProgress,
-    TResult Function(String userName, String email)? getUserProfileSuccess,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
     TResult Function(String message)? getUserProfileFailure,
     TResult Function()? getServerTimeInProgress,
     TResult Function(String serverTime)? getServerTimeSuccess,

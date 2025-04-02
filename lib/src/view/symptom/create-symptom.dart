@@ -582,23 +582,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       context
           .read<TaskBloc>()
           .add(TaskEvent.setTaskIsTreatment(taskId: widget.taskId!));
-
-      // // Finally, update the task status to done
-      //     context.read<TaskBloc>().add(
-      //           TaskEvent.updateTask(
-      //             taskId,
-      //             StatusDataConstant.done,
-      //             afterSymptomReport: true,
-      //           ),
-      //         );
-
-      // Navigate to success screen after marking
-      // context.go(RouteName.symptomSuccess, extra: {
-      //   'symptom': symptom,
-      //   'cageName': _selectedCage,
-      //   'fromTask': true,
-      //   'taskId': widget.taskId
-      // });
     } else {
       context.go(RouteName.symptomSuccess, extra: {
         'symptom': symptom,

@@ -351,9 +351,13 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                         widget.actualWeightController.text,
                       ) ??
                       0.0;
-                  if (currentValue > 0.1) {
+                  if (currentValue > 1) {
                     if (widget.onWeightChanged != null) {
-                      widget.onWeightChanged!(currentValue - 0.1);
+                      widget.onWeightChanged!(currentValue - 1.0);
+                    }
+                  } else if (currentValue <= 1 && currentValue > 0.1) {
+                    if (widget.onWeightChanged != null) {
+                      widget.onWeightChanged!(0.1);
                     }
                   }
                 },
@@ -378,28 +382,52 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                       color: Colors.grey[600],
                       fontSize: 18,
                     ),
+                    errorStyle: const TextStyle(height: 0),
                   ),
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
                   ),
-                  onChanged: (value) async {
+                  onChanged: (value) {
                     if (value.isEmpty) {
                       setState(() {
-                        widget.actualWeightController.text = '0';
+                        widget.actualWeightController.text = '0.1';
                         widget.actualWeightController.selection =
                             TextSelection.fromPosition(
-                                const TextPosition(offset: 1));
+                                const TextPosition(offset: 3));
                       });
+                    } else {
+                      final currentValue = double.tryParse(value) ?? 0.0;
+                      if (currentValue <= 0) {
+                        setState(() {
+                          widget.actualWeightController.text = '0.1';
+                          widget.actualWeightController.selection =
+                              TextSelection.fromPosition(
+                                  const TextPosition(offset: 3));
+                        });
+                        // Show error message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Lượng thức ăn phải lớn hơn 0'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      }
                     }
-                    final currentValue = double.tryParse(value) ?? 0.0;
+                    final currentValue = double.tryParse(
+                          widget.actualWeightController.text,
+                        ) ??
+                        0.1;
                     if (widget.onWeightChanged != null) {
                       widget.onWeightChanged!(currentValue);
                     }
                   },
                   onTap: () {
-                    if (widget.actualWeightController.text == '0') {
-                      widget.actualWeightController.clear();
+                    if (widget.actualWeightController.text == '0' ||
+                        widget.actualWeightController.text == '0.0') {
+                      setState(() {
+                        widget.actualWeightController.text = '';
+                      });
                     }
                   },
                 ),
@@ -412,7 +440,7 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                       ) ??
                       0.0;
                   if (widget.onWeightChanged != null) {
-                    widget.onWeightChanged!(currentValue + 0.1);
+                    widget.onWeightChanged!(currentValue + 1.0);
                   }
                 },
                 isAdd: true,
@@ -429,7 +457,7 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                 Icon(Icons.info_outline, size: 14, color: Colors.grey[600]),
                 const SizedBox(width: 4),
                 Text(
-                  'Nhập tổng lượng thức ăn thực tế',
+                  'Nhập tổng lượng thức ăn thực tế (tối thiểu 0.1 kg)',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey[600],
