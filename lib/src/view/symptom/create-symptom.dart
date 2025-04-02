@@ -103,6 +103,40 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       _hasValidQuantity &&
       (!_isEmergency || _images.isNotEmpty);
 
+  // Check if there are unsaved changes
+  bool get _hasUnsavedChanges {
+    return _selectedCage != null ||
+        _farmingBatch != null ||
+        _symptomsName.isNotEmpty ||
+        int.tryParse(_affectedController.text) != 0 ||
+        _noteController.text.isNotEmpty ||
+        _images.isNotEmpty;
+  }
+
+  // Show confirmation dialog when trying to exit
+  Future<bool> _onWillPop() async {
+    if (!_hasUnsavedChanges || _isProcessing) {
+      return true; // Allow exit if no changes or if processing
+    }
+
+    // Show confirmation dialog
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) => WarningConfirmationDialog(
+        title: 'Xác nhận hủy',
+        content: const Text(
+          'Bạn có thông tin chưa lưu. Bạn có chắc chắn muốn thoát không?',
+          textAlign: TextAlign.center,
+        ),
+        primaryButtonText: 'Tiếp tục',
+        secondaryButtonText: 'Hủy bỏ',
+        onPrimaryButtonPressed: () => Navigator.pop(context, false),
+        onSecondaryButtonPressed: () => Navigator.pop(context, true),
+      ),
+    );
+    return result ?? false;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -527,31 +561,39 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           );
         })
       ],
-      child: Scaffold(
-        appBar: CustomAppBar(
-          appBarHeight: 70,
-          leading: IconButton(
-              onPressed: () => context.pop(),
-              icon: const Icon(Icons.arrow_back)),
-          title: Column(
-            children: [
-              const Text('Tạo báo cáo triệu chứng'),
-              Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
-                  style: Theme.of(context).textTheme.bodyMedium),
+      child: WillPopScope(
+        onWillPop: _onWillPop,
+        child: Scaffold(
+          appBar: CustomAppBar(
+            appBarHeight: 70,
+            leading: IconButton(
+                onPressed: () async {
+                  final canPop = await _onWillPop();
+                  if (canPop && context.mounted) {
+                    context.pop();
+                  }
+                },
+                icon: const Icon(Icons.arrow_back)),
+            title: Column(
+              children: [
+                const Text('Tạo báo cáo triệu chứng'),
+                Text(CustomDateUtils.formatDate(TimeUtils.customNow()),
+                    style: Theme.of(context).textTheme.bodyMedium),
+              ],
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: _isLoading ? null : _fetchInitialData,
+                tooltip: 'Tải lại dữ liệu',
+              ),
             ],
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: _isLoading ? null : _fetchInitialData,
-              tooltip: 'Tải lại dữ liệu',
-            ),
-          ],
+          body: _isLoading
+              ? const LoadingWidget()
+              : SingleChildScrollView(child: _FormBody(state: this)),
+          bottomNavigationBar: _buildSubmitButton(),
         ),
-        body: _isLoading
-            ? const LoadingWidget()
-            : SingleChildScrollView(child: _FormBody(state: this)),
-        bottomNavigationBar: _buildSubmitButton(),
       ),
     );
   }
