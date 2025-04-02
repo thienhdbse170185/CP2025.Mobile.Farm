@@ -487,7 +487,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             getUserProfileInProgress: () {
               log('Đang lấy thông tin người dùng...');
             },
-            getUserProfileSuccess: (username, email) {
+            getUserProfileSuccess: (username, email, _) {
               log('Lấy thông tin người dùng thành công!');
               setState(() {
                 _username = username;

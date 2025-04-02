@@ -157,7 +157,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   _isLoading = true;
                 });
               },
-              getUserProfileSuccess: (userName, _) {
+              getUserProfileSuccess: (userName, _, __) {
                 setState(() {
                   _username = userName;
                   _isLoading = false;

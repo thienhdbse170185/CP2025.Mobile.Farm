@@ -284,13 +284,17 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           ),
           onChanged: (value) {
             if (value.isNotEmpty) {
-              final formatter = NumberFormat('#,###');
-              final newValue =
-                  formatter.format(int.parse(value.replaceAll(',', '')));
-              widget.priceMeatSellController.value = TextEditingValue(
-                text: newValue,
-                selection: TextSelection.collapsed(offset: newValue.length),
-              );
+              try {
+                final formatter = NumberFormat('#,###');
+                final newValue =
+                    formatter.format(int.parse(value.replaceAll(',', '')));
+                widget.priceMeatSellController.value = TextEditingValue(
+                  text: newValue,
+                  selection: TextSelection.collapsed(offset: newValue.length),
+                );
+              } catch (e) {
+                // If parsing fails, keep the current value
+              }
             }
           },
         ),

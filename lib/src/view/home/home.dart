@@ -102,7 +102,9 @@ class _HomeWidgetState extends State<HomeWidget>
             },
             appStartedSuccess: () {
               log('App started successfully!');
-              context.read<UserBloc>().add(const UserEvent.getUserProfile());
+              context
+                  .read<UserBloc>()
+                  .add(const UserEvent.getUserProfile(isAppStart: true));
             },
             appStartedFailure: (error) {
               log('App started failed: $error');
@@ -133,14 +135,16 @@ class _HomeWidgetState extends State<HomeWidget>
               getUserProfileInProgress: () {
                 log('Đang lấy thông tin user...');
               },
-              getUserProfileSuccess: (userName, email) {
+              getUserProfileSuccess: (userName, email, isAppStart) {
                 log('Lấy thông tin user thành công: $userName - $email');
                 setState(() {
                   _userName = userName;
                 });
-                context
-                    .read<UserBloc>()
-                    .add(const UserEvent.updateDeviceToken());
+                if (isAppStart) {
+                  context
+                      .read<UserBloc>()
+                      .add(const UserEvent.updateDeviceToken());
+                }
               },
               getUserProfileFailure: (error) {
                 log('Lấy thông tin user thất bại: $error');
@@ -349,7 +353,8 @@ class _HomeWidgetState extends State<HomeWidget>
                                           .read<TaskBloc>()
                                           .add(const TaskEvent.getNextTask());
                                       context.read<UserBloc>().add(
-                                          const UserEvent.getUserProfile());
+                                          const UserEvent.getUserProfile(
+                                              isAppStart: true));
                                       context
                                           .read<TimeBloc>()
                                           .add(const TimeEvent.getServerTime());

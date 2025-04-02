@@ -175,7 +175,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     _sourceScreen = widget.source; // Store the source screen
     _viewMode =
         widget.task.status == StatusDataConstant.done; // Store view mode flag
-    context.read<UserBloc>().add(const UserEvent.getUserProfile());
+    context
+        .read<UserBloc>()
+        .add(const UserEvent.getUserProfile(isAppStart: false));
 
     _actualWeightController.text = '0';
     _affectedController.text = '0';
@@ -213,7 +215,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             .getFarmingBatchByCage(widget.task.cageId);
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.health) {
-        context.read<PrescriptionCubit>().getPrescription(prescriptionId ?? '');
+        context
+            .read<PrescriptionCubit>()
+            .getPrescription(widget.task.prescriptionId ?? '');
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.vaccin) {
         context
@@ -285,9 +289,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       countAnimalVaccine: _countAnimalVaccineController.text,
       weightAnimal: _weightAnimalController.text,
       weightMeatSell: _weightMeatSellController.text,
-      priceMeatSell: _priceMeatSellController.text,
+      priceMeatSell: _priceMeatSellController.text.trim(),
       countEggSell: _countEggSellController.text,
-      priceEggSell: _priceEggSellController.text,
+      priceEggSell: _priceEggSellController.text.trim(),
       countEggCollected: _countEggCollectedController.text,
     );
   }
@@ -311,10 +315,22 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         errorMessage = 'Vui lòng nhập số cân nặng trung bình';
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.sellAnimal) {
-        errorMessage = 'Vui lòng nhập khối lượng thịt và giá bán hợp lệ';
+        if (_weightMeatSellController.text == '0') {
+          errorMessage = 'Khối lượng thịt phải lớn hơn 0';
+        } else if (_priceMeatSellController.text.trim().isEmpty) {
+          errorMessage = 'Vui lòng nhập giá bán hợp lệ';
+        } else {
+          errorMessage = 'Vui lòng nhập khối lượng thịt và giá bán hợp lệ';
+        }
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.sellEgg) {
-        errorMessage = 'Vui lòng nhập số lượng trứng và giá bán hợp lệ';
+        if (_countEggSellController.text == '0') {
+          errorMessage = 'Số lượng trứng phải lớn hơn 0';
+        } else if (_priceEggSellController.text.trim().isEmpty) {
+          errorMessage = 'Vui lòng nhập giá bán hợp lệ';
+        } else {
+          errorMessage = 'Vui lòng nhập số lượng trứng và giá bán hợp lệ';
+        }
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.eggHarvest) {
         errorMessage = 'Vui lòng nhập số lượng trứng thu hoạch';
@@ -899,10 +915,19 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 setState(() {
                   this.prescription = prescription;
                   _lastSessionQuantity = prescription.quantityAnimal;
+                  _isLoading = false;
                 });
               },
               getPrescriptionFailure: (e) {
                 log('Lấy thuốc thất bại!');
+                setState(() {
+                  _isLoading = false;
+                });
+              },
+              getPrescriptionLoading: () {
+                setState(() {
+                  _isLoading = true;
+                });
               },
               updatePrescriptionStatusInProgress: () {
                 LoadingDialog.show(context, 'Đang cập nhật tình trạng...');
@@ -1291,7 +1316,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               getUserProfileInProgress: () {
                 log('Đang lấy thông tin người dùng...');
               },
-              getUserProfileSuccess: (userName, _) {
+              getUserProfileSuccess: (userName, _, __) {
                 setState(() {
                   this.userName = userName;
                 });
@@ -1887,7 +1912,11 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           );
         } else if (widget.task.taskType.taskTypeId ==
             TaskTypeDataConstant.health) {
-          return TaskValidation.validateHealthLog();
+          return TaskValidation.validateHealthLog(
+            widget.task,
+            prescription!,
+            _medicationChecked,
+          );
         } else if (widget.task.taskType.taskTypeId ==
             TaskTypeDataConstant.vaccin) {
           return TaskValidation.validateVaccineLog(

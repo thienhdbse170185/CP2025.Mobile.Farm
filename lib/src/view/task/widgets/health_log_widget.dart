@@ -4,8 +4,6 @@ import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_nam
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
-import 'package:smart_farm/src/core/utils/date_util.dart';
-import 'package:smart_farm/src/core/utils/time_util.dart';
 
 class HealthLogWidget extends StatefulWidget {
   final String? userName;
@@ -158,8 +156,8 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                 child: _buildInfoItem(
                   context: context,
                   label: 'Ngày bắt đầu',
-                  value: CustomDateUtils.formatDate(
-                      widget.prescription!.prescribedDate),
+                  value: DateFormat('dd/MM/yyyy')
+                      .format(widget.prescription!.prescribedDate),
                   icon: Icons.calendar_month,
                 ),
               ),
@@ -179,17 +177,17 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
             children: [
               _buildInfoItem(
                 context: context,
-                label: 'Số lượng động vật',
+                label: 'Số lượng cho uống',
                 value: '${widget.prescription!.quantityAnimal} con',
                 icon: Icons.pets,
               ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.15),
-              _buildInfoItem(
-                context: context,
-                label: 'Mã đơn thuốc',
-                value: widget.prescription!.id,
-                icon: Icons.qr_code,
-              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.09),
+              // _buildInfoItem(
+              //   context: context,
+              //   label: 'Mã đơn thuốc',
+              //   value: widget.prescription!.id,
+              //   icon: Icons.qr_code,
+              // ),
             ],
           ),
           // if (widget.prescription!.noteFromVet != null &&
@@ -222,7 +220,7 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                 const SizedBox(height: 8),
                 Text(
                   // widget.prescription!.noteFromVet!,
-                  'Lưu ý từ bác sĩ thú y',
+                  widget.prescription?.notes ?? 'Không có ghi chú',
                   style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
               ],
@@ -408,35 +406,23 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        "${TimeUtils.getCurrentSession() == 1 ? medication.morning : TimeUtils.getCurrentSession() == 2 ? medication.noon : TimeUtils.getCurrentSession() == 3 ? medication.afternoon : medication.evening} liều",
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
+                    // Container(
+                    //   padding: const EdgeInsets.symmetric(
+                    //       horizontal: 12, vertical: 6),
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.grey[200],
+                    //     borderRadius: BorderRadius.circular(20),
+                    //   ),
+                    //   child: Text(
+                    //     "${TimeUtils.getCurrentSession() == 1 ? medication.morning : TimeUtils.getCurrentSession() == 2 ? medication.noon : TimeUtils.getCurrentSession() == 3 ? medication.afternoon : medication.evening} liều",
+                    //     style: TextStyle(
+                    //       color: Colors.grey[700],
+                    //       fontWeight: FontWeight.w500,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
-                // if (medication. != null &&
-                //     medication.description!.isNotEmpty) ...[
-                //   const SizedBox(height: 8),
-                //   Text(
-                //     medication.description!,
-                //     style: TextStyle(
-                //       fontSize: 13,
-                //       color: Theme.of(context).colorScheme.outline,
-                //       fontStyle: FontStyle.italic,
-                //     ),
-                //   ),
-                // ],
               ],
             ),
           ),
@@ -472,7 +458,7 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Hiện tại không có đơn thuốc nào được chỉ định',
+              'Hiện tại không có đơn thuốc nào được chỉ định. Vui lòng liên hệ admin để được hỗ trợ',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey[600],
@@ -482,16 +468,6 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
         ),
       ),
     );
-  }
-
-  String _formatDate(String? dateString) {
-    if (dateString == null) return 'Không xác định';
-    try {
-      final date = DateTime.parse(dateString);
-      return DateFormat('dd/MM/yyyy').format(date);
-    } catch (e) {
-      return 'Không xác định';
-    }
   }
 
   Widget _buildInfoItem({

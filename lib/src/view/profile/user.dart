@@ -42,7 +42,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
           getUserProfileInProgress: () {
             LoadingDialog.show(context, 'Đang lấy thông tin...');
           },
-          getUserProfileSuccess: (userName, email) {
+          getUserProfileSuccess: (userName, email, _) {
             _nameController.text = userName;
             _emailController.text = email;
             _phoneController.text = 'Chưa cập nhật';

@@ -26,7 +26,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         final email = userBox.get(UserDataConstant.emailKey);
         final userId = userBox.get(UserDataConstant.userIdKey);
         log('[GET_USER_PROFILE] Lấy thông tin user thành công: $userName - $email - $userId');
-        emit(UserState.getUserProfileSuccess(userName, email));
+        emit(
+            UserState.getUserProfileSuccess(userName, email, event.isAppStart));
       } catch (e) {
         log('[GET_USER_PROFILE] Lấy thông tin user thất bại: $e');
         emit(UserState.getUserProfileFailure(e.toString()));
