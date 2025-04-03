@@ -134,7 +134,9 @@ final router = GoRouter(
               GoRoute(
                   path: RouteName.notification,
                   builder: (context, state) {
-                    return const NotificationWidget();
+                    final params = state.extra as Map<String, dynamic>?;
+                    final userId = params?['userId'] as String? ?? '';
+                    return NotificationWidget(userId: userId);
                   })
             ]),
             StatefulShellBranch(routes: [
@@ -237,8 +239,12 @@ final router = GoRouter(
       ///notification-route
       GoRoute(
           path: RouteName.notification,
-          pageBuilder: (context, state) =>
-              _buildPageWithSlideTransition(const NotificationWidget())),
+          pageBuilder: (context, state) {
+            final params = state.extra as Map<String, dynamic>?;
+            final userId = params?['userId'] as String? ?? '';
+            return _buildPageWithSlideTransition(
+                NotificationWidget(userId: userId));
+          }),
 
       ///notification-setting-route
       GoRoute(

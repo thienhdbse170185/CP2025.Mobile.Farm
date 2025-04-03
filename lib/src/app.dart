@@ -129,7 +129,11 @@ class _MyAppState extends State<MyApp> {
             return VaccineRepository(
                 vaccineApiClient: VaccineApiClient(dio: dio));
           },
-        )
+        ),
+        RepositoryProvider(create: (context) {
+          return NotificationRepository(
+              notificationApiClient: NotificationApiClient(dio: dio));
+        })
       ],
       child: MultiBlocProvider(
         providers: [
@@ -207,6 +211,10 @@ class _MyAppState extends State<MyApp> {
             return VaccineCubit(
                 vaccineRepository: context.read<VaccineRepository>());
           }),
+          BlocProvider(create: (context) {
+            return NotificationBloc(
+                notificationRepository: context.read<NotificationRepository>());
+          })
         ],
         child: BlocBuilder<ThemeCubit, bool>(
           builder: (context, themeMode) {
