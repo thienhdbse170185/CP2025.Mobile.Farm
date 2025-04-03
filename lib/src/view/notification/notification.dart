@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
+import 'package:smart_farm/src/viewmodel/notification/notification_bloc.dart';
 
 class NotificationModel {
   final String id;
@@ -42,7 +44,8 @@ class NotificationModel {
 }
 
 class NotificationWidget extends StatefulWidget {
-  const NotificationWidget({super.key});
+  final String userId;
+  const NotificationWidget({super.key, required this.userId});
 
   @override
   State<NotificationWidget> createState() => _NotificationWidgetState();
@@ -54,6 +57,7 @@ class _NotificationWidgetState extends State<NotificationWidget>
   bool _isLoading = true;
   List<NotificationModel> _allNotifications = [];
   List<NotificationModel> _unreadNotifications = [];
+  String userId = '';
 
   @override
   void initState() {
@@ -129,6 +133,10 @@ class _NotificationWidgetState extends State<NotificationWidget>
           notifications.where((notification) => !notification.isRead).toList();
       _isLoading = false;
     });
+
+    context
+        .read<NotificationBloc>()
+        .add(NotificationEvent.getNotificationsByUserId(userId: widget.userId));
   }
 
   Future<void> _refreshNotifications() async {
@@ -454,86 +462,93 @@ class _NotificationWidgetState extends State<NotificationWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: CustomAppBar(
-        title: Text(
-          'Thông báo',
-          style:
-              Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
-        ),
-        centerTitle: false,
-        appBarHeight: MediaQuery.of(context).size.height * 0.08,
-        actions: [
-          if (_unreadNotifications.isNotEmpty)
+    return BlocListener<NotificationBloc, NotificationState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          orElse: () {},
+        );
+      },
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade50,
+        appBar: CustomAppBar(
+          title: Text(
+            'Thông báo',
+            style:
+                Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
+          ),
+          centerTitle: false,
+          appBarHeight: MediaQuery.of(context).size.height * 0.08,
+          actions: [
+            if (_unreadNotifications.isNotEmpty)
+              IconButton(
+                icon: const Icon(Icons.done_all_outlined),
+                tooltip: 'Đánh dấu tất cả là đã đọc',
+                onPressed: _markAllAsRead,
+              ),
             IconButton(
-              icon: const Icon(Icons.done_all_outlined),
-              tooltip: 'Đánh dấu tất cả là đã đọc',
-              onPressed: _markAllAsRead,
+              icon: const Icon(Icons.refresh_outlined),
+              tooltip: 'Làm mới',
+              onPressed: _refreshNotifications,
             ),
-          IconButton(
-            icon: const Icon(Icons.refresh_outlined),
-            tooltip: 'Làm mới',
-            onPressed: _refreshNotifications,
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.white,
-            child: TabBar(
-              controller: _tabController,
-              labelColor: Theme.of(context).primaryColor,
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: Theme.of(context).primaryColor,
-              tabs: [
-                Tab(
-                  text: 'Tất cả (${_allNotifications.length})',
-                ),
-                Tab(
-                  text: 'Chưa đọc (${_unreadNotifications.length})',
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : TabBarView(
-                    controller: _tabController,
-                    children: [
-                      // Tab Tất cả
-                      _allNotifications.isEmpty
-                          ? _buildEmptyState()
-                          : RefreshIndicator(
-                              onRefresh: _refreshNotifications,
-                              child: ListView.builder(
-                                itemCount: _allNotifications.length,
-                                itemBuilder: (context, index) {
-                                  return _buildNotificationItem(
-                                      _allNotifications[index]);
-                                },
-                              ),
-                            ),
-
-                      // Tab Chưa đọc
-                      _unreadNotifications.isEmpty
-                          ? _buildEmptyState()
-                          : RefreshIndicator(
-                              onRefresh: _refreshNotifications,
-                              child: ListView.builder(
-                                itemCount: _unreadNotifications.length,
-                                itemBuilder: (context, index) {
-                                  return _buildNotificationItem(
-                                      _unreadNotifications[index]);
-                                },
-                              ),
-                            ),
-                    ],
+          ],
+        ),
+        body: Column(
+          children: [
+            Container(
+              color: Colors.white,
+              child: TabBar(
+                controller: _tabController,
+                labelColor: Theme.of(context).primaryColor,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: Theme.of(context).primaryColor,
+                tabs: [
+                  Tab(
+                    text: 'Tất cả (${_allNotifications.length})',
                   ),
-          ),
-        ],
+                  Tab(
+                    text: 'Chưa đọc (${_unreadNotifications.length})',
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : TabBarView(
+                      controller: _tabController,
+                      children: [
+                        // Tab Tất cả
+                        _allNotifications.isEmpty
+                            ? _buildEmptyState()
+                            : RefreshIndicator(
+                                onRefresh: _refreshNotifications,
+                                child: ListView.builder(
+                                  itemCount: _allNotifications.length,
+                                  itemBuilder: (context, index) {
+                                    return _buildNotificationItem(
+                                        _allNotifications[index]);
+                                  },
+                                ),
+                              ),
+
+                        // Tab Chưa đọc
+                        _unreadNotifications.isEmpty
+                            ? _buildEmptyState()
+                            : RefreshIndicator(
+                                onRefresh: _refreshNotifications,
+                                child: ListView.builder(
+                                  itemCount: _unreadNotifications.length,
+                                  itemBuilder: (context, index) {
+                                    return _buildNotificationItem(
+                                        _unreadNotifications[index]);
+                                  },
+                                ),
+                              ),
+                      ],
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }
