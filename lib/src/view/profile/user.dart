@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
@@ -66,7 +65,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
               onPressed: () {
                 context.pop();
               },
-              icon: LinearIcons.arrowBackIcon),
+              icon: const Icon(Icons.arrow_back)),
         ),
         body: RefreshIndicator(
           onRefresh: () async {

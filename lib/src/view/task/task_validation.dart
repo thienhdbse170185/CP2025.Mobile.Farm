@@ -1,5 +1,6 @@
 import 'package:data_layer/model/dto/prescription/prescription.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:data_layer/model/dto/vaccine_schedule/vaccine_schedule_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 
@@ -41,7 +42,9 @@ class TaskValidation {
 
   static bool validateVaccineLog({
     required TextEditingController countAnimalVaccineController,
+    required VaccineScheduleDto? vaccineSchedule,
   }) {
+    if (vaccineSchedule == null) return false;
     final count = int.tryParse(countAnimalVaccineController.text) ?? 0;
     return count > 0;
   }
@@ -72,6 +75,11 @@ class TaskValidation {
     // Return false if weight is 0 or price is empty
     if (weight <= 0 || priceText.isEmpty) {
       return false;
+    } else {
+      final price = int.parse(priceText.replaceAll(',', ''));
+      if (price < 1000) {
+        return false;
+      }
     }
 
     return true;
@@ -88,6 +96,11 @@ class TaskValidation {
     // Return false if count is 0 or price is empty
     if (count <= 0 || priceText.isEmpty) {
       return false;
+    } else {
+      final price = int.parse(priceText.replaceAll(',', ''));
+      if (price < 1000) {
+        return false;
+      }
     }
 
     return true;

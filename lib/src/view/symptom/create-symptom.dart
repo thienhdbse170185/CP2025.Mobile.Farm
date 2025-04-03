@@ -81,6 +81,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   bool _isProcessing = false;
   bool _isEmergency = false;
   bool _isCheckAllAnimalSick = false;
+  bool _isEmptyCage = false;
   int _availableQuantity = 0;
 
   bool get _isCageSelected => _selectedCage != null;
@@ -148,9 +149,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.read<FarmingBatchCubit>().getFarmingBatchByCage(widget.cageId!);
       });
+    } else {
+      context.read<CageCubit>().getCagesByUserId();
     }
-
-    _fetchInitialData();
   }
 
   @override
@@ -164,7 +165,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
 
   void _fetchInitialData() {
     context.read<CageCubit>().getCagesByUserId();
-    context.read<SymptomCubit>().getSymptoms();
   }
 
   String get formattedDate =>
@@ -394,18 +394,21 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   String _getValidationMessage() {
-    if (!_isCageSelected) return 'Vui lòng chọn chuồng nuôi';
-    if (!_hasFarmingBatch) {
-      return 'Không tìm thấy thông tin vụ nuôi cho chuồng này';
+    if (_isEmptyCage) {
+      return 'Không tìm thấy thông tin chuồng, vui lòng liên hệ admin để được hỗ trợ.';
     }
-    if (!_hasSymptoms) return 'Vui lòng chọn ít nhất một triệu chứng';
+    if (!_isCageSelected) return 'Vui lòng chọn chuồng nuôi.';
+    if (!_hasFarmingBatch) {
+      return 'Không tìm thấy thông tin vụ nuôi cho chuồng này.';
+    }
+    if (!_hasSymptoms) return 'Vui lòng chọn ít nhất một triệu chứng.';
     if (!_hasValidQuantity) {
       return int.tryParse(_affectedController.text) == 0
-          ? 'Vui lòng nhập số lượng con vật bị bệnh'
-          : 'Số lượng con vật bị bệnh không hợp lệ';
+          ? 'Vui lòng nhập số lượng con vật bị bệnh.'
+          : 'Số lượng con vật bị bệnh không hợp lệ.';
     }
     if (_isEmergency && _images.isEmpty) {
-      return 'Trường hợp khẩn cấp yêu cầu phải đính kèm ít nhất 1 hình ảnh';
+      return 'Trường hợp khẩn cấp yêu cầu phải đính kèm ít nhất 1 hình ảnh.';
     }
     return '';
   }
@@ -428,12 +431,16 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         BlocListener<CageCubit, CageState>(
           listener: (context, state) => state.maybeWhen(
             loadByUserIdInProgress: () => setState(() => _isLoading = true),
-            loadByUserIdSuccess: (cages) => setState(() {
-              _isLoading = false;
-              _cages = cages
-                  .map((cage) => CageOption(id: cage.id, name: cage.name))
-                  .toList();
-            }),
+            loadByUserIdSuccess: (cages) {
+              setState(() {
+                _isLoading = false;
+                _cages = cages
+                    .map((cage) => CageOption(id: cage.id, name: cage.name))
+                    .toList();
+              });
+              context.read<SymptomCubit>().getSymptoms();
+              return null;
+            },
             loadByUserIdFailure: (error) => _handleCageFailure(error),
             orElse: () {
               return null;
@@ -456,11 +463,18 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         ),
         BlocListener<SymptomCubit, SymptomState>(
           listener: (context, state) => state.maybeWhen(
-            getSymptomsSuccess: (symptoms) =>
-                setState(() => _symptoms = symptoms),
-            getSymptomsFailure: (error) =>
-                _showErrorSnackBar('Lỗi tải danh sách triệu chứng: $error'),
-            orElse: () {},
+            getSymptomsInProgress: () => setState(() => _isLoading = true),
+            getSymptomsSuccess: (symptoms) => setState(() {
+              _symptoms = symptoms;
+              _isLoading = false;
+            }),
+            getSymptomsFailure: (error) {
+              _showErrorSnackBar('Lỗi tải danh sách triệu chứng: $error');
+              setState(() => _isLoading = false);
+            },
+            orElse: () {
+              return null;
+            },
           ),
         ),
         BlocListener<GrowthStageCubit, GrowthStageState>(
@@ -717,8 +731,46 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   void _handleCageFailure(String error) {
-    setState(() => _isLoading = false);
-    _showErrorSnackBar('Lỗi tải danh sách chuồng: $error');
+    setState(() {
+      _isLoading = false;
+      _isEmptyCage = true;
+    });
+
+    // Check if the error is about not finding any cages
+    if (error.contains("no-cages-found") ||
+        error.toLowerCase().contains("không tìm thấy chuồng") ||
+        error.toLowerCase().contains("empty cage list")) {
+      showDialog(
+        context: context,
+        builder: (context) => WarningConfirmationDialog(
+          title: "Không tìm thấy chuồng",
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Hiện tại bạn không có quyền truy cập vào bất kỳ chuồng nuôi nào, hoặc chưa có chuồng nuôi nào được tạo.",
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                "Vui lòng liên hệ quản lý trang trại để được cấp quyền truy cập chuồng nuôi.",
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          primaryButtonText: "Đã hiểu",
+          onPrimaryButtonPressed: () => Navigator.pop(context),
+          secondaryButtonText: "Trở về",
+          onSecondaryButtonPressed: () {
+            Navigator.pop(context);
+            context.pop();
+          },
+        ),
+      );
+    } else {
+      _showErrorSnackBar('Lỗi tải danh sách chuồng: $error');
+    }
   }
 
   void _handleFarmingBatchFailure(String error) {
@@ -1391,126 +1443,134 @@ class _FormBodyState extends State<_FormBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          color: Colors.white,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: widget.state._buildSectionTitle('Thông tin cơ bản',
-                        isCompleted: widget.state._isCageSelected &&
-                            widget.state._hasFarmingBatch),
-                  ),
-                  const SizedBox(width: 12),
-                  Material(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(12),
-                    child: InkWell(
+        Opacity(
+          opacity: widget.state._isEmptyCage ? 0.5 : 1,
+          child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: widget.state._buildSectionTitle('Thông tin cơ bản',
+                          isCompleted: widget.state._isCageSelected &&
+                              widget.state._hasFarmingBatch),
+                    ),
+                    const SizedBox(width: 12),
+                    Material(
+                      color: Theme.of(context).colorScheme.primaryContainer,
                       borderRadius: BorderRadius.circular(12),
-                      onTap: widget.state._showQRScanner,
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.qr_code_scanner, size: 20),
-                            SizedBox(width: 8),
-                            Text('Quét QR',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 14)),
-                          ],
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: widget.state._isEmptyCage
+                            ? null
+                            : widget.state._showQRScanner,
+                        child: const Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.qr_code_scanner, size: 20),
+                              SizedBox(width: 8),
+                              Text('Quét QR',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14)),
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                const Text('Chọn chuồng để báo cáo triệu chứng (bắt buộc)',
+                    style: TextStyle(fontSize: 12, color: Colors.grey)),
+                const SizedBox(height: 8),
+                InkWell(
+                  onTap: widget.state._isEmptyCage
+                      ? null
+                      : widget.state._showCageSelectionSheet,
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey[300]!),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Row(
+                      children: [
+                        LinearIcons.chickenIcon,
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Chuồng nuôi',
+                                  style: TextStyle(
+                                      color: Colors.grey[600], fontSize: 13)),
+                              const SizedBox(height: 4),
+                              Text(
+                                  widget.state._selectedCage ??
+                                      'Chọn chuồng báo cáo',
+                                  style: const TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward_ios,
+                            size: 16, color: Colors.grey[600]),
+                      ],
+                    ),
+                  ),
+                ),
+                if (widget.state._selectedCage == null)
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.info_outline, size: 16),
+                        SizedBox(width: 4),
+                        Text('Bạn có thể quét mã QR trên chuồng để chọn nhanh',
+                            style: TextStyle(fontSize: 13)),
+                      ],
+                    ),
+                  ),
+                if (widget.state._hasFarmingBatch) ...[
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: Colors.blue[50],
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Row(
+                      children: [
+                        Icon(Icons.info_outline,
+                            color: Colors.blue[700], size: 20),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Vụ nuôi hiện tại',
+                                  style: TextStyle(
+                                      color: Colors.blue[700], fontSize: 13)),
+                              const SizedBox(height: 4),
+                              Text(widget.state._farmingBatch!.name,
+                                  style: TextStyle(
+                                      color: Colors.blue[900],
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
-              ),
-              const SizedBox(height: 8),
-              const Text('Chọn chuồng để báo cáo triệu chứng (bắt buộc)',
-                  style: TextStyle(fontSize: 12, color: Colors.grey)),
-              const SizedBox(height: 8),
-              InkWell(
-                onTap: widget.state._showCageSelectionSheet,
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[300]!),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    children: [
-                      LinearIcons.chickenIcon,
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Chuồng nuôi',
-                                style: TextStyle(
-                                    color: Colors.grey[600], fontSize: 13)),
-                            const SizedBox(height: 4),
-                            Text(
-                                widget.state._selectedCage ??
-                                    'Chọn chuồng báo cáo',
-                                style: const TextStyle(fontSize: 16)),
-                          ],
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios,
-                          size: 16, color: Colors.grey[600]),
-                    ],
-                  ),
-                ),
-              ),
-              if (widget.state._selectedCage == null)
-                const Padding(
-                  padding: EdgeInsets.only(top: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.info_outline, size: 16),
-                      SizedBox(width: 4),
-                      Text('Bạn có thể quét mã QR trên chuồng để chọn nhanh',
-                          style: TextStyle(fontSize: 13)),
-                    ],
-                  ),
-                ),
-              if (widget.state._hasFarmingBatch) ...[
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      color: Colors.blue[50],
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    children: [
-                      Icon(Icons.info_outline,
-                          color: Colors.blue[700], size: 20),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Vụ nuôi hiện tại',
-                                style: TextStyle(
-                                    color: Colors.blue[700], fontSize: 13)),
-                            const SizedBox(height: 4),
-                            Text(widget.state._farmingBatch!.name,
-                                style: TextStyle(
-                                    color: Colors.blue[900],
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
-            ],
+            ),
           ),
         ),
         const SizedBox(height: 8),

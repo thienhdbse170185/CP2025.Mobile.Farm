@@ -104,7 +104,7 @@ final router = GoRouter(
 
       if (!isAuthenticated &&
           !RouteName.publicRoutes.contains(state.fullPath)) {
-        return RouteName.welcome;
+        return RouteName.login;
       }
       return null;
     },
