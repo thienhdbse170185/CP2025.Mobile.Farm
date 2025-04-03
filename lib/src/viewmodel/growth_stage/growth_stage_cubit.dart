@@ -19,8 +19,8 @@ class GrowthStageCubit extends Cubit<GrowthStageState> {
     try {
       final growthStage =
           await growthStageRepository.getGrowthStageByCageId(cageId);
-      log('[GROWTH_STAGE_CUBIT] Lấy thông tin growthStage thành công!}');
-      log('Response: : ${growthStage.toJson()}');
+      log('[GROWTH_STAGE_CUBIT] Lấy thông tin growthStage thành công!');
+      log('[GROWTH_STAGE_CUBIT] Response: ${growthStage.toJson()}');
       emit(GrowthStageState.getGrowthStageByCageIdSuccess(growthStage));
     } catch (e) {
       emit(GrowthStageState.getGrowthStageByCageIdFailure(e.toString()));

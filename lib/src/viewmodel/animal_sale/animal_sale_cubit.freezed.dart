@@ -23,7 +23,7 @@ mixin _$AnimalSaleState {
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) =>
@@ -35,7 +35,8 @@ mixin _$AnimalSaleState {
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +47,8 @@ mixin _$AnimalSaleState {
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) =>
@@ -169,7 +171,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
@@ -184,7 +186,8 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return initial?.call();
@@ -198,7 +201,8 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
@@ -322,7 +326,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
@@ -337,7 +341,8 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleInProgress?.call();
@@ -351,7 +356,8 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
@@ -475,7 +481,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
@@ -490,7 +496,8 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleSuccess?.call();
@@ -504,7 +511,8 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
@@ -656,7 +664,7 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
@@ -671,7 +679,8 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return createAnimalSaleFailure?.call(error);
@@ -685,7 +694,8 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
@@ -823,7 +833,7 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
@@ -838,7 +848,8 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return getSaleLogByGrowthStageIdInProgress?.call();
@@ -852,7 +863,8 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
@@ -930,9 +942,9 @@ abstract class _$$GetSaleLogByGrowthStageIdSuccessImplCopyWith<$Res> {
           $Res Function(_$GetSaleLogByGrowthStageIdSuccessImpl) then) =
       __$$GetSaleLogByGrowthStageIdSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SaleLogDto saleLog});
+  $Res call({SaleDetailLogDto? saleLog});
 
-  $SaleLogDtoCopyWith<$Res> get saleLog;
+  $SaleDetailLogDtoCopyWith<$Res>? get saleLog;
 }
 
 /// @nodoc
@@ -950,13 +962,13 @@ class __$$GetSaleLogByGrowthStageIdSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? saleLog = null,
+    Object? saleLog = freezed,
   }) {
     return _then(_$GetSaleLogByGrowthStageIdSuccessImpl(
-      null == saleLog
+      freezed == saleLog
           ? _value.saleLog
           : saleLog // ignore: cast_nullable_to_non_nullable
-              as SaleLogDto,
+              as SaleDetailLogDto?,
     ));
   }
 
@@ -964,8 +976,12 @@ class __$$GetSaleLogByGrowthStageIdSuccessImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SaleLogDtoCopyWith<$Res> get saleLog {
-    return $SaleLogDtoCopyWith<$Res>(_value.saleLog, (value) {
+  $SaleDetailLogDtoCopyWith<$Res>? get saleLog {
+    if (_value.saleLog == null) {
+      return null;
+    }
+
+    return $SaleDetailLogDtoCopyWith<$Res>(_value.saleLog!, (value) {
       return _then(_value.copyWith(saleLog: value));
     });
   }
@@ -979,7 +995,7 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
   const _$GetSaleLogByGrowthStageIdSuccessImpl(this.saleLog);
 
   @override
-  final SaleLogDto saleLog;
+  final SaleDetailLogDto? saleLog;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -1024,7 +1040,7 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
@@ -1039,7 +1055,8 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return getSaleLogByGrowthStageIdSuccess?.call(saleLog);
@@ -1053,7 +1070,8 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {
@@ -1120,10 +1138,10 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
 }
 
 abstract class _GetSaleLogByGrowthStageIdSuccess implements AnimalSaleState {
-  const factory _GetSaleLogByGrowthStageIdSuccess(final SaleLogDto saleLog) =
-      _$GetSaleLogByGrowthStageIdSuccessImpl;
+  const factory _GetSaleLogByGrowthStageIdSuccess(
+      final SaleDetailLogDto? saleLog) = _$GetSaleLogByGrowthStageIdSuccessImpl;
 
-  SaleLogDto get saleLog;
+  SaleDetailLogDto? get saleLog;
 
   /// Create a copy of AnimalSaleState
   /// with the given fields replaced by the non-null parameter values.
@@ -1222,7 +1240,7 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
     required TResult Function() createAnimalSaleSuccess,
     required TResult Function(String error) createAnimalSaleFailure,
     required TResult Function() getSaleLogByGrowthStageIdInProgress,
-    required TResult Function(SaleLogDto saleLog)
+    required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
   }) {
@@ -1237,7 +1255,8 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
     TResult? Function()? createAnimalSaleSuccess,
     TResult? Function(String error)? createAnimalSaleFailure,
     TResult? Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult? Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
   }) {
     return getSaleLogByGrowthStageIdFailure?.call(error);
@@ -1251,7 +1270,8 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
     TResult Function()? createAnimalSaleSuccess,
     TResult Function(String error)? createAnimalSaleFailure,
     TResult Function()? getSaleLogByGrowthStageIdInProgress,
-    TResult Function(SaleLogDto saleLog)? getSaleLogByGrowthStageIdSuccess,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
     required TResult orElse(),
   }) {

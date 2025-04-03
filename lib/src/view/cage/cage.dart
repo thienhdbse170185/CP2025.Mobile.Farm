@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/view/task/task_detail.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
@@ -26,6 +25,7 @@ class _CageWidgetState extends State<CageWidget> {
   DateTime selectedDate = DateTime.now();
   Map<String, List<TaskHaveCageName>> tasks = {};
   Cage? cage;
+  bool _isLoading = false;
 
   String get formattedDate {
     return DateFormat('EEEE, dd/MM/yyyy', 'vi').format(selectedDate);
@@ -95,11 +95,14 @@ class _CageWidgetState extends State<CageWidget> {
           listener: (context, state) {
             state.maybeWhen(
               loading: () {
-                LoadingDialog.show(context, 'Đang tải công việc...');
+                // LoadingDialog.show(context, 'Đang tải công việc...');
+                setState(() {
+                  _isLoading = true;
+                });
               },
               getTasksByCageIdSuccess: (tasksResponse) async {
                 await Future.delayed(const Duration(seconds: 1));
-                LoadingDialog.hide(context);
+                // LoadingDialog.hide(context);
                 setState(() {
                   tasks = tasksResponse;
                 });
@@ -107,7 +110,10 @@ class _CageWidgetState extends State<CageWidget> {
                 context.read<CageCubit>().getCageById(widget.cageId);
               },
               getTasksFailure: (e) {
-                LoadingDialog.hide(context);
+                // LoadingDialog.hide(context);
+                setState(() {
+                  _isLoading = false;
+                });
                 SnackBar(content: Text(e.toString()));
                 log('Lấy công việc theo chuồng thất bại!');
               },
@@ -120,18 +126,25 @@ class _CageWidgetState extends State<CageWidget> {
             loadByIdSuccess: (cage) async {
               await Future.delayed(const Duration(seconds: 2));
               log('Lấy thông tin chuồng thành công!');
-              LoadingDialog.hide(context);
+              // LoadingDialog.hide(context);
               setState(() {
                 this.cage = cage;
+                _isLoading = false;
               });
             },
             loadByIdInProgress: () {
               log('Đang lấy thông tin chuồng...');
-              LoadingDialog.show(context, 'Đang lấy thông tin chuồng...');
+              // LoadingDialog.show(context, 'Đang lấy thông tin chuồng...');
+              setState(() {
+                _isLoading = true;
+              });
             },
             loadByIdFailure: (e) {
               log('Lấy thông tin chuồng thất bại!');
-              LoadingDialog.hide(context);
+              setState(() {
+                _isLoading = false;
+              });
+              // LoadingDialog.hide(context);
             },
             orElse: () {},
           );
@@ -173,212 +186,223 @@ class _CageWidgetState extends State<CageWidget> {
             ],
           ),
         ),
-        body: RefreshIndicator(
-          onRefresh: () async {
-            context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(
-                  selectedDate,
-                  widget.cageId,
-                ));
-          },
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Summary Card
-                Container(
-                  margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                  child: Card(
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.8),
-                          ],
-                        ),
-                        image: const DecorationImage(
-                          image:
-                              AssetImage('assets/images/line_background.png'),
-                          fit: BoxFit.cover,
-                          opacity: 0.2,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (totalTasks == 0) ...[
-                                    const Text(
-                                      'Không có công việc hôm nay',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ] else ...[
-                                    const Text(
-                                      'Tiến độ công việc',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        _buildStatusBadge(
-                                          'Hoàn thành',
-                                          doneTasks.length,
-                                          Colors.green,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        _buildStatusBadge(
-                                          'Đang làm',
-                                          inProgressTasks.length,
-                                          Colors.amber,
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        _buildStatusBadge(
-                                          'Chưa làm',
-                                          pendingTasks.length,
-                                          Colors.blue,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        _buildStatusBadge(
-                                          'Hết hạn',
-                                          overdueTasks.length,
-                                          Colors.red,
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        _buildStatusBadge(
-                                          'Đã hủy',
-                                          canceledTasks.length,
-                                          Colors.grey,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+        body: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : RefreshIndicator(
+                onRefresh: () async {
+                  context.read<TaskBloc>().add(TaskEvent.getTasksByCageId(
+                        selectedDate,
+                        widget.cageId,
+                      ));
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Summary Card
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                        child: Card(
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Theme.of(context).colorScheme.primary,
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.8),
                                 ],
                               ),
+                              image: const DecorationImage(
+                                image: AssetImage(
+                                    'assets/images/line_background.png'),
+                                fit: BoxFit.cover,
+                                opacity: 0.2,
+                              ),
                             ),
-                            if (totalTasks > 0) ...[
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          CircularProgressIndicator(
-                                            strokeWidth: 6,
-                                            value: completionPercentage / 100,
-                                            backgroundColor: Colors.grey[300],
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        if (totalTasks == 0) ...[
+                                          const Text(
+                                            'Không có công việc hôm nay',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
                                             ),
                                           ),
-                                          Text(
-                                            '$completionPercentage%',
+                                        ] else ...[
+                                          const Text(
+                                            'Tiến độ công việc',
                                             style: TextStyle(
+                                              fontSize: 16,
                                               fontWeight: FontWeight.bold,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            children: [
+                                              _buildStatusBadge(
+                                                'Hoàn thành',
+                                                doneTasks.length,
+                                                Colors.green,
+                                              ),
+                                              const SizedBox(width: 8),
+                                              _buildStatusBadge(
+                                                'Đang làm',
+                                                inProgressTasks.length,
+                                                Colors.amber,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            children: [
+                                              _buildStatusBadge(
+                                                'Chưa làm',
+                                                pendingTasks.length,
+                                                Colors.blue,
+                                              ),
+                                              const SizedBox(width: 8),
+                                              _buildStatusBadge(
+                                                'Hết hạn',
+                                                overdueTasks.length,
+                                                Colors.red,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            children: [
+                                              _buildStatusBadge(
+                                                'Đã hủy',
+                                                canceledTasks.length,
+                                                Colors.grey,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ],
+                                    ),
+                                  ),
+                                  if (totalTasks > 0) ...[
+                                    Container(
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                CircularProgressIndicator(
+                                                  strokeWidth: 6,
+                                                  value: completionPercentage /
+                                                      100,
+                                                  backgroundColor:
+                                                      Colors.grey[300],
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '$completionPercentage%',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
+                                  ] else ...[
+                                    Lottie.asset(
+                                      'assets/animations/chicken_adult.json',
+                                      width: 80,
+                                      height: 80,
+                                    ),
                                   ],
-                                ),
+                                ],
                               ),
-                            ] else ...[
-                              Lottie.asset(
-                                'assets/animations/chicken_adult.json',
-                                width: 80,
-                                height: 80,
-                              ),
-                            ],
-                          ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+
+                      if (tasks.values.every((tasks) => tasks.isEmpty)) ...[
+                        _buildEmptyState(),
+                      ] else ...[
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Danh sách công việc',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Tổng: $totalTasks (công việc)',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        ..._buildSessionSections(tasks),
+                        const SizedBox(height: 24),
+                      ],
+                    ],
                   ),
                 ),
-
-                if (tasks.values.every((tasks) => tasks.isEmpty)) ...[
-                  _buildEmptyState(),
-                ] else ...[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Danh sách công việc',
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Tổng: $totalTasks (công việc)',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                  ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  ..._buildSessionSections(tasks),
-                  const SizedBox(height: 24),
-                ],
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }
@@ -601,36 +625,39 @@ class _CageWidgetState extends State<CageWidget> {
                           ],
                         ),
                       ),
-                      ...sessionTasks.map((task) => GestureDetector(
-                            onTap: () async {
-                              // Navigate to task detail and pass 'cage' as source
-                              final result = await Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => TaskDetailWidget(
-                                    taskId: task.id,
-                                    source: 'cage', // Add this parameter
+                      ...sessionTasks.map((task) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: GestureDetector(
+                              onTap: () async {
+                                // Navigate to task detail and pass 'cage' as source
+                                final result = await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => TaskDetailWidget(
+                                      taskId: task.id,
+                                      source: 'cage', // Add this parameter
+                                    ),
                                   ),
-                                ),
-                              );
+                                );
 
-                              // Handle result when returning from task detail
-                              if (result != null &&
-                                  result is Map<String, dynamic>) {
-                                if (result['reload'] == true &&
-                                    result['source'] == 'cage') {
-                                  // Reload tasks for this cage
-                                  context.read<TaskBloc>().add(
-                                        TaskEvent.getTasksByCageId(
-                                          selectedDate,
-                                          widget.cageId,
-                                        ),
-                                      );
+                                // Handle result when returning from task detail
+                                if (result != null &&
+                                    result is Map<String, dynamic>) {
+                                  if (result['reload'] == true &&
+                                      result['source'] == 'cage') {
+                                    // Reload tasks for this cage
+                                    context.read<TaskBloc>().add(
+                                          TaskEvent.getTasksByCageId(
+                                            selectedDate,
+                                            widget.cageId,
+                                          ),
+                                        );
+                                  }
                                 }
-                              }
-                            },
-                            child: TaskListWidget(
-                              tasks: [task],
-                              highlightWarning: true,
+                              },
+                              child: TaskListWidget(
+                                tasks: [task],
+                                highlightWarning: true,
+                              ),
                             ),
                           )),
                     ],

@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:data_layer/data_layer.dart';
 import 'package:data_layer/model/dto/egg_harvest/egg_harvest_dto.dart';
+import 'package:data_layer/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
+import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/request/egg_harvest/egg_harvest_request.dart';
 import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
@@ -84,6 +86,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   PrescriptionDto? prescription;
   String? prescriptionId;
 
+  // --- Health log related variables ---
+  bool _hasTakenAllMedications = false;
+
   // --- Weight related variables ---
   DateTime? logTime;
   double? recommendedWeight;
@@ -107,6 +112,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   // --- Animal sale related variables ---
   DateTime? saleDate;
   SaleTypeDto? saleType;
+  SaleLogDto? saleLog;
+  SaleDetailLogDto? saleDetailLog;
 
   // --- Egg harvest related variables ---
   EggHarvestDto? eggHarvest;
@@ -191,6 +198,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     _dateAnimalSellController.text =
         DateFormat('dd/MM/yyyy').format(TimeUtils.customNow());
     saleDate = TimeUtils.customNow();
+    prescriptionId = widget.task.prescriptionId;
 
     // If in view mode, we're certainly dealing with a completed task
     if (_viewMode) {
@@ -301,7 +309,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       String errorMessage = '';
 
       if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health) {
-        errorMessage = 'Vui lòng xác nhận đã uống thuốc.';
+        errorMessage = 'Vui lòng xác nhận đã cho uống thuốc.';
       } else if (widget.task.taskType.taskTypeId ==
               TaskTypeDataConstant.feeding &&
           widget.task.hasAnimalDesease == true &&
@@ -458,10 +466,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             );
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.health) {
-        if (prescriptionId != null) {
-          context
-              .read<PrescriptionCubit>()
-              .checkPrescriptionLastSession(prescriptionId: prescriptionId!);
+        if (widget.task.prescriptionId != null) {
+          context.read<PrescriptionCubit>().checkPrescriptionLastSession(
+              prescriptionId: widget.task.prescriptionId ?? '');
         }
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.vaccin) {
@@ -615,6 +622,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isProcessing = false;
                 });
                 log("Cập nhật trạng thái công việc thành công!");
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content:
@@ -682,10 +690,15 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                     widget.taskId, StatusDataConstant.done));
               },
               createHealthLogFailure: (e) async {
-                context
-                    .read<UploadImageCubit>()
-                    .deleteImage(id: uploadImage!.id);
-                LoadingDialog.hide(context);
+                if (_images.isNotEmpty) {
+                  context
+                      .read<UploadImageCubit>()
+                      .deleteImage(id: uploadImage!.id);
+                }
+                setState(() {
+                  _isProcessing = false;
+                });
+                // LoadingDialog.hide(context);
                 log("Tạo log uống thuốc thất bại!");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Tạo log uống thuốc thất bại!')),
@@ -974,13 +987,14 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 });
                 if (isLastSession == false) {
                   final log = HealthLogDto(
-                      prescriptionId: prescriptionId ?? '',
-                      date: DateTime.now(),
-                      notes: logController.text,
-                      photo: uploadImage?.path != null
-                          ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
-                          : '',
-                      taskId: widget.taskId);
+                    taskId: widget.taskId,
+                    prescriptionId: prescriptionId ?? '',
+                    date: DateTime.now(),
+                    notes: logController.text,
+                    photo: uploadImage?.path != null
+                        ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
+                        : '',
+                  );
                   context.read<TaskBloc>().add(TaskEvent.createHealthLog(
                       prescriptionId: prescriptionId ?? '', log: log));
                 } else {
@@ -1205,6 +1219,20 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 setState(() {
                   saleType = saleTypes.first;
                 });
+                if (growthStage != null && saleType != null) {
+                  context.read<AnimalSaleCubit>().getSaleLogByGrowthStageId(
+                        growthStageId: growthStage!.id,
+                        saleType: saleType!.stageTypeName,
+                        taskDate: DateTime.parse(widget.task.dueDate),
+                        taskSession: widget.task.session,
+                      );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text(
+                        'Chưa có thông tin growth-stage cho công việc này! Vui lòng liên hệ admin để được hỗ trợ.'),
+                    backgroundColor: Colors.red,
+                  ));
+                }
               },
               orElse: () {},
             );
@@ -1376,6 +1404,31 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               return null;
             });
           },
+        ),
+        BlocListener<AnimalSaleCubit, AnimalSaleState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              getSaleLogByGrowthStageIdInProgress: () {
+                setState(() {
+                  _isLoading = true;
+                });
+              },
+              getSaleLogByGrowthStageIdSuccess: (saleLog) {
+                setState(() {
+                  saleDetailLog = saleLog;
+                  _isLoading = false;
+                });
+                log('[ANIMAL_SALE_BLOC_LISTENER] Lấy thông tin log bán gia cầm thành công!');
+              },
+              getSaleLogByGrowthStageIdFailure: (e) {
+                setState(() {
+                  _isLoading = false;
+                });
+                log('Lấy thông tin log bán gia cầm thất bại!');
+              },
+              orElse: () {},
+            );
+          },
         )
       ],
       child: Scaffold(
@@ -1490,15 +1543,16 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               userName: userName,
               prescription: prescription,
               session: widget.task.session,
-              medicationChecked: _medicationChecked,
-              onMedicationCheckedChanged: readOnly
+              task: widget.task,
+              isConfirmed: _hasTakenAllMedications,
+              onConfirmationChanged: readOnly
                   ? null
-                  : (String medicationId, bool value) {
+                  : (bool value) {
                       setState(() {
-                        _medicationChecked[medicationId] = value;
+                        _hasTakenAllMedications = value;
                       });
                     },
-              task: widget.task,
+              noteController: logController,
             )
           else if (widget.task.taskType.taskTypeId ==
               TaskTypeDataConstant.vaccin)
@@ -1656,7 +1710,17 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                           _weightMeatSellController.text = weight.toString();
                         });
                       },
+                onPriceChanged: readOnly
+                    ? null
+                    : (price) {
+                        setState(() {
+                          _priceMeatSellController.text = price.toString();
+                        });
+                      },
                 task: widget.task,
+                readOnly: readOnly,
+                salelog: saleLog,
+                saleDetailLog: saleDetailLog,
               )
             ] else ...[
               EggSaleLogWidget(
@@ -1711,8 +1775,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   Widget _contentButton() {
     if (_isLoading == false) {
       if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health &&
-          !_areAnyMedicationsChecked()) {
-        return const Text('Chưa ghi nhận đã cho uống thuốc');
+          !_hasTakenAllMedications) {
+        return const Text('Chưa xác nhận đã cho uống đủ thuốc');
       } else if (widget.task.taskType.taskTypeId ==
               TaskTypeDataConstant.feeding &&
           widget.task.hasAnimalDesease == true &&
@@ -1914,8 +1978,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             TaskTypeDataConstant.health) {
           return TaskValidation.validateHealthLog(
             widget.task,
-            prescription!,
-            _medicationChecked,
+            prescription,
+            _hasTakenAllMedications,
           );
         } else if (widget.task.taskType.taskTypeId ==
             TaskTypeDataConstant.vaccin) {

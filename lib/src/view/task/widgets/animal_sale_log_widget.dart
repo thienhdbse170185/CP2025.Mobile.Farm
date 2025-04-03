@@ -1,4 +1,6 @@
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
+import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,10 +17,13 @@ class AnimalSaleLogWidget extends StatefulWidget {
   final TextEditingController priceMeatSellController;
   final TextEditingController dateAnimalSellController;
   final DateTime saleDate;
-  final ValueChanged<DateTime>? onDateChanged; // Make nullable
-  final ValueChanged<int>? onWeightChanged; // Make nullable
+  final ValueChanged<DateTime>? onDateChanged;
+  final ValueChanged<int>? onWeightChanged;
+  final ValueChanged<String>? onPriceChanged;
   final TaskHaveCageName task;
-  final bool readOnly; // Add readOnly flag
+  final bool readOnly;
+  final SaleLogDto? salelog;
+  final SaleDetailLogDto? saleDetailLog;
 
   const AnimalSaleLogWidget({
     super.key,
@@ -29,10 +34,13 @@ class AnimalSaleLogWidget extends StatefulWidget {
     required this.priceMeatSellController,
     required this.dateAnimalSellController,
     required this.saleDate,
-    this.onDateChanged, // Make optional
-    this.onWeightChanged, // Make optional
+    this.onDateChanged,
+    this.onWeightChanged,
+    this.onPriceChanged,
     required this.task,
-    this.readOnly = false, // Default to false
+    this.readOnly = false,
+    this.salelog,
+    this.saleDetailLog,
   });
 
   @override
@@ -40,6 +48,28 @@ class AnimalSaleLogWidget extends StatefulWidget {
 }
 
 class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.saleDetailLog != null) {
+      widget.weightMeatSellController.text =
+          widget.saleDetailLog?.quantity.toString() ?? '0';
+      // Format the value with commas
+      final formatter = NumberFormat('#,###');
+      final newValue = formatter.format(widget.saleDetailLog?.unitPrice);
+
+      // Update the controller with the formatted value
+      widget.priceMeatSellController.value = TextEditingValue(
+        text: newValue,
+        selection: TextSelection.collapsed(offset: newValue.length),
+      );
+      // widget.priceMeatSellController.text =
+      //     widget.salelog?.unitPriceAverage.toString() ?? '0';
+      widget.dateAnimalSellController.text = DateFormat('dd/MM/yyyy')
+          .format(DateTime.parse(widget.saleDetailLog?.saleDate ?? ''));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -166,7 +196,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                 color: Theme.of(context).colorScheme.primary, size: 20),
             const SizedBox(width: 8),
             Text(
-              'Khối lượng thịt đã bán',
+              'Khối lượng đã bán',
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
@@ -271,35 +301,73 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           keyboardType: TextInputType.number,
           enabled: isEditable,
           decoration: InputDecoration(
-            hintText: '100,000',
+            hintText: '80,000',
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
             ),
             prefixIcon: Icon(Icons.currency_exchange,
                 color: Theme.of(context).colorScheme.primary),
             suffixText: 'VND/kg',
-            helperText: 'Giá tiền trên 1 kg thịt',
+            helperText: 'Giá tiền trên 1 kg thịt, giá phải hơn 1,000VND',
             filled: true,
             fillColor: isEditable ? Colors.white : Colors.grey[100],
+            errorText: _validatePrice(widget.priceMeatSellController.text),
           ),
           onChanged: (value) {
             if (value.isNotEmpty) {
               try {
+                // Clean the string of commas for parsing
+                final cleanValue = value.replaceAll(',', '');
+                final parsedValue = int.parse(cleanValue);
+
+                // Format the value with commas
                 final formatter = NumberFormat('#,###');
-                final newValue =
-                    formatter.format(int.parse(value.replaceAll(',', '')));
+                final newValue = formatter.format(parsedValue);
+
+                // Update the controller with the formatted value
                 widget.priceMeatSellController.value = TextEditingValue(
                   text: newValue,
                   selection: TextSelection.collapsed(offset: newValue.length),
                 );
+
+                // Trigger the callback with the clean value (for validation)
+                if (widget.onPriceChanged != null) {
+                  widget.onPriceChanged!(newValue);
+                }
+
+                // Force rebuild to update validation
+                setState(() {});
               } catch (e) {
-                // If parsing fails, keep the current value
+                // Keep the current input if parsing fails
               }
+            } else {
+              // Force rebuild to update validation when field is cleared
+              setState(() {});
             }
           },
+          validator: (value) => _validatePrice(value),
         ),
       ],
     );
+  }
+
+  String? _validatePrice(String? value) {
+    if (value == null || value.isEmpty) {
+      return null;
+    }
+
+    try {
+      final cleanValue = value.replaceAll(',', '');
+      final parsedValue = int.parse(cleanValue);
+
+      if (parsedValue < 1000) {
+        return 'Giá tiền phải lớn hơn 1,000 VNĐ';
+      }
+    } catch (e) {
+      return 'Vui lòng nhập giá tiền hợp lệ';
+    }
+
+    return null;
   }
 
   Widget _buildDateInputSection(BuildContext context, bool isEditable) {
@@ -431,13 +499,6 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                                     value: widget.farmingBatch?.name ?? 'N/A',
                                     icon: Icons.assignment,
                                   ),
-                                  // _buildInfoItem(
-                                  //   context: context,
-                                  //   label: 'Loại vật nuôi',
-                                  //   value:
-                                  //       widget.farmingBatch?.species ?? 'N/A',
-                                  //   icon: Icons.pets,
-                                  // ),
                                 ],
                               ),
                             ],
@@ -466,7 +527,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                                     '${widget.growthStage?.quantity.toString()} (con)',
                                 icon: Icons.warehouse,
                               ),
-                            ]
+                            ],
                           ],
                         ),
                         const SizedBox(height: 12),
