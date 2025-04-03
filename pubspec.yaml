@@ -78,13 +78,17 @@ flutter:
     - .env
 
 flutter_native_splash:
+  color: "#379C3B" # Green color
+  image: "assets/images/LOGOOFFICIAL3.png"
+  color_dark: "#379C3B"
+  image_dark: "assets/images/LOGOOFFICIAL3.png"
+  
+  android_12:
+    color: "#379C3B" # Green color
+    image: "assets/images/LOGOOFFICIAL3.png"
+    icon_background_color: "#379C3B"
+    
+  fullscreen: true
   android: true
   ios: false
   web: false
-
-  color: "#379C3B" # Green color
-  image: "assets/images/LOGOOFFICIAL.png"
-
-  android_12:
-    color: "#379C3B" # Green color
-    image: "assets/images/LOGOOFFICIAL.png"
