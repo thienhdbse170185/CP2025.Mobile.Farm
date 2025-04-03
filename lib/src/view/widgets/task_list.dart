@@ -1,7 +1,6 @@
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
@@ -73,10 +72,6 @@ class TaskListWidget extends StatelessWidget {
             typeIcon = Icons.work_outline;
         }
 
-        // Format due date
-        final dueDate = DateTime.parse(task.dueDate);
-        final formattedTime = DateFormat.Hm().format(dueDate);
-
         return Opacity(
           opacity: reduceOpacity ? 0.6 : 1.0,
           child: GestureDetector(
@@ -87,7 +82,7 @@ class TaskListWidget extends StatelessWidget {
               );
             },
             child: Card(
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              margin: EdgeInsets.only(left: 16, right: 16, bottom: 16),
               elevation: hasWarning && highlightWarning ? 4 : 1,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

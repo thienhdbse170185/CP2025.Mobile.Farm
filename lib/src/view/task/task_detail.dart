@@ -323,35 +323,6 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             });
             log("Lấy thông tin công việc thất bại!");
           },
-          updateStatusTaskLoading: () {
-            setState(() {
-              _isProcessing = true;
-            });
-            log("Đang cập nhật trạng thái công việc...");
-          },
-          updateStatusTaskSuccess: () async {
-            setState(() {
-              _isProcessing = false;
-            });
-            log("Cập nhật trạng thái công việc thành công!");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Cập nhật trạng thái công việc thành công!')),
-            );
-
-            // Use the new navigation handler
-            _handleTaskComplete(context, true);
-          },
-          updateStatusTaskFailure: (e) async {
-            setState(() {
-              _isProcessing = false;
-            });
-            log("Cập nhật trạng thái công việc thất bại! \nError: $e");
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Cập nhật trạng thái công việc thất bại!')),
-            );
-          },
           orElse: () {},
         );
       },

@@ -15,16 +15,16 @@ class SaleTypeCubit extends Cubit<SaleTypeState> {
   Future<void> getSaleTypeByName({required String saleTypeName}) async {
     emit(SaleTypeState.getByNameInProgress());
     try {
-      log('[SALE_TYPE_CUBIT] Chuẩn bị lấy thông tin loại bán hàng');
+      log('[SALE_TYPE_CUBIT] Chuẩn bị lấy thông tin sale_type');
       final result = await repository.getByName(saleTypeName: saleTypeName);
       List<SaleTypeDto> saleTypes = result.result.items;
       if (saleTypes.isEmpty) {
-        log('[SALE_TYPE_CUBIT] Lấy thông tin loại bán hàng thất bại!');
+        log('[SALE_TYPE_CUBIT] Lấy thông tin sale_type thất bại!');
         emit(SaleTypeState.getByNameFailure('no-sale-type-found'));
         return;
       }
-      log('[SALE_TYPE_CUBIT] Lấy thông tin loại bán hàng thành công!');
-      log('[SALE_TYPE_CUBIT] ${saleTypes.length} loại bán hàng được tìm thấy');
+      log('[SALE_TYPE_CUBIT] Lấy thông tin sale_type thành công!');
+      log('[SALE_TYPE_CUBIT] ${saleTypes.length} sale_type được tìm thấy');
       for (var element in saleTypes) {
         log('[SALE_TYPE_CUBIT] ${element.toJson()}');
       }

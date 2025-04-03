@@ -9,8 +9,8 @@ class HealthLogWidget extends StatefulWidget {
   final String? userName;
   final PrescriptionDto? prescription;
   final int session;
-  final Map<String, bool> medicationChecked;
-  final Function(String, bool)? onMedicationCheckedChanged;
+  final bool isConfirmed;
+  final Function(bool)? onConfirmationChanged;
   final TaskHaveCageName task;
   final TextEditingController? noteController;
 
@@ -19,8 +19,8 @@ class HealthLogWidget extends StatefulWidget {
     required this.userName,
     required this.prescription,
     required this.session,
-    required this.medicationChecked,
-    required this.onMedicationCheckedChanged,
+    required this.isConfirmed,
+    required this.onConfirmationChanged,
     required this.task,
     this.noteController,
   });
@@ -59,7 +59,9 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
         if (widget.prescription != null) ...[
           _buildPrescriptionInfo(context),
           const SizedBox(height: 20),
-          _buildMedicationsList(context, isEditable),
+          _buildMedicationsList(context),
+          const SizedBox(height: 16),
+          if (isEditable) _buildConfirmationCheckbox(context),
         ] else ...[
           _buildNoPrescriptionMessage(context),
         ]
@@ -182,16 +184,8 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                 icon: Icons.pets,
               ),
               SizedBox(width: MediaQuery.of(context).size.width * 0.09),
-              // _buildInfoItem(
-              //   context: context,
-              //   label: 'Mã đơn thuốc',
-              //   value: widget.prescription!.id,
-              //   icon: Icons.qr_code,
-              // ),
             ],
           ),
-          // if (widget.prescription!.noteFromVet != null &&
-          //     widget.prescription!.noteFromVet!.isNotEmpty) ...[
           const SizedBox(height: 16),
           Container(
             padding: const EdgeInsets.all(12),
@@ -219,7 +213,6 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  // widget.prescription!.noteFromVet!,
                   widget.prescription?.notes ?? 'Không có ghi chú',
                   style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
@@ -227,12 +220,11 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
             ),
           ),
         ],
-        // ],
       ),
     );
   }
 
-  Widget _buildMedicationsList(BuildContext context, bool isEditable) {
+  Widget _buildMedicationsList(BuildContext context) {
     final relevantMedications = widget.prescription?.medications?.where((med) {
       int dose = _getDoseForSession(med);
       return dose > 0;
@@ -275,7 +267,7 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Danh sách thuốc cần uống',
+                  'Danh sách thuốc',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -286,7 +278,6 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
             ...relevantMedications.map((medication) => _buildMedicationItem(
                   context,
                   medication,
-                  isEditable,
                 )),
           ],
         ),
@@ -312,57 +303,28 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
   Widget _buildMedicationItem(
     BuildContext context,
     MedicationDto medication,
-    bool isEditable,
   ) {
     final int dose = _getDoseForSession(medication);
-    final bool isChecked =
-        widget.medicationChecked[medication.medicationId] ?? false;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isChecked
-            ? Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3)
-            : Colors.grey[50],
+        color: Colors.grey[50],
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isChecked
-              ? Theme.of(context).colorScheme.primary.withOpacity(0.5)
-              : Theme.of(context).colorScheme.outlineVariant,
+          color: Theme.of(context).colorScheme.outlineVariant,
         ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (isEditable)
-            Transform.scale(
-              scale: 1.2,
-              child: Checkbox(
-                value: isChecked,
-                activeColor: Theme.of(context).colorScheme.primary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                onChanged: (bool? value) {
-                  if (widget.onMedicationCheckedChanged != null) {
-                    widget.onMedicationCheckedChanged!(
-                        medication.medicationId, value ?? false);
-                  }
-                },
-              ),
-            )
-          else
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: Icon(
-                isChecked ? Icons.check_circle : Icons.radio_button_unchecked,
-                color: isChecked
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.grey,
-                size: 24,
-              ),
-            ),
+          Icon(
+            Icons.medication_outlined,
+            color: Theme.of(context).colorScheme.primary,
+            size: 24,
+          ),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -406,22 +368,69 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    // Container(
-                    //   padding: const EdgeInsets.symmetric(
-                    //       horizontal: 12, vertical: 6),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.grey[200],
-                    //     borderRadius: BorderRadius.circular(20),
-                    //   ),
-                    //   child: Text(
-                    //     "${TimeUtils.getCurrentSession() == 1 ? medication.morning : TimeUtils.getCurrentSession() == 2 ? medication.noon : TimeUtils.getCurrentSession() == 3 ? medication.afternoon : medication.evening} liều",
-                    //     style: TextStyle(
-                    //       color: Colors.grey[700],
-                    //       fontWeight: FontWeight.w500,
-                    //     ),
-                    //   ),
-                    // ),
                   ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildConfirmationCheckbox(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: widget.isConfirmed
+            ? Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2)
+            : Colors.grey[100],
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: widget.isConfirmed
+              ? Theme.of(context).colorScheme.primary
+              : Colors.grey[300]!,
+          width: widget.isConfirmed ? 2 : 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Transform.scale(
+            scale: 1.2,
+            child: Checkbox(
+              value: widget.isConfirmed,
+              activeColor: Theme.of(context).colorScheme.primary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+              onChanged: (bool? value) {
+                if (widget.onConfirmationChanged != null) {
+                  widget.onConfirmationChanged!(value ?? false);
+                }
+              },
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Xác nhận đã cho uống thuốc',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Tôi xác nhận đã cho tất cả vật nuôi uống thuốc theo đơn thuốc của bác sĩ thú y',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[700],
+                  ),
                 ),
               ],
             ),

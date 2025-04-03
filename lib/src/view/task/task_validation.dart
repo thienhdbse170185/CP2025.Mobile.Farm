@@ -1,7 +1,7 @@
 import 'package:data_layer/model/dto/prescription/prescription.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_farm/src/core/utils/task_util.dart';
+import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 
 class TaskValidation {
   static bool validateFoodLog({
@@ -22,14 +22,20 @@ class TaskValidation {
     return true;
   }
 
-  static bool validateHealthLog(TaskHaveCageName task,
-      PrescriptionDto prescription, Map<String, bool> medicationChecked) {
-    if (!areAnyMedicationsChecked(
-        task: task,
-        prescription: prescription,
-        medicationChecked: medicationChecked)) {
-      return false;
+  static bool validateHealthLog(
+    TaskHaveCageName task,
+    PrescriptionDto? prescription,
+    bool hasTakenAllMedications,
+  ) {
+    // If the task is for health and there is a prescription,
+    // check if confirmation for taking all medications is done
+    if (task.taskType.taskTypeId == TaskTypeDataConstant.health &&
+        prescription != null) {
+      return hasTakenAllMedications;
     }
+
+    // If there's no prescription or it's not a health task,
+    // there's nothing to validate specifically for health
     return true;
   }
 
@@ -59,6 +65,7 @@ class TaskValidation {
     required TextEditingController priceAnimalController,
   }) {
     final weight = int.tryParse(weightAnimalController.text) ?? 0;
+
     // Check for empty or whitespace-only price strings
     final priceText = priceAnimalController.text.trim();
 

@@ -12,7 +12,7 @@ class AnimalSaleState with _$AnimalSaleState {
   const factory AnimalSaleState.getSaleLogByGrowthStageIdInProgress() =
       _GetSaleLogByGrowthStageIdLoading;
   const factory AnimalSaleState.getSaleLogByGrowthStageIdSuccess(
-      SaleLogDto saleLog) = _GetSaleLogByGrowthStageIdSuccess;
+      SaleDetailLogDto? saleLog) = _GetSaleLogByGrowthStageIdSuccess;
   const factory AnimalSaleState.getSaleLogByGrowthStageIdFailure(String error) =
       _GetSaleLogByGrowthStageIdFailure;
 }

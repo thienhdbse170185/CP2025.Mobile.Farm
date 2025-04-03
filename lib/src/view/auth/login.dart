@@ -184,31 +184,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                       "Tên tài khoản hoặc mật khẩu không chính xác",
                       style: TextStyle(color: Colors.red, fontSize: 13),
                     ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Checkbox(
-                            value: _rememberMe,
-                            onChanged: (value) {
-                              setState(() {
-                                _rememberMe = value!;
-                              });
-                            },
-                          ),
-                          const Text("Ghi nhớ đăng nhập"),
-                        ],
-                      ),
-                      TextButton(
-                        onPressed: () => context.push(RouteName.forgotPassword),
-                        child: const Text("Quên mật khẩu?",
-                            style: TextStyle(color: Colors.blue)),
-                      )
-                    ],
+                  const SizedBox(height: 4),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () => context.push(RouteName.forgotPassword),
+                      child: const Text("Quên mật khẩu?",
+                          style: TextStyle(color: Colors.blue)),
+                    ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton(
