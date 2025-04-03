@@ -1,7 +1,11 @@
+import 'package:data_layer/data_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
+import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
+import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/viewmodel/notification/notification_bloc.dart';
 
@@ -55,8 +59,8 @@ class _NotificationWidgetState extends State<NotificationWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   bool _isLoading = true;
-  List<NotificationModel> _allNotifications = [];
-  List<NotificationModel> _unreadNotifications = [];
+  List<NotificationDto> _allNotifications = [];
+  List<NotificationDto> _unreadNotifications = [];
   String userId = '';
 
   @override
@@ -73,133 +77,27 @@ class _NotificationWidgetState extends State<NotificationWidget>
   }
 
   Future<void> _loadNotifications() async {
-    // Giả lập việc tải dữ liệu
-    await Future.delayed(const Duration(seconds: 1));
-
-    // Tạo dữ liệu mẫu
-    final List<NotificationModel> notifications = [
-      NotificationModel(
-          id: "c4a9dc4a-ffd9-4613-9eaf-caa8c5ee9138",
-          userId: "babc4332-d7d8-457b-af12-765a992c4314",
-          content:
-              "Một báo cáo triệu chứng mới từ Cage 1 đã được gửi vào lúc 03/28/2025 20:08:14.\r\nVui lòng kiểm tra và xử lý kịp thời để đảm bảo sức khỏe cho vật nuôi.",
-          title: "Bạn có báo cáo bệnh mới",
-          createdAt: DateTime.parse("2025-03-28T20:08:14.167"),
-          isRead: false,
-          medicalSymptomId: "e31cce63-857c-4009-abc3-24b5c5bf4cc2",
-          cageId: "f37f0727-435d-4d80-9c29-ae2f41b49c9d"),
-      NotificationModel(
-          id: "d5b0ed5b-6fe0-4723-8eag-dba9d3e0c239",
-          userId: "babc4332-d7d8-457b-af12-765a992c4314",
-          content:
-              "Nhiệm vụ 'Kiểm tra khẩu phần ăn' đã đến hạn cho Cage 2. Vui lòng thực hiện và cập nhật trạng thái.",
-          title: "Nhiệm vụ cần thực hiện",
-          createdAt: DateTime.parse("2025-03-28T15:30:00.000"),
-          isRead: false,
-          taskId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-          cageId: "g48f1738-546e-5e91-0d30-bf3f52c50d0e"),
-      NotificationModel(
-          id: "e6c1fe6c-7gf1-5834-9fbh-ecb0e4f1d340",
-          userId: "babc4332-d7d8-457b-af12-765a992c4314",
-          content:
-              "Cage 3 đã đạt đến mốc trọng lượng tiêu chuẩn. Vui lòng kiểm tra và cập nhật kế hoạch dinh dưỡng phù hợp.",
-          title: "Cập nhật trọng lượng",
-          createdAt: DateTime.parse("2025-03-27T09:15:22.345"),
-          isRead: true,
-          cageId: "h59g2849-657f-6f02-1e41-cg4g63d61e1f"),
-      NotificationModel(
-          id: "f7d2gf7d-8hg2-6945-0gci-fdc1f5g2e451",
-          userId: "babc4332-d7d8-457b-af12-765a992c4314",
-          content:
-              "Hệ thống đã phát hiện nhiệt độ bất thường ở Cage 4. Vui lòng kiểm tra hệ thống điều hòa và đảm bảo môi trường thích hợp cho vật nuôi.",
-          title: "Cảnh báo nhiệt độ bất thường",
-          createdAt: DateTime.parse("2025-03-26T14:45:10.789"),
-          isRead: true,
-          cageId: "i60h3950-768g-7g13-2f52-dh5h74e72f2g"),
-      NotificationModel(
-          id: "g8e3hg8e-9ih3-7056-1hdj-gee2g6h3f562",
-          userId: "babc4332-d7d8-457b-af12-765a992c4314",
-          content:
-              "Lịch tiêm vaccine cho Cage 5 đã được cập nhật. Vui lòng xem chi tiết và lên kế hoạch thực hiện.",
-          title: "Cập nhật lịch tiêm vaccine",
-          createdAt: DateTime.parse("2025-03-25T11:20:05.234"),
-          isRead: false,
-          cageId: "j71i4061-879h-8h24-3g63-ei6i85f83g3h"),
-    ];
-
-    setState(() {
-      _allNotifications = notifications;
-      _unreadNotifications =
-          notifications.where((notification) => !notification.isRead).toList();
-      _isLoading = false;
-    });
-
     context
         .read<NotificationBloc>()
-        .add(NotificationEvent.getNotificationsByUserId(userId: widget.userId));
+        .add(NotificationEvent.getNotificationsByUserId());
   }
 
   Future<void> _refreshNotifications() async {
-    setState(() {
-      _isLoading = true;
-    });
     await _loadNotifications();
   }
 
-  void _markAsRead(NotificationModel notification) {
-    setState(() {
-      final index =
-          _allNotifications.indexWhere((n) => n.id == notification.id);
-      if (index != -1) {
-        _allNotifications[index] = NotificationModel(
-          id: notification.id,
-          userId: notification.userId,
-          content: notification.content,
-          title: notification.title,
-          createdAt: notification.createdAt,
-          isRead: true,
-          taskId: notification.taskId,
-          medicalSymptomId: notification.medicalSymptomId,
-          cageId: notification.cageId,
-        );
-
-        _unreadNotifications.removeWhere((n) => n.id == notification.id);
-      }
-    });
-
-    // Ở đây sẽ là API call để cập nhật trạng thái đã đọc trên server
-    // markNotificationAsRead(notification.id);
+  void _markAsRead(NotificationDto notification) {
+    context.read<NotificationBloc>().add(
+        NotificationEvent.markReadNotification(notification: notification));
   }
 
   void _markAllAsRead() {
-    setState(() {
-      _allNotifications = _allNotifications
-          .map((notification) => NotificationModel(
-                id: notification.id,
-                userId: notification.userId,
-                content: notification.content,
-                title: notification.title,
-                createdAt: notification.createdAt,
-                isRead: true,
-                taskId: notification.taskId,
-                medicalSymptomId: notification.medicalSymptomId,
-                cageId: notification.cageId,
-              ))
-          .toList();
-
-      _unreadNotifications = [];
-    });
-
-    // Ở đây sẽ là API call để cập nhật tất cả thông báo đã đọc trên server
-    // markAllNotificationsAsRead();
+    context
+        .read<NotificationBloc>()
+        .add(NotificationEvent.markReadAllNotification());
   }
 
-  void _navigateToDetails(NotificationModel notification) {
-    // Đánh dấu thông báo là đã đọc
-    if (!notification.isRead) {
-      _markAsRead(notification);
-    }
-
+  void _navigateToDetails(NotificationDto notification) {
     // Điều hướng dựa vào loại thông báo
     if (notification.medicalSymptomId != null) {
       // Điều hướng đến trang báo cáo triệu chứng
@@ -212,11 +110,12 @@ class _NotificationWidgetState extends State<NotificationWidget>
     } else if (notification.taskId != null) {
       // Điều hướng đến trang nhiệm vụ
       // Navigator.push(context, MaterialPageRoute(builder: (context) => TaskDetailsScreen(id: notification.taskId!)));
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                'Đang điều hướng đến nhiệm vụ ID: ${notification.taskId}')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //       content: Text(
+      //           'Đang điều hướng đến công việc có ID: ${notification.taskId}')),
+      // );
+      context.push(RouteName.taskDetail, extra: notification.taskId!);
     } else if (notification.cageId != null) {
       // Điều hướng đến trang thông tin chuồng
       // Navigator.push(context, MaterialPageRoute(builder: (context) => CageDetailsScreen(id: notification.cageId!)));
@@ -225,6 +124,15 @@ class _NotificationWidgetState extends State<NotificationWidget>
             content: Text(
                 'Đang điều hướng đến thông tin chuồng ID: ${notification.cageId}')),
       );
+    }
+  }
+
+  void _handleOnTap(NotificationDto notification) {
+// Đánh dấu thông báo là đã đọc
+    if (!notification.isRead) {
+      _markAsRead(notification);
+    } else {
+      _navigateToDetails(notification);
     }
   }
 
@@ -245,11 +153,7 @@ class _NotificationWidgetState extends State<NotificationWidget>
     }
   }
 
-  Widget _buildNotificationItem(NotificationModel notification) {
-    final bool isToday = notification.createdAt.day == DateTime.now().day &&
-        notification.createdAt.month == DateTime.now().month &&
-        notification.createdAt.year == DateTime.now().year;
-
+  Widget _buildNotificationItem(NotificationDto notification) {
     // Xác định icon dựa vào loại thông báo
     IconData notificationIcon;
     Color iconColor;
@@ -291,44 +195,28 @@ class _NotificationWidgetState extends State<NotificationWidget>
         return await showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Xác nhận'),
-              content: const Text('Bạn có chắc chắn muốn xóa thông báo này?'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text('Hủy'),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(true),
-                  child: const Text('Xóa'),
-                ),
-              ],
+            return WarningConfirmationDialog(
+              title: 'Xác nhận',
+              content: const Text('Bạn có chắc chắn muốn xóa\n thông báo này?'),
+              primaryButtonText: 'Xóa',
+              onPrimaryButtonPressed: () {
+                Navigator.of(context).pop(true);
+              },
+              secondaryButtonText: 'Hủy',
+              onSecondaryButtonPressed: () {
+                Navigator.of(context).pop(false);
+              },
             );
           },
         );
       },
       onDismissed: (direction) {
-        setState(() {
-          _allNotifications.removeWhere((item) => item.id == notification.id);
-          if (!notification.isRead) {
-            _unreadNotifications
-                .removeWhere((item) => item.id == notification.id);
-          }
-        });
-
-        // Ở đây sẽ là API call để xóa thông báo
-        // deleteNotification(notification.id);
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Đã xóa thông báo'),
-            duration: Duration(seconds: 2),
-          ),
-        );
+        context.read<NotificationBloc>().add(
+            NotificationEvent.deleteNotificationById(
+                notificationId: notification.id));
       },
       child: InkWell(
-        onTap: () => _navigateToDetails(notification),
+        onTap: () => _handleOnTap(notification),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
@@ -378,7 +266,8 @@ class _NotificationWidgetState extends State<NotificationWidget>
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          _formatTimeAgo(notification.createdAt),
+                          _formatTimeAgo(
+                              DateTime.parse(notification.createdAt)),
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey.shade600,
@@ -465,6 +354,95 @@ class _NotificationWidgetState extends State<NotificationWidget>
     return BlocListener<NotificationBloc, NotificationState>(
       listener: (context, state) {
         state.maybeWhen(
+          getNotificationsByUserIdInProgress: () {
+            setState(() {
+              _isLoading = true;
+            });
+          },
+          getNotificationsByUserIdSuccess: (notifications) {
+            setState(() {
+              _allNotifications = notifications;
+              _unreadNotifications = notifications
+                  .where((notification) => !notification.isRead)
+                  .toList();
+              _isLoading = false;
+            });
+          },
+          getNotificationsByUserIdFailure: (error) {
+            setState(() {
+              _isLoading = false;
+            });
+          },
+          markReadNotificationInProgress: () {},
+          markReadNotificationSuccess: (notification) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Đã đánh dấu thông báo là đã đọc'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+
+            _navigateToDetails(notification);
+            _loadNotifications();
+          },
+          markReadNotificationFailure: (error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(error),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+          },
+          markReadAllNotificationInProgress: () {
+            setState(() {
+              _isLoading = true;
+            });
+          },
+          markReadAllNotificationSuccess: () {
+            setState(() {
+              _isLoading = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Đã đánh dấu tất cả thông báo là đã đọc'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+            _loadNotifications();
+          },
+          markReadAllNotificationFailure: (error) {
+            setState(() {
+              _isLoading = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(error),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+          },
+          deleteNotificationByIdInProgress: () {
+            setState(() {
+              _isLoading = true;
+            });
+          },
+          deleteNotificationByIdSuccess: () {
+            setState(() {
+              _isLoading = false;
+            });
+            _loadNotifications();
+          },
+          deleteNotificationByIdFailure: (error) {
+            setState(() {
+              _isLoading = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(error),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+          },
           orElse: () {},
         );
       },

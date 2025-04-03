@@ -8,9 +8,13 @@ class NotificationEvent with _$NotificationEvent {
       _GetNotificationsByUserId;
 
   const factory NotificationEvent.markReadNotification({
-    required String notificationId,
+    required NotificationDto notification,
   }) = _MarkReadNotification;
 
   const factory NotificationEvent.markReadAllNotification() =
       _MarkReadAllNotification;
+
+  const factory NotificationEvent.deleteNotificationById({
+    required String notificationId,
+  }) = _DeleteNotificationById;
 }

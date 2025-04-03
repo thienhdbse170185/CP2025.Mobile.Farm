@@ -15,8 +15,9 @@ class NotificationState with _$NotificationState {
 
   const factory NotificationState.markReadNotificationInProgress() =
       _MarkReadNotificationInProgress;
-  const factory NotificationState.markReadNotificationSuccess() =
-      _MarkReadNotificationSuccess;
+  const factory NotificationState.markReadNotificationSuccess({
+    required NotificationDto notification,
+  }) = _MarkReadNotificationSuccess;
   const factory NotificationState.markReadNotificationFailure({
     required String error,
   }) = _MarkReadNotificationFailure;
@@ -28,4 +29,12 @@ class NotificationState with _$NotificationState {
   const factory NotificationState.markReadAllNotificationFailure({
     required String error,
   }) = _MarkReadAllNotificationFailure;
+
+  const factory NotificationState.deleteNotificationByIdInProgress() =
+      _DeleteNotificationByIdInProgress;
+  const factory NotificationState.deleteNotificationByIdSuccess() =
+      _DeleteNotificationByIdSuccess;
+  const factory NotificationState.deleteNotificationByIdFailure({
+    required String error,
+  }) = _DeleteNotificationByIdFailure;
 }
