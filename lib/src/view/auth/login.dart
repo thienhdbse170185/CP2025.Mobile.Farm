@@ -67,10 +67,6 @@ class _LoginWidgetState extends State<LoginWidget> {
               },
               success: () {
                 log('[LOGIN] Đăng nhập thành công!');
-                // context.go(RouteName.otpVerification);
-                // context
-                //     .read<UserBloc>()
-                //     .add(const UserEvent.sendOTP(isResend: false));
                 context.go(RouteName.home);
               },
               failure: (message) {
@@ -120,104 +116,150 @@ class _LoginWidgetState extends State<LoginWidget> {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: const Text("Đăng nhập nhân viên"),
-          backgroundColor: Colors.white,
-        ),
-        body: SingleChildScrollView(
+        body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                      child: Image.asset(
-                    'assets/images/welcome.jpg',
-                    height: 180,
-                  )),
-                  const SizedBox(height: 16),
-                  const Text("Chào mừng trở lại!",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 8),
-                  const Text("Vui lòng đăng nhập để tiếp tục"),
-                  const SizedBox(height: 24),
-                  TextFieldRequired(
-                    label: 'Tên tài khoản',
-                    hintText: 'Nhập tên tài khoản',
-                    controller: _usernameController,
-                    isDisabled: false,
-                    onTap: () {
-                      setState(() {
-                        _isWrongCredentials = false;
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFieldRequired(
-                    onTap: () {
-                      setState(() {
-                        _isWrongCredentials = false;
-                      });
-                    },
-                    label: 'Mật khẩu',
-                    hintText: 'Nhập mật khẩu',
-                    isDisabled: false,
-                    controller: _passwordController,
-                    isObscureText: !_isPasswordVisible,
-                    isPassword: true,
-                    suffixIcon: IconButton(
-                      icon: Icon(_isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                      onPressed: () {
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  if (_isWrongCredentials)
-                    const Text(
-                      "Tên tài khoản hoặc mật khẩu không chính xác",
-                      style: TextStyle(color: Colors.red, fontSize: 13),
-                    ),
-                  const SizedBox(height: 4),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () => context.push(RouteName.forgotPassword),
-                      child: const Text("Quên mật khẩu?",
-                          style: TextStyle(color: Colors.blue)),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FilledButton(
-                      onPressed: _isProcessing ? null : submit,
-                      child: _isProcessing
-                          ? const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2.5,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 32),
+                        Center(
+                          child: Image.asset(
+                            'assets/images/LOGOOFFICIAL.png',
+                            height: 140,
+                            width: 140,
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        const Text(
+                          "Đăng nhập",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF1E3A8A),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        const Text(
+                          "Vui lòng đăng nhập để tiếp tục",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF64748B),
+                          ),
+                        ),
+                        const SizedBox(height: 36),
+                        TextFieldRequired(
+                          label: 'Tên tài khoản',
+                          hintText: 'Nhập tên tài khoản',
+                          controller: _usernameController,
+                          isDisabled: false,
+                          onTap: () {
+                            setState(() {
+                              _isWrongCredentials = false;
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextFieldRequired(
+                          onTap: () {
+                            setState(() {
+                              _isWrongCredentials = false;
+                            });
+                          },
+                          label: 'Mật khẩu',
+                          hintText: 'Nhập mật khẩu',
+                          isDisabled: false,
+                          controller: _passwordController,
+                          isObscureText: !_isPasswordVisible,
+                          isPassword: true,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        if (_isWrongCredentials)
+                          const Padding(
+                            padding: EdgeInsets.only(left: 4),
+                            child: Text(
+                              "Tên tài khoản hoặc mật khẩu không chính xác",
+                              style: TextStyle(color: Colors.red, fontSize: 13),
+                            ),
+                          ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () =>
+                                context.push(RouteName.forgotPassword),
+                            child: const Text(
+                              "Quên mật khẩu?",
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: FilledButton(
+                            style: FilledButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            onPressed: _isProcessing ? null : submit,
+                            child: _isProcessing
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2.5,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        "Đang đăng nhập...",
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  )
+                                : const Text(
+                                    "Đăng nhập",
+                                    style: TextStyle(fontSize: 16),
                                   ),
-                                ),
-                                SizedBox(width: 10),
-                                Text("Đang đăng nhập..."),
-                              ],
-                            )
-                          : const Text("Đăng nhập"),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Image.asset(
+                    'assets/images/thumbnail.png',
+                    width: double.infinity,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,8 @@ class EggSaleLogWidget extends StatefulWidget {
   final ValueChanged<int>? onCountChanged; // Make nullable
   final TaskHaveCageName task;
   final bool readOnly; // Add readOnly flag
+  final SaleDetailLogDto? saleDetailLog;
+  final ValueChanged<String>? onPriceChanged;
 
   const EggSaleLogWidget({
     super.key,
@@ -35,6 +38,8 @@ class EggSaleLogWidget extends StatefulWidget {
     required this.task,
     this.readOnly = false, // Default to false
     required this.logController,
+    this.saleDetailLog,
+    this.onPriceChanged,
   });
 
   @override
@@ -42,6 +47,28 @@ class EggSaleLogWidget extends StatefulWidget {
 }
 
 class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.saleDetailLog != null) {
+      widget.countEggSellController.text =
+          widget.saleDetailLog?.quantity.toString() ?? '0';
+      // Format the value with commas
+      final formatter = NumberFormat('#,###');
+      final newValue = formatter.format(widget.saleDetailLog?.unitPrice);
+
+      // Update the controller with the formatted value
+      widget.priceEggSellController.value = TextEditingValue(
+        text: newValue,
+        selection: TextSelection.collapsed(offset: newValue.length),
+      );
+      // widget.priceEggSellController.text =
+      //     widget.saleDetailLog?.unitPrice.toString() ?? '0';
+      widget.dateEggSellController.text = DateFormat('dd/MM/yyyy')
+          .format(DateTime.parse(widget.saleDetailLog?.saleDate ?? ''));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -283,6 +310,7 @@ class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
             helperText: 'Giá tiền trên 1 quả trứng',
             filled: true,
             fillColor: isEditable ? Colors.white : Colors.grey[100],
+            errorText: _validatePrice(widget.priceEggSellController.text),
           ),
           onChanged: (value) {
             if (value.isNotEmpty) {
@@ -294,14 +322,44 @@ class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
                   text: newValue,
                   selection: TextSelection.collapsed(offset: newValue.length),
                 );
+
+                // Trigger the callback with the clean value (for validation)
+                if (widget.onPriceChanged != null) {
+                  widget.onPriceChanged!(newValue);
+                }
+
+                // Force rebuild to update validation
+                setState(() {});
               } catch (e) {
                 // If parsing fails, keep the current value
               }
+            } else {
+              // Force rebuild to update validation when field is cleared
+              setState(() {});
             }
           },
         ),
       ],
     );
+  }
+
+  String? _validatePrice(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Vui lòng nhập giá tiền';
+    }
+
+    try {
+      final cleanValue = value.replaceAll(',', '');
+      final parsedValue = int.parse(cleanValue);
+
+      if (parsedValue < 1000) {
+        return 'Giá tiền phải lớn hơn 1,000 VNĐ';
+      }
+    } catch (e) {
+      return 'Vui lòng nhập giá tiền hợp lệ';
+    }
+
+    return null;
   }
 
   Widget _buildDateInputSection(BuildContext context, bool isEditable) {
@@ -431,13 +489,6 @@ class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
                                   value: widget.farmingBatch?.name ?? 'N/A',
                                   icon: Icons.assignment,
                                 ),
-                                // _buildInfoItem(
-                                //   context: context,
-                                //   label: 'Loại vật nuôi',
-                                //   value:
-                                //       widget.farmingBatch?.species ?? 'N/A',
-                                //   icon: Icons.pets,
-                                // ),
                               ],
                             ),
                           ],

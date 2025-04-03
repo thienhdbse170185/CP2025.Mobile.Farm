@@ -290,7 +290,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
   bool _canCompleteTask() {
     return canCompleteTask(
-      taskStatus: taskStatus,
+      taskStatus: widget.task.status,
       task: widget.task,
       areAnyMedicationsChecked: _areAnyMedicationsChecked(),
       isIsolationFed: _isIsolationFed,
@@ -858,6 +858,12 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 if (widget.task.taskType.taskTypeId ==
                         TaskTypeDataConstant.vaccin &&
                     widget.task.status == StatusDataConstant.inProgress) {
+                  int realQuantity = (growthStage.quantity ?? 0) -
+                      (farmingBatch?.affectedQuantity ?? 0);
+                  setState(() {
+                    _countAnimalVaccineController.text =
+                        realQuantity.toString();
+                  });
                   context
                       .read<VaccineScheduleCubit>()
                       .getVaccineScheduleByStageId(
@@ -1745,6 +1751,15 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                           _countEggSellController.text = count.toString();
                         });
                       },
+                onPriceChanged: readOnly
+                    ? null
+                    : (price) {
+                        setState(() {
+                          _priceEggSellController.text = price.toString();
+                        });
+                      },
+                readOnly: readOnly,
+                saleDetailLog: saleDetailLog,
                 task: widget.task,
                 logController: logController,
               )
@@ -1782,6 +1797,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           widget.task.hasAnimalDesease == true &&
           !_isIsolationFed) {
         return const Text('Vui lòng xác nhận đã cho ăn ở chuồng cách ly');
+      } else if (widget.task.taskType.taskTypeId ==
+              TaskTypeDataConstant.vaccin &&
+          vaccineSchedule == null) {
+        return const Text('Thông tin lịch tiêm trống');
       } else {
         return const Text('Xác nhận hoàn thành');
       }
@@ -1985,6 +2004,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             TaskTypeDataConstant.vaccin) {
           return TaskValidation.validateVaccineLog(
             countAnimalVaccineController: _countAnimalVaccineController,
+            vaccineSchedule: vaccineSchedule,
           );
         } else if (widget.task.taskType.taskTypeId ==
             TaskTypeDataConstant.eggHarvest) {

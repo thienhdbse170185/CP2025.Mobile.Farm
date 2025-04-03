@@ -83,10 +83,8 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
         const SizedBox(height: 16),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
-        if (widget.vaccineSchedule != null) ...[
-          _buildVaccineInfo(context),
-          const SizedBox(height: 24),
-        ],
+        _buildVaccineInfo(context),
+        const SizedBox(height: 24),
         _buildVaccineFormSection(context),
       ],
     );
@@ -138,14 +136,6 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
             ),
           ),
           const SizedBox(width: 24),
-          // Expanded(
-          //   child: _buildInfoItem(
-          //     context: context,
-          //     label: 'Ngày báo cáo',
-          //     value: DateFormat('dd/MM/yyyy').format(TimeUtils.customNow()),
-          //     icon: Icons.today,
-          //   ),
-          // ),
           Expanded(
             child: _buildInfoItem(
                 context: context,
@@ -159,6 +149,71 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
   }
 
   Widget _buildVaccineInfo(BuildContext context) {
+    if (widget.vaccineSchedule == null) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.grey[100],
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: Theme.of(context).colorScheme.outline.withOpacity(0.3),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  color: Theme.of(context).colorScheme.error,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Thông tin về vắc xin',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                ),
+              ],
+            ),
+            const Divider(height: 24),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.warning_amber_rounded,
+                      color: Theme.of(context).colorScheme.error,
+                      size: 40,
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      'Không có thông tin lịch tiêm vắc xin',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Vui lòng kiểm tra lại thông tin về lịch tiêm vắc xin.',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -186,8 +241,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                     ),
               ),
               const Spacer(),
-              // Thêm nút xem chi tiết
-              _buildDetailButton(context),
+              if (widget.vaccine != null) _buildDetailButton(context),
             ],
           ),
           const Divider(height: 24),
@@ -265,7 +319,6 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
     );
   }
 
-  // Tạo nút xem chi tiết
   Widget _buildDetailButton(BuildContext context) {
     return TextButton.icon(
       onPressed: widget.onVaccineDetailPressed,
@@ -468,7 +521,6 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
   }
 
   Widget _buildTotalPriceSection(BuildContext context) {
-    // Định dạng tiền Việt Nam
     String formatCurrency(int amount) {
       final formatter = NumberFormat('#,###', 'vi_VN');
       return '${formatter.format(amount)} đ';
@@ -531,7 +583,6 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                 ],
               ),
               const SizedBox(height: 4),
-              // Hiển thị số lượng
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -552,7 +603,6 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                 ],
               ),
               const Divider(height: 16),
-              // Hiển thị tổng tiền
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

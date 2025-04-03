@@ -486,11 +486,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                             task?.taskType.taskTypeId ==
                                 TaskTypeDataConstant.sellAnimal ||
                             task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.weighing ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.eggHarvest ||
-                            task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.sellEgg)
+                                TaskTypeDataConstant.weighing)
                         ? () {
                             context.push(RouteName.taskReport, extra: {
                               'task': task,

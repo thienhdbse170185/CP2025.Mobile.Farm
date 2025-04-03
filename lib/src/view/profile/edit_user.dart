@@ -191,7 +191,7 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
                   if (context.mounted) Navigator.pop(context);
                 }
               },
-              icon: LinearIcons.arrowBackIcon,
+              icon: Icon(Icons.arrow_back),
             ),
           ),
           body: Padding(
