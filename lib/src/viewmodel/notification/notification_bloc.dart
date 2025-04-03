@@ -15,6 +15,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     on<_GetNotificationsByUserId>(_getNotificationsByUserId);
     on<_MarkReadNotification>(_markReadNotification);
     on<_MarkReadAllNotification>(_markReadAllNotification);
+    on<_DeleteNotificationById>(_deleteNotificationById);
   }
 
   Future<void> _getNotificationsByUserId(
@@ -42,8 +43,9 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     emit(const NotificationState.markReadNotificationInProgress());
     try {
       await notificationRepository.markReadNotification(
-          notificationId: event.notificationId);
-      emit(const NotificationState.markReadNotificationSuccess());
+          notificationId: event.notification.id);
+      emit(NotificationState.markReadNotificationSuccess(
+          notification: event.notification));
     } catch (e) {
       emit(NotificationState.markReadNotificationFailure(error: e.toString()));
     }
@@ -62,6 +64,21 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     } catch (e) {
       emit(NotificationState.markReadAllNotificationFailure(
           error: e.toString()));
+    }
+  }
+
+  Future<void> _deleteNotificationById(
+    _DeleteNotificationById event,
+    Emitter<NotificationState> emit,
+  ) async {
+    emit(const NotificationState.deleteNotificationByIdInProgress());
+    try {
+      await notificationRepository.deleteNotificationById(
+          notificationId: event.notificationId);
+      emit(const NotificationState.deleteNotificationByIdSuccess());
+    } catch (e) {
+      emit(
+          NotificationState.deleteNotificationByIdFailure(error: e.toString()));
     }
   }
 }

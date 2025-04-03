@@ -20,24 +20,28 @@ mixin _$NotificationEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNotificationsByUserId,
-    required TResult Function(String notificationId) markReadNotification,
+    required TResult Function(NotificationDto notification)
+        markReadNotification,
     required TResult Function() markReadAllNotification,
+    required TResult Function(String notificationId) deleteNotificationById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNotificationsByUserId,
-    TResult? Function(String notificationId)? markReadNotification,
+    TResult? Function(NotificationDto notification)? markReadNotification,
     TResult? Function()? markReadAllNotification,
+    TResult? Function(String notificationId)? deleteNotificationById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNotificationsByUserId,
-    TResult Function(String notificationId)? markReadNotification,
+    TResult Function(NotificationDto notification)? markReadNotification,
     TResult Function()? markReadAllNotification,
+    TResult Function(String notificationId)? deleteNotificationById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,8 @@ mixin _$NotificationEvent {
     required TResult Function(_MarkReadNotification value) markReadNotification,
     required TResult Function(_MarkReadAllNotification value)
         markReadAllNotification,
+    required TResult Function(_DeleteNotificationById value)
+        deleteNotificationById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +64,7 @@ mixin _$NotificationEvent {
         getNotificationsByUserId,
     TResult? Function(_MarkReadNotification value)? markReadNotification,
     TResult? Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult? Function(_DeleteNotificationById value)? deleteNotificationById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +73,7 @@ mixin _$NotificationEvent {
     TResult Function(_GetNotificationsByUserId value)? getNotificationsByUserId,
     TResult Function(_MarkReadNotification value)? markReadNotification,
     TResult Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult Function(_DeleteNotificationById value)? deleteNotificationById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,8 +143,10 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNotificationsByUserId,
-    required TResult Function(String notificationId) markReadNotification,
+    required TResult Function(NotificationDto notification)
+        markReadNotification,
     required TResult Function() markReadAllNotification,
+    required TResult Function(String notificationId) deleteNotificationById,
   }) {
     return started();
   }
@@ -146,8 +156,9 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNotificationsByUserId,
-    TResult? Function(String notificationId)? markReadNotification,
+    TResult? Function(NotificationDto notification)? markReadNotification,
     TResult? Function()? markReadAllNotification,
+    TResult? Function(String notificationId)? deleteNotificationById,
   }) {
     return started?.call();
   }
@@ -157,8 +168,9 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNotificationsByUserId,
-    TResult Function(String notificationId)? markReadNotification,
+    TResult Function(NotificationDto notification)? markReadNotification,
     TResult Function()? markReadAllNotification,
+    TResult Function(String notificationId)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -176,6 +188,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(_MarkReadNotification value) markReadNotification,
     required TResult Function(_MarkReadAllNotification value)
         markReadAllNotification,
+    required TResult Function(_DeleteNotificationById value)
+        deleteNotificationById,
   }) {
     return started(this);
   }
@@ -188,6 +202,7 @@ class _$StartedImpl implements _Started {
         getNotificationsByUserId,
     TResult? Function(_MarkReadNotification value)? markReadNotification,
     TResult? Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult? Function(_DeleteNotificationById value)? deleteNotificationById,
   }) {
     return started?.call(this);
   }
@@ -199,6 +214,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_GetNotificationsByUserId value)? getNotificationsByUserId,
     TResult Function(_MarkReadNotification value)? markReadNotification,
     TResult Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult Function(_DeleteNotificationById value)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -259,8 +275,10 @@ class _$GetNotificationsByUserIdImpl implements _GetNotificationsByUserId {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNotificationsByUserId,
-    required TResult Function(String notificationId) markReadNotification,
+    required TResult Function(NotificationDto notification)
+        markReadNotification,
     required TResult Function() markReadAllNotification,
+    required TResult Function(String notificationId) deleteNotificationById,
   }) {
     return getNotificationsByUserId();
   }
@@ -270,8 +288,9 @@ class _$GetNotificationsByUserIdImpl implements _GetNotificationsByUserId {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNotificationsByUserId,
-    TResult? Function(String notificationId)? markReadNotification,
+    TResult? Function(NotificationDto notification)? markReadNotification,
     TResult? Function()? markReadAllNotification,
+    TResult? Function(String notificationId)? deleteNotificationById,
   }) {
     return getNotificationsByUserId?.call();
   }
@@ -281,8 +300,9 @@ class _$GetNotificationsByUserIdImpl implements _GetNotificationsByUserId {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNotificationsByUserId,
-    TResult Function(String notificationId)? markReadNotification,
+    TResult Function(NotificationDto notification)? markReadNotification,
     TResult Function()? markReadAllNotification,
+    TResult Function(String notificationId)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserId != null) {
@@ -300,6 +320,8 @@ class _$GetNotificationsByUserIdImpl implements _GetNotificationsByUserId {
     required TResult Function(_MarkReadNotification value) markReadNotification,
     required TResult Function(_MarkReadAllNotification value)
         markReadAllNotification,
+    required TResult Function(_DeleteNotificationById value)
+        deleteNotificationById,
   }) {
     return getNotificationsByUserId(this);
   }
@@ -312,6 +334,7 @@ class _$GetNotificationsByUserIdImpl implements _GetNotificationsByUserId {
         getNotificationsByUserId,
     TResult? Function(_MarkReadNotification value)? markReadNotification,
     TResult? Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult? Function(_DeleteNotificationById value)? deleteNotificationById,
   }) {
     return getNotificationsByUserId?.call(this);
   }
@@ -323,6 +346,7 @@ class _$GetNotificationsByUserIdImpl implements _GetNotificationsByUserId {
     TResult Function(_GetNotificationsByUserId value)? getNotificationsByUserId,
     TResult Function(_MarkReadNotification value)? markReadNotification,
     TResult Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult Function(_DeleteNotificationById value)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserId != null) {
@@ -342,7 +366,9 @@ abstract class _$$MarkReadNotificationImplCopyWith<$Res> {
           $Res Function(_$MarkReadNotificationImpl) then) =
       __$$MarkReadNotificationImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String notificationId});
+  $Res call({NotificationDto notification});
+
+  $NotificationDtoCopyWith<$Res> get notification;
 }
 
 /// @nodoc
@@ -358,28 +384,38 @@ class __$$MarkReadNotificationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notificationId = null,
+    Object? notification = null,
   }) {
     return _then(_$MarkReadNotificationImpl(
-      notificationId: null == notificationId
-          ? _value.notificationId
-          : notificationId // ignore: cast_nullable_to_non_nullable
-              as String,
+      notification: null == notification
+          ? _value.notification
+          : notification // ignore: cast_nullable_to_non_nullable
+              as NotificationDto,
     ));
+  }
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NotificationDtoCopyWith<$Res> get notification {
+    return $NotificationDtoCopyWith<$Res>(_value.notification, (value) {
+      return _then(_value.copyWith(notification: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$MarkReadNotificationImpl implements _MarkReadNotification {
-  const _$MarkReadNotificationImpl({required this.notificationId});
+  const _$MarkReadNotificationImpl({required this.notification});
 
   @override
-  final String notificationId;
+  final NotificationDto notification;
 
   @override
   String toString() {
-    return 'NotificationEvent.markReadNotification(notificationId: $notificationId)';
+    return 'NotificationEvent.markReadNotification(notification: $notification)';
   }
 
   @override
@@ -387,12 +423,12 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MarkReadNotificationImpl &&
-            (identical(other.notificationId, notificationId) ||
-                other.notificationId == notificationId));
+            (identical(other.notification, notification) ||
+                other.notification == notification));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, notificationId);
+  int get hashCode => Object.hash(runtimeType, notification);
 
   /// Create a copy of NotificationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -409,10 +445,12 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNotificationsByUserId,
-    required TResult Function(String notificationId) markReadNotification,
+    required TResult Function(NotificationDto notification)
+        markReadNotification,
     required TResult Function() markReadAllNotification,
+    required TResult Function(String notificationId) deleteNotificationById,
   }) {
-    return markReadNotification(notificationId);
+    return markReadNotification(notification);
   }
 
   @override
@@ -420,10 +458,11 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNotificationsByUserId,
-    TResult? Function(String notificationId)? markReadNotification,
+    TResult? Function(NotificationDto notification)? markReadNotification,
     TResult? Function()? markReadAllNotification,
+    TResult? Function(String notificationId)? deleteNotificationById,
   }) {
-    return markReadNotification?.call(notificationId);
+    return markReadNotification?.call(notification);
   }
 
   @override
@@ -431,12 +470,13 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNotificationsByUserId,
-    TResult Function(String notificationId)? markReadNotification,
+    TResult Function(NotificationDto notification)? markReadNotification,
     TResult Function()? markReadAllNotification,
+    TResult Function(String notificationId)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (markReadNotification != null) {
-      return markReadNotification(notificationId);
+      return markReadNotification(notification);
     }
     return orElse();
   }
@@ -450,6 +490,8 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
     required TResult Function(_MarkReadNotification value) markReadNotification,
     required TResult Function(_MarkReadAllNotification value)
         markReadAllNotification,
+    required TResult Function(_DeleteNotificationById value)
+        deleteNotificationById,
   }) {
     return markReadNotification(this);
   }
@@ -462,6 +504,7 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
         getNotificationsByUserId,
     TResult? Function(_MarkReadNotification value)? markReadNotification,
     TResult? Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult? Function(_DeleteNotificationById value)? deleteNotificationById,
   }) {
     return markReadNotification?.call(this);
   }
@@ -473,6 +516,7 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
     TResult Function(_GetNotificationsByUserId value)? getNotificationsByUserId,
     TResult Function(_MarkReadNotification value)? markReadNotification,
     TResult Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult Function(_DeleteNotificationById value)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (markReadNotification != null) {
@@ -483,10 +527,11 @@ class _$MarkReadNotificationImpl implements _MarkReadNotification {
 }
 
 abstract class _MarkReadNotification implements NotificationEvent {
-  const factory _MarkReadNotification({required final String notificationId}) =
+  const factory _MarkReadNotification(
+          {required final NotificationDto notification}) =
       _$MarkReadNotificationImpl;
 
-  String get notificationId;
+  NotificationDto get notification;
 
   /// Create a copy of NotificationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -541,8 +586,10 @@ class _$MarkReadAllNotificationImpl implements _MarkReadAllNotification {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNotificationsByUserId,
-    required TResult Function(String notificationId) markReadNotification,
+    required TResult Function(NotificationDto notification)
+        markReadNotification,
     required TResult Function() markReadAllNotification,
+    required TResult Function(String notificationId) deleteNotificationById,
   }) {
     return markReadAllNotification();
   }
@@ -552,8 +599,9 @@ class _$MarkReadAllNotificationImpl implements _MarkReadAllNotification {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNotificationsByUserId,
-    TResult? Function(String notificationId)? markReadNotification,
+    TResult? Function(NotificationDto notification)? markReadNotification,
     TResult? Function()? markReadAllNotification,
+    TResult? Function(String notificationId)? deleteNotificationById,
   }) {
     return markReadAllNotification?.call();
   }
@@ -563,8 +611,9 @@ class _$MarkReadAllNotificationImpl implements _MarkReadAllNotification {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNotificationsByUserId,
-    TResult Function(String notificationId)? markReadNotification,
+    TResult Function(NotificationDto notification)? markReadNotification,
     TResult Function()? markReadAllNotification,
+    TResult Function(String notificationId)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (markReadAllNotification != null) {
@@ -582,6 +631,8 @@ class _$MarkReadAllNotificationImpl implements _MarkReadAllNotification {
     required TResult Function(_MarkReadNotification value) markReadNotification,
     required TResult Function(_MarkReadAllNotification value)
         markReadAllNotification,
+    required TResult Function(_DeleteNotificationById value)
+        deleteNotificationById,
   }) {
     return markReadAllNotification(this);
   }
@@ -594,6 +645,7 @@ class _$MarkReadAllNotificationImpl implements _MarkReadAllNotification {
         getNotificationsByUserId,
     TResult? Function(_MarkReadNotification value)? markReadNotification,
     TResult? Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult? Function(_DeleteNotificationById value)? deleteNotificationById,
   }) {
     return markReadAllNotification?.call(this);
   }
@@ -605,6 +657,7 @@ class _$MarkReadAllNotificationImpl implements _MarkReadAllNotification {
     TResult Function(_GetNotificationsByUserId value)? getNotificationsByUserId,
     TResult Function(_MarkReadNotification value)? markReadNotification,
     TResult Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult Function(_DeleteNotificationById value)? deleteNotificationById,
     required TResult orElse(),
   }) {
     if (markReadAllNotification != null) {
@@ -619,6 +672,174 @@ abstract class _MarkReadAllNotification implements NotificationEvent {
 }
 
 /// @nodoc
+abstract class _$$DeleteNotificationByIdImplCopyWith<$Res> {
+  factory _$$DeleteNotificationByIdImplCopyWith(
+          _$DeleteNotificationByIdImpl value,
+          $Res Function(_$DeleteNotificationByIdImpl) then) =
+      __$$DeleteNotificationByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String notificationId});
+}
+
+/// @nodoc
+class __$$DeleteNotificationByIdImplCopyWithImpl<$Res>
+    extends _$NotificationEventCopyWithImpl<$Res, _$DeleteNotificationByIdImpl>
+    implements _$$DeleteNotificationByIdImplCopyWith<$Res> {
+  __$$DeleteNotificationByIdImplCopyWithImpl(
+      _$DeleteNotificationByIdImpl _value,
+      $Res Function(_$DeleteNotificationByIdImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? notificationId = null,
+  }) {
+    return _then(_$DeleteNotificationByIdImpl(
+      notificationId: null == notificationId
+          ? _value.notificationId
+          : notificationId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteNotificationByIdImpl implements _DeleteNotificationById {
+  const _$DeleteNotificationByIdImpl({required this.notificationId});
+
+  @override
+  final String notificationId;
+
+  @override
+  String toString() {
+    return 'NotificationEvent.deleteNotificationById(notificationId: $notificationId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteNotificationByIdImpl &&
+            (identical(other.notificationId, notificationId) ||
+                other.notificationId == notificationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, notificationId);
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteNotificationByIdImplCopyWith<_$DeleteNotificationByIdImpl>
+      get copyWith => __$$DeleteNotificationByIdImplCopyWithImpl<
+          _$DeleteNotificationByIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getNotificationsByUserId,
+    required TResult Function(NotificationDto notification)
+        markReadNotification,
+    required TResult Function() markReadAllNotification,
+    required TResult Function(String notificationId) deleteNotificationById,
+  }) {
+    return deleteNotificationById(notificationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getNotificationsByUserId,
+    TResult? Function(NotificationDto notification)? markReadNotification,
+    TResult? Function()? markReadAllNotification,
+    TResult? Function(String notificationId)? deleteNotificationById,
+  }) {
+    return deleteNotificationById?.call(notificationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getNotificationsByUserId,
+    TResult Function(NotificationDto notification)? markReadNotification,
+    TResult Function()? markReadAllNotification,
+    TResult Function(String notificationId)? deleteNotificationById,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationById != null) {
+      return deleteNotificationById(notificationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetNotificationsByUserId value)
+        getNotificationsByUserId,
+    required TResult Function(_MarkReadNotification value) markReadNotification,
+    required TResult Function(_MarkReadAllNotification value)
+        markReadAllNotification,
+    required TResult Function(_DeleteNotificationById value)
+        deleteNotificationById,
+  }) {
+    return deleteNotificationById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetNotificationsByUserId value)?
+        getNotificationsByUserId,
+    TResult? Function(_MarkReadNotification value)? markReadNotification,
+    TResult? Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult? Function(_DeleteNotificationById value)? deleteNotificationById,
+  }) {
+    return deleteNotificationById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetNotificationsByUserId value)? getNotificationsByUserId,
+    TResult Function(_MarkReadNotification value)? markReadNotification,
+    TResult Function(_MarkReadAllNotification value)? markReadAllNotification,
+    TResult Function(_DeleteNotificationById value)? deleteNotificationById,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationById != null) {
+      return deleteNotificationById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteNotificationById implements NotificationEvent {
+  const factory _DeleteNotificationById(
+      {required final String notificationId}) = _$DeleteNotificationByIdImpl;
+
+  String get notificationId;
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeleteNotificationByIdImplCopyWith<_$DeleteNotificationByIdImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$NotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -628,11 +849,15 @@ mixin _$NotificationState {
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -643,11 +868,15 @@ mixin _$NotificationState {
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -658,11 +887,14 @@ mixin _$NotificationState {
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -687,6 +919,12 @@ mixin _$NotificationState {
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -710,6 +948,12 @@ mixin _$NotificationState {
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -733,6 +977,12 @@ mixin _$NotificationState {
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -806,11 +1056,15 @@ class _$InitialImpl implements _Initial {
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return initial();
   }
@@ -824,11 +1078,15 @@ class _$InitialImpl implements _Initial {
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return initial?.call();
   }
@@ -842,11 +1100,14 @@ class _$InitialImpl implements _Initial {
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -877,6 +1138,12 @@ class _$InitialImpl implements _Initial {
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return initial(this);
   }
@@ -903,6 +1170,12 @@ class _$InitialImpl implements _Initial {
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return initial?.call(this);
   }
@@ -929,6 +1202,12 @@ class _$InitialImpl implements _Initial {
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -994,11 +1273,15 @@ class _$GetNotificationsByUserIdInProgressImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdInProgress();
   }
@@ -1012,11 +1295,15 @@ class _$GetNotificationsByUserIdInProgressImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdInProgress?.call();
   }
@@ -1030,11 +1317,14 @@ class _$GetNotificationsByUserIdInProgressImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserIdInProgress != null) {
@@ -1065,6 +1355,12 @@ class _$GetNotificationsByUserIdInProgressImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdInProgress(this);
   }
@@ -1091,6 +1387,12 @@ class _$GetNotificationsByUserIdInProgressImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdInProgress?.call(this);
   }
@@ -1117,6 +1419,12 @@ class _$GetNotificationsByUserIdInProgressImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserIdInProgress != null) {
@@ -1221,11 +1529,15 @@ class _$GetNotificationsByUserIdSuccessImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdSuccess(notifications);
   }
@@ -1239,11 +1551,15 @@ class _$GetNotificationsByUserIdSuccessImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdSuccess?.call(notifications);
   }
@@ -1257,11 +1573,14 @@ class _$GetNotificationsByUserIdSuccessImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserIdSuccess != null) {
@@ -1292,6 +1611,12 @@ class _$GetNotificationsByUserIdSuccessImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdSuccess(this);
   }
@@ -1318,6 +1643,12 @@ class _$GetNotificationsByUserIdSuccessImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdSuccess?.call(this);
   }
@@ -1344,6 +1675,12 @@ class _$GetNotificationsByUserIdSuccessImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserIdSuccess != null) {
@@ -1448,11 +1785,15 @@ class _$GetNotificationsByUserIdFailureImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdFailure(error);
   }
@@ -1466,11 +1807,15 @@ class _$GetNotificationsByUserIdFailureImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdFailure?.call(error);
   }
@@ -1484,11 +1829,14 @@ class _$GetNotificationsByUserIdFailureImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserIdFailure != null) {
@@ -1519,6 +1867,12 @@ class _$GetNotificationsByUserIdFailureImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdFailure(this);
   }
@@ -1545,6 +1899,12 @@ class _$GetNotificationsByUserIdFailureImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return getNotificationsByUserIdFailure?.call(this);
   }
@@ -1571,6 +1931,12 @@ class _$GetNotificationsByUserIdFailureImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (getNotificationsByUserIdFailure != null) {
@@ -1646,11 +2012,15 @@ class _$MarkReadNotificationInProgressImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return markReadNotificationInProgress();
   }
@@ -1664,11 +2034,15 @@ class _$MarkReadNotificationInProgressImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return markReadNotificationInProgress?.call();
   }
@@ -1682,11 +2056,14 @@ class _$MarkReadNotificationInProgressImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadNotificationInProgress != null) {
@@ -1717,6 +2094,12 @@ class _$MarkReadNotificationInProgressImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return markReadNotificationInProgress(this);
   }
@@ -1743,6 +2126,12 @@ class _$MarkReadNotificationInProgressImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return markReadNotificationInProgress?.call(this);
   }
@@ -1769,6 +2158,12 @@ class _$MarkReadNotificationInProgressImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadNotificationInProgress != null) {
@@ -1789,6 +2184,10 @@ abstract class _$$MarkReadNotificationSuccessImplCopyWith<$Res> {
           _$MarkReadNotificationSuccessImpl value,
           $Res Function(_$MarkReadNotificationSuccessImpl) then) =
       __$$MarkReadNotificationSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({NotificationDto notification});
+
+  $NotificationDtoCopyWith<$Res> get notification;
 }
 
 /// @nodoc
@@ -1803,28 +2202,64 @@ class __$$MarkReadNotificationSuccessImplCopyWithImpl<$Res>
 
   /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? notification = null,
+  }) {
+    return _then(_$MarkReadNotificationSuccessImpl(
+      notification: null == notification
+          ? _value.notification
+          : notification // ignore: cast_nullable_to_non_nullable
+              as NotificationDto,
+    ));
+  }
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NotificationDtoCopyWith<$Res> get notification {
+    return $NotificationDtoCopyWith<$Res>(_value.notification, (value) {
+      return _then(_value.copyWith(notification: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$MarkReadNotificationSuccessImpl
     implements _MarkReadNotificationSuccess {
-  const _$MarkReadNotificationSuccessImpl();
+  const _$MarkReadNotificationSuccessImpl({required this.notification});
+
+  @override
+  final NotificationDto notification;
 
   @override
   String toString() {
-    return 'NotificationState.markReadNotificationSuccess()';
+    return 'NotificationState.markReadNotificationSuccess(notification: $notification)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MarkReadNotificationSuccessImpl);
+            other is _$MarkReadNotificationSuccessImpl &&
+            (identical(other.notification, notification) ||
+                other.notification == notification));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, notification);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MarkReadNotificationSuccessImplCopyWith<_$MarkReadNotificationSuccessImpl>
+      get copyWith => __$$MarkReadNotificationSuccessImplCopyWithImpl<
+          _$MarkReadNotificationSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1835,13 +2270,17 @@ class _$MarkReadNotificationSuccessImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
-    return markReadNotificationSuccess();
+    return markReadNotificationSuccess(notification);
   }
 
   @override
@@ -1853,13 +2292,17 @@ class _$MarkReadNotificationSuccessImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
-    return markReadNotificationSuccess?.call();
+    return markReadNotificationSuccess?.call(notification);
   }
 
   @override
@@ -1871,15 +2314,18 @@ class _$MarkReadNotificationSuccessImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadNotificationSuccess != null) {
-      return markReadNotificationSuccess();
+      return markReadNotificationSuccess(notification);
     }
     return orElse();
   }
@@ -1906,6 +2352,12 @@ class _$MarkReadNotificationSuccessImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return markReadNotificationSuccess(this);
   }
@@ -1932,6 +2384,12 @@ class _$MarkReadNotificationSuccessImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return markReadNotificationSuccess?.call(this);
   }
@@ -1958,6 +2416,12 @@ class _$MarkReadNotificationSuccessImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadNotificationSuccess != null) {
@@ -1968,8 +2432,17 @@ class _$MarkReadNotificationSuccessImpl
 }
 
 abstract class _MarkReadNotificationSuccess implements NotificationState {
-  const factory _MarkReadNotificationSuccess() =
+  const factory _MarkReadNotificationSuccess(
+          {required final NotificationDto notification}) =
       _$MarkReadNotificationSuccessImpl;
+
+  NotificationDto get notification;
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MarkReadNotificationSuccessImplCopyWith<_$MarkReadNotificationSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2051,11 +2524,15 @@ class _$MarkReadNotificationFailureImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return markReadNotificationFailure(error);
   }
@@ -2069,11 +2546,15 @@ class _$MarkReadNotificationFailureImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return markReadNotificationFailure?.call(error);
   }
@@ -2087,11 +2568,14 @@ class _$MarkReadNotificationFailureImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadNotificationFailure != null) {
@@ -2122,6 +2606,12 @@ class _$MarkReadNotificationFailureImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return markReadNotificationFailure(this);
   }
@@ -2148,6 +2638,12 @@ class _$MarkReadNotificationFailureImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return markReadNotificationFailure?.call(this);
   }
@@ -2174,6 +2670,12 @@ class _$MarkReadNotificationFailureImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadNotificationFailure != null) {
@@ -2248,11 +2750,15 @@ class _$MarkReadAllNotificationInProgressImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationInProgress();
   }
@@ -2266,11 +2772,15 @@ class _$MarkReadAllNotificationInProgressImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationInProgress?.call();
   }
@@ -2284,11 +2794,14 @@ class _$MarkReadAllNotificationInProgressImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadAllNotificationInProgress != null) {
@@ -2319,6 +2832,12 @@ class _$MarkReadAllNotificationInProgressImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationInProgress(this);
   }
@@ -2345,6 +2864,12 @@ class _$MarkReadAllNotificationInProgressImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationInProgress?.call(this);
   }
@@ -2371,6 +2896,12 @@ class _$MarkReadAllNotificationInProgressImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadAllNotificationInProgress != null) {
@@ -2437,11 +2968,15 @@ class _$MarkReadAllNotificationSuccessImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationSuccess();
   }
@@ -2455,11 +2990,15 @@ class _$MarkReadAllNotificationSuccessImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationSuccess?.call();
   }
@@ -2473,11 +3012,14 @@ class _$MarkReadAllNotificationSuccessImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadAllNotificationSuccess != null) {
@@ -2508,6 +3050,12 @@ class _$MarkReadAllNotificationSuccessImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationSuccess(this);
   }
@@ -2534,6 +3082,12 @@ class _$MarkReadAllNotificationSuccessImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationSuccess?.call(this);
   }
@@ -2560,6 +3114,12 @@ class _$MarkReadAllNotificationSuccessImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadAllNotificationSuccess != null) {
@@ -2654,11 +3214,15 @@ class _$MarkReadAllNotificationFailureImpl
         getNotificationsByUserIdSuccess,
     required TResult Function(String error) getNotificationsByUserIdFailure,
     required TResult Function() markReadNotificationInProgress,
-    required TResult Function() markReadNotificationSuccess,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
     required TResult Function(String error) markReadNotificationFailure,
     required TResult Function() markReadAllNotificationInProgress,
     required TResult Function() markReadAllNotificationSuccess,
     required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationFailure(error);
   }
@@ -2672,11 +3236,15 @@ class _$MarkReadAllNotificationFailureImpl
         getNotificationsByUserIdSuccess,
     TResult? Function(String error)? getNotificationsByUserIdFailure,
     TResult? Function()? markReadNotificationInProgress,
-    TResult? Function()? markReadNotificationSuccess,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
     TResult? Function(String error)? markReadNotificationFailure,
     TResult? Function()? markReadAllNotificationInProgress,
     TResult? Function()? markReadAllNotificationSuccess,
     TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationFailure?.call(error);
   }
@@ -2690,11 +3258,14 @@ class _$MarkReadAllNotificationFailureImpl
         getNotificationsByUserIdSuccess,
     TResult Function(String error)? getNotificationsByUserIdFailure,
     TResult Function()? markReadNotificationInProgress,
-    TResult Function()? markReadNotificationSuccess,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
     TResult Function(String error)? markReadNotificationFailure,
     TResult Function()? markReadAllNotificationInProgress,
     TResult Function()? markReadAllNotificationSuccess,
     TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadAllNotificationFailure != null) {
@@ -2725,6 +3296,12 @@ class _$MarkReadAllNotificationFailureImpl
         markReadAllNotificationSuccess,
     required TResult Function(_MarkReadAllNotificationFailure value)
         markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationFailure(this);
   }
@@ -2751,6 +3328,12 @@ class _$MarkReadAllNotificationFailureImpl
         markReadAllNotificationSuccess,
     TResult? Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
   }) {
     return markReadAllNotificationFailure?.call(this);
   }
@@ -2777,6 +3360,12 @@ class _$MarkReadAllNotificationFailureImpl
         markReadAllNotificationSuccess,
     TResult Function(_MarkReadAllNotificationFailure value)?
         markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
     required TResult orElse(),
   }) {
     if (markReadAllNotificationFailure != null) {
@@ -2797,5 +3386,696 @@ abstract class _MarkReadAllNotificationFailure implements NotificationState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MarkReadAllNotificationFailureImplCopyWith<
           _$MarkReadAllNotificationFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteNotificationByIdInProgressImplCopyWith<$Res> {
+  factory _$$DeleteNotificationByIdInProgressImplCopyWith(
+          _$DeleteNotificationByIdInProgressImpl value,
+          $Res Function(_$DeleteNotificationByIdInProgressImpl) then) =
+      __$$DeleteNotificationByIdInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeleteNotificationByIdInProgressImplCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res,
+        _$DeleteNotificationByIdInProgressImpl>
+    implements _$$DeleteNotificationByIdInProgressImplCopyWith<$Res> {
+  __$$DeleteNotificationByIdInProgressImplCopyWithImpl(
+      _$DeleteNotificationByIdInProgressImpl _value,
+      $Res Function(_$DeleteNotificationByIdInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$DeleteNotificationByIdInProgressImpl
+    implements _DeleteNotificationByIdInProgress {
+  const _$DeleteNotificationByIdInProgressImpl();
+
+  @override
+  String toString() {
+    return 'NotificationState.deleteNotificationByIdInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteNotificationByIdInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getNotificationsByUserIdInProgress,
+    required TResult Function(List<NotificationDto> notifications)
+        getNotificationsByUserIdSuccess,
+    required TResult Function(String error) getNotificationsByUserIdFailure,
+    required TResult Function() markReadNotificationInProgress,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
+    required TResult Function(String error) markReadNotificationFailure,
+    required TResult Function() markReadAllNotificationInProgress,
+    required TResult Function() markReadAllNotificationSuccess,
+    required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getNotificationsByUserIdInProgress,
+    TResult? Function(List<NotificationDto> notifications)?
+        getNotificationsByUserIdSuccess,
+    TResult? Function(String error)? getNotificationsByUserIdFailure,
+    TResult? Function()? markReadNotificationInProgress,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
+    TResult? Function(String error)? markReadNotificationFailure,
+    TResult? Function()? markReadAllNotificationInProgress,
+    TResult? Function()? markReadAllNotificationSuccess,
+    TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getNotificationsByUserIdInProgress,
+    TResult Function(List<NotificationDto> notifications)?
+        getNotificationsByUserIdSuccess,
+    TResult Function(String error)? getNotificationsByUserIdFailure,
+    TResult Function()? markReadNotificationInProgress,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
+    TResult Function(String error)? markReadNotificationFailure,
+    TResult Function()? markReadAllNotificationInProgress,
+    TResult Function()? markReadAllNotificationSuccess,
+    TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationByIdInProgress != null) {
+      return deleteNotificationByIdInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetNotificationsByUserIdInProgress value)
+        getNotificationsByUserIdInProgress,
+    required TResult Function(_GetNotificationsByUserIdSuccess value)
+        getNotificationsByUserIdSuccess,
+    required TResult Function(_GetNotificationsByUserIdFailure value)
+        getNotificationsByUserIdFailure,
+    required TResult Function(_MarkReadNotificationInProgress value)
+        markReadNotificationInProgress,
+    required TResult Function(_MarkReadNotificationSuccess value)
+        markReadNotificationSuccess,
+    required TResult Function(_MarkReadNotificationFailure value)
+        markReadNotificationFailure,
+    required TResult Function(_MarkReadAllNotificationInProgress value)
+        markReadAllNotificationInProgress,
+    required TResult Function(_MarkReadAllNotificationSuccess value)
+        markReadAllNotificationSuccess,
+    required TResult Function(_MarkReadAllNotificationFailure value)
+        markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetNotificationsByUserIdInProgress value)?
+        getNotificationsByUserIdInProgress,
+    TResult? Function(_GetNotificationsByUserIdSuccess value)?
+        getNotificationsByUserIdSuccess,
+    TResult? Function(_GetNotificationsByUserIdFailure value)?
+        getNotificationsByUserIdFailure,
+    TResult? Function(_MarkReadNotificationInProgress value)?
+        markReadNotificationInProgress,
+    TResult? Function(_MarkReadNotificationSuccess value)?
+        markReadNotificationSuccess,
+    TResult? Function(_MarkReadNotificationFailure value)?
+        markReadNotificationFailure,
+    TResult? Function(_MarkReadAllNotificationInProgress value)?
+        markReadAllNotificationInProgress,
+    TResult? Function(_MarkReadAllNotificationSuccess value)?
+        markReadAllNotificationSuccess,
+    TResult? Function(_MarkReadAllNotificationFailure value)?
+        markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetNotificationsByUserIdInProgress value)?
+        getNotificationsByUserIdInProgress,
+    TResult Function(_GetNotificationsByUserIdSuccess value)?
+        getNotificationsByUserIdSuccess,
+    TResult Function(_GetNotificationsByUserIdFailure value)?
+        getNotificationsByUserIdFailure,
+    TResult Function(_MarkReadNotificationInProgress value)?
+        markReadNotificationInProgress,
+    TResult Function(_MarkReadNotificationSuccess value)?
+        markReadNotificationSuccess,
+    TResult Function(_MarkReadNotificationFailure value)?
+        markReadNotificationFailure,
+    TResult Function(_MarkReadAllNotificationInProgress value)?
+        markReadAllNotificationInProgress,
+    TResult Function(_MarkReadAllNotificationSuccess value)?
+        markReadAllNotificationSuccess,
+    TResult Function(_MarkReadAllNotificationFailure value)?
+        markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationByIdInProgress != null) {
+      return deleteNotificationByIdInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteNotificationByIdInProgress implements NotificationState {
+  const factory _DeleteNotificationByIdInProgress() =
+      _$DeleteNotificationByIdInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$DeleteNotificationByIdSuccessImplCopyWith<$Res> {
+  factory _$$DeleteNotificationByIdSuccessImplCopyWith(
+          _$DeleteNotificationByIdSuccessImpl value,
+          $Res Function(_$DeleteNotificationByIdSuccessImpl) then) =
+      __$$DeleteNotificationByIdSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeleteNotificationByIdSuccessImplCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res,
+        _$DeleteNotificationByIdSuccessImpl>
+    implements _$$DeleteNotificationByIdSuccessImplCopyWith<$Res> {
+  __$$DeleteNotificationByIdSuccessImplCopyWithImpl(
+      _$DeleteNotificationByIdSuccessImpl _value,
+      $Res Function(_$DeleteNotificationByIdSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$DeleteNotificationByIdSuccessImpl
+    implements _DeleteNotificationByIdSuccess {
+  const _$DeleteNotificationByIdSuccessImpl();
+
+  @override
+  String toString() {
+    return 'NotificationState.deleteNotificationByIdSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteNotificationByIdSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getNotificationsByUserIdInProgress,
+    required TResult Function(List<NotificationDto> notifications)
+        getNotificationsByUserIdSuccess,
+    required TResult Function(String error) getNotificationsByUserIdFailure,
+    required TResult Function() markReadNotificationInProgress,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
+    required TResult Function(String error) markReadNotificationFailure,
+    required TResult Function() markReadAllNotificationInProgress,
+    required TResult Function() markReadAllNotificationSuccess,
+    required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getNotificationsByUserIdInProgress,
+    TResult? Function(List<NotificationDto> notifications)?
+        getNotificationsByUserIdSuccess,
+    TResult? Function(String error)? getNotificationsByUserIdFailure,
+    TResult? Function()? markReadNotificationInProgress,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
+    TResult? Function(String error)? markReadNotificationFailure,
+    TResult? Function()? markReadAllNotificationInProgress,
+    TResult? Function()? markReadAllNotificationSuccess,
+    TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getNotificationsByUserIdInProgress,
+    TResult Function(List<NotificationDto> notifications)?
+        getNotificationsByUserIdSuccess,
+    TResult Function(String error)? getNotificationsByUserIdFailure,
+    TResult Function()? markReadNotificationInProgress,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
+    TResult Function(String error)? markReadNotificationFailure,
+    TResult Function()? markReadAllNotificationInProgress,
+    TResult Function()? markReadAllNotificationSuccess,
+    TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationByIdSuccess != null) {
+      return deleteNotificationByIdSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetNotificationsByUserIdInProgress value)
+        getNotificationsByUserIdInProgress,
+    required TResult Function(_GetNotificationsByUserIdSuccess value)
+        getNotificationsByUserIdSuccess,
+    required TResult Function(_GetNotificationsByUserIdFailure value)
+        getNotificationsByUserIdFailure,
+    required TResult Function(_MarkReadNotificationInProgress value)
+        markReadNotificationInProgress,
+    required TResult Function(_MarkReadNotificationSuccess value)
+        markReadNotificationSuccess,
+    required TResult Function(_MarkReadNotificationFailure value)
+        markReadNotificationFailure,
+    required TResult Function(_MarkReadAllNotificationInProgress value)
+        markReadAllNotificationInProgress,
+    required TResult Function(_MarkReadAllNotificationSuccess value)
+        markReadAllNotificationSuccess,
+    required TResult Function(_MarkReadAllNotificationFailure value)
+        markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetNotificationsByUserIdInProgress value)?
+        getNotificationsByUserIdInProgress,
+    TResult? Function(_GetNotificationsByUserIdSuccess value)?
+        getNotificationsByUserIdSuccess,
+    TResult? Function(_GetNotificationsByUserIdFailure value)?
+        getNotificationsByUserIdFailure,
+    TResult? Function(_MarkReadNotificationInProgress value)?
+        markReadNotificationInProgress,
+    TResult? Function(_MarkReadNotificationSuccess value)?
+        markReadNotificationSuccess,
+    TResult? Function(_MarkReadNotificationFailure value)?
+        markReadNotificationFailure,
+    TResult? Function(_MarkReadAllNotificationInProgress value)?
+        markReadAllNotificationInProgress,
+    TResult? Function(_MarkReadAllNotificationSuccess value)?
+        markReadAllNotificationSuccess,
+    TResult? Function(_MarkReadAllNotificationFailure value)?
+        markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetNotificationsByUserIdInProgress value)?
+        getNotificationsByUserIdInProgress,
+    TResult Function(_GetNotificationsByUserIdSuccess value)?
+        getNotificationsByUserIdSuccess,
+    TResult Function(_GetNotificationsByUserIdFailure value)?
+        getNotificationsByUserIdFailure,
+    TResult Function(_MarkReadNotificationInProgress value)?
+        markReadNotificationInProgress,
+    TResult Function(_MarkReadNotificationSuccess value)?
+        markReadNotificationSuccess,
+    TResult Function(_MarkReadNotificationFailure value)?
+        markReadNotificationFailure,
+    TResult Function(_MarkReadAllNotificationInProgress value)?
+        markReadAllNotificationInProgress,
+    TResult Function(_MarkReadAllNotificationSuccess value)?
+        markReadAllNotificationSuccess,
+    TResult Function(_MarkReadAllNotificationFailure value)?
+        markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationByIdSuccess != null) {
+      return deleteNotificationByIdSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteNotificationByIdSuccess implements NotificationState {
+  const factory _DeleteNotificationByIdSuccess() =
+      _$DeleteNotificationByIdSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$DeleteNotificationByIdFailureImplCopyWith<$Res> {
+  factory _$$DeleteNotificationByIdFailureImplCopyWith(
+          _$DeleteNotificationByIdFailureImpl value,
+          $Res Function(_$DeleteNotificationByIdFailureImpl) then) =
+      __$$DeleteNotificationByIdFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$DeleteNotificationByIdFailureImplCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res,
+        _$DeleteNotificationByIdFailureImpl>
+    implements _$$DeleteNotificationByIdFailureImplCopyWith<$Res> {
+  __$$DeleteNotificationByIdFailureImplCopyWithImpl(
+      _$DeleteNotificationByIdFailureImpl _value,
+      $Res Function(_$DeleteNotificationByIdFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$DeleteNotificationByIdFailureImpl(
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteNotificationByIdFailureImpl
+    implements _DeleteNotificationByIdFailure {
+  const _$DeleteNotificationByIdFailureImpl({required this.error});
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'NotificationState.deleteNotificationByIdFailure(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteNotificationByIdFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteNotificationByIdFailureImplCopyWith<
+          _$DeleteNotificationByIdFailureImpl>
+      get copyWith => __$$DeleteNotificationByIdFailureImplCopyWithImpl<
+          _$DeleteNotificationByIdFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getNotificationsByUserIdInProgress,
+    required TResult Function(List<NotificationDto> notifications)
+        getNotificationsByUserIdSuccess,
+    required TResult Function(String error) getNotificationsByUserIdFailure,
+    required TResult Function() markReadNotificationInProgress,
+    required TResult Function(NotificationDto notification)
+        markReadNotificationSuccess,
+    required TResult Function(String error) markReadNotificationFailure,
+    required TResult Function() markReadAllNotificationInProgress,
+    required TResult Function() markReadAllNotificationSuccess,
+    required TResult Function(String error) markReadAllNotificationFailure,
+    required TResult Function() deleteNotificationByIdInProgress,
+    required TResult Function() deleteNotificationByIdSuccess,
+    required TResult Function(String error) deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getNotificationsByUserIdInProgress,
+    TResult? Function(List<NotificationDto> notifications)?
+        getNotificationsByUserIdSuccess,
+    TResult? Function(String error)? getNotificationsByUserIdFailure,
+    TResult? Function()? markReadNotificationInProgress,
+    TResult? Function(NotificationDto notification)?
+        markReadNotificationSuccess,
+    TResult? Function(String error)? markReadNotificationFailure,
+    TResult? Function()? markReadAllNotificationInProgress,
+    TResult? Function()? markReadAllNotificationSuccess,
+    TResult? Function(String error)? markReadAllNotificationFailure,
+    TResult? Function()? deleteNotificationByIdInProgress,
+    TResult? Function()? deleteNotificationByIdSuccess,
+    TResult? Function(String error)? deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getNotificationsByUserIdInProgress,
+    TResult Function(List<NotificationDto> notifications)?
+        getNotificationsByUserIdSuccess,
+    TResult Function(String error)? getNotificationsByUserIdFailure,
+    TResult Function()? markReadNotificationInProgress,
+    TResult Function(NotificationDto notification)? markReadNotificationSuccess,
+    TResult Function(String error)? markReadNotificationFailure,
+    TResult Function()? markReadAllNotificationInProgress,
+    TResult Function()? markReadAllNotificationSuccess,
+    TResult Function(String error)? markReadAllNotificationFailure,
+    TResult Function()? deleteNotificationByIdInProgress,
+    TResult Function()? deleteNotificationByIdSuccess,
+    TResult Function(String error)? deleteNotificationByIdFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationByIdFailure != null) {
+      return deleteNotificationByIdFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetNotificationsByUserIdInProgress value)
+        getNotificationsByUserIdInProgress,
+    required TResult Function(_GetNotificationsByUserIdSuccess value)
+        getNotificationsByUserIdSuccess,
+    required TResult Function(_GetNotificationsByUserIdFailure value)
+        getNotificationsByUserIdFailure,
+    required TResult Function(_MarkReadNotificationInProgress value)
+        markReadNotificationInProgress,
+    required TResult Function(_MarkReadNotificationSuccess value)
+        markReadNotificationSuccess,
+    required TResult Function(_MarkReadNotificationFailure value)
+        markReadNotificationFailure,
+    required TResult Function(_MarkReadAllNotificationInProgress value)
+        markReadAllNotificationInProgress,
+    required TResult Function(_MarkReadAllNotificationSuccess value)
+        markReadAllNotificationSuccess,
+    required TResult Function(_MarkReadAllNotificationFailure value)
+        markReadAllNotificationFailure,
+    required TResult Function(_DeleteNotificationByIdInProgress value)
+        deleteNotificationByIdInProgress,
+    required TResult Function(_DeleteNotificationByIdSuccess value)
+        deleteNotificationByIdSuccess,
+    required TResult Function(_DeleteNotificationByIdFailure value)
+        deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetNotificationsByUserIdInProgress value)?
+        getNotificationsByUserIdInProgress,
+    TResult? Function(_GetNotificationsByUserIdSuccess value)?
+        getNotificationsByUserIdSuccess,
+    TResult? Function(_GetNotificationsByUserIdFailure value)?
+        getNotificationsByUserIdFailure,
+    TResult? Function(_MarkReadNotificationInProgress value)?
+        markReadNotificationInProgress,
+    TResult? Function(_MarkReadNotificationSuccess value)?
+        markReadNotificationSuccess,
+    TResult? Function(_MarkReadNotificationFailure value)?
+        markReadNotificationFailure,
+    TResult? Function(_MarkReadAllNotificationInProgress value)?
+        markReadAllNotificationInProgress,
+    TResult? Function(_MarkReadAllNotificationSuccess value)?
+        markReadAllNotificationSuccess,
+    TResult? Function(_MarkReadAllNotificationFailure value)?
+        markReadAllNotificationFailure,
+    TResult? Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult? Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult? Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
+  }) {
+    return deleteNotificationByIdFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetNotificationsByUserIdInProgress value)?
+        getNotificationsByUserIdInProgress,
+    TResult Function(_GetNotificationsByUserIdSuccess value)?
+        getNotificationsByUserIdSuccess,
+    TResult Function(_GetNotificationsByUserIdFailure value)?
+        getNotificationsByUserIdFailure,
+    TResult Function(_MarkReadNotificationInProgress value)?
+        markReadNotificationInProgress,
+    TResult Function(_MarkReadNotificationSuccess value)?
+        markReadNotificationSuccess,
+    TResult Function(_MarkReadNotificationFailure value)?
+        markReadNotificationFailure,
+    TResult Function(_MarkReadAllNotificationInProgress value)?
+        markReadAllNotificationInProgress,
+    TResult Function(_MarkReadAllNotificationSuccess value)?
+        markReadAllNotificationSuccess,
+    TResult Function(_MarkReadAllNotificationFailure value)?
+        markReadAllNotificationFailure,
+    TResult Function(_DeleteNotificationByIdInProgress value)?
+        deleteNotificationByIdInProgress,
+    TResult Function(_DeleteNotificationByIdSuccess value)?
+        deleteNotificationByIdSuccess,
+    TResult Function(_DeleteNotificationByIdFailure value)?
+        deleteNotificationByIdFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteNotificationByIdFailure != null) {
+      return deleteNotificationByIdFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteNotificationByIdFailure implements NotificationState {
+  const factory _DeleteNotificationByIdFailure({required final String error}) =
+      _$DeleteNotificationByIdFailureImpl;
+
+  String get error;
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeleteNotificationByIdFailureImplCopyWith<
+          _$DeleteNotificationByIdFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
