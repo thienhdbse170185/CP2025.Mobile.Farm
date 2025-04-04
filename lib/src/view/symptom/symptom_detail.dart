@@ -50,7 +50,7 @@ class SymptomDetailWidget extends StatelessWidget {
       appBar: CustomAppBar(
         title: const Text('Chi tiết báo cáo'),
         leading: IconButton(
-          icon: LinearIcons.arrowBackIcon,
+          icon: Icon(Icons.arrow_back),
           onPressed: () => context.pop(),
         ),
       ),

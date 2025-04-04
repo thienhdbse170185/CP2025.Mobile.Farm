@@ -143,7 +143,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               },
               logoutSuccess: () {
                 log('[AUTH] Đăng xuất thành công');
-                context.go(RouteName.welcome);
+                context.go(RouteName.login);
               },
               orElse: () {},
             );

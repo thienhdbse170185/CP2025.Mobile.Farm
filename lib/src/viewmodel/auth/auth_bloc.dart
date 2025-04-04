@@ -63,18 +63,33 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_Login>((event, emit) async {
       emit(const AuthState.loading());
       try {
-        final loginTokens =
-            await authRepository.login(event.username, event.password);
-        final box = await Hive.openBox(AuthDataConstant.authBoxName);
-        log('[LOGIN] accessToken: ${loginTokens.accessToken}');
-        log('[LOGIN] refreshToken: ${loginTokens.refreshToken}');
-        await box.put(AuthDataConstant.accessTokenKey, loginTokens.accessToken);
-        await box.put(
-          AuthDataConstant.refreshTokenKey,
-          loginTokens.refreshToken,
+        log('[LOGIN_BLOC] Đang thực hiện đăng nhập...');
+        final response = await authRepository.login(
+          event.username,
+          event.password,
         );
+        log('[LOGIN_BLOC] Đăng nhập thành công!');
+        final isValidPermission = _handleCheckPermission(
+          accessToken: response.accessToken,
+        );
+        if (!isValidPermission) {
+          emit(const AuthState.failure('permission-denied'));
+          return;
+        }
+        log('[LOGIN_BLOC] Đang lưu token vào bộ nhớ...');
+        final box = await Hive.openBox(AuthDataConstant.authBoxName);
+        log('[LOGIN] accessToken: ${response.accessToken}');
+        log('[LOGIN] refreshToken: ${response.refreshToken}');
+        await box.put(AuthDataConstant.accessTokenKey, response.accessToken);
+        await box.put(AuthDataConstant.refreshTokenKey, response.refreshToken);
+        log('[LOGIN_BLOC] Lưu token thành công!');
         emit(const AuthState.success());
       } catch (e) {
+        log('[LOGIN_BLOC] Quá trình đăng nhập có lỗi xảy ra!');
+        log('[LOGIN_BLOC] Error: $e');
+        if (e.toString().contains('wrong-credentials')) {
+          emit(const AuthState.failure('wrong-credentials'));
+        }
         emit(AuthState.failure(e.toString()));
       }
     });
@@ -98,5 +113,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       emit(const AuthState.logoutSuccess());
     });
+  }
+
+  bool _handleCheckPermission({required String accessToken}) {
+    log('[AUTH_BLOC] Đang kiểm tra quyền truy cập...');
+    final decodedToken = JwtDecoder.decode(accessToken);
+    log('[AUTH_BLOC] decodedToken: $decodedToken');
+    final role = decodedToken['role'];
+    log('[AUTH_BLOC] role: $role');
+    if (role == 'Staff Farm') {
+      log('[AUTH_BLOC] Quyền truy cập hợp lệ!');
+      return true;
+    } else {
+      log('[AUTH_BLOC] Quyền truy cập không hợp lệ!');
+      return false;
+    }
   }
 }

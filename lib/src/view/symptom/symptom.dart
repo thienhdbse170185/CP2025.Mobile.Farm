@@ -119,7 +119,11 @@ class _SymptomWidgetState extends State<SymptomWidget> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              context.pop();
+                              if (context.canPop()) {
+                                context.pop();
+                              } else {
+                                context.go(RouteName.home);
+                              }
                             },
                             child: Icon(Icons.arrow_back),
                           ),

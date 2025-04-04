@@ -202,7 +202,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                     border: Border.all(color: Colors.orange),
                   ),
                   child: const Text(
-                    'Pending',
+                    'Chờ xem xét',
                     style: TextStyle(
                       color: Colors.orange,
                       fontSize: 12,

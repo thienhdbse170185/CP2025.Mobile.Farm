@@ -406,37 +406,33 @@ class _HomeWidgetState extends State<HomeWidget>
                               )
                             else if (_isError == false)
                               Center(
-                                  child: Column(children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const SizedBox(height: 24),
-                                      LinearIcons.emptyBoxIcon,
-                                      const SizedBox(height: 16),
-                                      Text('Không có việc',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        'Hôm nay bạn không có công việc.',
+                                  child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(height: 24),
+                                    LinearIcons.emptyBoxIcon,
+                                    const SizedBox(height: 16),
+                                    Text('Không có việc',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyLarge,
-                                      ),
-                                      const SizedBox(height: 16),
-                                      ElevatedButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                              'Xem công việc ngày mai'))
-                                    ],
-                                  ),
+                                            .titleLarge),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      'Hôm nay bạn không có công việc.',
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    ElevatedButton(
+                                        onPressed: () {},
+                                        child: const Text(
+                                            'Xem công việc ngày mai'))
+                                  ],
                                 ),
-                              ]))
+                              ))
                             else
                               SizedBox(
                                 height:
@@ -541,6 +537,7 @@ class _HomeWidgetState extends State<HomeWidget>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     LinearIcons.emptyBoxIcon,
                     const SizedBox(height: 16),
                     Text('Không có việc',
