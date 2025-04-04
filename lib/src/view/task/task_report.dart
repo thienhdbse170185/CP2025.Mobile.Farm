@@ -351,100 +351,133 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     }
 
     // Updated dialog with health status selection
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // Use a separate variable to track selected state in dialog
-        bool _dialogIsHealthy = true;
+    if (widget.task.isTreatmentTask) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+              return WarningConfirmationDialog(
+                  title: 'Xác nhận hoàn thành công việc',
+                  content: Column(
+                    children: [
+                      const Text(
+                          'Xác nhận cung cấp thông tin chính xác để hoàn thành công việc')
+                    ],
+                  ),
+                  primaryButtonText: 'Xác nhận',
+                  onPrimaryButtonPressed: () {
+                    Navigator.of(context).pop();
+                    if (_images.isNotEmpty) {
+                      context
+                          .read<UploadImageCubit>()
+                          .uploadImage(file: _images.first);
+                    } else {
+                      _onCreateLog();
+                    }
+                  },
+                  secondaryButtonText: 'Hủy',
+                  onSecondaryButtonPressed: () {
+                    Navigator.of(context).pop();
+                  });
+            });
+          });
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // Use a separate variable to track selected state in dialog
+          bool _dialogIsHealthy = true;
 
-        return StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) {
-            return WarningConfirmationDialog(
-              title: 'Xác nhận tình trạng sức khỏe',
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Vui lòng chọn tình trạng sức khỏe của đàn gà:'),
-                  const SizedBox(height: 16),
-                  RadioListTile<bool>(
-                    title: const Text('Đàn gà bình thường, khỏe mạnh'),
-                    value: true,
-                    groupValue: _dialogIsHealthy,
-                    onChanged: (value) {
-                      setState(() {
-                        _dialogIsHealthy = value!;
-                      });
-                    },
-                  ),
-                  RadioListTile<bool>(
-                    title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
-                    value: false,
-                    groupValue: _dialogIsHealthy,
-                    onChanged: (value) {
-                      setState(() {
-                        _dialogIsHealthy = value!;
-                      });
-                    },
-                  ),
-                  if (!_dialogIsHealthy)
-                    Container(
-                      margin:
-                          const EdgeInsets.only(top: 8, left: 16, right: 16),
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.amber.shade200),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.warning_amber, color: Colors.amber[700]),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng sau khi đóng hộp thoại này.',
-                              style: TextStyle(color: Colors.amber[900]),
-                            ),
-                          ),
-                        ],
-                      ),
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return WarningConfirmationDialog(
+                title: 'Xác nhận tình trạng sức khỏe',
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Vui lòng chọn tình trạng sức khỏe của đàn gà:'),
+                    const SizedBox(height: 16),
+                    RadioListTile<bool>(
+                      title: const Text('Đàn gà bình thường, khỏe mạnh'),
+                      value: true,
+                      groupValue: _dialogIsHealthy,
+                      onChanged: (value) {
+                        setState(() {
+                          _dialogIsHealthy = value!;
+                        });
+                      },
                     ),
-                ],
-              ),
-              primaryButtonText: 'Xác nhận',
-              onPrimaryButtonPressed: () {
-                Navigator.of(context).pop();
-                if (_dialogIsHealthy) {
-                  // Normal flow - upload image if available or create log
-                  if (_images.isNotEmpty) {
-                    context
-                        .read<UploadImageCubit>()
-                        .uploadImage(file: _images.first);
+                    RadioListTile<bool>(
+                      title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
+                      value: false,
+                      groupValue: _dialogIsHealthy,
+                      onChanged: (value) {
+                        setState(() {
+                          _dialogIsHealthy = value!;
+                        });
+                      },
+                    ),
+                    if (!_dialogIsHealthy)
+                      Container(
+                        margin:
+                            const EdgeInsets.only(top: 8, left: 16, right: 16),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.amber.shade200),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.warning_amber, color: Colors.amber[700]),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng sau khi đóng hộp thoại này.',
+                                style: TextStyle(color: Colors.amber[900]),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
+                primaryButtonText: 'Xác nhận',
+                onPrimaryButtonPressed: () {
+                  Navigator.of(context).pop();
+                  if (_dialogIsHealthy) {
+                    // Normal flow - upload image if available or create log
+                    if (_images.isNotEmpty) {
+                      context
+                          .read<UploadImageCubit>()
+                          .uploadImage(file: _images.first);
+                    } else {
+                      _onCreateLog();
+                    }
                   } else {
-                    _onCreateLog();
+                    // Navigate to symptom reporting screen
+                    context.push(
+                      RouteName.createSymptom,
+                      extra: {
+                        'cageId': widget.task.cageId,
+                        'taskId': widget.task.id,
+                        'fromTask': true,
+                        'cageName': widget.task.cageName
+                      },
+                    );
                   }
-                } else {
-                  // Navigate to symptom reporting screen
-                  context.push(
-                    RouteName.createSymptom,
-                    extra: {
-                      'cageId': widget.task.cageId,
-                      'taskId': widget.task.id,
-                      'fromTask': true,
-                      'cageName': widget.task.cageName
-                    },
-                  );
-                }
-              },
-              secondaryButtonText: 'Hủy',
-              onSecondaryButtonPressed: () {
-                Navigator.of(context).pop();
-              },
-            );
-          },
-        );
-      },
-    );
+                },
+                secondaryButtonText: 'Hủy',
+                onSecondaryButtonPressed: () {
+                  Navigator.of(context).pop();
+                },
+              );
+            },
+          );
+        },
+      );
+    }
   }
 
   void _onCreateLog() {

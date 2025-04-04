@@ -425,11 +425,6 @@ class _HomeWidgetState extends State<HomeWidget>
                                       style:
                                           Theme.of(context).textTheme.bodyLarge,
                                     ),
-                                    const SizedBox(height: 16),
-                                    ElevatedButton(
-                                        onPressed: () {},
-                                        child: const Text(
-                                            'Xem công việc ngày mai'))
                                   ],
                                 ),
                               ))
