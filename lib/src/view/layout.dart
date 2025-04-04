@@ -63,7 +63,7 @@ class _LayoutScaffoldState extends State<LayoutScaffold> {
                       );
 
                       if (cage.id.isNotEmpty) {
-                        context.push(RouteName.taskQRCode, extra: cage);
+                        context.go(RouteName.taskQRCode, extra: cage);
                       } else {
                         throw Exception(
                             'Không tìm thấy thông tin chuồng, \nvui lòng thử lại.');

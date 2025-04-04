@@ -79,13 +79,13 @@ flutter:
 
 flutter_native_splash:
   color: "#379C3B" # Green color
-  image: "assets/images/LOGOOFFICIAL3.png"
+  image: "assets/images/LOGOOFFICIAL.png"
   color_dark: "#379C3B"
-  image_dark: "assets/images/LOGOOFFICIAL3.png"
+  image_dark: "assets/images/LOGOOFFICIAL.png"
   
   android_12:
     color: "#379C3B" # Green color
-    image: "assets/images/LOGOOFFICIAL3.png"
+    image: "assets/images/LOGOOFFICIAL.png"
     icon_background_color: "#379C3B"
     
   fullscreen: true

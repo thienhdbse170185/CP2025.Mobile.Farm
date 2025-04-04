@@ -33,7 +33,6 @@ class TaskQRCodeWidget extends StatefulWidget {
 class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   bool _isProcessing = false;
   bool _isLoading = false;
-  bool _isHealthyAfterTreatment = false;
 
   List<TaskHaveCageName>? _tasks;
   List<TaskHaveCageName>? _filteredTasks;
@@ -45,7 +44,6 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   final TextEditingController eveningController = TextEditingController();
 
   final Set<String> _selectedTaskIds = {};
-  final TextEditingController _logController = TextEditingController();
   final TextEditingController _searchController = TextEditingController();
 
   List<double> weightList = [];
@@ -421,6 +419,25 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
     return chips;
   }
 
+  void _handleClose() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return WarningConfirmationDialog(
+            title: 'Xác nhận',
+            content: const Text('Bạn có chắc chắn muốn thoát không?'),
+            onPrimaryButtonPressed: () {
+              context.go(RouteName.home);
+            },
+            onSecondaryButtonPressed: () {
+              context.pop(); // Close the dialog
+            },
+            primaryButtonText: 'Xác nhận',
+            secondaryButtonText: 'Đóng',
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
@@ -582,7 +599,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                           ),
                           IconButton(
                             icon: const Icon(Icons.close),
-                            onPressed: () => context.go(RouteName.home),
+                            onPressed: _handleClose,
                           ),
                         ],
                       ),
@@ -747,10 +764,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                             TaskTypeDataConstant.feeding,
                                             TaskTypeDataConstant.health,
                                             TaskTypeDataConstant.vaccin,
-                                            TaskTypeDataConstant.eggHarvest,
                                             TaskTypeDataConstant.sellAnimal,
-                                            TaskTypeDataConstant.sellEgg,
-                                            TaskTypeDataConstant.weighing,
                                           ].contains(
                                               task.taskType.taskTypeId)) {
                                             context.push(RouteName.taskReport,
