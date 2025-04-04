@@ -706,7 +706,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                           ),
                         ],
                       ),
-                      Text('${_tasks?.length} công việc')
+                      Text('${_isLoading ? '...' : _tasks?.length} công việc')
                     ],
                   )),
               // Tasks List
