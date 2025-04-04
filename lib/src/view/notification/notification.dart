@@ -196,9 +196,9 @@ class _NotificationWidgetState extends State<NotificationWidget>
           context: context,
           builder: (BuildContext context) {
             return WarningConfirmationDialog(
-              title: 'Xác nhận',
-              content: const Text('Bạn có chắc chắn muốn xóa\n thông báo này?'),
-              primaryButtonText: 'Xóa',
+              title: 'Xóa thông báo',
+              content: const Text('Bạn có chắc chắn muốn xóa?'),
+              primaryButtonText: 'Xác nhận',
               onPrimaryButtonPressed: () {
                 Navigator.of(context).pop(true);
               },

@@ -72,16 +72,11 @@ class _LoginWidgetState extends State<LoginWidget> {
               failure: (message) {
                 setState(() {
                   _isProcessing = false;
-                });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(message)),
-                );
-                setState(() {
                   if (message.contains('wrong-credentials')) {
                     _isWrongCredentials = true;
                   }
                 });
-                log('[LOGIN] Đăng nhập thất bại: //');
+                log('[LOGIN] Đăng nhập thất bại! Lỗi: $message');
               },
               orElse: () {},
             );
@@ -128,27 +123,43 @@ class _LoginWidgetState extends State<LoginWidget> {
                       children: [
                         const SizedBox(height: 32),
                         Center(
-                          child: Image.asset(
-                            'assets/images/LOGOOFFICIAL.png',
-                            height: 140,
-                            width: 140,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            padding: const EdgeInsets.all(
+                                8.0), // Add padding to center the image better
+                            child: Image.asset(
+                              'assets/images/LOGOOFFICIAL.png',
+                              height: 120, // Adjusted height
+                              width: 120, // Adjusted width
+                              fit: BoxFit.contain, // Ensure the image fits well
+                            ),
                           ),
                         ),
                         const SizedBox(height: 40),
-                        const Text(
+                        Text(
                           "Đăng nhập",
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF1E3A8A),
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        const Text(
+                        const SizedBox(height: 8),
+                        Text(
                           "Vui lòng đăng nhập để tiếp tục",
                           style: TextStyle(
                             fontSize: 16,
-                            color: Color(0xFF64748B),
                           ),
                         ),
                         const SizedBox(height: 36),
@@ -210,7 +221,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 16),
                         SizedBox(
                           width: double.infinity,
                           height: 50,
