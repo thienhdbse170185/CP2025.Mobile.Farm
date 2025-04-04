@@ -487,6 +487,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 _availableQuantity = (_growthStage!.quantity! -
                     (_farmingBatch?.affectedQuantity ?? 0));
               });
+              context.read<SymptomCubit>().getSymptoms();
             },
             getGrowthStageByCageIdFailure: (error) => setState(() =>
                 _affectedQuantity =

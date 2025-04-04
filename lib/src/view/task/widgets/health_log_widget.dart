@@ -358,7 +358,7 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '$dose liều',
+                            '$dose liều / 1 con',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color: Theme.of(context).colorScheme.primary,
