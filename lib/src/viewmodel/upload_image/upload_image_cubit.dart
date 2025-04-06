@@ -14,14 +14,15 @@ class UploadImageCubit extends Cubit<UploadImageState> {
       : _uploadImageRepository = uploadImageRepository,
         super(UploadImageState.initial());
 
-  Future<void> uploadImage({required File file}) async {
-    emit(UploadImageState.uploadImageInProgress());
+  Future<void> uploadImage(
+      {required File file, required bool isTaskImage}) async {
+    emit(UploadImageState.uploadImageInProgress(isTaskImage));
     try {
       log('[UPLOAD_IMAGE_CUBIT] Uploading image...');
       final response = await _uploadImageRepository.uploadImage(file: file);
-      emit(UploadImageState.uploadImageSuccess(response.image));
+      emit(UploadImageState.uploadImageSuccess(response.image, isTaskImage));
     } catch (e) {
-      emit(UploadImageState.uploadImageFailure(e.toString()));
+      emit(UploadImageState.uploadImageFailure(e.toString(), isTaskImage));
     }
   }
 

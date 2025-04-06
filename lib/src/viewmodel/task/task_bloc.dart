@@ -277,40 +277,13 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_CreateDailyFoodUsageLog>((event, emit) async {
       emit(const TaskState.createDailyFoodUsageLogLoading());
       try {
-        // If this is after symptom report, we use simplified data
-        if (event.afterSymptomReport) {
-          final request = DailyFoodUsageLogDto(
-              recommendedWeight: 0,
-              actualWeight: 0,
-              notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
-              logTime: TimeUtils.customNow(),
-              photo: "",
-              taskId: event.log.taskId);
-          final result =
-              await repository.createDailyFoodUsageLog(event.cageId, request);
-          if (result) {
-            emit(const TaskState.createDailyFoodUsageLogSuccess());
-          } else {
-            emit(const TaskState.createDailyFoodUsageLogFailure(
-                'Tạo log cho ăn thất bại!'));
-          }
+        final result =
+            await repository.createDailyFoodUsageLog(event.cageId, event.log);
+        if (result) {
+          emit(const TaskState.createDailyFoodUsageLogSuccess());
         } else {
-          // Normal flow
-          final request = DailyFoodUsageLogDto(
-              recommendedWeight: event.log.recommendedWeight,
-              actualWeight: event.log.actualWeight,
-              notes: event.log.notes,
-              logTime: TimeUtils.customNow(),
-              photo: event.log.photo,
-              taskId: event.log.taskId);
-          final result =
-              await repository.createDailyFoodUsageLog(event.cageId, request);
-          if (result) {
-            emit(const TaskState.createDailyFoodUsageLogSuccess());
-          } else {
-            emit(const TaskState.createDailyFoodUsageLogFailure(
-                'Tạo log cho ăn thất bại!'));
-          }
+          emit(const TaskState.createDailyFoodUsageLogFailure(
+              'Tạo log cho ăn thất bại!'));
         }
       } catch (e) {
         emit(TaskState.createDailyFoodUsageLogFailure(e.toString()));

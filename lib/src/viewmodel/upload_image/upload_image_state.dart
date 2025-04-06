@@ -4,12 +4,12 @@ part of 'upload_image_cubit.dart';
 class UploadImageState with _$UploadImageState {
   const factory UploadImageState.initial() = _Initial;
 
-  const factory UploadImageState.uploadImageInProgress() =
+  const factory UploadImageState.uploadImageInProgress(bool isImageTask) =
       _UploadImageInProgress;
-  const factory UploadImageState.uploadImageSuccess(UploadImageDto image) =
-      _UploadImageSuccess;
-  const factory UploadImageState.uploadImageFailure(String message) =
-      _UploadImageFailure;
+  const factory UploadImageState.uploadImageSuccess(
+      UploadImageDto image, bool isImageTask) = _UploadImageSuccess;
+  const factory UploadImageState.uploadImageFailure(
+      String message, bool isImageTask) = _UploadImageFailure;
 
   const factory UploadImageState.uploadMultipleImageInProgress() =
       _UploadMultipleImageInProgress;

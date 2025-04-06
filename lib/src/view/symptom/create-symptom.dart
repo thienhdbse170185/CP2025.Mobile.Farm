@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/request/egg_harvest/egg_harvest_request.dart';
+import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
 import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
 import 'package:data_layer/model/request/symptom/symptom/get_symptom_request.dart';
@@ -22,6 +23,9 @@ import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/loading_widget.dart';
@@ -29,7 +33,6 @@ import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/view/widgets/qr_scanner.dart'
     show QRScannerWidget;
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
-import 'package:smart_farm/src/viewmodel/egg_harvest/egg_harvest_cubit.dart';
 import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
@@ -43,6 +46,11 @@ class CreateSymptomWidget extends StatefulWidget {
   final String? cageId;
   final String? taskId;
   final bool fromTask;
+  final CreateFoodLogCubitParams? paramsFoodLog;
+  final CreateHealthLogCubitParams? paramsHealthLog;
+  final CreateVaccineLogCubitParams? paramsVaccineLog;
+  final SaleLogDto? animalSaleLog;
+  final File? imageLog;
 
   const CreateSymptomWidget({
     super.key,
@@ -50,6 +58,11 @@ class CreateSymptomWidget extends StatefulWidget {
     this.cageId,
     this.taskId,
     this.fromTask = false,
+    this.paramsFoodLog,
+    this.paramsHealthLog,
+    this.paramsVaccineLog,
+    this.animalSaleLog,
+    this.imageLog,
   });
 
   @override
@@ -146,9 +159,32 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
 
     // If coming from a task, automatically load the farming batch
     if (widget.fromTask == true && widget.cageId != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        context.read<FarmingBatchCubit>().getFarmingBatchByCage(widget.cageId!);
-      });
+      context
+          .read<TaskBloc>()
+          .add(TaskEvent.getTaskById(widget.taskId!, onSuccess: (task) {
+            if (TimeUtils.isTimeInSession(
+                TimeUtils.customNow(), task.session)) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                context
+                    .read<FarmingBatchCubit>()
+                    .getFarmingBatchByCage(widget.cageId!);
+              });
+            } else {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return WarningConfirmationDialog(
+                      title: 'Hết thời gian làm việc',
+                      content: const Text(
+                          'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
+                      primaryButtonText: 'Quay về trang chủ',
+                      onPrimaryButtonPressed: () {
+                        context.go(RouteName.home);
+                      },
+                    );
+                  });
+            }
+          }));
     } else {
       context.read<CageCubit>().getCagesByUserId();
     }
@@ -187,7 +223,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       builder: (_) => WarningConfirmationDialog(
         title: 'Xác nhận báo cáo',
         content: const Text(
-            'Bạn có chắc chắn muốn gửi báo cáo triệu chứng này không?'),
+            'Hãy kiểm tra thông tin trước khi gửi. Bạn có chắc chắn muốn xác nhận gửi không?'),
         secondaryButtonText: 'Hủy',
         primaryButtonText: 'Xác nhận',
         onSecondaryButtonPressed: () => Navigator.pop(context),
@@ -419,7 +455,10 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       listeners: [
         BlocListener<HealthyCubit, HealthyState>(
           listener: (context, state) => state.maybeWhen(
-            createLoading: () => setState(() => _isProcessing = true),
+            createLoading: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Đang tạo medical_symptom...');
+              setState(() => _isProcessing = true);
+            },
             createSuccess: (medicalSymptom) =>
                 _handleCreateSuccess(medicalSymptom),
             createFailure: (error) => _handleCreateFailure(error),
@@ -458,7 +497,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             }),
             getFarmingBatchByCageFailure: (error) =>
                 _handleFarmingBatchFailure(error),
-            orElse: () {},
+            orElse: () {
+              return null;
+            },
           ),
         ),
         BlocListener<SymptomCubit, SymptomState>(
@@ -488,6 +529,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                     (_farmingBatch?.affectedQuantity ?? 0));
               });
               context.read<SymptomCubit>().getSymptoms();
+              return null;
             },
             getGrowthStageByCageIdFailure: (error) => setState(() =>
                 _affectedQuantity =
@@ -499,11 +541,29 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         ),
         BlocListener<UploadImageCubit, UploadImageState>(
           listener: (context, state) => state.maybeWhen(
-            uploadImageInProgress: () => setState(() => _isProcessing = true),
-            uploadImageSuccess: (imageDto) => _handleUploadSuccess(imageDto),
-            uploadImageFailure: (error) => _handleUploadFailure(error),
-            uploadMultipleImageInProgress: () =>
-                setState(() => _isProcessing = true),
+            uploadImageInProgress: (isImageTask) {
+              if (isImageTask) {
+                log('[CREATE_SYMPTOM_SUCCESS] Đang tải ảnh công việc lên...');
+              } else {
+                log('[CREATE_SYMPTOM_SUCCESS] Đang tải 1 ảnh triệu chứng lên...');
+              }
+              setState(() => _isProcessing = true);
+            },
+            uploadImageSuccess: (imageDto, isTaskImage) =>
+                _handleUploadSuccess(imageDto, isTaskImage),
+            uploadImageFailure: (error, isTaskImage) {
+              if (isTaskImage) {
+                log('[CREATE_SYMPTOM_SUCCESS] Tải ảnh công việc thất bại: $error');
+              } else {
+                log('[CREATE_SYMPTOM_SUCCESS] Tải ảnh triệu chứng thất bại: $error');
+              }
+              _handleUploadFailure(error);
+            },
+            uploadMultipleImageInProgress: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Upload multiple images in progress...');
+              setState(() => _isProcessing = true);
+              return null;
+            },
             uploadMultipleImageSuccess: (images) =>
                 _handleUploadMultipleImageSuccess(images),
             uploadMultipleImageFailure: (error) => _handleUploadFailure(error),
@@ -519,26 +579,40 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         BlocListener<TaskBloc, TaskState>(listener: (context, state) {
           state.maybeWhen(
             setTaskIsTreatmentInProgress: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Đang cập nhật trạng thái công việc sang Warning...');
               setState(() => _isProcessing = true);
             },
             setTaskIsTreatmentSuccess: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Cập nhật trạng thái công việc sang Warning thành công.');
               setState(() => _isProcessing = false);
               // Create task log if needed based on task type
-              _createTaskLogAfterSymptomReport(widget.taskId!);
+              if (widget.imageLog != null) {
+                context
+                    .read<UploadImageCubit>()
+                    .uploadImage(file: widget.imageLog!, isTaskImage: true);
+              } else {
+                _createTaskLogAfterSymptomReport(widget.taskId!, null);
+              }
             },
             setTaskIsTreatmentFailure: (error) {
               setState(() => _isProcessing = false);
               _showErrorSnackBar('Lỗi cập nhật trạng thái công việc: $error');
             },
             createDailyFoodUsageLogSuccess: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Tạo log DailyFoodUsageLog thành công.');
               setState(() => _isProcessing = false);
               context.read<TaskBloc>().add(TaskEvent.updateTask(
                     widget.taskId!,
                     StatusDataConstant.done,
                     afterSymptomReport: true,
                   ));
+            },
+            createDailyFoodUsageLogLoading: () {
+              log('[CREATE_SYMPTOM_SCREEN] Đang tạo food-log...');
+              setState(() => _isProcessing = true);
             },
             createHealthLogSuccess: () {
+              log('[CREATE_SYMPTOM_SCREEN] Tạo health-log thành công.');
               setState(() => _isProcessing = false);
               context.read<TaskBloc>().add(TaskEvent.updateTask(
                     widget.taskId!,
@@ -546,7 +620,16 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                     afterSymptomReport: true,
                   ));
             },
+            createHealthLogLoading: () {
+              log('[CREATE_SYMPTOM_SCREEN] Đang tạo health-log...');
+              setState(() => _isProcessing = true);
+            },
+            createVaccinScheduleLogLoading: () {
+              log('[CREATE_SYMPTOM_SCREEN] Đang tạo vaccin-log...');
+              setState(() => _isProcessing = true);
+            },
             createVaccinScheduleLogSuccess: () {
+              log('[CREATE_SYMPTOM_SCREEN] Tạo vaccin-log thành công.');
               setState(() => _isProcessing = false);
               context.read<TaskBloc>().add(TaskEvent.updateTask(
                     widget.taskId!,
@@ -615,7 +698,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
 
   void _handleCreateSuccess(MedicalSymptomDto medicalSymptom) {
     setState(() => _isProcessing = false);
-    log("Tạo báo cáo thành công");
+    log("[CREATE_SYMPTOM_SCREEN] Tạo medical_symptom thành công");
     symptom = MedicalSymptomResponse(
       id: medicalSymptom.id,
       farmingBatchId: medicalSymptom.farmingBatchId,
@@ -648,44 +731,67 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   // Helper method to create task log after symptom report
-  void _createTaskLogAfterSymptomReport(String taskId) {
+  void _createTaskLogAfterSymptomReport(String taskId, String? imagePath) {
+    log('[CREATE_SYMPTOM_SCREEN] Đang khởi tạo data để tạo log warning-task...');
     // Get the task details to determine which type of log to create
     context.read<TaskBloc>().add(
           TaskEvent.getTaskById(
             taskId,
             onSuccess: (task) {
-              if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
-                // Create feeding log with default values
-                final log = DailyFoodUsageLogDto(
-                  recommendedWeight: 0,
-                  actualWeight: 0,
-                  notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
-                  logTime: DateTime.now(),
-                  photo: '',
-                  taskId: taskId,
+              if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding &&
+                  widget.paramsFoodLog != null) {
+                final logTemp = DailyFoodUsageLogDto(
+                  recommendedWeight:
+                      widget.paramsFoodLog!.log.recommendedWeight,
+                  actualWeight: widget.paramsFoodLog!.log.actualWeight,
+                  logTime: widget.paramsFoodLog!.log.logTime,
+                  notes: widget.paramsFoodLog!.log.notes,
+                  taskId: widget.paramsFoodLog!.log.taskId,
+                  photo: imagePath ?? '',
                 );
                 context.read<TaskBloc>().add(
                       TaskEvent.createDailyFoodUsageLog(
-                        cageId: task.cageId,
-                        log: log,
-                        afterSymptomReport: true,
+                        cageId: widget.paramsFoodLog!.cageId,
+                        log: logTemp,
+                        afterSymptomReport:
+                            widget.paramsFoodLog!.afterSymptomReport,
                       ),
                     );
               } else if (task.taskType.taskTypeId ==
+                      TaskTypeDataConstant.health &&
+                  widget.paramsHealthLog != null) {
+                final logTemp = HealthLogDto(
+                  prescriptionId: widget.paramsHealthLog!.log.prescriptionId,
+                  notes: widget.paramsHealthLog!.log.notes,
+                  taskId: widget.paramsHealthLog!.log.taskId,
+                  photo: imagePath ?? '',
+                  date: widget.paramsHealthLog!.log.date,
+                  id: widget.paramsHealthLog!.log.id,
+                );
+                context.read<TaskBloc>().add(TaskEvent.createHealthLog(
+                      prescriptionId: widget.paramsHealthLog!.prescriptionId,
+                      log: logTemp,
+                    ));
+              } else if (task.taskType.taskTypeId ==
                   TaskTypeDataConstant.vaccin) {
-                // For vaccine tasks, create a basic vaccine log
-                final request = VaccineScheduleLogRequest(
-                  date: TimeUtils.customNow().toIso8601String(),
-                  session: 1, // Default value
-                  vaccineId: "", // Will be populated by backend
-                  quantity: 0,
-                  notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
-                  photo: '',
-                  taskId: taskId,
+                final logTemp = VaccineScheduleLogRequest(
+                  vaccineId: widget
+                      .paramsVaccineLog!.vaccineScheduleLogRequest.vaccineId,
+                  notes:
+                      widget.paramsVaccineLog!.vaccineScheduleLogRequest.notes,
+                  taskId:
+                      widget.paramsVaccineLog!.vaccineScheduleLogRequest.taskId,
+                  photo: imagePath ?? '',
+                  date: widget.paramsVaccineLog!.vaccineScheduleLogRequest.date,
+                  quantity: widget
+                      .paramsVaccineLog!.vaccineScheduleLogRequest.quantity,
+                  session: widget
+                      .paramsVaccineLog!.vaccineScheduleLogRequest.session,
                 );
                 context.read<VaccineScheduleLogCubit>().create(
-                      request: request,
-                      afterSymptomReport: true,
+                      request: logTemp,
+                      afterSymptomReport:
+                          widget.paramsVaccineLog!.afterSymptomReport,
                     );
               } else if (task.taskType.taskTypeId ==
                   TaskTypeDataConstant.weighing) {
@@ -695,18 +801,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                         growthStageId: "", // Will be set by backend
                         weightAnimal: 0,
                       ),
-                    );
-              } else if (task.taskType.taskTypeId ==
-                  TaskTypeDataConstant.eggHarvest) {
-                // For egg harvest tasks
-                final request = EggHarvestRequest(
-                  eggCount: 0,
-                  notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
-                  growthStageId: "",
-                  taskId: taskId,
-                );
-                context.read<EggHarvestCubit>().createEggHarvest(
-                      request: request,
                     );
               }
 
@@ -812,16 +906,26 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     }
   }
 
-  void _handleUploadSuccess(UploadImageDto imageDto) {
+  void _handleUploadSuccess(UploadImageDto imageDto, bool isTaskImage) {
+    if (isTaskImage) {
+      log('[CREATE_SYMPTOM_SCREEN] Upload ảnh công việc thành công!');
+    } else {
+      log('[CREATE_SYMPTOM_SCREEN] Upload ảnh triệu chứng thành công!');
+    }
     setState(() {
       _isProcessing = false;
       _uploadedImage = imageDto;
     });
     final imagePath = "https://imageservice.fjourney.site${imageDto.path}";
-    _submitSymptomRequest(imagePath);
+    if (isTaskImage) {
+      _createTaskLogAfterSymptomReport(widget.taskId!, imagePath);
+    } else {
+      _submitSymptomRequest(imagePath);
+    }
   }
 
   void _handleUploadMultipleImageSuccess(List<UploadImageDto> images) {
+    log('[CREATE_SYMPTOM_SCREEN] Upload multiple image thành công!');
     setState(() {
       _isProcessing = false;
       _uploadedImages.clear();
@@ -834,6 +938,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   void _handleUploadFailure(String error) {
+    log('[CREATE_SYMPTOM_SCREEN] Upload multiple image thất bại: $error');
     setState(() => _isProcessing = false);
     _showErrorSnackBar('Lỗi upload ảnh: $error');
   }
@@ -1388,32 +1493,7 @@ class _FormBody extends StatefulWidget {
 
 class _FormBodyState extends State<_FormBody> {
   void _showImagePickerOptions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: LinearIcons.cameraIcon,
-              title: const Text('Chụp ảnh'),
-              onTap: () {
-                Navigator.pop(context);
-                widget.state._pickImage(ImageSource.camera);
-              },
-            ),
-            ListTile(
-              leading: LinearIcons.folderAddIcon,
-              title: const Text('Chọn từ thư viện'),
-              onTap: () {
-                Navigator.pop(context);
-                widget.state._pickImage(ImageSource.gallery);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+    widget.state._pickImage(ImageSource.camera);
   }
 
   Widget _buildQuantityButton({

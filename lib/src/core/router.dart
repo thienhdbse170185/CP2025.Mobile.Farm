@@ -4,6 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
+import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
 import 'package:smart_farm/src/view/auth/change_password.dart';
 import 'package:smart_farm/src/view/auth/change_password_newbie.dart';
 import 'package:smart_farm/src/view/auth/forgot_password.dart';
@@ -221,12 +224,21 @@ final router = GoRouter(
             final cageId = extra?['cageId'] as String?;
             final taskId = extra?['taskId'] as String?;
             final fromTask = extra?['fromTask'] as bool? ?? false;
+            final paramsFoodLog =
+                extra?['paramsFoodLog'] as CreateFoodLogCubitParams?;
+            final paramsHealthLog =
+                extra?['paramsHealthLog'] as CreateHealthLogCubitParams?;
+            final paramsVaccineLog =
+                extra?['paramsVaccineLog'] as CreateVaccineLogCubitParams?;
 
             return _buildPageWithSlideTransition(CreateSymptomWidget(
               cageName: cageName,
               cageId: cageId,
               taskId: taskId,
               fromTask: fromTask,
+              paramsFoodLog: paramsFoodLog,
+              paramsHealthLog: paramsHealthLog,
+              paramsVaccineLog: paramsVaccineLog,
             ));
           }),
 

@@ -67,7 +67,11 @@ bool canCompleteTask({
   required String priceEggSell,
   required String countEggCollected,
 }) {
-  if (taskStatus != StatusDataConstant.inProgressVn) return true;
+  if (!TimeUtils.isTimeInSession(TimeUtils.customNow(), task?.session ?? 0)) {
+    return false;
+  }
+
+  if (taskStatus != StatusDataConstant.inProgress) return false;
 
   if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
       !areAnyMedicationsChecked) {
