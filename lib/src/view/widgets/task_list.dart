@@ -24,11 +24,16 @@ class TaskListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Định nghĩa màu warning mới - màu đỏ đậm sang trọng
+    final Color warningColor = Color(0xFFC62828); // Đỏ đậm
+    final Color warningTextColor = Color(0xFFB71C1C); // Đỏ đậm hơn cho chữ
+    final Color warningBackgroundColor =
+        Color(0xFFFFEBEE); // Đỏ rất nhạt cho nền
+
     return Column(
       children: tasks.map((task) {
         final bool hasWarning = task.isWarning == true;
         final bool reduceOpacity = _shouldReduceOpacity(task.status);
-        // log('Task ${task.taskName} ở cage ${task.cageName} có vấn đề: $hasWarning');
 
         // Generate appropriate status colors and icons
         Color statusColor;
@@ -87,7 +92,7 @@ class TaskListWidget extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
                 side: hasWarning && highlightWarning
-                    ? BorderSide(color: Colors.amber, width: 2)
+                    ? BorderSide(color: warningColor, width: 2)
                     : BorderSide.none,
               ),
               child: Container(
@@ -98,7 +103,7 @@ class TaskListWidget extends StatelessWidget {
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                           colors: [
-                            Colors.amber.withOpacity(0.1),
+                            warningBackgroundColor,
                             Colors.white,
                           ],
                         ),
@@ -115,7 +120,7 @@ class TaskListWidget extends StatelessWidget {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: Colors.amber,
+                            color: warningColor,
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(12),
                               bottomLeft: Radius.circular(12),
@@ -173,7 +178,7 @@ class TaskListWidget extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   color: hasWarning &&
                                                           highlightWarning
-                                                      ? Colors.amber[800]
+                                                      ? warningTextColor
                                                       : null,
                                                 ),
                                                 maxLines: 1,
@@ -187,7 +192,7 @@ class TaskListWidget extends StatelessWidget {
                                                           left: 8.0),
                                                   child: Icon(
                                                     Icons.warning_amber_rounded,
-                                                    color: Colors.amber[800],
+                                                    color: warningTextColor,
                                                     size: 16,
                                                   ),
                                                 ),
@@ -253,10 +258,10 @@ class TaskListWidget extends StatelessWidget {
                               margin: EdgeInsets.only(top: 12),
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: Colors.amber.withOpacity(0.1),
+                                color: warningBackgroundColor,
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
-                                  color: Colors.amber.withOpacity(0.5),
+                                  color: warningColor.withOpacity(0.5),
                                   width: 1,
                                 ),
                               ),
@@ -264,7 +269,7 @@ class TaskListWidget extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.warning_amber_rounded,
-                                    color: Colors.amber[800],
+                                    color: warningTextColor,
                                     size: 16,
                                   ),
                                   SizedBox(width: 8),
@@ -273,7 +278,7 @@ class TaskListWidget extends StatelessWidget {
                                       'Công việc này có báo cáo triệu chứng',
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: Colors.amber[800],
+                                        color: warningTextColor,
                                       ),
                                     ),
                                   ),
