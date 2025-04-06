@@ -166,14 +166,12 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
               children: [
                 Icon(
                   Icons.info_outline,
-                  color: Theme.of(context).colorScheme.error,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   'Thông tin về vắc xin',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
                       ),
                 ),
               ],
@@ -198,7 +196,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Vui lòng kiểm tra lại thông tin về lịch tiêm vắc xin.',
+                      'Vui lòng kiểm tra lại thông tin về lịch tiêm vắc xin, liên hệ Admin để được hỗ trợ sớm nhất.',
                       style: TextStyle(
                         color: Colors.grey[600],
                         fontSize: 14,

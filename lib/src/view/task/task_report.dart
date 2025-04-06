@@ -24,6 +24,9 @@ import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/task_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
 import 'package:smart_farm/src/view/task/task_validation.dart';
 import 'package:smart_farm/src/view/task/widgets/animal_sale_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/egg_harvest_log_widget.dart';
@@ -162,6 +165,14 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
   // Add a new variable to track the isolation cage feeding status
   bool _isIsolationFed = false;
+
+  // Params for CubitLog
+  CreateFoodLogCubitParams? _foodLogParams;
+  CreateVaccineLogCubitParams? _vaccineLogParams;
+
+  // LogDtos
+  DailyFoodUsageLogDto? _foodLog;
+  VaccineScheduleLogRequest? _vaccineLogRequest;
 
   void _addImage(File image) {
     setState(() {
@@ -306,7 +317,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
   void _updateTaskStatus() {
     if (!_canCompleteTask()) {
-      String errorMessage = '';
+      String errorMessage = 'Lỗi không xác định';
 
       if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health) {
         errorMessage = 'Vui lòng xác nhận đã cho uống thuốc.';
@@ -351,133 +362,210 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     }
 
     // Updated dialog with health status selection
-    if (widget.task.isTreatmentTask) {
+    if (!TimeUtils.isTimeInSession(
+        TimeUtils.customNow(), widget.task.session)) {
       showDialog(
           context: context,
+          builder: (context) {
+            return WarningConfirmationDialog(
+              title: 'Hết thời gian làm việc',
+              content: const Text(
+                  'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
+              primaryButtonText: 'Quay về trang chủ',
+              onPrimaryButtonPressed: () {
+                context.go(RouteName.home);
+              },
+            );
+          });
+    } else {
+      if (widget.task.isTreatmentTask) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setState) {
+                return WarningConfirmationDialog(
+                    title: 'Xác nhận hoàn thành công việc',
+                    content: Column(
+                      children: [
+                        const Text(
+                            'Xác nhận cung cấp thông tin chính xác để hoàn thành công việc')
+                      ],
+                    ),
+                    primaryButtonText: 'Xác nhận',
+                    onPrimaryButtonPressed: () {
+                      Navigator.of(context).pop();
+                      if (_images.isNotEmpty) {
+                        context.read<UploadImageCubit>().uploadImage(
+                            file: _images.first, isTaskImage: true);
+                      } else {
+                        _onCreateLog();
+                      }
+                    },
+                    secondaryButtonText: 'Hủy',
+                    onSecondaryButtonPressed: () {
+                      Navigator.of(context).pop();
+                    });
+              });
+            });
+      } else {
+        showDialog(
+          context: context,
           builder: (BuildContext context) {
+            // Use a separate variable to track selected state in dialog
+            bool _dialogIsHealthy = true;
+
             return StatefulBuilder(
-                builder: (BuildContext context, StateSetter setState) {
-              return WarningConfirmationDialog(
-                  title: 'Xác nhận hoàn thành công việc',
+              builder: (BuildContext context, StateSetter setState) {
+                return WarningConfirmationDialog(
+                  title: 'Xác nhận tình trạng sức khỏe',
                   content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                          'Xác nhận cung cấp thông tin chính xác để hoàn thành công việc')
+                          'Vui lòng chọn tình trạng sức khỏe của đàn gà:'),
+                      const SizedBox(height: 16),
+                      RadioListTile<bool>(
+                        title: const Text('Đàn gà bình thường, khỏe mạnh'),
+                        value: true,
+                        groupValue: _dialogIsHealthy,
+                        onChanged: (value) {
+                          setState(() {
+                            _dialogIsHealthy = value!;
+                          });
+                        },
+                      ),
+                      RadioListTile<bool>(
+                        title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
+                        value: false,
+                        groupValue: _dialogIsHealthy,
+                        onChanged: (value) {
+                          setState(() {
+                            _dialogIsHealthy = value!;
+                          });
+                        },
+                      ),
+                      if (!_dialogIsHealthy)
+                        Container(
+                          margin: const EdgeInsets.only(
+                              top: 8, left: 16, right: 16),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.amber.shade200),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.warning_amber,
+                                  color: Colors.amber[700]),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng sau khi đóng hộp thoại này.',
+                                  style: TextStyle(color: Colors.amber[900]),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                     ],
                   ),
                   primaryButtonText: 'Xác nhận',
                   onPrimaryButtonPressed: () {
                     Navigator.of(context).pop();
-                    if (_images.isNotEmpty) {
-                      context
-                          .read<UploadImageCubit>()
-                          .uploadImage(file: _images.first);
+                    if (_dialogIsHealthy) {
+                      // Normal flow - upload image if available or create log
+                      if (_images.isNotEmpty) {
+                        context.read<UploadImageCubit>().uploadImage(
+                            file: _images.first, isTaskImage: true);
+                      } else {
+                        _onCreateLog();
+                      }
                     } else {
-                      _onCreateLog();
+                      if (widget.task.taskType.taskTypeId ==
+                          TaskTypeDataConstant.feeding) {
+                        _handleNavigateCreateMedicalSymptomOnFoodTask();
+                      } else if (widget.task.taskType.taskTypeId ==
+                          TaskTypeDataConstant.vaccin) {
+                        _handleNavigateCreateMedicalSymptomOnVaccineTask();
+                      } else {
+                        context.push(
+                          RouteName.createSymptom,
+                          extra: {
+                            'cageId': widget.task.cageId,
+                            'taskId': widget.task.id,
+                            'fromTask': true,
+                            'cageName': widget.task.cageName
+                          },
+                        );
+                      }
                     }
                   },
                   secondaryButtonText: 'Hủy',
                   onSecondaryButtonPressed: () {
                     Navigator.of(context).pop();
-                  });
-            });
-          });
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          // Use a separate variable to track selected state in dialog
-          bool _dialogIsHealthy = true;
-
-          return StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {
-              return WarningConfirmationDialog(
-                title: 'Xác nhận tình trạng sức khỏe',
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Vui lòng chọn tình trạng sức khỏe của đàn gà:'),
-                    const SizedBox(height: 16),
-                    RadioListTile<bool>(
-                      title: const Text('Đàn gà bình thường, khỏe mạnh'),
-                      value: true,
-                      groupValue: _dialogIsHealthy,
-                      onChanged: (value) {
-                        setState(() {
-                          _dialogIsHealthy = value!;
-                        });
-                      },
-                    ),
-                    RadioListTile<bool>(
-                      title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
-                      value: false,
-                      groupValue: _dialogIsHealthy,
-                      onChanged: (value) {
-                        setState(() {
-                          _dialogIsHealthy = value!;
-                        });
-                      },
-                    ),
-                    if (!_dialogIsHealthy)
-                      Container(
-                        margin:
-                            const EdgeInsets.only(top: 8, left: 16, right: 16),
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.amber.shade200),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.warning_amber, color: Colors.amber[700]),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng sau khi đóng hộp thoại này.',
-                                style: TextStyle(color: Colors.amber[900]),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                  ],
-                ),
-                primaryButtonText: 'Xác nhận',
-                onPrimaryButtonPressed: () {
-                  Navigator.of(context).pop();
-                  if (_dialogIsHealthy) {
-                    // Normal flow - upload image if available or create log
-                    if (_images.isNotEmpty) {
-                      context
-                          .read<UploadImageCubit>()
-                          .uploadImage(file: _images.first);
-                    } else {
-                      _onCreateLog();
-                    }
-                  } else {
-                    // Navigate to symptom reporting screen
-                    context.push(
-                      RouteName.createSymptom,
-                      extra: {
-                        'cageId': widget.task.cageId,
-                        'taskId': widget.task.id,
-                        'fromTask': true,
-                        'cageName': widget.task.cageName
-                      },
-                    );
-                  }
-                },
-                secondaryButtonText: 'Hủy',
-                onSecondaryButtonPressed: () {
-                  Navigator.of(context).pop();
-                },
-              );
-            },
-          );
-        },
-      );
+                  },
+                );
+              },
+            );
+          },
+        );
+      }
     }
+  }
+
+  void _handleNavigateCreateMedicalSymptomOnFoodTask() {
+    _foodLog = DailyFoodUsageLogDto(
+        recommendedWeight: (recommendedWeight!.toInt() * 1000),
+        actualWeight: actualWeight.toInt(),
+        notes: logController.text,
+        logTime: DateTime.now(),
+        photo: uploadImage?.path != null
+            ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
+            : '',
+        taskId: widget.task.id);
+
+    _foodLogParams = CreateFoodLogCubitParams(
+      cageId: widget.task.cageId,
+      log: _foodLog!,
+      afterSymptomReport: true,
+    );
+
+    context.push(RouteName.createSymptom, extra: {
+      'cageId': widget.task.cageId,
+      'taskId': widget.task.id,
+      'fromTask': true,
+      'cageName': widget.task.cageName,
+      'paramsFoodLog': _foodLogParams,
+    });
+  }
+
+  void _handleNavigateCreateMedicalSymptomOnVaccineTask() {
+    _vaccineLogRequest = VaccineScheduleLogRequest(
+      date: TimeUtils.customNow().toIso8601String(),
+      session: vaccineSchedule!.session,
+      vaccineId: vaccineSchedule!.vaccineId,
+      quantity: int.parse(_countAnimalVaccineController.text),
+      notes: logController.text,
+      photo: uploadImage?.path != null
+          ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
+          : '',
+      taskId: widget.task.id,
+    );
+
+    _vaccineLogParams = CreateVaccineLogCubitParams(
+      vaccineScheduleLogRequest: _vaccineLogRequest!,
+      afterSymptomReport: true,
+    );
+
+    context.push(RouteName.createSymptom, extra: {
+      'cageId': widget.task.cageId,
+      'taskId': widget.task.id,
+      'fromTask': true,
+      'cageName': widget.task.cageName,
+      'paramsVaccineLog': _vaccineLogParams,
+    });
   }
 
   void _onCreateLog() {
@@ -1334,20 +1422,20 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         BlocListener<UploadImageCubit, UploadImageState>(
           listener: (context, state) {
             state.maybeWhen(
-              uploadImageInProgress: () {
+              uploadImageInProgress: (_) {
                 setState(() {
                   _isProcessing = true;
                 });
                 log('Đang tải ảnh lên...');
               },
-              uploadImageSuccess: (imageDto) {
+              uploadImageSuccess: (imageDto, _) {
                 setState(() {
                   uploadImage = imageDto;
                 });
                 log('Tải ảnh lên thành công!');
                 _onCreateLog();
               },
-              uploadImageFailure: (e) {
+              uploadImageFailure: (e, _) {
                 setState(() {
                   _isProcessing = false;
                 });
@@ -1485,7 +1573,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           // Replace the text+icon combo with just a home icon
           actions: [
             IconButton(
-              icon: const Icon(Icons.home),
+              icon: const Icon(Icons.home_outlined),
               onPressed: _navigateDirectlyToTaskScreen,
               tooltip: 'Quay lại danh sách công việc',
             ),

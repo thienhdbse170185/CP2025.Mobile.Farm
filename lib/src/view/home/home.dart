@@ -238,7 +238,7 @@ class _HomeWidgetState extends State<HomeWidget>
                             // Display the formatted date here
                             StreamBuilder(
                               stream:
-                                  Stream.periodic(const Duration(seconds: 10)),
+                                  Stream.periodic(const Duration(seconds: 1)),
                               builder: (context, snapshot) {
                                 return Text(
                                   DateFormat('HH:mm, dd/MM/yyyy')

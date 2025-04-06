@@ -19,9 +19,11 @@ mixin _$UploadImageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -34,9 +36,10 @@ mixin _$UploadImageState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -48,9 +51,10 @@ mixin _$UploadImageState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -179,9 +183,11 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -197,9 +203,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -214,9 +221,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -308,6 +316,8 @@ abstract class _$$UploadImageInProgressImplCopyWith<$Res> {
           _$UploadImageInProgressImpl value,
           $Res Function(_$UploadImageInProgressImpl) then) =
       __$$UploadImageInProgressImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isImageTask});
 }
 
 /// @nodoc
@@ -320,35 +330,63 @@ class __$$UploadImageInProgressImplCopyWithImpl<$Res>
 
   /// Create a copy of UploadImageState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isImageTask = null,
+  }) {
+    return _then(_$UploadImageInProgressImpl(
+      null == isImageTask
+          ? _value.isImageTask
+          : isImageTask // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$UploadImageInProgressImpl implements _UploadImageInProgress {
-  const _$UploadImageInProgressImpl();
+  const _$UploadImageInProgressImpl(this.isImageTask);
+
+  @override
+  final bool isImageTask;
 
   @override
   String toString() {
-    return 'UploadImageState.uploadImageInProgress()';
+    return 'UploadImageState.uploadImageInProgress(isImageTask: $isImageTask)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UploadImageInProgressImpl);
+            other is _$UploadImageInProgressImpl &&
+            (identical(other.isImageTask, isImageTask) ||
+                other.isImageTask == isImageTask));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isImageTask);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadImageInProgressImplCopyWith<_$UploadImageInProgressImpl>
+      get copyWith => __$$UploadImageInProgressImplCopyWithImpl<
+          _$UploadImageInProgressImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -357,16 +395,17 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
   }) {
-    return uploadImageInProgress();
+    return uploadImageInProgress(isImageTask);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -374,16 +413,17 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
   }) {
-    return uploadImageInProgress?.call();
+    return uploadImageInProgress?.call(isImageTask);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -393,7 +433,7 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
     required TResult orElse(),
   }) {
     if (uploadImageInProgress != null) {
-      return uploadImageInProgress();
+      return uploadImageInProgress(isImageTask);
     }
     return orElse();
   }
@@ -466,7 +506,16 @@ class _$UploadImageInProgressImpl implements _UploadImageInProgress {
 }
 
 abstract class _UploadImageInProgress implements UploadImageState {
-  const factory _UploadImageInProgress() = _$UploadImageInProgressImpl;
+  const factory _UploadImageInProgress(final bool isImageTask) =
+      _$UploadImageInProgressImpl;
+
+  bool get isImageTask;
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UploadImageInProgressImplCopyWith<_$UploadImageInProgressImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -475,7 +524,7 @@ abstract class _$$UploadImageSuccessImplCopyWith<$Res> {
           $Res Function(_$UploadImageSuccessImpl) then) =
       __$$UploadImageSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UploadImageDto image});
+  $Res call({UploadImageDto image, bool isImageTask});
 
   $UploadImageDtoCopyWith<$Res> get image;
 }
@@ -494,12 +543,17 @@ class __$$UploadImageSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? image = null,
+    Object? isImageTask = null,
   }) {
     return _then(_$UploadImageSuccessImpl(
       null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as UploadImageDto,
+      null == isImageTask
+          ? _value.isImageTask
+          : isImageTask // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -517,14 +571,16 @@ class __$$UploadImageSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UploadImageSuccessImpl implements _UploadImageSuccess {
-  const _$UploadImageSuccessImpl(this.image);
+  const _$UploadImageSuccessImpl(this.image, this.isImageTask);
 
   @override
   final UploadImageDto image;
+  @override
+  final bool isImageTask;
 
   @override
   String toString() {
-    return 'UploadImageState.uploadImageSuccess(image: $image)';
+    return 'UploadImageState.uploadImageSuccess(image: $image, isImageTask: $isImageTask)';
   }
 
   @override
@@ -532,11 +588,13 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UploadImageSuccessImpl &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.isImageTask, isImageTask) ||
+                other.isImageTask == isImageTask));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, image);
+  int get hashCode => Object.hash(runtimeType, image, isImageTask);
 
   /// Create a copy of UploadImageState
   /// with the given fields replaced by the non-null parameter values.
@@ -551,9 +609,11 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -562,16 +622,17 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
   }) {
-    return uploadImageSuccess(image);
+    return uploadImageSuccess(image, isImageTask);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -579,16 +640,17 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
   }) {
-    return uploadImageSuccess?.call(image);
+    return uploadImageSuccess?.call(image, isImageTask);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -598,7 +660,7 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
     required TResult orElse(),
   }) {
     if (uploadImageSuccess != null) {
-      return uploadImageSuccess(image);
+      return uploadImageSuccess(image, isImageTask);
     }
     return orElse();
   }
@@ -671,10 +733,12 @@ class _$UploadImageSuccessImpl implements _UploadImageSuccess {
 }
 
 abstract class _UploadImageSuccess implements UploadImageState {
-  const factory _UploadImageSuccess(final UploadImageDto image) =
+  const factory _UploadImageSuccess(
+          final UploadImageDto image, final bool isImageTask) =
       _$UploadImageSuccessImpl;
 
   UploadImageDto get image;
+  bool get isImageTask;
 
   /// Create a copy of UploadImageState
   /// with the given fields replaced by the non-null parameter values.
@@ -689,7 +753,7 @@ abstract class _$$UploadImageFailureImplCopyWith<$Res> {
           $Res Function(_$UploadImageFailureImpl) then) =
       __$$UploadImageFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({String message, bool isImageTask});
 }
 
 /// @nodoc
@@ -706,12 +770,17 @@ class __$$UploadImageFailureImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? isImageTask = null,
   }) {
     return _then(_$UploadImageFailureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      null == isImageTask
+          ? _value.isImageTask
+          : isImageTask // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -719,14 +788,16 @@ class __$$UploadImageFailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UploadImageFailureImpl implements _UploadImageFailure {
-  const _$UploadImageFailureImpl(this.message);
+  const _$UploadImageFailureImpl(this.message, this.isImageTask);
 
   @override
   final String message;
+  @override
+  final bool isImageTask;
 
   @override
   String toString() {
-    return 'UploadImageState.uploadImageFailure(message: $message)';
+    return 'UploadImageState.uploadImageFailure(message: $message, isImageTask: $isImageTask)';
   }
 
   @override
@@ -734,11 +805,13 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UploadImageFailureImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.isImageTask, isImageTask) ||
+                other.isImageTask == isImageTask));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, isImageTask);
 
   /// Create a copy of UploadImageState
   /// with the given fields replaced by the non-null parameter values.
@@ -753,9 +826,11 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -764,16 +839,17 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     required TResult Function() deleteImageSuccess,
     required TResult Function(String message) deleteImageFailure,
   }) {
-    return uploadImageFailure(message);
+    return uploadImageFailure(message, isImageTask);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -781,16 +857,17 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     TResult? Function()? deleteImageSuccess,
     TResult? Function(String message)? deleteImageFailure,
   }) {
-    return uploadImageFailure?.call(message);
+    return uploadImageFailure?.call(message, isImageTask);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -800,7 +877,7 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
     required TResult orElse(),
   }) {
     if (uploadImageFailure != null) {
-      return uploadImageFailure(message);
+      return uploadImageFailure(message, isImageTask);
     }
     return orElse();
   }
@@ -873,10 +950,11 @@ class _$UploadImageFailureImpl implements _UploadImageFailure {
 }
 
 abstract class _UploadImageFailure implements UploadImageState {
-  const factory _UploadImageFailure(final String message) =
-      _$UploadImageFailureImpl;
+  const factory _UploadImageFailure(
+      final String message, final bool isImageTask) = _$UploadImageFailureImpl;
 
   String get message;
+  bool get isImageTask;
 
   /// Create a copy of UploadImageState
   /// with the given fields replaced by the non-null parameter values.
@@ -932,9 +1010,11 @@ class _$UploadMultipleImageInProgressImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -950,9 +1030,10 @@ class _$UploadMultipleImageInProgressImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -967,9 +1048,10 @@ class _$UploadMultipleImageInProgressImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -1136,9 +1218,11 @@ class _$UploadMultipleImageSuccessImpl implements _UploadMultipleImageSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -1154,9 +1238,10 @@ class _$UploadMultipleImageSuccessImpl implements _UploadMultipleImageSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -1171,9 +1256,10 @@ class _$UploadMultipleImageSuccessImpl implements _UploadMultipleImageSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -1341,9 +1427,11 @@ class _$UploadMultipleImageFailureImpl implements _UploadMultipleImageFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -1359,9 +1447,10 @@ class _$UploadMultipleImageFailureImpl implements _UploadMultipleImageFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -1376,9 +1465,10 @@ class _$UploadMultipleImageFailureImpl implements _UploadMultipleImageFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -1517,9 +1607,11 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -1535,9 +1627,10 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -1552,9 +1645,10 @@ class _$DeleteImageInProgressImpl implements _DeleteImageInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -1682,9 +1776,11 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -1700,9 +1796,10 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -1717,9 +1814,10 @@ class _$DeleteImageSuccessImpl implements _DeleteImageSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,
@@ -1875,9 +1973,11 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() uploadImageInProgress,
-    required TResult Function(UploadImageDto image) uploadImageSuccess,
-    required TResult Function(String message) uploadImageFailure,
+    required TResult Function(bool isImageTask) uploadImageInProgress,
+    required TResult Function(UploadImageDto image, bool isImageTask)
+        uploadImageSuccess,
+    required TResult Function(String message, bool isImageTask)
+        uploadImageFailure,
     required TResult Function() uploadMultipleImageInProgress,
     required TResult Function(List<UploadImageDto> images)
         uploadMultipleImageSuccess,
@@ -1893,9 +1993,10 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? uploadImageInProgress,
-    TResult? Function(UploadImageDto image)? uploadImageSuccess,
-    TResult? Function(String message)? uploadImageFailure,
+    TResult? Function(bool isImageTask)? uploadImageInProgress,
+    TResult? Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult? Function(String message, bool isImageTask)? uploadImageFailure,
     TResult? Function()? uploadMultipleImageInProgress,
     TResult? Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult? Function(String message)? uploadMultipleImageFailure,
@@ -1910,9 +2011,10 @@ class _$DeleteImageFailureImpl implements _DeleteImageFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? uploadImageInProgress,
-    TResult Function(UploadImageDto image)? uploadImageSuccess,
-    TResult Function(String message)? uploadImageFailure,
+    TResult Function(bool isImageTask)? uploadImageInProgress,
+    TResult Function(UploadImageDto image, bool isImageTask)?
+        uploadImageSuccess,
+    TResult Function(String message, bool isImageTask)? uploadImageFailure,
     TResult Function()? uploadMultipleImageInProgress,
     TResult Function(List<UploadImageDto> images)? uploadMultipleImageSuccess,
     TResult Function(String message)? uploadMultipleImageFailure,

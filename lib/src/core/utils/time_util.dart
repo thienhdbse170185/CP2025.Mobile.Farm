@@ -77,4 +77,9 @@ class TimeUtils {
       return -1;
     }
   }
+
+  static bool isTimeInSession(DateTime time, int session) {
+    final int timeSession = getSessionFromTime(time);
+    return timeSession == session;
+  }
 }

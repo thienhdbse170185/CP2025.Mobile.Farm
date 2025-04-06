@@ -6,10 +6,10 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 class WarningConfirmationDialog extends StatefulWidget {
   final String title;
   final Widget content;
-  final String secondaryButtonText;
+  final String? secondaryButtonText;
   final String primaryButtonText;
   final VoidCallback onPrimaryButtonPressed;
-  final VoidCallback onSecondaryButtonPressed;
+  final VoidCallback? onSecondaryButtonPressed;
   final bool isEmergency;
   final int countdownDuration;
 
@@ -17,10 +17,10 @@ class WarningConfirmationDialog extends StatefulWidget {
     super.key,
     required this.title,
     required this.content,
-    required this.secondaryButtonText,
+    this.secondaryButtonText,
     required this.primaryButtonText,
     required this.onPrimaryButtonPressed,
-    required this.onSecondaryButtonPressed,
+    this.onSecondaryButtonPressed,
     this.isEmergency = false,
     this.countdownDuration = 5,
   });
@@ -90,13 +90,17 @@ class _WarningConfirmationDialogState extends State<WarningConfirmationDialog> {
   Widget build(BuildContext context) {
     // Giới hạn chiều rộng tối đa của nút primary
     final double screenWidth = MediaQuery.of(context).size.width;
-    final double maxPrimaryWidth = screenWidth * 0.45;
-    final double secondaryWidth = widget.isEmergency && countdown > 0
-        ? screenWidth * 0.25
-        : screenWidth * 0.3;
-    final double primaryWidthBase = widget.isEmergency && countdown > 0
-        ? screenWidth * 0.38
-        : screenWidth * 0.32;
+    final double maxPrimaryWidth = screenWidth * 0.9;
+    final double secondaryWidth = widget.secondaryButtonText != null
+        ? (widget.isEmergency && countdown > 0
+            ? screenWidth * 0.25
+            : screenWidth * 0.3)
+        : 0;
+    final double primaryWidthBase = widget.secondaryButtonText != null
+        ? (widget.isEmergency && countdown > 0
+            ? screenWidth * 0.38
+            : screenWidth * 0.32)
+        : screenWidth * 0.9;
     final double primaryWidth =
         primaryWidthBase > maxPrimaryWidth ? maxPrimaryWidth : primaryWidthBase;
 
@@ -117,17 +121,18 @@ class _WarningConfirmationDialogState extends State<WarningConfirmationDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  width: secondaryWidth,
-                  child: GestureDetector(
-                    onLongPress: widget.isEmergency ? _cancelCountdown : null,
-                    child: OutlinedButton(
-                      onPressed: widget.onSecondaryButtonPressed,
-                      child: Text(widget.secondaryButtonText),
+                if (widget.secondaryButtonText != null)
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    width: secondaryWidth,
+                    child: GestureDetector(
+                      onLongPress: widget.isEmergency ? _cancelCountdown : null,
+                      child: OutlinedButton(
+                        onPressed: widget.onSecondaryButtonPressed,
+                        child: Text(widget.secondaryButtonText!),
+                      ),
                     ),
                   ),
-                ),
                 const SizedBox(width: 8),
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
