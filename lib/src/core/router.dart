@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/widgets.dart';
@@ -224,6 +226,7 @@ final router = GoRouter(
             final cageId = extra?['cageId'] as String?;
             final taskId = extra?['taskId'] as String?;
             final fromTask = extra?['fromTask'] as bool? ?? false;
+            final imageLog = extra?['imageLog'] as File?;
             final paramsFoodLog =
                 extra?['paramsFoodLog'] as CreateFoodLogCubitParams?;
             final paramsHealthLog =
@@ -235,6 +238,7 @@ final router = GoRouter(
               cageName: cageName,
               cageId: cageId,
               taskId: taskId,
+              imageLog: imageLog,
               fromTask: fromTask,
               paramsFoodLog: paramsFoodLog,
               paramsHealthLog: paramsHealthLog,

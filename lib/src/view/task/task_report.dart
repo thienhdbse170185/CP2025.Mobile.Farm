@@ -495,6 +495,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                           extra: {
                             'cageId': widget.task.cageId,
                             'taskId': widget.task.id,
+                            'imageLog':
+                                _images.isNotEmpty ? _images.first : null,
                             'fromTask': true,
                             'cageName': widget.task.cageName
                           },
@@ -536,6 +538,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       'cageId': widget.task.cageId,
       'taskId': widget.task.id,
       'fromTask': true,
+      'imageLog': _images.isNotEmpty ? _images.first : null,
       'cageName': widget.task.cageName,
       'paramsFoodLog': _foodLogParams,
     });
@@ -563,6 +566,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       'cageId': widget.task.cageId,
       'taskId': widget.task.id,
       'fromTask': true,
+      'imageLog': _images.isNotEmpty ? _images.first : null,
       'cageName': widget.task.cageName,
       'paramsVaccineLog': _vaccineLogParams,
     });
@@ -743,14 +747,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isProcessing = false;
                 });
                 log("Cập nhật trạng thái công việc thành công!");
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content:
-                          Text('Cập nhật trạng thái công việc thành công!')),
-                );
-
-                // Use the new navigation handler
                 _handleTaskComplete(context, true);
               },
               updateStatusTaskFailure: (e) async {
@@ -758,10 +754,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isProcessing = false;
                 });
                 log("Cập nhật trạng thái công việc thất bại! \nError: $e");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text('Cập nhật trạng thái công việc thất bại!')),
-                );
               },
               createDailyFoodUsageLogLoading: () {
                 // LoadingDialog.show(context, "Đang tạo log cho ăn...");
@@ -776,9 +768,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isProcessing = false;
                 });
                 log("Tạo log cho ăn thành công!");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Tạo log cho ăn thành công!')),
-                );
                 context.read<TaskBloc>().add(TaskEvent.updateTask(
                     widget.taskId, StatusDataConstant.done));
               },
@@ -789,11 +778,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 context
                     .read<UploadImageCubit>()
                     .deleteImage(id: uploadImage!.id);
-                LoadingDialog.hide(context);
+                // LoadingDialog.hide(context);
                 log("Tạo log cho ăn thất bại!");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(e.toString())),
-                );
               },
               createHealthLogLoading: () {
                 setState(() {
@@ -803,10 +789,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               createHealthLogSuccess: () async {
                 log("Tạo log uống thuốc thành công!");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text('Tạo log uống thuốc thành công!')),
-                );
                 context.read<TaskBloc>().add(TaskEvent.updateTask(
                     widget.taskId, StatusDataConstant.done));
               },
@@ -821,21 +803,14 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 });
                 // LoadingDialog.hide(context);
                 log("Tạo log uống thuốc thất bại!");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Tạo log uống thuốc thất bại!')),
-                );
               },
               createVaccinScheduleLogLoading: () {
-                LoadingDialog.show(context, "Đang tạo log lịch tiêm chủng...");
+                // LoadingDialog.show(context, "Đang tạo log lịch tiêm chủng...");
                 log("Đang tạo log lịch tiêm chủng...");
               },
               createVaccinScheduleLogSuccess: () async {
-                LoadingDialog.hide(context);
+                // LoadingDialog.hide(context);
                 log("Tạo log lịch tiêm chủng thành công!");
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text('Tạo log lịch tiêm chủng thành công!')),
-                );
                 context.read<TaskBloc>().add(TaskEvent.updateTask(
                     widget.taskId, StatusDataConstant.done));
               },
@@ -843,7 +818,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 context
                     .read<UploadImageCubit>()
                     .deleteImage(id: uploadImage!.id);
-                LoadingDialog.hide(context);
+                // LoadingDialog.hide(context);
                 if (e.toString().contains('vaccinschedule-not-found')) {
                   log("Vaccine schedule không tồn tại!");
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -852,10 +827,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   );
                 } else {
                   log("Tạo log lịch tiêm chủng thất bại!");
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Tạo log lịch tiêm chủng thất bại!')),
-                  );
                 }
               },
               getDailyFoodUsageLogLoading: () {
