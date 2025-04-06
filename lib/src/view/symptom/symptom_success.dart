@@ -1,10 +1,12 @@
 import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
 
 class SymptomSuccessWidget extends StatefulWidget {
   final MedicalSymptomResponse symptom;
@@ -335,33 +337,68 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
           ),
 
           // Task info content
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildDetailRow(
-                  'Mã công việc',
-                  widget.taskId ?? "N/A",
-                  Icon(Icons.numbers, color: Colors.grey[600], size: 24),
+          FutureBuilder(
+            future: Future(() {
+              final taskBloc = context.read<TaskBloc>();
+              taskBloc.add(TaskEvent.getTaskById(widget.taskId!));
+            }),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              }
+              return Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BlocBuilder<TaskBloc, TaskState>(
+                      builder: (context, state) {
+                        state.maybeWhen(
+                          getTaskByIdLoading: () {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                          getTaskByIdSuccess: (task, userId) {
+                            return _buildDetailRow(
+                              'Công việc',
+                              task.taskName,
+                              Icon(Icons.assignment_outlined,
+                                  color: Colors.green[700], size: 24),
+                              valueColor: Colors.green[700],
+                            );
+                          },
+                          getTaskByIdFailure: (error) {
+                            return const Center(
+                              child: Text('Không thể tải thông tin công việc'),
+                            );
+                          },
+                          orElse: () {},
+                        );
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                    _buildDetailRow(
+                      'Trạng thái cập nhật',
+                      'Đã đánh dấu là công việc cách ly',
+                      Icon(Icons.medical_services_outlined,
+                          color: Colors.amber[700], size: 24),
+                    ),
+                    const SizedBox(height: 16),
+                    _buildDetailRow(
+                      'Công việc đã hoàn thành',
+                      'Đã tạo log và cập nhật trạng thái',
+                      Icon(Icons.check_circle_outline,
+                          color: Colors.green[700], size: 24),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 16),
-                _buildDetailRow(
-                  'Trạng thái cập nhật',
-                  'Đã đánh dấu là công việc cách ly',
-                  Icon(Icons.medical_services_outlined,
-                      color: Colors.amber[700], size: 24),
-                ),
-                const SizedBox(height: 16),
-                _buildDetailRow(
-                  'Công việc đã hoàn thành',
-                  'Đã tạo log và cập nhật trạng thái',
-                  Icon(Icons.check_circle_outline,
-                      color: Colors.green[700], size: 24),
-                ),
-              ],
-            ),
-          ),
+              );
+            },
+          )
         ],
       ),
     );
@@ -525,8 +562,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                 widget.fromTask ? Icons.assignment : Icons.home,
                 size: 18,
               ),
-              label:
-                  Text(widget.fromTask ? 'Quay lại công việc' : 'Về trang chủ'),
+              label: Text(widget.fromTask ? 'Quay lại c.việc' : 'Về trang chủ'),
             ),
           ),
           const SizedBox(width: 8),
