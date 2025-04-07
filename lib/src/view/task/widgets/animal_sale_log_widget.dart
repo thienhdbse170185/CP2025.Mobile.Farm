@@ -26,6 +26,7 @@ class AnimalSaleLogWidget extends StatefulWidget {
   final SaleLogDto? salelog;
   final SaleDetailLogDto? saleDetailLog;
   final SaleLogDetailDto? saleLogDetail;
+  final DateTime? logTime;
 
   const AnimalSaleLogWidget({
     super.key,
@@ -44,6 +45,7 @@ class AnimalSaleLogWidget extends StatefulWidget {
     this.salelog,
     this.saleDetailLog,
     this.saleLogDetail,
+    this.logTime,
   });
 
   @override
@@ -158,6 +160,19 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
               ),
             ],
           ),
+          if (widget.logTime != null) ...[
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                _buildInfoItem(
+                  context: context,
+                  label: 'Thời gian báo cáo',
+                  value: DateFormat('dd/MM/yyyy').format(widget.logTime!),
+                  icon: Icons.access_time,
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );
