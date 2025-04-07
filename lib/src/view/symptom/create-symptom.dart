@@ -866,16 +866,15 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                         taskId: widget.paramsUpdateWeight!.taskId,
                       ),
                     );
+              } else {
+                context.read<TaskBloc>().add(
+                      TaskEvent.updateTask(
+                        taskId,
+                        StatusDataConstant.done,
+                        afterSymptomReport: true,
+                      ),
+                    );
               }
-
-              // Finally, update the task status to done
-              context.read<TaskBloc>().add(
-                    TaskEvent.updateTask(
-                      taskId,
-                      StatusDataConstant.done,
-                      afterSymptomReport: true,
-                    ),
-                  );
             },
           ),
         );
