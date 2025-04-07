@@ -1,5 +1,6 @@
 import 'package:data_layer/model/dto/farming_batch/farming_batch_dto.dart';
 import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
+import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
@@ -12,6 +13,7 @@ class WeighingLogWidget extends StatefulWidget {
   final TextEditingController weightAnimalController;
   final ValueChanged<double>? onWeightChanged; // Make nullable
   final String? taskStatus;
+  final TaskHaveCageName? task;
   final bool readOnly; // Add readOnly flag
 
   const WeighingLogWidget({
@@ -20,6 +22,7 @@ class WeighingLogWidget extends StatefulWidget {
     required this.growthStage,
     required this.farmingBatch,
     required this.weightAnimalController,
+    required this.task,
     this.onWeightChanged, // Make optional
     this.taskStatus,
     this.readOnly = false, // Default to false
@@ -148,23 +151,23 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: _buildInfoItem(
-              context: context,
-              label: 'Tên người báo cáo',
-              value: widget.userName ?? 'Đang tải...',
-              icon: Icons.person,
-            ),
-          ),
-          Expanded(
-            child: _buildInfoItem(
-              context: context,
-              label: 'Ngày báo cáo',
-              value: DateFormat('dd/MM/yyyy').format(TimeUtils.customNow()),
-              icon: Icons.today,
-            ),
+          Row(
+            children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Tên người báo cáo',
+                value: widget.userName ?? 'Đang tải...',
+                icon: Icons.person,
+              ),
+              _buildInfoItem(
+                context: context,
+                label: 'Tên chuồng',
+                value: widget.task?.cageName ?? 'Đang tải...',
+                icon: Icons.today,
+              ),
+            ],
           ),
         ],
       ),
