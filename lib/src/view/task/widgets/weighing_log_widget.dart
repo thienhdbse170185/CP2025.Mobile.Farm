@@ -71,8 +71,8 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
         _buildGrowthStageInfo(context, widget.growthStage),
         const SizedBox(height: 24),
         _buildWeightInputForm(context),
-        const SizedBox(height: 20),
-        _buildPreviousWeightComparison(context), // Thêm phần so sánh cân nặng
+        // const SizedBox(height: 20),
+        // _buildPreviousWeightComparison(context), // Thêm phần so sánh cân nặng
       ],
     );
   }
@@ -457,67 +457,6 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
   // Thêm phương thức mới để hiển thị thông tin giai đoạn trước
   Widget _buildPreviousWeightComparison(BuildContext context) {
     // Nếu không có dữ liệu giai đoạn trước
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.history,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Lịch sử cân nặng',
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-              ],
-            ),
-            const Divider(height: 24),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.info_outline,
-                      color: Colors.grey[400],
-                      size: 48,
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Chưa có dữ liệu cân nặng giai đoạn trước',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Đây là lần đầu tiên ghi nhận cân nặng cho lứa này',
-                      style: TextStyle(
-                        color: Colors.grey[500],
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-
     // Xác định màu sắc và biểu tượng phù hợp với xu hướng cân nặng
     final IconData trendIcon =
         _weightDifference >= 0 ? Icons.trending_up : Icons.trending_down;
@@ -582,7 +521,6 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                   ),
                   const SizedBox(height: 12),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _buildInfoItem(
                         context: context,
@@ -591,6 +529,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                             '${widget.growthStage!.weightAnimal.toStringAsFixed(2)} kg',
                         icon: Icons.scale,
                       ),
+                      SizedBox(width: MediaQuery.of(context).size.width * 0.08),
                       _buildInfoItem(
                         context: context,
                         label: 'Độ tuổi',

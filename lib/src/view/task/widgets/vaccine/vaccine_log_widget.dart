@@ -21,6 +21,7 @@ class VaccineLogWidget extends StatefulWidget {
   final VoidCallback?
       onVaccineDetailPressed; // Thêm callback khi nhấn vào chi tiết vắc xin
   final VaccineDto? vaccine;
+  final DateTime? logTime;
 
   const VaccineLogWidget({
     super.key,
@@ -37,6 +38,7 @@ class VaccineLogWidget extends StatefulWidget {
     this.totalPrice,
     this.onVaccineDetailPressed, // Thêm vào constructor
     this.vaccine,
+    this.logTime,
   });
 
   @override
@@ -125,23 +127,41 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: _buildInfoItem(
-              context: context,
-              label: 'Tên người báo cáo',
-              value: widget.userName ?? 'Đang tải...',
-              icon: Icons.person,
-            ),
-          ),
-          const SizedBox(width: 24),
-          Expanded(
-            child: _buildInfoItem(
+          Row(
+            children: [
+              _buildInfoItem(
                 context: context,
-                label: 'Tên chuồng',
-                value: widget.task.cageName,
-                icon: Icons.home_work_outlined),
+                label: 'Tên người báo cáo',
+                value: widget.userName ?? 'Đang tải...',
+                icon: Icons.person,
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.15),
+              _buildInfoItem(
+                  context: context,
+                  label: 'Tên chuồng',
+                  value: widget.task.cageName,
+                  icon: Icons.home_work_outlined)
+            ],
+          ),
+          Row(
+            children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Thời gian báo cáo',
+                value: widget.logTime != null
+                    ? DateFormat('dd/MM/yyyy HH:mm').format(widget.logTime!)
+                    : 'Đang tải...',
+                icon: Icons.access_time,
+              ),
+              const SizedBox(width: 24),
+              _buildInfoItem(
+                  context: context,
+                  label: 'Tên lô giống',
+                  value: widget.farmingBatch?.name ?? 'Đang tải...',
+                  icon: Icons.pets),
+            ],
           )
         ],
       ),

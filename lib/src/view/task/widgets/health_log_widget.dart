@@ -13,6 +13,7 @@ class HealthLogWidget extends StatefulWidget {
   final Function(bool)? onConfirmationChanged;
   final TaskHaveCageName task;
   final TextEditingController? noteController;
+  final DateTime? logTime;
 
   const HealthLogWidget({
     super.key,
@@ -23,6 +24,7 @@ class HealthLogWidget extends StatefulWidget {
     required this.onConfirmationChanged,
     required this.task,
     this.noteController,
+    this.logTime,
   });
 
   @override
@@ -121,6 +123,19 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                 value: widget.task.cageName,
                 icon: Icons.home_work_outlined,
               ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  _buildInfoItem(
+                    context: context,
+                    label: 'Thời gian báo cáo',
+                    value: widget.logTime != null
+                        ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
+                        : 'Đang tải...',
+                    icon: Icons.access_time,
+                  ),
+                ],
+              )
             ],
           ),
         ],
