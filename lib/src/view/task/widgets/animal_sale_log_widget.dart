@@ -1,4 +1,5 @@
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/sale_log_detail/sale_log_detail_dto.dart';
 import 'package:data_layer/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
 import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
@@ -24,6 +25,7 @@ class AnimalSaleLogWidget extends StatefulWidget {
   final bool readOnly;
   final SaleLogDto? salelog;
   final SaleDetailLogDto? saleDetailLog;
+  final SaleLogDetailDto? saleLogDetail;
 
   const AnimalSaleLogWidget({
     super.key,
@@ -41,6 +43,7 @@ class AnimalSaleLogWidget extends StatefulWidget {
     this.readOnly = false,
     this.salelog,
     this.saleDetailLog,
+    this.saleLogDetail,
   });
 
   @override
@@ -51,22 +54,37 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.saleDetailLog != null) {
+    // if (widget.saleDetailLog != null) {
+    //   widget.weightMeatSellController.text =
+    //       widget.saleDetailLog?.quantity.toString() ?? '0';
+    //   // Format the value with commas
+    //   final formatter = NumberFormat('#,###');
+    //   final newValue = formatter.format(widget.saleDetailLog?.unitPrice);
+
+    //   // Update the controller with the formatted value
+    //   widget.priceMeatSellController.value = TextEditingValue(
+    //     text: newValue,
+    //     selection: TextSelection.collapsed(offset: newValue.length),
+    //   );
+    //   // widget.priceMeatSellController.text =
+    //   //     widget.salelog?.unitPriceAverage.toString() ?? '0';
+    //   widget.dateAnimalSellController.text = DateFormat('dd/MM/yyyy')
+    //       .format(DateTime.parse(widget.saleDetailLog?.saleDate ?? ''));
+    // }
+    if (widget.saleLogDetail != null) {
       widget.weightMeatSellController.text =
-          widget.saleDetailLog?.quantity.toString() ?? '0';
+          widget.saleLogDetail?.quantity.toString() ?? '0';
       // Format the value with commas
       final formatter = NumberFormat('#,###');
-      final newValue = formatter.format(widget.saleDetailLog?.unitPrice);
+      final newValue = formatter.format(widget.saleLogDetail?.unitPrice);
 
       // Update the controller with the formatted value
       widget.priceMeatSellController.value = TextEditingValue(
         text: newValue,
         selection: TextSelection.collapsed(offset: newValue.length),
       );
-      // widget.priceMeatSellController.text =
-      //     widget.salelog?.unitPriceAverage.toString() ?? '0';
       widget.dateAnimalSellController.text = DateFormat('dd/MM/yyyy')
-          .format(DateTime.parse(widget.saleDetailLog?.saleDate ?? ''));
+          .format(DateTime.parse(widget.saleLogDetail?.saleDate ?? ''));
     }
   }
 

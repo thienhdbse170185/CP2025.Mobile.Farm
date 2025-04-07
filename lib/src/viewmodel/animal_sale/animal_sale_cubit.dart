@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/dto/sale_log_detail/sale_log_detail_dto.dart';
 import 'package:data_layer/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
 import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
 import 'package:data_layer/model/request/animal_sale/animal_sale_request.dart';
@@ -98,6 +99,19 @@ class AnimalSaleCubit extends Cubit<AnimalSaleState> {
       emit(AnimalSaleState.getSaleLogByGrowthStageIdSuccess(matchingDetailLog));
     } catch (e) {
       emit(AnimalSaleState.getSaleLogByGrowthStageIdFailure(e.toString()));
+    }
+  }
+
+  Future<void> getSaleLogByTaskId({required String taskId}) async {
+    emit(AnimalSaleState.getSaleLogByTaskIdInProgress());
+    try {
+      log('[ANIMAL_SALE_CUBIT] Chuẩn bị lấy thông tin bán gia cầm theo ID công việc');
+      SaleLogDetailDto result =
+          await repository.getSaleLogByTaskId(taskId: taskId);
+      log('[ANIMAL_SALE_CUBIT] Lấy thông tin bán gia cầm thành công!');
+      emit(AnimalSaleState.getSaleLogByTaskIdSuccess(result));
+    } catch (e) {
+      emit(AnimalSaleState.getSaleLogByTaskIdFailure(e.toString()));
     }
   }
 }

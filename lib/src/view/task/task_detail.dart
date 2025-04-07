@@ -328,9 +328,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                   context: context,
                   builder: (context) {
                     return WarningConfirmationDialog(
-                      title: 'Hết thời gian làm việc',
+                      title: 'Không thể tiếp tục',
                       content: const Text(
-                          'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
+                          'Hiện tại không phải là thời gian để thực hiện công việc này, vui lòng kiểm tra lại.'),
                       primaryButtonText: 'Quay về trang chủ',
                       onPrimaryButtonPressed: () {
                         context.go(RouteName.home);
