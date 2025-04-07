@@ -100,7 +100,7 @@ class _WarningConfirmationDialogState extends State<WarningConfirmationDialog> {
         ? (widget.isEmergency && countdown > 0
             ? screenWidth * 0.38
             : screenWidth * 0.32)
-        : screenWidth * 0.9;
+        : screenWidth * 0.5;
     final double primaryWidth =
         primaryWidthBase > maxPrimaryWidth ? maxPrimaryWidth : primaryWidthBase;
 

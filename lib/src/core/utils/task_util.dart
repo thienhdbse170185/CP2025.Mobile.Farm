@@ -57,7 +57,7 @@ bool isWithinWorkingHours(TaskHaveCageName? task) {
 bool canCompleteTask({
   required String taskStatus,
   required TaskHaveCageName? task,
-  required bool areAnyMedicationsChecked,
+  required bool hasTakenAllMedications,
   required bool isIsolationFed,
   required String countAnimalVaccine,
   required String weightAnimal,
@@ -74,7 +74,7 @@ bool canCompleteTask({
   if (taskStatus != StatusDataConstant.inProgress) return false;
 
   if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
-      !areAnyMedicationsChecked) {
+      !hasTakenAllMedications) {
     return false;
   }
 

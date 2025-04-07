@@ -345,8 +345,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<_SetTaskIsTreatment>((event, emit) async {
       emit(const TaskState.setTaskIsTreatmentInProgress());
       try {
-        final result =
-            await repository.setTaskIsTreatment(taskId: event.taskId);
+        final result = await repository.setTaskIsTreatment(
+            taskId: event.taskId, medicalSymptomId: event.medicalSymptomId);
         if (result) {
           emit(const TaskState.setTaskIsTreatmentSuccess());
         } else {

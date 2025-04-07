@@ -62,7 +62,8 @@ mixin _$TaskEvent {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -109,7 +110,8 @@ mixin _$TaskEvent {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -155,7 +157,8 @@ mixin _$TaskEvent {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -347,7 +350,8 @@ class _$StartedImpl implements _Started {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return started();
   }
@@ -397,7 +401,8 @@ class _$StartedImpl implements _Started {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return started?.call();
   }
@@ -446,7 +451,8 @@ class _$StartedImpl implements _Started {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -665,7 +671,8 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return createTask(task);
   }
@@ -715,7 +722,8 @@ class _$CreateTaskImpl implements _CreateTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return createTask?.call(task);
   }
@@ -764,7 +772,8 @@ class _$CreateTaskImpl implements _CreateTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -1012,7 +1021,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return updateTask(taskId, statusId, afterSymptomReport);
   }
@@ -1062,7 +1072,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return updateTask?.call(taskId, statusId, afterSymptomReport);
   }
@@ -1111,7 +1122,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -1341,7 +1353,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return deleteTask(taskId);
   }
@@ -1391,7 +1404,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return deleteTask?.call(taskId);
   }
@@ -1440,7 +1454,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -1737,7 +1752,8 @@ class _$GetTasksImpl implements _GetTasks {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getTasks(keySearch, status, taskType, cageId, date, session,
         pageNumber, pageSize);
@@ -1788,7 +1804,8 @@ class _$GetTasksImpl implements _GetTasks {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getTasks?.call(keySearch, status, taskType, cageId, date, session,
         pageNumber, pageSize);
@@ -1838,7 +1855,8 @@ class _$GetTasksImpl implements _GetTasks {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasks != null) {
@@ -2054,7 +2072,8 @@ class _$TestConnectImpl implements _TestConnect {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return testConnect();
   }
@@ -2104,7 +2123,8 @@ class _$TestConnectImpl implements _TestConnect {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return testConnect?.call();
   }
@@ -2153,7 +2173,8 @@ class _$TestConnectImpl implements _TestConnect {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (testConnect != null) {
@@ -2381,7 +2402,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getTasksByCageId(date, cageId);
   }
@@ -2431,7 +2453,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getTasksByCageId?.call(date, cageId);
   }
@@ -2480,7 +2503,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByCageId != null) {
@@ -2718,7 +2742,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getTaskById(taskId, onSuccess);
   }
@@ -2768,7 +2793,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getTaskById?.call(taskId, onSuccess);
   }
@@ -2817,7 +2843,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTaskById != null) {
@@ -3020,7 +3047,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getNextTask();
   }
@@ -3070,7 +3098,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getNextTask?.call();
   }
@@ -3119,7 +3148,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getNextTask != null) {
@@ -3349,7 +3379,8 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getTasksByUserIdAndDate(date, cageId);
   }
@@ -3399,7 +3430,8 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getTasksByUserIdAndDate?.call(date, cageId);
   }
@@ -3448,7 +3480,8 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByUserIdAndDate != null) {
@@ -3698,7 +3731,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return filterTasksByLocation(cageId, date, cageName);
   }
@@ -3748,7 +3782,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return filterTasksByLocation?.call(cageId, date, cageName);
   }
@@ -3797,7 +3832,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (filterTasksByLocation != null) {
@@ -4065,7 +4101,8 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return createDailyFoodUsageLog(cageId, log, afterSymptomReport);
   }
@@ -4115,7 +4152,8 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return createDailyFoodUsageLog?.call(cageId, log, afterSymptomReport);
   }
@@ -4164,7 +4202,8 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createDailyFoodUsageLog != null) {
@@ -4432,7 +4471,8 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return createHealthLog(prescriptionId, log, afterSymptomReport);
   }
@@ -4482,7 +4522,8 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return createHealthLog?.call(prescriptionId, log, afterSymptomReport);
   }
@@ -4531,7 +4572,8 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createHealthLog != null) {
@@ -4800,7 +4842,8 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return createVaccinScheduleLog(cageId, log, afterSymptomReport);
   }
@@ -4850,7 +4893,8 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return createVaccinScheduleLog?.call(cageId, log, afterSymptomReport);
   }
@@ -4899,7 +4943,8 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (createVaccinScheduleLog != null) {
@@ -5133,7 +5178,8 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getDailyFoodUsageLog(taskId);
   }
@@ -5183,7 +5229,8 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getDailyFoodUsageLog?.call(taskId);
   }
@@ -5232,7 +5279,8 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getDailyFoodUsageLog != null) {
@@ -5460,7 +5508,8 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getHealthLog(taskId);
   }
@@ -5510,7 +5559,8 @@ class _$GetHealthLogImpl implements _GetHealthLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getHealthLog?.call(taskId);
   }
@@ -5559,7 +5609,8 @@ class _$GetHealthLogImpl implements _GetHealthLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getHealthLog != null) {
@@ -5788,7 +5839,8 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getVaccinScheduleLog(taskId);
   }
@@ -5838,7 +5890,8 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getVaccinScheduleLog?.call(taskId);
   }
@@ -5887,7 +5940,8 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getVaccinScheduleLog != null) {
@@ -6118,7 +6172,8 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getHealthLogInformation(taskId);
   }
@@ -6168,7 +6223,8 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getHealthLogInformation?.call(taskId);
   }
@@ -6217,7 +6273,8 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getHealthLogInformation != null) {
@@ -6499,7 +6556,8 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return getTasksByScanQRCode(
         keySearch, status, taskType, cageId, pageNumber, pageSize);
@@ -6550,7 +6608,8 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return getTasksByScanQRCode?.call(
         keySearch, status, taskType, cageId, pageNumber, pageSize);
@@ -6600,7 +6659,8 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (getTasksByScanQRCode != null) {
@@ -6857,7 +6917,8 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
     return updateMultipleTask(taskIds, statusId);
   }
@@ -6907,7 +6968,8 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
     return updateMultipleTask?.call(taskIds, statusId);
   }
@@ -6956,7 +7018,8 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (updateMultipleTask != null) {
@@ -7080,7 +7143,7 @@ abstract class _$$SetTaskIsTreatmentImplCopyWith<$Res> {
           $Res Function(_$SetTaskIsTreatmentImpl) then) =
       __$$SetTaskIsTreatmentImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String taskId});
+  $Res call({String taskId, String medicalSymptomId});
 }
 
 /// @nodoc
@@ -7097,11 +7160,16 @@ class __$$SetTaskIsTreatmentImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? taskId = null,
+    Object? medicalSymptomId = null,
   }) {
     return _then(_$SetTaskIsTreatmentImpl(
       taskId: null == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
+              as String,
+      medicalSymptomId: null == medicalSymptomId
+          ? _value.medicalSymptomId
+          : medicalSymptomId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -7110,14 +7178,17 @@ class __$$SetTaskIsTreatmentImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
-  const _$SetTaskIsTreatmentImpl({required this.taskId});
+  const _$SetTaskIsTreatmentImpl(
+      {required this.taskId, required this.medicalSymptomId});
 
   @override
   final String taskId;
+  @override
+  final String medicalSymptomId;
 
   @override
   String toString() {
-    return 'TaskEvent.setTaskIsTreatment(taskId: $taskId)';
+    return 'TaskEvent.setTaskIsTreatment(taskId: $taskId, medicalSymptomId: $medicalSymptomId)';
   }
 
   @override
@@ -7125,11 +7196,13 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SetTaskIsTreatmentImpl &&
-            (identical(other.taskId, taskId) || other.taskId == taskId));
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.medicalSymptomId, medicalSymptomId) ||
+                other.medicalSymptomId == medicalSymptomId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, taskId);
+  int get hashCode => Object.hash(runtimeType, taskId, medicalSymptomId);
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -7187,9 +7260,10 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
         getTasksByScanQRCode,
     required TResult Function(List<String> taskIds, String statusId)
         updateMultipleTask,
-    required TResult Function(String taskId) setTaskIsTreatment,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
   }) {
-    return setTaskIsTreatment(taskId);
+    return setTaskIsTreatment(taskId, medicalSymptomId);
   }
 
   @override
@@ -7237,9 +7311,10 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
         getTasksByScanQRCode,
     TResult? Function(List<String> taskIds, String statusId)?
         updateMultipleTask,
-    TResult? Function(String taskId)? setTaskIsTreatment,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
   }) {
-    return setTaskIsTreatment?.call(taskId);
+    return setTaskIsTreatment?.call(taskId, medicalSymptomId);
   }
 
   @override
@@ -7286,11 +7361,12 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
             String cageId, int? pageNumber, int? pageSize)?
         getTasksByScanQRCode,
     TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
-    TResult Function(String taskId)? setTaskIsTreatment,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
     required TResult orElse(),
   }) {
     if (setTaskIsTreatment != null) {
-      return setTaskIsTreatment(taskId);
+      return setTaskIsTreatment(taskId, medicalSymptomId);
     }
     return orElse();
   }
@@ -7390,10 +7466,12 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
 }
 
 abstract class _SetTaskIsTreatment implements TaskEvent {
-  const factory _SetTaskIsTreatment({required final String taskId}) =
-      _$SetTaskIsTreatmentImpl;
+  const factory _SetTaskIsTreatment(
+      {required final String taskId,
+      required final String medicalSymptomId}) = _$SetTaskIsTreatmentImpl;
 
   String get taskId;
+  String get medicalSymptomId;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
