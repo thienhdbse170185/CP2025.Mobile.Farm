@@ -1604,6 +1604,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               getSaleLogByTaskIdSuccess: (saleLog) {
                 setState(() {
                   saleLogDetail = saleLog;
+                  logTime = DateTime.parse(saleLogDetail!.logTime);
                   _isLoading = false;
                 });
                 log('Lấy thông tin log bán gia cầm thành công!');
@@ -1800,6 +1801,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                       });
                     },
               taskStatus: taskStatus,
+              task: widget.task,
               readOnly: readOnly,
             )
           // else if (widget.task.taskType.taskTypeId ==
@@ -1885,6 +1887,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 weightMeatSellController: _weightMeatSellController,
                 priceMeatSellController: _priceMeatSellController,
                 dateAnimalSellController: _dateAnimalSellController,
+                logTime: logTime,
                 saleDate: saleDate!,
                 onDateChanged: readOnly
                     ? null
