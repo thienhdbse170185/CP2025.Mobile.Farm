@@ -309,35 +309,41 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
         task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
         task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg) {
+        task?.taskType.taskTypeId == TaskTypeDataConstant.weighing) {
       return () {
         // Move dialog showing logic into the callback
-        if (TimeUtils.isTimeInSession(
-            TimeUtils.customNow(), task?.session ?? 0)) {
-          // Navigate to task report screen
+        if (task?.status == StatusDataConstant.inProgress) {
+          if (TimeUtils.isTimeInSession(
+              TimeUtils.customNow(), task?.session ?? 0)) {
+            // Navigate to task report screen
+            context.push(RouteName.taskReport, extra: {
+              'task': task,
+              'source': widget.source,
+              'viewMode': task?.status == StatusDataConstant.done,
+            });
+          } else {
+            // Schedule the dialog to show after the build is complete
+            Future.microtask(() {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return WarningConfirmationDialog(
+                      title: 'Hết thời gian làm việc',
+                      content: const Text(
+                          'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
+                      primaryButtonText: 'Quay về trang chủ',
+                      onPrimaryButtonPressed: () {
+                        context.go(RouteName.home);
+                      },
+                    );
+                  });
+            });
+          }
+        } else {
           context.push(RouteName.taskReport, extra: {
             'task': task,
             'source': widget.source,
             'viewMode': task?.status == StatusDataConstant.done,
-          });
-        } else {
-          // Schedule the dialog to show after the build is complete
-          Future.microtask(() {
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return WarningConfirmationDialog(
-                    title: 'Hết thời gian làm việc',
-                    content: const Text(
-                        'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
-                    primaryButtonText: 'Quay về trang chủ',
-                    onPrimaryButtonPressed: () {
-                      context.go(RouteName.home);
-                    },
-                  );
-                });
           });
         }
       };
@@ -704,7 +710,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     return TaskInfoGridItem(
                       icon: Icon(Icons.wb_sunny_outlined),
                       label: 'Buổi',
-                      value: TimeUtils.getCurrentSessionName(),
+                      value: task?.session == 1
+                          ? 'Buổi sáng'
+                          : task?.session == 2
+                              ? 'Buổi trưa'
+                              : task?.session == 3
+                                  ? 'Buổi chiều'
+                                  : task?.session == 4
+                                      ? 'Buổi tối'
+                                      : 'Buổi khuya',
                     );
                   default:
                     return Container();

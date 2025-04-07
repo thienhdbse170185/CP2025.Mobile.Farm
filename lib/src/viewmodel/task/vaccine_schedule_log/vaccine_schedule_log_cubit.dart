@@ -21,22 +21,7 @@ class VaccineScheduleLogCubit extends Cubit<VaccineScheduleLogState> {
     emit(const VaccineScheduleLogState.createVaccineScheduleLogInProgress());
     try {
       // Handle after symptom report case differently
-      if (afterSymptomReport) {
-        // Create a simplified log for post-symptom reports
-        final simpleRequest = VaccineScheduleLogRequest(
-          date: request.date,
-          session: request.session,
-          vaccineId: request.vaccineId,
-          quantity: 0, // No vaccines given
-          notes: "Báo cáo sau khi phát hiện triệu chứng bệnh",
-          photo: "",
-          taskId: request.taskId,
-        );
-        await repository.create(simpleRequest);
-      } else {
-        // Normal flow
-        await repository.create(request);
-      }
+      await repository.create(request);
       emit(const VaccineScheduleLogState.createVaccineScheduleLogSuccess());
     } catch (e) {
       emit(VaccineScheduleLogState.createVaccineScheduleLogFailure(

@@ -719,9 +719,10 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     // If coming from a task, mark the task as having a problem before navigating
     if (widget.fromTask && widget.taskId != null) {
       // Mark the task as having a problem (treatment needed)
-      context
-          .read<TaskBloc>()
-          .add(TaskEvent.setTaskIsTreatment(taskId: widget.taskId!));
+      context.read<TaskBloc>().add(TaskEvent.setTaskIsTreatment(
+            taskId: widget.taskId!,
+            medicalSymptomId: medicalSymptom.id,
+          ));
     } else {
       context.go(RouteName.symptomSuccess, extra: {
         'symptom': symptom,
@@ -800,6 +801,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                       request: UpdateWeightRequest(
                         growthStageId: "", // Will be set by backend
                         weightAnimal: 0,
+                        taskId: taskId,
                       ),
                     );
               }

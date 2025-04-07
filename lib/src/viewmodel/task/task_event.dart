@@ -60,6 +60,8 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.updateMultipleTask(
       List<String> taskIds, String statusId) = _UpdateMultipleTask;
 
-  const factory TaskEvent.setTaskIsTreatment({required String taskId}) =
-      _SetTaskIsTreatment;
+  const factory TaskEvent.setTaskIsTreatment({
+    required String taskId,
+    required String medicalSymptomId,
+  }) = _SetTaskIsTreatment;
 }

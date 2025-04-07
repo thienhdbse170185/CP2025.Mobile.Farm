@@ -462,8 +462,8 @@ class _HomeWidgetState extends State<HomeWidget>
   Widget _buildNextTaskList({required List<NextTask> nextTaskList}) {
     // Check if all tasks are completed
     bool allTasksCompleted = nextTaskList.isNotEmpty &&
-        nextTaskList
-            .every((task) => task.taskDone == task.total && task.total > 0);
+        nextTaskList.every(
+            (task) => task.total > 0 && task.taskName == "No Task Available");
 
     // Check if there are no tasks available
     bool noTasksAvailable = nextTaskList.isEmpty ||
@@ -508,10 +508,6 @@ class _HomeWidgetState extends State<HomeWidget>
                     'Bạn đã làm hết công việc hôm nay',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Xem công việc đã làm'))
                 ],
               ),
             ),

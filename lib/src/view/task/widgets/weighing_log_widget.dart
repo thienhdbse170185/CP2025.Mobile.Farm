@@ -1,12 +1,14 @@
+import 'package:data_layer/model/dto/farming_batch/farming_batch_dto.dart';
 import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
 
-class WeighingLogWidget extends StatelessWidget {
+class WeighingLogWidget extends StatefulWidget {
   final String? userName;
-  final GrowthStageDto growthStage;
+  final GrowthStageDto? growthStage;
+  final FarmingBatchDto? farmingBatch;
   final TextEditingController weightAnimalController;
   final ValueChanged<double>? onWeightChanged; // Make nullable
   final String? taskStatus;
@@ -16,6 +18,7 @@ class WeighingLogWidget extends StatelessWidget {
     super.key,
     this.userName,
     required this.growthStage,
+    required this.farmingBatch,
     required this.weightAnimalController,
     this.onWeightChanged, // Make optional
     this.taskStatus,
@@ -23,8 +26,13 @@ class WeighingLogWidget extends StatelessWidget {
   });
 
   @override
+  State<WeighingLogWidget> createState() => _WeighingLogWidgetState();
+}
+
+class _WeighingLogWidgetState extends State<WeighingLogWidget> {
+  @override
   Widget build(BuildContext context) {
-    if (growthStage == null) {
+    if (widget.growthStage == null) {
       return _buildErrorState(context);
     }
 
@@ -35,7 +43,7 @@ class WeighingLogWidget extends StatelessWidget {
         const SizedBox(height: 16),
         _buildReporterInfo(context),
         const SizedBox(height: 20),
-        _buildGrowthStageInfo(context, growthStage),
+        _buildGrowthStageInfo(context, widget.growthStage),
         const SizedBox(height: 24),
         _buildWeightInputForm(context),
       ],
@@ -119,7 +127,7 @@ class WeighingLogWidget extends StatelessWidget {
             child: _buildInfoItem(
               context: context,
               label: 'Tên người báo cáo',
-              value: userName ?? 'Đang tải...',
+              value: widget.userName ?? 'Đang tải...',
               icon: Icons.person,
             ),
           ),
@@ -137,7 +145,7 @@ class WeighingLogWidget extends StatelessWidget {
   }
 
   Widget _buildGrowthStageInfo(
-      BuildContext context, GrowthStageDto growthStage) {
+      BuildContext context, GrowthStageDto? growthStage) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -172,16 +180,16 @@ class WeighingLogWidget extends StatelessWidget {
                   child: _buildInfoItem(
                     context: context,
                     label: 'Tên giai đoạn',
-                    value: growthStage.name,
+                    value: growthStage?.name ?? '',
                     icon: Icons.label,
                   ),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                if (growthStage.quantity != null) ...[
+                if (growthStage?.quantity != null) ...[
                   _buildInfoItem(
                     context: context,
                     label: 'Tổng số con',
-                    value: '${growthStage.quantity.toString()} (con)',
+                    value: '${growthStage?.quantity.toString()} (con)',
                     icon: Icons.warehouse,
                   ),
                 ]
@@ -194,14 +202,14 @@ class WeighingLogWidget extends StatelessWidget {
                   context: context,
                   label: 'Số con bình thường',
                   value:
-                      '${growthStage.quantity! - growthStage.affectQuantity!} (con)',
+                      '${(growthStage?.quantity ?? 0) - (widget.farmingBatch?.affectedQuantity ?? 0)} (con)',
                   icon: Icons.pets,
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.084),
                 _buildInfoItem(
                   context: context,
                   label: 'Số con bị bệnh',
-                  value: '${growthStage.affectQuantity} (con)',
+                  value: '${growthStage?.affectQuantity} (con)',
                   icon: Icons.medical_services_rounded,
                 ),
               ],
@@ -213,7 +221,7 @@ class WeighingLogWidget extends StatelessWidget {
                   context: context,
                   label: 'Ngày bắt đầu',
                   value: DateFormat('dd/MM/yyyy')
-                      .format(DateTime.parse(growthStage.ageStartDate)),
+                      .format(DateTime.parse(growthStage?.ageStartDate ?? '')),
                   icon: Icons.calendar_month,
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.163),
@@ -221,7 +229,7 @@ class WeighingLogWidget extends StatelessWidget {
                   context: context,
                   label: 'Ngày kết thúc',
                   value: DateFormat('dd/MM/yyyy')
-                      .format(DateTime.parse(growthStage.ageEndDate)),
+                      .format(DateTime.parse(growthStage?.ageEndDate ?? '')),
                   icon: Icons.calendar_month,
                 ),
               ],
@@ -232,14 +240,14 @@ class WeighingLogWidget extends StatelessWidget {
                 _buildInfoItem(
                   context: context,
                   label: 'Độ tuổi bắt đầu',
-                  value: '${growthStage.ageStart} ngày tuổi',
+                  value: '${growthStage?.ageStart} ngày tuổi',
                   icon: Icons.health_and_safety_rounded,
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.143),
                 _buildInfoItem(
                   context: context,
                   label: 'Độ tuổi kết thúc',
-                  value: '${growthStage.ageEnd} ngày tuổi',
+                  value: '${growthStage?.ageEnd} ngày tuổi',
                   icon: Icons.health_and_safety_rounded,
                 ),
               ],
@@ -251,7 +259,7 @@ class WeighingLogWidget extends StatelessWidget {
   }
 
   Widget _buildWeightInputForm(BuildContext context) {
-    final isEditable = !readOnly;
+    final isEditable = !widget.readOnly;
 
     return Card(
       elevation: 2,
@@ -276,7 +284,7 @@ class WeighingLogWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                if (taskStatus == "Đã hoàn thành") ...[
+                if (widget.taskStatus == "Đã hoàn thành") ...[
                   const SizedBox(width: 8),
                   Icon(
                     Icons.check_circle,
@@ -311,11 +319,11 @@ class WeighingLogWidget extends StatelessWidget {
                       QuantityButtonWidget(
                         icon: Icons.remove,
                         onPressed: () {
-                          final currentValue =
-                              double.tryParse(weightAnimalController.text) ??
-                                  0.0;
+                          final currentValue = double.tryParse(
+                                  widget.weightAnimalController.text) ??
+                              0.0;
                           if (currentValue > 0.1) {
-                            onWeightChanged?.call(currentValue - 0.1);
+                            widget.onWeightChanged?.call(currentValue - 0.1);
                           }
                         },
                         isDisable: !isEditable,
@@ -324,7 +332,7 @@ class WeighingLogWidget extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         margin: const EdgeInsets.symmetric(horizontal: 16),
                         child: TextField(
-                          controller: weightAnimalController,
+                          controller: widget.weightAnimalController,
                           textAlign: TextAlign.center,
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
@@ -349,10 +357,10 @@ class WeighingLogWidget extends StatelessWidget {
                       QuantityButtonWidget(
                         icon: Icons.add,
                         onPressed: () {
-                          final currentValue =
-                              double.tryParse(weightAnimalController.text) ??
-                                  0.0;
-                          onWeightChanged?.call(currentValue + 0.1);
+                          final currentValue = double.tryParse(
+                                  widget.weightAnimalController.text) ??
+                              0.0;
+                          widget.onWeightChanged?.call(currentValue + 0.1);
                         },
                         isAdd: true,
                         isDisable: !isEditable,
