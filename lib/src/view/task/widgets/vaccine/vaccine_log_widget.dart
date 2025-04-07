@@ -145,24 +145,20 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                   icon: Icons.home_work_outlined)
             ],
           ),
-          Row(
-            children: [
-              _buildInfoItem(
-                context: context,
-                label: 'Thời gian báo cáo',
-                value: widget.logTime != null
-                    ? DateFormat('dd/MM/yyyy HH:mm').format(widget.logTime!)
-                    : 'Đang tải...',
-                icon: Icons.access_time,
-              ),
-              const SizedBox(width: 24),
-              _buildInfoItem(
+          if (widget.logTime != null) ...[
+            Row(
+              children: [
+                _buildInfoItem(
                   context: context,
-                  label: 'Tên lô giống',
-                  value: widget.farmingBatch?.name ?? 'Đang tải...',
-                  icon: Icons.pets),
-            ],
-          )
+                  label: 'Thời gian báo cáo',
+                  value: widget.logTime != null
+                      ? DateFormat('dd/MM/yyyy HH:mm').format(widget.logTime!)
+                      : 'Đang tải...',
+                  icon: Icons.access_time,
+                ),
+              ],
+            )
+          ]
         ],
       ),
     );
