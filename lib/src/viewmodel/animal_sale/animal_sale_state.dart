@@ -15,4 +15,11 @@ class AnimalSaleState with _$AnimalSaleState {
       SaleDetailLogDto? saleLog) = _GetSaleLogByGrowthStageIdSuccess;
   const factory AnimalSaleState.getSaleLogByGrowthStageIdFailure(String error) =
       _GetSaleLogByGrowthStageIdFailure;
+
+  const factory AnimalSaleState.getSaleLogByTaskIdInProgress() =
+      _GetSaleLogByTaskIdLoading;
+  const factory AnimalSaleState.getSaleLogByTaskIdSuccess(
+      SaleLogDetailDto? saleLog) = _GetSaleLogByTaskIdSuccess;
+  const factory AnimalSaleState.getSaleLogByTaskIdFailure(String error) =
+      _GetSaleLogByTaskIdFailure;
 }

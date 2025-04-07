@@ -25,6 +25,7 @@ import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_sale_log_cubit/create_sale_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
@@ -32,6 +33,7 @@ import 'package:smart_farm/src/view/widgets/loading_widget.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/view/widgets/qr_scanner.dart'
     show QRScannerWidget;
+import 'package:smart_farm/src/viewmodel/animal_sale/animal_sale_cubit.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
@@ -49,6 +51,8 @@ class CreateSymptomWidget extends StatefulWidget {
   final CreateFoodLogCubitParams? paramsFoodLog;
   final CreateHealthLogCubitParams? paramsHealthLog;
   final CreateVaccineLogCubitParams? paramsVaccineLog;
+  final CreateSaleLogCubitParams? paramsSaleLog;
+  final UpdateWeightRequest? paramsUpdateWeight;
   final SaleLogDto? animalSaleLog;
   final File? imageLog;
 
@@ -61,6 +65,8 @@ class CreateSymptomWidget extends StatefulWidget {
     this.paramsFoodLog,
     this.paramsHealthLog,
     this.paramsVaccineLog,
+    this.paramsSaleLog,
+    this.paramsUpdateWeight,
     this.animalSaleLog,
     this.imageLog,
   });
@@ -453,6 +459,30 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
+        BlocListener<AnimalSaleCubit, AnimalSaleState>(
+            listener: (context, state) {
+          state.maybeWhen(
+            createAnimalSaleInProgress: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Đang tạo thông tin bán gia cầm...');
+              setState(() => _isProcessing = true);
+            },
+            createAnimalSaleSuccess: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Tạo thông tin bán gia cầm thành công.');
+              setState(() => _isProcessing = false);
+              context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId!,
+                    StatusDataConstant.done,
+                    afterSymptomReport: true,
+                  ));
+            },
+            createAnimalSaleFailure: (error) {
+              log('[CREATE_SYMPTOM_SUCCESS] Tạo thông tin bán gia cầm thất bại: $error');
+              setState(() => _isProcessing = false);
+              _showErrorSnackBar('Lỗi tạo thông tin bán gia cầm: $error');
+            },
+            orElse: () {},
+          );
+        }),
         BlocListener<HealthyCubit, HealthyState>(
           listener: (context, state) => state.maybeWhen(
             createLoading: () {
@@ -534,6 +564,27 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             getGrowthStageByCageIdFailure: (error) => setState(() =>
                 _affectedQuantity =
                     _farmingBatch!.quantity), // Fallback to total quantity
+            updateWeightInProgress: () {
+              log('[CREATE_SYMPTOM_SUCCESS] Đang cập nhật trọng lượng...');
+              setState(() => _isProcessing = true);
+              return null;
+            },
+            updateWeightSuccess: (result) {
+              log('[CREATE_SYMPTOM_SUCCESS] Cập nhật trọng lượng thành công.');
+              setState(() => _isProcessing = false);
+              context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId!,
+                    StatusDataConstant.done,
+                    afterSymptomReport: true,
+                  ));
+              return null;
+            },
+            updateWeightFailure: (error) {
+              log('[CREATE_SYMPTOM_SUCCESS] Cập nhật trọng lượng thất bại: $error');
+              setState(() => _isProcessing = false);
+              _showErrorSnackBar('Lỗi cập nhật trọng lượng: $error');
+              return null;
+            },
             orElse: () {
               return null;
             },
@@ -795,13 +846,24 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                           widget.paramsVaccineLog!.afterSymptomReport,
                     );
               } else if (task.taskType.taskTypeId ==
+                  TaskTypeDataConstant.sellAnimal) {
+                context.read<AnimalSaleCubit>().createAnimalSale(
+                      growthStageId: widget.paramsSaleLog!.growthStageId,
+                      quantity: widget.paramsSaleLog!.quantity,
+                      saleDate: widget.paramsSaleLog!.saleDate,
+                      saleTypeId: widget.paramsSaleLog!.saleTypeId,
+                      taskId: widget.paramsSaleLog!.taskId,
+                      unitPrice: widget.paramsSaleLog!.unitPrice,
+                    );
+              } else if (task.taskType.taskTypeId ==
                   TaskTypeDataConstant.weighing) {
                 // For weighing tasks, update with default values
                 context.read<GrowthStageCubit>().updateWeight(
                       request: UpdateWeightRequest(
-                        growthStageId: "", // Will be set by backend
-                        weightAnimal: 0,
-                        taskId: taskId,
+                        growthStageId: widget.paramsUpdateWeight!
+                            .growthStageId, // Will be set by backend
+                        weightAnimal: widget.paramsUpdateWeight!.weightAnimal,
+                        taskId: widget.paramsUpdateWeight!.taskId,
                       ),
                     );
               }

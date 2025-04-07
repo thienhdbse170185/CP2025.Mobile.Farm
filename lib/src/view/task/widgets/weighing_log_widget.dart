@@ -30,6 +30,31 @@ class WeighingLogWidget extends StatefulWidget {
 }
 
 class _WeighingLogWidgetState extends State<WeighingLogWidget> {
+  double _currentWeight = 0.0;
+  double _weightDifference = 0.0;
+  double _percentChange = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentWeight = double.tryParse(widget.weightAnimalController.text) ?? 0.0;
+    _calculateDifference();
+  }
+
+  @override
+  void didUpdateWidget(WeighingLogWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _currentWeight = double.tryParse(widget.weightAnimalController.text) ?? 0.0;
+    _calculateDifference();
+  }
+
+  void _calculateDifference() {
+    final previousWeight = widget.growthStage?.weightAnimal ?? 0.0;
+    _weightDifference = _currentWeight - previousWeight;
+    _percentChange =
+        previousWeight > 0 ? (_weightDifference / previousWeight) * 100 : 0.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.growthStage == null) {
@@ -46,6 +71,8 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
         _buildGrowthStageInfo(context, widget.growthStage),
         const SizedBox(height: 24),
         _buildWeightInputForm(context),
+        const SizedBox(height: 20),
+        _buildPreviousWeightComparison(context), // Thêm phần so sánh cân nặng
       ],
     );
   }
@@ -299,7 +326,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Cân nặng trung bình gia cầm',
+                  'Cân nặng trung bình gia cầm (hiện tại):',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 16),
@@ -323,7 +350,9 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                                   widget.weightAnimalController.text) ??
                               0.0;
                           if (currentValue > 0.1) {
-                            widget.onWeightChanged?.call(currentValue - 0.1);
+                            _currentWeight = currentValue - 0.1;
+                            widget.onWeightChanged?.call(_currentWeight);
+                            _calculateDifference();
                           }
                         },
                         isDisable: !isEditable,
@@ -352,6 +381,22 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          onChanged: (value) async {
+                            if (value.isEmpty) {
+                              widget.weightAnimalController.text = '0';
+                              widget.weightAnimalController.selection =
+                                  TextSelection.fromPosition(
+                                      const TextPosition(offset: 1));
+                            }
+                            _currentWeight = double.tryParse(value) ?? 0;
+                            widget.onWeightChanged?.call(_currentWeight);
+                            _calculateDifference();
+                          },
+                          onTap: () {
+                            if (widget.weightAnimalController.text == '0') {
+                              widget.weightAnimalController.clear();
+                            }
+                          },
                         ),
                       ),
                       QuantityButtonWidget(
@@ -360,7 +405,9 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                           final currentValue = double.tryParse(
                                   widget.weightAnimalController.text) ??
                               0.0;
-                          widget.onWeightChanged?.call(currentValue + 0.1);
+                          _currentWeight = currentValue + 0.1;
+                          widget.onWeightChanged?.call(_currentWeight);
+                          _calculateDifference();
                         },
                         isAdd: true,
                         isDisable: !isEditable,
@@ -401,6 +448,285 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                 ),
               ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Thêm phương thức mới để hiển thị thông tin giai đoạn trước
+  Widget _buildPreviousWeightComparison(BuildContext context) {
+    // Nếu không có dữ liệu giai đoạn trước
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.history,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Lịch sử cân nặng',
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+            const Divider(height: 24),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
+                      color: Colors.grey[400],
+                      size: 48,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Chưa có dữ liệu cân nặng giai đoạn trước',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Đây là lần đầu tiên ghi nhận cân nặng cho lứa này',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    // Xác định màu sắc và biểu tượng phù hợp với xu hướng cân nặng
+    final IconData trendIcon =
+        _weightDifference >= 0 ? Icons.trending_up : Icons.trending_down;
+
+    final Color trendColor = _weightDifference >= 0 ? Colors.green : Colors.red;
+
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.history,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Lịch sử cân nặng',
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ],
+            ),
+            const Divider(height: 24),
+            // Thông tin giai đoạn trước
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                'Giai đoạn trước:',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.grey[50],
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.outlineVariant,
+                ),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildInfoItem(
+                        context: context,
+                        label: 'Tên giai đoạn',
+                        value: widget.growthStage?.name ?? 'Không xác định',
+                        icon: Icons.label,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildInfoItem(
+                        context: context,
+                        label: 'Cân nặng trung bình',
+                        value:
+                            '${widget.growthStage!.weightAnimal.toStringAsFixed(2)} kg',
+                        icon: Icons.scale,
+                      ),
+                      _buildInfoItem(
+                        context: context,
+                        label: 'Độ tuổi',
+                        value:
+                            '${widget.growthStage!.ageStart} - ${widget.growthStage!.ageEnd} ngày',
+                        icon: Icons.calendar_view_day,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // Phần thông tin so sánh
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                'So sánh với giai đoạn trước:',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: trendColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: trendColor.withOpacity(0.3),
+                  width: 1.5,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: trendColor.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      trendIcon,
+                      color: trendColor,
+                      size: 32,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black87,
+                            ),
+                            children: [
+                              TextSpan(
+                                text:
+                                    _weightDifference >= 0 ? 'Tăng ' : 'Giảm ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: trendColor,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    '${_weightDifference.abs().toStringAsFixed(2)} kg',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: ' so với giai đoạn trước',
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black54,
+                            ),
+                            children: [
+                              TextSpan(text: 'Tỷ lệ thay đổi: '),
+                              TextSpan(
+                                text:
+                                    '${_percentChange >= 0 ? '+' : ''}${_percentChange.toStringAsFixed(1)}%',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: trendColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Thêm gợi ý hoặc nhận xét (tùy chọn)
+            if (_weightDifference != 0) ...[
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0, left: 8.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.lightbulb_outline,
+                      size: 14,
+                      color: Colors.amber[700],
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        _weightDifference > 0
+                            ? 'Gia cầm phát triển tốt so với giai đoạn trước.'
+                            : 'Gia cầm đang có dấu hiệu chậm phát triển, cần kiểm tra chế độ dinh dưỡng.',
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 13,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+
+            // Biểu đồ so sánh (có thể thêm nếu cần)
           ],
         ),
       ),

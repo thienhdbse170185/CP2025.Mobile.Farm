@@ -26,6 +26,10 @@ mixin _$AnimalSaleState {
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +42,9 @@ mixin _$AnimalSaleState {
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +57,9 @@ mixin _$AnimalSaleState {
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -65,6 +75,12 @@ mixin _$AnimalSaleState {
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,6 +95,12 @@ mixin _$AnimalSaleState {
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,6 +115,12 @@ mixin _$AnimalSaleState {
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,6 +202,10 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) {
     return initial();
   }
@@ -189,6 +221,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) {
     return initial?.call();
   }
@@ -204,6 +239,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -225,6 +263,12 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) {
     return initial(this);
   }
@@ -242,6 +286,12 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) {
     return initial?.call(this);
   }
@@ -259,6 +309,12 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -329,6 +385,10 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleInProgress();
   }
@@ -344,6 +404,9 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleInProgress?.call();
   }
@@ -359,6 +422,9 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleInProgress != null) {
@@ -380,6 +446,12 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleInProgress(this);
   }
@@ -397,6 +469,12 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleInProgress?.call(this);
   }
@@ -414,6 +492,12 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleInProgress != null) {
@@ -484,6 +568,10 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleSuccess();
   }
@@ -499,6 +587,9 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleSuccess?.call();
   }
@@ -514,6 +605,9 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleSuccess != null) {
@@ -535,6 +629,12 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleSuccess(this);
   }
@@ -552,6 +652,12 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleSuccess?.call(this);
   }
@@ -569,6 +675,12 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleSuccess != null) {
@@ -667,6 +779,10 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleFailure(error);
   }
@@ -682,6 +798,9 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleFailure?.call(error);
   }
@@ -697,6 +816,9 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleFailure != null) {
@@ -718,6 +840,12 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleFailure(this);
   }
@@ -735,6 +863,12 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) {
     return createAnimalSaleFailure?.call(this);
   }
@@ -752,6 +886,12 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (createAnimalSaleFailure != null) {
@@ -836,6 +976,10 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdInProgress();
   }
@@ -851,6 +995,9 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdInProgress?.call();
   }
@@ -866,6 +1013,9 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (getSaleLogByGrowthStageIdInProgress != null) {
@@ -887,6 +1037,12 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdInProgress(this);
   }
@@ -904,6 +1060,12 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdInProgress?.call(this);
   }
@@ -921,6 +1083,12 @@ class _$GetSaleLogByGrowthStageIdLoadingImpl
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (getSaleLogByGrowthStageIdInProgress != null) {
@@ -1043,6 +1211,10 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdSuccess(saleLog);
   }
@@ -1058,6 +1230,9 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdSuccess?.call(saleLog);
   }
@@ -1073,6 +1248,9 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (getSaleLogByGrowthStageIdSuccess != null) {
@@ -1094,6 +1272,12 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdSuccess(this);
   }
@@ -1111,6 +1295,12 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdSuccess?.call(this);
   }
@@ -1128,6 +1318,12 @@ class _$GetSaleLogByGrowthStageIdSuccessImpl
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (getSaleLogByGrowthStageIdSuccess != null) {
@@ -1243,6 +1439,10 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
     required TResult Function(SaleDetailLogDto? saleLog)
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdFailure(error);
   }
@@ -1258,6 +1458,9 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
     TResult? Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdFailure?.call(error);
   }
@@ -1273,6 +1476,9 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
     TResult Function(SaleDetailLogDto? saleLog)?
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (getSaleLogByGrowthStageIdFailure != null) {
@@ -1294,6 +1500,12 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
         getSaleLogByGrowthStageIdSuccess,
     required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
         getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdFailure(this);
   }
@@ -1311,6 +1523,12 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
         getSaleLogByGrowthStageIdSuccess,
     TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
   }) {
     return getSaleLogByGrowthStageIdFailure?.call(this);
   }
@@ -1328,6 +1546,12 @@ class _$GetSaleLogByGrowthStageIdFailureImpl
         getSaleLogByGrowthStageIdSuccess,
     TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
         getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
     required TResult orElse(),
   }) {
     if (getSaleLogByGrowthStageIdFailure != null) {
@@ -1348,5 +1572,659 @@ abstract class _GetSaleLogByGrowthStageIdFailure implements AnimalSaleState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetSaleLogByGrowthStageIdFailureImplCopyWith<
           _$GetSaleLogByGrowthStageIdFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSaleLogByTaskIdLoadingImplCopyWith<$Res> {
+  factory _$$GetSaleLogByTaskIdLoadingImplCopyWith(
+          _$GetSaleLogByTaskIdLoadingImpl value,
+          $Res Function(_$GetSaleLogByTaskIdLoadingImpl) then) =
+      __$$GetSaleLogByTaskIdLoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetSaleLogByTaskIdLoadingImplCopyWithImpl<$Res>
+    extends _$AnimalSaleStateCopyWithImpl<$Res, _$GetSaleLogByTaskIdLoadingImpl>
+    implements _$$GetSaleLogByTaskIdLoadingImplCopyWith<$Res> {
+  __$$GetSaleLogByTaskIdLoadingImplCopyWithImpl(
+      _$GetSaleLogByTaskIdLoadingImpl _value,
+      $Res Function(_$GetSaleLogByTaskIdLoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetSaleLogByTaskIdLoadingImpl
+    with DiagnosticableTreeMixin
+    implements _GetSaleLogByTaskIdLoading {
+  const _$GetSaleLogByTaskIdLoadingImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AnimalSaleState.getSaleLogByTaskIdInProgress()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'AnimalSaleState.getSaleLogByTaskIdInProgress'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSaleLogByTaskIdLoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() createAnimalSaleInProgress,
+    required TResult Function() createAnimalSaleSuccess,
+    required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleDetailLogDto? saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? createAnimalSaleInProgress,
+    TResult? Function()? createAnimalSaleSuccess,
+    TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? createAnimalSaleInProgress,
+    TResult Function()? createAnimalSaleSuccess,
+    TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByTaskIdInProgress != null) {
+      return getSaleLogByTaskIdInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) createAnimalSaleInProgress,
+    required TResult Function(_Success value) createAnimalSaleSuccess,
+    required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? createAnimalSaleInProgress,
+    TResult? Function(_Success value)? createAnimalSaleSuccess,
+    TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? createAnimalSaleInProgress,
+    TResult Function(_Success value)? createAnimalSaleSuccess,
+    TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByTaskIdInProgress != null) {
+      return getSaleLogByTaskIdInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSaleLogByTaskIdLoading implements AnimalSaleState {
+  const factory _GetSaleLogByTaskIdLoading() = _$GetSaleLogByTaskIdLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$GetSaleLogByTaskIdSuccessImplCopyWith<$Res> {
+  factory _$$GetSaleLogByTaskIdSuccessImplCopyWith(
+          _$GetSaleLogByTaskIdSuccessImpl value,
+          $Res Function(_$GetSaleLogByTaskIdSuccessImpl) then) =
+      __$$GetSaleLogByTaskIdSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SaleLogDetailDto? saleLog});
+
+  $SaleLogDetailDtoCopyWith<$Res>? get saleLog;
+}
+
+/// @nodoc
+class __$$GetSaleLogByTaskIdSuccessImplCopyWithImpl<$Res>
+    extends _$AnimalSaleStateCopyWithImpl<$Res, _$GetSaleLogByTaskIdSuccessImpl>
+    implements _$$GetSaleLogByTaskIdSuccessImplCopyWith<$Res> {
+  __$$GetSaleLogByTaskIdSuccessImplCopyWithImpl(
+      _$GetSaleLogByTaskIdSuccessImpl _value,
+      $Res Function(_$GetSaleLogByTaskIdSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? saleLog = freezed,
+  }) {
+    return _then(_$GetSaleLogByTaskIdSuccessImpl(
+      freezed == saleLog
+          ? _value.saleLog
+          : saleLog // ignore: cast_nullable_to_non_nullable
+              as SaleLogDetailDto?,
+    ));
+  }
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SaleLogDetailDtoCopyWith<$Res>? get saleLog {
+    if (_value.saleLog == null) {
+      return null;
+    }
+
+    return $SaleLogDetailDtoCopyWith<$Res>(_value.saleLog!, (value) {
+      return _then(_value.copyWith(saleLog: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$GetSaleLogByTaskIdSuccessImpl
+    with DiagnosticableTreeMixin
+    implements _GetSaleLogByTaskIdSuccess {
+  const _$GetSaleLogByTaskIdSuccessImpl(this.saleLog);
+
+  @override
+  final SaleLogDetailDto? saleLog;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AnimalSaleState.getSaleLogByTaskIdSuccess(saleLog: $saleLog)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'AnimalSaleState.getSaleLogByTaskIdSuccess'))
+      ..add(DiagnosticsProperty('saleLog', saleLog));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSaleLogByTaskIdSuccessImpl &&
+            (identical(other.saleLog, saleLog) || other.saleLog == saleLog));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, saleLog);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSaleLogByTaskIdSuccessImplCopyWith<_$GetSaleLogByTaskIdSuccessImpl>
+      get copyWith => __$$GetSaleLogByTaskIdSuccessImplCopyWithImpl<
+          _$GetSaleLogByTaskIdSuccessImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() createAnimalSaleInProgress,
+    required TResult Function() createAnimalSaleSuccess,
+    required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleDetailLogDto? saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdSuccess(saleLog);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? createAnimalSaleInProgress,
+    TResult? Function()? createAnimalSaleSuccess,
+    TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdSuccess?.call(saleLog);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? createAnimalSaleInProgress,
+    TResult Function()? createAnimalSaleSuccess,
+    TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByTaskIdSuccess != null) {
+      return getSaleLogByTaskIdSuccess(saleLog);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) createAnimalSaleInProgress,
+    required TResult Function(_Success value) createAnimalSaleSuccess,
+    required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? createAnimalSaleInProgress,
+    TResult? Function(_Success value)? createAnimalSaleSuccess,
+    TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? createAnimalSaleInProgress,
+    TResult Function(_Success value)? createAnimalSaleSuccess,
+    TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByTaskIdSuccess != null) {
+      return getSaleLogByTaskIdSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSaleLogByTaskIdSuccess implements AnimalSaleState {
+  const factory _GetSaleLogByTaskIdSuccess(final SaleLogDetailDto? saleLog) =
+      _$GetSaleLogByTaskIdSuccessImpl;
+
+  SaleLogDetailDto? get saleLog;
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetSaleLogByTaskIdSuccessImplCopyWith<_$GetSaleLogByTaskIdSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSaleLogByTaskIdFailureImplCopyWith<$Res> {
+  factory _$$GetSaleLogByTaskIdFailureImplCopyWith(
+          _$GetSaleLogByTaskIdFailureImpl value,
+          $Res Function(_$GetSaleLogByTaskIdFailureImpl) then) =
+      __$$GetSaleLogByTaskIdFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$GetSaleLogByTaskIdFailureImplCopyWithImpl<$Res>
+    extends _$AnimalSaleStateCopyWithImpl<$Res, _$GetSaleLogByTaskIdFailureImpl>
+    implements _$$GetSaleLogByTaskIdFailureImplCopyWith<$Res> {
+  __$$GetSaleLogByTaskIdFailureImplCopyWithImpl(
+      _$GetSaleLogByTaskIdFailureImpl _value,
+      $Res Function(_$GetSaleLogByTaskIdFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$GetSaleLogByTaskIdFailureImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSaleLogByTaskIdFailureImpl
+    with DiagnosticableTreeMixin
+    implements _GetSaleLogByTaskIdFailure {
+  const _$GetSaleLogByTaskIdFailureImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AnimalSaleState.getSaleLogByTaskIdFailure(error: $error)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'AnimalSaleState.getSaleLogByTaskIdFailure'))
+      ..add(DiagnosticsProperty('error', error));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSaleLogByTaskIdFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSaleLogByTaskIdFailureImplCopyWith<_$GetSaleLogByTaskIdFailureImpl>
+      get copyWith => __$$GetSaleLogByTaskIdFailureImplCopyWithImpl<
+          _$GetSaleLogByTaskIdFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() createAnimalSaleInProgress,
+    required TResult Function() createAnimalSaleSuccess,
+    required TResult Function(String error) createAnimalSaleFailure,
+    required TResult Function() getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(SaleDetailLogDto? saleLog)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(String error) getSaleLogByGrowthStageIdFailure,
+    required TResult Function() getSaleLogByTaskIdInProgress,
+    required TResult Function(SaleLogDetailDto? saleLog)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(String error) getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? createAnimalSaleInProgress,
+    TResult? Function()? createAnimalSaleSuccess,
+    TResult? Function(String error)? createAnimalSaleFailure,
+    TResult? Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult? Function()? getSaleLogByTaskIdInProgress,
+    TResult? Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult? Function(String error)? getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? createAnimalSaleInProgress,
+    TResult Function()? createAnimalSaleSuccess,
+    TResult Function(String error)? createAnimalSaleFailure,
+    TResult Function()? getSaleLogByGrowthStageIdInProgress,
+    TResult Function(SaleDetailLogDto? saleLog)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(String error)? getSaleLogByGrowthStageIdFailure,
+    TResult Function()? getSaleLogByTaskIdInProgress,
+    TResult Function(SaleLogDetailDto? saleLog)? getSaleLogByTaskIdSuccess,
+    TResult Function(String error)? getSaleLogByTaskIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByTaskIdFailure != null) {
+      return getSaleLogByTaskIdFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) createAnimalSaleInProgress,
+    required TResult Function(_Success value) createAnimalSaleSuccess,
+    required TResult Function(_Failure value) createAnimalSaleFailure,
+    required TResult Function(_GetSaleLogByGrowthStageIdLoading value)
+        getSaleLogByGrowthStageIdInProgress,
+    required TResult Function(_GetSaleLogByGrowthStageIdSuccess value)
+        getSaleLogByGrowthStageIdSuccess,
+    required TResult Function(_GetSaleLogByGrowthStageIdFailure value)
+        getSaleLogByGrowthStageIdFailure,
+    required TResult Function(_GetSaleLogByTaskIdLoading value)
+        getSaleLogByTaskIdInProgress,
+    required TResult Function(_GetSaleLogByTaskIdSuccess value)
+        getSaleLogByTaskIdSuccess,
+    required TResult Function(_GetSaleLogByTaskIdFailure value)
+        getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? createAnimalSaleInProgress,
+    TResult? Function(_Success value)? createAnimalSaleSuccess,
+    TResult? Function(_Failure value)? createAnimalSaleFailure,
+    TResult? Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult? Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult? Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    TResult? Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult? Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult? Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
+  }) {
+    return getSaleLogByTaskIdFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? createAnimalSaleInProgress,
+    TResult Function(_Success value)? createAnimalSaleSuccess,
+    TResult Function(_Failure value)? createAnimalSaleFailure,
+    TResult Function(_GetSaleLogByGrowthStageIdLoading value)?
+        getSaleLogByGrowthStageIdInProgress,
+    TResult Function(_GetSaleLogByGrowthStageIdSuccess value)?
+        getSaleLogByGrowthStageIdSuccess,
+    TResult Function(_GetSaleLogByGrowthStageIdFailure value)?
+        getSaleLogByGrowthStageIdFailure,
+    TResult Function(_GetSaleLogByTaskIdLoading value)?
+        getSaleLogByTaskIdInProgress,
+    TResult Function(_GetSaleLogByTaskIdSuccess value)?
+        getSaleLogByTaskIdSuccess,
+    TResult Function(_GetSaleLogByTaskIdFailure value)?
+        getSaleLogByTaskIdFailure,
+    required TResult orElse(),
+  }) {
+    if (getSaleLogByTaskIdFailure != null) {
+      return getSaleLogByTaskIdFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSaleLogByTaskIdFailure implements AnimalSaleState {
+  const factory _GetSaleLogByTaskIdFailure(final String error) =
+      _$GetSaleLogByTaskIdFailureImpl;
+
+  String get error;
+
+  /// Create a copy of AnimalSaleState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetSaleLogByTaskIdFailureImplCopyWith<_$GetSaleLogByTaskIdFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

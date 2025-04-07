@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
 import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
+import 'package:smart_farm/src/model/params/create_sale_log_cubit/create_sale_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
 import 'package:smart_farm/src/view/auth/change_password.dart';
 import 'package:smart_farm/src/view/auth/change_password_newbie.dart';
@@ -233,6 +235,10 @@ final router = GoRouter(
                 extra?['paramsHealthLog'] as CreateHealthLogCubitParams?;
             final paramsVaccineLog =
                 extra?['paramsVaccineLog'] as CreateVaccineLogCubitParams?;
+            final paramsSaleLog =
+                extra?['paramsSaleLog'] as CreateSaleLogCubitParams?;
+            final updateWeightRequest =
+                extra?['updateWeightRequest'] as UpdateWeightRequest?;
 
             return _buildPageWithSlideTransition(CreateSymptomWidget(
               cageName: cageName,
@@ -243,6 +249,8 @@ final router = GoRouter(
               paramsFoodLog: paramsFoodLog,
               paramsHealthLog: paramsHealthLog,
               paramsVaccineLog: paramsVaccineLog,
+              paramsSaleLog: paramsSaleLog,
+              paramsUpdateWeight: updateWeightRequest,
             ));
           }),
 
