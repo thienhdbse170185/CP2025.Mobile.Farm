@@ -16,6 +16,7 @@ import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/view/task/widgets/status_log_banner_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/task_info_grid_item.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/viewmodel/prescription/prescription_cubit.dart';
@@ -583,6 +584,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
     }
   }
 
+  // Thêm vào phần _buildTaskBody trong TaskDetailWidget
   Widget _buildTaskBody(BuildContext context) {
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
@@ -726,51 +728,75 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
               },
             ),
           ),
+
           if (task?.isWarning == true)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              color: Theme.of(context).colorScheme.errorContainer,
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color:
-                          Theme.of(context).colorScheme.error.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      Icons.warning_amber_rounded,
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Cảnh báo: Công việc có vấn đề',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
+            Column(
+              children: [
+                const SizedBox(height: 8),
+                Container(
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  color: Theme.of(context).colorScheme.errorContainer,
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .error
+                              .withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Đã có báo cáo triệu chứng bệnh cho chuồng này',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color:
-                                Theme.of(context).colorScheme.onErrorContainer,
-                          ),
+                        child: Icon(
+                          Icons.warning_amber_rounded,
+                          color: Theme.of(context).colorScheme.error,
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Cảnh báo: Công việc có vấn đề',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Đã có báo cáo triệu chứng bệnh cho chuồng này',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onErrorContainer,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
+
+          // Thêm StatusLogsBanner ở đây - giữa phần thông tin và cảnh báo
+          if (task?.statusLogs != null && task!.statusLogs!.isNotEmpty)
+            Column(
+              children: [
+                const SizedBox(height: 8),
+                StatusLogsBanner(
+                  statusLogs: task!.statusLogs!
+                      .map((log) => StatusLogDto(
+                          status: log.status, updatedAt: log.updatedAt))
+                      .toList(),
+                ),
+              ],
             ),
         ],
       ),

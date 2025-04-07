@@ -931,6 +931,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 setState(() {
                   logController.text = log.notes;
                   imageURL = log.photo!;
+                  logTime = log.date;
                   _isLoading = false;
                 });
                 // LoadingDialog.hide(context);
@@ -1334,6 +1335,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               getVaccineScheduleLogByTaskIdSuccess: (vaccineScheduleLog) {
                 setState(() {
                   this.vaccineScheduleLog = vaccineScheduleLog;
+                  logTime = DateTime.parse(vaccineScheduleLog.date);
                   _countAnimalVaccineController.text =
                       vaccineScheduleLog.quantity.toString();
                 });
@@ -1696,9 +1698,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             FoodLogWidget(
               userName: userName,
               // ignore: unnecessary_null_comparison
-              logTime: widget.task.dueDate != null
-                  ? DateTime.parse(widget.task.dueDate)
-                  : null,
+              logTime: logTime,
               hasAnimalDesease: widget.task.hasAnimalDesease ?? false,
               isIsolationFed: _isIsolationFed,
               onIsolationFedChanged: readOnly
@@ -1727,6 +1727,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               TaskTypeDataConstant.health)
             HealthLogWidget(
               userName: userName,
+              logTime: logTime,
               prescription: prescription,
               session: widget.task.session,
               task: widget.task,
@@ -1746,6 +1747,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               userName: userName,
               vaccineSchedule: vaccineSchedule,
               growthStage: growthStage,
+              logTime: logTime,
               countAnimalVaccineController: _countAnimalVaccineController,
               onCountChanged: readOnly
                   ? null

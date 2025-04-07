@@ -118,19 +118,19 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
               ),
             ],
           ),
-          // const SizedBox(height: 16),
-          // Row(
-          //   children: [
-          //     _buildInfoItem(
-          //       context: context,
-          //       label: 'Thời gian báo cáo',
-          //       value: widget.logTime != null
-          //           ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
-          //           : 'Đang tải...',
-          //       icon: Icons.access_time,
-          //     ),
-          //   ],
-          // )
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              _buildInfoItem(
+                context: context,
+                label: 'Thời gian báo cáo',
+                value: widget.logTime != null
+                    ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
+                    : 'Đang tải...',
+                icon: Icons.access_time,
+              ),
+            ],
+          )
         ],
       ),
     );
