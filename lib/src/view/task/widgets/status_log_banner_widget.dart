@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
-import 'package:smart_farm/src/core/utils/time_util.dart';
 
 class StatusLogsBanner extends StatelessWidget {
   final List<StatusLogDto> statusLogs;
