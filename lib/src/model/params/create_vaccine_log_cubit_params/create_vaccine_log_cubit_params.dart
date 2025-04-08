@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:data_layer/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
