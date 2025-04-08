@@ -19,7 +19,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _isPasswordVisible = false;
-  bool _rememberMe = false;
+  final bool _rememberMe = false;
   bool _isProcessing = false;
   bool _isWrongCredentials = false;
 
