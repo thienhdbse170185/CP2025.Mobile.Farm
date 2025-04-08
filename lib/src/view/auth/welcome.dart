@@ -15,7 +15,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
   late final AssetImage _imageManage;
   late final AssetImage _imageNoti;
 
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   @override
   void initState() {
