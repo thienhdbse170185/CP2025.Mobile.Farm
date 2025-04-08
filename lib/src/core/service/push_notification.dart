@@ -13,6 +13,7 @@ class PushNotifications {
 
   // Request notification permission
   static Future<void> init() async {
+    // Request permission for both Android and iOS
     await _firebaseMessaging.requestPermission(
       alert: true,
       announcement: true,
@@ -20,6 +21,13 @@ class PushNotifications {
       carPlay: false,
       criticalAlert: true,
       provisional: false,
+      sound: true,
+    );
+    
+    // Set up iOS foreground notification presentation options
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
       sound: true,
     );
   }
@@ -43,38 +51,93 @@ class PushNotifications {
     }
   }
 
-  // static Future<void> forceRefreshToken() async {
-  //   await FirebaseMessaging.instance.deleteToken(); // Xóa token cũ
-  //   log("⚠️ Token cũ đã bị xóa");
-
-  //   String? newToken =
-  //       await FirebaseMessaging.instance.getToken(); // Lấy token mới
-  //   log("✅ Token mới: $newToken");
-  // }
-
   // Initialize local notifications
   static Future<void> localNotiInit() async {
+    // Android initialization settings
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    const InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
+        
+    // iOS initialization settings
+    final DarwinInitializationSettings initializationSettingsIOS =
+        DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+    );
+    
+    // Combined initialization settings
+    final InitializationSettings initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
+    );
 
     // Request notification permissions for Android 13 or above
     _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()!
-        .requestNotificationsPermission();
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
 
     await _flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: onNotificationTap,
       onDidReceiveBackgroundNotificationResponse: onNotificationTap,
     );
+    
+    // Set up Firebase message handlers
+    setupFirebaseMessageHandlers();
+  }
+  
+  // Set up Firebase message handlers for different app states
+  static void setupFirebaseMessageHandlers() {
+    // Handle messages when app is in foreground
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      log('===== FOREGROUND MESSAGE =====');
+      log('Notification: ${message.notification?.title}');
+      log('Data: ${message.data}');
+      
+      // Show local notification
+      if (message.notification != null) {
+        showSimpleNotification(
+          title: message.notification!.title ?? 'New Notification',
+          body: message.notification!.body ?? '',
+          payload: message.data.toString(),
+        );
+      }
+    });
+    
+    // Handle when notification is opened and app was in background
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      log('===== BACKGROUND MESSAGE OPENED =====');
+      log('Notification: ${message.notification?.title}');
+      log('Data: ${message.data}');
+      
+      // Navigate to notification screen
+      Navigator.push(
+        rootNavigatorKey.currentState!.context,
+        MaterialPageRoute(builder: (context) => const TestNotificationWidget()),
+      );
+    });
+    
+    // Handle initial message (app was terminated)
+    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
+      if (message != null) {
+        log('===== INITIAL MESSAGE =====');
+        log('Notification: ${message.notification?.title}');
+        log('Data: ${message.data}');
+        
+        // Handle navigation after app launch from notification
+        Future.delayed(const Duration(seconds: 1), () {
+          Navigator.push(
+            rootNavigatorKey.currentState!.context,
+            MaterialPageRoute(builder: (context) => const TestNotificationWidget()),
+          );
+        });
+      }
+    });
   }
 
   // Handle notification tap
   static void onNotificationTap(NotificationResponse notificationResponse) {
-    // navigatorKey.currentState?.pushNamed("/cage");
     log('===== NOTIFICATION TAP =====');
     log('Payload: ${notificationResponse.payload}');
     Navigator.push(
@@ -89,6 +152,7 @@ class PushNotifications {
     required String body,
     required String payload,
   }) async {
+    // Android notification details
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
       'your_channel_id',
@@ -99,8 +163,23 @@ class PushNotifications {
       priority: Priority.high,
       ticker: 'ticker',
     );
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+    
+    // iOS notification details
+    const DarwinNotificationDetails iosNotificationDetails =
+        DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+      sound: 'default',
+      badgeNumber: 1,
+    );
+    
+    // Combined notification details
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidNotificationDetails,
+      iOS: iosNotificationDetails,
+    );
+    
     await _flutterLocalNotificationsPlugin
         .show(0, title, body, notificationDetails, payload: payload);
   }
