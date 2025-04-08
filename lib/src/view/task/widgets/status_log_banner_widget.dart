@@ -7,9 +7,9 @@ class StatusLogsBanner extends StatelessWidget {
   final List<StatusLogDto> statusLogs;
 
   const StatusLogsBanner({
-    Key? key,
+    super.key,
     required this.statusLogs,
-  }) : super(key: key);
+  });
 
   String getStatusText(String status) {
     switch (status) {
@@ -95,7 +95,7 @@ class StatusLogsBanner extends StatelessWidget {
           const SizedBox(height: 16),
           ...statusLogs
               .map((log) => _buildStatusLogItem(context, log))
-              .toList(),
+              ,
         ],
       ),
     );
