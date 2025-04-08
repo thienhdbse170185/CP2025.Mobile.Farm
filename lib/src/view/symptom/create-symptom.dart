@@ -488,6 +488,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             createLoading: () {
               log('[CREATE_SYMPTOM_SUCCESS] Đang tạo medical_symptom...');
               setState(() => _isProcessing = true);
+              return null;
             },
             createSuccess: (medicalSymptom) =>
                 _handleCreateSuccess(medicalSymptom),
@@ -542,6 +543,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             getSymptomsFailure: (error) {
               _showErrorSnackBar('Lỗi tải danh sách triệu chứng: $error');
               setState(() => _isLoading = false);
+              return null;
             },
             orElse: () {
               return null;
@@ -599,6 +601,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 log('[CREATE_SYMPTOM_SUCCESS] Đang tải 1 ảnh triệu chứng lên...');
               }
               setState(() => _isProcessing = true);
+              return null;
             },
             uploadImageSuccess: (imageDto, isTaskImage) =>
                 _handleUploadSuccess(imageDto, isTaskImage),
@@ -609,6 +612,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 log('[CREATE_SYMPTOM_SUCCESS] Tải ảnh triệu chứng thất bại: $error');
               }
               _handleUploadFailure(error);
+              return null;
             },
             uploadMultipleImageInProgress: () {
               log('[CREATE_SYMPTOM_SUCCESS] Upload multiple images in progress...');
