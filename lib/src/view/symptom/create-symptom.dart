@@ -504,7 +504,13 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               setState(() {
                 _isLoading = false;
                 _cages = cages
-                    .map((cage) => CageOption(id: cage.id, name: cage.name))
+                    .map((cage) {
+                      if (!cage.name.contains('cách ly')) {
+                        return CageOption(id: cage.id, name: cage.name);
+                      }
+                      return null;
+                    })
+                    .whereType<CageOption>()
                     .toList();
               });
               context.read<SymptomCubit>().getSymptoms();
@@ -695,12 +701,17 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               setState(() => _isProcessing = true);
             },
             updateStatusTaskSuccess: () {
-              setState(() => _isProcessing = false);
               context.go(RouteName.symptomSuccess, extra: {
                 'symptom': symptom,
                 'cageName': _selectedCage,
                 'fromTask': true,
                 'taskId': widget.taskId
+              });
+              setState(() {
+                _isProcessing = false;
+                _selectedCage = null;
+                _farmingBatch = null;
+                _selectedCageId = null;
               });
             },
             updateStatusTaskFailure: (error) {
@@ -751,7 +762,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   void _handleCreateSuccess(MedicalSymptomDto medicalSymptom) {
-    setState(() => _isProcessing = false);
+    setState(() {
+      _isProcessing = false;
+    });
     log("[CREATE_SYMPTOM_SCREEN] Tạo medical_symptom thành công");
     symptom = MedicalSymptomResponse(
       id: medicalSymptom.id,
@@ -778,9 +791,15 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             medicalSymptomId: medicalSymptom.id,
           ));
     } else {
+      final selectedCage = _selectedCage;
+      setState(() {
+        _selectedCage = null;
+        _farmingBatch = null;
+        _selectedCageId = null;
+      });
       context.go(RouteName.symptomSuccess, extra: {
         'symptom': symptom,
-        'cageName': _selectedCage,
+        'cageName': selectedCage,
       });
     }
   }

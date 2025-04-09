@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:data_layer/data_layer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,38 +30,46 @@ Future<void> main() async {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
+  if (Platform.isAndroid) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
   await initializeDateFormatting('vi_VN', null);
   await Hive.initFlutter();
-  // await PushNotifications.init();
 
-  // if (!kIsWeb) {
-  //   await PushNotifications.localNotiInit();
-  // }
+  if (Platform.isAndroid) {
+    await PushNotifications.init();
 
-  // // Listen to background notifications
-  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    if (!kIsWeb) {
+      await PushNotifications.localNotiInit();
+    }
 
-  // // On background notification tapped
-  // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-  //   String payloadData = jsonEncode(message.data);
-  //   if (message.notification != null) {
-  //     log('===== ON MESSAGE OPENED APP =====');
-  //     log('Message opened app: ${message.notification!.body}');
-  //     log('Payload data: $payloadData');
-  //     Navigator.of(rootNavigatorKey.currentContext!)
-  //         .pushNamed(RouteName.testNotification);
-  //   }
-  // });
+    // Listen to background notifications
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-  //   String payloadData = jsonEncode(message.data);
-  //   log('===== ON MESSAGE =====');
-  //   if (message.notification != null) {
-  //     PushNotifications.showSimpleNotification(
-  //         title: message.notification!.title!,
-  //         body: message.notification!.body!,
-  //         payload: payloadData);
-  //   }
-  // });
+    // On background notification tapped
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      String payloadData = jsonEncode(message.data);
+      if (message.notification != null) {
+        log('===== ON MESSAGE OPENED APP =====');
+        log('Message opened app: ${message.notification!.body}');
+        log('Payload data: $payloadData');
+        Navigator.of(rootNavigatorKey.currentContext!)
+            .pushNamed(RouteName.testNotification);
+      }
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      String payloadData = jsonEncode(message.data);
+      log('===== ON MESSAGE =====');
+      if (message.notification != null) {
+        PushNotifications.showSimpleNotification(
+            title: message.notification!.title!,
+            body: message.notification!.body!,
+            payload: payloadData);
+      }
+    });
+  }
   runApp(const MyApp());
 }

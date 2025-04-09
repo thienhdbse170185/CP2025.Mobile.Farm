@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 
+import 'package:data_layer/model/dto/push_notification/custom_data.dart';
+import 'package:data_layer/model/dto/push_notification/push_notification_dto.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -97,11 +100,17 @@ class PushNotifications {
       log('Notification: ${message.notification?.title}');
       log('Data: ${message.data}');
 
+      final customDataPayload = jsonDecode(message.data['customData']);
+      final notiData = PushNotificationDto(
+        customData: CustomData.fromJson(customDataPayload),
+        title: message.data['title'],
+      );
+
       // Show local notification
       showSimpleNotification(
-        title: message.notification!.title ?? 'New Notification',
-        body: message.notification!.body ?? '',
-        payload: message.data.toString(),
+        title: notiData.title,
+        body: notiData.customData.Content,
+        payload: notiData.customData.toJson().toString(),
       );
     });
 
