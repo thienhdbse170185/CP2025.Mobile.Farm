@@ -528,11 +528,14 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
             ),
             Row(
               children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
                 if (warningLevel != 0) ...[
