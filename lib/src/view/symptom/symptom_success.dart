@@ -577,9 +577,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
                     'fromTask': true
                   });
                 } else {
-                  context.push(RouteName.createSymptom, extra: {
-                    'cageName': widget.symptom.id,
-                  });
+                  context.push(RouteName.createSymptom);
                 }
               },
               icon: const Icon(Icons.add, size: 18),
