@@ -35,8 +35,8 @@ class TaskDetailWidget extends StatefulWidget {
 class _TaskDetailWidgetState extends State<TaskDetailWidget>
     with SingleTickerProviderStateMixin {
   bool _isLoading = false;
-  bool _isProcessing = false;
-  bool _isHealthyAfterTreatment = false;
+  final bool _isProcessing = false;
+  final bool _isHealthyAfterTreatment = false;
   String? _sourceScreen; // Track the source screen
 
   // --- Task related variables ---
@@ -81,7 +81,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
   UploadImageDto? uploadImage;
 
   // --- After treatment variables ---
-  int _lastSessionQuantity = 0;
+  final int _lastSessionQuantity = 0;
   final TextEditingController _lastSessionQuantityController =
       TextEditingController();
 
@@ -208,7 +208,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         context: context,
         builder: (BuildContext context) {
           // Use a separate variable to track selected state in dialog
-          bool _dialogIsHealthy = true;
+          bool dialogIsHealthy = true;
 
           return StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
@@ -223,24 +223,24 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                     RadioListTile<bool>(
                       title: const Text('Đàn gà bình thường, khỏe mạnh'),
                       value: true,
-                      groupValue: _dialogIsHealthy,
+                      groupValue: dialogIsHealthy,
                       onChanged: (value) {
                         setState(() {
-                          _dialogIsHealthy = value!;
+                          dialogIsHealthy = value!;
                         });
                       },
                     ),
                     RadioListTile<bool>(
                       title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
                       value: false,
-                      groupValue: _dialogIsHealthy,
+                      groupValue: dialogIsHealthy,
                       onChanged: (value) {
                         setState(() {
-                          _dialogIsHealthy = value!;
+                          dialogIsHealthy = value!;
                         });
                       },
                     ),
-                    if (!_dialogIsHealthy)
+                    if (!dialogIsHealthy)
                       Container(
                         margin:
                             const EdgeInsets.only(top: 8, left: 16, right: 16),
@@ -267,7 +267,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                 primaryButtonText: 'Xác nhận',
                 onPrimaryButtonPressed: () {
                   Navigator.of(context).pop();
-                  if (_dialogIsHealthy) {
+                  if (dialogIsHealthy) {
                     // Normal flow - upload image if available or create log
                     context.read<TaskBloc>().add(TaskEvent.updateTask(
                           task?.id ?? "",
