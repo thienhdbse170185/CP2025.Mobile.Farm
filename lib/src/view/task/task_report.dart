@@ -26,12 +26,10 @@ import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/task_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_log_cubit_params.dart';
-import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_sale_log_cubit/create_sale_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
 import 'package:smart_farm/src/view/task/task_validation.dart';
 import 'package:smart_farm/src/view/task/widgets/animal_sale_log_widget.dart';
-import 'package:smart_farm/src/view/task/widgets/egg_harvest_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/egg_sale_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/food_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/health_log_widget.dart';
@@ -429,7 +427,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           context: context,
           builder: (BuildContext context) {
             // Use a separate variable to track selected state in dialog
-            bool _dialogIsHealthy = true;
+            bool dialogIsHealthy = true;
 
             return StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
@@ -445,24 +443,24 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                       RadioListTile<bool>(
                         title: const Text('Đàn gà bình thường, khỏe mạnh'),
                         value: true,
-                        groupValue: _dialogIsHealthy,
+                        groupValue: dialogIsHealthy,
                         onChanged: (value) {
                           setState(() {
-                            _dialogIsHealthy = value!;
+                            dialogIsHealthy = value!;
                           });
                         },
                       ),
                       RadioListTile<bool>(
                         title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
                         value: false,
-                        groupValue: _dialogIsHealthy,
+                        groupValue: dialogIsHealthy,
                         onChanged: (value) {
                           setState(() {
-                            _dialogIsHealthy = value!;
+                            dialogIsHealthy = value!;
                           });
                         },
                       ),
-                      if (!_dialogIsHealthy)
+                      if (!dialogIsHealthy)
                         Container(
                           margin: const EdgeInsets.only(
                               top: 8, left: 16, right: 16),
@@ -490,7 +488,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   primaryButtonText: 'Xác nhận',
                   onPrimaryButtonPressed: () {
                     Navigator.of(context).pop();
-                    if (_dialogIsHealthy) {
+                    if (dialogIsHealthy) {
                       // Normal flow - upload image if available or create log
                       if (_images.isNotEmpty) {
                         context.read<UploadImageCubit>().uploadImage(
