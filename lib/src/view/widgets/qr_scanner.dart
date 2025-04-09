@@ -68,6 +68,8 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
         );
         Navigator.pop(context);
       }
+    } else if (status.isGranted) {
+      return;
     }
   }
 

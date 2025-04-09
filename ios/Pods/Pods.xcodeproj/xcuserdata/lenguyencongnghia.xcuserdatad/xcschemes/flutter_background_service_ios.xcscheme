@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "01C5699D245FFBB59EB7425FD486110C"
-               BuildableName = "flutter_background_service_ios.framework"
+               BuildableName = "libflutter_background_service_ios.a"
                BlueprintName = "flutter_background_service_ios"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

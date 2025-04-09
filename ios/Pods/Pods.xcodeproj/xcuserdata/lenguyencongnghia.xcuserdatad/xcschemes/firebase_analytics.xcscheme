@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7E07A5A426E1EB47381290EBC038697E"
-               BuildableName = "firebase_analytics.framework"
+               BuildableName = "libfirebase_analytics.a"
                BlueprintName = "firebase_analytics"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

@@ -1,4 +1,4 @@
-framework module flutter_native_splash {
+module flutter_native_splash {
   umbrella header "flutter_native_splash-umbrella.h"
 
   export *

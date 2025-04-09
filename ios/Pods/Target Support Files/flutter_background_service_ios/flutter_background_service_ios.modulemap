@@ -1,4 +1,4 @@
-framework module flutter_background_service_ios {
+module flutter_background_service_ios {
   umbrella header "flutter_background_service_ios-umbrella.h"
 
   export *

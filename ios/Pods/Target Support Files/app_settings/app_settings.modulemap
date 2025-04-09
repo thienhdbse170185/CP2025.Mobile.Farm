@@ -1,4 +1,4 @@
-framework module app_settings {
+module app_settings {
   umbrella header "app_settings-umbrella.h"
 
   export *

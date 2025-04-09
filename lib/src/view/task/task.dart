@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
@@ -482,7 +483,7 @@ class _TaskWidgetState extends State<TaskWidget>
                       bottomRight: Radius.circular(24),
                     ),
                   ),
-                  padding: const EdgeInsets.only(top: 24.0, bottom: 16.0),
+                  padding:  EdgeInsets.only(top: Platform.isIOS == true ? MediaQuery.of(context).size.height * 0.05 : 24.0, bottom: 24.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

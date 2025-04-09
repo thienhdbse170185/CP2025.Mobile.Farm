@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:data_layer/model/entity/task/next_task/next_task.dart';
 import 'package:flutter/material.dart';
@@ -140,10 +141,12 @@ class _HomeWidgetState extends State<HomeWidget>
                 setState(() {
                   _userName = userName;
                 });
-                if (isAppStart) {
+                if (isAppStart && !Platform.isIOS) {
                   context
                       .read<UserBloc>()
                       .add(const UserEvent.updateDeviceToken());
+                } else {
+                  context.read<TaskBloc>().add(const TaskEvent.getNextTask());
                 }
               },
               getUserProfileFailure: (error) {
