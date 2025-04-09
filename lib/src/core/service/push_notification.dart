@@ -23,9 +23,10 @@ class PushNotifications {
       provisional: false,
       sound: true,
     );
-    
+
     // Set up iOS foreground notification presentation options
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
       sound: true,
@@ -56,7 +57,7 @@ class PushNotifications {
     // Android initialization settings
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-        
+
     // iOS initialization settings
     final DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
@@ -64,9 +65,10 @@ class PushNotifications {
       requestBadgePermission: true,
       requestSoundPermission: true,
     );
-    
+
     // Combined initialization settings
-    final InitializationSettings initializationSettings = InitializationSettings(
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
@@ -82,11 +84,11 @@ class PushNotifications {
       onDidReceiveNotificationResponse: onNotificationTap,
       onDidReceiveBackgroundNotificationResponse: onNotificationTap,
     );
-    
+
     // Set up Firebase message handlers
     setupFirebaseMessageHandlers();
   }
-  
+
   // Set up Firebase message handlers for different app states
   static void setupFirebaseMessageHandlers() {
     // Handle messages when app is in foreground
@@ -94,42 +96,43 @@ class PushNotifications {
       log('===== FOREGROUND MESSAGE =====');
       log('Notification: ${message.notification?.title}');
       log('Data: ${message.data}');
-      
+
       // Show local notification
-      if (message.notification != null) {
-        showSimpleNotification(
-          title: message.notification!.title ?? 'New Notification',
-          body: message.notification!.body ?? '',
-          payload: message.data.toString(),
-        );
-      }
+      showSimpleNotification(
+        title: message.notification!.title ?? 'New Notification',
+        body: message.notification!.body ?? '',
+        payload: message.data.toString(),
+      );
     });
-    
+
     // Handle when notification is opened and app was in background
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       log('===== BACKGROUND MESSAGE OPENED =====');
       log('Notification: ${message.notification?.title}');
       log('Data: ${message.data}');
-      
+
       // Navigate to notification screen
       Navigator.push(
         rootNavigatorKey.currentState!.context,
         MaterialPageRoute(builder: (context) => const TestNotificationWidget()),
       );
     });
-    
+
     // Handle initial message (app was terminated)
-    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage? message) {
       if (message != null) {
         log('===== INITIAL MESSAGE =====');
         log('Notification: ${message.notification?.title}');
         log('Data: ${message.data}');
-        
+
         // Handle navigation after app launch from notification
         Future.delayed(const Duration(seconds: 1), () {
           Navigator.push(
             rootNavigatorKey.currentState!.context,
-            MaterialPageRoute(builder: (context) => const TestNotificationWidget()),
+            MaterialPageRoute(
+                builder: (context) => const TestNotificationWidget()),
           );
         });
       }
@@ -163,7 +166,7 @@ class PushNotifications {
       priority: Priority.high,
       ticker: 'ticker',
     );
-    
+
     // iOS notification details
     const DarwinNotificationDetails iosNotificationDetails =
         DarwinNotificationDetails(
@@ -173,13 +176,13 @@ class PushNotifications {
       sound: 'default',
       badgeNumber: 1,
     );
-    
+
     // Combined notification details
     const NotificationDetails notificationDetails = NotificationDetails(
       android: androidNotificationDetails,
       iOS: iosNotificationDetails,
     );
-    
+
     await _flutterLocalNotificationsPlugin
         .show(0, title, body, notificationDetails, payload: payload);
   }

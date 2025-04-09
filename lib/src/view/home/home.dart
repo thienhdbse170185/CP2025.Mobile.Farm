@@ -592,12 +592,16 @@ class _HomeWidgetState extends State<HomeWidget>
                                         'cageId': nextTask.cageId,
                                       });
                                     },
-                                    child: Text(
-                                      nextTask.cagename,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium
-                                          ?.copyWith(color: Colors.white),
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.35,
+                                      child: Text(
+                                        nextTask.cagename,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.copyWith(color: Colors.white),
+                                      ),
                                     ))
                               ],
                             ),
