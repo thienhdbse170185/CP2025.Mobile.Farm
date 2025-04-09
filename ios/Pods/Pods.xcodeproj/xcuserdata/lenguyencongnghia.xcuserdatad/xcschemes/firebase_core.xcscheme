@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DAA3DF4B8C2F11E7A1764EF4EC560AC8"
-               BuildableName = "firebase_core.framework"
+               BuildableName = "libfirebase_core.a"
                BlueprintName = "firebase_core"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

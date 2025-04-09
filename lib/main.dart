@@ -26,41 +26,41 @@ Future<void> main() async {
   await dotenv.load(fileName: ".env");
   await Environment.load();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   await initializeDateFormatting('vi_VN', null);
   await Hive.initFlutter();
-  await PushNotifications.init();
+  // await PushNotifications.init();
 
-  if (!kIsWeb) {
-    await PushNotifications.localNotiInit();
-  }
+  // if (!kIsWeb) {
+  //   await PushNotifications.localNotiInit();
+  // }
 
-  // Listen to background notifications
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // // Listen to background notifications
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  // On background notification tapped
-  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    String payloadData = jsonEncode(message.data);
-    if (message.notification != null) {
-      log('===== ON MESSAGE OPENED APP =====');
-      log('Message opened app: ${message.notification!.body}');
-      log('Payload data: $payloadData');
-      Navigator.of(rootNavigatorKey.currentContext!)
-          .pushNamed(RouteName.testNotification);
-    }
-  });
+  // // On background notification tapped
+  // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+  //   String payloadData = jsonEncode(message.data);
+  //   if (message.notification != null) {
+  //     log('===== ON MESSAGE OPENED APP =====');
+  //     log('Message opened app: ${message.notification!.body}');
+  //     log('Payload data: $payloadData');
+  //     Navigator.of(rootNavigatorKey.currentContext!)
+  //         .pushNamed(RouteName.testNotification);
+  //   }
+  // });
 
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    String payloadData = jsonEncode(message.data);
-    log('===== ON MESSAGE =====');
-    if (message.notification != null) {
-      PushNotifications.showSimpleNotification(
-          title: message.notification!.title!,
-          body: message.notification!.body!,
-          payload: payloadData);
-    }
-  });
+  // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+  //   String payloadData = jsonEncode(message.data);
+  //   log('===== ON MESSAGE =====');
+  //   if (message.notification != null) {
+  //     PushNotifications.showSimpleNotification(
+  //         title: message.notification!.title!,
+  //         body: message.notification!.body!,
+  //         payload: payloadData);
+  //   }
+  // });
   runApp(const MyApp());
 }

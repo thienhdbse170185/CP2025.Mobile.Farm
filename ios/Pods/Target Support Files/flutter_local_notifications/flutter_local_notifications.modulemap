@@ -1,4 +1,4 @@
-framework module flutter_local_notifications {
+module flutter_local_notifications {
   umbrella header "flutter_local_notifications-umbrella.h"
 
   export *

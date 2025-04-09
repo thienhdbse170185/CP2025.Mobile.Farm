@@ -1,4 +1,4 @@
-framework module permission_handler_apple {
+module permission_handler_apple {
   umbrella header "permission_handler_apple-umbrella.h"
 
   export *

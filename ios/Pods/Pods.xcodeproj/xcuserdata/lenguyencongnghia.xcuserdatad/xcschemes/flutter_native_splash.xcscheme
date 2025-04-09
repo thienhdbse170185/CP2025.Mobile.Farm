@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "36DCFAF5755EC2D8A75B4F250108A359"
-               BuildableName = "flutter_native_splash.framework"
+               BuildableName = "libflutter_native_splash.a"
                BlueprintName = "flutter_native_splash"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
