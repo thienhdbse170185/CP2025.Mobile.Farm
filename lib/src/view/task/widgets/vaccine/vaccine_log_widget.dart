@@ -146,6 +146,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
             ],
           ),
           if (widget.logTime != null) ...[
+            const SizedBox(height: 8),
             Row(
               children: [
                 _buildInfoItem(
@@ -653,6 +654,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
     int warningLevel = 0,
   }) {
     return Row(
+      mainAxisSize: MainAxisSize.min, // Đảm bảo Row co giãn theo nội dung
       children: [
         if (icon != null)
           Icon(
@@ -661,9 +663,12 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
             color: Theme.of(context).colorScheme.primary,
           ),
         const SizedBox(width: 8),
-        Expanded(
+        Flexible(
+          fit: FlexFit
+              .loose, // Cho phép widget con chiếm không gian vừa đủ nội dung
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 label,
@@ -674,8 +679,10 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
               ),
               const SizedBox(height: 4),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Flexible(
+                    fit: FlexFit.loose,
                     child: Text(
                       value,
                       style: const TextStyle(
@@ -701,7 +708,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                     ),
                   ],
                 ],
-              )
+              ),
             ],
           ),
         ),

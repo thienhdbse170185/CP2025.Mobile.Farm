@@ -123,23 +123,23 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
                 value: widget.task.cageName,
                 icon: Icons.home_work_outlined,
               ),
-              const SizedBox(height: 16),
-              if (widget.logTime != null) ...[
-                Row(
-                  children: [
-                    _buildInfoItem(
-                      context: context,
-                      label: 'Thời gian báo cáo',
-                      value: widget.logTime != null
-                          ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
-                          : 'Đang tải...',
-                      icon: Icons.access_time,
-                    ),
-                  ],
-                )
-              ]
             ],
           ),
+          const SizedBox(height: 16),
+          if (widget.logTime != null) ...[
+            Row(
+              children: [
+                _buildInfoItem(
+                  context: context,
+                  label: 'Thời gian báo cáo',
+                  value: widget.logTime != null
+                      ? '${widget.logTime?.day}/${widget.logTime?.month}/${widget.logTime?.year}'
+                      : 'Đang tải...',
+                  icon: Icons.access_time,
+                ),
+              ],
+            )
+          ]
         ],
       ),
     );

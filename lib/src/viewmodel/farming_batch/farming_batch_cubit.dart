@@ -20,4 +20,16 @@ class FarmingBatchCubit extends Cubit<FarmingBatchState> {
       emit(FarmingBatchState.getFarmingBatchByCageFailure(e.toString()));
     }
   }
+
+  Future<void> getFarmingBatchByCageDuedate(
+      String cageId, String dueDateTask) async {
+    emit(const FarmingBatchState.getFarmingBatchByCageInProgress());
+    try {
+      final farmingBatch =
+          await repository.getFarmingBatchByCageDuedate(cageId, dueDateTask);
+      emit(FarmingBatchState.getFarmingBatchByCageSuccess(farmingBatch));
+    } catch (e) {
+      emit(FarmingBatchState.getFarmingBatchByCageFailure(e.toString()));
+    }
+  }
 }

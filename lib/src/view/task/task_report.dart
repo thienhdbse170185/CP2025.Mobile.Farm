@@ -238,9 +238,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               TaskTypeDataConstant.weighing ||
           widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
           widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg) {
-        context
-            .read<FarmingBatchCubit>()
-            .getFarmingBatchByCage(widget.task.cageId);
+        context.read<FarmingBatchCubit>().getFarmingBatchByCageDuedate(
+            widget.task.cageId, widget.task.dueDate);
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.health) {
         context
@@ -248,9 +247,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             .getPrescription(widget.task.prescriptionId ?? '');
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.vaccin) {
-        context
-            .read<FarmingBatchCubit>()
-            .getFarmingBatchByCage(widget.task.cageId);
+        context.read<FarmingBatchCubit>().getFarmingBatchByCageDuedate(
+            widget.task.cageId, widget.task.dueDate);
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.eggHarvest) {
         context
@@ -649,8 +647,17 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.health) {
         if (widget.task.prescriptionId != null) {
-          context.read<PrescriptionCubit>().checkPrescriptionLastSession(
-              prescriptionId: widget.task.prescriptionId ?? '');
+          final log = HealthLogDto(
+            taskId: widget.taskId,
+            prescriptionId: prescriptionId ?? '',
+            date: TimeUtils.customNow(),
+            notes: logController.text,
+            photo: uploadImage?.path != null
+                ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
+                : '',
+          );
+          context.read<TaskBloc>().add(TaskEvent.createHealthLog(
+              prescriptionId: prescriptionId ?? '', log: log));
         }
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.vaccin) {
@@ -849,8 +856,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               createHealthLogSuccess: () async {
                 log("Tạo log uống thuốc thành công!");
-                context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, StatusDataConstant.done));
+                context.read<PrescriptionCubit>().checkPrescriptionLastSession(
+                    prescriptionId: widget.task.prescriptionId ?? '');
               },
               createHealthLogFailure: (e) async {
                 if (_images.isNotEmpty) {
@@ -1155,45 +1162,47 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isProcessing = false;
                 });
                 if (isLastSession == false) {
-                  final log = HealthLogDto(
-                    taskId: widget.taskId,
-                    prescriptionId: prescriptionId ?? '',
-                    date: TimeUtils.customNow(),
-                    notes: logController.text,
-                    photo: uploadImage?.path != null
-                        ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
-                        : '',
-                  );
-                  context.read<TaskBloc>().add(TaskEvent.createHealthLog(
-                      prescriptionId: prescriptionId ?? '', log: log));
+                  context.read<TaskBloc>().add(TaskEvent.updateTask(
+                      widget.taskId, StatusDataConstant.done));
                 } else {
-                  showDialog(
-                      context: context,
-                      builder: (context) => WarningConfirmationDialog(
-                          isEmergency: true,
-                          title: 'Cập nhật sau điều trị',
-                          content: _buildLastSessionForm(),
-                          secondaryButtonText: 'Đóng',
-                          primaryButtonText: 'Xác nhận',
-                          onPrimaryButtonPressed: () {
-                            final request = UpdateStatusPrescriptionRequest(
-                                status: 'Complete',
-                                remainingQuantity: _lastSessionQuantity);
-                            context
-                                .read<PrescriptionCubit>()
-                                .updateQuantityAnimalAfterTreatment(
-                                    prescriptionId: prescriptionId!,
-                                    request: request);
-                          },
-                          onSecondaryButtonPressed: () {
-                            setState(() {
-                              _lastSessionQuantity =
-                                  prescription!.quantityAnimal;
-                              _isHealthyAfterTreatment = false;
-                            });
-                            context.pop();
-                            _lastSessionQuantityController.text = '0';
-                          }));
+                  // showDialog(
+                  //     context: context,
+                  //     builder: (context) => WarningConfirmationDialog(
+                  //         isEmergency: true,
+                  //         title: 'Cập nhật sau điều trị',
+                  //         content: _buildLastSessionForm(),
+                  //         secondaryButtonText: 'Đóng',
+                  //         primaryButtonText: 'Xác nhận',
+                  //         onPrimaryButtonPressed: () {
+                  //           final request = UpdateStatusPrescriptionRequest(
+                  //               status: 'Complete',
+                  //               remainingQuantity: _lastSessionQuantity);
+                  //           context
+                  //               .read<PrescriptionCubit>()
+                  //               .updateQuantityAnimalAfterTreatment(
+                  //                   prescriptionId: prescriptionId!,
+                  //                   request: request);
+                  //         },
+                  //         onSecondaryButtonPressed: () {
+                  //           setState(() {
+                  //             _lastSessionQuantity =
+                  //                 prescription!.quantityAnimal;
+                  //             _isHealthyAfterTreatment = false;
+                  //           });
+                  //           context.pop();
+                  //           _lastSessionQuantityController.text = '0';
+                  //         }));
+                  log('[Prescription] Số con còn lại sau điều trị: ${prescription!.quantityAnimal}');
+                  final request = UpdateStatusPrescriptionRequest(
+                    status: 'Completed',
+                    remainingQuantity: prescription!.quantityAnimal,
+                  );
+                  context
+                      .read<PrescriptionCubit>()
+                      .updateQuantityAnimalAfterTreatment(
+                        prescriptionId: prescriptionId!,
+                        request: request,
+                      );
                 }
               },
               checkPrescriptionLastSessionFailure: (message) {
@@ -1203,22 +1212,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               updateQuantityAnimalAfterTreatmentInProgress: () {},
               updateQuantityAnimalAfterTreatmentSuccess: () {
-                context.pop();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text(
-                          'Cập nhật số lượng gia cầm sau điều trị thành công!')),
-                );
-                final log = HealthLogDto(
-                    prescriptionId: prescriptionId ?? '',
-                    date: DateTime.now(),
-                    notes: logController.text,
-                    photo: uploadImage?.path != null
-                        ? '${dotenv.env['IMAGE_STORAGE_URL']}/${uploadImage!.path}'
-                        : '',
-                    taskId: widget.taskId);
-                context.read<TaskBloc>().add(TaskEvent.createHealthLog(
-                    prescriptionId: prescriptionId ?? '', log: log));
+                context.read<TaskBloc>().add(TaskEvent.updateTask(
+                    widget.taskId, StatusDataConstant.done));
               },
               updateQuantityAnimalAfterTreatmentFailure: (message) {
                 setState(() {
@@ -1538,11 +1533,18 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               getFarmingBatchByCageSuccess: (farmingBatch) {
                 setState(() {
                   this.farmingBatch = farmingBatch;
+                  growthStage = farmingBatch.growthStageDetails;
                   _isLoading = false;
                 });
-                context
-                    .read<GrowthStageCubit>()
-                    .getGrowthStageByCageId(widget.task.cageId);
+                // context
+                //     .read<GrowthStageCubit>()
+                //     .getGrowthStageByCageId(widget.task.cageId);
+                if (widget.task.taskType.taskTypeId ==
+                    TaskTypeDataConstant.sellAnimal) {
+                  context
+                      .read<SaleTypeCubit>()
+                      .getSaleTypeByName(saleTypeName: 'MeatSale');
+                }
               },
               getFarmingBatchByCageFailure: (e) {
                 setState(() {
