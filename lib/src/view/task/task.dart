@@ -6,10 +6,12 @@ import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_nam
 import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
+import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 import 'package:smart_farm/src/view/task/task_detail.dart';
@@ -483,7 +485,11 @@ class _TaskWidgetState extends State<TaskWidget>
                       bottomRight: Radius.circular(24),
                     ),
                   ),
-                  padding:  EdgeInsets.only(top: Platform.isIOS == true ? MediaQuery.of(context).size.height * 0.05 : 24.0, bottom: 24.0),
+                  padding: EdgeInsets.only(
+                      top: Platform.isIOS == true
+                          ? MediaQuery.of(context).size.height * 0.05
+                          : 24.0,
+                      bottom: 24.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -556,35 +562,55 @@ class _TaskWidgetState extends State<TaskWidget>
                           children: [
                             // Expanded Search Bar
                             Expanded(
-                              child: SearchBar(
-                                controller: _searchController,
-                                onChanged: _onSearchChanged,
-                                backgroundColor: WidgetStateProperty.all(
-                                  Theme.of(context).colorScheme.surface,
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.push(RouteName.taskSearch, extra: {
+                                    'selectedDate': selectedDate,
+                                    'availableCageFilters':
+                                        availableCageFilters,
+                                    'availableTaskTypeFilters':
+                                        availableTaskTypeFilters,
+                                  }).then((result) {
+                                    if (result != null &&
+                                        result is bool &&
+                                        result) {
+                                      _refreshTasks(); // Refresh lại danh sách task nếu có thay đổi
+                                    }
+                                  });
+                                },
+                                child: AbsorbPointer(
+                                  child: SearchBar(
+                                    controller: _searchController,
+                                    onChanged: _onSearchChanged,
+                                    backgroundColor: WidgetStateProperty.all(
+                                      Theme.of(context).colorScheme.surface,
+                                    ),
+                                    shape:
+                                        WidgetStateProperty.all(StadiumBorder(
+                                            side: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                    ))),
+                                    hintText: 'Tìm kiếm công việc',
+                                    leading: Icon(Icons.search, size: 20),
+                                    trailing: [
+                                      _searchController.text.isNotEmpty
+                                          ? IconButton(
+                                              icon: Icon(Icons.clear, size: 20),
+                                              onPressed: () {
+                                                setState(() {
+                                                  _searchController.clear();
+                                                });
+                                                _filterTasks(searchQuery: '');
+                                              },
+                                            )
+                                          : SizedBox.shrink(),
+                                    ],
+                                    padding: WidgetStateProperty.all(
+                                      EdgeInsets.symmetric(horizontal: 12.0),
+                                    ),
+                                    elevation: WidgetStateProperty.all(0),
+                                  ),
                                 ),
-                                shape: WidgetStateProperty.all(StadiumBorder(
-                                    side: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                ))),
-                                hintText: 'Tìm kiếm công việc',
-                                leading: Icon(Icons.search, size: 20),
-                                trailing: [
-                                  _searchController.text.isNotEmpty
-                                      ? IconButton(
-                                          icon: Icon(Icons.clear, size: 20),
-                                          onPressed: () {
-                                            setState(() {
-                                              _searchController.clear();
-                                            });
-                                            _filterTasks(searchQuery: '');
-                                          },
-                                        )
-                                      : SizedBox.shrink(),
-                                ],
-                                padding: WidgetStateProperty.all(
-                                  EdgeInsets.symmetric(horizontal: 12.0),
-                                ),
-                                elevation: WidgetStateProperty.all(0),
                               ),
                             ),
                             // Filter Button with Active Filter Count Badge

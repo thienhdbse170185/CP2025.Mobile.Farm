@@ -362,7 +362,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
           padding: const EdgeInsets.only(left: 8),
           child: IconButton(
             padding: EdgeInsets.zero,
-            icon: LinearIcons.arrowBackIcon,
+            icon: Icon(Icons.arrow_back_rounded),
             onPressed: () => context.pop(),
           ),
         ),

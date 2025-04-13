@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
 import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/widgets.dart';
@@ -11,6 +12,7 @@ import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_lo
 import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_sale_log_cubit/create_sale_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
+import 'package:smart_farm/src/model/task/cage_filter.dart';
 import 'package:smart_farm/src/view/auth/change_password.dart';
 import 'package:smart_farm/src/view/auth/change_password_newbie.dart';
 import 'package:smart_farm/src/view/auth/forgot_password.dart';
@@ -32,6 +34,7 @@ import 'package:smart_farm/src/view/task/task_demo_widget.dart';
 import 'package:smart_farm/src/view/task/task_history.dart';
 import 'package:smart_farm/src/view/task/task_qr_code.dart';
 import 'package:smart_farm/src/view/task/task_report.dart';
+import 'package:smart_farm/src/view/task/task_search.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -69,6 +72,7 @@ class RouteName {
   static const String changePassword = '/change-password';
   static const String timeSetting = '/time-setting';
   static const String taskReport = '/task-report';
+  static const String taskSearch = '/task-search';
 
   static const publicRoutes = [
     welcome,
@@ -429,4 +433,21 @@ final router = GoRouter(
               source: source,
             ));
           }),
+
+      GoRoute(
+        path: RouteName.taskSearch,
+        builder: (context, state) {
+          final params = state.extra as Map<String, dynamic>?;
+          final selectedDate = params?['selectedDate'] as DateTime;
+          final availableCageFilters =
+              params?['availableCageFilters'] as List<CageFilter>;
+          final availableTaskTypeFilters =
+              params?['availableTaskTypeFilters'] as List<TaskType>;
+          return TaskSearchScreen(
+            selectedDate: selectedDate,
+            availableCageFilters: availableCageFilters,
+            availableTaskTypeFilters: availableTaskTypeFilters,
+          );
+        },
+      )
     ]);
