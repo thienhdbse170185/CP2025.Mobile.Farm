@@ -2,6 +2,7 @@ import 'package:data_layer/model/dto/farming_batch/farming_batch_dto.dart';
 import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
 import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
 
@@ -73,7 +74,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
         _buildGrowthStageInfo(context, widget.growthStage),
         const SizedBox(height: 24),
         _buildWeightInputForm(context),
-        // const SizedBox(height: 20),
+        const SizedBox(height: 20),
         // _buildPreviousWeightComparison(context), // Thêm phần so sánh cân nặng
       ],
     );
@@ -160,6 +161,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                 value: widget.userName ?? 'Đang tải...',
                 icon: Icons.person,
               ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.15),
               _buildInfoItem(
                 context: context,
                 label: 'Tên chuồng',
@@ -349,12 +351,17 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                         icon: Icons.remove,
                         onPressed: () {
                           final currentValue = double.tryParse(
-                                  widget.weightAnimalController.text) ??
+                                widget.weightAnimalController.text,
+                              ) ??
                               0.0;
-                          if (currentValue > 0.1) {
-                            _currentWeight = currentValue - 0.1;
-                            widget.onWeightChanged?.call(_currentWeight);
-                            _calculateDifference();
+                          if (currentValue > 1) {
+                            if (widget.onWeightChanged != null) {
+                              widget.onWeightChanged!(currentValue - 1.0);
+                            }
+                          } else if (currentValue <= 1 && currentValue > 0.1) {
+                            if (widget.onWeightChanged != null) {
+                              widget.onWeightChanged!(0.1);
+                            }
                           }
                         },
                         isDisable: !isEditable,
@@ -364,39 +371,72 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                         margin: const EdgeInsets.symmetric(horizontal: 16),
                         child: TextField(
                           controller: widget.weightAnimalController,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.right,
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                              RegExp(
+                                  r'^\d+\.?\d{0,1}'), // Chỉ cho phép số và 2 chữ số thập phân
+                            )
+                          ],
                           enabled: isEditable,
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w600,
                           ),
                           decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.zero,
                             suffixText: 'kg',
                             suffixStyle: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[600],
+                              fontSize: 18,
                             ),
+                            errorStyle: const TextStyle(height: 0),
                           ),
-                          onChanged: (value) async {
-                            if (value.isEmpty) {
-                              widget.weightAnimalController.text = '0';
-                              widget.weightAnimalController.selection =
-                                  TextSelection.fromPosition(
-                                      const TextPosition(offset: 1));
+                          onChanged: (value) {
+                            final currentValue = double.tryParse(
+                                  widget.weightAnimalController.text,
+                                ) ??
+                                0.1;
+                            if (widget.onWeightChanged != null) {
+                              widget.onWeightChanged!(currentValue);
                             }
-                            _currentWeight = double.tryParse(value) ?? 0;
-                            widget.onWeightChanged?.call(_currentWeight);
-                            _calculateDifference();
+                            //else {
+                            // final currentValue = double.tryParse(value) ?? 0.0;
+                            // if (currentValue <= 0) {
+                            //   setState(() {
+                            //     widget.weightAnimalController.text = '0.1';
+                            //     widget.weightAnimalController.selection =
+                            //         TextSelection.fromPosition(
+                            //             const TextPosition(offset: 3));
+                            //   });
+                            //   // Show error message
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     const SnackBar(
+                            //       content: Text('Cân nặng phải lớn hơn 0'),
+                            //       duration: Duration(seconds: 2),
+                            //     ),
+                            //   );
+                            // }
+                            // // }
+                            // // _currentWeight = double.tryParse(value) ?? 0;
+                            // // widget.onWeightChanged?.call(_currentWeight);
+                            // // _calculateDifference();
+                            // // final currentValue = double.tryParse(
+                            // //       widget.weightAnimalController.text,
+                            // //     ) ??
+                            // //     0.1;
+                            // if (widget.onWeightChanged != null) {
+                            //   widget.onWeightChanged!(currentValue);
+                            // }
                           },
                           onTap: () {
-                            if (widget.weightAnimalController.text == '0') {
-                              widget.weightAnimalController.clear();
+                            if (widget.weightAnimalController.text == '0' ||
+                                widget.weightAnimalController.text == '0.0') {
+                              setState(() {
+                                widget.weightAnimalController.text = '';
+                              });
                             }
                           },
                         ),
@@ -405,11 +445,13 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                         icon: Icons.add,
                         onPressed: () {
                           final currentValue = double.tryParse(
-                                  widget.weightAnimalController.text) ??
+                                widget.weightAnimalController.text,
+                              ) ??
                               0.0;
-                          _currentWeight = currentValue + 0.1;
-                          widget.onWeightChanged?.call(_currentWeight);
-                          _calculateDifference();
+                          if (widget.onWeightChanged != null) {
+                            widget.onWeightChanged!(currentValue + 1.0);
+                          }
+                          // _calculateDifference();
                         },
                         isAdd: true,
                         isDisable: !isEditable,

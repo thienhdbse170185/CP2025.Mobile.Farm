@@ -107,6 +107,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   ];
   String? selectedFood = "--- Chọn loại thức ăn ---";
 
+  // --- Weighing related variables ---
+  double weightAnimal = 0;
+
   // --- Vaccine related variables ---
   List<VaccineScheduleDto> vaccineScheduleList = [];
   VaccineScheduleDto? vaccineSchedule;
@@ -297,14 +300,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     _countEggCollectedController.dispose();
     _lastSessionQuantityController.dispose();
     super.dispose();
-  }
-
-  bool _areAnyMedicationsChecked() {
-    return areAnyMedicationsChecked(
-      task: widget.task,
-      prescription: prescription,
-      medicationChecked: _medicationChecked,
-    );
   }
 
   bool _isWithinWorkingHours() {
@@ -538,7 +533,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   void _handleNavigateCreateMedicalSymptomOnWeighingTask() {
     _updateWeightRequest = UpdateWeightRequest(
       growthStageId: growthStage!.id,
-      weightAnimal: double.parse(_weightAnimalController.text),
+      // weightAnimal: double.parse(_weightAnimalController.text),
+      weightAnimal: weightAnimal,
       taskId: widget.task.id,
     );
 
@@ -678,7 +674,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         context.read<GrowthStageCubit>().updateWeight(
               request: UpdateWeightRequest(
                 growthStageId: growthStage!.id,
-                weightAnimal: double.parse(_weightAnimalController.text),
+                // weightAnimal: double.parse(_weightAnimalController.text),
+                weightAnimal: weightAnimal,
                 taskId: widget.task.id,
               ),
             );
@@ -1544,6 +1541,11 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   context
                       .read<SaleTypeCubit>()
                       .getSaleTypeByName(saleTypeName: 'MeatSale');
+                } else if (widget.task.taskType.taskTypeId ==
+                    TaskTypeDataConstant.vaccin) {
+                  context
+                      .read<GrowthStageCubit>()
+                      .getGrowthStageByCageId(widget.task.cageId);
                 }
               },
               getFarmingBatchByCageFailure: (e) {
@@ -1715,7 +1717,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   : (double newWeight) {
                       setState(() {
                         actualWeight = newWeight;
-                        _actualWeightController.text = newWeight.toString();
+                        // _actualWeightController.text = newWeight.toString();
                       });
                     },
               task: widget.task,
@@ -1796,8 +1798,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   ? null
                   : (double newWeight) {
                       setState(() {
-                        _weightAnimalController.text =
-                            newWeight.toStringAsFixed(1);
+                        // _weightAnimalController.text = newWeight.toString();
+                        weightAnimal = newWeight;
                       });
                     },
               taskStatus: taskStatus,

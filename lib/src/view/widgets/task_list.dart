@@ -171,31 +171,26 @@ class TaskListWidget extends StatelessWidget {
                                         Expanded(
                                           child: Row(
                                             children: [
-                                              Text(
-                                                task.taskName,
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: hasWarning &&
-                                                          highlightWarning
-                                                      ? warningTextColor
-                                                      : null,
-                                                ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              if (hasWarning &&
-                                                  highlightWarning)
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8.0),
-                                                  child: Icon(
-                                                    Icons.warning_amber_rounded,
-                                                    color: warningTextColor,
-                                                    size: 16,
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.45,
+                                                child: Text(
+                                                  task.taskName,
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: hasWarning &&
+                                                            highlightWarning
+                                                        ? warningTextColor
+                                                        : null,
                                                   ),
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                 ),
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -207,11 +202,17 @@ class TaskListWidget extends StatelessWidget {
                                         Icon(Icons.category_outlined,
                                             size: 12, color: Colors.grey),
                                         SizedBox(width: 4),
-                                        Text(
-                                          task.taskType.taskTypeName,
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey[700],
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.3,
+                                          child: Text(
+                                            task.taskType.taskTypeName,
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey[700],
+                                            ),
                                           ),
                                         ),
                                       ],

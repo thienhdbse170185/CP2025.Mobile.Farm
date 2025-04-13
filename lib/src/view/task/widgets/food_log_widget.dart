@@ -391,31 +391,6 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                     fontWeight: FontWeight.w600,
                   ),
                   onChanged: (value) {
-                    if (value.isEmpty) {
-                      setState(() {
-                        widget.actualWeightController.text = '0.1';
-                        widget.actualWeightController.selection =
-                            TextSelection.fromPosition(
-                                const TextPosition(offset: 3));
-                      });
-                    } else {
-                      final currentValue = double.tryParse(value) ?? 0.0;
-                      if (currentValue <= 0) {
-                        setState(() {
-                          widget.actualWeightController.text = '0.1';
-                          widget.actualWeightController.selection =
-                              TextSelection.fromPosition(
-                                  const TextPosition(offset: 3));
-                        });
-                        // Show error message
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Lượng thức ăn phải lớn hơn 0'),
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
-                      }
-                    }
                     final currentValue = double.tryParse(
                           widget.actualWeightController.text,
                         ) ??

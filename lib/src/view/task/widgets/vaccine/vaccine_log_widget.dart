@@ -507,7 +507,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Số con ước lượng: $expectedInjectedAnimal con',
+                  'Cả đàn có: $expectedInjectedAnimal con',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
