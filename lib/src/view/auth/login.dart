@@ -19,9 +19,10 @@ class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _isPasswordVisible = false;
-  final bool _rememberMe = false;
   bool _isProcessing = false;
   bool _isWrongCredentials = false;
+
+  String _messageWrongCredentials = '';
 
   @override
   void dispose() {
@@ -74,6 +75,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                   _isProcessing = false;
                   if (message.contains('wrong-credentials')) {
                     _isWrongCredentials = true;
+                    _messageWrongCredentials =
+                        'Thông tin đăng nhập không chính xác!';
+                  } else if (message.contains('permission-denied')) {
+                    _isWrongCredentials = true;
+                    _messageWrongCredentials =
+                        'Tài khoản không có quyền truy cập ứng dụng.';
                   }
                 });
                 log('[LOGIN] Đăng nhập thất bại! Lỗi: $message');
@@ -203,10 +210,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         const SizedBox(height: 8),
                         if (_isWrongCredentials)
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 4),
                             child: Text(
-                              "Tên tài khoản hoặc mật khẩu không chính xác",
+                              _messageWrongCredentials,
                               style: TextStyle(color: Colors.red, fontSize: 13),
                             ),
                           ),

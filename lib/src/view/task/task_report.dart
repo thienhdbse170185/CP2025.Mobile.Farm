@@ -1533,9 +1533,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   growthStage = farmingBatch.growthStageDetails;
                   _isLoading = false;
                 });
-                // context
-                //     .read<GrowthStageCubit>()
-                //     .getGrowthStageByCageId(widget.task.cageId);
                 if (widget.task.taskType.taskTypeId ==
                     TaskTypeDataConstant.sellAnimal) {
                   context
