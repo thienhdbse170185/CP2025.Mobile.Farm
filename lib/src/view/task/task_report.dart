@@ -1539,7 +1539,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                       .read<SaleTypeCubit>()
                       .getSaleTypeByName(saleTypeName: 'MeatSale');
                 } else if (widget.task.taskType.taskTypeId ==
-                    TaskTypeDataConstant.vaccin) {
+                        TaskTypeDataConstant.vaccin ||
+                    widget.task.taskType.taskTypeId ==
+                        TaskTypeDataConstant.weighing) {
                   context
                       .read<GrowthStageCubit>()
                       .getGrowthStageByCageId(widget.task.cageId);

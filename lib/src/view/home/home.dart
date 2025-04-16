@@ -417,13 +417,13 @@ class _HomeWidgetState extends State<HomeWidget>
                                     const SizedBox(height: 24),
                                     LinearIcons.emptyBoxIcon,
                                     const SizedBox(height: 16),
-                                    Text('Không có việc',
+                                    Text('Danh sách trống',
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleLarge),
                                     const SizedBox(height: 4),
                                     Text(
-                                      'Hôm nay bạn không có công việc.',
+                                      'Bạn không có công việc tiếp theo.',
                                       style:
                                           Theme.of(context).textTheme.bodyLarge,
                                     ),
@@ -480,11 +480,11 @@ class _HomeWidgetState extends State<HomeWidget>
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 LinearIcons.emptyBoxIcon,
                 const SizedBox(height: 16),
-                Text('Không có việc',
+                Text('Danh sách trống',
                     style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 4),
                 Text(
-                  'Hôm nay bạn không có công việc.',
+                  'Bạn không có công việc tiếp theo.',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
