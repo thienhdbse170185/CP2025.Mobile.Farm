@@ -468,10 +468,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             createAnimalSaleSuccess: () {
               log('[CREATE_SYMPTOM_SUCCESS] Tạo thông tin bán gia cầm thành công.');
               setState(() => _isProcessing = false);
-              context.read<TaskBloc>().add(TaskEvent.updateTask(
+              // context.read<TaskBloc>().add(TaskEvent.updateTask(
+              //       widget.taskId!,
+              //       StatusDataConstant.done,
+              //       afterSymptomReport: true,
+              //     ));
+              context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
                     widget.taskId!,
                     StatusDataConstant.done,
-                    afterSymptomReport: true,
                   ));
             },
             createAnimalSaleFailure: (error) {
@@ -579,10 +583,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             updateWeightSuccess: (result) {
               log('[CREATE_SYMPTOM_SUCCESS] Cập nhật trọng lượng thành công.');
               setState(() => _isProcessing = false);
-              context.read<TaskBloc>().add(TaskEvent.updateTask(
+              // context.read<TaskBloc>().add(TaskEvent.updateTask(
+              //       widget.taskId!,
+              //       StatusDataConstant.done,
+              //       afterSymptomReport: true,
+              //     ));
+              context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
                     widget.taskId!,
                     StatusDataConstant.done,
-                    afterSymptomReport: true,
                   ));
               return null;
             },
@@ -661,10 +669,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             createDailyFoodUsageLogSuccess: () {
               log('[CREATE_SYMPTOM_SUCCESS] Tạo log DailyFoodUsageLog thành công.');
               setState(() => _isProcessing = false);
-              context.read<TaskBloc>().add(TaskEvent.updateTask(
+              // context.read<TaskBloc>().add(TaskEvent.updateTask(
+              //       widget.taskId!,
+              //       StatusDataConstant.done,
+              //       afterSymptomReport: true,
+              //     ));
+              context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
                     widget.taskId!,
                     StatusDataConstant.done,
-                    afterSymptomReport: true,
                   ));
             },
             createDailyFoodUsageLogLoading: () {
@@ -674,10 +686,14 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             createHealthLogSuccess: () {
               log('[CREATE_SYMPTOM_SCREEN] Tạo health-log thành công.');
               setState(() => _isProcessing = false);
-              context.read<TaskBloc>().add(TaskEvent.updateTask(
+              // context.read<TaskBloc>().add(TaskEvent.updateTask(
+              //       widget.taskId!,
+              //       StatusDataConstant.done,
+              //       afterSymptomReport: true,
+              //     ));
+              context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
                     widget.taskId!,
                     StatusDataConstant.done,
-                    afterSymptomReport: true,
                   ));
             },
             createHealthLogLoading: () {
@@ -691,11 +707,31 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             createVaccinScheduleLogSuccess: () {
               log('[CREATE_SYMPTOM_SCREEN] Tạo vaccin-log thành công.');
               setState(() => _isProcessing = false);
-              context.read<TaskBloc>().add(TaskEvent.updateTask(
+              // context.read<TaskBloc>().add(TaskEvent.updateTask(
+              //       widget.taskId!,
+              //       StatusDataConstant.done,
+              //       afterSymptomReport: true,
+              //     ));
+              context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
                     widget.taskId!,
                     StatusDataConstant.done,
-                    afterSymptomReport: true,
                   ));
+            },
+            updateTaskAfterReportLoading: () {
+              setState(() {
+                _isProcessing = true;
+              });
+            },
+            updateTaskAfterReportSuccess: () {
+              context.go(RouteName.symptomSuccess, extra: {
+                'symptom': symptom,
+                'cageName': _selectedCage,
+                'fromTask': true,
+                'taskId': widget.taskId
+              });
+            },
+            updateTaskAfterReportFailure: (error) {
+              setState(() => _isProcessing = false);
             },
             updateStatusTaskLoading: () {
               setState(() => _isProcessing = true);

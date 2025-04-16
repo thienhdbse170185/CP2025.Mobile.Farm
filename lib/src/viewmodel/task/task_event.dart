@@ -6,6 +6,10 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.createTask(String task) = _CreateTask;
   const factory TaskEvent.updateTask(String taskId, String statusId,
       {@Default(false) bool afterSymptomReport}) = _UpdateTask;
+  const factory TaskEvent.updateTaskAfterReport(
+    String taskId,
+    String statusId,
+  ) = _UpdateTaskAfterReport;
   const factory TaskEvent.deleteTask(String taskId) = _DeleteTask;
   const factory TaskEvent.getTasks(
     String? keySearch,

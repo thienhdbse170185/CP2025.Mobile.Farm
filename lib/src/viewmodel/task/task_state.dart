@@ -47,6 +47,12 @@ class TaskState with _$TaskState {
   const factory TaskState.updateStatusTaskSuccess() = _UpdateStatusTaskSuccess;
   const factory TaskState.updateStatusTaskFailure(String error) =
       _UpdateStatusTaskFailure;
+  const factory TaskState.updateTaskAfterReportLoading() =
+      _UpdateTaskAfterReportLoading;
+  const factory TaskState.updateTaskAfterReportSuccess() =
+      _UpdateTaskAfterReportSuccess;
+  const factory TaskState.updateTaskAfterReportFailure(String error) =
+      _UpdateTaskAfterReportFailure;
   const factory TaskState.createDailyFoodUsageLogLoading() =
       _CreateDailyFoodUsageLogLoading;
   const factory TaskState.createDailyFoodUsageLogSuccess() =

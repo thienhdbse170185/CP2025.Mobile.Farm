@@ -23,6 +23,8 @@ mixin _$TaskEvent {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -72,6 +74,7 @@ mixin _$TaskEvent {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -120,6 +123,7 @@ mixin _$TaskEvent {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -167,6 +171,8 @@ mixin _$TaskEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -197,6 +203,7 @@ mixin _$TaskEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -222,6 +229,7 @@ mixin _$TaskEvent {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -311,6 +319,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -363,6 +373,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -414,6 +425,7 @@ class _$StartedImpl implements _Started {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -467,6 +479,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -500,6 +514,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -528,6 +543,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -632,6 +648,8 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -684,6 +702,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -735,6 +754,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -788,6 +808,8 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -821,6 +843,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -849,6 +872,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -982,6 +1006,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -1034,6 +1060,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -1085,6 +1112,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -1138,6 +1166,8 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -1171,6 +1201,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -1199,6 +1230,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -1239,6 +1271,356 @@ abstract class _UpdateTask implements TaskEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateTaskImplCopyWith<_$UpdateTaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateTaskAfterReportImplCopyWith<$Res> {
+  factory _$$UpdateTaskAfterReportImplCopyWith(
+          _$UpdateTaskAfterReportImpl value,
+          $Res Function(_$UpdateTaskAfterReportImpl) then) =
+      __$$UpdateTaskAfterReportImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String taskId, String statusId});
+}
+
+/// @nodoc
+class __$$UpdateTaskAfterReportImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$UpdateTaskAfterReportImpl>
+    implements _$$UpdateTaskAfterReportImplCopyWith<$Res> {
+  __$$UpdateTaskAfterReportImplCopyWithImpl(_$UpdateTaskAfterReportImpl _value,
+      $Res Function(_$UpdateTaskAfterReportImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskId = null,
+    Object? statusId = null,
+  }) {
+    return _then(_$UpdateTaskAfterReportImpl(
+      null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == statusId
+          ? _value.statusId
+          : statusId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateTaskAfterReportImpl implements _UpdateTaskAfterReport {
+  const _$UpdateTaskAfterReportImpl(this.taskId, this.statusId);
+
+  @override
+  final String taskId;
+  @override
+  final String statusId;
+
+  @override
+  String toString() {
+    return 'TaskEvent.updateTaskAfterReport(taskId: $taskId, statusId: $statusId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateTaskAfterReportImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.statusId, statusId) ||
+                other.statusId == statusId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, taskId, statusId);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateTaskAfterReportImplCopyWith<_$UpdateTaskAfterReportImpl>
+      get copyWith => __$$UpdateTaskAfterReportImplCopyWithImpl<
+          _$UpdateTaskAfterReportImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String task) createTask,
+    required TResult Function(
+            String taskId, String statusId, bool afterSymptomReport)
+        updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
+    required TResult Function(String taskId) deleteTask,
+    required TResult Function(
+            String? keySearch,
+            String? status,
+            String? taskType,
+            String? cageId,
+            DateTime? date,
+            int? session,
+            int? pageNumber,
+            int? pageSize)
+        getTasks,
+    required TResult Function() testConnect,
+    required TResult Function(DateTime? date, String cageId) getTasksByCageId,
+    required TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)
+        getTaskById,
+    required TResult Function() getNextTask,
+    required TResult Function(DateTime? date, String? cageId)
+        getTasksByUserIdAndDate,
+    required TResult Function(String? cageId, DateTime date, String cageName)
+        filterTasksByLocation,
+    required TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)
+        createDailyFoodUsageLog,
+    required TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)
+        createHealthLog,
+    required TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)
+        createVaccinScheduleLog,
+    required TResult Function(String taskId) getDailyFoodUsageLog,
+    required TResult Function(String taskId) getHealthLog,
+    required TResult Function(String taskId) getVaccinScheduleLog,
+    required TResult Function(String taskId) getHealthLogInformation,
+    required TResult Function(String? keySearch, String? status,
+            String? taskType, String cageId, int? pageNumber, int? pageSize)
+        getTasksByScanQRCode,
+    required TResult Function(List<String> taskIds, String statusId)
+        updateMultipleTask,
+    required TResult Function(String taskId, String medicalSymptomId)
+        setTaskIsTreatment,
+  }) {
+    return updateTaskAfterReport(taskId, statusId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String task)? createTask,
+    TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
+    TResult? Function(String taskId)? deleteTask,
+    TResult? Function(
+            String? keySearch,
+            String? status,
+            String? taskType,
+            String? cageId,
+            DateTime? date,
+            int? session,
+            int? pageNumber,
+            int? pageSize)?
+        getTasks,
+    TResult? Function()? testConnect,
+    TResult? Function(DateTime? date, String cageId)? getTasksByCageId,
+    TResult? Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
+    TResult? Function()? getNextTask,
+    TResult? Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult? Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult? Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
+        createDailyFoodUsageLog,
+    TResult? Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult? Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
+        createVaccinScheduleLog,
+    TResult? Function(String taskId)? getDailyFoodUsageLog,
+    TResult? Function(String taskId)? getHealthLog,
+    TResult? Function(String taskId)? getVaccinScheduleLog,
+    TResult? Function(String taskId)? getHealthLogInformation,
+    TResult? Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
+    TResult? Function(List<String> taskIds, String statusId)?
+        updateMultipleTask,
+    TResult? Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
+  }) {
+    return updateTaskAfterReport?.call(taskId, statusId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String task)? createTask,
+    TResult Function(String taskId, String statusId, bool afterSymptomReport)?
+        updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
+    TResult Function(String taskId)? deleteTask,
+    TResult Function(
+            String? keySearch,
+            String? status,
+            String? taskType,
+            String? cageId,
+            DateTime? date,
+            int? session,
+            int? pageNumber,
+            int? pageSize)?
+        getTasks,
+    TResult Function()? testConnect,
+    TResult Function(DateTime? date, String cageId)? getTasksByCageId,
+    TResult Function(
+            String taskId, dynamic Function(TaskHaveCageName)? onSuccess)?
+        getTaskById,
+    TResult Function()? getNextTask,
+    TResult Function(DateTime? date, String? cageId)? getTasksByUserIdAndDate,
+    TResult Function(String? cageId, DateTime date, String cageName)?
+        filterTasksByLocation,
+    TResult Function(
+            String cageId, DailyFoodUsageLogDto log, bool afterSymptomReport)?
+        createDailyFoodUsageLog,
+    TResult Function(
+            String prescriptionId, HealthLogDto log, bool afterSymptomReport)?
+        createHealthLog,
+    TResult Function(
+            String cageId, VaccineScheduleLogDto log, bool afterSymptomReport)?
+        createVaccinScheduleLog,
+    TResult Function(String taskId)? getDailyFoodUsageLog,
+    TResult Function(String taskId)? getHealthLog,
+    TResult Function(String taskId)? getVaccinScheduleLog,
+    TResult Function(String taskId)? getHealthLogInformation,
+    TResult Function(String? keySearch, String? status, String? taskType,
+            String cageId, int? pageNumber, int? pageSize)?
+        getTasksByScanQRCode,
+    TResult Function(List<String> taskIds, String statusId)? updateMultipleTask,
+    TResult Function(String taskId, String medicalSymptomId)?
+        setTaskIsTreatment,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReport != null) {
+      return updateTaskAfterReport(taskId, statusId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_GetTasks value) getTasks,
+    required TResult Function(_TestConnect value) testConnect,
+    required TResult Function(_GetTasksByCageId value) getTasksByCageId,
+    required TResult Function(_GetTaskById value) getTaskById,
+    required TResult Function(_GetNextTask value) getNextTask,
+    required TResult Function(_GetTasksByUserIdAndDate value)
+        getTasksByUserIdAndDate,
+    required TResult Function(_FilterTasksByLocation value)
+        filterTasksByLocation,
+    required TResult Function(_CreateDailyFoodUsageLog value)
+        createDailyFoodUsageLog,
+    required TResult Function(_CreateHealthLog value) createHealthLog,
+    required TResult Function(_CreateVaccinScheduleLog value)
+        createVaccinScheduleLog,
+    required TResult Function(_GetDailyFoodUsageLog value) getDailyFoodUsageLog,
+    required TResult Function(_GetHealthLog value) getHealthLog,
+    required TResult Function(_GetVaccinScheduleLog value) getVaccinScheduleLog,
+    required TResult Function(_GetHealthLogInformation value)
+        getHealthLogInformation,
+    required TResult Function(_GetTasksByScanQRCode value) getTasksByScanQRCode,
+    required TResult Function(_UpdateMultipleTask value) updateMultipleTask,
+    required TResult Function(_SetTaskIsTreatment value) setTaskIsTreatment,
+  }) {
+    return updateTaskAfterReport(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_GetTasks value)? getTasks,
+    TResult? Function(_TestConnect value)? testConnect,
+    TResult? Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult? Function(_GetTaskById value)? getTaskById,
+    TResult? Function(_GetNextTask value)? getNextTask,
+    TResult? Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult? Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult? Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult? Function(_CreateHealthLog value)? createHealthLog,
+    TResult? Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+    TResult? Function(_GetDailyFoodUsageLog value)? getDailyFoodUsageLog,
+    TResult? Function(_GetHealthLog value)? getHealthLog,
+    TResult? Function(_GetVaccinScheduleLog value)? getVaccinScheduleLog,
+    TResult? Function(_GetHealthLogInformation value)? getHealthLogInformation,
+    TResult? Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
+    TResult? Function(_UpdateMultipleTask value)? updateMultipleTask,
+    TResult? Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
+  }) {
+    return updateTaskAfterReport?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_GetTasks value)? getTasks,
+    TResult Function(_TestConnect value)? testConnect,
+    TResult Function(_GetTasksByCageId value)? getTasksByCageId,
+    TResult Function(_GetTaskById value)? getTaskById,
+    TResult Function(_GetNextTask value)? getNextTask,
+    TResult Function(_GetTasksByUserIdAndDate value)? getTasksByUserIdAndDate,
+    TResult Function(_FilterTasksByLocation value)? filterTasksByLocation,
+    TResult Function(_CreateDailyFoodUsageLog value)? createDailyFoodUsageLog,
+    TResult Function(_CreateHealthLog value)? createHealthLog,
+    TResult Function(_CreateVaccinScheduleLog value)? createVaccinScheduleLog,
+    TResult Function(_GetDailyFoodUsageLog value)? getDailyFoodUsageLog,
+    TResult Function(_GetHealthLog value)? getHealthLog,
+    TResult Function(_GetVaccinScheduleLog value)? getVaccinScheduleLog,
+    TResult Function(_GetHealthLogInformation value)? getHealthLogInformation,
+    TResult Function(_GetTasksByScanQRCode value)? getTasksByScanQRCode,
+    TResult Function(_UpdateMultipleTask value)? updateMultipleTask,
+    TResult Function(_SetTaskIsTreatment value)? setTaskIsTreatment,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReport != null) {
+      return updateTaskAfterReport(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateTaskAfterReport implements TaskEvent {
+  const factory _UpdateTaskAfterReport(
+      final String taskId, final String statusId) = _$UpdateTaskAfterReportImpl;
+
+  String get taskId;
+  String get statusId;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateTaskAfterReportImplCopyWith<_$UpdateTaskAfterReportImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1314,6 +1696,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -1366,6 +1750,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -1417,6 +1802,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -1470,6 +1856,8 @@ class _$DeleteTaskImpl implements _DeleteTask {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -1503,6 +1891,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -1531,6 +1920,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -1713,6 +2103,8 @@ class _$GetTasksImpl implements _GetTasks {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -1766,6 +2158,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -1818,6 +2211,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -1872,6 +2266,8 @@ class _$GetTasksImpl implements _GetTasks {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -1905,6 +2301,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -1933,6 +2330,7 @@ class _$GetTasksImpl implements _GetTasks {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -2033,6 +2431,8 @@ class _$TestConnectImpl implements _TestConnect {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -2085,6 +2485,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -2136,6 +2537,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -2189,6 +2591,8 @@ class _$TestConnectImpl implements _TestConnect {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -2222,6 +2626,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -2250,6 +2655,7 @@ class _$TestConnectImpl implements _TestConnect {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -2363,6 +2769,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -2415,6 +2823,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -2466,6 +2875,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -2519,6 +2929,8 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -2552,6 +2964,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -2580,6 +2993,7 @@ class _$GetTasksByCageIdImpl implements _GetTasksByCageId {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -2703,6 +3117,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -2755,6 +3171,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -2806,6 +3223,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -2859,6 +3277,8 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -2892,6 +3312,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -2920,6 +3341,7 @@ class _$GetTaskByIdImpl implements _GetTaskById {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -3008,6 +3430,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -3060,6 +3484,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -3111,6 +3536,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -3164,6 +3590,8 @@ class _$GetNextTaskImpl implements _GetNextTask {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -3197,6 +3625,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -3225,6 +3654,7 @@ class _$GetNextTaskImpl implements _GetNextTask {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -3340,6 +3770,8 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -3392,6 +3824,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -3443,6 +3876,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -3496,6 +3930,8 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -3529,6 +3965,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -3557,6 +3994,7 @@ class _$GetTasksByUserIdAndDateImpl implements _GetTasksByUserIdAndDate {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -3692,6 +4130,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -3744,6 +4184,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -3795,6 +4236,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -3848,6 +4290,8 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -3881,6 +4325,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -3909,6 +4354,7 @@ class _$FilterTasksByLocationImpl implements _FilterTasksByLocation {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -4062,6 +4508,8 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -4114,6 +4562,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -4165,6 +4614,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -4218,6 +4668,8 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -4251,6 +4703,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -4279,6 +4732,7 @@ class _$CreateDailyFoodUsageLogImpl implements _CreateDailyFoodUsageLog {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -4432,6 +4886,8 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -4484,6 +4940,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -4535,6 +4992,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -4588,6 +5046,8 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -4621,6 +5081,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -4649,6 +5110,7 @@ class _$CreateHealthLogImpl implements _CreateHealthLog {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -4803,6 +5265,8 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -4855,6 +5319,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -4906,6 +5371,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -4959,6 +5425,8 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -4992,6 +5460,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -5020,6 +5489,7 @@ class _$CreateVaccinScheduleLogImpl implements _CreateVaccinScheduleLog {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -5139,6 +5609,8 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -5191,6 +5663,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -5242,6 +5715,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -5295,6 +5769,8 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -5328,6 +5804,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -5356,6 +5833,7 @@ class _$GetDailyFoodUsageLogImpl implements _GetDailyFoodUsageLog {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -5469,6 +5947,8 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -5521,6 +6001,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -5572,6 +6053,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -5625,6 +6107,8 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -5658,6 +6142,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -5686,6 +6171,7 @@ class _$GetHealthLogImpl implements _GetHealthLog {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -5800,6 +6286,8 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -5852,6 +6340,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -5903,6 +6392,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -5956,6 +6446,8 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -5989,6 +6481,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -6017,6 +6510,7 @@ class _$GetVaccinScheduleLogImpl implements _GetVaccinScheduleLog {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -6133,6 +6627,8 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -6185,6 +6681,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -6236,6 +6733,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -6289,6 +6787,8 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -6322,6 +6822,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -6350,6 +6851,7 @@ class _$GetHealthLogInformationImpl implements _GetHealthLogInformation {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -6517,6 +7019,8 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -6570,6 +7074,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -6622,6 +7127,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -6676,6 +7182,8 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -6709,6 +7217,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -6737,6 +7246,7 @@ class _$GetTasksByScanQRCodeImpl implements _GetTasksByScanQRCode {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -6878,6 +7388,8 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -6930,6 +7442,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -6981,6 +7494,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -7034,6 +7548,8 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -7067,6 +7583,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -7095,6 +7612,7 @@ class _$UpdateMultipleTaskImpl implements _UpdateMultipleTask {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -7221,6 +7739,8 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
     required TResult Function(
             String taskId, String statusId, bool afterSymptomReport)
         updateTask,
+    required TResult Function(String taskId, String statusId)
+        updateTaskAfterReport,
     required TResult Function(String taskId) deleteTask,
     required TResult Function(
             String? keySearch,
@@ -7273,6 +7793,7 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
     TResult? Function(String task)? createTask,
     TResult? Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult? Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult? Function(String taskId)? deleteTask,
     TResult? Function(
             String? keySearch,
@@ -7324,6 +7845,7 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
     TResult Function(String task)? createTask,
     TResult Function(String taskId, String statusId, bool afterSymptomReport)?
         updateTask,
+    TResult Function(String taskId, String statusId)? updateTaskAfterReport,
     TResult Function(String taskId)? deleteTask,
     TResult Function(
             String? keySearch,
@@ -7377,6 +7899,8 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
     required TResult Function(_Started value) started,
     required TResult Function(_CreateTask value) createTask,
     required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_UpdateTaskAfterReport value)
+        updateTaskAfterReport,
     required TResult Function(_DeleteTask value) deleteTask,
     required TResult Function(_GetTasks value) getTasks,
     required TResult Function(_TestConnect value) testConnect,
@@ -7410,6 +7934,7 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
     TResult? Function(_Started value)? started,
     TResult? Function(_CreateTask value)? createTask,
     TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_GetTasks value)? getTasks,
     TResult? Function(_TestConnect value)? testConnect,
@@ -7438,6 +7963,7 @@ class _$SetTaskIsTreatmentImpl implements _SetTaskIsTreatment {
     TResult Function(_Started value)? started,
     TResult Function(_CreateTask value)? createTask,
     TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_UpdateTaskAfterReport value)? updateTaskAfterReport,
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_GetTasks value)? getTasks,
     TResult Function(_TestConnect value)? testConnect,
@@ -7519,6 +8045,9 @@ mixin _$TaskState {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -7591,6 +8120,9 @@ mixin _$TaskState {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -7661,6 +8193,9 @@ mixin _$TaskState {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -7733,6 +8268,12 @@ mixin _$TaskState {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -7825,6 +8366,12 @@ mixin _$TaskState {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -7914,6 +8461,12 @@ mixin _$TaskState {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -8069,6 +8622,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -8144,6 +8700,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -8217,6 +8776,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -8295,6 +8857,12 @@ class _$InitialImpl implements _Initial {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -8390,6 +8958,12 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -8482,6 +9056,12 @@ class _$InitialImpl implements _Initial {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -8625,6 +9205,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -8700,6 +9283,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -8773,6 +9359,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -8851,6 +9440,12 @@ class _$LoadingImpl implements _Loading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -8946,6 +9541,12 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -9038,6 +9639,12 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -9181,6 +9788,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -9256,6 +9866,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -9329,6 +9942,9 @@ class _$SuccessImpl implements _Success {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -9407,6 +10023,12 @@ class _$SuccessImpl implements _Success {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -9502,6 +10124,12 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -9594,6 +10222,12 @@ class _$SuccessImpl implements _Success {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -9764,6 +10398,9 @@ class _$FailureImpl implements _Failure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -9839,6 +10476,9 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -9912,6 +10552,9 @@ class _$FailureImpl implements _Failure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -9990,6 +10633,12 @@ class _$FailureImpl implements _Failure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -10085,6 +10734,12 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -10177,6 +10832,12 @@ class _$FailureImpl implements _Failure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -10328,6 +10989,9 @@ class _$TaskCreatedImpl implements _TaskCreated {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -10403,6 +11067,9 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -10476,6 +11143,9 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -10554,6 +11224,12 @@ class _$TaskCreatedImpl implements _TaskCreated {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -10649,6 +11325,12 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -10741,6 +11423,12 @@ class _$TaskCreatedImpl implements _TaskCreated {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -10884,6 +11572,9 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -10959,6 +11650,9 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -11032,6 +11726,9 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -11110,6 +11807,12 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -11205,6 +11908,12 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -11297,6 +12006,12 @@ class _$TaskUpdatedImpl implements _TaskUpdated {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -11440,6 +12155,9 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -11515,6 +12233,9 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -11588,6 +12309,9 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -11666,6 +12390,12 @@ class _$TaskDeletedImpl implements _TaskDeleted {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -11761,6 +12491,12 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -11853,6 +12589,12 @@ class _$TaskDeletedImpl implements _TaskDeleted {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -11996,6 +12738,9 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -12071,6 +12816,9 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -12144,6 +12892,9 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -12222,6 +12973,12 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -12317,6 +13074,12 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -12409,6 +13172,12 @@ class _$GetTasksInProgressImpl implements _GetTasksInProgress {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -12625,6 +13394,9 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -12700,6 +13472,9 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -12773,6 +13548,9 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -12851,6 +13629,12 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -12946,6 +13730,12 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -13038,6 +13828,12 @@ class _$GetTasksSuccessImpl implements _GetTasksSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -13222,6 +14018,9 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -13297,6 +14096,9 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -13370,6 +14172,9 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -13448,6 +14253,12 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -13543,6 +14354,12 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -13635,6 +14452,12 @@ class _$GetTasksFailureImpl implements _GetTasksFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -13786,6 +14609,9 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -13861,6 +14687,9 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -13934,6 +14763,9 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -14012,6 +14844,12 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -14107,6 +14945,12 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -14199,6 +15043,12 @@ class _$TestConnectSuccessImpl implements _TestConnectSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -14345,6 +15195,9 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -14420,6 +15273,9 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -14493,6 +15349,9 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -14571,6 +15430,12 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -14666,6 +15531,12 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -14758,6 +15629,12 @@ class _$GetTasksByCageIdLoadingImpl implements _GetTasksByCageIdLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -14939,6 +15816,9 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -15014,6 +15894,9 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -15087,6 +15970,9 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -15165,6 +16051,12 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -15260,6 +16152,12 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -15352,6 +16250,12 @@ class _$GetTasksByCageIdSuccessImpl implements _GetTasksByCageIdSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -15505,6 +16409,9 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -15580,6 +16487,9 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -15653,6 +16563,9 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -15731,6 +16644,12 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -15826,6 +16745,12 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -15918,6 +16843,12 @@ class _$GetTaskByIdLoadingImpl implements _GetTaskByIdLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -16109,6 +17040,9 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -16184,6 +17118,9 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -16257,6 +17194,9 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -16335,6 +17275,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -16430,6 +17376,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -16522,6 +17474,12 @@ class _$GetTaskByIdSuccessImpl implements _GetTaskByIdSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -16704,6 +17662,9 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -16779,6 +17740,9 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -16852,6 +17816,9 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -16930,6 +17897,12 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -17025,6 +17998,12 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -17117,6 +18096,12 @@ class _$GetTaskByIdFailureImpl implements _GetTaskByIdFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -17269,6 +18254,9 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -17344,6 +18332,9 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -17417,6 +18408,9 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -17495,6 +18489,12 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -17590,6 +18590,12 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -17682,6 +18688,12 @@ class _$GetNextTaskLoadingImpl implements _GetNextTaskLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -17859,6 +18871,9 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -17934,6 +18949,9 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -18007,6 +19025,9 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -18085,6 +19106,12 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -18180,6 +19207,12 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -18272,6 +19305,12 @@ class _$GetNextTaskSuccessImpl implements _GetNextTaskSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -18452,6 +19491,9 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -18527,6 +19569,9 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -18600,6 +19645,9 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -18678,6 +19726,12 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -18773,6 +19827,12 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -18865,6 +19925,12 @@ class _$GetNextTaskFailureImpl implements _GetNextTaskFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -19021,6 +20087,9 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -19096,6 +20165,9 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -19169,6 +20241,9 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -19247,6 +20322,12 @@ class _$GetTasksByUserIdAndDateLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -19342,6 +20423,12 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -19434,6 +20521,12 @@ class _$GetTasksByUserIdAndDateLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -19637,6 +20730,9 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -19712,6 +20808,9 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -19785,6 +20884,9 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -19863,6 +20965,12 @@ class _$GetTasksByUserIdAndDateSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -19958,6 +21066,12 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -20050,6 +21164,12 @@ class _$GetTasksByUserIdAndDateSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -20237,6 +21357,9 @@ class _$GetTasksByUserIdAndDateFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -20312,6 +21435,9 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -20385,6 +21511,9 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -20463,6 +21592,12 @@ class _$GetTasksByUserIdAndDateFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -20558,6 +21693,12 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -20650,6 +21791,12 @@ class _$GetTasksByUserIdAndDateFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -20804,6 +21951,9 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -20879,6 +22029,9 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -20952,6 +22105,9 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -21030,6 +22186,12 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -21125,6 +22287,12 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -21217,6 +22385,12 @@ class _$FilteredTaskLoadingImpl implements _FilteredTaskLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -21397,6 +22571,9 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -21472,6 +22649,9 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -21545,6 +22725,9 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -21623,6 +22806,12 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -21718,6 +22907,12 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -21810,6 +23005,12 @@ class _$FilteredTasksSuccessImpl implements _FilteredTasksSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -21992,6 +23193,9 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -22067,6 +23271,9 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -22140,6 +23347,9 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -22218,6 +23428,12 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -22313,6 +23529,12 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -22405,6 +23627,12 @@ class _$FilteredTasksFailureImpl implements _FilteredTasksFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -22560,6 +23788,9 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -22635,6 +23866,9 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -22708,6 +23942,9 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -22786,6 +24023,12 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -22881,6 +24124,12 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -22973,6 +24222,12 @@ class _$UpdateStatusTaskLoadingImpl implements _UpdateStatusTaskLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -23119,6 +24374,9 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -23194,6 +24452,9 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -23267,6 +24528,9 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -23345,6 +24609,12 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -23440,6 +24710,12 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -23532,6 +24808,12 @@ class _$UpdateStatusTaskSuccessImpl implements _UpdateStatusTaskSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -23705,6 +24987,9 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -23780,6 +25065,9 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -23853,6 +25141,9 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -23931,6 +25222,12 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -24026,6 +25323,12 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -24118,6 +25421,12 @@ class _$UpdateStatusTaskFailureImpl implements _UpdateStatusTaskFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -24191,6 +25500,1807 @@ abstract class _UpdateStatusTaskFailure implements TaskState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateStatusTaskFailureImplCopyWith<_$UpdateStatusTaskFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateTaskAfterReportLoadingImplCopyWith<$Res> {
+  factory _$$UpdateTaskAfterReportLoadingImplCopyWith(
+          _$UpdateTaskAfterReportLoadingImpl value,
+          $Res Function(_$UpdateTaskAfterReportLoadingImpl) then) =
+      __$$UpdateTaskAfterReportLoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateTaskAfterReportLoadingImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$UpdateTaskAfterReportLoadingImpl>
+    implements _$$UpdateTaskAfterReportLoadingImplCopyWith<$Res> {
+  __$$UpdateTaskAfterReportLoadingImplCopyWithImpl(
+      _$UpdateTaskAfterReportLoadingImpl _value,
+      $Res Function(_$UpdateTaskAfterReportLoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UpdateTaskAfterReportLoadingImpl
+    implements _UpdateTaskAfterReportLoading {
+  const _$UpdateTaskAfterReportLoadingImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.updateTaskAfterReportLoading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateTaskAfterReportLoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
+        getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+    required TResult Function() getDailyFoodUsageLogLoading,
+    required TResult Function(DailyFoodUsageLogDto log)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(String error) getDailyFoodUsageLogFailure,
+    required TResult Function() getHealthLogLoading,
+    required TResult Function(HealthLogDto log) getHealthLogSuccess,
+    required TResult Function(String error) getHealthLogFailure,
+    required TResult Function() getVaccinScheduleLogLoading,
+    required TResult Function(VaccineScheduleLogDto log)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(String error) getVaccinScheduleLogFailure,
+    required TResult Function() getHealthLogInformationLoading,
+    required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
+    required TResult Function(String error) getHealthLogInformationFailure,
+    required TResult Function() getTasksByScanQRCodeLoading,
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(String error) getTasksByScanQRCodeFailure,
+    required TResult Function() updateMultipleTaskLoading,
+    required TResult Function() updateMultipleTaskSuccess,
+    required TResult Function(String error) updateMultipleTaskFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+    TResult? Function()? getDailyFoodUsageLogLoading,
+    TResult? Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? getDailyFoodUsageLogFailure,
+    TResult? Function()? getHealthLogLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult? Function(String error)? getHealthLogFailure,
+    TResult? Function()? getVaccinScheduleLogLoading,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(String error)? getVaccinScheduleLogFailure,
+    TResult? Function()? getHealthLogInformationLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult? Function(String error)? getHealthLogInformationFailure,
+    TResult? Function()? getTasksByScanQRCodeLoading,
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(String error)? getTasksByScanQRCodeFailure,
+    TResult? Function()? updateMultipleTaskLoading,
+    TResult? Function()? updateMultipleTaskSuccess,
+    TResult? Function(String error)? updateMultipleTaskFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportLoading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    TResult Function()? getDailyFoodUsageLogLoading,
+    TResult Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult Function(String error)? getDailyFoodUsageLogFailure,
+    TResult Function()? getHealthLogLoading,
+    TResult Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult Function(String error)? getHealthLogFailure,
+    TResult Function()? getVaccinScheduleLogLoading,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(String error)? getVaccinScheduleLogFailure,
+    TResult Function()? getHealthLogInformationLoading,
+    TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult Function(String error)? getHealthLogInformationFailure,
+    TResult Function()? getTasksByScanQRCodeLoading,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(String error)? getTasksByScanQRCodeFailure,
+    TResult Function()? updateMultipleTaskLoading,
+    TResult Function()? updateMultipleTaskSuccess,
+    TResult Function(String error)? updateMultipleTaskFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReportLoading != null) {
+      return updateTaskAfterReportLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+    required TResult Function(_GetDailyFoodUsageLogLoading value)
+        getDailyFoodUsageLogLoading,
+    required TResult Function(_GetDailyFoodUsageLogSuccess value)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(_GetDailyFoodUsageLogFailure value)
+        getDailyFoodUsageLogFailure,
+    required TResult Function(_GetHealthLogLoading value) getHealthLogLoading,
+    required TResult Function(_GetHealthLogSuccess value) getHealthLogSuccess,
+    required TResult Function(_GetHealthLogFailure value) getHealthLogFailure,
+    required TResult Function(_GetVaccinScheduleLogLoading value)
+        getVaccinScheduleLogLoading,
+    required TResult Function(_GetVaccinScheduleLogSuccess value)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(_GetVaccinScheduleLogFailure value)
+        getVaccinScheduleLogFailure,
+    required TResult Function(_GetHealthLogInformationLoading value)
+        getHealthLogInformationLoading,
+    required TResult Function(_GetHealthLogInformationSuccess value)
+        getHealthLogInformationSuccess,
+    required TResult Function(_GetHealthLogInformationFailure value)
+        getHealthLogInformationFailure,
+    required TResult Function(_GetTasksByScanQRCodeLoading value)
+        getTasksByScanQRCodeLoading,
+    required TResult Function(_GetTasksByScanQRCodeSuccess value)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(_GetTasksByScanQRCodeFailure value)
+        getTasksByScanQRCodeFailure,
+    required TResult Function(_UpdateMultipleTaskLoading value)
+        updateMultipleTaskLoading,
+    required TResult Function(_UpdateMultipleTaskSuccess value)
+        updateMultipleTaskSuccess,
+    required TResult Function(_UpdateMultipleTaskFailure value)
+        updateMultipleTaskFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult? Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult? Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult? Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult? Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult? Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult? Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult? Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult? Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult? Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult? Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult? Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult? Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult? Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult? Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult? Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult? Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult? Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportLoading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReportLoading != null) {
+      return updateTaskAfterReportLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateTaskAfterReportLoading implements TaskState {
+  const factory _UpdateTaskAfterReportLoading() =
+      _$UpdateTaskAfterReportLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateTaskAfterReportSuccessImplCopyWith<$Res> {
+  factory _$$UpdateTaskAfterReportSuccessImplCopyWith(
+          _$UpdateTaskAfterReportSuccessImpl value,
+          $Res Function(_$UpdateTaskAfterReportSuccessImpl) then) =
+      __$$UpdateTaskAfterReportSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateTaskAfterReportSuccessImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$UpdateTaskAfterReportSuccessImpl>
+    implements _$$UpdateTaskAfterReportSuccessImplCopyWith<$Res> {
+  __$$UpdateTaskAfterReportSuccessImplCopyWithImpl(
+      _$UpdateTaskAfterReportSuccessImpl _value,
+      $Res Function(_$UpdateTaskAfterReportSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UpdateTaskAfterReportSuccessImpl
+    implements _UpdateTaskAfterReportSuccess {
+  const _$UpdateTaskAfterReportSuccessImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.updateTaskAfterReportSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateTaskAfterReportSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
+        getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+    required TResult Function() getDailyFoodUsageLogLoading,
+    required TResult Function(DailyFoodUsageLogDto log)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(String error) getDailyFoodUsageLogFailure,
+    required TResult Function() getHealthLogLoading,
+    required TResult Function(HealthLogDto log) getHealthLogSuccess,
+    required TResult Function(String error) getHealthLogFailure,
+    required TResult Function() getVaccinScheduleLogLoading,
+    required TResult Function(VaccineScheduleLogDto log)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(String error) getVaccinScheduleLogFailure,
+    required TResult Function() getHealthLogInformationLoading,
+    required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
+    required TResult Function(String error) getHealthLogInformationFailure,
+    required TResult Function() getTasksByScanQRCodeLoading,
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(String error) getTasksByScanQRCodeFailure,
+    required TResult Function() updateMultipleTaskLoading,
+    required TResult Function() updateMultipleTaskSuccess,
+    required TResult Function(String error) updateMultipleTaskFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+    TResult? Function()? getDailyFoodUsageLogLoading,
+    TResult? Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? getDailyFoodUsageLogFailure,
+    TResult? Function()? getHealthLogLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult? Function(String error)? getHealthLogFailure,
+    TResult? Function()? getVaccinScheduleLogLoading,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(String error)? getVaccinScheduleLogFailure,
+    TResult? Function()? getHealthLogInformationLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult? Function(String error)? getHealthLogInformationFailure,
+    TResult? Function()? getTasksByScanQRCodeLoading,
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(String error)? getTasksByScanQRCodeFailure,
+    TResult? Function()? updateMultipleTaskLoading,
+    TResult? Function()? updateMultipleTaskSuccess,
+    TResult? Function(String error)? updateMultipleTaskFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    TResult Function()? getDailyFoodUsageLogLoading,
+    TResult Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult Function(String error)? getDailyFoodUsageLogFailure,
+    TResult Function()? getHealthLogLoading,
+    TResult Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult Function(String error)? getHealthLogFailure,
+    TResult Function()? getVaccinScheduleLogLoading,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(String error)? getVaccinScheduleLogFailure,
+    TResult Function()? getHealthLogInformationLoading,
+    TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult Function(String error)? getHealthLogInformationFailure,
+    TResult Function()? getTasksByScanQRCodeLoading,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(String error)? getTasksByScanQRCodeFailure,
+    TResult Function()? updateMultipleTaskLoading,
+    TResult Function()? updateMultipleTaskSuccess,
+    TResult Function(String error)? updateMultipleTaskFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReportSuccess != null) {
+      return updateTaskAfterReportSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+    required TResult Function(_GetDailyFoodUsageLogLoading value)
+        getDailyFoodUsageLogLoading,
+    required TResult Function(_GetDailyFoodUsageLogSuccess value)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(_GetDailyFoodUsageLogFailure value)
+        getDailyFoodUsageLogFailure,
+    required TResult Function(_GetHealthLogLoading value) getHealthLogLoading,
+    required TResult Function(_GetHealthLogSuccess value) getHealthLogSuccess,
+    required TResult Function(_GetHealthLogFailure value) getHealthLogFailure,
+    required TResult Function(_GetVaccinScheduleLogLoading value)
+        getVaccinScheduleLogLoading,
+    required TResult Function(_GetVaccinScheduleLogSuccess value)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(_GetVaccinScheduleLogFailure value)
+        getVaccinScheduleLogFailure,
+    required TResult Function(_GetHealthLogInformationLoading value)
+        getHealthLogInformationLoading,
+    required TResult Function(_GetHealthLogInformationSuccess value)
+        getHealthLogInformationSuccess,
+    required TResult Function(_GetHealthLogInformationFailure value)
+        getHealthLogInformationFailure,
+    required TResult Function(_GetTasksByScanQRCodeLoading value)
+        getTasksByScanQRCodeLoading,
+    required TResult Function(_GetTasksByScanQRCodeSuccess value)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(_GetTasksByScanQRCodeFailure value)
+        getTasksByScanQRCodeFailure,
+    required TResult Function(_UpdateMultipleTaskLoading value)
+        updateMultipleTaskLoading,
+    required TResult Function(_UpdateMultipleTaskSuccess value)
+        updateMultipleTaskSuccess,
+    required TResult Function(_UpdateMultipleTaskFailure value)
+        updateMultipleTaskFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult? Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult? Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult? Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult? Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult? Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult? Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult? Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult? Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult? Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult? Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult? Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult? Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult? Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult? Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult? Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult? Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult? Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReportSuccess != null) {
+      return updateTaskAfterReportSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateTaskAfterReportSuccess implements TaskState {
+  const factory _UpdateTaskAfterReportSuccess() =
+      _$UpdateTaskAfterReportSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateTaskAfterReportFailureImplCopyWith<$Res> {
+  factory _$$UpdateTaskAfterReportFailureImplCopyWith(
+          _$UpdateTaskAfterReportFailureImpl value,
+          $Res Function(_$UpdateTaskAfterReportFailureImpl) then) =
+      __$$UpdateTaskAfterReportFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$UpdateTaskAfterReportFailureImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$UpdateTaskAfterReportFailureImpl>
+    implements _$$UpdateTaskAfterReportFailureImplCopyWith<$Res> {
+  __$$UpdateTaskAfterReportFailureImplCopyWithImpl(
+      _$UpdateTaskAfterReportFailureImpl _value,
+      $Res Function(_$UpdateTaskAfterReportFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$UpdateTaskAfterReportFailureImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateTaskAfterReportFailureImpl
+    implements _UpdateTaskAfterReportFailure {
+  const _$UpdateTaskAfterReportFailureImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'TaskState.updateTaskAfterReportFailure(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateTaskAfterReportFailureImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateTaskAfterReportFailureImplCopyWith<
+          _$UpdateTaskAfterReportFailureImpl>
+      get copyWith => __$$UpdateTaskAfterReportFailureImplCopyWithImpl<
+          _$UpdateTaskAfterReportFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function() taskCreated,
+    required TResult Function() taskUpdated,
+    required TResult Function() taskDeleted,
+    required TResult Function() getTasksInProgress,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)
+        getTasksSuccess,
+    required TResult Function(String error) getTasksFailure,
+    required TResult Function() testConnectSuccess,
+    required TResult Function() getTasksByCageIdLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        getTasksByCageIdSuccess,
+    required TResult Function() getTaskByIdLoading,
+    required TResult Function(TaskHaveCageName task, String userId)
+        getTaskByIdSuccess,
+    required TResult Function(String error) getTaskByIdFailure,
+    required TResult Function() getNextTaskLoading,
+    required TResult Function(List<NextTask> task) getNextTaskSuccess,
+    required TResult Function(String error) getNextTaskFailure,
+    required TResult Function() getTasksByUserIdAndDateLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(String error) getTasksByUserIdAndDateFailure,
+    required TResult Function() filteredTaskLoading,
+    required TResult Function(Map<String, List<TaskHaveCageName>> tasks)
+        filteredTasksSuccess,
+    required TResult Function(String error) filteredTasksFailure,
+    required TResult Function() updateStatusTaskLoading,
+    required TResult Function() updateStatusTaskSuccess,
+    required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
+    required TResult Function() createDailyFoodUsageLogLoading,
+    required TResult Function() createDailyFoodUsageLogSuccess,
+    required TResult Function(String error) createDailyFoodUsageLogFailure,
+    required TResult Function() createHealthLogLoading,
+    required TResult Function() createHealthLogSuccess,
+    required TResult Function(String error) createHealthLogFailure,
+    required TResult Function() createVaccinScheduleLogLoading,
+    required TResult Function() createVaccinScheduleLogSuccess,
+    required TResult Function(String error) createVaccinScheduleLogFailure,
+    required TResult Function() getDailyFoodUsageLogLoading,
+    required TResult Function(DailyFoodUsageLogDto log)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(String error) getDailyFoodUsageLogFailure,
+    required TResult Function() getHealthLogLoading,
+    required TResult Function(HealthLogDto log) getHealthLogSuccess,
+    required TResult Function(String error) getHealthLogFailure,
+    required TResult Function() getVaccinScheduleLogLoading,
+    required TResult Function(VaccineScheduleLogDto log)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(String error) getVaccinScheduleLogFailure,
+    required TResult Function() getHealthLogInformationLoading,
+    required TResult Function(HealthLogDto log) getHealthLogInformationSuccess,
+    required TResult Function(String error) getHealthLogInformationFailure,
+    required TResult Function() getTasksByScanQRCodeLoading,
+    required TResult Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(String error) getTasksByScanQRCodeFailure,
+    required TResult Function() updateMultipleTaskLoading,
+    required TResult Function() updateMultipleTaskSuccess,
+    required TResult Function(String error) updateMultipleTaskFailure,
+    required TResult Function() setTaskIsTreatmentInProgress,
+    required TResult Function() setTaskIsTreatmentSuccess,
+    required TResult Function(String error) setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function()? taskCreated,
+    TResult? Function()? taskUpdated,
+    TResult? Function()? taskDeleted,
+    TResult? Function()? getTasksInProgress,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult? Function(String error)? getTasksFailure,
+    TResult? Function()? testConnectSuccess,
+    TResult? Function()? getTasksByCageIdLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult? Function()? getTaskByIdLoading,
+    TResult? Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult? Function(String error)? getTaskByIdFailure,
+    TResult? Function()? getNextTaskLoading,
+    TResult? Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult? Function(String error)? getNextTaskFailure,
+    TResult? Function()? getTasksByUserIdAndDateLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult? Function()? filteredTaskLoading,
+    TResult? Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult? Function(String error)? filteredTasksFailure,
+    TResult? Function()? updateStatusTaskLoading,
+    TResult? Function()? updateStatusTaskSuccess,
+    TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
+    TResult? Function()? createDailyFoodUsageLogLoading,
+    TResult? Function()? createDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? createDailyFoodUsageLogFailure,
+    TResult? Function()? createHealthLogLoading,
+    TResult? Function()? createHealthLogSuccess,
+    TResult? Function(String error)? createHealthLogFailure,
+    TResult? Function()? createVaccinScheduleLogLoading,
+    TResult? Function()? createVaccinScheduleLogSuccess,
+    TResult? Function(String error)? createVaccinScheduleLogFailure,
+    TResult? Function()? getDailyFoodUsageLogLoading,
+    TResult? Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult? Function(String error)? getDailyFoodUsageLogFailure,
+    TResult? Function()? getHealthLogLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult? Function(String error)? getHealthLogFailure,
+    TResult? Function()? getVaccinScheduleLogLoading,
+    TResult? Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult? Function(String error)? getVaccinScheduleLogFailure,
+    TResult? Function()? getHealthLogInformationLoading,
+    TResult? Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult? Function(String error)? getHealthLogInformationFailure,
+    TResult? Function()? getTasksByScanQRCodeLoading,
+    TResult? Function(
+            List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(String error)? getTasksByScanQRCodeFailure,
+    TResult? Function()? updateMultipleTaskLoading,
+    TResult? Function()? updateMultipleTaskSuccess,
+    TResult? Function(String error)? updateMultipleTaskFailure,
+    TResult? Function()? setTaskIsTreatmentInProgress,
+    TResult? Function()? setTaskIsTreatmentSuccess,
+    TResult? Function(String error)? setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportFailure?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function()? taskCreated,
+    TResult Function()? taskUpdated,
+    TResult Function()? taskDeleted,
+    TResult Function()? getTasksInProgress,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList, List<TaskType> taskTypeList)?
+        getTasksSuccess,
+    TResult Function(String error)? getTasksFailure,
+    TResult Function()? testConnectSuccess,
+    TResult Function()? getTasksByCageIdLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        getTasksByCageIdSuccess,
+    TResult Function()? getTaskByIdLoading,
+    TResult Function(TaskHaveCageName task, String userId)? getTaskByIdSuccess,
+    TResult Function(String error)? getTaskByIdFailure,
+    TResult Function()? getNextTaskLoading,
+    TResult Function(List<NextTask> task)? getNextTaskSuccess,
+    TResult Function(String error)? getNextTaskFailure,
+    TResult Function()? getTasksByUserIdAndDateLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks,
+            List<CageFilter> cageList)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(String error)? getTasksByUserIdAndDateFailure,
+    TResult Function()? filteredTaskLoading,
+    TResult Function(Map<String, List<TaskHaveCageName>> tasks)?
+        filteredTasksSuccess,
+    TResult Function(String error)? filteredTasksFailure,
+    TResult Function()? updateStatusTaskLoading,
+    TResult Function()? updateStatusTaskSuccess,
+    TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
+    TResult Function()? createDailyFoodUsageLogLoading,
+    TResult Function()? createDailyFoodUsageLogSuccess,
+    TResult Function(String error)? createDailyFoodUsageLogFailure,
+    TResult Function()? createHealthLogLoading,
+    TResult Function()? createHealthLogSuccess,
+    TResult Function(String error)? createHealthLogFailure,
+    TResult Function()? createVaccinScheduleLogLoading,
+    TResult Function()? createVaccinScheduleLogSuccess,
+    TResult Function(String error)? createVaccinScheduleLogFailure,
+    TResult Function()? getDailyFoodUsageLogLoading,
+    TResult Function(DailyFoodUsageLogDto log)? getDailyFoodUsageLogSuccess,
+    TResult Function(String error)? getDailyFoodUsageLogFailure,
+    TResult Function()? getHealthLogLoading,
+    TResult Function(HealthLogDto log)? getHealthLogSuccess,
+    TResult Function(String error)? getHealthLogFailure,
+    TResult Function()? getVaccinScheduleLogLoading,
+    TResult Function(VaccineScheduleLogDto log)? getVaccinScheduleLogSuccess,
+    TResult Function(String error)? getVaccinScheduleLogFailure,
+    TResult Function()? getHealthLogInformationLoading,
+    TResult Function(HealthLogDto log)? getHealthLogInformationSuccess,
+    TResult Function(String error)? getHealthLogInformationFailure,
+    TResult Function()? getTasksByScanQRCodeLoading,
+    TResult Function(List<TaskHaveCageName> tasks, List<TaskType> taskTypeList)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(String error)? getTasksByScanQRCodeFailure,
+    TResult Function()? updateMultipleTaskLoading,
+    TResult Function()? updateMultipleTaskSuccess,
+    TResult Function(String error)? updateMultipleTaskFailure,
+    TResult Function()? setTaskIsTreatmentInProgress,
+    TResult Function()? setTaskIsTreatmentSuccess,
+    TResult Function(String error)? setTaskIsTreatmentFailure,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReportFailure != null) {
+      return updateTaskAfterReportFailure(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TaskCreated value) taskCreated,
+    required TResult Function(_TaskUpdated value) taskUpdated,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_GetTasksInProgress value) getTasksInProgress,
+    required TResult Function(_GetTasksSuccess value) getTasksSuccess,
+    required TResult Function(_GetTasksFailure value) getTasksFailure,
+    required TResult Function(_TestConnectSuccess value) testConnectSuccess,
+    required TResult Function(_GetTasksByCageIdLoading value)
+        getTasksByCageIdLoading,
+    required TResult Function(_GetTasksByCageIdSuccess value)
+        getTasksByCageIdSuccess,
+    required TResult Function(_GetTaskByIdLoading value) getTaskByIdLoading,
+    required TResult Function(_GetTaskByIdSuccess value) getTaskByIdSuccess,
+    required TResult Function(_GetTaskByIdFailure value) getTaskByIdFailure,
+    required TResult Function(_GetNextTaskLoading value) getNextTaskLoading,
+    required TResult Function(_GetNextTaskSuccess value) getNextTaskSuccess,
+    required TResult Function(_GetNextTaskFailure value) getNextTaskFailure,
+    required TResult Function(_GetTasksByUserIdAndDateLoading value)
+        getTasksByUserIdAndDateLoading,
+    required TResult Function(_GetTasksByUserIdAndDateSuccess value)
+        getTasksByUserIdAndDateSuccess,
+    required TResult Function(_GetTasksByUserIdAndDateFailure value)
+        getTasksByUserIdAndDateFailure,
+    required TResult Function(_FilteredTaskLoading value) filteredTaskLoading,
+    required TResult Function(_FilteredTasksSuccess value) filteredTasksSuccess,
+    required TResult Function(_FilteredTasksFailure value) filteredTasksFailure,
+    required TResult Function(_UpdateStatusTaskLoading value)
+        updateStatusTaskLoading,
+    required TResult Function(_UpdateStatusTaskSuccess value)
+        updateStatusTaskSuccess,
+    required TResult Function(_UpdateStatusTaskFailure value)
+        updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
+    required TResult Function(_CreateDailyFoodUsageLogLoading value)
+        createDailyFoodUsageLogLoading,
+    required TResult Function(_CreateDailyFoodUsageLogSuccess value)
+        createDailyFoodUsageLogSuccess,
+    required TResult Function(_CreateDailyFoodUsageLogFailure value)
+        createDailyFoodUsageLogFailure,
+    required TResult Function(_CreateHealthLogLoading value)
+        createHealthLogLoading,
+    required TResult Function(_CreateHealthLogSuccess value)
+        createHealthLogSuccess,
+    required TResult Function(_CreateHealthLogFailure value)
+        createHealthLogFailure,
+    required TResult Function(_CreateVaccinScheduleLogLoading value)
+        createVaccinScheduleLogLoading,
+    required TResult Function(_CreateVaccinScheduleLogSuccess value)
+        createVaccinScheduleLogSuccess,
+    required TResult Function(_CreateVaccinScheduleLogFailure value)
+        createVaccinScheduleLogFailure,
+    required TResult Function(_GetDailyFoodUsageLogLoading value)
+        getDailyFoodUsageLogLoading,
+    required TResult Function(_GetDailyFoodUsageLogSuccess value)
+        getDailyFoodUsageLogSuccess,
+    required TResult Function(_GetDailyFoodUsageLogFailure value)
+        getDailyFoodUsageLogFailure,
+    required TResult Function(_GetHealthLogLoading value) getHealthLogLoading,
+    required TResult Function(_GetHealthLogSuccess value) getHealthLogSuccess,
+    required TResult Function(_GetHealthLogFailure value) getHealthLogFailure,
+    required TResult Function(_GetVaccinScheduleLogLoading value)
+        getVaccinScheduleLogLoading,
+    required TResult Function(_GetVaccinScheduleLogSuccess value)
+        getVaccinScheduleLogSuccess,
+    required TResult Function(_GetVaccinScheduleLogFailure value)
+        getVaccinScheduleLogFailure,
+    required TResult Function(_GetHealthLogInformationLoading value)
+        getHealthLogInformationLoading,
+    required TResult Function(_GetHealthLogInformationSuccess value)
+        getHealthLogInformationSuccess,
+    required TResult Function(_GetHealthLogInformationFailure value)
+        getHealthLogInformationFailure,
+    required TResult Function(_GetTasksByScanQRCodeLoading value)
+        getTasksByScanQRCodeLoading,
+    required TResult Function(_GetTasksByScanQRCodeSuccess value)
+        getTasksByScanQRCodeSuccess,
+    required TResult Function(_GetTasksByScanQRCodeFailure value)
+        getTasksByScanQRCodeFailure,
+    required TResult Function(_UpdateMultipleTaskLoading value)
+        updateMultipleTaskLoading,
+    required TResult Function(_UpdateMultipleTaskSuccess value)
+        updateMultipleTaskSuccess,
+    required TResult Function(_UpdateMultipleTaskFailure value)
+        updateMultipleTaskFailure,
+    required TResult Function(_SetTaskIsTreatmentInProgress value)
+        setTaskIsTreatmentInProgress,
+    required TResult Function(_SetTaskIsTreatmentSuccess value)
+        setTaskIsTreatmentSuccess,
+    required TResult Function(_SetTaskIsTreatmentFailure value)
+        setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TaskCreated value)? taskCreated,
+    TResult? Function(_TaskUpdated value)? taskUpdated,
+    TResult? Function(_TaskDeleted value)? taskDeleted,
+    TResult? Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult? Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult? Function(_GetTasksFailure value)? getTasksFailure,
+    TResult? Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult? Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult? Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult? Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult? Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult? Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult? Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult? Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult? Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult? Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult? Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult? Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult? Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult? Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult? Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
+    TResult? Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult? Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult? Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult? Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult? Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult? Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult? Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult? Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult? Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult? Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult? Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult? Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult? Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult? Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult? Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult? Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult? Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult? Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult? Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult? Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult? Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult? Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult? Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult? Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult? Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult? Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+    TResult? Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult? Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult? Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
+  }) {
+    return updateTaskAfterReportFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TaskCreated value)? taskCreated,
+    TResult Function(_TaskUpdated value)? taskUpdated,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_GetTasksInProgress value)? getTasksInProgress,
+    TResult Function(_GetTasksSuccess value)? getTasksSuccess,
+    TResult Function(_GetTasksFailure value)? getTasksFailure,
+    TResult Function(_TestConnectSuccess value)? testConnectSuccess,
+    TResult Function(_GetTasksByCageIdLoading value)? getTasksByCageIdLoading,
+    TResult Function(_GetTasksByCageIdSuccess value)? getTasksByCageIdSuccess,
+    TResult Function(_GetTaskByIdLoading value)? getTaskByIdLoading,
+    TResult Function(_GetTaskByIdSuccess value)? getTaskByIdSuccess,
+    TResult Function(_GetTaskByIdFailure value)? getTaskByIdFailure,
+    TResult Function(_GetNextTaskLoading value)? getNextTaskLoading,
+    TResult Function(_GetNextTaskSuccess value)? getNextTaskSuccess,
+    TResult Function(_GetNextTaskFailure value)? getNextTaskFailure,
+    TResult Function(_GetTasksByUserIdAndDateLoading value)?
+        getTasksByUserIdAndDateLoading,
+    TResult Function(_GetTasksByUserIdAndDateSuccess value)?
+        getTasksByUserIdAndDateSuccess,
+    TResult Function(_GetTasksByUserIdAndDateFailure value)?
+        getTasksByUserIdAndDateFailure,
+    TResult Function(_FilteredTaskLoading value)? filteredTaskLoading,
+    TResult Function(_FilteredTasksSuccess value)? filteredTasksSuccess,
+    TResult Function(_FilteredTasksFailure value)? filteredTasksFailure,
+    TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
+    TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
+    TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
+    TResult Function(_CreateDailyFoodUsageLogLoading value)?
+        createDailyFoodUsageLogLoading,
+    TResult Function(_CreateDailyFoodUsageLogSuccess value)?
+        createDailyFoodUsageLogSuccess,
+    TResult Function(_CreateDailyFoodUsageLogFailure value)?
+        createDailyFoodUsageLogFailure,
+    TResult Function(_CreateHealthLogLoading value)? createHealthLogLoading,
+    TResult Function(_CreateHealthLogSuccess value)? createHealthLogSuccess,
+    TResult Function(_CreateHealthLogFailure value)? createHealthLogFailure,
+    TResult Function(_CreateVaccinScheduleLogLoading value)?
+        createVaccinScheduleLogLoading,
+    TResult Function(_CreateVaccinScheduleLogSuccess value)?
+        createVaccinScheduleLogSuccess,
+    TResult Function(_CreateVaccinScheduleLogFailure value)?
+        createVaccinScheduleLogFailure,
+    TResult Function(_GetDailyFoodUsageLogLoading value)?
+        getDailyFoodUsageLogLoading,
+    TResult Function(_GetDailyFoodUsageLogSuccess value)?
+        getDailyFoodUsageLogSuccess,
+    TResult Function(_GetDailyFoodUsageLogFailure value)?
+        getDailyFoodUsageLogFailure,
+    TResult Function(_GetHealthLogLoading value)? getHealthLogLoading,
+    TResult Function(_GetHealthLogSuccess value)? getHealthLogSuccess,
+    TResult Function(_GetHealthLogFailure value)? getHealthLogFailure,
+    TResult Function(_GetVaccinScheduleLogLoading value)?
+        getVaccinScheduleLogLoading,
+    TResult Function(_GetVaccinScheduleLogSuccess value)?
+        getVaccinScheduleLogSuccess,
+    TResult Function(_GetVaccinScheduleLogFailure value)?
+        getVaccinScheduleLogFailure,
+    TResult Function(_GetHealthLogInformationLoading value)?
+        getHealthLogInformationLoading,
+    TResult Function(_GetHealthLogInformationSuccess value)?
+        getHealthLogInformationSuccess,
+    TResult Function(_GetHealthLogInformationFailure value)?
+        getHealthLogInformationFailure,
+    TResult Function(_GetTasksByScanQRCodeLoading value)?
+        getTasksByScanQRCodeLoading,
+    TResult Function(_GetTasksByScanQRCodeSuccess value)?
+        getTasksByScanQRCodeSuccess,
+    TResult Function(_GetTasksByScanQRCodeFailure value)?
+        getTasksByScanQRCodeFailure,
+    TResult Function(_UpdateMultipleTaskLoading value)?
+        updateMultipleTaskLoading,
+    TResult Function(_UpdateMultipleTaskSuccess value)?
+        updateMultipleTaskSuccess,
+    TResult Function(_UpdateMultipleTaskFailure value)?
+        updateMultipleTaskFailure,
+    TResult Function(_SetTaskIsTreatmentInProgress value)?
+        setTaskIsTreatmentInProgress,
+    TResult Function(_SetTaskIsTreatmentSuccess value)?
+        setTaskIsTreatmentSuccess,
+    TResult Function(_SetTaskIsTreatmentFailure value)?
+        setTaskIsTreatmentFailure,
+    required TResult orElse(),
+  }) {
+    if (updateTaskAfterReportFailure != null) {
+      return updateTaskAfterReportFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateTaskAfterReportFailure implements TaskState {
+  const factory _UpdateTaskAfterReportFailure(final String error) =
+      _$UpdateTaskAfterReportFailureImpl;
+
+  String get error;
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateTaskAfterReportFailureImplCopyWith<
+          _$UpdateTaskAfterReportFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -24274,6 +27384,9 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -24349,6 +27462,9 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -24422,6 +27538,9 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -24500,6 +27619,12 @@ class _$CreateDailyFoodUsageLogLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -24595,6 +27720,12 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -24687,6 +27818,12 @@ class _$CreateDailyFoodUsageLogLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -24835,6 +27972,9 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -24910,6 +28050,9 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -24983,6 +28126,9 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -25061,6 +28207,12 @@ class _$CreateDailyFoodUsageLogSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -25156,6 +28308,12 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -25248,6 +28406,12 @@ class _$CreateDailyFoodUsageLogSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -25424,6 +28588,9 @@ class _$CreateDailyFoodUsageLogFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -25499,6 +28666,9 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -25572,6 +28742,9 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -25650,6 +28823,12 @@ class _$CreateDailyFoodUsageLogFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -25745,6 +28924,12 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -25837,6 +29022,12 @@ class _$CreateDailyFoodUsageLogFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -25993,6 +29184,9 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -26068,6 +29262,9 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -26141,6 +29338,9 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -26219,6 +29419,12 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -26314,6 +29520,12 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -26406,6 +29618,12 @@ class _$CreateHealthLogLoadingImpl implements _CreateHealthLogLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -26552,6 +29770,9 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -26627,6 +29848,9 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -26700,6 +29924,9 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -26778,6 +30005,12 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -26873,6 +30106,12 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -26965,6 +30204,12 @@ class _$CreateHealthLogSuccessImpl implements _CreateHealthLogSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -27138,6 +30383,9 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -27213,6 +30461,9 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -27286,6 +30537,9 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -27364,6 +30618,12 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -27459,6 +30719,12 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -27551,6 +30817,12 @@ class _$CreateHealthLogFailureImpl implements _CreateHealthLogFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -27707,6 +30979,9 @@ class _$CreateVaccinScheduleLogLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -27782,6 +31057,9 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -27855,6 +31133,9 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -27933,6 +31214,12 @@ class _$CreateVaccinScheduleLogLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -28028,6 +31315,12 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -28120,6 +31413,12 @@ class _$CreateVaccinScheduleLogLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -28268,6 +31567,9 @@ class _$CreateVaccinScheduleLogSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -28343,6 +31645,9 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -28416,6 +31721,9 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -28494,6 +31802,12 @@ class _$CreateVaccinScheduleLogSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -28589,6 +31903,12 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -28681,6 +32001,12 @@ class _$CreateVaccinScheduleLogSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -28857,6 +32183,9 @@ class _$CreateVaccinScheduleLogFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -28932,6 +32261,9 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -29005,6 +32337,9 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -29083,6 +32418,12 @@ class _$CreateVaccinScheduleLogFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -29178,6 +32519,12 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -29270,6 +32617,12 @@ class _$CreateVaccinScheduleLogFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -29427,6 +32780,9 @@ class _$GetDailyFoodUsageLogLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -29502,6 +32858,9 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -29575,6 +32934,9 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -29653,6 +33015,12 @@ class _$GetDailyFoodUsageLogLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -29748,6 +33116,12 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -29840,6 +33214,12 @@ class _$GetDailyFoodUsageLogLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -30027,6 +33407,9 @@ class _$GetDailyFoodUsageLogSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -30102,6 +33485,9 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -30175,6 +33561,9 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -30253,6 +33642,12 @@ class _$GetDailyFoodUsageLogSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -30348,6 +33743,12 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -30440,6 +33841,12 @@ class _$GetDailyFoodUsageLogSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -30623,6 +34030,9 @@ class _$GetDailyFoodUsageLogFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -30698,6 +34108,9 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -30771,6 +34184,9 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -30849,6 +34265,12 @@ class _$GetDailyFoodUsageLogFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -30944,6 +34366,12 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -31036,6 +34464,12 @@ class _$GetDailyFoodUsageLogFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -31189,6 +34623,9 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -31264,6 +34701,9 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -31337,6 +34777,9 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -31415,6 +34858,12 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -31510,6 +34959,12 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -31602,6 +35057,12 @@ class _$GetHealthLogLoadingImpl implements _GetHealthLogLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -31785,6 +35246,9 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -31860,6 +35324,9 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -31933,6 +35400,9 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -32011,6 +35481,12 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -32106,6 +35582,12 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -32198,6 +35680,12 @@ class _$GetHealthLogSuccessImpl implements _GetHealthLogSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -32378,6 +35866,9 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -32453,6 +35944,9 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -32526,6 +36020,9 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -32604,6 +36101,12 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -32699,6 +36202,12 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -32791,6 +36300,12 @@ class _$GetHealthLogFailureImpl implements _GetHealthLogFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -32947,6 +36462,9 @@ class _$GetVaccinScheduleLogLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -33022,6 +36540,9 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -33095,6 +36616,9 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -33173,6 +36697,12 @@ class _$GetVaccinScheduleLogLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -33268,6 +36798,12 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -33360,6 +36896,12 @@ class _$GetVaccinScheduleLogLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -33547,6 +37089,9 @@ class _$GetVaccinScheduleLogSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -33622,6 +37167,9 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -33695,6 +37243,9 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -33773,6 +37324,12 @@ class _$GetVaccinScheduleLogSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -33868,6 +37425,12 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -33960,6 +37523,12 @@ class _$GetVaccinScheduleLogSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -34143,6 +37712,9 @@ class _$GetVaccinScheduleLogFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -34218,6 +37790,9 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -34291,6 +37866,9 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -34369,6 +37947,12 @@ class _$GetVaccinScheduleLogFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -34464,6 +38048,12 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -34556,6 +38146,12 @@ class _$GetVaccinScheduleLogFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -34712,6 +38308,9 @@ class _$GetHealthLogInformationLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -34787,6 +38386,9 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -34860,6 +38462,9 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -34938,6 +38543,12 @@ class _$GetHealthLogInformationLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -35033,6 +38644,12 @@ class _$GetHealthLogInformationLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -35125,6 +38742,12 @@ class _$GetHealthLogInformationLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -35313,6 +38936,9 @@ class _$GetHealthLogInformationSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -35388,6 +39014,9 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -35461,6 +39090,9 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -35539,6 +39171,12 @@ class _$GetHealthLogInformationSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -35634,6 +39272,12 @@ class _$GetHealthLogInformationSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -35726,6 +39370,12 @@ class _$GetHealthLogInformationSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -35911,6 +39561,9 @@ class _$GetHealthLogInformationFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -35986,6 +39639,9 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -36059,6 +39715,9 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -36137,6 +39796,12 @@ class _$GetHealthLogInformationFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -36232,6 +39897,12 @@ class _$GetHealthLogInformationFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -36324,6 +39995,12 @@ class _$GetHealthLogInformationFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -36481,6 +40158,9 @@ class _$GetTasksByScanQRCodeLoadingImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -36556,6 +40236,9 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -36629,6 +40312,9 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -36707,6 +40393,12 @@ class _$GetTasksByScanQRCodeLoadingImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -36802,6 +40494,12 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -36894,6 +40592,12 @@ class _$GetTasksByScanQRCodeLoadingImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -37095,6 +40799,9 @@ class _$GetTasksByScanQRCodeSuccessImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -37170,6 +40877,9 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -37243,6 +40953,9 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -37321,6 +41034,12 @@ class _$GetTasksByScanQRCodeSuccessImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -37416,6 +41135,12 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -37508,6 +41233,12 @@ class _$GetTasksByScanQRCodeSuccessImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -37692,6 +41423,9 @@ class _$GetTasksByScanQRCodeFailureImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -37767,6 +41501,9 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -37840,6 +41577,9 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -37918,6 +41658,12 @@ class _$GetTasksByScanQRCodeFailureImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -38013,6 +41759,12 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -38105,6 +41857,12 @@ class _$GetTasksByScanQRCodeFailureImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -38260,6 +42018,9 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -38335,6 +42096,9 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -38408,6 +42172,9 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -38486,6 +42253,12 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -38581,6 +42354,12 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -38673,6 +42452,12 @@ class _$UpdateMultipleTaskLoadingImpl implements _UpdateMultipleTaskLoading {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -38819,6 +42604,9 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -38894,6 +42682,9 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -38967,6 +42758,9 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -39045,6 +42839,12 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -39140,6 +42940,12 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -39232,6 +43038,12 @@ class _$UpdateMultipleTaskSuccessImpl implements _UpdateMultipleTaskSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -39405,6 +43217,9 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -39480,6 +43295,9 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -39553,6 +43371,9 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -39631,6 +43452,12 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -39726,6 +43553,12 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -39818,6 +43651,12 @@ class _$UpdateMultipleTaskFailureImpl implements _UpdateMultipleTaskFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -39974,6 +43813,9 @@ class _$SetTaskIsTreatmentInProgressImpl
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -40049,6 +43891,9 @@ class _$SetTaskIsTreatmentInProgressImpl
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -40122,6 +43967,9 @@ class _$SetTaskIsTreatmentInProgressImpl
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -40200,6 +44048,12 @@ class _$SetTaskIsTreatmentInProgressImpl
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -40295,6 +44149,12 @@ class _$SetTaskIsTreatmentInProgressImpl
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -40387,6 +44247,12 @@ class _$SetTaskIsTreatmentInProgressImpl
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -40534,6 +44400,9 @@ class _$SetTaskIsTreatmentSuccessImpl implements _SetTaskIsTreatmentSuccess {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -40609,6 +44478,9 @@ class _$SetTaskIsTreatmentSuccessImpl implements _SetTaskIsTreatmentSuccess {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -40682,6 +44554,9 @@ class _$SetTaskIsTreatmentSuccessImpl implements _SetTaskIsTreatmentSuccess {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -40760,6 +44635,12 @@ class _$SetTaskIsTreatmentSuccessImpl implements _SetTaskIsTreatmentSuccess {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -40855,6 +44736,12 @@ class _$SetTaskIsTreatmentSuccessImpl implements _SetTaskIsTreatmentSuccess {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -40947,6 +44834,12 @@ class _$SetTaskIsTreatmentSuccessImpl implements _SetTaskIsTreatmentSuccess {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -41120,6 +45013,9 @@ class _$SetTaskIsTreatmentFailureImpl implements _SetTaskIsTreatmentFailure {
     required TResult Function() updateStatusTaskLoading,
     required TResult Function() updateStatusTaskSuccess,
     required TResult Function(String error) updateStatusTaskFailure,
+    required TResult Function() updateTaskAfterReportLoading,
+    required TResult Function() updateTaskAfterReportSuccess,
+    required TResult Function(String error) updateTaskAfterReportFailure,
     required TResult Function() createDailyFoodUsageLogLoading,
     required TResult Function() createDailyFoodUsageLogSuccess,
     required TResult Function(String error) createDailyFoodUsageLogFailure,
@@ -41195,6 +45091,9 @@ class _$SetTaskIsTreatmentFailureImpl implements _SetTaskIsTreatmentFailure {
     TResult? Function()? updateStatusTaskLoading,
     TResult? Function()? updateStatusTaskSuccess,
     TResult? Function(String error)? updateStatusTaskFailure,
+    TResult? Function()? updateTaskAfterReportLoading,
+    TResult? Function()? updateTaskAfterReportSuccess,
+    TResult? Function(String error)? updateTaskAfterReportFailure,
     TResult? Function()? createDailyFoodUsageLogLoading,
     TResult? Function()? createDailyFoodUsageLogSuccess,
     TResult? Function(String error)? createDailyFoodUsageLogFailure,
@@ -41268,6 +45167,9 @@ class _$SetTaskIsTreatmentFailureImpl implements _SetTaskIsTreatmentFailure {
     TResult Function()? updateStatusTaskLoading,
     TResult Function()? updateStatusTaskSuccess,
     TResult Function(String error)? updateStatusTaskFailure,
+    TResult Function()? updateTaskAfterReportLoading,
+    TResult Function()? updateTaskAfterReportSuccess,
+    TResult Function(String error)? updateTaskAfterReportFailure,
     TResult Function()? createDailyFoodUsageLogLoading,
     TResult Function()? createDailyFoodUsageLogSuccess,
     TResult Function(String error)? createDailyFoodUsageLogFailure,
@@ -41346,6 +45248,12 @@ class _$SetTaskIsTreatmentFailureImpl implements _SetTaskIsTreatmentFailure {
         updateStatusTaskSuccess,
     required TResult Function(_UpdateStatusTaskFailure value)
         updateStatusTaskFailure,
+    required TResult Function(_UpdateTaskAfterReportLoading value)
+        updateTaskAfterReportLoading,
+    required TResult Function(_UpdateTaskAfterReportSuccess value)
+        updateTaskAfterReportSuccess,
+    required TResult Function(_UpdateTaskAfterReportFailure value)
+        updateTaskAfterReportFailure,
     required TResult Function(_CreateDailyFoodUsageLogLoading value)
         createDailyFoodUsageLogLoading,
     required TResult Function(_CreateDailyFoodUsageLogSuccess value)
@@ -41441,6 +45349,12 @@ class _$SetTaskIsTreatmentFailureImpl implements _SetTaskIsTreatmentFailure {
     TResult? Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult? Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult? Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult? Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult? Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult? Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult? Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult? Function(_CreateDailyFoodUsageLogSuccess value)?
@@ -41533,6 +45447,12 @@ class _$SetTaskIsTreatmentFailureImpl implements _SetTaskIsTreatmentFailure {
     TResult Function(_UpdateStatusTaskLoading value)? updateStatusTaskLoading,
     TResult Function(_UpdateStatusTaskSuccess value)? updateStatusTaskSuccess,
     TResult Function(_UpdateStatusTaskFailure value)? updateStatusTaskFailure,
+    TResult Function(_UpdateTaskAfterReportLoading value)?
+        updateTaskAfterReportLoading,
+    TResult Function(_UpdateTaskAfterReportSuccess value)?
+        updateTaskAfterReportSuccess,
+    TResult Function(_UpdateTaskAfterReportFailure value)?
+        updateTaskAfterReportFailure,
     TResult Function(_CreateDailyFoodUsageLogLoading value)?
         createDailyFoodUsageLogLoading,
     TResult Function(_CreateDailyFoodUsageLogSuccess value)?

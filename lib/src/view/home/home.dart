@@ -5,7 +5,6 @@ import 'package:data_layer/model/entity/task/next_task/next_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-// Add this import
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
@@ -463,97 +462,39 @@ class _HomeWidgetState extends State<HomeWidget>
   }
 
   Widget _buildNextTaskList({required List<NextTask> nextTaskList}) {
-    // Check if all tasks are completed
-    bool allTasksCompleted = nextTaskList.isNotEmpty &&
-        nextTaskList.every(
-            (task) => task.total > 0 && task.taskName == "No Task Available");
+    // Check if there are actual tasks to display
+    bool hasActiveTasks = nextTaskList.isNotEmpty &&
+        nextTaskList.any((task) => task.taskName != "No Task Available");
 
-    // Check if there are no tasks available
-    bool noTasksAvailable = nextTaskList.isEmpty ||
-        (nextTaskList.length == 1 &&
-            nextTaskList[0].taskName == "No Task Available" &&
-            nextTaskList[0].total == 0);
-
-    bool isAllTaskOverdue = nextTaskList.isNotEmpty &&
-        nextTaskList.every((task) =>
-            task.taskName == "No Task Available" &&
-            task.total > 0 &&
-            task.taskDone == 0);
-
-    if (allTasksCompleted) {
-      return Center(
-        child: Column(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Lottie.asset(
-                    'assets/animations/success.json',
-                    controller: _controller,
-                    width: 200,
-                    height: 200,
-                    fit: BoxFit.contain,
-                    onLoaded: (composition) {
-                      _controller
-                        ..duration = composition.duration
-                        ..forward();
-                    },
-                  ),
-                  Text(
-                    'Chúc mừng!',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Bạn đã làm hết công việc hôm nay',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    if (noTasksAvailable || isAllTaskOverdue) {
+    if (!hasActiveTasks) {
+      // No tasks available state
       return Padding(
         padding: const EdgeInsets.only(top: 16.0),
         child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    LinearIcons.emptyBoxIcon,
-                    const SizedBox(height: 16),
-                    Text('Không có việc',
-                        style: Theme.of(context).textTheme.titleLarge),
-                    const SizedBox(height: 4),
-                    Text(
-                      'Hôm nay bạn không có công việc.',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    // const SizedBox(height: 16),
-                    // ElevatedButton(
-                    //     onPressed: () {},
-                    //     child: const Text('Xem công việc ngày mai'))
-                  ],
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                LinearIcons.emptyBoxIcon,
+                const SizedBox(height: 16),
+                Text('Không có việc',
+                    style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(height: 4),
+                Text(
+                  'Hôm nay bạn không có công việc.',
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
     }
 
+    // Tasks available state - display task list
     return ListView.builder(
       padding: const EdgeInsets.only(top: 8),
       physics: const NeverScrollableScrollPhysics(),
@@ -590,22 +531,23 @@ class _HomeWidgetState extends State<HomeWidget>
                                 LinearIcons.chickenIcon,
                                 const SizedBox(width: 8),
                                 GestureDetector(
-                                    onTap: () {
-                                      context.push(RouteName.cage, extra: {
-                                        'cageId': nextTask.cageId,
-                                      });
-                                    },
-                                    child: SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.35,
-                                      child: Text(
-                                        nextTask.cagename,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(color: Colors.white),
-                                      ),
-                                    ))
+                                  onTap: () {
+                                    context.push(RouteName.cage, extra: {
+                                      'cageId': nextTask.cageId,
+                                    });
+                                  },
+                                  child: SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.35,
+                                    child: Text(
+                                      nextTask.cagename,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                             const SizedBox(height: 8),
