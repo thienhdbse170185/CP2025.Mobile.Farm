@@ -20,6 +20,8 @@ import 'package:smart_farm/src/view/auth/otp_verify.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/layout.dart';
 import 'package:smart_farm/src/view/notification/test.dart';
+import 'package:smart_farm/src/view/profile/create-death-report-success.dart';
+import 'package:smart_farm/src/view/profile/create-death-report.dart';
 import 'package:smart_farm/src/view/profile/edit_user.dart';
 import 'package:smart_farm/src/view/profile/security.dart';
 import 'package:smart_farm/src/view/profile/user.dart';
@@ -73,6 +75,8 @@ class RouteName {
   static const String timeSetting = '/time-setting';
   static const String taskReport = '/task-report';
   static const String taskSearch = '/task-search';
+  static const String createDeathReport = '/create-death-report';
+  static const String createDeathReportSuccess = '/create-death-report-success';
 
   static const publicRoutes = [
     welcome,
@@ -410,8 +414,10 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             final params = state.extra as Map<String, dynamic>;
             final username = params['username'] as String;
+            final phoneNumber = params['phoneNumber'] as String?;
             return _buildPageWithSlideTransition(
-              ChangePasswordScreen(username: username),
+              ChangePasswordScreen(
+                  username: username, phoneNumber: phoneNumber),
             );
           }),
 
@@ -449,5 +455,29 @@ final router = GoRouter(
             availableTaskTypeFilters: availableTaskTypeFilters,
           );
         },
-      )
+      ),
+
+      GoRoute(
+          path: RouteName.createDeathReport,
+          pageBuilder: (context, state) {
+            return _buildPageWithSlideTransition(const CreateDeathReportScreen(
+              cageName: '',
+            ));
+          }),
+
+      GoRoute(
+          path: RouteName.createDeathReportSuccess,
+          pageBuilder: (context, state) {
+            final params = state.extra as Map<String, dynamic>;
+            final cageName = params['cageName'] as String;
+            final deathCount = params['deathCount'] as int;
+            final totalCount = params['totalCount'] as int;
+            final createdAt = params['createdAt'] as DateTime;
+            return _buildPageWithSlideTransition(CreateDeathReportSuccessScreen(
+              cageName: cageName,
+              deathCount: deathCount,
+              totalCount: totalCount,
+              createAt: createdAt,
+            ));
+          }),
     ]);

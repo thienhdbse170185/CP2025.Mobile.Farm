@@ -28,6 +28,12 @@ class UserState with _$UserState {
   const factory UserState.sendOTPSuccess(String email) = _SendOTPSuccess;
   const factory UserState.sendOTPFailure(String message) = _SendOTPFailure;
 
+  const factory UserState.sendOTPSmsInProgress() = _SendOTPSmsInProgress;
+  const factory UserState.sendOTPSmsSuccess(String phoneNumber) =
+      _SendOTPSmsSuccess;
+  const factory UserState.sendOTPSmsFailure(String message) =
+      _SendOTPSmsFailure;
+
   const factory UserState.updatePasswordInProgress() =
       _UpdatePasswordInProgress;
   const factory UserState.updatePasswordSuccess() = _UpdatePasswordSuccess;
@@ -37,4 +43,11 @@ class UserState with _$UserState {
   const factory UserState.verifyOTPInProgress() = _VerifyOTPInProgress;
   const factory UserState.verifyOTPSuccess() = _VerifyOTPSuccess;
   const factory UserState.verifyOTPFailure(String message) = _VerifyOTPFailure;
+
+  const factory UserState.getUserProfileByUserIdInProgress() =
+      _GetUserProfileByUserIdInProgress;
+  const factory UserState.getUserProfileByUserIdSuccess() =
+      _GetUserProfileByUserIdSuccess;
+  const factory UserState.getUserProfileByUserIdFailure(String message) =
+      _GetUserProfileByUserIdFailure;
 }

@@ -32,4 +32,21 @@ class FarmingBatchCubit extends Cubit<FarmingBatchState> {
       emit(FarmingBatchState.getFarmingBatchByCageFailure(e.toString()));
     }
   }
+
+  Future<void> createDeathReport(
+      String batchId, String stageId, int deathAmount) async {
+    emit(const FarmingBatchState.createDeathReportInProgress());
+    try {
+      final result =
+          await repository.createDeathReport(batchId, stageId, deathAmount);
+      if (result) {
+        emit(const FarmingBatchState.createDeathReportSuccess());
+      } else {
+        emit(const FarmingBatchState.createDeathReportFailure(
+            'create-death-report-failed'));
+      }
+    } catch (e) {
+      emit(FarmingBatchState.createDeathReportFailure(e.toString()));
+    }
+  }
 }

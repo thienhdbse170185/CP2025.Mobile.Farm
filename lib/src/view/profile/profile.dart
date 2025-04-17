@@ -223,7 +223,62 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             ),
             Container(
               margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.29),
+                  top: MediaQuery.of(context).size.height * 0.28),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Card.outlined(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      side: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 20, bottom: 20, left: 16, right: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Khác',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.outline),
+                          ),
+                          const SizedBox(height: 16),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () {
+                              context.push(RouteName.createDeathReport);
+                            },
+                            child: Row(
+                              children: [
+                                const Icon(Icons.report_gmailerrorred_rounded),
+                                const SizedBox(width: 16),
+                                Text(
+                                  'Báo cáo thất thoát',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                const Spacer(),
+                                const Icon(Icons.chevron_right_rounded)
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.42),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -293,75 +348,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ],
                             ),
                           ),
-                          // const SizedBox(height: 20),
-                          // InkWell(
-                          //   splashColor: Colors.transparent,
-                          //   highlightColor: Colors.transparent,
-                          //   onTap: () {
-                          //     // Navigate to help
-                          //     context.push(RouteName.setting);
-                          //   },
-                          //   child: Row(
-                          //     children: [
-                          //       Icon(Icons.settings_outlined),
-                          //       const SizedBox(width: 16),
-                          //       Text(
-                          //         'Cài đặt khác',
-                          //         style: Theme.of(context).textTheme.bodyLarge,
-                          //       ),
-                          //       const Spacer(),
-                          //       Icon(Icons.chevron_right_rounded)
-                          //     ],
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
                   ),
-                  // const SizedBox(height: 10),
-                  // Card.outlined(
-                  //   color: Colors.white,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(16),
-                  //     side: BorderSide(color: Colors.grey.shade300),
-                  //   ),
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.only(
-                  //         top: 20, bottom: 20, left: 16, right: 16),
-                  //     child: Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         InkWell(
-                  //           splashColor: Colors.transparent,
-                  //           highlightColor: Colors.transparent,
-                  //           onTap: () {
-                  //             context.push(RouteName.setting);
-                  //           },
-                  //           child: Row(
-                  //             crossAxisAlignment: CrossAxisAlignment.center,
-                  //             children: [
-                  //               Expanded(
-                  //                 child: Row(
-                  //                   children: [
-                  //                     LinearIcons.settingIconGreen,
-                  //                     const SizedBox(width: 16),
-                  //                     Text(
-                  //                       'Cài đặt',
-                  //                       style: Theme.of(context)
-                  //                           .textTheme
-                  //                           .bodyLarge,
-                  //                     ),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //               LinearIcons.chevronRightIcon
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(height: 30),
                   InkWell(
                     splashColor: Colors.transparent,

@@ -9,4 +9,11 @@ class FarmingBatchState with _$FarmingBatchState {
       FarmingBatchDto farmingBatch) = _GetFarmingBatchByCageSuccess;
   const factory FarmingBatchState.getFarmingBatchByCageFailure(String message) =
       _GetFarmingBatchByCageFailure;
+
+  const factory FarmingBatchState.createDeathReportInProgress() =
+      _CreateDeathReportInProgress;
+  const factory FarmingBatchState.createDeathReportSuccess() =
+      _CreateDeathReportSuccess;
+  const factory FarmingBatchState.createDeathReportFailure(String message) =
+      _CreateDeathReportFailure;
 }

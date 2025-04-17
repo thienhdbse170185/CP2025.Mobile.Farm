@@ -40,6 +40,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           UserDataConstant.emailKey: decodedToken['email'],
           UserDataConstant.roleKey: decodedToken['role'],
           UserDataConstant.userNameKey: decodedToken['unique_name'],
+          UserDataConstant.phoneNumberKey: decodedToken['phoneNumber'],
           // UserDataConstant.serverTimeKey: dateTime,
         });
 

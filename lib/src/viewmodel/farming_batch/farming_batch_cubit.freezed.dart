@@ -23,6 +23,9 @@ mixin _$FarmingBatchState {
     required TResult Function(FarmingBatchDto farmingBatch)
         getFarmingBatchByCageSuccess,
     required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +35,9 @@ mixin _$FarmingBatchState {
     TResult? Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +47,9 @@ mixin _$FarmingBatchState {
     TResult Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,6 +62,12 @@ mixin _$FarmingBatchState {
         getFarmingBatchByCageSuccess,
     required TResult Function(_GetFarmingBatchByCageFailure value)
         getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +79,12 @@ mixin _$FarmingBatchState {
         getFarmingBatchByCageSuccess,
     TResult? Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +96,10 @@ mixin _$FarmingBatchState {
         getFarmingBatchByCageSuccess,
     TResult Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +172,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(FarmingBatchDto farmingBatch)
         getFarmingBatchByCageSuccess,
     required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
   }) {
     return initial();
   }
@@ -159,6 +187,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
   }) {
     return initial?.call();
   }
@@ -171,6 +202,9 @@ class _$InitialImpl implements _Initial {
     TResult Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -189,6 +223,12 @@ class _$InitialImpl implements _Initial {
         getFarmingBatchByCageSuccess,
     required TResult Function(_GetFarmingBatchByCageFailure value)
         getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
   }) {
     return initial(this);
   }
@@ -203,6 +243,12 @@ class _$InitialImpl implements _Initial {
         getFarmingBatchByCageSuccess,
     TResult? Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
   }) {
     return initial?.call(this);
   }
@@ -217,6 +263,10 @@ class _$InitialImpl implements _Initial {
         getFarmingBatchByCageSuccess,
     TResult Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -281,6 +331,9 @@ class _$GetFarmingBatchByCageInProgressImpl
     required TResult Function(FarmingBatchDto farmingBatch)
         getFarmingBatchByCageSuccess,
     required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
   }) {
     return getFarmingBatchByCageInProgress();
   }
@@ -293,6 +346,9 @@ class _$GetFarmingBatchByCageInProgressImpl
     TResult? Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
   }) {
     return getFarmingBatchByCageInProgress?.call();
   }
@@ -305,6 +361,9 @@ class _$GetFarmingBatchByCageInProgressImpl
     TResult Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (getFarmingBatchByCageInProgress != null) {
@@ -323,6 +382,12 @@ class _$GetFarmingBatchByCageInProgressImpl
         getFarmingBatchByCageSuccess,
     required TResult Function(_GetFarmingBatchByCageFailure value)
         getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
   }) {
     return getFarmingBatchByCageInProgress(this);
   }
@@ -337,6 +402,12 @@ class _$GetFarmingBatchByCageInProgressImpl
         getFarmingBatchByCageSuccess,
     TResult? Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
   }) {
     return getFarmingBatchByCageInProgress?.call(this);
   }
@@ -351,6 +422,10 @@ class _$GetFarmingBatchByCageInProgressImpl
         getFarmingBatchByCageSuccess,
     TResult Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (getFarmingBatchByCageInProgress != null) {
@@ -457,6 +532,9 @@ class _$GetFarmingBatchByCageSuccessImpl
     required TResult Function(FarmingBatchDto farmingBatch)
         getFarmingBatchByCageSuccess,
     required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
   }) {
     return getFarmingBatchByCageSuccess(farmingBatch);
   }
@@ -469,6 +547,9 @@ class _$GetFarmingBatchByCageSuccessImpl
     TResult? Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
   }) {
     return getFarmingBatchByCageSuccess?.call(farmingBatch);
   }
@@ -481,6 +562,9 @@ class _$GetFarmingBatchByCageSuccessImpl
     TResult Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (getFarmingBatchByCageSuccess != null) {
@@ -499,6 +583,12 @@ class _$GetFarmingBatchByCageSuccessImpl
         getFarmingBatchByCageSuccess,
     required TResult Function(_GetFarmingBatchByCageFailure value)
         getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
   }) {
     return getFarmingBatchByCageSuccess(this);
   }
@@ -513,6 +603,12 @@ class _$GetFarmingBatchByCageSuccessImpl
         getFarmingBatchByCageSuccess,
     TResult? Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
   }) {
     return getFarmingBatchByCageSuccess?.call(this);
   }
@@ -527,6 +623,10 @@ class _$GetFarmingBatchByCageSuccessImpl
         getFarmingBatchByCageSuccess,
     TResult Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (getFarmingBatchByCageSuccess != null) {
@@ -629,6 +729,9 @@ class _$GetFarmingBatchByCageFailureImpl
     required TResult Function(FarmingBatchDto farmingBatch)
         getFarmingBatchByCageSuccess,
     required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
   }) {
     return getFarmingBatchByCageFailure(message);
   }
@@ -641,6 +744,9 @@ class _$GetFarmingBatchByCageFailureImpl
     TResult? Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
   }) {
     return getFarmingBatchByCageFailure?.call(message);
   }
@@ -653,6 +759,9 @@ class _$GetFarmingBatchByCageFailureImpl
     TResult Function(FarmingBatchDto farmingBatch)?
         getFarmingBatchByCageSuccess,
     TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (getFarmingBatchByCageFailure != null) {
@@ -671,6 +780,12 @@ class _$GetFarmingBatchByCageFailureImpl
         getFarmingBatchByCageSuccess,
     required TResult Function(_GetFarmingBatchByCageFailure value)
         getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
   }) {
     return getFarmingBatchByCageFailure(this);
   }
@@ -685,6 +800,12 @@ class _$GetFarmingBatchByCageFailureImpl
         getFarmingBatchByCageSuccess,
     TResult? Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
   }) {
     return getFarmingBatchByCageFailure?.call(this);
   }
@@ -699,6 +820,10 @@ class _$GetFarmingBatchByCageFailureImpl
         getFarmingBatchByCageSuccess,
     TResult Function(_GetFarmingBatchByCageFailure value)?
         getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
     required TResult orElse(),
   }) {
     if (getFarmingBatchByCageFailure != null) {
@@ -719,5 +844,517 @@ abstract class _GetFarmingBatchByCageFailure implements FarmingBatchState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetFarmingBatchByCageFailureImplCopyWith<
           _$GetFarmingBatchByCageFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreateDeathReportInProgressImplCopyWith<$Res> {
+  factory _$$CreateDeathReportInProgressImplCopyWith(
+          _$CreateDeathReportInProgressImpl value,
+          $Res Function(_$CreateDeathReportInProgressImpl) then) =
+      __$$CreateDeathReportInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateDeathReportInProgressImplCopyWithImpl<$Res>
+    extends _$FarmingBatchStateCopyWithImpl<$Res,
+        _$CreateDeathReportInProgressImpl>
+    implements _$$CreateDeathReportInProgressImplCopyWith<$Res> {
+  __$$CreateDeathReportInProgressImplCopyWithImpl(
+      _$CreateDeathReportInProgressImpl _value,
+      $Res Function(_$CreateDeathReportInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FarmingBatchState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateDeathReportInProgressImpl
+    implements _CreateDeathReportInProgress {
+  const _$CreateDeathReportInProgressImpl();
+
+  @override
+  String toString() {
+    return 'FarmingBatchState.createDeathReportInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateDeathReportInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getFarmingBatchByCageInProgress,
+    required TResult Function(FarmingBatchDto farmingBatch)
+        getFarmingBatchByCageSuccess,
+    required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
+  }) {
+    return createDeathReportInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getFarmingBatchByCageInProgress,
+    TResult? Function(FarmingBatchDto farmingBatch)?
+        getFarmingBatchByCageSuccess,
+    TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
+  }) {
+    return createDeathReportInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getFarmingBatchByCageInProgress,
+    TResult Function(FarmingBatchDto farmingBatch)?
+        getFarmingBatchByCageSuccess,
+    TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
+    required TResult orElse(),
+  }) {
+    if (createDeathReportInProgress != null) {
+      return createDeathReportInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetFarmingBatchByCageInProgress value)
+        getFarmingBatchByCageInProgress,
+    required TResult Function(_GetFarmingBatchByCageSuccess value)
+        getFarmingBatchByCageSuccess,
+    required TResult Function(_GetFarmingBatchByCageFailure value)
+        getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
+  }) {
+    return createDeathReportInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetFarmingBatchByCageInProgress value)?
+        getFarmingBatchByCageInProgress,
+    TResult? Function(_GetFarmingBatchByCageSuccess value)?
+        getFarmingBatchByCageSuccess,
+    TResult? Function(_GetFarmingBatchByCageFailure value)?
+        getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
+  }) {
+    return createDeathReportInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetFarmingBatchByCageInProgress value)?
+        getFarmingBatchByCageInProgress,
+    TResult Function(_GetFarmingBatchByCageSuccess value)?
+        getFarmingBatchByCageSuccess,
+    TResult Function(_GetFarmingBatchByCageFailure value)?
+        getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
+    required TResult orElse(),
+  }) {
+    if (createDeathReportInProgress != null) {
+      return createDeathReportInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateDeathReportInProgress implements FarmingBatchState {
+  const factory _CreateDeathReportInProgress() =
+      _$CreateDeathReportInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateDeathReportSuccessImplCopyWith<$Res> {
+  factory _$$CreateDeathReportSuccessImplCopyWith(
+          _$CreateDeathReportSuccessImpl value,
+          $Res Function(_$CreateDeathReportSuccessImpl) then) =
+      __$$CreateDeathReportSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CreateDeathReportSuccessImplCopyWithImpl<$Res>
+    extends _$FarmingBatchStateCopyWithImpl<$Res,
+        _$CreateDeathReportSuccessImpl>
+    implements _$$CreateDeathReportSuccessImplCopyWith<$Res> {
+  __$$CreateDeathReportSuccessImplCopyWithImpl(
+      _$CreateDeathReportSuccessImpl _value,
+      $Res Function(_$CreateDeathReportSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FarmingBatchState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CreateDeathReportSuccessImpl implements _CreateDeathReportSuccess {
+  const _$CreateDeathReportSuccessImpl();
+
+  @override
+  String toString() {
+    return 'FarmingBatchState.createDeathReportSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateDeathReportSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getFarmingBatchByCageInProgress,
+    required TResult Function(FarmingBatchDto farmingBatch)
+        getFarmingBatchByCageSuccess,
+    required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
+  }) {
+    return createDeathReportSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getFarmingBatchByCageInProgress,
+    TResult? Function(FarmingBatchDto farmingBatch)?
+        getFarmingBatchByCageSuccess,
+    TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
+  }) {
+    return createDeathReportSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getFarmingBatchByCageInProgress,
+    TResult Function(FarmingBatchDto farmingBatch)?
+        getFarmingBatchByCageSuccess,
+    TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
+    required TResult orElse(),
+  }) {
+    if (createDeathReportSuccess != null) {
+      return createDeathReportSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetFarmingBatchByCageInProgress value)
+        getFarmingBatchByCageInProgress,
+    required TResult Function(_GetFarmingBatchByCageSuccess value)
+        getFarmingBatchByCageSuccess,
+    required TResult Function(_GetFarmingBatchByCageFailure value)
+        getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
+  }) {
+    return createDeathReportSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetFarmingBatchByCageInProgress value)?
+        getFarmingBatchByCageInProgress,
+    TResult? Function(_GetFarmingBatchByCageSuccess value)?
+        getFarmingBatchByCageSuccess,
+    TResult? Function(_GetFarmingBatchByCageFailure value)?
+        getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
+  }) {
+    return createDeathReportSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetFarmingBatchByCageInProgress value)?
+        getFarmingBatchByCageInProgress,
+    TResult Function(_GetFarmingBatchByCageSuccess value)?
+        getFarmingBatchByCageSuccess,
+    TResult Function(_GetFarmingBatchByCageFailure value)?
+        getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
+    required TResult orElse(),
+  }) {
+    if (createDeathReportSuccess != null) {
+      return createDeathReportSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateDeathReportSuccess implements FarmingBatchState {
+  const factory _CreateDeathReportSuccess() = _$CreateDeathReportSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateDeathReportFailureImplCopyWith<$Res> {
+  factory _$$CreateDeathReportFailureImplCopyWith(
+          _$CreateDeathReportFailureImpl value,
+          $Res Function(_$CreateDeathReportFailureImpl) then) =
+      __$$CreateDeathReportFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$CreateDeathReportFailureImplCopyWithImpl<$Res>
+    extends _$FarmingBatchStateCopyWithImpl<$Res,
+        _$CreateDeathReportFailureImpl>
+    implements _$$CreateDeathReportFailureImplCopyWith<$Res> {
+  __$$CreateDeathReportFailureImplCopyWithImpl(
+      _$CreateDeathReportFailureImpl _value,
+      $Res Function(_$CreateDeathReportFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FarmingBatchState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$CreateDeathReportFailureImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateDeathReportFailureImpl implements _CreateDeathReportFailure {
+  const _$CreateDeathReportFailureImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'FarmingBatchState.createDeathReportFailure(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateDeathReportFailureImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of FarmingBatchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateDeathReportFailureImplCopyWith<_$CreateDeathReportFailureImpl>
+      get copyWith => __$$CreateDeathReportFailureImplCopyWithImpl<
+          _$CreateDeathReportFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getFarmingBatchByCageInProgress,
+    required TResult Function(FarmingBatchDto farmingBatch)
+        getFarmingBatchByCageSuccess,
+    required TResult Function(String message) getFarmingBatchByCageFailure,
+    required TResult Function() createDeathReportInProgress,
+    required TResult Function() createDeathReportSuccess,
+    required TResult Function(String message) createDeathReportFailure,
+  }) {
+    return createDeathReportFailure(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getFarmingBatchByCageInProgress,
+    TResult? Function(FarmingBatchDto farmingBatch)?
+        getFarmingBatchByCageSuccess,
+    TResult? Function(String message)? getFarmingBatchByCageFailure,
+    TResult? Function()? createDeathReportInProgress,
+    TResult? Function()? createDeathReportSuccess,
+    TResult? Function(String message)? createDeathReportFailure,
+  }) {
+    return createDeathReportFailure?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getFarmingBatchByCageInProgress,
+    TResult Function(FarmingBatchDto farmingBatch)?
+        getFarmingBatchByCageSuccess,
+    TResult Function(String message)? getFarmingBatchByCageFailure,
+    TResult Function()? createDeathReportInProgress,
+    TResult Function()? createDeathReportSuccess,
+    TResult Function(String message)? createDeathReportFailure,
+    required TResult orElse(),
+  }) {
+    if (createDeathReportFailure != null) {
+      return createDeathReportFailure(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetFarmingBatchByCageInProgress value)
+        getFarmingBatchByCageInProgress,
+    required TResult Function(_GetFarmingBatchByCageSuccess value)
+        getFarmingBatchByCageSuccess,
+    required TResult Function(_GetFarmingBatchByCageFailure value)
+        getFarmingBatchByCageFailure,
+    required TResult Function(_CreateDeathReportInProgress value)
+        createDeathReportInProgress,
+    required TResult Function(_CreateDeathReportSuccess value)
+        createDeathReportSuccess,
+    required TResult Function(_CreateDeathReportFailure value)
+        createDeathReportFailure,
+  }) {
+    return createDeathReportFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetFarmingBatchByCageInProgress value)?
+        getFarmingBatchByCageInProgress,
+    TResult? Function(_GetFarmingBatchByCageSuccess value)?
+        getFarmingBatchByCageSuccess,
+    TResult? Function(_GetFarmingBatchByCageFailure value)?
+        getFarmingBatchByCageFailure,
+    TResult? Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult? Function(_CreateDeathReportSuccess value)?
+        createDeathReportSuccess,
+    TResult? Function(_CreateDeathReportFailure value)?
+        createDeathReportFailure,
+  }) {
+    return createDeathReportFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetFarmingBatchByCageInProgress value)?
+        getFarmingBatchByCageInProgress,
+    TResult Function(_GetFarmingBatchByCageSuccess value)?
+        getFarmingBatchByCageSuccess,
+    TResult Function(_GetFarmingBatchByCageFailure value)?
+        getFarmingBatchByCageFailure,
+    TResult Function(_CreateDeathReportInProgress value)?
+        createDeathReportInProgress,
+    TResult Function(_CreateDeathReportSuccess value)? createDeathReportSuccess,
+    TResult Function(_CreateDeathReportFailure value)? createDeathReportFailure,
+    required TResult orElse(),
+  }) {
+    if (createDeathReportFailure != null) {
+      return createDeathReportFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateDeathReportFailure implements FarmingBatchState {
+  const factory _CreateDeathReportFailure(final String message) =
+      _$CreateDeathReportFailureImpl;
+
+  String get message;
+
+  /// Create a copy of FarmingBatchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateDeathReportFailureImplCopyWith<_$CreateDeathReportFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

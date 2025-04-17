@@ -6,7 +6,12 @@ import 'package:smart_farm/src/viewmodel/index.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   final String username;
-  const ChangePasswordScreen({super.key, required this.username});
+  final String? phoneNumber;
+  const ChangePasswordScreen({
+    super.key,
+    required this.username,
+    required this.phoneNumber,
+  });
 
   @override
   State<ChangePasswordScreen> createState() =>
@@ -41,16 +46,7 @@ class _ChangePasswordNewbieScreenState extends State<ChangePasswordScreen> {
 
   void _onSubmit() {
     if (_formKey.currentState!.validate()) {
-      // Process the password change
-      // context.push(RouteName.otpVerification, extra: {
-      //   'email': _email,
-      //   'otpType': 2,
-      //   'oldPassword': _oldController.text,
-      //   'newPassword': _newPasswordController.text,
-      // });
-      context
-          .read<UserBloc>()
-          .add(UserEvent.sendOTP(username: widget.username, isResend: false));
+      context.read<UserBloc>().add(UserEvent.getUserProfileByUserId());
     }
   }
 
@@ -59,6 +55,22 @@ class _ChangePasswordNewbieScreenState extends State<ChangePasswordScreen> {
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
         state.maybeWhen(
+          getUserProfileByUserIdInProgress: () {
+            setState(() {
+              _isLoading = true;
+            });
+          },
+          getUserProfileByUserIdSuccess: () {
+            context.read<UserBloc>().add(UserEvent.sendOTPSms(
+                  username: widget.username,
+                  isResend: false,
+                ));
+          },
+          getUserProfileByUserIdFailure: (message) {
+            setState(() {
+              _isLoading = false;
+            });
+          },
           sendOTPInProgress: () {
             setState(() {
               _isLoading = true;
@@ -80,6 +92,31 @@ class _ChangePasswordNewbieScreenState extends State<ChangePasswordScreen> {
             });
           },
           sendOTPFailure: (message) {
+            setState(() {
+              _isLoading = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Gửi mã OTP thất bại - $message')),
+            );
+          },
+          sendOTPSmsInProgress: () {
+            setState(() {
+              _isLoading = true;
+            });
+          },
+          sendOTPSmsSuccess: (phoneNumber) {
+            setState(() {
+              _isLoading = false;
+            });
+            context.push(RouteName.otpVerification, extra: {
+              'phoneNumber': phoneNumber,
+              'username': widget.username,
+              'otpType': 2,
+              'oldPassword': _oldController.text,
+              'newPassword': _newPasswordController.text,
+            });
+          },
+          sendOTPSmsFailure: (message) {
             setState(() {
               _isLoading = false;
             });

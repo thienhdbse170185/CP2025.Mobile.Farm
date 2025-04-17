@@ -92,6 +92,50 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserState.sendOTPFailure(e.toString()));
       }
     });
+    on<_SendOTPSms>((event, emit) async {
+      emit(const UserState.sendOTPSmsInProgress());
+      try {
+        log('[Send_OTP]: Đang lấy email để gửi OTP...');
+        String phoneNumber = "";
+        String username = "";
+        if (event.phoneNumber == null) {
+          final authBox = await Hive.openBox(AuthDataConstant.authBoxName);
+          final accessToken = authBox.get(AuthDataConstant.accessTokenKey);
+          final decodedToken = JwtDecoder.decode(accessToken);
+          phoneNumber = decodedToken['PhoneNumber'];
+          final userBox = await Hive.openBox(UserDataConstant.userBoxName);
+          username = userBox.get(UserDataConstant.usernameKey);
+        } else {
+          phoneNumber = event.phoneNumber!;
+          username = event.username;
+        }
+        log('[PhoneNumber Send_OTP]: $phoneNumber');
+        final result = await userRepository.sendOTPSms(
+            phoneNumber, username, event.isResend);
+        if (result) {
+          emit(UserState.sendOTPSuccess(phoneNumber));
+        } else {
+          emit(const UserState.sendOTPFailure('Failed to send OTP'));
+        }
+      } catch (e) {
+        emit(UserState.sendOTPSmsFailure(e.toString()));
+      }
+    });
+    on<_GetUserProfileByUserId>((event, emit) async {
+      emit(const UserState.getUserProfileByUserIdInProgress());
+      try {
+        final authBox = await Hive.openBox(AuthDataConstant.authBoxName);
+        final accessToken = authBox.get(AuthDataConstant.accessTokenKey);
+        final decodedToken = JwtDecoder.decode(accessToken);
+        final userId = decodedToken['nameid'];
+        final userInfo = await userRepository.getUserProfileByUserId(userId);
+        final userBox = await Hive.openBox(UserDataConstant.userBoxName);
+        userBox.put(UserDataConstant.usernameKey, userInfo.username);
+        emit(const UserState.getUserProfileByUserIdSuccess());
+      } catch (e) {
+        emit(UserState.getUserProfileByUserIdFailure(e.toString()));
+      }
+    });
     on<_VerifyOTP>((event, emit) async {
       emit(const UserState.verifyOTPInProgress());
       try {
