@@ -121,6 +121,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   SaleLogDto? saleLog;
   SaleDetailLogDto? saleDetailLog;
   SaleLogDetailDto? saleLogDetail;
+  double weightMeatSell = 0;
 
   // --- Egg harvest related variables ---
   EggHarvestDto? eggHarvest;
@@ -159,6 +160,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   final TextEditingController _countEggCollectedController =
       TextEditingController();
   final TextEditingController _lastSessionQuantityController =
+      TextEditingController();
+  final TextEditingController _animalCountSellController =
       TextEditingController();
 
   // --- Image upload ---
@@ -208,12 +211,13 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     _countAnimalVaccineController.text = '0';
     _countAnimalSellControler.text = '0';
     _weightAnimalController.text = "0.0";
-    _weightMeatSellController.text = "0";
+    _weightMeatSellController.text = "0.0";
     _countEggCollectedController.text = '0';
     _countEggSellController.text = '0';
     _lastSessionQuantityController.text = '0';
     _dateAnimalSellController.text =
         DateFormat('dd/MM/yyyy').format(TimeUtils.customNow());
+    _animalCountSellController.text = '0';
     saleDate = TimeUtils.customNow();
     prescriptionId = widget.task.prescriptionId;
 
@@ -553,7 +557,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       growthStageId: growthStage!.id,
       saleDate: saleDate!.toIso8601String(),
       unitPrice: int.parse(_priceMeatSellController.text.replaceAll(',', '')),
-      quantity: int.parse(_weightMeatSellController.text),
+      quantity: int.parse(_animalCountSellController.text),
+      weight: double.parse(_weightMeatSellController.text),
       saleTypeId: saleType!.id,
       taskId: widget.task.id,
     );
@@ -686,21 +691,23 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               saleDate: saleDate!.toIso8601String(),
               unitPrice:
                   int.parse(_priceMeatSellController.text.replaceAll(',', '')),
-              quantity: int.parse(_weightMeatSellController.text),
+              quantity: int.parse(_animalCountSellController.text),
               saleTypeId: saleType!.id,
+              weight: weightMeatSell,
               taskId: widget.task.id,
             );
-      } else if (widget.task.taskType.taskTypeId ==
-          TaskTypeDataConstant.sellEgg) {
-        context.read<AnimalSaleCubit>().createAnimalSale(
-              growthStageId: growthStage!.id,
-              saleDate: saleDate!.toIso8601String(),
-              unitPrice:
-                  int.parse(_priceEggSellController.text.replaceAll(',', '')),
-              quantity: int.parse(_countEggSellController.text),
-              saleTypeId: saleType!.id,
-              taskId: widget.task.id,
-            );
+        // }
+        // else if (widget.task.taskType.taskTypeId ==
+        //     TaskTypeDataConstant.sellEgg) {
+        //   context.read<AnimalSaleCubit>().createAnimalSale(
+        //         growthStageId: growthStage!.id,
+        //         saleDate: saleDate!.toIso8601String(),
+        //         unitPrice:
+        //             int.parse(_priceEggSellController.text.replaceAll(',', '')),
+        //         quantity: int.parse(_countEggSellController.text),
+        //         saleTypeId: saleType!.id,
+        //         taskId: widget.task.id,
+        //       );
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.eggHarvest) {
         final request = EggHarvestRequest(
@@ -1888,6 +1895,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 weightMeatSellController: _weightMeatSellController,
                 priceMeatSellController: _priceMeatSellController,
                 dateAnimalSellController: _dateAnimalSellController,
+                animalCountSellController: _animalCountSellController,
                 logTime: logTime,
                 saleDate: saleDate!,
                 onDateChanged: readOnly
@@ -1901,7 +1909,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                     ? null
                     : (weight) {
                         setState(() {
-                          _weightMeatSellController.text = weight.toString();
+                          // _weightMeatSellController.text = weight.toString();
+                          weightMeatSell = weight;
                         });
                       },
                 onPriceChanged: readOnly
@@ -1909,6 +1918,13 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                     : (price) {
                         setState(() {
                           _priceMeatSellController.text = price.toString();
+                        });
+                      },
+                onAnimalCountChanged: readOnly
+                    ? null
+                    : (count) {
+                        setState(() {
+                          _animalCountSellController.text = count.toString();
                         });
                       },
                 task: widget.task,
@@ -2210,6 +2226,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           return TaskValidation.validateAnimalSaleLog(
             weightAnimalController: _weightMeatSellController,
             priceAnimalController: _priceMeatSellController,
+            animalCountSellController: _animalCountSellController,
           );
         } else if (widget.task.taskType.taskTypeId ==
             TaskTypeDataConstant.sellEgg) {

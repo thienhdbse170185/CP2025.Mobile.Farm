@@ -217,17 +217,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                               style: TextStyle(color: Colors.red, fontSize: 13),
                             ),
                           ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () =>
-                                context.push(RouteName.forgotPassword),
-                            child: const Text(
-                              "Quên mật khẩu?",
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                          ),
-                        ),
                         const SizedBox(height: 16),
                         SizedBox(
                           width: double.infinity,

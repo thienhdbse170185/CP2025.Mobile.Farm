@@ -325,29 +325,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              // Navigate to help
-                              context.push(RouteName.changePassword, extra: {
-                                'username': _username,
-                              });
-                            },
-                            child: Row(
-                              children: [
-                                Icon(Icons.lock_outline),
-                                const SizedBox(width: 16),
-                                Text(
-                                  'Đổi mật khẩu',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                                const Spacer(),
-                                Icon(Icons.chevron_right_rounded)
-                              ],
-                            ),
-                          ),
                         ],
                       ),
                     ),

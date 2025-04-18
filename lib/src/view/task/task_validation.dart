@@ -66,14 +66,16 @@ class TaskValidation {
   static bool validateAnimalSaleLog({
     required TextEditingController weightAnimalController,
     required TextEditingController priceAnimalController,
+    required TextEditingController animalCountSellController,
   }) {
-    final weight = int.tryParse(weightAnimalController.text) ?? 0;
+    final weight = double.tryParse(weightAnimalController.text) ?? 0;
+    final animalCount = int.tryParse(animalCountSellController.text) ?? 0;
 
     // Check for empty or whitespace-only price strings
     final priceText = priceAnimalController.text.trim();
 
     // Return false if weight is 0 or price is empty
-    if (weight <= 0 || priceText.isEmpty) {
+    if (weight <= 0 || priceText.isEmpty || animalCount <= 0) {
       return false;
     } else {
       final price = int.parse(priceText.replaceAll(',', ''));

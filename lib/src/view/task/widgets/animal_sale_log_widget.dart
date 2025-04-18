@@ -17,10 +17,14 @@ class AnimalSaleLogWidget extends StatefulWidget {
   final TextEditingController weightMeatSellController;
   final TextEditingController priceMeatSellController;
   final TextEditingController dateAnimalSellController;
+  final TextEditingController
+      animalCountSellController; // New controller for animal count
   final DateTime saleDate;
   final ValueChanged<DateTime>? onDateChanged;
-  final ValueChanged<int>? onWeightChanged;
+  final ValueChanged<double>? onWeightChanged;
   final ValueChanged<String>? onPriceChanged;
+  final ValueChanged<int>?
+      onAnimalCountChanged; // New callback for animal count
   final TaskHaveCageName task;
   final bool readOnly;
   final SaleLogDto? salelog;
@@ -36,10 +40,12 @@ class AnimalSaleLogWidget extends StatefulWidget {
     required this.weightMeatSellController,
     required this.priceMeatSellController,
     required this.dateAnimalSellController,
+    required this.animalCountSellController, // Added required parameter
     required this.saleDate,
     this.onDateChanged,
     this.onWeightChanged,
     this.onPriceChanged,
+    this.onAnimalCountChanged, // Added parameter
     required this.task,
     this.readOnly = false,
     this.salelog,
@@ -56,26 +62,12 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
   @override
   void initState() {
     super.initState();
-    // if (widget.saleDetailLog != null) {
-    //   widget.weightMeatSellController.text =
-    //       widget.saleDetailLog?.quantity.toString() ?? '0';
-    //   // Format the value with commas
-    //   final formatter = NumberFormat('#,###');
-    //   final newValue = formatter.format(widget.saleDetailLog?.unitPrice);
-
-    //   // Update the controller with the formatted value
-    //   widget.priceMeatSellController.value = TextEditingValue(
-    //     text: newValue,
-    //     selection: TextSelection.collapsed(offset: newValue.length),
-    //   );
-    //   // widget.priceMeatSellController.text =
-    //   //     widget.salelog?.unitPriceAverage.toString() ?? '0';
-    //   widget.dateAnimalSellController.text = DateFormat('dd/MM/yyyy')
-    //       .format(DateTime.parse(widget.saleDetailLog?.saleDate ?? ''));
-    // }
     if (widget.saleLogDetail != null) {
       widget.weightMeatSellController.text =
+          widget.saleLogDetail?.weight.toString() ?? '0.0';
+      widget.animalCountSellController.text =
           widget.saleLogDetail?.quantity.toString() ?? '0';
+
       // Format the value with commas
       final formatter = NumberFormat('#,###');
       final newValue = formatter.format(widget.saleLogDetail?.unitPrice);
@@ -208,6 +200,9 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
               ],
             ),
             const Divider(height: 24),
+            _buildAnimalCountInputSection(
+                context, isEditable), // New animal count section
+            const SizedBox(height: 24),
             _buildWeightInputSection(context, isEditable),
             const SizedBox(height: 24),
             _buildPriceInputSection(context, isEditable),
@@ -216,6 +211,105 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           ],
         ),
       ),
+    );
+  }
+
+  // New method for the animal count input section
+  Widget _buildAnimalCountInputSection(BuildContext context, bool isEditable) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.pets,
+                color: Theme.of(context).colorScheme.primary, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Số con gia cầm đã bán',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(12),
+            border:
+                Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              QuantityButtonWidget(
+                icon: Icons.remove,
+                onPressed: () {
+                  final currentValue = int.tryParse(
+                        widget.animalCountSellController.text,
+                      ) ??
+                      0;
+                  if (currentValue > 0) {
+                    widget.onAnimalCountChanged?.call(currentValue - 1);
+                    widget.animalCountSellController.text =
+                        (currentValue - 1).toString();
+                  }
+                },
+                isDisable: !isEditable,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextField(
+                  controller: widget.animalCountSellController,
+                  textAlign: TextAlign.right,
+                  keyboardType: TextInputType.number,
+                  enabled: isEditable,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  decoration: InputDecoration(
+                    suffixText: '(con)',
+                    suffixStyle:
+                        TextStyle(color: Colors.grey[600], fontSize: 18),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.w600),
+                  onChanged: (value) async {
+                    if (value.isEmpty) {
+                      widget.animalCountSellController.text = '0';
+                      widget.animalCountSellController.selection =
+                          TextSelection.fromPosition(
+                              const TextPosition(offset: 1));
+                    }
+                    final currentValue = int.tryParse(value) ?? 0;
+                    widget.onAnimalCountChanged?.call(currentValue);
+                  },
+                  onTap: () {
+                    if (widget.animalCountSellController.text == '0') {
+                      widget.animalCountSellController.clear();
+                    }
+                  },
+                ),
+              ),
+              QuantityButtonWidget(
+                icon: Icons.add,
+                onPressed: () {
+                  final currentValue = int.tryParse(
+                        widget.animalCountSellController.text,
+                      ) ??
+                      0;
+                  widget.onAnimalCountChanged?.call(currentValue + 1);
+                  widget.animalCountSellController.text =
+                      (currentValue + 1).toString();
+                },
+                isAdd: true,
+                isDisable: !isEditable,
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -249,12 +343,18 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
               QuantityButtonWidget(
                 icon: Icons.remove,
                 onPressed: () {
-                  final currentValue = int.tryParse(
+                  final currentValue = double.tryParse(
                         widget.weightMeatSellController.text,
                       ) ??
-                      0;
-                  if (currentValue > 0) {
-                    widget.onWeightChanged?.call(currentValue - 1);
+                      0.0;
+                  if (currentValue > 1) {
+                    if (widget.onWeightChanged != null) {
+                      widget.onWeightChanged!(currentValue - 1.0);
+                    }
+                  } else if (currentValue <= 1 && currentValue > 0.1) {
+                    if (widget.onWeightChanged != null) {
+                      widget.onWeightChanged!(0.1);
+                    }
                   }
                 },
                 isDisable: !isEditable,
@@ -268,7 +368,8 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                   keyboardType: TextInputType.number,
                   enabled: isEditable,
                   inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+\.?\d{0,1}')),
                   ],
                   decoration: InputDecoration(
                     suffixText: '(kg)',
@@ -278,18 +379,20 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.w600),
                   onChanged: (value) async {
-                    if (value.isEmpty) {
-                      widget.weightMeatSellController.text = '0';
-                      widget.weightMeatSellController.selection =
-                          TextSelection.fromPosition(
-                              const TextPosition(offset: 1));
+                    final currentValue = double.tryParse(
+                          widget.weightMeatSellController.text,
+                        ) ??
+                        0.1;
+                    if (widget.onWeightChanged != null) {
+                      widget.onWeightChanged!(currentValue);
                     }
-                    final currentValue = int.tryParse(value) ?? 0;
-                    widget.onWeightChanged?.call(currentValue);
                   },
                   onTap: () {
-                    if (widget.weightMeatSellController.text == '0') {
-                      widget.weightMeatSellController.clear();
+                    if (widget.weightMeatSellController.text == '0' ||
+                        widget.weightMeatSellController.text == '0.0') {
+                      setState(() {
+                        widget.weightMeatSellController.text = '';
+                      });
                     }
                   },
                 ),
@@ -297,11 +400,13 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
               QuantityButtonWidget(
                 icon: Icons.add,
                 onPressed: () {
-                  final currentValue = int.tryParse(
+                  final currentValue = double.tryParse(
                         widget.weightMeatSellController.text,
                       ) ??
-                      0;
-                  widget.onWeightChanged?.call(currentValue + 1);
+                      0.0;
+                  if (widget.onWeightChanged != null) {
+                    widget.onWeightChanged!(currentValue + 1.0);
+                  }
                 },
                 isAdd: true,
                 isDisable: !isEditable,
@@ -334,7 +439,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           keyboardType: TextInputType.number,
           enabled: isEditable,
           decoration: InputDecoration(
-            hintText: '80,000',
+            hintText: 'Nhập giá tiền',
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
             ),

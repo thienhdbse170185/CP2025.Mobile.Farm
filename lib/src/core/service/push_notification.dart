@@ -121,10 +121,10 @@ class PushNotifications {
       log('Data: ${message.data}');
 
       // Navigate to notification screen
-      Navigator.push(
-        rootNavigatorKey.currentState!.context,
-        MaterialPageRoute(builder: (context) => const TestNotificationWidget()),
-      );
+      // Navigator.push(
+      //   rootNavigatorKey.currentState!.context,
+      //   MaterialPageRoute(builder: (context) => const TestNotificationWidget()),
+      // );
     });
 
     // Handle initial message (app was terminated)

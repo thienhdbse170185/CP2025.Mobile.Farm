@@ -10,6 +10,7 @@ class CreateSaleLogCubitParams with _$CreateSaleLogCubitParams {
     required String saleDate,
     required int unitPrice,
     required int quantity,
+    required double weight,
     required String saleTypeId,
     required String taskId,
   }) = _CreateSaleLogCubitParams;

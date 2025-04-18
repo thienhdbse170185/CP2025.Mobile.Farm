@@ -25,6 +25,7 @@ class AnimalSaleCubit extends Cubit<AnimalSaleState> {
     required String saleDate,
     required int unitPrice,
     required int quantity,
+    required double weight,
     required String saleTypeId,
     required String taskId,
   }) async {
@@ -41,6 +42,7 @@ class AnimalSaleCubit extends Cubit<AnimalSaleState> {
         staffId: userId,
         saleTypeId: saleTypeId,
         taskId: taskId,
+        weight: weight,
       );
       final result = await repository.create(request);
       if (result) {

@@ -25,6 +25,7 @@ mixin _$CreateSaleLogCubitParams {
   String get saleDate => throw _privateConstructorUsedError;
   int get unitPrice => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  double get weight => throw _privateConstructorUsedError;
   String get saleTypeId => throw _privateConstructorUsedError;
   String get taskId => throw _privateConstructorUsedError;
 
@@ -49,6 +50,7 @@ abstract class $CreateSaleLogCubitParamsCopyWith<$Res> {
       String saleDate,
       int unitPrice,
       int quantity,
+      double weight,
       String saleTypeId,
       String taskId});
 }
@@ -73,6 +75,7 @@ class _$CreateSaleLogCubitParamsCopyWithImpl<$Res,
     Object? saleDate = null,
     Object? unitPrice = null,
     Object? quantity = null,
+    Object? weight = null,
     Object? saleTypeId = null,
     Object? taskId = null,
   }) {
@@ -93,6 +96,10 @@ class _$CreateSaleLogCubitParamsCopyWithImpl<$Res,
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      weight: null == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as double,
       saleTypeId: null == saleTypeId
           ? _value.saleTypeId
           : saleTypeId // ignore: cast_nullable_to_non_nullable
@@ -119,6 +126,7 @@ abstract class _$$CreateSaleLogCubitParamsImplCopyWith<$Res>
       String saleDate,
       int unitPrice,
       int quantity,
+      double weight,
       String saleTypeId,
       String taskId});
 }
@@ -142,6 +150,7 @@ class __$$CreateSaleLogCubitParamsImplCopyWithImpl<$Res>
     Object? saleDate = null,
     Object? unitPrice = null,
     Object? quantity = null,
+    Object? weight = null,
     Object? saleTypeId = null,
     Object? taskId = null,
   }) {
@@ -162,6 +171,10 @@ class __$$CreateSaleLogCubitParamsImplCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      weight: null == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as double,
       saleTypeId: null == saleTypeId
           ? _value.saleTypeId
           : saleTypeId // ignore: cast_nullable_to_non_nullable
@@ -182,6 +195,7 @@ class _$CreateSaleLogCubitParamsImpl implements _CreateSaleLogCubitParams {
       required this.saleDate,
       required this.unitPrice,
       required this.quantity,
+      required this.weight,
       required this.saleTypeId,
       required this.taskId});
 
@@ -197,13 +211,15 @@ class _$CreateSaleLogCubitParamsImpl implements _CreateSaleLogCubitParams {
   @override
   final int quantity;
   @override
+  final double weight;
+  @override
   final String saleTypeId;
   @override
   final String taskId;
 
   @override
   String toString() {
-    return 'CreateSaleLogCubitParams(growthStageId: $growthStageId, saleDate: $saleDate, unitPrice: $unitPrice, quantity: $quantity, saleTypeId: $saleTypeId, taskId: $taskId)';
+    return 'CreateSaleLogCubitParams(growthStageId: $growthStageId, saleDate: $saleDate, unitPrice: $unitPrice, quantity: $quantity, weight: $weight, saleTypeId: $saleTypeId, taskId: $taskId)';
   }
 
   @override
@@ -219,6 +235,7 @@ class _$CreateSaleLogCubitParamsImpl implements _CreateSaleLogCubitParams {
                 other.unitPrice == unitPrice) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.saleTypeId, saleTypeId) ||
                 other.saleTypeId == saleTypeId) &&
             (identical(other.taskId, taskId) || other.taskId == taskId));
@@ -227,7 +244,7 @@ class _$CreateSaleLogCubitParamsImpl implements _CreateSaleLogCubitParams {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, growthStageId, saleDate,
-      unitPrice, quantity, saleTypeId, taskId);
+      unitPrice, quantity, weight, saleTypeId, taskId);
 
   /// Create a copy of CreateSaleLogCubitParams
   /// with the given fields replaced by the non-null parameter values.
@@ -252,6 +269,7 @@ abstract class _CreateSaleLogCubitParams implements CreateSaleLogCubitParams {
       required final String saleDate,
       required final int unitPrice,
       required final int quantity,
+      required final double weight,
       required final String saleTypeId,
       required final String taskId}) = _$CreateSaleLogCubitParamsImpl;
 
@@ -266,6 +284,8 @@ abstract class _CreateSaleLogCubitParams implements CreateSaleLogCubitParams {
   int get unitPrice;
   @override
   int get quantity;
+  @override
+  double get weight;
   @override
   String get saleTypeId;
   @override

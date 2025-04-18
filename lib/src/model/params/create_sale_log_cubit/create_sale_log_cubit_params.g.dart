@@ -13,6 +13,7 @@ _$CreateSaleLogCubitParamsImpl _$$CreateSaleLogCubitParamsImplFromJson(
       saleDate: json['saleDate'] as String,
       unitPrice: (json['unitPrice'] as num).toInt(),
       quantity: (json['quantity'] as num).toInt(),
+      weight: (json['weight'] as num).toDouble(),
       saleTypeId: json['saleTypeId'] as String,
       taskId: json['taskId'] as String,
     );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$CreateSaleLogCubitParamsImplToJson(
       'saleDate': instance.saleDate,
       'unitPrice': instance.unitPrice,
       'quantity': instance.quantity,
+      'weight': instance.weight,
       'saleTypeId': instance.saleTypeId,
       'taskId': instance.taskId,
     };

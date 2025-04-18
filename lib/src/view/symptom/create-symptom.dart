@@ -910,6 +910,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                       quantity: widget.paramsSaleLog!.quantity,
                       saleDate: widget.paramsSaleLog!.saleDate,
                       saleTypeId: widget.paramsSaleLog!.saleTypeId,
+                      weight: widget.paramsSaleLog!.weight,
                       taskId: widget.paramsSaleLog!.taskId,
                       unitPrice: widget.paramsSaleLog!.unitPrice,
                     );

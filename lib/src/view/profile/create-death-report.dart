@@ -82,14 +82,11 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
   final _searchSymptomController = TextEditingController();
 
   final List<File> _images = [];
-  final List<GetSymptomRequest> _enteredSymptoms = [];
   final List<String> _symptomsName = [];
-  final List<UploadImageDto> _uploadedImages = [];
   MedicalSymptomResponse? symptom;
 
   FarmingBatchDto? _farmingBatch;
   GrowthStageDto? _growthStage;
-  List<SymptomDto> _symptoms = [];
   List<CageOption> _cages = [];
   UploadImageDto? _uploadedImage;
 
@@ -99,13 +96,11 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
   bool _isLoading = false;
   bool _isProcessing = false;
   bool _isEmergency = false;
-  bool _isCheckAllAnimalSick = false;
   bool _isEmptyCage = false;
   int _availableQuantity = 0;
 
   bool get _isCageSelected => _selectedCage != null;
   bool get _hasFarmingBatch => _farmingBatch != null;
-  bool get _hasSymptoms => _symptomsName.isNotEmpty;
   bool get _hasValidQuantity {
     final quantity = int.tryParse(_affectedController.text) ?? 0;
     log('Quantity: $quantity');
