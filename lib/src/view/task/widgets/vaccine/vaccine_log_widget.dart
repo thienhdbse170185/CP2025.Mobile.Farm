@@ -61,6 +61,33 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
     }
   }
 
+  // Hàm kiểm tra và giới hạn số lượng
+  void _validateAndUpdateCount(int value) {
+    // Giới hạn số lượng không vượt quá cả đàn
+    int validCount = value;
+    if (value > expectedInjectedAnimal) {
+      validCount = expectedInjectedAnimal;
+      // Hiển thị thông báo nếu muốn
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              'Số lượng không thể lớn hơn tổng số gia cầm ($expectedInjectedAnimal con)'),
+          backgroundColor: Colors.orange,
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+
+    // Cập nhật giá trị và gọi callback
+    widget.countAnimalVaccineController.text = validCount.toString();
+    widget.onCountChanged?.call(validCount);
+
+    // Đặt vị trí con trỏ ở cuối text
+    widget.countAnimalVaccineController.selection = TextSelection.fromPosition(
+      TextPosition(offset: widget.countAnimalVaccineController.text.length),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.isLoading) {
@@ -433,9 +460,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                       0;
                   if (currentValue > 0) {
                     final newValue = currentValue - 1;
-                    widget.onCountChanged?.call(newValue);
-                    widget.countAnimalVaccineController.text =
-                        newValue.toString();
+                    _validateAndUpdateCount(newValue);
                   }
                 },
                 isDisable: !isEditable,
@@ -466,9 +491,11 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                       widget.countAnimalVaccineController.selection =
                           TextSelection.fromPosition(
                               const TextPosition(offset: 1));
+                      widget.onCountChanged?.call(0);
+                      return;
                     }
                     final currentValue = int.tryParse(value) ?? 0;
-                    widget.onCountChanged?.call(currentValue);
+                    _validateAndUpdateCount(currentValue);
                   },
                   onTap: () {
                     if (widget.countAnimalVaccineController.text == '0') {
@@ -485,12 +512,12 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                       ) ??
                       0;
                   final newValue = currentValue + 1;
-                  widget.onCountChanged?.call(newValue);
-                  widget.countAnimalVaccineController.text =
-                      newValue.toString();
+                  _validateAndUpdateCount(newValue);
                 },
                 isAdd: true,
-                isDisable: !isEditable,
+                isDisable: !isEditable ||
+                    int.tryParse(widget.countAnimalVaccineController.text)! >=
+                        expectedInjectedAnimal,
               ),
             ],
           ),

@@ -441,31 +441,7 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
             getGrowthStageByCageIdFailure: (error) => setState(() =>
                 _affectedQuantity =
                     _farmingBatch!.quantity), // Fallback to total quantity
-            updateWeightInProgress: () {
-              log('[CREATE_SYMPTOM_SUCCESS] Đang cập nhật trọng lượng...');
-              setState(() => _isProcessing = true);
-              return null;
-            },
-            updateWeightSuccess: (result) {
-              log('[CREATE_SYMPTOM_SUCCESS] Cập nhật trọng lượng thành công.');
-              setState(() => _isProcessing = false);
-              // context.read<TaskBloc>().add(TaskEvent.updateTask(
-              //       widget.taskId!,
-              //       StatusDataConstant.done,
-              //       afterSymptomReport: true,
-              //     ));
-              context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
-                    widget.taskId!,
-                    StatusDataConstant.done,
-                  ));
-              return null;
-            },
-            updateWeightFailure: (error) {
-              log('[CREATE_SYMPTOM_SUCCESS] Cập nhật trọng lượng thất bại: $error');
-              setState(() => _isProcessing = false);
-              _showErrorSnackBar('Lỗi cập nhật trọng lượng: $error');
-              return null;
-            },
+
             orElse: () {
               return null;
             },

@@ -45,13 +45,13 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       }
     });
     on<_UpdateTaskAfterReport>((event, emit) async {
-      emit(const TaskState.updateStatusTaskLoading());
+      emit(const TaskState.updateTaskAfterReportLoading());
       try {
         // Add logic to update task after report
         await repository.update(event.taskId, event.statusId);
-        emit(const TaskState.updateStatusTaskSuccess());
+        emit(const TaskState.updateTaskAfterReportSuccess());
       } catch (e) {
-        emit(TaskState.updateStatusTaskFailure(e.toString()));
+        emit(TaskState.updateTaskAfterReportFailure(e.toString()));
       }
     });
     on<_DeleteTask>((event, emit) async {

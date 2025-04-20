@@ -327,6 +327,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   }
 
   void _updateTaskStatus() {
+    FocusScope.of(context).unfocus();
     if (!_canCompleteTask()) {
       String errorMessage = 'Lỗi không xác định';
 
@@ -1335,6 +1336,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   logTime = DateTime.parse(vaccineScheduleLog.date);
                   _countAnimalVaccineController.text =
                       vaccineScheduleLog.quantity.toString();
+                  logController.text = vaccineScheduleLog.notes;
+                  imageURL = vaccineScheduleLog.photo;
                 });
                 context
                     .read<VaccineScheduleCubit>()
@@ -1812,77 +1815,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               task: widget.task,
               readOnly: readOnly,
             )
-          // else if (widget.task.taskType.taskTypeId ==
-          //     TaskTypeDataConstant.eggHarvest)
-          //   BlocBuilder<GrowthStageCubit, GrowthStageState>(
-          //   builder: (context, state) {
-          //     return state.maybeWhen(
-          //       getGrowthStageByCageIdInProgress: () {
-          //         return Padding(
-          //           padding: const EdgeInsets.symmetric(vertical: 24.0),
-          //           child: Center(
-          //               child: Column(children: [
-          //             CircularProgressIndicator(),
-          //             const SizedBox(height: 16),
-          //             const Text('Đang tải báo cáo...')
-          //           ])),
-          //         );
-          //       },
-          //       getGrowthStageByCageIdSuccess: (growthStage) {
-          //         return EggHarvestLogWidget(
-          //           userName: userName,
-          //           growthStage: growthStage,
-          //           countEggCollectedController: _countEggCollectedController,
-          //           onCountChanged: readOnly
-          //               ? null
-          //               : (int value) {
-          //                   setState(() {
-          //                     _countEggCollectedController.text =
-          //                         value.toString();
-          //                   });
-          //                 },
-          //           // taskStatus: taskStatus,
-          //           task: widget.task,
-          //           logController: logController,
-          //         );
-          //       },
-          //       getGrowthStageByCageIdFailure: (message) {
-          //         return Padding(
-          //           padding: const EdgeInsets.symmetric(vertical: 24.0),
-          //           child: Center(
-          //               child: Column(children: [
-          //             const Icon(Icons.error_outline, color: Colors.red),
-          //             const SizedBox(height: 8),
-          //             Text('Đã xảy ra lỗi: $message'),
-          //             const SizedBox(height: 8),
-          //             ElevatedButton(
-          //               onPressed: () {
-          //                 context
-          //                     .read<GrowthStageCubit>()
-          //                     .getGrowthStageByCageId(widget.task.cageId);
-          //               },
-          //               child: const Text('Thử lại'),
-          //             ),
-          //           ])),
-          //         );
-          //       },
-          //       updateWeightInProgress: () {
-          //         return Padding(
-          //           padding: const EdgeInsets.symmetric(vertical: 24.0),
-          //           child: Center(
-          //               child: Column(children: [
-          //             CircularProgressIndicator(),
-          //             const SizedBox(height: 16),
-          //             const Text('Đang xử lý báo cáo...')
-          //           ])),
-          //         );
-          //       },
-          //       orElse: () {
-          //         return Container();
-          //       },
-          //     );
-          //   },
-          // )
           else if (widget.task.taskType.taskTypeId ==
                   TaskTypeDataConstant.sellAnimal ||
               widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg)

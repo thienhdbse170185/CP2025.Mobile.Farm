@@ -223,6 +223,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   void _submitForm() {
+    FocusScope.of(context).unfocus(); // Đóng bàn phím
     showDialog(
       context: context,
       builder: (_) => WarningConfirmationDialog(
@@ -233,6 +234,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
         primaryButtonText: 'Xác nhận',
         onSecondaryButtonPressed: () => Navigator.pop(context),
         onPrimaryButtonPressed: () {
+          FocusScope.of(context).unfocus(); // Đóng bàn phím
           Navigator.pop(context);
           if (_images.isNotEmpty) {
             context
@@ -707,11 +709,6 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             createVaccinScheduleLogSuccess: () {
               log('[CREATE_SYMPTOM_SCREEN] Tạo vaccin-log thành công.');
               setState(() => _isProcessing = false);
-              // context.read<TaskBloc>().add(TaskEvent.updateTask(
-              //       widget.taskId!,
-              //       StatusDataConstant.done,
-              //       afterSymptomReport: true,
-              //     ));
               context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
                     widget.taskId!,
                     StatusDataConstant.done,
@@ -728,6 +725,12 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 'cageName': _selectedCage,
                 'fromTask': true,
                 'taskId': widget.taskId
+              });
+              setState(() {
+                _isProcessing = false;
+                _selectedCage = null;
+                _farmingBatch = null;
+                _selectedCageId = null;
               });
             },
             updateTaskAfterReportFailure: (error) {
@@ -758,7 +761,36 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               return null;
             },
           );
-        })
+        }),
+        BlocListener<VaccineScheduleLogCubit, VaccineScheduleLogState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              createVaccineScheduleLogInProgress: () {
+                log('[CREATE_SYMPTOM_SCREEN] Đang tạo vaccin-log...');
+                setState(() => _isProcessing = true);
+              },
+              createVaccineScheduleLogSuccess: () {
+                log('[CREATE_SYMPTOM_SCREEN] Tạo vaccin-log thành công.');
+                setState(() => _isProcessing = false);
+                // context.read<TaskBloc>().add(TaskEvent.updateTask(
+                //       widget.taskId!,
+                //       StatusDataConstant.done,
+                //       afterSymptomReport: true,
+                //     ));
+                context.read<TaskBloc>().add(TaskEvent.updateTaskAfterReport(
+                      widget.taskId!,
+                      StatusDataConstant.done,
+                    ));
+              },
+              createVaccineScheduleLogFailure: (error) {
+                log('[CREATE_SYMPTOM_SCREEN] Tạo vaccin-log thất bại: $error');
+                setState(() => _isProcessing = false);
+                _showErrorSnackBar('Lỗi tạo vaccin-log: $error');
+              },
+              orElse: () {},
+            );
+          },
+        )
       ],
       child: WillPopScope(
         onWillPop: _onWillPop,
