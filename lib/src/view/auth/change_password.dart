@@ -60,7 +60,7 @@ class _ChangePasswordNewbieScreenState extends State<ChangePasswordScreen> {
               _isLoading = true;
             });
           },
-          getUserProfileByUserIdSuccess: () {
+          getUserProfileByUserIdSuccess: (_) {
             context.read<UserBloc>().add(UserEvent.sendOTPSms(
                   username: widget.username,
                   isResend: false,

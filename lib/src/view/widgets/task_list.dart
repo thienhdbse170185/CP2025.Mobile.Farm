@@ -175,7 +175,7 @@ class TaskListWidget extends StatelessWidget {
                                                 width: MediaQuery.of(context)
                                                         .size
                                                         .width *
-                                                    0.45,
+                                                    0.35,
                                                 child: Text(
                                                   task.taskName,
                                                   style: TextStyle(

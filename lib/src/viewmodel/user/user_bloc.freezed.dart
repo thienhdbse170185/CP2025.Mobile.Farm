@@ -31,6 +31,7 @@ mixin _$UserEvent {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,6 +46,7 @@ mixin _$UserEvent {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +61,7 @@ mixin _$UserEvent {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +77,7 @@ mixin _$UserEvent {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +91,7 @@ mixin _$UserEvent {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -100,6 +105,7 @@ mixin _$UserEvent {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -179,6 +185,7 @@ class _$StartedImpl implements _Started {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return started();
   }
@@ -196,6 +203,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return started?.call();
   }
@@ -213,6 +221,7 @@ class _$StartedImpl implements _Started {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -234,6 +243,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return started(this);
   }
@@ -250,6 +260,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return started?.call(this);
   }
@@ -266,6 +277,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -363,6 +375,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return getUserProfile(isAppStart);
   }
@@ -380,6 +393,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return getUserProfile?.call(isAppStart);
   }
@@ -397,6 +411,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (getUserProfile != null) {
@@ -418,6 +433,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return getUserProfile(this);
   }
@@ -434,6 +450,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return getUserProfile?.call(this);
   }
@@ -450,6 +467,7 @@ class _$GetUserProfileImpl implements _GetUserProfile {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (getUserProfile != null) {
@@ -525,6 +543,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return getServerTime();
   }
@@ -542,6 +561,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return getServerTime?.call();
   }
@@ -559,6 +579,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (getServerTime != null) {
@@ -580,6 +601,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return getServerTime(this);
   }
@@ -596,6 +618,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return getServerTime?.call(this);
   }
@@ -612,6 +635,7 @@ class _$GetServerTimeImpl implements _GetServerTime {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (getServerTime != null) {
@@ -679,6 +703,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return updateDeviceToken();
   }
@@ -696,6 +721,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return updateDeviceToken?.call();
   }
@@ -713,6 +739,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (updateDeviceToken != null) {
@@ -734,6 +761,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return updateDeviceToken(this);
   }
@@ -750,6 +778,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return updateDeviceToken?.call(this);
   }
@@ -766,6 +795,7 @@ class _$UpdateDeviceTokenImpl implements _UpdateDeviceToken {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (updateDeviceToken != null) {
@@ -879,6 +909,7 @@ class _$SendOTPImpl implements _SendOTP {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return sendOTP(username, isResend, email);
   }
@@ -896,6 +927,7 @@ class _$SendOTPImpl implements _SendOTP {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return sendOTP?.call(username, isResend, email);
   }
@@ -913,6 +945,7 @@ class _$SendOTPImpl implements _SendOTP {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (sendOTP != null) {
@@ -934,6 +967,7 @@ class _$SendOTPImpl implements _SendOTP {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return sendOTP(this);
   }
@@ -950,6 +984,7 @@ class _$SendOTPImpl implements _SendOTP {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return sendOTP?.call(this);
   }
@@ -966,6 +1001,7 @@ class _$SendOTPImpl implements _SendOTP {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (sendOTP != null) {
@@ -1093,6 +1129,7 @@ class _$SendOTPSmsImpl implements _SendOTPSms {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return sendOTPSms(phoneNumber, username, isResend);
   }
@@ -1110,6 +1147,7 @@ class _$SendOTPSmsImpl implements _SendOTPSms {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return sendOTPSms?.call(phoneNumber, username, isResend);
   }
@@ -1127,6 +1165,7 @@ class _$SendOTPSmsImpl implements _SendOTPSms {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (sendOTPSms != null) {
@@ -1148,6 +1187,7 @@ class _$SendOTPSmsImpl implements _SendOTPSms {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return sendOTPSms(this);
   }
@@ -1164,6 +1204,7 @@ class _$SendOTPSmsImpl implements _SendOTPSms {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return sendOTPSms?.call(this);
   }
@@ -1180,6 +1221,7 @@ class _$SendOTPSmsImpl implements _SendOTPSms {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (sendOTPSms != null) {
@@ -1299,6 +1341,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return updatePassword(oldPassword, newPassword);
   }
@@ -1316,6 +1359,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return updatePassword?.call(oldPassword, newPassword);
   }
@@ -1333,6 +1377,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (updatePassword != null) {
@@ -1354,6 +1399,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return updatePassword(this);
   }
@@ -1370,6 +1416,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return updatePassword?.call(this);
   }
@@ -1386,6 +1433,7 @@ class _$UpdatePasswordImpl implements _UpdatePassword {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (updatePassword != null) {
@@ -1499,6 +1547,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return verifyOTP(email, otp);
   }
@@ -1516,6 +1565,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return verifyOTP?.call(email, otp);
   }
@@ -1533,6 +1583,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (verifyOTP != null) {
@@ -1554,6 +1605,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return verifyOTP(this);
   }
@@ -1570,6 +1622,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return verifyOTP?.call(this);
   }
@@ -1586,6 +1639,7 @@ class _$VerifyOTPImpl implements _VerifyOTP {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (verifyOTP != null) {
@@ -1667,6 +1721,7 @@ class _$GetUserProfileByUserIdImpl implements _GetUserProfileByUserId {
         updatePassword,
     required TResult Function(String email, String otp) verifyOTP,
     required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
   }) {
     return getUserProfileByUserId();
   }
@@ -1684,6 +1739,7 @@ class _$GetUserProfileByUserIdImpl implements _GetUserProfileByUserId {
     TResult? Function(String oldPassword, String newPassword)? updatePassword,
     TResult? Function(String email, String otp)? verifyOTP,
     TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
   }) {
     return getUserProfileByUserId?.call();
   }
@@ -1701,6 +1757,7 @@ class _$GetUserProfileByUserIdImpl implements _GetUserProfileByUserId {
     TResult Function(String oldPassword, String newPassword)? updatePassword,
     TResult Function(String email, String otp)? verifyOTP,
     TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserId != null) {
@@ -1722,6 +1779,7 @@ class _$GetUserProfileByUserIdImpl implements _GetUserProfileByUserId {
     required TResult Function(_VerifyOTP value) verifyOTP,
     required TResult Function(_GetUserProfileByUserId value)
         getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
   }) {
     return getUserProfileByUserId(this);
   }
@@ -1738,6 +1796,7 @@ class _$GetUserProfileByUserIdImpl implements _GetUserProfileByUserId {
     TResult? Function(_UpdatePassword value)? updatePassword,
     TResult? Function(_VerifyOTP value)? verifyOTP,
     TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
   }) {
     return getUserProfileByUserId?.call(this);
   }
@@ -1754,6 +1813,7 @@ class _$GetUserProfileByUserIdImpl implements _GetUserProfileByUserId {
     TResult Function(_UpdatePassword value)? updatePassword,
     TResult Function(_VerifyOTP value)? verifyOTP,
     TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserId != null) {
@@ -1765,6 +1825,204 @@ class _$GetUserProfileByUserIdImpl implements _GetUserProfileByUserId {
 
 abstract class _GetUserProfileByUserId implements UserEvent {
   const factory _GetUserProfileByUserId() = _$GetUserProfileByUserIdImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserInfoImplCopyWith<$Res> {
+  factory _$$UpdateUserInfoImplCopyWith(_$UpdateUserInfoImpl value,
+          $Res Function(_$UpdateUserInfoImpl) then) =
+      __$$UpdateUserInfoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UpdateUserInfoRequest request});
+}
+
+/// @nodoc
+class __$$UpdateUserInfoImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UpdateUserInfoImpl>
+    implements _$$UpdateUserInfoImplCopyWith<$Res> {
+  __$$UpdateUserInfoImplCopyWithImpl(
+      _$UpdateUserInfoImpl _value, $Res Function(_$UpdateUserInfoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = freezed,
+  }) {
+    return _then(_$UpdateUserInfoImpl(
+      request: freezed == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as UpdateUserInfoRequest,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateUserInfoImpl implements _UpdateUserInfo {
+  const _$UpdateUserInfoImpl({required this.request});
+
+  @override
+  final UpdateUserInfoRequest request;
+
+  @override
+  String toString() {
+    return 'UserEvent.updateUserInfo(request: $request)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserInfoImpl &&
+            const DeepCollectionEquality().equals(other.request, request));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(request));
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateUserInfoImplCopyWith<_$UpdateUserInfoImpl> get copyWith =>
+      __$$UpdateUserInfoImplCopyWithImpl<_$UpdateUserInfoImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(bool isAppStart) getUserProfile,
+    required TResult Function() getServerTime,
+    required TResult Function() updateDeviceToken,
+    required TResult Function(String username, bool isResend, String? email)
+        sendOTP,
+    required TResult Function(
+            String? phoneNumber, String username, bool isResend)
+        sendOTPSms,
+    required TResult Function(String oldPassword, String newPassword)
+        updatePassword,
+    required TResult Function(String email, String otp) verifyOTP,
+    required TResult Function() getUserProfileByUserId,
+    required TResult Function(UpdateUserInfoRequest request) updateUserInfo,
+  }) {
+    return updateUserInfo(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(bool isAppStart)? getUserProfile,
+    TResult? Function()? getServerTime,
+    TResult? Function()? updateDeviceToken,
+    TResult? Function(String username, bool isResend, String? email)? sendOTP,
+    TResult? Function(String? phoneNumber, String username, bool isResend)?
+        sendOTPSms,
+    TResult? Function(String oldPassword, String newPassword)? updatePassword,
+    TResult? Function(String email, String otp)? verifyOTP,
+    TResult? Function()? getUserProfileByUserId,
+    TResult? Function(UpdateUserInfoRequest request)? updateUserInfo,
+  }) {
+    return updateUserInfo?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(bool isAppStart)? getUserProfile,
+    TResult Function()? getServerTime,
+    TResult Function()? updateDeviceToken,
+    TResult Function(String username, bool isResend, String? email)? sendOTP,
+    TResult Function(String? phoneNumber, String username, bool isResend)?
+        sendOTPSms,
+    TResult Function(String oldPassword, String newPassword)? updatePassword,
+    TResult Function(String email, String otp)? verifyOTP,
+    TResult Function()? getUserProfileByUserId,
+    TResult Function(UpdateUserInfoRequest request)? updateUserInfo,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfo != null) {
+      return updateUserInfo(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetUserProfile value) getUserProfile,
+    required TResult Function(_GetServerTime value) getServerTime,
+    required TResult Function(_UpdateDeviceToken value) updateDeviceToken,
+    required TResult Function(_SendOTP value) sendOTP,
+    required TResult Function(_SendOTPSms value) sendOTPSms,
+    required TResult Function(_UpdatePassword value) updatePassword,
+    required TResult Function(_VerifyOTP value) verifyOTP,
+    required TResult Function(_GetUserProfileByUserId value)
+        getUserProfileByUserId,
+    required TResult Function(_UpdateUserInfo value) updateUserInfo,
+  }) {
+    return updateUserInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetUserProfile value)? getUserProfile,
+    TResult? Function(_GetServerTime value)? getServerTime,
+    TResult? Function(_UpdateDeviceToken value)? updateDeviceToken,
+    TResult? Function(_SendOTP value)? sendOTP,
+    TResult? Function(_SendOTPSms value)? sendOTPSms,
+    TResult? Function(_UpdatePassword value)? updatePassword,
+    TResult? Function(_VerifyOTP value)? verifyOTP,
+    TResult? Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult? Function(_UpdateUserInfo value)? updateUserInfo,
+  }) {
+    return updateUserInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetUserProfile value)? getUserProfile,
+    TResult Function(_GetServerTime value)? getServerTime,
+    TResult Function(_UpdateDeviceToken value)? updateDeviceToken,
+    TResult Function(_SendOTP value)? sendOTP,
+    TResult Function(_SendOTPSms value)? sendOTPSms,
+    TResult Function(_UpdatePassword value)? updatePassword,
+    TResult Function(_VerifyOTP value)? verifyOTP,
+    TResult Function(_GetUserProfileByUserId value)? getUserProfileByUserId,
+    TResult Function(_UpdateUserInfo value)? updateUserInfo,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfo != null) {
+      return updateUserInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUserInfo implements UserEvent {
+  const factory _UpdateUserInfo(
+      {required final UpdateUserInfoRequest request}) = _$UpdateUserInfoImpl;
+
+  UpdateUserInfoRequest get request;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateUserInfoImplCopyWith<_$UpdateUserInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1795,8 +2053,11 @@ mixin _$UserState {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1825,8 +2086,11 @@ mixin _$UserState {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1855,8 +2119,11 @@ mixin _$UserState {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1900,6 +2167,12 @@ mixin _$UserState {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1937,6 +2210,10 @@ mixin _$UserState {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1970,6 +2247,9 @@ mixin _$UserState {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2060,8 +2340,11 @@ class _$InitialImpl implements _Initial {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return initial();
   }
@@ -2093,8 +2376,11 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return initial?.call();
   }
@@ -2126,8 +2412,11 @@ class _$InitialImpl implements _Initial {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -2177,6 +2466,12 @@ class _$InitialImpl implements _Initial {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return initial(this);
   }
@@ -2217,6 +2512,10 @@ class _$InitialImpl implements _Initial {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return initial?.call(this);
   }
@@ -2253,6 +2552,9 @@ class _$InitialImpl implements _Initial {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -2334,8 +2636,11 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getUserProfileInProgress();
   }
@@ -2367,8 +2672,11 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getUserProfileInProgress?.call();
   }
@@ -2400,8 +2708,11 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileInProgress != null) {
@@ -2451,6 +2762,12 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getUserProfileInProgress(this);
   }
@@ -2491,6 +2808,10 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getUserProfileInProgress?.call(this);
   }
@@ -2527,6 +2848,9 @@ class _$GetUserProfileInProgressImpl implements _GetUserProfileInProgress {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileInProgress != null) {
@@ -2652,8 +2976,11 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getUserProfileSuccess(userName, email, isAppStart);
   }
@@ -2685,8 +3012,11 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getUserProfileSuccess?.call(userName, email, isAppStart);
   }
@@ -2718,8 +3048,11 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileSuccess != null) {
@@ -2769,6 +3102,12 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getUserProfileSuccess(this);
   }
@@ -2809,6 +3148,10 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getUserProfileSuccess?.call(this);
   }
@@ -2845,6 +3188,9 @@ class _$GetUserProfileSuccessImpl implements _GetUserProfileSuccess {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileSuccess != null) {
@@ -2964,8 +3310,11 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getUserProfileFailure(message);
   }
@@ -2997,8 +3346,11 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getUserProfileFailure?.call(message);
   }
@@ -3030,8 +3382,11 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileFailure != null) {
@@ -3081,6 +3436,12 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getUserProfileFailure(this);
   }
@@ -3121,6 +3482,10 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getUserProfileFailure?.call(this);
   }
@@ -3157,6 +3522,9 @@ class _$GetUserProfileFailureImpl implements _GetUserProfileFailure {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileFailure != null) {
@@ -3247,8 +3615,11 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getServerTimeInProgress();
   }
@@ -3280,8 +3651,11 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getServerTimeInProgress?.call();
   }
@@ -3313,8 +3687,11 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getServerTimeInProgress != null) {
@@ -3364,6 +3741,12 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getServerTimeInProgress(this);
   }
@@ -3404,6 +3787,10 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getServerTimeInProgress?.call(this);
   }
@@ -3440,6 +3827,9 @@ class _$GetServerTimeInProgressImpl implements _GetServerTimeInProgress {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getServerTimeInProgress != null) {
@@ -3548,8 +3938,11 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getServerTimeSuccess(serverTime);
   }
@@ -3581,8 +3974,11 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getServerTimeSuccess?.call(serverTime);
   }
@@ -3614,8 +4010,11 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getServerTimeSuccess != null) {
@@ -3665,6 +4064,12 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getServerTimeSuccess(this);
   }
@@ -3705,6 +4110,10 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getServerTimeSuccess?.call(this);
   }
@@ -3741,6 +4150,9 @@ class _$GetServerTimeSuccessImpl implements _GetServerTimeSuccess {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getServerTimeSuccess != null) {
@@ -3857,8 +4269,11 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getServerTimeFailure(message);
   }
@@ -3890,8 +4305,11 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getServerTimeFailure?.call(message);
   }
@@ -3923,8 +4341,11 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getServerTimeFailure != null) {
@@ -3974,6 +4395,12 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getServerTimeFailure(this);
   }
@@ -4014,6 +4441,10 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getServerTimeFailure?.call(this);
   }
@@ -4050,6 +4481,9 @@ class _$GetServerTimeFailureImpl implements _GetServerTimeFailure {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getServerTimeFailure != null) {
@@ -4141,8 +4575,11 @@ class _$UpdateDeviceTokenInProgressImpl
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return updateDeviceTokenInProgress();
   }
@@ -4174,8 +4611,11 @@ class _$UpdateDeviceTokenInProgressImpl
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return updateDeviceTokenInProgress?.call();
   }
@@ -4207,8 +4647,11 @@ class _$UpdateDeviceTokenInProgressImpl
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updateDeviceTokenInProgress != null) {
@@ -4258,6 +4701,12 @@ class _$UpdateDeviceTokenInProgressImpl
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return updateDeviceTokenInProgress(this);
   }
@@ -4298,6 +4747,10 @@ class _$UpdateDeviceTokenInProgressImpl
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return updateDeviceTokenInProgress?.call(this);
   }
@@ -4334,6 +4787,9 @@ class _$UpdateDeviceTokenInProgressImpl
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updateDeviceTokenInProgress != null) {
@@ -4416,8 +4872,11 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return updateDeviceTokenSuccess();
   }
@@ -4449,8 +4908,11 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return updateDeviceTokenSuccess?.call();
   }
@@ -4482,8 +4944,11 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updateDeviceTokenSuccess != null) {
@@ -4533,6 +4998,12 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return updateDeviceTokenSuccess(this);
   }
@@ -4573,6 +5044,10 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return updateDeviceTokenSuccess?.call(this);
   }
@@ -4609,6 +5084,9 @@ class _$UpdateDeviceTokenSuccessImpl implements _UpdateDeviceTokenSuccess {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updateDeviceTokenSuccess != null) {
@@ -4717,8 +5195,11 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return updateDeviceTokenFailure(message);
   }
@@ -4750,8 +5231,11 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return updateDeviceTokenFailure?.call(message);
   }
@@ -4783,8 +5267,11 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updateDeviceTokenFailure != null) {
@@ -4834,6 +5321,12 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return updateDeviceTokenFailure(this);
   }
@@ -4874,6 +5367,10 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return updateDeviceTokenFailure?.call(this);
   }
@@ -4910,6 +5407,9 @@ class _$UpdateDeviceTokenFailureImpl implements _UpdateDeviceTokenFailure {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updateDeviceTokenFailure != null) {
@@ -4997,8 +5497,11 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return sendOTPInProgress();
   }
@@ -5030,8 +5533,11 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return sendOTPInProgress?.call();
   }
@@ -5063,8 +5569,11 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPInProgress != null) {
@@ -5114,6 +5623,12 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return sendOTPInProgress(this);
   }
@@ -5154,6 +5669,10 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return sendOTPInProgress?.call(this);
   }
@@ -5190,6 +5709,9 @@ class _$SendOTPInProgressImpl implements _SendOTPInProgress {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPInProgress != null) {
@@ -5296,8 +5818,11 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return sendOTPSuccess(email);
   }
@@ -5329,8 +5854,11 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return sendOTPSuccess?.call(email);
   }
@@ -5362,8 +5890,11 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSuccess != null) {
@@ -5413,6 +5944,12 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return sendOTPSuccess(this);
   }
@@ -5453,6 +5990,10 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return sendOTPSuccess?.call(this);
   }
@@ -5489,6 +6030,9 @@ class _$SendOTPSuccessImpl implements _SendOTPSuccess {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSuccess != null) {
@@ -5603,8 +6147,11 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return sendOTPFailure(message);
   }
@@ -5636,8 +6183,11 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return sendOTPFailure?.call(message);
   }
@@ -5669,8 +6219,11 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPFailure != null) {
@@ -5720,6 +6273,12 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return sendOTPFailure(this);
   }
@@ -5760,6 +6319,10 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return sendOTPFailure?.call(this);
   }
@@ -5796,6 +6359,9 @@ class _$SendOTPFailureImpl implements _SendOTPFailure {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPFailure != null) {
@@ -5883,8 +6449,11 @@ class _$SendOTPSmsInProgressImpl implements _SendOTPSmsInProgress {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return sendOTPSmsInProgress();
   }
@@ -5916,8 +6485,11 @@ class _$SendOTPSmsInProgressImpl implements _SendOTPSmsInProgress {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return sendOTPSmsInProgress?.call();
   }
@@ -5949,8 +6521,11 @@ class _$SendOTPSmsInProgressImpl implements _SendOTPSmsInProgress {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSmsInProgress != null) {
@@ -6000,6 +6575,12 @@ class _$SendOTPSmsInProgressImpl implements _SendOTPSmsInProgress {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return sendOTPSmsInProgress(this);
   }
@@ -6040,6 +6621,10 @@ class _$SendOTPSmsInProgressImpl implements _SendOTPSmsInProgress {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return sendOTPSmsInProgress?.call(this);
   }
@@ -6076,6 +6661,9 @@ class _$SendOTPSmsInProgressImpl implements _SendOTPSmsInProgress {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSmsInProgress != null) {
@@ -6183,8 +6771,11 @@ class _$SendOTPSmsSuccessImpl implements _SendOTPSmsSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return sendOTPSmsSuccess(phoneNumber);
   }
@@ -6216,8 +6807,11 @@ class _$SendOTPSmsSuccessImpl implements _SendOTPSmsSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return sendOTPSmsSuccess?.call(phoneNumber);
   }
@@ -6249,8 +6843,11 @@ class _$SendOTPSmsSuccessImpl implements _SendOTPSmsSuccess {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSmsSuccess != null) {
@@ -6300,6 +6897,12 @@ class _$SendOTPSmsSuccessImpl implements _SendOTPSmsSuccess {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return sendOTPSmsSuccess(this);
   }
@@ -6340,6 +6943,10 @@ class _$SendOTPSmsSuccessImpl implements _SendOTPSmsSuccess {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return sendOTPSmsSuccess?.call(this);
   }
@@ -6376,6 +6983,9 @@ class _$SendOTPSmsSuccessImpl implements _SendOTPSmsSuccess {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSmsSuccess != null) {
@@ -6491,8 +7101,11 @@ class _$SendOTPSmsFailureImpl implements _SendOTPSmsFailure {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return sendOTPSmsFailure(message);
   }
@@ -6524,8 +7137,11 @@ class _$SendOTPSmsFailureImpl implements _SendOTPSmsFailure {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return sendOTPSmsFailure?.call(message);
   }
@@ -6557,8 +7173,11 @@ class _$SendOTPSmsFailureImpl implements _SendOTPSmsFailure {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSmsFailure != null) {
@@ -6608,6 +7227,12 @@ class _$SendOTPSmsFailureImpl implements _SendOTPSmsFailure {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return sendOTPSmsFailure(this);
   }
@@ -6648,6 +7273,10 @@ class _$SendOTPSmsFailureImpl implements _SendOTPSmsFailure {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return sendOTPSmsFailure?.call(this);
   }
@@ -6684,6 +7313,9 @@ class _$SendOTPSmsFailureImpl implements _SendOTPSmsFailure {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (sendOTPSmsFailure != null) {
@@ -6774,8 +7406,11 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return updatePasswordInProgress();
   }
@@ -6807,8 +7442,11 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return updatePasswordInProgress?.call();
   }
@@ -6840,8 +7478,11 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updatePasswordInProgress != null) {
@@ -6891,6 +7532,12 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return updatePasswordInProgress(this);
   }
@@ -6931,6 +7578,10 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return updatePasswordInProgress?.call(this);
   }
@@ -6967,6 +7618,9 @@ class _$UpdatePasswordInProgressImpl implements _UpdatePasswordInProgress {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updatePasswordInProgress != null) {
@@ -7047,8 +7701,11 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return updatePasswordSuccess();
   }
@@ -7080,8 +7737,11 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return updatePasswordSuccess?.call();
   }
@@ -7113,8 +7773,11 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updatePasswordSuccess != null) {
@@ -7164,6 +7827,12 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return updatePasswordSuccess(this);
   }
@@ -7204,6 +7873,10 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return updatePasswordSuccess?.call(this);
   }
@@ -7240,6 +7913,9 @@ class _$UpdatePasswordSuccessImpl implements _UpdatePasswordSuccess {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updatePasswordSuccess != null) {
@@ -7347,8 +8023,11 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return updatePasswordFailure(message);
   }
@@ -7380,8 +8059,11 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return updatePasswordFailure?.call(message);
   }
@@ -7413,8 +8095,11 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updatePasswordFailure != null) {
@@ -7464,6 +8149,12 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return updatePasswordFailure(this);
   }
@@ -7504,6 +8195,10 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return updatePasswordFailure?.call(this);
   }
@@ -7540,6 +8235,9 @@ class _$UpdatePasswordFailureImpl implements _UpdatePasswordFailure {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (updatePasswordFailure != null) {
@@ -7628,8 +8326,11 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return verifyOTPInProgress();
   }
@@ -7661,8 +8362,11 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return verifyOTPInProgress?.call();
   }
@@ -7694,8 +8398,11 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (verifyOTPInProgress != null) {
@@ -7745,6 +8452,12 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return verifyOTPInProgress(this);
   }
@@ -7785,6 +8498,10 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return verifyOTPInProgress?.call(this);
   }
@@ -7821,6 +8538,9 @@ class _$VerifyOTPInProgressImpl implements _VerifyOTPInProgress {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (verifyOTPInProgress != null) {
@@ -7899,8 +8619,11 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return verifyOTPSuccess();
   }
@@ -7932,8 +8655,11 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return verifyOTPSuccess?.call();
   }
@@ -7965,8 +8691,11 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (verifyOTPSuccess != null) {
@@ -8016,6 +8745,12 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return verifyOTPSuccess(this);
   }
@@ -8056,6 +8791,10 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return verifyOTPSuccess?.call(this);
   }
@@ -8092,6 +8831,9 @@ class _$VerifyOTPSuccessImpl implements _VerifyOTPSuccess {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (verifyOTPSuccess != null) {
@@ -8198,8 +8940,11 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return verifyOTPFailure(message);
   }
@@ -8231,8 +8976,11 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return verifyOTPFailure?.call(message);
   }
@@ -8264,8 +9012,11 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (verifyOTPFailure != null) {
@@ -8315,6 +9066,12 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return verifyOTPFailure(this);
   }
@@ -8355,6 +9112,10 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return verifyOTPFailure?.call(this);
   }
@@ -8391,6 +9152,9 @@ class _$VerifyOTPFailureImpl implements _VerifyOTPFailure {
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (verifyOTPFailure != null) {
@@ -8483,8 +9247,11 @@ class _$GetUserProfileByUserIdInProgressImpl
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdInProgress();
   }
@@ -8516,8 +9283,11 @@ class _$GetUserProfileByUserIdInProgressImpl
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdInProgress?.call();
   }
@@ -8549,8 +9319,11 @@ class _$GetUserProfileByUserIdInProgressImpl
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserIdInProgress != null) {
@@ -8600,6 +9373,12 @@ class _$GetUserProfileByUserIdInProgressImpl
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdInProgress(this);
   }
@@ -8640,6 +9419,10 @@ class _$GetUserProfileByUserIdInProgressImpl
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdInProgress?.call(this);
   }
@@ -8676,6 +9459,9 @@ class _$GetUserProfileByUserIdInProgressImpl
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserIdInProgress != null) {
@@ -8696,6 +9482,10 @@ abstract class _$$GetUserProfileByUserIdSuccessImplCopyWith<$Res> {
           _$GetUserProfileByUserIdSuccessImpl value,
           $Res Function(_$GetUserProfileByUserIdSuccessImpl) then) =
       __$$GetUserProfileByUserIdSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserDto userInfo});
+
+  $UserDtoCopyWith<$Res> get userInfo;
 }
 
 /// @nodoc
@@ -8709,28 +9499,65 @@ class __$$GetUserProfileByUserIdSuccessImplCopyWithImpl<$Res>
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userInfo = null,
+  }) {
+    return _then(_$GetUserProfileByUserIdSuccessImpl(
+      null == userInfo
+          ? _value.userInfo
+          : userInfo // ignore: cast_nullable_to_non_nullable
+              as UserDto,
+    ));
+  }
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDtoCopyWith<$Res> get userInfo {
+    return $UserDtoCopyWith<$Res>(_value.userInfo, (value) {
+      return _then(_value.copyWith(userInfo: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$GetUserProfileByUserIdSuccessImpl
     implements _GetUserProfileByUserIdSuccess {
-  const _$GetUserProfileByUserIdSuccessImpl();
+  const _$GetUserProfileByUserIdSuccessImpl(this.userInfo);
+
+  @override
+  final UserDto userInfo;
 
   @override
   String toString() {
-    return 'UserState.getUserProfileByUserIdSuccess()';
+    return 'UserState.getUserProfileByUserIdSuccess(userInfo: $userInfo)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetUserProfileByUserIdSuccessImpl);
+            other is _$GetUserProfileByUserIdSuccessImpl &&
+            (identical(other.userInfo, userInfo) ||
+                other.userInfo == userInfo));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, userInfo);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUserProfileByUserIdSuccessImplCopyWith<
+          _$GetUserProfileByUserIdSuccessImpl>
+      get copyWith => __$$GetUserProfileByUserIdSuccessImplCopyWithImpl<
+          _$GetUserProfileByUserIdSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -8759,10 +9586,13 @@ class _$GetUserProfileByUserIdSuccessImpl
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
-    return getUserProfileByUserIdSuccess();
+    return getUserProfileByUserIdSuccess(userInfo);
   }
 
   @override
@@ -8792,10 +9622,13 @@ class _$GetUserProfileByUserIdSuccessImpl
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
-    return getUserProfileByUserIdSuccess?.call();
+    return getUserProfileByUserIdSuccess?.call(userInfo);
   }
 
   @override
@@ -8825,12 +9658,15 @@ class _$GetUserProfileByUserIdSuccessImpl
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserIdSuccess != null) {
-      return getUserProfileByUserIdSuccess();
+      return getUserProfileByUserIdSuccess(userInfo);
     }
     return orElse();
   }
@@ -8876,6 +9712,12 @@ class _$GetUserProfileByUserIdSuccessImpl
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdSuccess(this);
   }
@@ -8916,6 +9758,10 @@ class _$GetUserProfileByUserIdSuccessImpl
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdSuccess?.call(this);
   }
@@ -8952,6 +9798,9 @@ class _$GetUserProfileByUserIdSuccessImpl
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserIdSuccess != null) {
@@ -8962,8 +9811,17 @@ class _$GetUserProfileByUserIdSuccessImpl
 }
 
 abstract class _GetUserProfileByUserIdSuccess implements UserState {
-  const factory _GetUserProfileByUserIdSuccess() =
+  const factory _GetUserProfileByUserIdSuccess(final UserDto userInfo) =
       _$GetUserProfileByUserIdSuccessImpl;
+
+  UserDto get userInfo;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetUserProfileByUserIdSuccessImplCopyWith<
+          _$GetUserProfileByUserIdSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -9063,8 +9921,11 @@ class _$GetUserProfileByUserIdFailureImpl
     required TResult Function() verifyOTPSuccess,
     required TResult Function(String message) verifyOTPFailure,
     required TResult Function() getUserProfileByUserIdInProgress,
-    required TResult Function() getUserProfileByUserIdSuccess,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
     required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdFailure(message);
   }
@@ -9096,8 +9957,11 @@ class _$GetUserProfileByUserIdFailureImpl
     TResult? Function()? verifyOTPSuccess,
     TResult? Function(String message)? verifyOTPFailure,
     TResult? Function()? getUserProfileByUserIdInProgress,
-    TResult? Function()? getUserProfileByUserIdSuccess,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdFailure?.call(message);
   }
@@ -9129,8 +9993,11 @@ class _$GetUserProfileByUserIdFailureImpl
     TResult Function()? verifyOTPSuccess,
     TResult Function(String message)? verifyOTPFailure,
     TResult Function()? getUserProfileByUserIdInProgress,
-    TResult Function()? getUserProfileByUserIdSuccess,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
     TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserIdFailure != null) {
@@ -9180,6 +10047,12 @@ class _$GetUserProfileByUserIdFailureImpl
         getUserProfileByUserIdSuccess,
     required TResult Function(_GetUserProfileByUserIdFailure value)
         getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdFailure(this);
   }
@@ -9220,6 +10093,10 @@ class _$GetUserProfileByUserIdFailureImpl
         getUserProfileByUserIdSuccess,
     TResult? Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
   }) {
     return getUserProfileByUserIdFailure?.call(this);
   }
@@ -9256,6 +10133,9 @@ class _$GetUserProfileByUserIdFailureImpl
         getUserProfileByUserIdSuccess,
     TResult Function(_GetUserProfileByUserIdFailure value)?
         getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
     required TResult orElse(),
   }) {
     if (getUserProfileByUserIdFailure != null) {
@@ -9276,5 +10156,927 @@ abstract class _GetUserProfileByUserIdFailure implements UserState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetUserProfileByUserIdFailureImplCopyWith<
           _$GetUserProfileByUserIdFailureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserInfoInProgressImplCopyWith<$Res> {
+  factory _$$UpdateUserInfoInProgressImplCopyWith(
+          _$UpdateUserInfoInProgressImpl value,
+          $Res Function(_$UpdateUserInfoInProgressImpl) then) =
+      __$$UpdateUserInfoInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateUserInfoInProgressImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UpdateUserInfoInProgressImpl>
+    implements _$$UpdateUserInfoInProgressImplCopyWith<$Res> {
+  __$$UpdateUserInfoInProgressImplCopyWithImpl(
+      _$UpdateUserInfoInProgressImpl _value,
+      $Res Function(_$UpdateUserInfoInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UpdateUserInfoInProgressImpl implements _UpdateUserInfoInProgress {
+  const _$UpdateUserInfoInProgressImpl();
+
+  @override
+  String toString() {
+    return 'UserState.updateUserInfoInProgress()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserInfoInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getUserProfileInProgress,
+    required TResult Function(String userName, String email, bool isAppStart)
+        getUserProfileSuccess,
+    required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
+    required TResult Function() updateDeviceTokenInProgress,
+    required TResult Function() updateDeviceTokenSuccess,
+    required TResult Function(String message) updateDeviceTokenFailure,
+    required TResult Function() sendOTPInProgress,
+    required TResult Function(String email) sendOTPSuccess,
+    required TResult Function(String message) sendOTPFailure,
+    required TResult Function() sendOTPSmsInProgress,
+    required TResult Function(String phoneNumber) sendOTPSmsSuccess,
+    required TResult Function(String message) sendOTPSmsFailure,
+    required TResult Function() updatePasswordInProgress,
+    required TResult Function() updatePasswordSuccess,
+    required TResult Function(String message) updatePasswordFailure,
+    required TResult Function() verifyOTPInProgress,
+    required TResult Function() verifyOTPSuccess,
+    required TResult Function(String message) verifyOTPFailure,
+    required TResult Function() getUserProfileByUserIdInProgress,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
+    required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
+  }) {
+    return updateUserInfoInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getUserProfileInProgress,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
+    TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
+    TResult? Function()? updateDeviceTokenInProgress,
+    TResult? Function()? updateDeviceTokenSuccess,
+    TResult? Function(String message)? updateDeviceTokenFailure,
+    TResult? Function()? sendOTPInProgress,
+    TResult? Function(String email)? sendOTPSuccess,
+    TResult? Function(String message)? sendOTPFailure,
+    TResult? Function()? sendOTPSmsInProgress,
+    TResult? Function(String phoneNumber)? sendOTPSmsSuccess,
+    TResult? Function(String message)? sendOTPSmsFailure,
+    TResult? Function()? updatePasswordInProgress,
+    TResult? Function()? updatePasswordSuccess,
+    TResult? Function(String message)? updatePasswordFailure,
+    TResult? Function()? verifyOTPInProgress,
+    TResult? Function()? verifyOTPSuccess,
+    TResult? Function(String message)? verifyOTPFailure,
+    TResult? Function()? getUserProfileByUserIdInProgress,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
+    TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
+  }) {
+    return updateUserInfoInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getUserProfileInProgress,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
+    TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
+    TResult Function()? updateDeviceTokenInProgress,
+    TResult Function()? updateDeviceTokenSuccess,
+    TResult Function(String message)? updateDeviceTokenFailure,
+    TResult Function()? sendOTPInProgress,
+    TResult Function(String email)? sendOTPSuccess,
+    TResult Function(String message)? sendOTPFailure,
+    TResult Function()? sendOTPSmsInProgress,
+    TResult Function(String phoneNumber)? sendOTPSmsSuccess,
+    TResult Function(String message)? sendOTPSmsFailure,
+    TResult Function()? updatePasswordInProgress,
+    TResult Function()? updatePasswordSuccess,
+    TResult Function(String message)? updatePasswordFailure,
+    TResult Function()? verifyOTPInProgress,
+    TResult Function()? verifyOTPSuccess,
+    TResult Function(String message)? verifyOTPFailure,
+    TResult Function()? getUserProfileByUserIdInProgress,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
+    TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfoInProgress != null) {
+      return updateUserInfoInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetUserProfileInProgress value)
+        getUserProfileInProgress,
+    required TResult Function(_GetUserProfileSuccess value)
+        getUserProfileSuccess,
+    required TResult Function(_GetUserProfileFailure value)
+        getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
+    required TResult Function(_UpdateDeviceTokenInProgress value)
+        updateDeviceTokenInProgress,
+    required TResult Function(_UpdateDeviceTokenSuccess value)
+        updateDeviceTokenSuccess,
+    required TResult Function(_UpdateDeviceTokenFailure value)
+        updateDeviceTokenFailure,
+    required TResult Function(_SendOTPInProgress value) sendOTPInProgress,
+    required TResult Function(_SendOTPSuccess value) sendOTPSuccess,
+    required TResult Function(_SendOTPFailure value) sendOTPFailure,
+    required TResult Function(_SendOTPSmsInProgress value) sendOTPSmsInProgress,
+    required TResult Function(_SendOTPSmsSuccess value) sendOTPSmsSuccess,
+    required TResult Function(_SendOTPSmsFailure value) sendOTPSmsFailure,
+    required TResult Function(_UpdatePasswordInProgress value)
+        updatePasswordInProgress,
+    required TResult Function(_UpdatePasswordSuccess value)
+        updatePasswordSuccess,
+    required TResult Function(_UpdatePasswordFailure value)
+        updatePasswordFailure,
+    required TResult Function(_VerifyOTPInProgress value) verifyOTPInProgress,
+    required TResult Function(_VerifyOTPSuccess value) verifyOTPSuccess,
+    required TResult Function(_VerifyOTPFailure value) verifyOTPFailure,
+    required TResult Function(_GetUserProfileByUserIdInProgress value)
+        getUserProfileByUserIdInProgress,
+    required TResult Function(_GetUserProfileByUserIdSuccess value)
+        getUserProfileByUserIdSuccess,
+    required TResult Function(_GetUserProfileByUserIdFailure value)
+        getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
+  }) {
+    return updateUserInfoInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetUserProfileInProgress value)?
+        getUserProfileInProgress,
+    TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    TResult? Function(_UpdateDeviceTokenInProgress value)?
+        updateDeviceTokenInProgress,
+    TResult? Function(_UpdateDeviceTokenSuccess value)?
+        updateDeviceTokenSuccess,
+    TResult? Function(_UpdateDeviceTokenFailure value)?
+        updateDeviceTokenFailure,
+    TResult? Function(_SendOTPInProgress value)? sendOTPInProgress,
+    TResult? Function(_SendOTPSuccess value)? sendOTPSuccess,
+    TResult? Function(_SendOTPFailure value)? sendOTPFailure,
+    TResult? Function(_SendOTPSmsInProgress value)? sendOTPSmsInProgress,
+    TResult? Function(_SendOTPSmsSuccess value)? sendOTPSmsSuccess,
+    TResult? Function(_SendOTPSmsFailure value)? sendOTPSmsFailure,
+    TResult? Function(_UpdatePasswordInProgress value)?
+        updatePasswordInProgress,
+    TResult? Function(_UpdatePasswordSuccess value)? updatePasswordSuccess,
+    TResult? Function(_UpdatePasswordFailure value)? updatePasswordFailure,
+    TResult? Function(_VerifyOTPInProgress value)? verifyOTPInProgress,
+    TResult? Function(_VerifyOTPSuccess value)? verifyOTPSuccess,
+    TResult? Function(_VerifyOTPFailure value)? verifyOTPFailure,
+    TResult? Function(_GetUserProfileByUserIdInProgress value)?
+        getUserProfileByUserIdInProgress,
+    TResult? Function(_GetUserProfileByUserIdSuccess value)?
+        getUserProfileByUserIdSuccess,
+    TResult? Function(_GetUserProfileByUserIdFailure value)?
+        getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
+  }) {
+    return updateUserInfoInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
+    TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    TResult Function(_UpdateDeviceTokenInProgress value)?
+        updateDeviceTokenInProgress,
+    TResult Function(_UpdateDeviceTokenSuccess value)? updateDeviceTokenSuccess,
+    TResult Function(_UpdateDeviceTokenFailure value)? updateDeviceTokenFailure,
+    TResult Function(_SendOTPInProgress value)? sendOTPInProgress,
+    TResult Function(_SendOTPSuccess value)? sendOTPSuccess,
+    TResult Function(_SendOTPFailure value)? sendOTPFailure,
+    TResult Function(_SendOTPSmsInProgress value)? sendOTPSmsInProgress,
+    TResult Function(_SendOTPSmsSuccess value)? sendOTPSmsSuccess,
+    TResult Function(_SendOTPSmsFailure value)? sendOTPSmsFailure,
+    TResult Function(_UpdatePasswordInProgress value)? updatePasswordInProgress,
+    TResult Function(_UpdatePasswordSuccess value)? updatePasswordSuccess,
+    TResult Function(_UpdatePasswordFailure value)? updatePasswordFailure,
+    TResult Function(_VerifyOTPInProgress value)? verifyOTPInProgress,
+    TResult Function(_VerifyOTPSuccess value)? verifyOTPSuccess,
+    TResult Function(_VerifyOTPFailure value)? verifyOTPFailure,
+    TResult Function(_GetUserProfileByUserIdInProgress value)?
+        getUserProfileByUserIdInProgress,
+    TResult Function(_GetUserProfileByUserIdSuccess value)?
+        getUserProfileByUserIdSuccess,
+    TResult Function(_GetUserProfileByUserIdFailure value)?
+        getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfoInProgress != null) {
+      return updateUserInfoInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUserInfoInProgress implements UserState {
+  const factory _UpdateUserInfoInProgress() = _$UpdateUserInfoInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserInfoSuccessImplCopyWith<$Res> {
+  factory _$$UpdateUserInfoSuccessImplCopyWith(
+          _$UpdateUserInfoSuccessImpl value,
+          $Res Function(_$UpdateUserInfoSuccessImpl) then) =
+      __$$UpdateUserInfoSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateUserInfoSuccessImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UpdateUserInfoSuccessImpl>
+    implements _$$UpdateUserInfoSuccessImplCopyWith<$Res> {
+  __$$UpdateUserInfoSuccessImplCopyWithImpl(_$UpdateUserInfoSuccessImpl _value,
+      $Res Function(_$UpdateUserInfoSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UpdateUserInfoSuccessImpl implements _UpdateUserInfoSuccess {
+  const _$UpdateUserInfoSuccessImpl();
+
+  @override
+  String toString() {
+    return 'UserState.updateUserInfoSuccess()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserInfoSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getUserProfileInProgress,
+    required TResult Function(String userName, String email, bool isAppStart)
+        getUserProfileSuccess,
+    required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
+    required TResult Function() updateDeviceTokenInProgress,
+    required TResult Function() updateDeviceTokenSuccess,
+    required TResult Function(String message) updateDeviceTokenFailure,
+    required TResult Function() sendOTPInProgress,
+    required TResult Function(String email) sendOTPSuccess,
+    required TResult Function(String message) sendOTPFailure,
+    required TResult Function() sendOTPSmsInProgress,
+    required TResult Function(String phoneNumber) sendOTPSmsSuccess,
+    required TResult Function(String message) sendOTPSmsFailure,
+    required TResult Function() updatePasswordInProgress,
+    required TResult Function() updatePasswordSuccess,
+    required TResult Function(String message) updatePasswordFailure,
+    required TResult Function() verifyOTPInProgress,
+    required TResult Function() verifyOTPSuccess,
+    required TResult Function(String message) verifyOTPFailure,
+    required TResult Function() getUserProfileByUserIdInProgress,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
+    required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
+  }) {
+    return updateUserInfoSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getUserProfileInProgress,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
+    TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
+    TResult? Function()? updateDeviceTokenInProgress,
+    TResult? Function()? updateDeviceTokenSuccess,
+    TResult? Function(String message)? updateDeviceTokenFailure,
+    TResult? Function()? sendOTPInProgress,
+    TResult? Function(String email)? sendOTPSuccess,
+    TResult? Function(String message)? sendOTPFailure,
+    TResult? Function()? sendOTPSmsInProgress,
+    TResult? Function(String phoneNumber)? sendOTPSmsSuccess,
+    TResult? Function(String message)? sendOTPSmsFailure,
+    TResult? Function()? updatePasswordInProgress,
+    TResult? Function()? updatePasswordSuccess,
+    TResult? Function(String message)? updatePasswordFailure,
+    TResult? Function()? verifyOTPInProgress,
+    TResult? Function()? verifyOTPSuccess,
+    TResult? Function(String message)? verifyOTPFailure,
+    TResult? Function()? getUserProfileByUserIdInProgress,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
+    TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
+  }) {
+    return updateUserInfoSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getUserProfileInProgress,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
+    TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
+    TResult Function()? updateDeviceTokenInProgress,
+    TResult Function()? updateDeviceTokenSuccess,
+    TResult Function(String message)? updateDeviceTokenFailure,
+    TResult Function()? sendOTPInProgress,
+    TResult Function(String email)? sendOTPSuccess,
+    TResult Function(String message)? sendOTPFailure,
+    TResult Function()? sendOTPSmsInProgress,
+    TResult Function(String phoneNumber)? sendOTPSmsSuccess,
+    TResult Function(String message)? sendOTPSmsFailure,
+    TResult Function()? updatePasswordInProgress,
+    TResult Function()? updatePasswordSuccess,
+    TResult Function(String message)? updatePasswordFailure,
+    TResult Function()? verifyOTPInProgress,
+    TResult Function()? verifyOTPSuccess,
+    TResult Function(String message)? verifyOTPFailure,
+    TResult Function()? getUserProfileByUserIdInProgress,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
+    TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfoSuccess != null) {
+      return updateUserInfoSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetUserProfileInProgress value)
+        getUserProfileInProgress,
+    required TResult Function(_GetUserProfileSuccess value)
+        getUserProfileSuccess,
+    required TResult Function(_GetUserProfileFailure value)
+        getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
+    required TResult Function(_UpdateDeviceTokenInProgress value)
+        updateDeviceTokenInProgress,
+    required TResult Function(_UpdateDeviceTokenSuccess value)
+        updateDeviceTokenSuccess,
+    required TResult Function(_UpdateDeviceTokenFailure value)
+        updateDeviceTokenFailure,
+    required TResult Function(_SendOTPInProgress value) sendOTPInProgress,
+    required TResult Function(_SendOTPSuccess value) sendOTPSuccess,
+    required TResult Function(_SendOTPFailure value) sendOTPFailure,
+    required TResult Function(_SendOTPSmsInProgress value) sendOTPSmsInProgress,
+    required TResult Function(_SendOTPSmsSuccess value) sendOTPSmsSuccess,
+    required TResult Function(_SendOTPSmsFailure value) sendOTPSmsFailure,
+    required TResult Function(_UpdatePasswordInProgress value)
+        updatePasswordInProgress,
+    required TResult Function(_UpdatePasswordSuccess value)
+        updatePasswordSuccess,
+    required TResult Function(_UpdatePasswordFailure value)
+        updatePasswordFailure,
+    required TResult Function(_VerifyOTPInProgress value) verifyOTPInProgress,
+    required TResult Function(_VerifyOTPSuccess value) verifyOTPSuccess,
+    required TResult Function(_VerifyOTPFailure value) verifyOTPFailure,
+    required TResult Function(_GetUserProfileByUserIdInProgress value)
+        getUserProfileByUserIdInProgress,
+    required TResult Function(_GetUserProfileByUserIdSuccess value)
+        getUserProfileByUserIdSuccess,
+    required TResult Function(_GetUserProfileByUserIdFailure value)
+        getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
+  }) {
+    return updateUserInfoSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetUserProfileInProgress value)?
+        getUserProfileInProgress,
+    TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    TResult? Function(_UpdateDeviceTokenInProgress value)?
+        updateDeviceTokenInProgress,
+    TResult? Function(_UpdateDeviceTokenSuccess value)?
+        updateDeviceTokenSuccess,
+    TResult? Function(_UpdateDeviceTokenFailure value)?
+        updateDeviceTokenFailure,
+    TResult? Function(_SendOTPInProgress value)? sendOTPInProgress,
+    TResult? Function(_SendOTPSuccess value)? sendOTPSuccess,
+    TResult? Function(_SendOTPFailure value)? sendOTPFailure,
+    TResult? Function(_SendOTPSmsInProgress value)? sendOTPSmsInProgress,
+    TResult? Function(_SendOTPSmsSuccess value)? sendOTPSmsSuccess,
+    TResult? Function(_SendOTPSmsFailure value)? sendOTPSmsFailure,
+    TResult? Function(_UpdatePasswordInProgress value)?
+        updatePasswordInProgress,
+    TResult? Function(_UpdatePasswordSuccess value)? updatePasswordSuccess,
+    TResult? Function(_UpdatePasswordFailure value)? updatePasswordFailure,
+    TResult? Function(_VerifyOTPInProgress value)? verifyOTPInProgress,
+    TResult? Function(_VerifyOTPSuccess value)? verifyOTPSuccess,
+    TResult? Function(_VerifyOTPFailure value)? verifyOTPFailure,
+    TResult? Function(_GetUserProfileByUserIdInProgress value)?
+        getUserProfileByUserIdInProgress,
+    TResult? Function(_GetUserProfileByUserIdSuccess value)?
+        getUserProfileByUserIdSuccess,
+    TResult? Function(_GetUserProfileByUserIdFailure value)?
+        getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
+  }) {
+    return updateUserInfoSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
+    TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    TResult Function(_UpdateDeviceTokenInProgress value)?
+        updateDeviceTokenInProgress,
+    TResult Function(_UpdateDeviceTokenSuccess value)? updateDeviceTokenSuccess,
+    TResult Function(_UpdateDeviceTokenFailure value)? updateDeviceTokenFailure,
+    TResult Function(_SendOTPInProgress value)? sendOTPInProgress,
+    TResult Function(_SendOTPSuccess value)? sendOTPSuccess,
+    TResult Function(_SendOTPFailure value)? sendOTPFailure,
+    TResult Function(_SendOTPSmsInProgress value)? sendOTPSmsInProgress,
+    TResult Function(_SendOTPSmsSuccess value)? sendOTPSmsSuccess,
+    TResult Function(_SendOTPSmsFailure value)? sendOTPSmsFailure,
+    TResult Function(_UpdatePasswordInProgress value)? updatePasswordInProgress,
+    TResult Function(_UpdatePasswordSuccess value)? updatePasswordSuccess,
+    TResult Function(_UpdatePasswordFailure value)? updatePasswordFailure,
+    TResult Function(_VerifyOTPInProgress value)? verifyOTPInProgress,
+    TResult Function(_VerifyOTPSuccess value)? verifyOTPSuccess,
+    TResult Function(_VerifyOTPFailure value)? verifyOTPFailure,
+    TResult Function(_GetUserProfileByUserIdInProgress value)?
+        getUserProfileByUserIdInProgress,
+    TResult Function(_GetUserProfileByUserIdSuccess value)?
+        getUserProfileByUserIdSuccess,
+    TResult Function(_GetUserProfileByUserIdFailure value)?
+        getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfoSuccess != null) {
+      return updateUserInfoSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUserInfoSuccess implements UserState {
+  const factory _UpdateUserInfoSuccess() = _$UpdateUserInfoSuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserInfoFailureImplCopyWith<$Res> {
+  factory _$$UpdateUserInfoFailureImplCopyWith(
+          _$UpdateUserInfoFailureImpl value,
+          $Res Function(_$UpdateUserInfoFailureImpl) then) =
+      __$$UpdateUserInfoFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$UpdateUserInfoFailureImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UpdateUserInfoFailureImpl>
+    implements _$$UpdateUserInfoFailureImplCopyWith<$Res> {
+  __$$UpdateUserInfoFailureImplCopyWithImpl(_$UpdateUserInfoFailureImpl _value,
+      $Res Function(_$UpdateUserInfoFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$UpdateUserInfoFailureImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateUserInfoFailureImpl implements _UpdateUserInfoFailure {
+  const _$UpdateUserInfoFailureImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'UserState.updateUserInfoFailure(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserInfoFailureImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateUserInfoFailureImplCopyWith<_$UpdateUserInfoFailureImpl>
+      get copyWith => __$$UpdateUserInfoFailureImplCopyWithImpl<
+          _$UpdateUserInfoFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() getUserProfileInProgress,
+    required TResult Function(String userName, String email, bool isAppStart)
+        getUserProfileSuccess,
+    required TResult Function(String message) getUserProfileFailure,
+    required TResult Function() getServerTimeInProgress,
+    required TResult Function(String serverTime) getServerTimeSuccess,
+    required TResult Function(String message) getServerTimeFailure,
+    required TResult Function() updateDeviceTokenInProgress,
+    required TResult Function() updateDeviceTokenSuccess,
+    required TResult Function(String message) updateDeviceTokenFailure,
+    required TResult Function() sendOTPInProgress,
+    required TResult Function(String email) sendOTPSuccess,
+    required TResult Function(String message) sendOTPFailure,
+    required TResult Function() sendOTPSmsInProgress,
+    required TResult Function(String phoneNumber) sendOTPSmsSuccess,
+    required TResult Function(String message) sendOTPSmsFailure,
+    required TResult Function() updatePasswordInProgress,
+    required TResult Function() updatePasswordSuccess,
+    required TResult Function(String message) updatePasswordFailure,
+    required TResult Function() verifyOTPInProgress,
+    required TResult Function() verifyOTPSuccess,
+    required TResult Function(String message) verifyOTPFailure,
+    required TResult Function() getUserProfileByUserIdInProgress,
+    required TResult Function(UserDto userInfo) getUserProfileByUserIdSuccess,
+    required TResult Function(String message) getUserProfileByUserIdFailure,
+    required TResult Function() updateUserInfoInProgress,
+    required TResult Function() updateUserInfoSuccess,
+    required TResult Function(String message) updateUserInfoFailure,
+  }) {
+    return updateUserInfoFailure(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? getUserProfileInProgress,
+    TResult? Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
+    TResult? Function(String message)? getUserProfileFailure,
+    TResult? Function()? getServerTimeInProgress,
+    TResult? Function(String serverTime)? getServerTimeSuccess,
+    TResult? Function(String message)? getServerTimeFailure,
+    TResult? Function()? updateDeviceTokenInProgress,
+    TResult? Function()? updateDeviceTokenSuccess,
+    TResult? Function(String message)? updateDeviceTokenFailure,
+    TResult? Function()? sendOTPInProgress,
+    TResult? Function(String email)? sendOTPSuccess,
+    TResult? Function(String message)? sendOTPFailure,
+    TResult? Function()? sendOTPSmsInProgress,
+    TResult? Function(String phoneNumber)? sendOTPSmsSuccess,
+    TResult? Function(String message)? sendOTPSmsFailure,
+    TResult? Function()? updatePasswordInProgress,
+    TResult? Function()? updatePasswordSuccess,
+    TResult? Function(String message)? updatePasswordFailure,
+    TResult? Function()? verifyOTPInProgress,
+    TResult? Function()? verifyOTPSuccess,
+    TResult? Function(String message)? verifyOTPFailure,
+    TResult? Function()? getUserProfileByUserIdInProgress,
+    TResult? Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
+    TResult? Function(String message)? getUserProfileByUserIdFailure,
+    TResult? Function()? updateUserInfoInProgress,
+    TResult? Function()? updateUserInfoSuccess,
+    TResult? Function(String message)? updateUserInfoFailure,
+  }) {
+    return updateUserInfoFailure?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? getUserProfileInProgress,
+    TResult Function(String userName, String email, bool isAppStart)?
+        getUserProfileSuccess,
+    TResult Function(String message)? getUserProfileFailure,
+    TResult Function()? getServerTimeInProgress,
+    TResult Function(String serverTime)? getServerTimeSuccess,
+    TResult Function(String message)? getServerTimeFailure,
+    TResult Function()? updateDeviceTokenInProgress,
+    TResult Function()? updateDeviceTokenSuccess,
+    TResult Function(String message)? updateDeviceTokenFailure,
+    TResult Function()? sendOTPInProgress,
+    TResult Function(String email)? sendOTPSuccess,
+    TResult Function(String message)? sendOTPFailure,
+    TResult Function()? sendOTPSmsInProgress,
+    TResult Function(String phoneNumber)? sendOTPSmsSuccess,
+    TResult Function(String message)? sendOTPSmsFailure,
+    TResult Function()? updatePasswordInProgress,
+    TResult Function()? updatePasswordSuccess,
+    TResult Function(String message)? updatePasswordFailure,
+    TResult Function()? verifyOTPInProgress,
+    TResult Function()? verifyOTPSuccess,
+    TResult Function(String message)? verifyOTPFailure,
+    TResult Function()? getUserProfileByUserIdInProgress,
+    TResult Function(UserDto userInfo)? getUserProfileByUserIdSuccess,
+    TResult Function(String message)? getUserProfileByUserIdFailure,
+    TResult Function()? updateUserInfoInProgress,
+    TResult Function()? updateUserInfoSuccess,
+    TResult Function(String message)? updateUserInfoFailure,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfoFailure != null) {
+      return updateUserInfoFailure(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_GetUserProfileInProgress value)
+        getUserProfileInProgress,
+    required TResult Function(_GetUserProfileSuccess value)
+        getUserProfileSuccess,
+    required TResult Function(_GetUserProfileFailure value)
+        getUserProfileFailure,
+    required TResult Function(_GetServerTimeInProgress value)
+        getServerTimeInProgress,
+    required TResult Function(_GetServerTimeSuccess value) getServerTimeSuccess,
+    required TResult Function(_GetServerTimeFailure value) getServerTimeFailure,
+    required TResult Function(_UpdateDeviceTokenInProgress value)
+        updateDeviceTokenInProgress,
+    required TResult Function(_UpdateDeviceTokenSuccess value)
+        updateDeviceTokenSuccess,
+    required TResult Function(_UpdateDeviceTokenFailure value)
+        updateDeviceTokenFailure,
+    required TResult Function(_SendOTPInProgress value) sendOTPInProgress,
+    required TResult Function(_SendOTPSuccess value) sendOTPSuccess,
+    required TResult Function(_SendOTPFailure value) sendOTPFailure,
+    required TResult Function(_SendOTPSmsInProgress value) sendOTPSmsInProgress,
+    required TResult Function(_SendOTPSmsSuccess value) sendOTPSmsSuccess,
+    required TResult Function(_SendOTPSmsFailure value) sendOTPSmsFailure,
+    required TResult Function(_UpdatePasswordInProgress value)
+        updatePasswordInProgress,
+    required TResult Function(_UpdatePasswordSuccess value)
+        updatePasswordSuccess,
+    required TResult Function(_UpdatePasswordFailure value)
+        updatePasswordFailure,
+    required TResult Function(_VerifyOTPInProgress value) verifyOTPInProgress,
+    required TResult Function(_VerifyOTPSuccess value) verifyOTPSuccess,
+    required TResult Function(_VerifyOTPFailure value) verifyOTPFailure,
+    required TResult Function(_GetUserProfileByUserIdInProgress value)
+        getUserProfileByUserIdInProgress,
+    required TResult Function(_GetUserProfileByUserIdSuccess value)
+        getUserProfileByUserIdSuccess,
+    required TResult Function(_GetUserProfileByUserIdFailure value)
+        getUserProfileByUserIdFailure,
+    required TResult Function(_UpdateUserInfoInProgress value)
+        updateUserInfoInProgress,
+    required TResult Function(_UpdateUserInfoSuccess value)
+        updateUserInfoSuccess,
+    required TResult Function(_UpdateUserInfoFailure value)
+        updateUserInfoFailure,
+  }) {
+    return updateUserInfoFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_GetUserProfileInProgress value)?
+        getUserProfileInProgress,
+    TResult? Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult? Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult? Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult? Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult? Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    TResult? Function(_UpdateDeviceTokenInProgress value)?
+        updateDeviceTokenInProgress,
+    TResult? Function(_UpdateDeviceTokenSuccess value)?
+        updateDeviceTokenSuccess,
+    TResult? Function(_UpdateDeviceTokenFailure value)?
+        updateDeviceTokenFailure,
+    TResult? Function(_SendOTPInProgress value)? sendOTPInProgress,
+    TResult? Function(_SendOTPSuccess value)? sendOTPSuccess,
+    TResult? Function(_SendOTPFailure value)? sendOTPFailure,
+    TResult? Function(_SendOTPSmsInProgress value)? sendOTPSmsInProgress,
+    TResult? Function(_SendOTPSmsSuccess value)? sendOTPSmsSuccess,
+    TResult? Function(_SendOTPSmsFailure value)? sendOTPSmsFailure,
+    TResult? Function(_UpdatePasswordInProgress value)?
+        updatePasswordInProgress,
+    TResult? Function(_UpdatePasswordSuccess value)? updatePasswordSuccess,
+    TResult? Function(_UpdatePasswordFailure value)? updatePasswordFailure,
+    TResult? Function(_VerifyOTPInProgress value)? verifyOTPInProgress,
+    TResult? Function(_VerifyOTPSuccess value)? verifyOTPSuccess,
+    TResult? Function(_VerifyOTPFailure value)? verifyOTPFailure,
+    TResult? Function(_GetUserProfileByUserIdInProgress value)?
+        getUserProfileByUserIdInProgress,
+    TResult? Function(_GetUserProfileByUserIdSuccess value)?
+        getUserProfileByUserIdSuccess,
+    TResult? Function(_GetUserProfileByUserIdFailure value)?
+        getUserProfileByUserIdFailure,
+    TResult? Function(_UpdateUserInfoInProgress value)?
+        updateUserInfoInProgress,
+    TResult? Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult? Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
+  }) {
+    return updateUserInfoFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_GetUserProfileInProgress value)? getUserProfileInProgress,
+    TResult Function(_GetUserProfileSuccess value)? getUserProfileSuccess,
+    TResult Function(_GetUserProfileFailure value)? getUserProfileFailure,
+    TResult Function(_GetServerTimeInProgress value)? getServerTimeInProgress,
+    TResult Function(_GetServerTimeSuccess value)? getServerTimeSuccess,
+    TResult Function(_GetServerTimeFailure value)? getServerTimeFailure,
+    TResult Function(_UpdateDeviceTokenInProgress value)?
+        updateDeviceTokenInProgress,
+    TResult Function(_UpdateDeviceTokenSuccess value)? updateDeviceTokenSuccess,
+    TResult Function(_UpdateDeviceTokenFailure value)? updateDeviceTokenFailure,
+    TResult Function(_SendOTPInProgress value)? sendOTPInProgress,
+    TResult Function(_SendOTPSuccess value)? sendOTPSuccess,
+    TResult Function(_SendOTPFailure value)? sendOTPFailure,
+    TResult Function(_SendOTPSmsInProgress value)? sendOTPSmsInProgress,
+    TResult Function(_SendOTPSmsSuccess value)? sendOTPSmsSuccess,
+    TResult Function(_SendOTPSmsFailure value)? sendOTPSmsFailure,
+    TResult Function(_UpdatePasswordInProgress value)? updatePasswordInProgress,
+    TResult Function(_UpdatePasswordSuccess value)? updatePasswordSuccess,
+    TResult Function(_UpdatePasswordFailure value)? updatePasswordFailure,
+    TResult Function(_VerifyOTPInProgress value)? verifyOTPInProgress,
+    TResult Function(_VerifyOTPSuccess value)? verifyOTPSuccess,
+    TResult Function(_VerifyOTPFailure value)? verifyOTPFailure,
+    TResult Function(_GetUserProfileByUserIdInProgress value)?
+        getUserProfileByUserIdInProgress,
+    TResult Function(_GetUserProfileByUserIdSuccess value)?
+        getUserProfileByUserIdSuccess,
+    TResult Function(_GetUserProfileByUserIdFailure value)?
+        getUserProfileByUserIdFailure,
+    TResult Function(_UpdateUserInfoInProgress value)? updateUserInfoInProgress,
+    TResult Function(_UpdateUserInfoSuccess value)? updateUserInfoSuccess,
+    TResult Function(_UpdateUserInfoFailure value)? updateUserInfoFailure,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfoFailure != null) {
+      return updateUserInfoFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUserInfoFailure implements UserState {
+  const factory _UpdateUserInfoFailure(final String message) =
+      _$UpdateUserInfoFailureImpl;
+
+  String get message;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateUserInfoFailureImplCopyWith<_$UpdateUserInfoFailureImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

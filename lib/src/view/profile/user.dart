@@ -18,11 +18,12 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    context.read<UserBloc>().add(const UserEvent.getUserProfile());
+    context.read<UserBloc>().add(const UserEvent.getUserProfileByUserId());
   }
 
   @override
@@ -30,6 +31,7 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
     _nameController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
+    _addressController.dispose();
     super.dispose();
   }
 
@@ -38,19 +40,23 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
         state.maybeWhen(
-          getUserProfileInProgress: () {
-            LoadingDialog.show(context, 'Đang lấy thông tin...');
+          getUserProfileByUserIdInProgress: () {
+            LoadingDialog.show(context, 'Đang tải thông tin...');
           },
-          getUserProfileSuccess: (userName, email, _) {
-            _nameController.text = userName;
-            _emailController.text = email;
-            _phoneController.text = 'Chưa cập nhật';
+          getUserProfileByUserIdSuccess: (userInfo) {
+            _nameController.text = userInfo.fullName;
+            _emailController.text = userInfo.email;
+            _phoneController.text = userInfo.phoneNumber;
+            _addressController.text = userInfo.address;
             LoadingDialog.hide(context);
           },
-          getUserProfileFailure: (error) {
+          getUserProfileByUserIdFailure: (message) {
             LoadingDialog.hide(context);
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(error)),
+              SnackBar(
+                content: Text(message),
+                backgroundColor: Colors.red,
+              ),
             );
           },
           orElse: () {},
@@ -108,6 +114,11 @@ class _UserProfileWidgetState extends State<UserProfileWidget> {
                       hintText: "Nhập số điện thoại",
                       controller: _phoneController,
                       isDisabled: true),
+                  const SizedBox(height: 32),
+                  TextFieldRequired(
+                      label: "Địa chỉ",
+                      hintText: "Nhập địa chỉ",
+                      controller: _addressController),
                 ],
               ),
             ),

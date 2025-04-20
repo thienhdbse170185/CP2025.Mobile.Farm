@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/model/request/user/update_user_info/update_user_info_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
@@ -131,7 +132,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         final userInfo = await userRepository.getUserProfileByUserId(userId);
         final userBox = await Hive.openBox(UserDataConstant.userBoxName);
         userBox.put(UserDataConstant.usernameKey, userInfo.username);
-        emit(const UserState.getUserProfileByUserIdSuccess());
+        emit(UserState.getUserProfileByUserIdSuccess(userInfo));
       } catch (e) {
         emit(UserState.getUserProfileByUserIdFailure(e.toString()));
       }
@@ -169,6 +170,23 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         }
       } catch (e) {
         emit(UserState.updatePasswordFailure(e.toString()));
+      }
+    });
+    on<_UpdateUserInfo>((event, emit) async {
+      emit(const UserState.updateUserInfoInProgress());
+      try {
+        final userBox = await Hive.openBox(UserDataConstant.userBoxName);
+        final userId = userBox.get(UserDataConstant.userIdKey);
+        final result =
+            await userRepository.updateUserInfo(userId, event.request);
+        if (result) {
+          emit(const UserState.updateUserInfoSuccess());
+        } else {
+          emit(const UserState.updateUserInfoFailure(
+              'Failed to update user info'));
+        }
+      } catch (e) {
+        emit(UserState.updateUserInfoFailure(e.toString()));
       }
     });
   }
