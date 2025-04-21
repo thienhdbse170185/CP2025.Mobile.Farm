@@ -7,7 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/model/dto/push_notification/custom_data.dart';
 import 'package:smart_farm/src/model/dto/push_notification/push_notification_dto.dart';
-import 'package:smart_farm/src/view/notification/test.dart';
+import 'package:smart_farm/src/view/home/home.dart';
 
 class PushNotifications {
   static final _firebaseMessaging = FirebaseMessaging.instance;
@@ -110,7 +110,7 @@ class PushNotifications {
       showSimpleNotification(
         title: notiData.title,
         body: notiData.customData.Content,
-        payload: notiData.customData.toJson().toString(),
+        payload: message.data['customData'],
       );
     });
 
@@ -120,11 +120,12 @@ class PushNotifications {
       log('Notification: ${message.notification?.title}');
       log('Data: ${message.data}');
 
-      // Navigate to notification screen
-      // Navigator.push(
-      //   rootNavigatorKey.currentState!.context,
-      //   MaterialPageRoute(builder: (context) => const TestNotificationWidget()),
-      // );
+      // Parse notification data
+      final customDataPayload = jsonDecode(message.data['customData']);
+      final customData = CustomData.fromJson(customDataPayload);
+
+      // Navigate based on notification data
+      navigateBasedOnNotificationData(customData);
     });
 
     // Handle initial message (app was terminated)
@@ -136,13 +137,13 @@ class PushNotifications {
         log('Notification: ${message.notification?.title}');
         log('Data: ${message.data}');
 
+        // Parse notification data
+        final customDataPayload = jsonDecode(message.data['customData']);
+        final customData = CustomData.fromJson(customDataPayload);
+
         // Handle navigation after app launch from notification
         Future.delayed(const Duration(seconds: 1), () {
-          Navigator.push(
-            rootNavigatorKey.currentState!.context,
-            MaterialPageRoute(
-                builder: (context) => const TestNotificationWidget()),
-          );
+          navigateBasedOnNotificationData(customData);
         });
       }
     });
@@ -152,10 +153,50 @@ class PushNotifications {
   static void onNotificationTap(NotificationResponse notificationResponse) {
     log('===== NOTIFICATION TAP =====');
     log('Payload: ${notificationResponse.payload}');
-    Navigator.push(
-        rootNavigatorKey.currentState!.context,
-        MaterialPageRoute(
-            builder: (context) => const TestNotificationWidget()));
+
+    if (notificationResponse.payload != null) {
+      try {
+        // Parse the payload JSON
+        final customDataPayload = jsonDecode(notificationResponse.payload!);
+        final customData = CustomData.fromJson(customDataPayload);
+
+        // Navigate based on notification data
+        navigateBasedOnNotificationData(customData);
+      } catch (e) {
+        log('Error parsing notification payload: $e');
+        // If we can't parse the payload, navigate to home as fallback
+        navigateToHome();
+      }
+    } else {
+      // If no payload, navigate to home as fallback
+      navigateToHome();
+    }
+  }
+
+  // Navigate based on notification data (similar to NotificationWidget)
+  static void navigateBasedOnNotificationData(CustomData customData) {
+    // Navigate based on the data in the notification
+    if (customData.MedicalSymptomId != null &&
+        customData.MedicalSymptomId!.isNotEmpty) {
+      // Navigate to medical symptom details
+      rootNavigatorKey.currentState?.pushNamed(RouteName.home);
+    } else if (customData.TaskId != null && customData.TaskId!.isNotEmpty) {
+      // Navigate to task details
+      rootNavigatorKey.currentState
+          ?.pushNamed(RouteName.taskDetail, arguments: customData.TaskId);
+    } else if (customData.CageId != null && customData.CageId!.isNotEmpty) {
+      // Navigate to cage details
+      rootNavigatorKey.currentState
+          ?.pushNamed(RouteName.cage, arguments: customData.CageId);
+    } else {
+      // Default to home screen if no specific navigation
+      navigateToHome();
+    }
+  }
+
+  // Navigate to home screen
+  static void navigateToHome() {
+    rootNavigatorKey.currentState?.pushNamed(RouteName.home);
   }
 
   // Show a simple notification

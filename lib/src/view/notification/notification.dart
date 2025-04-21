@@ -6,6 +6,7 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/model/dto/notification/notification_dto.dart';
+import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/viewmodel/notification/notification_bloc.dart';
 
@@ -102,14 +103,15 @@ class _NotificationWidgetState extends State<NotificationWidget>
     if (notification.medicalSymptomId != null) {
       // Điều hướng đến trang báo cáo triệu chứng
       // Navigator.push(context, MaterialPageRoute(builder: (context) => MedicalSymptomDetailsScreen(id: notification.medicalSymptomId!)));
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                'Đang điều hướng đến báo cáo triệu chứng ID: ${notification.medicalSymptomId}')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //       content: Text(
+      //           'Đang điều hướng đến báo cáo triệu chứng ID: ${notification.medicalSymptomId}')),
+      // );
+      context.push(RouteName.home);
     } else if (notification.taskId != null) {
       // Điều hướng đến trang nhiệm vụ
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => TaskDetailsScreen(id: notification.taskId!)));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => TaskDetailWidget(taskId: notification.taskId!)));
       // ScaffoldMessenger.of(context).showSnackBar(
       //   SnackBar(
       //       content: Text(
@@ -119,11 +121,12 @@ class _NotificationWidgetState extends State<NotificationWidget>
     } else if (notification.cageId != null) {
       // Điều hướng đến trang thông tin chuồng
       // Navigator.push(context, MaterialPageRoute(builder: (context) => CageDetailsScreen(id: notification.cageId!)));
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                'Đang điều hướng đến thông tin chuồng ID: ${notification.cageId}')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //       content: Text(
+      //           'Đang điều hướng đến thông tin chuồng ID: ${notification.cageId}')),
+      // );
+      context.push(RouteName.cage, extra: notification.cageId!);
     }
   }
 
