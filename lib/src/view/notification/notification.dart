@@ -1,4 +1,3 @@
-import 'package:data_layer/data_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/model/dto/notification/notification_dto.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/viewmodel/notification/notification_bloc.dart';
 

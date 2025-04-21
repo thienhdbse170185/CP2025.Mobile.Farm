@@ -2,8 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/upload_image/upload_image_dto.dart';
+import 'package:smart_farm/src/model/repository/upload_image/upload_image_repository.dart';
 
 part 'upload_image_cubit.freezed.dart';
 part 'upload_image_state.dart';

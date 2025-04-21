@@ -1,14 +1,14 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/repository/auth/auth_repository.dart';
-import 'package:data_layer/repository/user/local/user_repository.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/core/utils/jwt_decoder.dart';
+import 'package:smart_farm/src/model/repository/auth/auth_repository.dart';
+import 'package:smart_farm/src/model/repository/user/local/user_repository.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';

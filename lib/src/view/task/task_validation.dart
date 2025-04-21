@@ -1,8 +1,8 @@
-import 'package:data_layer/model/dto/prescription/prescription.dart';
-import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:data_layer/model/dto/vaccine_schedule/vaccine_schedule_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
+import 'package:smart_farm/src/model/dto/prescription/prescription.dart';
+import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:smart_farm/src/model/dto/vaccine_schedule/vaccine_schedule_dto.dart';
 
 class TaskValidation {
   static bool validateFoodLog({

@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/request/prescription/update_status_prescription_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/prescription/prescription.dart';
+import 'package:smart_farm/src/model/repository/prescription/prescription_repository.dart';
+import 'package:smart_farm/src/model/request/prescription/update_status_prescription_request.dart';
 
 part 'prescription_cubit.freezed.dart';
 part 'prescription_state.dart';

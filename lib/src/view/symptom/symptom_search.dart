@@ -1,10 +1,10 @@
-import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
 
 class SymptomSearchWidget extends StatefulWidget {

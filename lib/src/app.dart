@@ -1,14 +1,3 @@
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/repository/animal_sale/animal_sale_api_client.dart';
-import 'package:data_layer/repository/egg_harvest/egg_harvest_api_client.dart';
-import 'package:data_layer/repository/healthy/healthy_api_client.dart';
-import 'package:data_layer/repository/healthy/healthy_repository.dart';
-import 'package:data_layer/repository/sale_type/sale_type_api_client.dart';
-import 'package:data_layer/repository/symptom/symptom_api_client.dart';
-import 'package:data_layer/repository/symptom/symptom_repository.dart';
-import 'package:data_layer/repository/upload_image/upload_image_api_client.dart';
-import 'package:data_layer/repository/vaccine_schedule/vaccine_schedule_api_client.dart';
-import 'package:data_layer/repository/vaccine_schedule_log/vaccine_schedule_log_api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +6,16 @@ import 'package:smart_farm/src/core/network/http_client.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/theme/theme.dart';
 import 'package:smart_farm/src/core/theme/util.dart';
+import 'package:smart_farm/src/model/repository/animal_sale/animal_sale_api_client.dart';
+import 'package:smart_farm/src/model/repository/egg_harvest/egg_harvest_api_client.dart';
+import 'package:smart_farm/src/model/repository/healthy/healthy_api_client.dart';
+import 'package:smart_farm/src/model/repository/healthy/healthy_repository.dart';
+import 'package:smart_farm/src/model/repository/sale_type/sale_type_api_client.dart';
+import 'package:smart_farm/src/model/repository/symptom/symptom_api_client.dart';
+import 'package:smart_farm/src/model/repository/symptom/symptom_repository.dart';
+import 'package:smart_farm/src/model/repository/upload_image/upload_image_api_client.dart';
+import 'package:smart_farm/src/model/repository/vaccine_schedule/vaccine_schedule_api_client.dart';
+import 'package:smart_farm/src/model/repository/vaccine_schedule_log/vaccine_schedule_log_api_client.dart';
 import 'package:smart_farm/src/viewmodel/animal_sale/animal_sale_cubit.dart';
 import 'package:smart_farm/src/viewmodel/egg_harvest/egg_harvest_cubit.dart';
 import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
@@ -34,6 +33,8 @@ import 'package:smart_farm/src/viewmodel/time/time_bloc.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 import 'package:smart_farm/src/viewmodel/vaccine/vaccine_cubit.dart';
 import 'package:smart_farm/src/viewmodel/vaccine_schedule/vaccine_schedule_cubit.dart';
+
+import 'model/repository/index.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {

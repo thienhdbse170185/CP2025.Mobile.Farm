@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
-import 'package:data_layer/model/response/vaccine_schedule_log/vaccine_schedule_log_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/task/vaccin_schedule_log/vaccin_schedule_log_dto.dart';
+import 'package:smart_farm/src/model/repository/vaccine_schedule_log/vaccine_schedule_log_repository.dart';
+import 'package:smart_farm/src/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
+import 'package:smart_farm/src/model/response/vaccine_schedule_log/vaccine_schedule_log_response.dart';
 
 part 'vaccine_schedule_log_cubit.freezed.dart';
 part 'vaccine_schedule_log_state.dart';

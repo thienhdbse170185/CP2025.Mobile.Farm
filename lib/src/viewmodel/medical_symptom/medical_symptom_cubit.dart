@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
+import 'package:smart_farm/src/model/repository/farming_batch/farming_batch_repository.dart';
+import 'package:smart_farm/src/model/repository/medical_symptom/medical_symptom_repository.dart';
+import 'package:smart_farm/src/model/response/medical_symptom/medical_symptom_response.dart';
 
 part 'medical_symptom_cubit.freezed.dart';
 part 'medical_symptom_state.dart';

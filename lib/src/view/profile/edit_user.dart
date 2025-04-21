@@ -1,10 +1,10 @@
-import 'package:data_layer/model/request/user/update_user_info/update_user_info_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_farm/src/core/common/widgets/loading_dialog.dart';
 import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/model/request/user/update_user_info/update_user_info_request.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/view/widgets/text_field_required.dart';

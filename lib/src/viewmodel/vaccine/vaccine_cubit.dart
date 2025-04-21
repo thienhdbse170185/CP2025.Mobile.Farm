@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/vaccine/vaccine_dto.dart';
+import 'package:smart_farm/src/model/repository/vaccine/vaccine_repository.dart';
 
 part 'vaccine_cubit.freezed.dart';
 part 'vaccine_state.dart';

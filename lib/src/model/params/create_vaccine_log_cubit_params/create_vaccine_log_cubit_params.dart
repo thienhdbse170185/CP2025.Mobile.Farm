@@ -1,6 +1,5 @@
-
-import 'package:data_layer/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
 
 part 'create_vaccine_log_cubit_params.freezed.dart';
 part 'create_vaccine_log_cubit_params.g.dart';

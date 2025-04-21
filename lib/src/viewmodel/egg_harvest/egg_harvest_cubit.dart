@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/dto/egg_harvest/egg_harvest_dto.dart';
-import 'package:data_layer/model/request/egg_harvest/egg_harvest_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/egg_harvest/egg_harvest_dto.dart';
+import 'package:smart_farm/src/model/repository/egg_harvest/egg_harvest_repository.dart';
+import 'package:smart_farm/src/model/request/egg_harvest/egg_harvest_request.dart';
 
 part 'egg_harvest_cubit.freezed.dart';
 part 'egg_harvest_state.dart';

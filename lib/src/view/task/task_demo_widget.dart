@@ -1,7 +1,7 @@
-import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:smart_farm/src/model/entity/task/tash_type/task_type.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 import 'package:smart_farm/src/view/search_delegate.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';

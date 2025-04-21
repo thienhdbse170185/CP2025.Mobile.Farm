@@ -259,7 +259,7 @@ class _CreateDeathReportSuccessScreenState
           ),
           const SizedBox(height: 16),
           Text(
-            'Báo cáo thất thoát sẽ được gửi đến bác sĩ thú y và cập nhật vào hệ thống trong vòng 24 giờ. Số lượng gia cầm trong chuồng sẽ được cập nhật sau khi báo cáo được xác nhận.',
+            'Báo cáo của bạn đã được ghi nhận.',
             style: TextStyle(
               color: Colors.blue[800],
               height: 1.5,

@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/model/dto/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/task/daily_food_usage_log/daily_food_usage_log_dto.dart';
+import 'package:smart_farm/src/model/dto/task/health_log/health_log_dto.dart';
+import 'package:smart_farm/src/model/dto/task/vaccin_schedule_log/vaccin_schedule_log_dto.dart';
 
 part 'task_qr_code_cubit.freezed.dart';
 part 'task_qr_code_state.dart';

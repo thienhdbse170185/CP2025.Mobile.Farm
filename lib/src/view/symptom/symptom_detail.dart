@@ -1,10 +1,10 @@
-import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
-import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/request/symptom/create_symptom/create_symptom_request.dart';
+import 'package:smart_farm/src/model/response/medical_symptom/medical_symptom_response.dart';
 
 class SymptomDetailWidget extends StatelessWidget {
   final MedicalSymptomResponse symptom;

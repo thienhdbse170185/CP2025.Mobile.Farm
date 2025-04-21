@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/repository/user/local/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/repository/user/local/user_repository.dart';
 
 part 'time_bloc.freezed.dart';
 part 'time_event.dart';

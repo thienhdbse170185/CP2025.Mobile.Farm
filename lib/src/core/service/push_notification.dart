@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:data_layer/model/dto/push_notification/custom_data.dart';
-import 'package:data_layer/model/dto/push_notification/push_notification_dto.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/model/dto/push_notification/custom_data.dart';
+import 'package:smart_farm/src/model/dto/push_notification/push_notification_dto.dart';
 import 'package:smart_farm/src/view/notification/test.dart';
 
 class PushNotifications {

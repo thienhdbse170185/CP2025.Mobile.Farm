@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:data_layer/model/entity/task/next_task/next_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +10,7 @@ import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/constants/session_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/entity/task/next_task/next_task.dart';
 import 'package:smart_farm/src/view/widgets/avatar_round.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';

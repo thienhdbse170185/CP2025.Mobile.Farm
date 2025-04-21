@@ -1,17 +1,20 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:data_layer/model/entity/task/next_task/next_task.dart';
-import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
-import 'package:data_layer/model/request/task/get_task/get_task.dart';
-import 'package:data_layer/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/dto/task/daily_food_usage_log/daily_food_usage_log_dto.dart';
+import 'package:smart_farm/src/model/dto/task/health_log/health_log_dto.dart';
+import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:smart_farm/src/model/dto/task/vaccin_schedule_log/vaccin_schedule_log_dto.dart';
+import 'package:smart_farm/src/model/entity/task/next_task/next_task.dart';
+import 'package:smart_farm/src/model/entity/task/tash_type/task_type.dart';
+import 'package:smart_farm/src/model/repository/task/task_repository.dart';
+import 'package:smart_farm/src/model/request/task/get_task/get_task.dart';
+import 'package:smart_farm/src/model/response/task/task_by_user/task_by_user_response.dart';
 import 'package:smart_farm/src/model/task/cage_filter.dart';
 
 part 'task_bloc.freezed.dart';

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/model/dto/farming_batch/farming_batch_dto.dart';
-import 'package:data_layer/repository/farming_batch/farming_batch_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/farming_batch/farming_batch_dto.dart';
+import 'package:smart_farm/src/model/repository/farming_batch/farming_batch_repository.dart';
 
 part 'farming_batch_cubit.freezed.dart';
 part 'farming_batch_state.dart';
@@ -34,11 +34,11 @@ class FarmingBatchCubit extends Cubit<FarmingBatchState> {
   }
 
   Future<void> createDeathReport(
-      String batchId, String stageId, int deathAmount) async {
+      String batchId, String stageId, int deathAmount, String notes) async {
     emit(const FarmingBatchState.createDeathReportInProgress());
     try {
-      final result =
-          await repository.createDeathReport(batchId, stageId, deathAmount);
+      final result = await repository.createDeathReport(
+          batchId, stageId, deathAmount, notes);
       if (result) {
         emit(const FarmingBatchState.createDeathReportSuccess());
       } else {

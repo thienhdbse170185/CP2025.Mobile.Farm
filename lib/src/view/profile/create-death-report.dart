@@ -2,44 +2,36 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
-import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
-import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
-import 'package:data_layer/model/request/symptom/symptom/get_symptom_request.dart';
-import 'package:data_layer/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
-import 'package:data_layer/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
-import 'package:smart_farm/src/core/constants/status_data_constant.dart';
-import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/dto/farming_batch/farming_batch_dto.dart';
+import 'package:smart_farm/src/model/dto/growth_stage/growth_stage_dto.dart';
+import 'package:smart_farm/src/model/dto/task/sale_log/sale_log_dto.dart';
+import 'package:smart_farm/src/model/dto/upload_image/upload_image_dto.dart';
 import 'package:smart_farm/src/model/params/create_food_log_cubit/create_food_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_health_log_cubit/create_health_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_sale_log_cubit/create_sale_log_cubit_params.dart';
 import 'package:smart_farm/src/model/params/create_vaccine_log_cubit_params/create_vaccine_log_cubit_params.dart';
+import 'package:smart_farm/src/model/request/growth_stage/update_weight/update_weight_request.dart';
+import 'package:smart_farm/src/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
 import 'package:smart_farm/src/view/widgets/loading_widget.dart';
 import 'package:smart_farm/src/view/widgets/processing_button_widget.dart';
 import 'package:smart_farm/src/view/widgets/qr_scanner.dart'
     show QRScannerWidget;
-import 'package:smart_farm/src/viewmodel/animal_sale/animal_sale_cubit.dart';
 import 'package:smart_farm/src/viewmodel/cage/cage_cubit.dart';
 import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
 import 'package:smart_farm/src/viewmodel/growth_stage/growth_stage_cubit.dart';
-import 'package:smart_farm/src/viewmodel/healthy/healthy_cubit.dart';
-import 'package:smart_farm/src/viewmodel/symptom/symptom_cubit.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';
-import 'package:smart_farm/src/viewmodel/task/vaccine_schedule_log/vaccine_schedule_log_cubit.dart';
 import 'package:smart_farm/src/viewmodel/upload_image/upload_image_cubit.dart';
 
 class CreateDeathReportScreen extends StatefulWidget {
@@ -95,24 +87,27 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
   int? _affectedQuantity;
   bool _isLoading = false;
   bool _isProcessing = false;
-  bool _isEmergency = false;
   bool _isEmptyCage = false;
   int _availableQuantity = 0;
 
   bool get _isCageSelected => _selectedCage != null;
   bool get _hasFarmingBatch => _farmingBatch != null;
   bool get _hasValidQuantity {
-    final quantity = int.tryParse(_affectedController.text) ?? 0;
-    log('Quantity: $quantity');
-    return quantity > 0 &&
-        (_farmingBatch == null ||
-            quantity <=
-                ((_growthStage?.quantity ?? 0) -
-                    (_farmingBatch?.affectedQuantity ?? 0)));
+    final quantityText = _affectedController.text.trim();
+    // Kiểm tra xem text có phải là số hợp lệ không
+    if (quantityText.isEmpty) return false;
+
+    final quantity = int.tryParse(quantityText) ?? 0;
+    log('Quantity: $quantity, Available: $_availableQuantity');
+
+    return quantity > 0 && quantity <= _availableQuantity;
   }
 
   bool get _isFormValid =>
-      _isCageSelected && _hasFarmingBatch && _hasValidQuantity;
+      _isCageSelected &&
+      _hasFarmingBatch &&
+      _hasValidQuantity &&
+      _noteController.text.trim().isNotEmpty;
 
   // Check if there are unsaved changes
   bool get _hasUnsavedChanges {
@@ -154,46 +149,30 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
     _selectedCage = widget.cageName.isNotEmpty ? widget.cageName : null;
     _selectedCageId = widget.cageId;
 
-    // If coming from a task, automatically load the farming batch
-    if (widget.fromTask == true && widget.cageId != null) {
-      context
-          .read<TaskBloc>()
-          .add(TaskEvent.getTaskById(widget.taskId!, onSuccess: (task) {
-            if (TimeUtils.isTimeInSession(
-                TimeUtils.customNow(), task.session)) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                context
-                    .read<FarmingBatchCubit>()
-                    .getFarmingBatchByCage(widget.cageId!);
-              });
-            } else {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return WarningConfirmationDialog(
-                      title: 'Hết thời gian làm việc',
-                      content: const Text(
-                          'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
-                      primaryButtonText: 'Quay về trang chủ',
-                      onPrimaryButtonPressed: () {
-                        context.go(RouteName.home);
-                      },
-                    );
-                  });
-            }
-          }));
-    } else {
-      context.read<CageCubit>().getCagesByUserId();
-    }
+    // Thêm listener để cập nhật state khi giá trị thay đổi
+    _noteController.addListener(_onInputChanged);
+    _affectedController.addListener(_onInputChanged);
+
+    _fetchInitialData();
   }
 
   @override
   void dispose() {
+    _noteController.removeListener(_onInputChanged);
+    _affectedController.removeListener(_onInputChanged);
+
     _noteController.dispose();
     _affectedController.dispose();
     _farmingBatchController.dispose();
     _searchSymptomController.dispose();
     super.dispose();
+  }
+
+  void _onInputChanged() {
+    // Gọi setState để kích hoạt việc đánh giá lại các getter
+    setState(() {
+      // Không cần thay đổi gì ở đây - chỉ cần kích hoạt rebuild
+    });
   }
 
   void _fetchInitialData() {
@@ -225,6 +204,7 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
           _farmingBatch!.id,
           _growthStage!.id,
           int.parse(_affectedController.text),
+          _noteController.text,
         );
   }
 
@@ -358,14 +338,26 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
     if (!_hasFarmingBatch) {
       return 'Không tìm thấy thông tin vụ nuôi cho chuồng này.';
     }
-    if (!_hasValidQuantity) {
-      return int.tryParse(_affectedController.text) == 0
-          ? 'Vui lòng nhập số lượng con vật bị bệnh.'
-          : 'Số lượng con vật bị bệnh không hợp lệ.';
+
+    // Kiểm tra số lượng kỹ hơn
+    final quantityText = _affectedController.text.trim();
+    if (quantityText.isEmpty || int.tryParse(quantityText) == 0) {
+      return 'Vui lòng nhập số lượng con vật bị thất thoát.';
     }
-    if (_isEmergency && _images.isEmpty) {
-      return 'Trường hợp khẩn cấp yêu cầu phải đính kèm ít nhất 1 hình ảnh.';
+
+    final quantity = int.tryParse(quantityText) ?? 0;
+    if (quantity <= 0) {
+      return 'Số lượng con vật thất thoát phải lớn hơn 0.';
     }
+
+    if (quantity > _availableQuantity) {
+      return 'Số lượng con vật thất thoát không thể lớn hơn số lượng hiện có ($_availableQuantity con).';
+    }
+
+    if (_noteController.text.trim().isEmpty) {
+      return 'Vui lòng nhập lý do thất thoát.';
+    }
+
     return '';
   }
 
@@ -389,7 +381,6 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
                     .whereType<CageOption>()
                     .toList();
               });
-              context.read<SymptomCubit>().getSymptoms();
               return null;
             },
             loadByUserIdFailure: (error) => _handleCageFailure(error),
@@ -433,7 +424,8 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
                 _affectedQuantity =
                     _farmingBatch!.quantity - growthStage.affectQuantity!;
                 _availableQuantity = (_growthStage!.quantity! -
-                    (_farmingBatch?.affectedQuantity ?? 0));
+                    (_farmingBatch?.affectedQuantity ?? 0) -
+                    (_growthStage!.deadQuantity));
               });
               // context.read<SymptomCubit>().getSymptoms();
               return null;
@@ -595,41 +587,41 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
     }
   }
 
-  Future<bool> _validateAffectedQuantityForm(String value) async {
-    if (_farmingBatch != null) {
-      if (value.isNotEmpty) {
-        final enteredQuantity = int.tryParse(value) ?? 0;
-        final quantityReal =
-            _growthStage!.quantity! - (_farmingBatch?.affectedQuantity ?? 0);
-        log('Quantity real: $quantityReal');
-        if (enteredQuantity > quantityReal) {
-          await showDialog(
-            context: context,
-            builder: (context) => WarningConfirmationDialog(
-              title: 'Số lượng vượt mức',
-              content: const Text(
-                'Số lượng bị bệnh không thể lớn hơn số lượng gia cầm có trong chuồng.',
-                textAlign: TextAlign.center,
-              ),
-              primaryButtonText: 'Đã hiểu',
-              secondaryButtonText: 'Đặt lại',
-              onPrimaryButtonPressed: () {
-                _affectedController.text = _farmingBatch!.quantity.toString();
-                context.pop();
-              },
-              onSecondaryButtonPressed: () {
-                _affectedController.text = '0';
-                context.pop();
-              },
-            ),
-          );
-          return false;
-        }
-        return true;
-      }
-    }
-    return false;
-  }
+  // Future<bool> _validateAffectedQuantityForm(String value) async {
+  //   if (_farmingBatch != null) {
+  //     if (value.isNotEmpty) {
+  //       final enteredQuantity = int.tryParse(value) ?? 0;
+  //       final quantityReal =
+  //           _growthStage!.quantity! - (_farmingBatch?.affectedQuantity ?? 0);
+  //       log('Quantity real: $quantityReal');
+  //       if (enteredQuantity > quantityReal) {
+  //         await showDialog(
+  //           context: context,
+  //           builder: (context) => WarningConfirmationDialog(
+  //             title: 'Số lượng vượt mức',
+  //             content: const Text(
+  //               'Số lượng bị bệnh không thể lớn hơn số lượng gia cầm có trong chuồng.',
+  //               textAlign: TextAlign.center,
+  //             ),
+  //             primaryButtonText: 'Đã hiểu',
+  //             secondaryButtonText: 'Đặt lại',
+  //             onPrimaryButtonPressed: () {
+  //               _affectedController.text = _farmingBatch!.quantity.toString();
+  //               context.pop();
+  //             },
+  //             onSecondaryButtonPressed: () {
+  //               _affectedController.text = '0';
+  //               context.pop();
+  //             },
+  //           ),
+  //         );
+  //         return false;
+  //       }
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 }
 
 class _CageSelectionSheet extends StatefulWidget {
@@ -957,140 +949,366 @@ class _FormBodyState extends State<_FormBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Opacity(
-          opacity: widget.state._isEmptyCage ? 0.5 : 1,
-          child: Container(
-            color: Colors.white,
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: widget.state._buildSectionTitle('Thông tin cơ bản',
-                          isCompleted: widget.state._isCageSelected &&
-                              widget.state._hasFarmingBatch),
-                    ),
-                    const SizedBox(width: 12),
-                    Material(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(12),
-                      child: InkWell(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Column(
+        children: [
+          Opacity(
+            opacity: widget.state._isEmptyCage ? 0.5 : 1,
+            child: Container(
+              color: Colors.white,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: widget.state._buildSectionTitle(
+                            'Thông tin cơ bản',
+                            isCompleted: widget.state._isCageSelected &&
+                                widget.state._hasFarmingBatch),
+                      ),
+                      const SizedBox(width: 12),
+                      Material(
+                        color: Theme.of(context).colorScheme.primaryContainer,
                         borderRadius: BorderRadius.circular(12),
-                        onTap: widget.state._isEmptyCage
-                            ? null
-                            : widget.state._showQRScanner,
-                        child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(Icons.qr_code_scanner, size: 20),
-                              SizedBox(width: 8),
-                              Text('Quét QR',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14)),
-                            ],
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: widget.state._isEmptyCage
+                              ? null
+                              : widget.state._showQRScanner,
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.qr_code_scanner, size: 20),
+                                SizedBox(width: 8),
+                                Text('Quét QR',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14)),
+                              ],
+                            ),
                           ),
                         ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Chọn chuồng để báo cáo tử vong (bắt buộc)',
+                      style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  const SizedBox(height: 8),
+                  InkWell(
+                    onTap: widget.state._isEmptyCage
+                        ? null
+                        : widget.state._showCageSelectionSheet,
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey[300]!),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Row(
+                        children: [
+                          LinearIcons.chickenIcon,
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Chuồng nuôi',
+                                    style: TextStyle(
+                                        color: Colors.grey[600], fontSize: 13)),
+                                const SizedBox(height: 4),
+                                Text(
+                                    widget.state._selectedCage ??
+                                        'Chọn chuồng báo cáo',
+                                    style: const TextStyle(fontSize: 16)),
+                              ],
+                            ),
+                          ),
+                          Icon(Icons.arrow_forward_ios,
+                              size: 16, color: Colors.grey[600]),
+                        ],
+                      ),
+                    ),
+                  ),
+                  if (widget.state._selectedCage == null)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.info_outline, size: 16),
+                          SizedBox(width: 4),
+                          Text(
+                              'Bạn có thể quét mã QR trên chuồng để chọn nhanh',
+                              style: TextStyle(fontSize: 13)),
+                        ],
+                      ),
+                    ),
+                  if (widget.state._hasFarmingBatch) ...[
+                    const SizedBox(height: 16),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Row(
+                        children: [
+                          Icon(Icons.info_outline,
+                              color: Colors.blue[700], size: 20),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Vụ nuôi hiện tại',
+                                    style: TextStyle(
+                                        color: Colors.blue[700], fontSize: 13)),
+                                const SizedBox(height: 4),
+                                Text(widget.state._farmingBatch!.name,
+                                    style: TextStyle(
+                                        color: Colors.blue[900],
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Opacity(
+              opacity: widget.state._hasFarmingBatch == true ? 1 : 0.5,
+              child: Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    widget.state._buildSectionTitle(
+                      'Số lượng thất thoát',
+                      isCompleted: widget.state._hasValidQuantity,
+                    ),
+                    const SizedBox(height: 8),
+                    const Text('Nhập số lượng gia cầm đã thất thoát (bắt buộc)',
+                        style: TextStyle(fontSize: 12, color: Colors.grey)),
+                    const SizedBox(height: 16),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[50],
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.grey[200]!),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Nhập số lượng con vật đã thất thoát',
+                              style: Theme.of(context).textTheme.titleSmall),
+                          if (widget.state._farmingBatch != null) ...[
+                            const SizedBox(height: 4),
+                            Text(
+                                '${widget.state._selectedCage} có: ${widget.state._availableQuantity} (con)',
+                                style: TextStyle(
+                                    color: Colors.grey[600], fontSize: 13)),
+                          ],
+                          const SizedBox(height: 12),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _buildQuantityButton(
+                                context: context,
+                                icon: Icons.remove,
+                                onPressed: () {
+                                  final currentValue = int.tryParse(widget
+                                          .state._affectedController.text) ??
+                                      0;
+                                  if (currentValue > 0) {
+                                    widget.state.setState(() => widget
+                                        .state
+                                        ._affectedController
+                                        .text = (currentValue - 1).toString());
+                                  }
+                                },
+                              ),
+                              Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: TextField(
+                                    controller:
+                                        widget.state._affectedController,
+                                    textAlign: TextAlign.right,
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.digitsOnly,
+                                    ],
+                                    decoration: InputDecoration(
+                                      suffixText: '(con)',
+                                      suffixStyle: TextStyle(
+                                          color: Colors.grey[600],
+                                          fontSize: 18),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                    ),
+                                    style: const TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w600),
+                                    onChanged: (value) {
+                                      // Đảm bảo cập nhật UI khi giá trị thay đổi
+                                      widget.state.setState(() {
+                                        if (value.isEmpty) {
+                                          widget.state._affectedController
+                                              .text = '0';
+                                          widget.state._affectedController
+                                                  .selection =
+                                              TextSelection.fromPosition(
+                                                  const TextPosition(
+                                                      offset: 1));
+                                          return;
+                                        }
+
+                                        final enteredQuantity =
+                                            int.tryParse(value) ?? 0;
+                                        final availableQuantity =
+                                            widget.state._availableQuantity;
+
+                                        if (enteredQuantity >
+                                                availableQuantity &&
+                                            widget.state._farmingBatch !=
+                                                null) {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                WarningConfirmationDialog(
+                                              title: 'Số lượng vượt mức',
+                                              content: const Text(
+                                                'Số lượng thất thoát không thể lớn hơn số lượng gia cầm có trong chuồng.',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              primaryButtonText: 'Đã hiểu',
+                                              secondaryButtonText: 'Đặt lại',
+                                              onPrimaryButtonPressed: () {
+                                                widget.state.setState(() {
+                                                  widget
+                                                          .state
+                                                          ._affectedController
+                                                          .text =
+                                                      availableQuantity
+                                                          .toString();
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              onSecondaryButtonPressed: () {
+                                                widget.state.setState(() {
+                                                  widget
+                                                      .state
+                                                      ._affectedController
+                                                      .text = '0';
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          );
+                                        }
+                                      });
+                                    },
+                                    onTap: () {
+                                      if (widget
+                                              .state._affectedController.text ==
+                                          '0') {
+                                        widget.state._affectedController
+                                            .clear();
+                                      }
+                                    },
+                                  )),
+                              _buildQuantityButton(
+                                context: context,
+                                icon: Icons.add,
+                                onPressed: () {
+                                  final currentValue = int.tryParse(widget
+                                          .state._affectedController.text) ??
+                                      0;
+                                  final availableQuantity =
+                                      widget.state._availableQuantity;
+
+                                  // Check if adding one more would exceed the available quantity
+                                  if (currentValue < availableQuantity) {
+                                    widget.state.setState(() => widget
+                                        .state
+                                        ._affectedController
+                                        .text = (currentValue + 1).toString());
+                                  } else {
+                                    // Show warning dialog if we're at the maximum
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          WarningConfirmationDialog(
+                                        title: 'Số lượng tối đa',
+                                        content: Text(
+                                          'Số lượng đã đạt mức tối đa ($availableQuantity con).',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        primaryButtonText: 'Đã hiểu',
+                                        onPrimaryButtonPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    );
+                                  }
+                                },
+                                isAdd: true,
+                              ),
+                            ],
+                          ),
+                          if (widget.state._farmingBatch != null) ...[
+                            const SizedBox(height: 16),
+                            Row(
+                              children: [
+                                Icon(Icons.info_outline,
+                                    size: 16, color: Colors.grey[600]),
+                                const SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Dấu (-) để giảm số lượng.',
+                                        style: TextStyle(
+                                            color: Colors.grey[600],
+                                            fontSize: 13)),
+                                    Text('Dấu (+) để tăng số lượng.',
+                                        style: TextStyle(
+                                            color: Colors.grey[600],
+                                            fontSize: 13)),
+                                    Text('Bấm vào ô để nhập số bất kỳ.',
+                                        style: TextStyle(
+                                            color: Colors.grey[600],
+                                            fontSize: 13)),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ],
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                const Text('Chọn chuồng để báo cáo tử vong (bắt buộc)',
-                    style: TextStyle(fontSize: 12, color: Colors.grey)),
-                const SizedBox(height: 8),
-                InkWell(
-                  onTap: widget.state._isEmptyCage
-                      ? null
-                      : widget.state._showCageSelectionSheet,
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[300]!),
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Row(
-                      children: [
-                        LinearIcons.chickenIcon,
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Chuồng nuôi',
-                                  style: TextStyle(
-                                      color: Colors.grey[600], fontSize: 13)),
-                              const SizedBox(height: 4),
-                              Text(
-                                  widget.state._selectedCage ??
-                                      'Chọn chuồng báo cáo',
-                                  style: const TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Icon(Icons.arrow_forward_ios,
-                            size: 16, color: Colors.grey[600]),
-                      ],
-                    ),
-                  ),
-                ),
-                if (widget.state._selectedCage == null)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.info_outline, size: 16),
-                        SizedBox(width: 4),
-                        Text('Bạn có thể quét mã QR trên chuồng để chọn nhanh',
-                            style: TextStyle(fontSize: 13)),
-                      ],
-                    ),
-                  ),
-                if (widget.state._hasFarmingBatch) ...[
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        color: Colors.blue[50],
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Row(
-                      children: [
-                        Icon(Icons.info_outline,
-                            color: Colors.blue[700], size: 20),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Vụ nuôi hiện tại',
-                                  style: TextStyle(
-                                      color: Colors.blue[700], fontSize: 13)),
-                              const SizedBox(height: 4),
-                              Text(widget.state._farmingBatch!.name,
-                                  style: TextStyle(
-                                      color: Colors.blue[900],
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500)),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Opacity(
+              )),
+          const SizedBox(height: 8),
+          Opacity(
             opacity: widget.state._hasFarmingBatch == true ? 1 : 0.5,
             child: Container(
               color: Colors.white,
@@ -1099,148 +1317,53 @@ class _FormBodyState extends State<_FormBody> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   widget.state._buildSectionTitle(
-                    'Số lượng thất thoát',
-                    isCompleted: widget.state._hasValidQuantity,
+                    'Lý do thất thoát',
+                    isRequired: true, // Required field
+                    isCompleted: widget.state._noteController.text.isNotEmpty,
                   ),
                   const SizedBox(height: 8),
-                  const Text('Nhập số lượng gia cầm đã thất thoát (bắt buộc)',
+                  const Text('Ghi chú lý do thất thoát của gia cầm (bắt buộc)',
                       style: TextStyle(fontSize: 12, color: Colors.grey)),
                   const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey[200]!),
+                  TextField(
+                    controller: widget.state._noteController,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      hintText: 'Nhập lý do thất thoát...',
+                      filled: true,
+                      fillColor: Colors.grey[50],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.grey[200]!),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.grey[200]!),
+                      ),
+                      contentPadding: const EdgeInsets.all(16),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Nhập số lượng con vật đã thất thoát',
-                            style: Theme.of(context).textTheme.titleSmall),
-                        if (widget.state._farmingBatch != null) ...[
-                          const SizedBox(height: 4),
-                          Text(
-                              'Chuồng ${widget.state._selectedCage} có: ${widget.state._availableQuantity} (con)',
-                              style: TextStyle(
-                                  color: Colors.grey[600], fontSize: 13)),
-                        ],
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _buildQuantityButton(
-                              context: context,
-                              icon: Icons.remove,
-                              onPressed: () {
-                                final currentValue = int.tryParse(widget
-                                        .state._affectedController.text) ??
-                                    0;
-                                if (currentValue > 0) {
-                                  widget.state.setState(() => widget
-                                      .state
-                                      ._affectedController
-                                      .text = (currentValue - 1).toString());
-                                }
-                              },
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: TextField(
-                                controller: widget.state._affectedController,
-                                textAlign: TextAlign.right,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                ],
-                                decoration: InputDecoration(
-                                  suffixText: '(con)',
-                                  suffixStyle: TextStyle(
-                                      color: Colors.grey[600], fontSize: 18),
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                ),
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.w600),
-                                onChanged: (value) async {
-                                  if (value.isEmpty) {
-                                    widget.state.setState(() {
-                                      widget.state._affectedController.text =
-                                          '0';
-                                      widget.state._affectedController
-                                              .selection =
-                                          TextSelection.fromPosition(
-                                              const TextPosition(offset: 1));
-                                    });
-                                  } else {
-                                    await widget.state
-                                        ._validateAffectedQuantityForm(value);
-                                  }
-                                },
-                                onTap: () {
-                                  if (widget.state._affectedController.text ==
-                                      '0') {
-                                    widget.state._affectedController.clear();
-                                  }
-                                },
-                              ),
-                            ),
-                            _buildQuantityButton(
-                              context: context,
-                              icon: Icons.add,
-                              onPressed: () async {
-                                final currentValue = int.tryParse(widget
-                                        .state._affectedController.text) ??
-                                    0;
-                                if (await widget.state
-                                    ._validateAffectedQuantityForm(widget
-                                        .state._affectedController.text)) {
-                                  widget.state.setState(() => widget
-                                      .state
-                                      ._affectedController
-                                      .text = (currentValue + 1).toString());
-                                }
-                              },
-                              isAdd: true,
-                            ),
-                          ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Icon(Icons.info_outline,
+                          size: 16, color: Colors.grey[600]),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          'Vui lòng cung cấp lý do thất thoát để hỗ trợ quản lý và phân tích vấn đề sau này.',
+                          style:
+                              TextStyle(color: Colors.grey[600], fontSize: 13),
                         ),
-                        if (widget.state._farmingBatch != null) ...[
-                          const SizedBox(height: 16),
-                          Row(
-                            children: [
-                              Icon(Icons.info_outline,
-                                  size: 16, color: Colors.grey[600]),
-                              const SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Dấu (-) để giảm số lượng.',
-                                      style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 13)),
-                                  Text('Dấu (+) để tăng số lượng.',
-                                      style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 13)),
-                                  Text('Bấm vào ô để nhập số bất kỳ.',
-                                      style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 13)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            )),
-      ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

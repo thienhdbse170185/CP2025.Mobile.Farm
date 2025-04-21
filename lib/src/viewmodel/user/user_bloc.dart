@@ -1,14 +1,15 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/request/user/update_user_info/update_user_info_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/auth_data_constant.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/core/service/push_notification.dart';
 import 'package:smart_farm/src/core/utils/jwt_decoder.dart';
+import 'package:smart_farm/src/model/dto/user/user_dto.dart';
+import 'package:smart_farm/src/model/repository/user/local/user_repository.dart';
+import 'package:smart_farm/src/model/request/user/update_user_info/update_user_info_request.dart';
 
 part 'user_bloc.freezed.dart';
 part 'user_event.dart';

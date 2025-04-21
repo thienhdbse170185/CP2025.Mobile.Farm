@@ -1,9 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/sale_type/sale_type_dto.dart';
+import 'package:smart_farm/src/model/repository/sale_type/sale_type_repository.dart';
 
 part 'sale_type_cubit.freezed.dart';
 part 'sale_type_state.dart';

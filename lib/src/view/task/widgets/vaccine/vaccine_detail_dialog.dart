@@ -1,6 +1,7 @@
-import 'package:data_layer/data_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../model/dto/index.dart';
 
 class VaccineDetailDialog extends StatelessWidget {
   final String? vaccineName;

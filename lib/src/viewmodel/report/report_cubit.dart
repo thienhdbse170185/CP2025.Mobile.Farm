@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
 import 'package:meta/meta.dart';
+import 'package:smart_farm/src/model/repository/report/report_repository.dart';
 
 part 'report_state.dart';
 

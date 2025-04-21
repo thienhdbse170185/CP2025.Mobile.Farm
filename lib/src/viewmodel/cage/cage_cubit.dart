@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/entity/cage/cage.dart';
-import 'package:data_layer/model/response/cage/get_all/get_all_cage_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
+import 'package:smart_farm/src/model/entity/cage/cage.dart';
+import 'package:smart_farm/src/model/repository/cage/cage_repository.dart';
+import 'package:smart_farm/src/model/response/cage/get_all/get_all_cage_response.dart';
 
 part 'cage_cubit.freezed.dart';
 part 'cage_state.dart';

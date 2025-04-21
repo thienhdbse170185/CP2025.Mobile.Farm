@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/model/dto/medical_symptom/medical_symptom.dart';
-import 'package:data_layer/model/request/symptom/create_symptom/create_symptom_request.dart';
-import 'package:data_layer/repository/healthy/healthy_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/medical_symptom/medical_symptom.dart';
+import 'package:smart_farm/src/model/repository/healthy/healthy_repository.dart';
+import 'package:smart_farm/src/model/request/symptom/create_symptom/create_symptom_request.dart';
 
 part 'healthy_cubit.freezed.dart';
 part 'healthy_state.dart';

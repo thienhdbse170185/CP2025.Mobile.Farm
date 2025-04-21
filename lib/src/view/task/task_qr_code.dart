@@ -1,14 +1,5 @@
 import 'dart:developer';
 
-import 'package:data_layer/model/dto/egg_harvest/egg_harvest_dto.dart';
-import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
-import 'package:data_layer/model/dto/prescription/prescription.dart';
-import 'package:data_layer/model/dto/sale_type/sale_type_dto.dart';
-import 'package:data_layer/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
-import 'package:data_layer/model/dto/task/vaccin_schedule_log/vaccin_schedule_log_dto.dart';
-import 'package:data_layer/model/dto/upload_image/upload_image_dto.dart';
-import 'package:data_layer/model/dto/vaccine_schedule/vaccine_schedule_dto.dart';
-import 'package:data_layer/model/entity/task/tash_type/task_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +8,10 @@ import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/model/dto/egg_harvest/egg_harvest_dto.dart';
+import 'package:smart_farm/src/model/dto/index.dart';
+import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
+import 'package:smart_farm/src/model/entity/task/tash_type/task_type.dart';
 import 'package:smart_farm/src/view/symptom/cage_option.dart';
 import 'package:smart_farm/src/viewmodel/index.dart';
 import 'package:smart_farm/src/viewmodel/task/task_bloc.dart';

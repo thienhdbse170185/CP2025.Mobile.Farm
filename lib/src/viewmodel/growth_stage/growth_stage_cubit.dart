@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/model/dto/growth_stage/growth_stage_dto.dart';
-import 'package:data_layer/model/request/growth_stage/update_weight/update_weight_request.dart';
-import 'package:data_layer/repository/growth_stage/growth_stage_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:smart_farm/src/model/dto/growth_stage/growth_stage_dto.dart';
+import 'package:smart_farm/src/model/repository/growth_stage/growth_stage_repository.dart';
+import 'package:smart_farm/src/model/request/growth_stage/update_weight/update_weight_request.dart';
 
 part 'growth_stage_cubit.freezed.dart';
 part 'growth_stage_state.dart';

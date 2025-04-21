@@ -1834,6 +1834,8 @@ abstract class _$$UpdateUserInfoImplCopyWith<$Res> {
       __$$UpdateUserInfoImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UpdateUserInfoRequest request});
+
+  $UpdateUserInfoRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -1849,14 +1851,24 @@ class __$$UpdateUserInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? request = freezed,
+    Object? request = null,
   }) {
     return _then(_$UpdateUserInfoImpl(
-      request: freezed == request
+      request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as UpdateUserInfoRequest,
     ));
+  }
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UpdateUserInfoRequestCopyWith<$Res> get request {
+    return $UpdateUserInfoRequestCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
+    });
   }
 }
 
@@ -1878,12 +1890,11 @@ class _$UpdateUserInfoImpl implements _UpdateUserInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateUserInfoImpl &&
-            const DeepCollectionEquality().equals(other.request, request));
+            (identical(other.request, request) || other.request == request));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(request));
+  int get hashCode => Object.hash(runtimeType, request);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.

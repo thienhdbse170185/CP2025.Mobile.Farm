@@ -1,16 +1,16 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/data_layer.dart';
-import 'package:data_layer/model/dto/sale_log_detail/sale_log_detail_dto.dart';
-import 'package:data_layer/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
-import 'package:data_layer/model/dto/task/sale_log/sale_log_dto.dart';
-import 'package:data_layer/model/request/animal_sale/animal_sale_request.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
+import 'package:smart_farm/src/model/dto/sale_log_detail/sale_log_detail_dto.dart';
+import 'package:smart_farm/src/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
+import 'package:smart_farm/src/model/dto/task/sale_log/sale_log_dto.dart';
+import 'package:smart_farm/src/model/repository/animal_sale/animal_sale_repository.dart';
+import 'package:smart_farm/src/model/request/animal_sale/animal_sale_request.dart';
 
 part 'animal_sale_cubit.freezed.dart';
 part 'animal_sale_state.dart';

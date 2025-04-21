@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:data_layer/model/dto/notification/notification_dto.dart';
-import 'package:data_layer/repository/notification/notification_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_farm/src/core/constants/user_data_constant.dart';
+import 'package:smart_farm/src/model/dto/notification/notification_dto.dart';
+import 'package:smart_farm/src/model/repository/notification/notification_repository.dart';
 
 part 'notification_bloc.freezed.dart';
 part 'notification_event.dart';
