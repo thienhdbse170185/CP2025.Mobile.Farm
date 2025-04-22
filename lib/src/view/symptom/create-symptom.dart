@@ -726,17 +726,18 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               });
             },
             updateTaskAfterReportSuccess: () {
-              context.go(RouteName.symptomSuccess, extra: {
-                'symptom': symptom,
-                'cageName': _selectedCage,
-                'fromTask': true,
-                'taskId': widget.taskId
-              });
+              final selectedCage = _selectedCage;
               setState(() {
                 _isProcessing = false;
                 _selectedCage = null;
                 _farmingBatch = null;
                 _selectedCageId = null;
+              });
+              context.go(RouteName.symptomSuccess, extra: {
+                'symptom': symptom,
+                'cageName': selectedCage,
+                'fromTask': true,
+                'taskId': widget.taskId
               });
             },
             updateTaskAfterReportFailure: (error) {
@@ -868,6 +869,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
     } else {
       final selectedCage = _selectedCage;
       setState(() {
+        _isProcessing = false;
         _selectedCage = null;
         _farmingBatch = null;
         _selectedCageId = null;

@@ -570,11 +570,14 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
             ),
             Row(
               children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.23,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
                 if (warningLevel != 0) ...[

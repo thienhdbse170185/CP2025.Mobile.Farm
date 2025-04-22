@@ -334,12 +334,14 @@ final router = GoRouter(
         pageBuilder: (context, state) {
           final extra = state.extra as Map<String, dynamic>;
           final fromTask = extra['fromTask'] as bool? ?? false;
+          final cageName = extra['cageName'] as String;
+          final symptom = extra['symptom'] as MedicalSymptomResponse;
           final taskId = extra['taskId'] as String?;
 
           return _buildPageWithSlideTransition(
             SymptomSuccessWidget(
-              symptom: extra['symptom'] as MedicalSymptomResponse,
-              cageName: extra['cageName'] as String,
+              symptom: symptom,
+              cageName: cageName,
               fromTask: fromTask,
               taskId: taskId,
             ),

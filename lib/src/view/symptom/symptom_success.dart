@@ -446,7 +446,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
           ),
           _buildStepItem(
             index: 3,
-            title: 'Tạo log tự động',
+            title: 'Tạo log tự động (nếu có)',
             description: 'Log đã được tạo tự động cho công việc này',
             isCompleted: true,
           ),

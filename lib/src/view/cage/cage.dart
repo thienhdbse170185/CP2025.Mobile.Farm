@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/model/entity/cage/cage.dart';
 import 'package:smart_farm/src/view/task/task_detail.dart';
@@ -24,7 +25,7 @@ class CageWidget extends StatefulWidget {
 }
 
 class _CageWidgetState extends State<CageWidget> {
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = TimeUtils.customNow();
   Map<String, List<TaskHaveCageName>> tasks = {};
   Cage? cage;
   bool _isLoading = false;
@@ -169,26 +170,20 @@ class _CageWidgetState extends State<CageWidget> {
                     ),
               ),
               const SizedBox(height: 4),
-              InkWell(
-                onTap: () => _selectDate(context),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.calendar_today,
-                      size: 16,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      formattedDate,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                    ),
-                  ],
-                ),
-              )
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.calendar_today,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    formattedDate,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ],
+              ),
             ],
           ),
         ),

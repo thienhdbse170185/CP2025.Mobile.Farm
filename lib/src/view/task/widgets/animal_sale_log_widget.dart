@@ -604,7 +604,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           ),
           const SizedBox(height: 12),
           SizedBox(
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.4,
               child: (widget.growthStage == null || widget.farmingBatch == null)
                   ? Center(
                       child: CircularProgressIndicator(),
