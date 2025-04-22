@@ -33,7 +33,8 @@ class GrowthStageCubit extends Cubit<GrowthStageState> {
       final growthStage =
           await growthStageRepository.getGrowthStageByCageId(cageId);
       double recommendedWeight = growthStage.recommendedWeightPerSession *
-          (growthStage.quantity ?? 0); //kg
+          (growthStage.quantity ?? 0) /
+          1000;
 
       // Làm tròn recommendedWeight lên số chia hết cho 5
       recommendedWeight = (recommendedWeight / 5).ceil() * 5; //kg

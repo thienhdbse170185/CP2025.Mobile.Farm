@@ -84,17 +84,23 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildHeader(context),
-        const SizedBox(height: 8),
-        _buildReporterInfo(context),
-        const SizedBox(height: 20),
-        _buildGrowthStageInfo(context),
-        const SizedBox(height: 30),
-        _buildSaleFormSection(context),
-      ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
+          const SizedBox(height: 8),
+          _buildReporterInfo(context),
+          const SizedBox(height: 20),
+          _buildGrowthStageInfo(context),
+          const SizedBox(height: 30),
+          _buildSaleFormSection(context),
+        ],
+      ),
     );
   }
 
@@ -685,7 +691,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                               context: context,
                               label: 'Số con bị bệnh',
                               value:
-                                  '${widget.growthStage?.affectQuantity} (con)',
+                                  '${widget.growthStage?.affectQuantity ?? 0} (con)',
                               icon: Icons.medical_services_rounded,
                             ),
                           ],
@@ -708,7 +714,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                             ),
                             SizedBox(
                                 width:
-                                    MediaQuery.of(context).size.width * 0.163),
+                                    MediaQuery.of(context).size.width * 0.13),
                             _buildInfoItem(
                               context: context,
                               label: 'Ngày kết thúc',
@@ -735,7 +741,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                             ),
                             SizedBox(
                                 width:
-                                    MediaQuery.of(context).size.width * 0.143),
+                                    MediaQuery.of(context).size.width * 0.13),
                             _buildInfoItem(
                               context: context,
                               label: 'Độ tuổi kết thúc',
@@ -783,11 +789,14 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
             ),
             Row(
               children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.23,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
                 if (warningLevel != 0) ...[

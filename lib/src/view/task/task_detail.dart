@@ -787,18 +787,18 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             ),
 
           // Thêm StatusLogsBanner ở đây - giữa phần thông tin và cảnh báo
-          if (task?.statusLogs != null && task!.statusLogs!.isNotEmpty)
-            Column(
-              children: [
-                const SizedBox(height: 8),
-                StatusLogsBanner(
-                  statusLogs: task!.statusLogs!
-                      .map((log) => StatusLogDto(
-                          status: log.status, updatedAt: log.updatedAt))
-                      .toList(),
-                ),
-              ],
-            ),
+          // if (task?.statusLogs != null && task!.statusLogs!.isNotEmpty)
+          //   Column(
+          //     children: [
+          //       const SizedBox(height: 8),
+          //       StatusLogsBanner(
+          //         statusLogs: task!.statusLogs!
+          //             .map((log) => StatusLogDto(
+          //                 status: log.status, updatedAt: log.updatedAt))
+          //             .toList(),
+          //       ),
+          //     ],
+          //   ),
         ],
       ),
     );

@@ -106,17 +106,23 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
       );
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildHeader(context),
-        const SizedBox(height: 16),
-        _buildReporterInfo(context),
-        const SizedBox(height: 20),
-        _buildVaccineInfo(context),
-        const SizedBox(height: 24),
-        _buildVaccineFormSection(context),
-      ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Đóng bàn phím khi nhấn ra ngoài
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
+          const SizedBox(height: 16),
+          _buildReporterInfo(context),
+          const SizedBox(height: 20),
+          _buildVaccineInfo(context),
+          const SizedBox(height: 24),
+          _buildVaccineFormSection(context),
+        ],
+      ),
     );
   }
 

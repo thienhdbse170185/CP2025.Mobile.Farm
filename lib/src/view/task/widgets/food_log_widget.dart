@@ -47,20 +47,23 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
         widget.task.status == StatusDataConstant.overdue;
     final isEditable = widget.task.status == StatusDataConstant.inProgress;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildHeader(context),
-        const SizedBox(height: 16),
-        _buildReporterInfo(context),
-        const SizedBox(height: 20),
-        _buildFoodQuantityInput(context, isEditable),
-        if (widget.hasAnimalDesease &&
-            widget.task.status == StatusDataConstant.inProgress) ...[
-          const SizedBox(height: 24),
-          _buildIsolationSection(context, isCompleted),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
+          const SizedBox(height: 16),
+          _buildReporterInfo(context),
+          const SizedBox(height: 20),
+          _buildFoodQuantityInput(context, isEditable),
+          if (widget.hasAnimalDesease &&
+              widget.task.status == StatusDataConstant.inProgress) ...[
+            const SizedBox(height: 24),
+            _buildIsolationSection(context, isCompleted),
+          ],
         ],
-      ],
+      ),
     );
   }
 

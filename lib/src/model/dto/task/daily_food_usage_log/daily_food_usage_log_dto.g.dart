@@ -9,8 +9,8 @@ part of 'daily_food_usage_log_dto.dart';
 _$DailyFoodUsageLogDtoImpl _$$DailyFoodUsageLogDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$DailyFoodUsageLogDtoImpl(
-      recommendedWeight: (json['recommendedWeight'] as num).toInt(),
-      actualWeight: (json['actualWeight'] as num).toInt(),
+      recommendedWeight: (json['recommendedWeight'] as num).toDouble(),
+      actualWeight: (json['actualWeight'] as num).toDouble(),
       notes: json['notes'] as String,
       logTime: DateTime.parse(json['logTime'] as String),
       photo: json['photo'] as String,

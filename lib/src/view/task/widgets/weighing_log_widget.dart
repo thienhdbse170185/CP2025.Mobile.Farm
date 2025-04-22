@@ -64,19 +64,25 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
       return _buildErrorState(context);
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildHeader(context),
-        const SizedBox(height: 16),
-        _buildReporterInfo(context),
-        const SizedBox(height: 20),
-        _buildGrowthStageInfo(context, widget.growthStage),
-        const SizedBox(height: 24),
-        _buildWeightInputForm(context),
-        const SizedBox(height: 20),
-        // _buildPreviousWeightComparison(context), // Thêm phần so sánh cân nặng
-      ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
+          const SizedBox(height: 16),
+          _buildReporterInfo(context),
+          const SizedBox(height: 20),
+          _buildGrowthStageInfo(context, widget.growthStage),
+          const SizedBox(height: 24),
+          _buildWeightInputForm(context),
+          const SizedBox(height: 20),
+          // _buildPreviousWeightComparison(context), // Thêm phần so sánh cân nặng
+        ],
+      ),
     );
   }
 
@@ -240,7 +246,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                 _buildInfoItem(
                   context: context,
                   label: 'Số con bị bệnh',
-                  value: '${growthStage?.affectQuantity} (con)',
+                  value: '${growthStage?.affectQuantity ?? 0} (con)',
                   icon: Icons.medical_services_rounded,
                 ),
               ],
@@ -255,7 +261,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                       .format(DateTime.parse(growthStage?.ageStartDate ?? '')),
                   icon: Icons.calendar_month,
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.163),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.13),
                 _buildInfoItem(
                   context: context,
                   label: 'Ngày kết thúc',
@@ -274,7 +280,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                   value: '${growthStage?.ageStart} ngày tuổi',
                   icon: Icons.health_and_safety_rounded,
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.143),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.13),
                 _buildInfoItem(
                   context: context,
                   label: 'Độ tuổi kết thúc',
@@ -748,11 +754,14 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
             ),
             Row(
               children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.23,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
                 if (warningLevel != 0) ...[

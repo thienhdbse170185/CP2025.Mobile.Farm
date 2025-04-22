@@ -20,8 +20,8 @@ DailyFoodUsageLogDto _$DailyFoodUsageLogDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DailyFoodUsageLogDto {
-  int get recommendedWeight => throw _privateConstructorUsedError;
-  int get actualWeight => throw _privateConstructorUsedError;
+  double get recommendedWeight => throw _privateConstructorUsedError;
+  double get actualWeight => throw _privateConstructorUsedError;
   String get notes => throw _privateConstructorUsedError;
   DateTime get logTime => throw _privateConstructorUsedError;
   String get photo => throw _privateConstructorUsedError;
@@ -44,8 +44,8 @@ abstract class $DailyFoodUsageLogDtoCopyWith<$Res> {
       _$DailyFoodUsageLogDtoCopyWithImpl<$Res, DailyFoodUsageLogDto>;
   @useResult
   $Res call(
-      {int recommendedWeight,
-      int actualWeight,
+      {double recommendedWeight,
+      double actualWeight,
       String notes,
       DateTime logTime,
       String photo,
@@ -79,11 +79,11 @@ class _$DailyFoodUsageLogDtoCopyWithImpl<$Res,
       recommendedWeight: null == recommendedWeight
           ? _value.recommendedWeight
           : recommendedWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       actualWeight: null == actualWeight
           ? _value.actualWeight
           : actualWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ abstract class _$$DailyFoodUsageLogDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int recommendedWeight,
-      int actualWeight,
+      {double recommendedWeight,
+      double actualWeight,
       String notes,
       DateTime logTime,
       String photo,
@@ -145,11 +145,11 @@ class __$$DailyFoodUsageLogDtoImplCopyWithImpl<$Res>
       recommendedWeight: null == recommendedWeight
           ? _value.recommendedWeight
           : recommendedWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       actualWeight: null == actualWeight
           ? _value.actualWeight
           : actualWeight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -185,9 +185,9 @@ class _$DailyFoodUsageLogDtoImpl implements _DailyFoodUsageLogDto {
       _$$DailyFoodUsageLogDtoImplFromJson(json);
 
   @override
-  final int recommendedWeight;
+  final double recommendedWeight;
   @override
-  final int actualWeight;
+  final double actualWeight;
   @override
   final String notes;
   @override
@@ -242,8 +242,8 @@ class _$DailyFoodUsageLogDtoImpl implements _DailyFoodUsageLogDto {
 
 abstract class _DailyFoodUsageLogDto implements DailyFoodUsageLogDto {
   const factory _DailyFoodUsageLogDto(
-      {required final int recommendedWeight,
-      required final int actualWeight,
+      {required final double recommendedWeight,
+      required final double actualWeight,
       required final String notes,
       required final DateTime logTime,
       required final String photo,
@@ -253,9 +253,9 @@ abstract class _DailyFoodUsageLogDto implements DailyFoodUsageLogDto {
       _$DailyFoodUsageLogDtoImpl.fromJson;
 
   @override
-  int get recommendedWeight;
+  double get recommendedWeight;
   @override
-  int get actualWeight;
+  double get actualWeight;
   @override
   String get notes;
   @override

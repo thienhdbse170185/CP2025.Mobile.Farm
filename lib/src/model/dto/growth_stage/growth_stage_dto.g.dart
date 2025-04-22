@@ -20,7 +20,7 @@ _$GrowthStageDtoImpl _$$GrowthStageDtoImplFromJson(Map<String, dynamic> json) =>
       ageEndDate: json['ageEndDate'] as String,
       status: json['status'] as String,
       affectQuantity: (json['affectQuantity'] as num?)?.toInt(),
-      deadQuantity: (json['deadQuantity'] as num).toInt(),
+      deadQuantity: (json['deadQuantity'] as num?)?.toInt(),
       recommendedWeightPerSession:
           (json['recommendedWeightPerSession'] as num).toDouble(),
       weightBasedOnBodyMass: (json['weightBasedOnBodyMass'] as num).toDouble(),

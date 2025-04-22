@@ -51,23 +51,29 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
   Widget build(BuildContext context) {
     final bool isEditable = widget.task.status == StatusDataConstant.inProgress;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildHeader(context),
-        const SizedBox(height: 16),
-        _buildReporterInfo(context),
-        const SizedBox(height: 20),
-        if (widget.prescription != null) ...[
-          _buildPrescriptionInfo(context),
-          const SizedBox(height: 20),
-          _buildMedicationsList(context),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Dismiss the keyboard
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(context),
           const SizedBox(height: 16),
-          if (isEditable) _buildConfirmationCheckbox(context),
-        ] else ...[
-          _buildNoPrescriptionMessage(context),
-        ]
-      ],
+          _buildReporterInfo(context),
+          const SizedBox(height: 20),
+          if (widget.prescription != null) ...[
+            _buildPrescriptionInfo(context),
+            const SizedBox(height: 20),
+            _buildMedicationsList(context),
+            const SizedBox(height: 16),
+            if (isEditable) _buildConfirmationCheckbox(context),
+          ] else ...[
+            _buildNoPrescriptionMessage(context),
+          ]
+        ],
+      ),
     );
   }
 

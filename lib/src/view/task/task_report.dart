@@ -576,8 +576,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
   void _handleNavigateCreateMedicalSymptomOnFoodTask() {
     _foodLog = DailyFoodUsageLogDto(
-        recommendedWeight: (recommendedWeight!.toInt()),
-        actualWeight: actualWeight.toInt(),
+        recommendedWeight: (recommendedWeight!.toDouble()),
+        actualWeight: actualWeight.toDouble(),
         notes: logController.text,
         logTime: TimeUtils.customNow(),
         photo: uploadImage?.path != null
@@ -634,8 +634,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
         double actualWeight = this.actualWeight;
         final log = DailyFoodUsageLogDto(
-            recommendedWeight: recommendedWeight!.toInt(),
-            actualWeight: actualWeight.toInt(),
+            recommendedWeight: recommendedWeight!.toDouble(),
+            actualWeight: actualWeight.toDouble(),
             notes: logController.text,
             logTime: DateTime.now(),
             photo: uploadImage?.path != null
@@ -644,7 +644,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             taskId: widget.task.id);
         context.read<TaskBloc>().add(
               TaskEvent.createDailyFoodUsageLog(
-                  cageId: widget.task.cageId, log: log),
+                cageId: widget.task.cageId,
+                log: log,
+              ),
             );
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.health) {

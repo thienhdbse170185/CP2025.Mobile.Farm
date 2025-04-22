@@ -24,11 +24,11 @@ mixin _$Cage {
   String get penCode => throw _privateConstructorUsedError;
   String get farmId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  int get area => throw _privateConstructorUsedError;
-  String get location => throw _privateConstructorUsedError;
-  int get capacity => throw _privateConstructorUsedError;
+  int? get area => throw _privateConstructorUsedError;
+  String? get location => throw _privateConstructorUsedError;
+  int? get capacity => throw _privateConstructorUsedError;
   String get boardCode => throw _privateConstructorUsedError;
-  bool get boardStatus => throw _privateConstructorUsedError;
+  bool? get boardStatus => throw _privateConstructorUsedError;
   String get createdDate => throw _privateConstructorUsedError;
   String? get modifiedDate => throw _privateConstructorUsedError;
   String get cameraUrl => throw _privateConstructorUsedError;
@@ -52,11 +52,11 @@ abstract class $CageCopyWith<$Res> {
       String penCode,
       String farmId,
       String name,
-      int area,
-      String location,
-      int capacity,
+      int? area,
+      String? location,
+      int? capacity,
       String boardCode,
-      bool boardStatus,
+      bool? boardStatus,
       String createdDate,
       String? modifiedDate,
       String cameraUrl});
@@ -81,11 +81,11 @@ class _$CageCopyWithImpl<$Res, $Val extends Cage>
     Object? penCode = null,
     Object? farmId = null,
     Object? name = null,
-    Object? area = null,
-    Object? location = null,
-    Object? capacity = null,
+    Object? area = freezed,
+    Object? location = freezed,
+    Object? capacity = freezed,
     Object? boardCode = null,
-    Object? boardStatus = null,
+    Object? boardStatus = freezed,
     Object? createdDate = null,
     Object? modifiedDate = freezed,
     Object? cameraUrl = null,
@@ -107,26 +107,26 @@ class _$CageCopyWithImpl<$Res, $Val extends Cage>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      area: null == area
+      area: freezed == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as int,
-      location: null == location
+              as int?,
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      capacity: null == capacity
+              as String?,
+      capacity: freezed == capacity
           ? _value.capacity
           : capacity // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       boardCode: null == boardCode
           ? _value.boardCode
           : boardCode // ignore: cast_nullable_to_non_nullable
               as String,
-      boardStatus: null == boardStatus
+      boardStatus: freezed == boardStatus
           ? _value.boardStatus
           : boardStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -155,11 +155,11 @@ abstract class _$$CageImplCopyWith<$Res> implements $CageCopyWith<$Res> {
       String penCode,
       String farmId,
       String name,
-      int area,
-      String location,
-      int capacity,
+      int? area,
+      String? location,
+      int? capacity,
       String boardCode,
-      bool boardStatus,
+      bool? boardStatus,
       String createdDate,
       String? modifiedDate,
       String cameraUrl});
@@ -181,11 +181,11 @@ class __$$CageImplCopyWithImpl<$Res>
     Object? penCode = null,
     Object? farmId = null,
     Object? name = null,
-    Object? area = null,
-    Object? location = null,
-    Object? capacity = null,
+    Object? area = freezed,
+    Object? location = freezed,
+    Object? capacity = freezed,
     Object? boardCode = null,
-    Object? boardStatus = null,
+    Object? boardStatus = freezed,
     Object? createdDate = null,
     Object? modifiedDate = freezed,
     Object? cameraUrl = null,
@@ -207,26 +207,26 @@ class __$$CageImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      area: null == area
+      area: freezed == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as int,
-      location: null == location
+              as int?,
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      capacity: null == capacity
+              as String?,
+      capacity: freezed == capacity
           ? _value.capacity
           : capacity // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       boardCode: null == boardCode
           ? _value.boardCode
           : boardCode // ignore: cast_nullable_to_non_nullable
               as String,
-      boardStatus: null == boardStatus
+      boardStatus: freezed == boardStatus
           ? _value.boardStatus
           : boardStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -272,15 +272,15 @@ class _$CageImpl implements _Cage {
   @override
   final String name;
   @override
-  final int area;
+  final int? area;
   @override
-  final String location;
+  final String? location;
   @override
-  final int capacity;
+  final int? capacity;
   @override
   final String boardCode;
   @override
-  final bool boardStatus;
+  final bool? boardStatus;
   @override
   final String createdDate;
   @override
@@ -358,11 +358,11 @@ abstract class _Cage implements Cage {
       required final String penCode,
       required final String farmId,
       required final String name,
-      required final int area,
-      required final String location,
-      required final int capacity,
+      required final int? area,
+      required final String? location,
+      required final int? capacity,
       required final String boardCode,
-      required final bool boardStatus,
+      required final bool? boardStatus,
       required final String createdDate,
       final String? modifiedDate,
       required final String cameraUrl}) = _$CageImpl;
@@ -378,15 +378,15 @@ abstract class _Cage implements Cage {
   @override
   String get name;
   @override
-  int get area;
+  int? get area;
   @override
-  String get location;
+  String? get location;
   @override
-  int get capacity;
+  int? get capacity;
   @override
   String get boardCode;
   @override
-  bool get boardStatus;
+  bool? get boardStatus;
   @override
   String get createdDate;
   @override

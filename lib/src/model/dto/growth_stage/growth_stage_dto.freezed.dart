@@ -32,7 +32,7 @@ mixin _$GrowthStageDto {
   String get ageEndDate => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   int? get affectQuantity => throw _privateConstructorUsedError;
-  int get deadQuantity => throw _privateConstructorUsedError;
+  int? get deadQuantity => throw _privateConstructorUsedError;
   double get recommendedWeightPerSession => throw _privateConstructorUsedError;
   double get weightBasedOnBodyMass => throw _privateConstructorUsedError;
   TaskByUserResponse? get taskDailies => throw _privateConstructorUsedError;
@@ -68,7 +68,7 @@ abstract class $GrowthStageDtoCopyWith<$Res> {
       String ageEndDate,
       String status,
       int? affectQuantity,
-      int deadQuantity,
+      int? deadQuantity,
       double recommendedWeightPerSession,
       double weightBasedOnBodyMass,
       TaskByUserResponse? taskDailies,
@@ -104,7 +104,7 @@ class _$GrowthStageDtoCopyWithImpl<$Res, $Val extends GrowthStageDto>
     Object? ageEndDate = null,
     Object? status = null,
     Object? affectQuantity = freezed,
-    Object? deadQuantity = null,
+    Object? deadQuantity = freezed,
     Object? recommendedWeightPerSession = null,
     Object? weightBasedOnBodyMass = null,
     Object? taskDailies = freezed,
@@ -159,10 +159,10 @@ class _$GrowthStageDtoCopyWithImpl<$Res, $Val extends GrowthStageDto>
           ? _value.affectQuantity
           : affectQuantity // ignore: cast_nullable_to_non_nullable
               as int?,
-      deadQuantity: null == deadQuantity
+      deadQuantity: freezed == deadQuantity
           ? _value.deadQuantity
           : deadQuantity // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       recommendedWeightPerSession: null == recommendedWeightPerSession
           ? _value.recommendedWeightPerSession
           : recommendedWeightPerSession // ignore: cast_nullable_to_non_nullable
@@ -218,7 +218,7 @@ abstract class _$$GrowthStageDtoImplCopyWith<$Res>
       String ageEndDate,
       String status,
       int? affectQuantity,
-      int deadQuantity,
+      int? deadQuantity,
       double recommendedWeightPerSession,
       double weightBasedOnBodyMass,
       TaskByUserResponse? taskDailies,
@@ -253,7 +253,7 @@ class __$$GrowthStageDtoImplCopyWithImpl<$Res>
     Object? ageEndDate = null,
     Object? status = null,
     Object? affectQuantity = freezed,
-    Object? deadQuantity = null,
+    Object? deadQuantity = freezed,
     Object? recommendedWeightPerSession = null,
     Object? weightBasedOnBodyMass = null,
     Object? taskDailies = freezed,
@@ -308,10 +308,10 @@ class __$$GrowthStageDtoImplCopyWithImpl<$Res>
           ? _value.affectQuantity
           : affectQuantity // ignore: cast_nullable_to_non_nullable
               as int?,
-      deadQuantity: null == deadQuantity
+      deadQuantity: freezed == deadQuantity
           ? _value.deadQuantity
           : deadQuantity // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       recommendedWeightPerSession: null == recommendedWeightPerSession
           ? _value.recommendedWeightPerSession
           : recommendedWeightPerSession // ignore: cast_nullable_to_non_nullable
@@ -383,7 +383,7 @@ class _$GrowthStageDtoImpl implements _GrowthStageDto {
   @override
   final int? affectQuantity;
   @override
-  final int deadQuantity;
+  final int? deadQuantity;
   @override
   final double recommendedWeightPerSession;
   @override
@@ -498,7 +498,7 @@ abstract class _GrowthStageDto implements GrowthStageDto {
           required final String ageEndDate,
           required final String status,
           required final int? affectQuantity,
-          required final int deadQuantity,
+          required final int? deadQuantity,
           required final double recommendedWeightPerSession,
           required final double weightBasedOnBodyMass,
           required final TaskByUserResponse? taskDailies,
@@ -533,7 +533,7 @@ abstract class _GrowthStageDto implements GrowthStageDto {
   @override
   int? get affectQuantity;
   @override
-  int get deadQuantity;
+  int? get deadQuantity;
   @override
   double get recommendedWeightPerSession;
   @override

@@ -20,7 +20,7 @@ class GrowthStageDto with _$GrowthStageDto {
     required String ageEndDate,
     required String status,
     required int? affectQuantity,
-    required int deadQuantity,
+    required int? deadQuantity,
     required double recommendedWeightPerSession,
     required double weightBasedOnBodyMass,
     required TaskByUserResponse? taskDailies,

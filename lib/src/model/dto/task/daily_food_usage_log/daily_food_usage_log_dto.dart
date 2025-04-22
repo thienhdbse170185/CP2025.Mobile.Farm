@@ -6,8 +6,8 @@ part 'daily_food_usage_log_dto.g.dart';
 @freezed
 class DailyFoodUsageLogDto with _$DailyFoodUsageLogDto {
   const factory DailyFoodUsageLogDto({
-    required int recommendedWeight,
-    required int actualWeight,
+    required double recommendedWeight,
+    required double actualWeight,
     required String notes,
     required DateTime logTime,
     required String photo,
