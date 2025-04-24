@@ -258,8 +258,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       status: 'Pending',
       affectedQuantity: int.parse(_affectedController.text),
       isEmergency: _isEmergency,
-      quantityInCage:
-          _growthStage!.quantity! - (_farmingBatch!.affectedQuantity ?? 0),
+      quantityInCage: _availableQuantity,
       notes: _noteController.text,
       pictures: imagePath != null
           ? [
@@ -850,9 +849,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       nameAnimal: medicalSymptom.nameAnimal,
       prescriptions: medicalSymptom.prescriptions,
       affectedQuantity: medicalSymptom.affectedQuantity,
-      quantity: (_growthStage?.quantity ?? 0) -
-          (_farmingBatch?.affectedQuantity ?? 0) -
-          (_growthStage?.deadQuantity ?? 0),
+      quantity: _availableQuantity,
       notes: medicalSymptom.notes,
       createAt: medicalSymptom.createAt,
       pictures: medicalSymptom.pictures,
@@ -1148,9 +1145,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   Future<bool> _isEmergencyAffectedQuantityForm(String value) async {
     if (_farmingBatch != null) {
       final enteredQuantity = int.tryParse(value) ?? 0;
-      final quantityReal =
-          _growthStage!.quantity! - (_farmingBatch?.affectedQuantity ?? 0);
-      final threshold = (quantityReal * 0.5).toInt();
+      final threshold = (_availableQuantity * 0.5).toInt();
       if (enteredQuantity > threshold) {
         final confirmed = await showDialog<bool>(
           context: context,

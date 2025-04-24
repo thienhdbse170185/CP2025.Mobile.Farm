@@ -390,7 +390,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             );
           });
     } else {
-      if (widget.task.isTreatmentTask) {
+      if (widget.task.isTreatmentTask ||
+          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal) {
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -1580,6 +1581,11 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 this.vaccine = vaccine;
                 _isLoading = false;
               });
+              if (widget.task.status == StatusDataConstant.done) {
+                context
+                    .read<VaccineScheduleLogCubit>()
+                    .getVaccineScheduleLogByTaskId(widget.task.id);
+              }
             }, getVaccineByIdFailure: (e) {
               setState(() {
                 _isLoading = false;
