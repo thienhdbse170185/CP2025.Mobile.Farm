@@ -18,7 +18,7 @@ class VaccineLogWidget extends StatefulWidget {
   final TaskHaveCageName task;
   final bool isLoading;
   final bool readOnly;
-  final int? totalPrice;
+  final double? totalPrice;
   final VoidCallback?
       onVaccineDetailPressed; // Thêm callback khi nhấn vào chi tiết vắc xin
   final VaccineDto? vaccine;
@@ -81,7 +81,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
 
     // Cập nhật giá trị và gọi callback
     widget.countAnimalVaccineController.text = validCount.toString();
-    widget.onCountChanged?.call(validCount);
+    // widget.onCountChanged?.call(validCount);
 
     // Đặt vị trí con trỏ ở cuối text
     widget.countAnimalVaccineController.selection = TextSelection.fromPosition(
@@ -575,7 +575,8 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
       return '${formatter.format(amount)} đ';
     }
 
-    final formattedTotalPrice = formatCurrency(widget.totalPrice ?? 0);
+    final formattedTotalPrice =
+        formatCurrency((widget.totalPrice ?? 0).toInt());
     final countText = widget.countAnimalVaccineController.text.isEmpty
         ? '0'
         : widget.countAnimalVaccineController.text;

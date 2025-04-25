@@ -982,7 +982,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               getRecommendedWeightByCageIdSuccess:
                   (recommendedWeight, _, growthStage) {
-                log('[RECOMMENDED_WEIGHT] Lấy cân nặng khuyến nghị thành công!');
+                log('[RECOMMENDED_WEIGHT] Lấy cân nặng khuyến nghị thành công!: $recommendedWeight');
                 log('[GROWTH_STAGE] id: ${growthStage.id}');
                 setState(() {
                   log('Recommended weight lúc nhân: $recommendedWeight');
@@ -1581,11 +1581,11 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 this.vaccine = vaccine;
                 _isLoading = false;
               });
-              if (widget.task.status == StatusDataConstant.done) {
-                context
-                    .read<VaccineScheduleLogCubit>()
-                    .getVaccineScheduleLogByTaskId(widget.task.id);
-              }
+              // if (widget.task.status == StatusDataConstant.done) {
+              //   context
+              //       .read<VaccineScheduleLogCubit>()
+              //       .getVaccineScheduleLogByTaskId(widget.task.id);
+              // }
             }, getVaccineByIdFailure: (e) {
               setState(() {
                 _isLoading = false;
@@ -1782,7 +1782,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               farmingBatch: farmingBatch,
               readOnly: readOnly,
               vaccine: vaccine,
-              totalPrice: vaccineScheduleLog?.totalPrice,
+              totalPrice: vaccineScheduleLog?.toltalPrice,
               onVaccineDetailPressed: () {
                 if (vaccine != null) {
                   showDialog(

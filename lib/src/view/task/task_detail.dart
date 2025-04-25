@@ -386,6 +386,23 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             });
             log("Lấy thông tin công việc thất bại!");
           },
+          updateStatusTaskLoading: () {
+            setState(() {
+              _isLoading = true;
+            });
+          },
+          updateStatusTaskSuccess: () {
+            setState(() {
+              _isLoading = false;
+            });
+            _handleTaskComplete(context, true);
+          },
+          updateStatusTaskFailure: (e) {
+            setState(() {
+              _isLoading = false;
+            });
+            log("Cập nhật trạng thái công việc thất bại!");
+          },
           orElse: () {},
         );
       },
@@ -534,7 +551,19 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: FilledButton(
-            onPressed: _isLoading ? null : _handleOnPressed(),
+            onPressed: _isLoading
+                ? null
+                : (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
+                        task?.taskType.taskTypeId ==
+                            TaskTypeDataConstant.health ||
+                        task?.taskType.taskTypeId ==
+                            TaskTypeDataConstant.vaccin ||
+                        task?.taskType.taskTypeId ==
+                            TaskTypeDataConstant.sellAnimal ||
+                        task?.taskType.taskTypeId ==
+                            TaskTypeDataConstant.weighing)
+                    ? _handleOnPressed()
+                    : null,
             child: _isLoading
                 ? null
                 : Row(

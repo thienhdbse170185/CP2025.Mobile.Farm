@@ -356,6 +356,8 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                   if (currentValue > 1) {
                     if (widget.onWeightChanged != null) {
                       widget.onWeightChanged!(currentValue - 1.0);
+                      widget.weightMeatSellController.text =
+                          (currentValue - 1.0).toStringAsFixed(1);
                     }
                   } else if (currentValue <= 1 && currentValue > 0.1) {
                     if (widget.onWeightChanged != null) {
@@ -412,6 +414,8 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                       0.0;
                   if (widget.onWeightChanged != null) {
                     widget.onWeightChanged!(currentValue + 1.0);
+                    widget.weightMeatSellController.text =
+                        (currentValue + 1.0).toStringAsFixed(1);
                   }
                 },
                 isAdd: true,

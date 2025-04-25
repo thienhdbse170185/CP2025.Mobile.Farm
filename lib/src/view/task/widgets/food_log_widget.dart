@@ -359,6 +359,8 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                   if (currentValue > 1) {
                     if (widget.onWeightChanged != null) {
                       widget.onWeightChanged!(currentValue - 1.0);
+                      widget.actualWeightController.text =
+                          (currentValue - 1.0).toString();
                     }
                   } else if (currentValue <= 1 && currentValue > 0.1) {
                     if (widget.onWeightChanged != null) {
@@ -421,6 +423,8 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
                       0.0;
                   if (widget.onWeightChanged != null) {
                     widget.onWeightChanged!(currentValue + 1.0);
+                    widget.actualWeightController.text =
+                        (currentValue + 1.0).toString();
                   }
                 },
                 isAdd: true,

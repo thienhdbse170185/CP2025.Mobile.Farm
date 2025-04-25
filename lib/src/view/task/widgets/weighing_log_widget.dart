@@ -363,6 +363,8 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                           if (currentValue > 1) {
                             if (widget.onWeightChanged != null) {
                               widget.onWeightChanged!(currentValue - 1.0);
+                              widget.weightAnimalController.text =
+                                  (currentValue - 1.0).toStringAsFixed(1);
                             }
                           } else if (currentValue <= 1 && currentValue > 0.1) {
                             if (widget.onWeightChanged != null) {
@@ -456,6 +458,8 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                               0.0;
                           if (widget.onWeightChanged != null) {
                             widget.onWeightChanged!(currentValue + 1.0);
+                            widget.weightAnimalController.text =
+                                (currentValue + 1.0).toStringAsFixed(1);
                           }
                           // _calculateDifference();
                         },
