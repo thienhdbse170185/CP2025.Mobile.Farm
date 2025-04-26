@@ -206,8 +206,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
               ],
             ),
             const Divider(height: 24),
-            _buildAnimalCountInputSection(
-                context, isEditable), // New animal count section
+            _buildAnimalCountInputSection(context, isEditable),
             const SizedBox(height: 24),
             _buildWeightInputSection(context, isEditable),
             const SizedBox(height: 24),
