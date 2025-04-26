@@ -1890,42 +1890,43 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 saleDetailLog: saleDetailLog,
                 saleLogDetail: saleLogDetail,
               )
-            ] else ...[
-              EggSaleLogWidget(
-                userName: userName,
-                growthStage: growthStage,
-                farmingBatch: farmingBatch,
-                countEggSellController: _countEggSellController,
-                priceEggSellController: _priceEggSellController,
-                dateEggSellController: _dateAnimalSellController,
-                saleDate: saleDate!,
-                onDateChanged: readOnly
-                    ? null
-                    : (date) {
-                        setState(() {
-                          saleDate = date;
-                        });
-                      },
-                onCountChanged: readOnly
-                    ? null
-                    : (count) {
-                        setState(() {
-                          _countEggSellController.text = count.toString();
-                        });
-                      },
-                onPriceChanged: readOnly
-                    ? null
-                    : (price) {
-                        setState(() {
-                          _priceEggSellController.text = price.toString();
-                        });
-                      },
-                readOnly: readOnly,
-                saleDetailLog: saleDetailLog,
-                task: widget.task,
-                logController: logController,
-              )
             ],
+          // else ...[
+          //   EggSaleLogWidget(
+          //     userName: userName,
+          //     growthStage: growthStage,
+          //     farmingBatch: farmingBatch,
+          //     countEggSellController: _countEggSellController,
+          //     priceEggSellController: _priceEggSellController,
+          //     dateEggSellController: _dateAnimalSellController,
+          //     saleDate: saleDate!,
+          //     onDateChanged: readOnly
+          //         ? null
+          //         : (date) {
+          //             setState(() {
+          //               saleDate = date;
+          //             });
+          //           },
+          //     onCountChanged: readOnly
+          //         ? null
+          //         : (count) {
+          //             setState(() {
+          //               _countEggSellController.text = count.toString();
+          //             });
+          //           },
+          //     onPriceChanged: readOnly
+          //         ? null
+          //         : (price) {
+          //             setState(() {
+          //               _priceEggSellController.text = price.toString();
+          //             });
+          //           },
+          //     readOnly: readOnly,
+          //     saleDetailLog: saleDetailLog,
+          //     task: widget.task,
+          //     logController: logController,
+          //   )
+          // ],
           const SizedBox(height: 16),
           if (taskStatus != StatusDataConstant.overdueVn &&
               (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health ||
