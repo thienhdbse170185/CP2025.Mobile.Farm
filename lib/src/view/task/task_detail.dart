@@ -311,7 +311,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
         task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
         task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.weighing) {
+        task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
+        task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
+        task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest) {
       return () {
         // Move dialog showing logic into the callback
         if (task?.status == StatusDataConstant.inProgress) {
@@ -554,14 +556,17 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             onPressed: _isLoading
                 ? null
                 : (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.health ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.vaccin ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.sellAnimal ||
-                        task?.taskType.taskTypeId ==
-                            TaskTypeDataConstant.weighing)
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.health ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.vaccin ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.sellAnimal ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.weighing ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.sellEgg) ||
+                        task?.status == StatusDataConstant.inProgress
                     ? _handleOnPressed()
                     : null,
             child: _isLoading

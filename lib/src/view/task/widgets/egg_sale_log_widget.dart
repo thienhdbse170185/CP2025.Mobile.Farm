@@ -5,6 +5,7 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/dto/farming_batch/farming_batch_dto.dart';
 import 'package:smart_farm/src/model/dto/growth_stage/growth_stage_dto.dart';
+import 'package:smart_farm/src/model/dto/sale_log_detail/sale_log_detail_dto.dart';
 import 'package:smart_farm/src/model/dto/task/sale_detail_log/sale_detail_log_dto.dart';
 import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
@@ -24,6 +25,7 @@ class EggSaleLogWidget extends StatefulWidget {
   final bool readOnly; // Add readOnly flag
   final SaleDetailLogDto? saleDetailLog;
   final ValueChanged<String>? onPriceChanged;
+  final SaleLogDetailDto? saleLogDetail;
 
   const EggSaleLogWidget({
     super.key,
@@ -41,6 +43,7 @@ class EggSaleLogWidget extends StatefulWidget {
     required this.logController,
     this.saleDetailLog,
     this.onPriceChanged,
+    this.saleLogDetail,
   });
 
   @override
@@ -48,15 +51,21 @@ class EggSaleLogWidget extends StatefulWidget {
 }
 
 class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
+  int _availableQuantity = 0;
+
   @override
   void initState() {
     super.initState();
-    if (widget.saleDetailLog != null) {
+    _availableQuantity = (widget.growthStage?.quantity ?? 0) -
+        (widget.growthStage?.affectQuantity ?? 0) -
+        (widget.growthStage?.deadQuantity ?? 0);
+
+    if (widget.saleLogDetail != null) {
       widget.countEggSellController.text =
-          widget.saleDetailLog?.quantity.toString() ?? '0';
+          widget.saleLogDetail?.quantity.toString() ?? '0';
       // Format the value with commas
       final formatter = NumberFormat('#,###');
-      final newValue = formatter.format(widget.saleDetailLog?.unitPrice);
+      final newValue = formatter.format(widget.saleLogDetail?.unitPrice);
 
       // Update the controller with the formatted value
       widget.priceEggSellController.value = TextEditingValue(
@@ -66,7 +75,7 @@ class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
       // widget.priceEggSellController.text =
       //     widget.saleDetailLog?.unitPrice.toString() ?? '0';
       widget.dateEggSellController.text = DateFormat('dd/MM/yyyy')
-          .format(DateTime.parse(widget.saleDetailLog?.saleDate ?? ''));
+          .format(DateTime.parse(widget.saleLogDetail?.saleDate ?? ''));
     }
   }
 
@@ -526,8 +535,7 @@ class _EggSaleLogWidgetState extends State<EggSaleLogWidget> {
                           _buildInfoItem(
                             context: context,
                             label: 'Số con bình thường',
-                            value:
-                                '${(widget.growthStage?.quantity ?? 0) - (widget.farmingBatch?.affectedQuantity ?? 0)} (con)',
+                            value: '$_availableQuantity (con)',
                             icon: Icons.pets,
                           ),
                           SizedBox(

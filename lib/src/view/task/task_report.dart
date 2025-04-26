@@ -391,7 +391,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           });
     } else {
       if (widget.task.isTreatmentTask ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal) {
+          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
+          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg) {
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -700,19 +701,20 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               weight: weightMeatSell,
               taskId: widget.task.id,
             );
-        // }
-        // else if (widget.task.taskType.taskTypeId ==
-        //     TaskTypeDataConstant.sellEgg) {
-        //   context.read<AnimalSaleCubit>().createAnimalSale(
-        //         growthStageId: growthStage!.id,
-        //         saleDate: saleDate!.toIso8601String(),
-        //         unitPrice:
-        //             int.parse(_priceEggSellController.text.replaceAll(',', '')),
-        //         quantity: int.parse(_countEggSellController.text),
-        //         saleTypeId: saleType!.id,
-        //         taskId: widget.task.id,
-        //       );
-      } else if (widget.task.taskType.taskTypeId ==
+      }
+      //   else if (widget.task.taskType.taskTypeId ==
+      //       TaskTypeDataConstant.sellEgg) {
+      //     context.read<AnimalSaleCubit>().createAnimalSale(
+      //           growthStageId: growthStage!.id,
+      //           saleDate: saleDate!.toIso8601String(),
+      //           unitPrice:
+      //               int.parse(_priceEggSellController.text.replaceAll(',', '')),
+      //           quantity: int.parse(_countEggSellController.text),
+      //           saleTypeId: saleType!.id,
+      //           taskId: widget.task.id,
+      //         );
+      // }
+      else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.eggHarvest) {
         final request = EggHarvestRequest(
           eggCount: int.parse(_countEggCollectedController.text),
@@ -1394,9 +1396,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 setState(() {
                   saleType = saleTypes.first;
                 });
-                if (growthStage != null &&
+                if (
+                    // growthStage != null &&
                     saleType != null &&
-                    widget.task.status == StatusDataConstant.done) {
+                        widget.task.status == StatusDataConstant.done) {
                   context
                       .read<AnimalSaleCubit>()
                       .getSaleLogByTaskId(taskId: widget.task.id);
@@ -1558,12 +1561,26 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   context
                       .read<GrowthStageCubit>()
                       .getGrowthStageByCageId(widget.task.cageId);
+                } else if (widget.task.taskType.taskTypeId ==
+                    TaskTypeDataConstant.sellEgg) {
+                  context
+                      .read<SaleTypeCubit>()
+                      .getSaleTypeByName(saleTypeName: 'EggSale');
                 }
               },
               getFarmingBatchByCageFailure: (e) {
-                setState(() {
-                  _isLoading = false;
-                });
+                if (e.toString().contains('farming-batch-not-found')) {
+                  if (widget.task.taskType.taskTypeId ==
+                      TaskTypeDataConstant.sellAnimal) {
+                    context
+                        .read<SaleTypeCubit>()
+                        .getSaleTypeByName(saleTypeName: 'MeatSale');
+                  }
+                } else {
+                  setState(() {
+                    _isLoading = false;
+                  });
+                }
                 log('Lấy thông tin lô nuôi thất bại!');
               },
               orElse: () {},

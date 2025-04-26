@@ -746,9 +746,10 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               setState(() => _isProcessing = true);
             },
             updateStatusTaskSuccess: () {
+              final selectedCage = _selectedCage;
               context.go(RouteName.symptomSuccess, extra: {
                 'symptom': symptom,
-                'cageName': _selectedCage,
+                'cageName': selectedCage,
                 'fromTask': true,
                 'taskId': widget.taskId
               });
@@ -1396,10 +1397,12 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
                             .map((symptom) => Chip(
                                   label: Text(symptom),
                                   deleteIcon: const Icon(Icons.close, size: 16),
-                                  onDeleted: () => widget.onSymptomToggled(
-                                      widget.symptoms.firstWhere(
-                                          (s) => s.symptomName == symptom),
-                                      false),
+                                  onDeleted: () => setState(() {
+                                    widget.onSymptomToggled(
+                                        widget.symptoms.firstWhere(
+                                            (s) => s.symptomName == symptom),
+                                        false);
+                                  }),
                                   backgroundColor: Theme.of(context)
                                       .colorScheme
                                       .primaryContainer,
@@ -1471,7 +1474,7 @@ class _SymptomSelectionSheetState extends State<_SymptomSelectionSheet> {
   }
 }
 
-class _SheetHeader extends StatelessWidget {
+class _SheetHeader extends StatefulWidget {
   final String title;
   final int count;
   final String countLabel;
@@ -1492,6 +1495,11 @@ class _SheetHeader extends StatelessWidget {
     this.selectedItems,
   });
 
+  @override
+  State<_SheetHeader> createState() => _SheetHeaderState();
+}
+
+class _SheetHeaderState extends State<_SheetHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -1515,33 +1523,42 @@ class _SheetHeader extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: Theme.of(context).textTheme.titleLarge),
-              Text('$count $countLabel',
+              Text(widget.title, style: Theme.of(context).textTheme.titleLarge),
+              Text('${widget.count} ${widget.countLabel}',
                   style:
                       TextStyle(color: Theme.of(context).colorScheme.primary)),
             ],
           ),
           const SizedBox(height: 16),
           TextField(
-            controller: searchController,
+            controller: widget.searchController,
             decoration: InputDecoration(
-              hintText: searchHint ?? 'Tìm kiếm...',
+              hintText: widget.searchHint ?? 'Tìm kiếm...',
               prefixIcon: const Icon(Icons.search),
-              suffixIcon: isSearching
-                  ? const SizedBox(
-                      width: 8,
-                      height: 8,
-                      child: CircularProgressIndicator(strokeWidth: 2))
+              suffixIcon: widget.isSearching
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 8),
+                      child: SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    )
                   : null,
+              suffixIconConstraints: const BoxConstraints(
+                minWidth: 16,
+                minHeight: 16,
+              ),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
               contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             ),
-            onChanged: onSearchChanged,
+            onChanged: widget.onSearchChanged,
           ),
-          if (selectedItems != null) ...[
+          if (widget.selectedItems != null) ...[
             const SizedBox(height: 16),
-            selectedItems!,
+            widget.selectedItems!,
           ],
         ],
       ),

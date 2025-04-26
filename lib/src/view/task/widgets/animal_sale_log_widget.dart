@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
@@ -9,6 +10,7 @@ import 'package:smart_farm/src/model/dto/task/sale_detail_log/sale_detail_log_dt
 import 'package:smart_farm/src/model/dto/task/sale_log/sale_log_dto.dart';
 import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
 import 'package:smart_farm/src/view/task/widgets/quantity_button_widget.dart';
+import 'package:smart_farm/src/viewmodel/farming_batch/farming_batch_cubit.dart';
 
 class AnimalSaleLogWidget extends StatefulWidget {
   final String? userName;
@@ -59,9 +61,15 @@ class AnimalSaleLogWidget extends StatefulWidget {
 }
 
 class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
+  int _availableQuantity = 0;
+
   @override
   void initState() {
     super.initState();
+    _availableQuantity = (widget.growthStage?.quantity ?? 0) -
+        (widget.growthStage?.affectQuantity ?? 0) -
+        (widget.growthStage?.deadQuantity ?? 0);
+
     if (widget.saleLogDetail != null) {
       widget.weightMeatSellController.text =
           widget.saleLogDetail?.weight.toString() ?? '0.0';
@@ -220,6 +228,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
   }
 
   // New method for the animal count input section
+  // In the _buildAnimalCountInputSection method, update it to add validation
   Widget _buildAnimalCountInputSection(BuildContext context, bool isEditable) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,73 +253,129 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
             border:
                 Border.all(color: Theme.of(context).colorScheme.outlineVariant),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
             children: [
-              QuantityButtonWidget(
-                icon: Icons.remove,
-                onPressed: () {
-                  final currentValue = int.tryParse(
-                        widget.animalCountSellController.text,
-                      ) ??
-                      0;
-                  if (currentValue > 0) {
-                    widget.onAnimalCountChanged?.call(currentValue - 1);
-                    widget.animalCountSellController.text =
-                        (currentValue - 1).toString();
-                  }
-                },
-                isDisable: !isEditable,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.25,
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                child: TextField(
-                  controller: widget.animalCountSellController,
-                  textAlign: TextAlign.right,
-                  keyboardType: TextInputType.number,
-                  enabled: isEditable,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                  ],
-                  decoration: InputDecoration(
-                    suffixText: '(con)',
-                    suffixStyle:
-                        TextStyle(color: Colors.grey[600], fontSize: 18),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  QuantityButtonWidget(
+                    icon: Icons.remove,
+                    onPressed: () {
+                      final currentValue = int.tryParse(
+                            widget.animalCountSellController.text,
+                          ) ??
+                          0;
+                      if (currentValue > 0) {
+                        widget.onAnimalCountChanged?.call(currentValue - 1);
+                        widget.animalCountSellController.text =
+                            (currentValue - 1).toString();
+                      }
+                    },
+                    isDisable: !isEditable,
                   ),
-                  style: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.w600),
-                  onChanged: (value) async {
-                    if (value.isEmpty) {
-                      widget.animalCountSellController.text = '0';
-                      widget.animalCountSellController.selection =
-                          TextSelection.fromPosition(
-                              const TextPosition(offset: 1));
-                    }
-                    final currentValue = int.tryParse(value) ?? 0;
-                    widget.onAnimalCountChanged?.call(currentValue);
-                  },
-                  onTap: () {
-                    if (widget.animalCountSellController.text == '0') {
-                      widget.animalCountSellController.clear();
-                    }
-                  },
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.25,
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: TextField(
+                      controller: widget.animalCountSellController,
+                      textAlign: TextAlign.right,
+                      keyboardType: TextInputType.number,
+                      enabled: isEditable,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      decoration: InputDecoration(
+                        suffixText: '(con)',
+                        suffixStyle:
+                            TextStyle(color: Colors.grey[600], fontSize: 18),
+                      ),
+                      style: const TextStyle(
+                          fontSize: 24, fontWeight: FontWeight.w600),
+                      onChanged: (value) async {
+                        if (value.isEmpty) {
+                          widget.animalCountSellController.text = '0';
+                          widget.animalCountSellController.selection =
+                              TextSelection.fromPosition(
+                                  const TextPosition(offset: 1));
+                          widget.onAnimalCountChanged?.call(0);
+                          return;
+                        }
+
+                        // Validate against available quantity
+                        final currentValue = int.tryParse(value) ?? 0;
+                        if (currentValue > _availableQuantity) {
+                          // Reset to available quantity if input exceeds it
+                          widget.animalCountSellController.text =
+                              _availableQuantity.toString();
+                          widget.animalCountSellController.selection =
+                              TextSelection.fromPosition(TextPosition(
+                                  offset:
+                                      _availableQuantity.toString().length));
+                          widget.onAnimalCountChanged?.call(_availableQuantity);
+
+                          // Show snackbar to notify user
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Số lượng không thể vượt quá số con hiện có ($_availableQuantity con)'),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        } else {
+                          widget.onAnimalCountChanged?.call(currentValue);
+                        }
+                      },
+                      onTap: () {
+                        if (widget.animalCountSellController.text == '0') {
+                          widget.animalCountSellController.clear();
+                        }
+                      },
+                    ),
+                  ),
+                  QuantityButtonWidget(
+                    icon: Icons.add,
+                    onPressed: () {
+                      final currentValue = int.tryParse(
+                            widget.animalCountSellController.text,
+                          ) ??
+                          0;
+
+                      // Check if adding one more would exceed available quantity
+                      if (currentValue < _availableQuantity) {
+                        widget.onAnimalCountChanged?.call(currentValue + 1);
+                        widget.animalCountSellController.text =
+                            (currentValue + 1).toString();
+                      } else {
+                        // Show snackbar to notify user
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'Số lượng không thể vượt quá số con hiện có ($_availableQuantity con)'),
+                            backgroundColor:
+                                Theme.of(context).colorScheme.error,
+                            duration: const Duration(seconds: 2),
+                          ),
+                        );
+                      }
+                    },
+                    isAdd: true,
+                    isDisable: !isEditable,
+                  )
+                ],
+              ),
+              // Add helper text to show available quantity
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(
+                  'Số lượng có sẵn: $_availableQuantity con',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.outline,
+                    fontSize: 12,
+                  ),
                 ),
               ),
-              QuantityButtonWidget(
-                icon: Icons.add,
-                onPressed: () {
-                  final currentValue = int.tryParse(
-                        widget.animalCountSellController.text,
-                      ) ??
-                      0;
-                  widget.onAnimalCountChanged?.call(currentValue + 1);
-                  widget.animalCountSellController.text =
-                      (currentValue + 1).toString();
-                },
-                isAdd: true,
-                isDisable: !isEditable,
-              )
             ],
           ),
         ),
@@ -607,154 +672,201 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           ),
           const SizedBox(height: 12),
           SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: (widget.growthStage == null || widget.farmingBatch == null)
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Column(
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: FutureBuilder(
+              future: Future.delayed(const Duration(seconds: 2)), // Đợi 2 giây
+              builder: (context, snapshot) {
+                // Đang loading
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                // Sau khi đợi 2 giây, kiểm tra dữ liệu
+                if (widget.growthStage == null || widget.farmingBatch == null) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.surface,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color:
-                                  Theme.of(context).colorScheme.outlineVariant,
-                              width: 1,
-                            ),
+                        Icon(
+                          Icons.error_outline,
+                          size: 48,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Không có dữ liệu',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Thông tin vụ nuôi',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  _buildInfoItem(
-                                    context: context,
-                                    label: 'Tên vụ nuôi',
-                                    value: widget.farmingBatch?.name ?? 'N/A',
-                                    icon: Icons.assignment,
-                                  ),
-                                ],
-                              ),
-                            ],
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Có thể vụ nuôi đã hoàn thành hoặc gặp sự cố trong lúc lấy thông tin.',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.38,
-                              child: _buildInfoItem(
-                                context: context,
-                                label: 'Tên giai đoạn',
-                                value: widget.growthStage?.name ?? '',
-                                icon: Icons.label,
-                              ),
-                            ),
-                            SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.05),
-                            if (widget.growthStage?.quantity != null) ...[
-                              _buildInfoItem(
-                                context: context,
-                                label: 'Số lượng',
-                                value:
-                                    '${widget.growthStage?.quantity.toString()} (con)',
-                                icon: Icons.warehouse,
-                              ),
-                            ],
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            _buildInfoItem(
-                              context: context,
-                              label: 'Số con bình thường',
-                              value:
-                                  '${(widget.growthStage?.quantity ?? 0) - (widget.farmingBatch?.affectedQuantity ?? 0)} (con)',
-                              icon: Icons.pets,
-                            ),
-                            SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.084),
-                            _buildInfoItem(
-                              context: context,
-                              label: 'Số con bị bệnh',
-                              value:
-                                  '${widget.growthStage?.affectQuantity ?? 0} (con)',
-                              icon: Icons.medical_services_rounded,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            _buildInfoItem(
-                              context: context,
-                              label: 'Ngày bắt đầu',
-                              value: widget.growthStage != null &&
-                                      widget
-                                          .growthStage!.ageStartDate.isNotEmpty
-                                  ? DateFormat('dd/MM/yyyy').format(
-                                      DateTime.tryParse(widget
-                                              .growthStage!.ageStartDate) ??
-                                          DateTime.now())
-                                  : 'N/A',
-                              icon: Icons.calendar_month,
-                            ),
-                            SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.13),
-                            _buildInfoItem(
-                              context: context,
-                              label: 'Ngày kết thúc',
-                              value: widget.growthStage != null &&
-                                      widget.growthStage!.ageEndDate.isNotEmpty
-                                  ? DateFormat('dd/MM/yyyy').format(
-                                      DateTime.tryParse(
-                                              widget.growthStage!.ageEndDate) ??
-                                          DateTime.now())
-                                  : 'N/A',
-                              icon: Icons.calendar_month,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            _buildInfoItem(
-                              context: context,
-                              label: 'Độ tuổi bắt đầu',
-                              value:
-                                  '${widget.growthStage?.ageStart} ngày tuổi',
-                              icon: Icons.health_and_safety_rounded,
-                            ),
-                            SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.13),
-                            _buildInfoItem(
-                              context: context,
-                              label: 'Độ tuổi kết thúc',
-                              value: '${widget.growthStage?.ageEnd} ngày tuổi',
-                              icon: Icons.health_and_safety_rounded,
-                            ),
-                          ],
+                        const SizedBox(height: 16),
+                        OutlinedButton.icon(
+                          onPressed: () {
+                            context
+                                .read<FarmingBatchCubit>()
+                                .getFarmingBatchByCageDuedate(
+                                    widget.task.cageId, widget.task.dueDate);
+                          },
+                          icon: Icon(Icons.refresh),
+                          label: Text('Thử lại'),
                         ),
                       ],
-                    )),
+                    ),
+                  );
+                }
+
+                // Hiển thị nội dung nếu có dữ liệu
+                return Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.outlineVariant,
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Thông tin vụ nuôi',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _buildInfoItem(
+                                context: context,
+                                label: 'Tên vụ nuôi',
+                                value: widget.farmingBatch?.name ?? 'N/A',
+                                icon: Icons.assignment,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.38,
+                          child: _buildInfoItem(
+                            context: context,
+                            label: 'Tên giai đoạn',
+                            value: widget.growthStage?.name ?? '',
+                            icon: Icons.label,
+                          ),
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05),
+                        if (widget.growthStage?.quantity != null) ...[
+                          _buildInfoItem(
+                            context: context,
+                            label: 'Số lượng',
+                            value:
+                                '${widget.growthStage?.quantity.toString()} (con)',
+                            icon: Icons.warehouse,
+                          ),
+                        ],
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Số con bình thường',
+                          value: '$_availableQuantity (con)',
+                          icon: Icons.pets,
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.084),
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Số con bị bệnh',
+                          value:
+                              '${widget.growthStage?.affectQuantity ?? 0} (con)',
+                          icon: Icons.medical_services_rounded,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Ngày bắt đầu',
+                          value: widget.growthStage != null &&
+                                  widget.growthStage!.ageStartDate.isNotEmpty
+                              ? DateFormat('dd/MM/yyyy').format(
+                                  DateTime.tryParse(
+                                          widget.growthStage!.ageStartDate) ??
+                                      DateTime.now())
+                              : 'N/A',
+                          icon: Icons.calendar_month,
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.13),
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Ngày kết thúc',
+                          value: widget.growthStage != null &&
+                                  widget.growthStage!.ageEndDate.isNotEmpty
+                              ? DateFormat('dd/MM/yyyy').format(
+                                  DateTime.tryParse(
+                                          widget.growthStage!.ageEndDate) ??
+                                      DateTime.now())
+                              : 'N/A',
+                          icon: Icons.calendar_month,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Độ tuổi bắt đầu',
+                          value: '${widget.growthStage?.ageStart} ngày tuổi',
+                          icon: Icons.health_and_safety_rounded,
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.13),
+                        _buildInfoItem(
+                          context: context,
+                          label: 'Độ tuổi kết thúc',
+                          value: '${widget.growthStage?.ageEnd} ngày tuổi',
+                          icon: Icons.health_and_safety_rounded,
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            ),
+          )
         ],
       ),
     );
