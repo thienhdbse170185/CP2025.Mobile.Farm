@@ -747,13 +747,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
             },
             updateStatusTaskSuccess: () {
               final selectedCage = _selectedCage;
-              setState(() {
-                _isProcessing = false;
-                _selectedCage = null;
-                _farmingBatch = null;
-                _selectedCageId = null;
-              });
-              context.push(RouteName.symptomSuccess, extra: {
+              context.go(RouteName.symptomSuccess, extra: {
                 'symptom': symptom,
                 'cageName': selectedCage,
                 'fromTask': true,
