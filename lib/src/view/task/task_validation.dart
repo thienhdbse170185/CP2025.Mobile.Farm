@@ -107,6 +107,17 @@ class TaskValidation {
 
     return true;
   }
+
+  static bool validateGiveChickenLog({
+    required TextEditingController giveChickenCountController,
+  }) {
+    final count = int.tryParse(giveChickenCountController.text) ?? 0;
+
+    if (count <= 0) {
+      return false;
+    }
+    return true;
+  }
 }
 
 // bool canCompleteTask({

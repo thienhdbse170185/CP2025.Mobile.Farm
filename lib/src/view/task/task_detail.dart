@@ -313,7 +313,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
         task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
         task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
         task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest) {
+        task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest ||
+        task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
       return () {
         // Move dialog showing logic into the callback
         if (task?.status == StatusDataConstant.inProgress) {
@@ -565,7 +566,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
                             task?.taskType.taskTypeId ==
                                 TaskTypeDataConstant.weighing ||
                             task?.taskType.taskTypeId ==
-                                TaskTypeDataConstant.sellEgg) ||
+                                TaskTypeDataConstant.sellEgg ||
+                            task?.taskType.taskTypeId ==
+                                TaskTypeDataConstant.giveChicken) ||
                         task?.status == StatusDataConstant.inProgress
                     ? _handleOnPressed()
                     : null,
@@ -593,7 +596,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
           task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
           task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg)) {
+          task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
+          task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken)) {
         return const Text('Báo cáo công việc');
       } else {
         return const Text('Xác nhận hoàn thành');
@@ -605,7 +609,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
           task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
           task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
           task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg)) {
+          task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
+          task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken)) {
         return const Text('Xem báo cáo');
       } else {
         return const Text('Công việc đã hoàn thành');

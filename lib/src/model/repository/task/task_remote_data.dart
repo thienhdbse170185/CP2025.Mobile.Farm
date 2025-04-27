@@ -104,6 +104,9 @@ class TaskRemoteData {
         throw Exception('Failed to update task status');
       }
     } on DioException catch (e) {
+      if (e.response?.statusCode == 500) {
+        throw Exception('task-overdue');
+      }
       log('[UPDATE_TASK_STATUS] Cập nhật công việc thất bại!');
       log('[UPDATE_TASK_STATUS] Error: ${e.toString()}');
       if (e.response?.data != null) {

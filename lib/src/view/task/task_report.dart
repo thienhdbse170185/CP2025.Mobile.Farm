@@ -30,8 +30,8 @@ import 'package:smart_farm/src/model/request/prescription/update_status_prescrip
 import 'package:smart_farm/src/model/request/vaccine_schedule_log/vaccine_schedule_log_request.dart';
 import 'package:smart_farm/src/view/task/task_validation.dart';
 import 'package:smart_farm/src/view/task/widgets/animal_sale_log_widget.dart';
-import 'package:smart_farm/src/view/task/widgets/egg_sale_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/food_log_widget.dart';
+import 'package:smart_farm/src/view/task/widgets/give_chicken_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/health_log_widget.dart';
 import 'package:smart_farm/src/view/task/widgets/image_note_section.dart';
 import 'package:smart_farm/src/view/task/widgets/status_notification_widget.dart';
@@ -163,6 +163,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       TextEditingController();
   final TextEditingController _animalCountSellController =
       TextEditingController();
+  final TextEditingController _animalCountDonateController =
+      TextEditingController();
+  final TextEditingController _dateAnimalDonateController =
+      TextEditingController();
 
   // --- Image upload ---
   final List<File> _images = [];
@@ -220,6 +224,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     _animalCountSellController.text = '0';
     saleDate = TimeUtils.customNow();
     prescriptionId = widget.task.prescriptionId;
+    _animalCountDonateController.text = '0';
+    _dateAnimalDonateController.text =
+        DateFormat('dd/MM/yyyy').format(TimeUtils.customNow());
 
     // If in view mode, we're certainly dealing with a completed task
     if (_viewMode) {
@@ -244,7 +251,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       } else if (widget.task.taskType.taskTypeId ==
               TaskTypeDataConstant.weighing ||
           widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg) {
+          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
+          widget.task.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
         context.read<FarmingBatchCubit>().getFarmingBatchByCageDuedate(
             widget.task.cageId, widget.task.dueDate);
       } else if (widget.task.taskType.taskTypeId ==
@@ -392,7 +400,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     } else {
       if (widget.task.isTreatmentTask ||
           widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg) {
+          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
+          widget.task.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -701,35 +710,16 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               weight: weightMeatSell,
               taskId: widget.task.id,
             );
-      }
-      //   else if (widget.task.taskType.taskTypeId ==
-      //       TaskTypeDataConstant.sellEgg) {
-      //     context.read<AnimalSaleCubit>().createAnimalSale(
-      //           growthStageId: growthStage!.id,
-      //           saleDate: saleDate!.toIso8601String(),
-      //           unitPrice:
-      //               int.parse(_priceEggSellController.text.replaceAll(',', '')),
-      //           quantity: int.parse(_countEggSellController.text),
-      //           saleTypeId: saleType!.id,
-      //           taskId: widget.task.id,
-      //         );
-      // }
-      else if (widget.task.taskType.taskTypeId ==
-          TaskTypeDataConstant.eggHarvest) {
-        final request = EggHarvestRequest(
-          eggCount: int.parse(_countEggCollectedController.text),
-          notes: logController.text,
-          growthStageId: growthStage!.id,
-          taskId: widget.task.id,
-        );
-        context.read<EggHarvestCubit>().createEggHarvest(request: request);
-      } else {
-        context.read<TaskBloc>().add(
-              TaskEvent.updateTask(
-                widget.task.id,
-                StatusDataConstant.done,
-              ),
-            );
+      } else if (widget.task.taskType.taskTypeId ==
+          TaskTypeDataConstant.giveChicken) {
+        context.read<AnimalSaleCubit>().createAnimalSale(
+            growthStageId: growthStage!.id,
+            saleDate: saleDate!.toIso8601String(),
+            unitPrice: 0,
+            quantity: int.parse(_animalCountDonateController.text),
+            weight: 0,
+            saleTypeId: saleType!.id,
+            taskId: widget.task.id);
       }
     } else if (taskStatus == StatusDataConstant.pendingVn) {
       if (_isWithinWorkingHours()) {
@@ -830,6 +820,21 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 setState(() {
                   _isProcessing = false;
                 });
+                if (e.toString().contains('task-overdue')) {
+                  showDialog(
+                      context: context,
+                      builder: (_) {
+                        return WarningConfirmationDialog(
+                          title: 'Cảnh báo',
+                          content: const Text(
+                              'Công việc đã quá thời gian thực hiện, không thể cập nhật trạng thái.'),
+                          primaryButtonText: 'Quay về trang chủ',
+                          onPrimaryButtonPressed: () {
+                            context.go(RouteName.home);
+                          },
+                        );
+                      });
+                }
                 log("Cập nhật trạng thái công việc thất bại! \nError: $e");
               },
               createDailyFoodUsageLogLoading: () {
@@ -1550,7 +1555,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isLoading = false;
                 });
                 if (widget.task.taskType.taskTypeId ==
-                    TaskTypeDataConstant.sellAnimal) {
+                        TaskTypeDataConstant.sellAnimal ||
+                    widget.task.taskType.taskTypeId ==
+                        TaskTypeDataConstant.giveChicken) {
                   context
                       .read<SaleTypeCubit>()
                       .getSaleTypeByName(saleTypeName: 'MeatSale');
@@ -1561,11 +1568,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   context
                       .read<GrowthStageCubit>()
                       .getGrowthStageByCageId(widget.task.cageId);
-                } else if (widget.task.taskType.taskTypeId ==
-                    TaskTypeDataConstant.sellEgg) {
-                  context
-                      .read<SaleTypeCubit>()
-                      .getSaleTypeByName(saleTypeName: 'EggSale');
                 }
               },
               getFarmingBatchByCageFailure: (e) {
@@ -1891,42 +1893,34 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 saleLogDetail: saleLogDetail,
               )
             ],
-          // else ...[
-          //   EggSaleLogWidget(
-          //     userName: userName,
-          //     growthStage: growthStage,
-          //     farmingBatch: farmingBatch,
-          //     countEggSellController: _countEggSellController,
-          //     priceEggSellController: _priceEggSellController,
-          //     dateEggSellController: _dateAnimalSellController,
-          //     saleDate: saleDate!,
-          //     onDateChanged: readOnly
-          //         ? null
-          //         : (date) {
-          //             setState(() {
-          //               saleDate = date;
-          //             });
-          //           },
-          //     onCountChanged: readOnly
-          //         ? null
-          //         : (count) {
-          //             setState(() {
-          //               _countEggSellController.text = count.toString();
-          //             });
-          //           },
-          //     onPriceChanged: readOnly
-          //         ? null
-          //         : (price) {
-          //             setState(() {
-          //               _priceEggSellController.text = price.toString();
-          //             });
-          //           },
-          //     readOnly: readOnly,
-          //     saleDetailLog: saleDetailLog,
-          //     task: widget.task,
-          //     logController: logController,
-          //   )
-          // ],
+          if (widget.task.taskType.taskTypeId ==
+              TaskTypeDataConstant.giveChicken)
+            GiveChickenLogWidget(
+              userName: userName,
+              growthStage: growthStage,
+              farmingBatch: farmingBatch,
+              donationDate: saleDate!,
+              logTime: logTime,
+              onDateChanged: readOnly
+                  ? null
+                  : (date) {
+                      setState(() {
+                        saleDate = date;
+                      });
+                    },
+              task: widget.task,
+              readOnly: readOnly,
+              animalCountDonateController: _animalCountDonateController,
+              dateDonateController: _dateAnimalDonateController,
+              giveChickenLogDetail: saleLogDetail,
+              onAnimalCountChanged: readOnly
+                  ? null
+                  : (count) {
+                      setState(() {
+                        _animalCountDonateController.text = count.toString();
+                      });
+                    },
+            ),
           const SizedBox(height: 16),
           if (taskStatus != StatusDataConstant.overdueVn &&
               (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health ||
@@ -1977,181 +1971,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     }
   }
 
-  Widget _buildLastSessionForm() {
-    return Column(children: [
-      const Text(
-          'Vì đây là đơn thuốc cuối cùng nên điền số lượng gia cầm sau điều trị vào mẫu bên dưới. '),
-      const SizedBox(height: 16),
-      StatefulBuilder(builder: (context, setState) {
-        return Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.grey[50],
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey[200]!),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Opacity(
-                opacity: _isHealthyAfterTreatment ? 0.5 : 1,
-                child: Row(
-                  children: [
-                    const Text('Số gia cầm '),
-                    Text(
-                      'đã chết',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const Text(' sau điều trị: '),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildQuantityButton(
-                    icon: Icons.remove,
-                    onPressed: () {
-                      final currentValue =
-                          int.tryParse(_lastSessionQuantityController.text) ??
-                              0;
-                      if (currentValue > 0) {
-                        setState(() {
-                          _lastSessionQuantityController.text =
-                              (currentValue - 1).toString();
-                          _lastSessionQuantity = _lastSessionQuantity + 1;
-                        });
-                      }
-                    },
-                    isDisable: _isHealthyAfterTreatment,
-                  ),
-                  Container(
-                    width: 80,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TextField(
-                      controller: _lastSessionQuantityController,
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        suffixText: '(con)',
-                        suffixStyle:
-                            TextStyle(color: Colors.grey[600], fontSize: 18),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      onChanged: _onChangedQuantityLastSession,
-                      enabled: !_isHealthyAfterTreatment,
-                    ),
-                  ),
-                  _buildQuantityButton(
-                    icon: Icons.add,
-                    onPressed: () {
-                      final currentValue =
-                          int.tryParse(_lastSessionQuantityController.text) ??
-                              0;
-                      setState(() {
-                        _lastSessionQuantityController.text =
-                            (currentValue + 1).toString();
-                        _lastSessionQuantity = _lastSessionQuantity - 1;
-                      });
-                    },
-                    isAdd: true,
-                    isDisable: _isHealthyAfterTreatment,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                  '- Tick vào ô bên dưới nếu tất cả khỏe mạnh sau điều trị.'),
-              const SizedBox(height: 8),
-              CheckboxListTile(
-                title: const Text('Tất cả gia cầm khỏe mạnh sau điều trị'),
-                value: _isHealthyAfterTreatment,
-                onChanged: (bool? value) {
-                  if (value == true) {
-                    setState(() {
-                      _isHealthyAfterTreatment = true;
-                      _lastSessionQuantityController.text = '0';
-                    });
-                  } else {
-                    setState(() {
-                      _isHealthyAfterTreatment = false;
-                      _lastSessionQuantityController.text = '0';
-                    });
-                  }
-                },
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Icon(
-                    Icons.info_outline,
-                    size: 16,
-                    color: Colors.grey[600],
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Số gia cầm khỏe mạnh',
-                          style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 13,
-                          ),
-                        ),
-                        Row(children: [
-                          Text(
-                            '$_lastSessionQuantity con',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            ' (sau điều trị)',
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 13,
-                            ),
-                          ),
-                        ])
-                      ])
-                ],
-              ),
-            ],
-          ),
-        );
-      }),
-    ]);
-  }
-
-  Widget _buildQuantityButton({
-    required IconData icon,
-    required VoidCallback onPressed,
-    bool isAdd = false,
-    bool isDisable = false,
-  }) {
-    return Opacity(
-      opacity: isDisable ? 0.5 : 1,
-      child: Container(
-        decoration: BoxDecoration(
-          color:
-              isAdd ? Theme.of(context).colorScheme.primary : Colors.grey[200],
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: IconButton(
-          onPressed: isDisable ? null : onPressed,
-          icon: Icon(
-            icon,
-            color: isAdd ? Colors.white : Colors.grey[700],
-          ),
-          iconSize: 24,
-        ),
-      ),
-    );
-  }
-
   bool _validateTaskInfo() {
     if (_isLoading == false) {
       if (_isProcessing == false) {
@@ -2197,6 +2016,13 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           return TaskValidation.validateWeighingLog(
             weightAnimalController: _weightAnimalController,
           );
+        } else if (widget.task.taskType.taskTypeId ==
+            TaskTypeDataConstant.giveChicken) {
+          return TaskValidation.validateGiveChickenLog(
+            giveChickenCountController: _animalCountDonateController,
+          );
+        } else {
+          return true;
         }
       }
     }
