@@ -1180,33 +1180,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   context.read<TaskBloc>().add(TaskEvent.updateTask(
                       widget.taskId, StatusDataConstant.done));
                 } else {
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (context) => WarningConfirmationDialog(
-                  //         isEmergency: true,
-                  //         title: 'Cập nhật sau điều trị',
-                  //         content: _buildLastSessionForm(),
-                  //         secondaryButtonText: 'Đóng',
-                  //         primaryButtonText: 'Xác nhận',
-                  //         onPrimaryButtonPressed: () {
-                  //           final request = UpdateStatusPrescriptionRequest(
-                  //               status: 'Complete',
-                  //               remainingQuantity: _lastSessionQuantity);
-                  //           context
-                  //               .read<PrescriptionCubit>()
-                  //               .updateQuantityAnimalAfterTreatment(
-                  //                   prescriptionId: prescriptionId!,
-                  //                   request: request);
-                  //         },
-                  //         onSecondaryButtonPressed: () {
-                  //           setState(() {
-                  //             _lastSessionQuantity =
-                  //                 prescription!.quantityAnimal;
-                  //             _isHealthyAfterTreatment = false;
-                  //           });
-                  //           context.pop();
-                  //           _lastSessionQuantityController.text = '0';
-                  //         }));
                   log('[Prescription] Số con còn lại sau điều trị: ${prescription!.quantityAnimal}');
                   final request = UpdateStatusPrescriptionRequest(
                     status: 'Completed',
