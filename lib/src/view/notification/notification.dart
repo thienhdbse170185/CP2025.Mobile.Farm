@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/common/widgets/warning_confirm_dialog.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/dto/notification/notification_dto.dart';
 import 'package:smart_farm/src/view/export.dart';
 import 'package:smart_farm/src/view/widgets/custom_app_bar.dart';
@@ -140,7 +141,7 @@ class _NotificationWidgetState extends State<NotificationWidget>
   }
 
   String _formatTimeAgo(DateTime dateTime) {
-    final now = DateTime.now();
+    final now = TimeUtils.customNow();
     final difference = now.difference(dateTime);
 
     if (difference.inDays > 7) {
