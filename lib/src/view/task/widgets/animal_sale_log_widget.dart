@@ -21,6 +21,7 @@ class AnimalSaleLogWidget extends StatefulWidget {
   final TextEditingController dateAnimalSellController;
   final TextEditingController
       animalCountSellController; // New controller for animal count
+  final TextEditingController logController;
   final DateTime saleDate;
   final ValueChanged<DateTime>? onDateChanged;
   final ValueChanged<double>? onWeightChanged;
@@ -33,12 +34,14 @@ class AnimalSaleLogWidget extends StatefulWidget {
   final SaleDetailLogDto? saleDetailLog;
   final SaleLogDetailDto? saleLogDetail;
   final DateTime? logTime;
+  final bool isDisabled;
 
   const AnimalSaleLogWidget({
     super.key,
     this.userName,
     this.growthStage,
     this.farmingBatch,
+    required this.logController,
     required this.weightMeatSellController,
     required this.priceMeatSellController,
     required this.dateAnimalSellController,
@@ -54,6 +57,7 @@ class AnimalSaleLogWidget extends StatefulWidget {
     this.saleDetailLog,
     this.saleLogDetail,
     this.logTime,
+    this.isDisabled = false,
   });
 
   @override
@@ -75,6 +79,8 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           widget.saleLogDetail?.weight.toString() ?? '0.0';
       widget.animalCountSellController.text =
           widget.saleLogDetail?.quantity.toString() ?? '0';
+      widget.logController.text =
+          widget.saleLogDetail?.note ?? 'Không có ghi chú nào được thêm vào.';
 
       // Format the value with commas
       final formatter = NumberFormat('#,###');
@@ -92,6 +98,8 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isNoteEmpty = widget.logController.text.trim().isEmpty;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -107,6 +115,74 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           _buildGrowthStageInfo(context),
           const SizedBox(height: 30),
           _buildSaleFormSection(context),
+          const SizedBox(height: 20),
+          Card(
+            elevation: 1,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.note_alt_outlined,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Ghi chú bổ sung',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  if (widget.isDisabled && isNoteEmpty)
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey[300]!),
+                      ),
+                      child: const Text(
+                        'Không có ghi chú nào được thêm vào.',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    )
+                  else
+                    TextFormField(
+                      controller: widget.logController,
+                      maxLines: 3,
+                      enabled: !widget.isDisabled,
+                      decoration: InputDecoration(
+                        hintText: 'Nhập ghi chú tại đây...',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        filled: true,
+                        fillColor:
+                            widget.isDisabled ? Colors.grey[100] : Colors.white,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

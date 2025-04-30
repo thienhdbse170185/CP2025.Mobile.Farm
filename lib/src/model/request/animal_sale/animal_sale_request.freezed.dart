@@ -28,6 +28,7 @@ mixin _$AnimalSaleRequest {
   String get staffId => throw _privateConstructorUsedError;
   String get saleTypeId => throw _privateConstructorUsedError;
   String get taskId => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
 
   /// Serializes this AnimalSaleRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,7 +54,8 @@ abstract class $AnimalSaleRequestCopyWith<$Res> {
       double weight,
       String staffId,
       String saleTypeId,
-      String taskId});
+      String taskId,
+      String note});
 }
 
 /// @nodoc
@@ -79,6 +81,7 @@ class _$AnimalSaleRequestCopyWithImpl<$Res, $Val extends AnimalSaleRequest>
     Object? staffId = null,
     Object? saleTypeId = null,
     Object? taskId = null,
+    Object? note = null,
   }) {
     return _then(_value.copyWith(
       growthStageId: null == growthStageId
@@ -113,6 +116,10 @@ class _$AnimalSaleRequestCopyWithImpl<$Res, $Val extends AnimalSaleRequest>
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
               as String,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -133,7 +140,8 @@ abstract class _$$AnimalSaleRequestImplCopyWith<$Res>
       double weight,
       String staffId,
       String saleTypeId,
-      String taskId});
+      String taskId,
+      String note});
 }
 
 /// @nodoc
@@ -157,6 +165,7 @@ class __$$AnimalSaleRequestImplCopyWithImpl<$Res>
     Object? staffId = null,
     Object? saleTypeId = null,
     Object? taskId = null,
+    Object? note = null,
   }) {
     return _then(_$AnimalSaleRequestImpl(
       growthStageId: null == growthStageId
@@ -191,6 +200,10 @@ class __$$AnimalSaleRequestImplCopyWithImpl<$Res>
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
               as String,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -206,7 +219,8 @@ class _$AnimalSaleRequestImpl implements _AnimalSaleRequest {
       required this.weight,
       required this.staffId,
       required this.saleTypeId,
-      required this.taskId});
+      required this.taskId,
+      required this.note});
 
   factory _$AnimalSaleRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$AnimalSaleRequestImplFromJson(json);
@@ -227,10 +241,12 @@ class _$AnimalSaleRequestImpl implements _AnimalSaleRequest {
   final String saleTypeId;
   @override
   final String taskId;
+  @override
+  final String note;
 
   @override
   String toString() {
-    return 'AnimalSaleRequest(growthStageId: $growthStageId, saleDate: $saleDate, unitPrice: $unitPrice, quantity: $quantity, weight: $weight, staffId: $staffId, saleTypeId: $saleTypeId, taskId: $taskId)';
+    return 'AnimalSaleRequest(growthStageId: $growthStageId, saleDate: $saleDate, unitPrice: $unitPrice, quantity: $quantity, weight: $weight, staffId: $staffId, saleTypeId: $saleTypeId, taskId: $taskId, note: $note)';
   }
 
   @override
@@ -250,13 +266,14 @@ class _$AnimalSaleRequestImpl implements _AnimalSaleRequest {
             (identical(other.staffId, staffId) || other.staffId == staffId) &&
             (identical(other.saleTypeId, saleTypeId) ||
                 other.saleTypeId == saleTypeId) &&
-            (identical(other.taskId, taskId) || other.taskId == taskId));
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, growthStageId, saleDate,
-      unitPrice, quantity, weight, staffId, saleTypeId, taskId);
+      unitPrice, quantity, weight, staffId, saleTypeId, taskId, note);
 
   /// Create a copy of AnimalSaleRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -284,7 +301,8 @@ abstract class _AnimalSaleRequest implements AnimalSaleRequest {
       required final double weight,
       required final String staffId,
       required final String saleTypeId,
-      required final String taskId}) = _$AnimalSaleRequestImpl;
+      required final String taskId,
+      required final String note}) = _$AnimalSaleRequestImpl;
 
   factory _AnimalSaleRequest.fromJson(Map<String, dynamic> json) =
       _$AnimalSaleRequestImpl.fromJson;
@@ -305,6 +323,8 @@ abstract class _AnimalSaleRequest implements AnimalSaleRequest {
   String get saleTypeId;
   @override
   String get taskId;
+  @override
+  String get note;
 
   /// Create a copy of AnimalSaleRequest
   /// with the given fields replaced by the non-null parameter values.

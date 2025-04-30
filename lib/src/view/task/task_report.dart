@@ -709,17 +709,20 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               saleTypeId: saleType!.id,
               weight: weightMeatSell,
               taskId: widget.task.id,
+              note: logController.text,
             );
       } else if (widget.task.taskType.taskTypeId ==
           TaskTypeDataConstant.giveChicken) {
         context.read<AnimalSaleCubit>().createAnimalSale(
-            growthStageId: growthStage!.id,
-            saleDate: saleDate!.toIso8601String(),
-            unitPrice: 0,
-            quantity: int.parse(_animalCountDonateController.text),
-            weight: 0,
-            saleTypeId: saleType!.id,
-            taskId: widget.task.id);
+              growthStageId: growthStage!.id,
+              saleDate: saleDate!.toIso8601String(),
+              unitPrice: 0,
+              quantity: int.parse(_animalCountDonateController.text),
+              weight: 0,
+              saleTypeId: saleType!.id,
+              taskId: widget.task.id,
+              note: logController.text,
+            );
       }
     } else if (taskStatus == StatusDataConstant.pendingVn) {
       if (_isWithinWorkingHours()) {
@@ -1822,7 +1825,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 TaskTypeDataConstant.sellAnimal) ...[
               AnimalSaleLogWidget(
                 userName: userName,
+                logController: logController,
                 growthStage: growthStage,
+                isDisabled: readOnly,
                 farmingBatch: farmingBatch,
                 weightMeatSellController: _weightMeatSellController,
                 priceMeatSellController: _priceMeatSellController,

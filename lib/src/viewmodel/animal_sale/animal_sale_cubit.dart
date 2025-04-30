@@ -28,6 +28,7 @@ class AnimalSaleCubit extends Cubit<AnimalSaleState> {
     required double weight,
     required String saleTypeId,
     required String taskId,
+    required String note,
   }) async {
     emit(AnimalSaleState.createAnimalSaleInProgress());
     try {
@@ -43,6 +44,7 @@ class AnimalSaleCubit extends Cubit<AnimalSaleState> {
         saleTypeId: saleTypeId,
         taskId: taskId,
         weight: weight,
+        note: note,
       );
       final result = await repository.create(request);
       if (result) {

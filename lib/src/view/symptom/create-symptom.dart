@@ -900,22 +900,24 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                             widget.paramsFoodLog!.afterSymptomReport,
                       ),
                     );
-              } else if (task.taskType.taskTypeId ==
-                      TaskTypeDataConstant.health &&
-                  widget.paramsHealthLog != null) {
-                final logTemp = HealthLogDto(
-                  prescriptionId: widget.paramsHealthLog!.log.prescriptionId,
-                  notes: widget.paramsHealthLog!.log.notes,
-                  taskId: widget.paramsHealthLog!.log.taskId,
-                  photo: imagePath ?? '',
-                  date: widget.paramsHealthLog!.log.date,
-                  id: widget.paramsHealthLog!.log.id,
-                );
-                context.read<TaskBloc>().add(TaskEvent.createHealthLog(
-                      prescriptionId: widget.paramsHealthLog!.prescriptionId,
-                      log: logTemp,
-                    ));
-              } else if (task.taskType.taskTypeId ==
+              }
+              // else if (task.taskType.taskTypeId ==
+              //         TaskTypeDataConstant.health &&
+              //     widget.paramsHealthLog != null) {
+              //   final logTemp = HealthLogDto(
+              //     prescriptionId: widget.paramsHealthLog!.log.prescriptionId,
+              //     notes: widget.paramsHealthLog!.log.notes,
+              //     taskId: widget.paramsHealthLog!.log.taskId,
+              //     photo: imagePath ?? '',
+              //     date: widget.paramsHealthLog!.log.date,
+              //     id: widget.paramsHealthLog!.log.id,
+              //   );
+              //   context.read<TaskBloc>().add(TaskEvent.createHealthLog(
+              //         prescriptionId: widget.paramsHealthLog!.prescriptionId,
+              //         log: logTemp,
+              //       ));
+              // }
+              else if (task.taskType.taskTypeId ==
                   TaskTypeDataConstant.vaccin) {
                 final logTemp = VaccineScheduleLogRequest(
                   vaccineId: widget
@@ -936,18 +938,20 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                       afterSymptomReport:
                           widget.paramsVaccineLog!.afterSymptomReport,
                     );
-              } else if (task.taskType.taskTypeId ==
-                  TaskTypeDataConstant.sellAnimal) {
-                context.read<AnimalSaleCubit>().createAnimalSale(
-                      growthStageId: widget.paramsSaleLog!.growthStageId,
-                      quantity: widget.paramsSaleLog!.quantity,
-                      saleDate: widget.paramsSaleLog!.saleDate,
-                      saleTypeId: widget.paramsSaleLog!.saleTypeId,
-                      weight: widget.paramsSaleLog!.weight,
-                      taskId: widget.paramsSaleLog!.taskId,
-                      unitPrice: widget.paramsSaleLog!.unitPrice,
-                    );
-              } else if (task.taskType.taskTypeId ==
+              }
+              // else if (task.taskType.taskTypeId ==
+              //     TaskTypeDataConstant.sellAnimal) {
+              //   context.read<AnimalSaleCubit>().createAnimalSale(
+              //         growthStageId: widget.paramsSaleLog!.growthStageId,
+              //         quantity: widget.paramsSaleLog!.quantity,
+              //         saleDate: widget.paramsSaleLog!.saleDate,
+              //         saleTypeId: widget.paramsSaleLog!.saleTypeId,
+              //         weight: widget.paramsSaleLog!.weight,
+              //         taskId: widget.paramsSaleLog!.taskId,
+              //         unitPrice: widget.paramsSaleLog!.unitPrice,
+              //       );
+              // }
+              else if (task.taskType.taskTypeId ==
                   TaskTypeDataConstant.weighing) {
                 // For weighing tasks, update with default values
                 context.read<GrowthStageCubit>().updateWeight(

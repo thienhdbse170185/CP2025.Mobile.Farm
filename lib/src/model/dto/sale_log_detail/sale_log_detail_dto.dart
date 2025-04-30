@@ -18,6 +18,7 @@ class SaleLogDetailDto with _$SaleLogDetailDto {
     required String saleTypeId,
     required String saleTypeName,
     required String logTime,
+    required String note,
   }) = _SaleLogDetailDto;
 
   factory SaleLogDetailDto.fromJson(Map<String, dynamic> json) =>

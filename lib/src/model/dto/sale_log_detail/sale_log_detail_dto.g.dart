@@ -21,6 +21,7 @@ _$SaleLogDetailDtoImpl _$$SaleLogDetailDtoImplFromJson(
       saleTypeId: json['saleTypeId'] as String,
       saleTypeName: json['saleTypeName'] as String,
       logTime: json['logTime'] as String,
+      note: json['note'] as String,
     );
 
 Map<String, dynamic> _$$SaleLogDetailDtoImplToJson(
@@ -38,4 +39,5 @@ Map<String, dynamic> _$$SaleLogDetailDtoImplToJson(
       'saleTypeId': instance.saleTypeId,
       'saleTypeName': instance.saleTypeName,
       'logTime': instance.logTime,
+      'note': instance.note,
     };

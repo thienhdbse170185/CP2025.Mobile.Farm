@@ -32,6 +32,7 @@ mixin _$SaleLogDetailDto {
   String get saleTypeId => throw _privateConstructorUsedError;
   String get saleTypeName => throw _privateConstructorUsedError;
   String get logTime => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
 
   /// Serializes this SaleLogDetailDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,7 +62,8 @@ abstract class $SaleLogDetailDtoCopyWith<$Res> {
       String staffName,
       String saleTypeId,
       String saleTypeName,
-      String logTime});
+      String logTime,
+      String note});
 }
 
 /// @nodoc
@@ -91,6 +93,7 @@ class _$SaleLogDetailDtoCopyWithImpl<$Res, $Val extends SaleLogDetailDto>
     Object? saleTypeId = null,
     Object? saleTypeName = null,
     Object? logTime = null,
+    Object? note = null,
   }) {
     return _then(_value.copyWith(
       growthStageId: null == growthStageId
@@ -141,6 +144,10 @@ class _$SaleLogDetailDtoCopyWithImpl<$Res, $Val extends SaleLogDetailDto>
           ? _value.logTime
           : logTime // ignore: cast_nullable_to_non_nullable
               as String,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -165,7 +172,8 @@ abstract class _$$SaleLogDetailDtoImplCopyWith<$Res>
       String staffName,
       String saleTypeId,
       String saleTypeName,
-      String logTime});
+      String logTime,
+      String note});
 }
 
 /// @nodoc
@@ -193,6 +201,7 @@ class __$$SaleLogDetailDtoImplCopyWithImpl<$Res>
     Object? saleTypeId = null,
     Object? saleTypeName = null,
     Object? logTime = null,
+    Object? note = null,
   }) {
     return _then(_$SaleLogDetailDtoImpl(
       growthStageId: null == growthStageId
@@ -243,6 +252,10 @@ class __$$SaleLogDetailDtoImplCopyWithImpl<$Res>
           ? _value.logTime
           : logTime // ignore: cast_nullable_to_non_nullable
               as String,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -262,7 +275,8 @@ class _$SaleLogDetailDtoImpl implements _SaleLogDetailDto {
       required this.staffName,
       required this.saleTypeId,
       required this.saleTypeName,
-      required this.logTime});
+      required this.logTime,
+      required this.note});
 
   factory _$SaleLogDetailDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SaleLogDetailDtoImplFromJson(json);
@@ -291,10 +305,12 @@ class _$SaleLogDetailDtoImpl implements _SaleLogDetailDto {
   final String saleTypeName;
   @override
   final String logTime;
+  @override
+  final String note;
 
   @override
   String toString() {
-    return 'SaleLogDetailDto(growthStageId: $growthStageId, growthStageName: $growthStageName, saleDate: $saleDate, unitPrice: $unitPrice, quantity: $quantity, weight: $weight, total: $total, staffId: $staffId, staffName: $staffName, saleTypeId: $saleTypeId, saleTypeName: $saleTypeName, logTime: $logTime)';
+    return 'SaleLogDetailDto(growthStageId: $growthStageId, growthStageName: $growthStageName, saleDate: $saleDate, unitPrice: $unitPrice, quantity: $quantity, weight: $weight, total: $total, staffId: $staffId, staffName: $staffName, saleTypeId: $saleTypeId, saleTypeName: $saleTypeName, logTime: $logTime, note: $note)';
   }
 
   @override
@@ -321,7 +337,8 @@ class _$SaleLogDetailDtoImpl implements _SaleLogDetailDto {
                 other.saleTypeId == saleTypeId) &&
             (identical(other.saleTypeName, saleTypeName) ||
                 other.saleTypeName == saleTypeName) &&
-            (identical(other.logTime, logTime) || other.logTime == logTime));
+            (identical(other.logTime, logTime) || other.logTime == logTime) &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -339,7 +356,8 @@ class _$SaleLogDetailDtoImpl implements _SaleLogDetailDto {
       staffName,
       saleTypeId,
       saleTypeName,
-      logTime);
+      logTime,
+      note);
 
   /// Create a copy of SaleLogDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -371,7 +389,8 @@ abstract class _SaleLogDetailDto implements SaleLogDetailDto {
       required final String staffName,
       required final String saleTypeId,
       required final String saleTypeName,
-      required final String logTime}) = _$SaleLogDetailDtoImpl;
+      required final String logTime,
+      required final String note}) = _$SaleLogDetailDtoImpl;
 
   factory _SaleLogDetailDto.fromJson(Map<String, dynamic> json) =
       _$SaleLogDetailDtoImpl.fromJson;
@@ -400,6 +419,8 @@ abstract class _SaleLogDetailDto implements SaleLogDetailDto {
   String get saleTypeName;
   @override
   String get logTime;
+  @override
+  String get note;
 
   /// Create a copy of SaleLogDetailDto
   /// with the given fields replaced by the non-null parameter values.

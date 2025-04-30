@@ -14,6 +14,7 @@ class AnimalSaleRequest with _$AnimalSaleRequest {
     required String staffId,
     required String saleTypeId,
     required String taskId,
+    required String note,
   }) = _AnimalSaleRequest;
 
   factory AnimalSaleRequest.fromJson(Map<String, dynamic> json) =>

@@ -17,6 +17,7 @@ _$AnimalSaleRequestImpl _$$AnimalSaleRequestImplFromJson(
       staffId: json['staffId'] as String,
       saleTypeId: json['saleTypeId'] as String,
       taskId: json['taskId'] as String,
+      note: json['note'] as String,
     );
 
 Map<String, dynamic> _$$AnimalSaleRequestImplToJson(
@@ -30,4 +31,5 @@ Map<String, dynamic> _$$AnimalSaleRequestImplToJson(
       'staffId': instance.staffId,
       'saleTypeId': instance.saleTypeId,
       'taskId': instance.taskId,
+      'note': instance.note,
     };
