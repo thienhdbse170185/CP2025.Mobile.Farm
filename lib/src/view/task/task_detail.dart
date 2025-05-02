@@ -308,14 +308,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
     // Handle overdue tasks - allow makeup reports for certain task types
     if (taskStatus == StatusDataConstant.overdueVn) {
-      if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
+      if (task?.taskType.taskTypeName == TaskTypeDataConstant.feeding ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.health ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.vaccin ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.sellAnimal ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.weighing ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.sellEgg ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.eggHarvest ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.giveChicken) {
         return () {
           // Navigate to task report screen for makeup task
           context.push(RouteName.taskReport, extra: {
@@ -333,14 +333,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
       }
     }
 
-    if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest ||
-        task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
+    if (task?.taskType.taskTypeName == TaskTypeDataConstant.feeding ||
+        task?.taskType.taskTypeName == TaskTypeDataConstant.health ||
+        task?.taskType.taskTypeName == TaskTypeDataConstant.vaccin ||
+        task?.taskType.taskTypeName == TaskTypeDataConstant.sellAnimal ||
+        task?.taskType.taskTypeName == TaskTypeDataConstant.weighing ||
+        task?.taskType.taskTypeName == TaskTypeDataConstant.sellEgg ||
+        task?.taskType.taskTypeName == TaskTypeDataConstant.eggHarvest ||
+        task?.taskType.taskTypeName == TaskTypeDataConstant.giveChicken) {
       return () {
         // Move dialog showing logic into the callback
         if (task?.status == StatusDataConstant.inProgress) {
@@ -462,7 +462,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             )
           ]),
           actions: [
-            if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
+            if (task?.taskType.taskTypeName == TaskTypeDataConstant.health &&
                 task?.status == StatusDataConstant.inProgress) ...[
               IconButton(
                 icon: Icon(Icons.more_vert),
@@ -583,34 +583,34 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
             onPressed: _isLoading
                 ? null
                 : (task?.status == StatusDataConstant.overdue &&
-                            (task?.taskType.taskTypeId ==
+                            (task?.taskType.taskTypeName ==
                                     TaskTypeDataConstant.feeding ||
-                                task?.taskType.taskTypeId ==
+                                task?.taskType.taskTypeName ==
                                     TaskTypeDataConstant.health ||
-                                task?.taskType.taskTypeId ==
+                                task?.taskType.taskTypeName ==
                                     TaskTypeDataConstant.vaccin ||
-                                task?.taskType.taskTypeId ==
+                                task?.taskType.taskTypeName ==
                                     TaskTypeDataConstant.sellAnimal ||
-                                task?.taskType.taskTypeId ==
+                                task?.taskType.taskTypeName ==
                                     TaskTypeDataConstant.weighing ||
-                                task?.taskType.taskTypeId ==
+                                task?.taskType.taskTypeName ==
                                     TaskTypeDataConstant.sellEgg ||
-                                task?.taskType.taskTypeId ==
+                                task?.taskType.taskTypeName ==
                                     TaskTypeDataConstant.giveChicken)) ||
                         task?.status == StatusDataConstant.inProgress ||
-                        (task?.taskType.taskTypeId ==
+                        (task?.taskType.taskTypeName ==
                                 TaskTypeDataConstant.feeding ||
-                            task?.taskType.taskTypeId ==
+                            task?.taskType.taskTypeName ==
                                 TaskTypeDataConstant.health ||
-                            task?.taskType.taskTypeId ==
+                            task?.taskType.taskTypeName ==
                                 TaskTypeDataConstant.vaccin ||
-                            task?.taskType.taskTypeId ==
+                            task?.taskType.taskTypeName ==
                                 TaskTypeDataConstant.sellAnimal ||
-                            task?.taskType.taskTypeId ==
+                            task?.taskType.taskTypeName ==
                                 TaskTypeDataConstant.weighing ||
-                            task?.taskType.taskTypeId ==
+                            task?.taskType.taskTypeName ==
                                 TaskTypeDataConstant.sellEgg ||
-                            task?.taskType.taskTypeId ==
+                            task?.taskType.taskTypeName ==
                                 TaskTypeDataConstant.giveChicken)
                     ? _handleOnPressed()
                     : null,
@@ -632,34 +632,34 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget>
 
   Widget _contentButton() {
     if (taskStatus == StatusDataConstant.inProgressVn) {
-      if ((task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken)) {
+      if ((task?.taskType.taskTypeName == TaskTypeDataConstant.feeding ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.health ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.vaccin ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.sellAnimal ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.weighing ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.giveChicken)) {
         return const Text('Báo cáo công việc');
       } else {
         return const Text('Xác nhận hoàn thành');
       }
     } else if (taskStatus == StatusDataConstant.doneVn) {
-      if ((task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken)) {
+      if ((task?.taskType.taskTypeName == TaskTypeDataConstant.feeding ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.health ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.vaccin ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.sellAnimal ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.weighing ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.giveChicken)) {
         return const Text('Xem báo cáo');
       } else {
         return const Text('Công việc đã hoàn thành');
       }
     } else if (taskStatus == StatusDataConstant.overdueVn) {
-      if ((task?.taskType.taskTypeId == TaskTypeDataConstant.feeding ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.health ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.weighing ||
-          task?.taskType.taskTypeId == TaskTypeDataConstant.giveChicken)) {
+      if ((task?.taskType.taskTypeName == TaskTypeDataConstant.feeding ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.health ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.vaccin ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.sellAnimal ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.weighing ||
+          task?.taskType.taskTypeName == TaskTypeDataConstant.giveChicken)) {
         return const Text('Báo cáo công việc bù');
       } else {
         return const Text('Công việc đã quá hạn');

@@ -30,7 +30,7 @@ class TaskValidation {
   ) {
     // If the task is for health and there is a prescription,
     // check if confirmation for taking all medications is done
-    if (task.taskType.taskTypeId == TaskTypeDataConstant.health &&
+    if (task.taskType.taskTypeName == TaskTypeDataConstant.health &&
         prescription != null) {
       return hasTakenAllMedications;
     }
@@ -146,7 +146,7 @@ class TaskValidation {
 //     return false;
 //   }
 
-//   final taskTypeId = task.taskType.taskTypeId;
+//   final taskTypeId = task.taskType.taskTypeName;
   
 //   // Health task - check if medications are checked
 //   if (taskTypeId == 'HEALTH' && !areAnyMedicationsChecked) {

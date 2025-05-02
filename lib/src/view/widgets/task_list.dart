@@ -63,7 +63,7 @@ class TaskListWidget extends StatelessWidget {
 
         // Task type icon
         IconData typeIcon;
-        switch (task.taskType.taskTypeId) {
+        switch (task.taskType.taskTypeName) {
           case TaskTypeDataConstant.feeding:
             typeIcon = Icons.restaurant;
             break;

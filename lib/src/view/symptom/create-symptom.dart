@@ -879,7 +879,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
           TaskEvent.getTaskById(
             taskId,
             onSuccess: (task) {
-              if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding &&
+              if (task.taskType.taskTypeName == TaskTypeDataConstant.feeding &&
                   widget.paramsFoodLog != null) {
                 final logTemp = DailyFoodUsageLogDto(
                   recommendedWeight:
@@ -899,7 +899,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                       ),
                     );
               }
-              // else if (task.taskType.taskTypeId ==
+              // else if (task.taskType.taskTypeName ==
               //         TaskTypeDataConstant.health &&
               //     widget.paramsHealthLog != null) {
               //   final logTemp = HealthLogDto(
@@ -915,7 +915,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               //         log: logTemp,
               //       ));
               // }
-              else if (task.taskType.taskTypeId ==
+              else if (task.taskType.taskTypeName ==
                   TaskTypeDataConstant.vaccin) {
                 final logTemp = VaccineScheduleLogRequest(
                   vaccineId: widget
@@ -937,7 +937,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                           widget.paramsVaccineLog!.afterSymptomReport,
                     );
               }
-              // else if (task.taskType.taskTypeId ==
+              // else if (task.taskType.taskTypeName ==
               //     TaskTypeDataConstant.sellAnimal) {
               //   context.read<AnimalSaleCubit>().createAnimalSale(
               //         growthStageId: widget.paramsSaleLog!.growthStageId,
@@ -949,7 +949,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               //         unitPrice: widget.paramsSaleLog!.unitPrice,
               //       );
               // }
-              else if (task.taskType.taskTypeId ==
+              else if (task.taskType.taskTypeName ==
                   TaskTypeDataConstant.weighing) {
                 // For weighing tasks, update with default values
                 context.read<GrowthStageCubit>().updateWeight(

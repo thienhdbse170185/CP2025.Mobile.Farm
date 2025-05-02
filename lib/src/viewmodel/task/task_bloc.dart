@@ -104,9 +104,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         List<TaskType> taskTypeList = [];
         for (var task in tasksMap.values.expand((element) => element)) {
           if (!taskTypeList.any(
-              (element) => element.taskTypeId == task.taskType.taskTypeId)) {
+              (element) => element.taskTypeId == task.taskType.taskTypeName)) {
             taskTypeList.add(TaskType(
-                taskTypeId: task.taskType.taskTypeId,
+                taskTypeId: task.taskType.taskTypeName,
                 taskTypeName: task.taskType.taskTypeName));
           }
         }
@@ -154,9 +154,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         List<TaskType> taskTypeList = [];
         for (var task in tasks) {
           if (!taskTypeList.any(
-              (element) => element.taskTypeId == task.taskType.taskTypeId)) {
+              (element) => element.taskTypeId == task.taskType.taskTypeName)) {
             taskTypeList.add(TaskType(
-                taskTypeId: task.taskType.taskTypeId,
+                taskTypeId: task.taskType.taskTypeName,
                 taskTypeName: task.taskType.taskTypeName));
           }
         }

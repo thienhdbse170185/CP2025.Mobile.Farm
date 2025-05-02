@@ -761,7 +761,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                             TaskTypeDataConstant.vaccin,
                                             TaskTypeDataConstant.sellAnimal,
                                           ].contains(
-                                              task.taskType.taskTypeId)) {
+                                              task.taskType.taskTypeName)) {
                                             context.push(RouteName.taskReport,
                                                 extra: {
                                                   'task': task,
@@ -1254,7 +1254,7 @@ class TaskCard extends StatelessWidget {
     Widget? icon;
     Color? color;
 
-    switch (task.taskType.taskTypeId) {
+    switch (task.taskType.taskTypeName) {
       case TaskTypeDataConstant.feeding:
         logInfo = 'Đã cho ăn: ${actualWeight}g';
         icon = Icon(
@@ -1307,7 +1307,7 @@ class TaskCard extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          if (task.taskType.taskTypeId == TaskTypeDataConstant.feeding) ...[
+          if (task.taskType.taskTypeName == TaskTypeDataConstant.feeding) ...[
             const SizedBox(width: 4),
             Text(
               '(Khuyến nghị: ${recommendedWeight}g)',
@@ -1329,7 +1329,7 @@ class TaskCard extends StatelessWidget {
       TaskTypeDataConstant.feeding,
       TaskTypeDataConstant.health,
       TaskTypeDataConstant.vaccin
-    ].contains(task.taskType.taskTypeId);
+    ].contains(task.taskType.taskTypeName);
 
     return Card.outlined(
       margin: const EdgeInsets.only(bottom: 12),

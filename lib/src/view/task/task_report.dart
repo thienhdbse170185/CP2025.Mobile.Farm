@@ -245,7 +245,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
   void _initDataLog() {
     if (widget.task.status != StatusDataConstant.pending) {
-      if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
+      if (widget.task.taskType.taskTypeName == TaskTypeDataConstant.feeding) {
         if (widget.task.status == StatusDataConstant.inProgress ||
             widget.task.status == StatusDataConstant.overdue) {
           context
@@ -256,23 +256,25 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 widget.taskId,
               ));
         }
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.weighing ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
+          widget.task.taskType.taskTypeName ==
+              TaskTypeDataConstant.sellAnimal ||
+          widget.task.taskType.taskTypeName == TaskTypeDataConstant.sellEgg ||
+          widget.task.taskType.taskTypeName ==
+              TaskTypeDataConstant.giveChicken) {
         context.read<FarmingBatchCubit>().getFarmingBatchByCageDuedate(
             widget.task.cageId, widget.task.dueDate);
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.health) {
         context
             .read<PrescriptionCubit>()
             .getPrescription(widget.task.prescriptionId ?? '');
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.vaccin) {
         context.read<FarmingBatchCubit>().getFarmingBatchByCageDuedate(
             widget.task.cageId, widget.task.dueDate);
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.eggHarvest) {
         context
             .read<GrowthStageCubit>()
@@ -280,16 +282,16 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
       }
     }
     if (widget.task.status == StatusDataConstant.done) {
-      if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.vaccin) {
+      if (widget.task.taskType.taskTypeName == TaskTypeDataConstant.vaccin) {
         context.read<VaccineScheduleLogCubit>().getVaccineScheduleLogByTaskId(
               widget.taskId,
             );
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.eggHarvest) {
         context.read<EggHarvestCubit>().getEggHarvestByTaskId(
               taskId: widget.taskId,
             );
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.health) {
         context.read<TaskBloc>().add(TaskEvent.getHealthLog(
               widget.taskId,
@@ -347,20 +349,20 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     if (!_canCompleteTask()) {
       String errorMessage = 'Lỗi không xác định';
 
-      if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health) {
+      if (widget.task.taskType.taskTypeName == TaskTypeDataConstant.health) {
         errorMessage = 'Vui lòng xác nhận đã cho uống thuốc.';
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.feeding &&
           widget.task.hasAnimalDesease == true &&
           !_isIsolationFed) {
         errorMessage = 'Vui lòng xác nhận đã cho ăn ở chuồng cách ly.';
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.vaccin) {
         errorMessage = 'Vui lòng nhập số lượng gia cầm đã tiêm.';
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.weighing) {
         errorMessage = 'Vui lòng nhập số cân nặng trung bình';
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.sellAnimal) {
         if (_weightMeatSellController.text == '0') {
           errorMessage = 'Khối lượng thịt phải lớn hơn 0';
@@ -369,7 +371,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         } else {
           errorMessage = 'Vui lòng nhập khối lượng thịt và giá bán hợp lệ';
         }
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.sellEgg) {
         if (_countEggSellController.text == '0') {
           errorMessage = 'Số lượng trứng phải lớn hơn 0';
@@ -378,7 +380,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         } else {
           errorMessage = 'Vui lòng nhập số lượng trứng và giá bán hợp lệ';
         }
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.eggHarvest) {
         errorMessage = 'Vui lòng nhập số lượng trứng thu hoạch';
       }
@@ -391,9 +393,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
     // Updated dialog with health status selection
     if (widget.task.isTreatmentTask ||
-        widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-        widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
-        widget.task.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
+        widget.task.taskType.taskTypeName == TaskTypeDataConstant.sellAnimal ||
+        widget.task.taskType.taskTypeName == TaskTypeDataConstant.sellEgg ||
+        widget.task.taskType.taskTypeName == TaskTypeDataConstant.giveChicken) {
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -498,16 +500,16 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                       _onCreateLog();
                     }
                   } else {
-                    if (widget.task.taskType.taskTypeId ==
+                    if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.feeding) {
                       _handleNavigateCreateMedicalSymptomOnFoodTask();
-                    } else if (widget.task.taskType.taskTypeId ==
+                    } else if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.vaccin) {
                       _handleNavigateCreateMedicalSymptomOnVaccineTask();
-                    } else if (widget.task.taskType.taskTypeId ==
+                    } else if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.sellAnimal) {
                       _handleNavigateCreateMedicalSymptomOnSellAnimalTask();
-                    } else if (widget.task.taskType.taskTypeId ==
+                    } else if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.weighing) {
                       _handleNavigateCreateMedicalSymptomOnWeighingTask();
                     } else {
@@ -633,7 +635,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   void _onCreateLog() {
     if (widget.task.status == StatusDataConstant.inProgress ||
         widget.task.status == StatusDataConstant.overdue) {
-      if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
+      if (widget.task.taskType.taskTypeName == TaskTypeDataConstant.feeding) {
         double actualWeight = this.actualWeight;
         final log = DailyFoodUsageLogDto(
             recommendedWeight: recommendedWeight!.toDouble(),
@@ -650,7 +652,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 log: log,
               ),
             );
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.health) {
         if (widget.task.prescriptionId != null) {
           final log = HealthLogDto(
@@ -665,7 +667,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           context.read<TaskBloc>().add(TaskEvent.createHealthLog(
               prescriptionId: prescriptionId ?? '', log: log));
         }
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.vaccin) {
         final request = VaccineScheduleLogRequest(
           date: TimeUtils.customNow().toIso8601String(),
@@ -679,7 +681,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           taskId: widget.task.id,
         );
         context.read<VaccineScheduleLogCubit>().create(request: request);
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.weighing) {
         context.read<GrowthStageCubit>().updateWeight(
               request: UpdateWeightRequest(
@@ -689,7 +691,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 taskId: widget.task.id,
               ),
             );
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.sellAnimal) {
         context.read<AnimalSaleCubit>().createAnimalSale(
               growthStageId: growthStage!.id,
@@ -702,7 +704,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               taskId: widget.task.id,
               note: logController.text,
             );
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.giveChicken) {
         context.read<AnimalSaleCubit>().createAnimalSale(
               growthStageId: growthStage!.id,
@@ -1000,17 +1002,17 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isLoading = false;
                 });
                 if (widget.task.status == StatusDataConstant.done) {
-                  if (widget.task.taskType.taskTypeId ==
+                  if (widget.task.taskType.taskTypeName ==
                       TaskTypeDataConstant.feeding) {
                     context
                         .read<TaskBloc>()
                         .add(TaskEvent.getDailyFoodUsageLog(widget.taskId));
-                  } else if (widget.task.taskType.taskTypeId ==
+                  } else if (widget.task.taskType.taskTypeName ==
                       TaskTypeDataConstant.health) {
                     context
                         .read<TaskBloc>()
                         .add(TaskEvent.getHealthLog(widget.taskId));
-                  } else if (widget.task.taskType.taskTypeId ==
+                  } else if (widget.task.taskType.taskTypeName ==
                       TaskTypeDataConstant.vaccin) {
                     context
                         .read<TaskBloc>()
@@ -1039,7 +1041,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   this.growthStage = growthStage;
                   _isLoading = false;
                 });
-                if (widget.task.taskType.taskTypeId ==
+                if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.vaccin &&
                     widget.task.status == StatusDataConstant.inProgress) {
                   int realQuantity = (growthStage.quantity ?? 0) -
@@ -1055,17 +1057,17 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                         date: TimeUtils.customNow(),
                         status: VaccineScheduleStatusConstant.UPCOMING,
                       );
-                } else if (widget.task.taskType.taskTypeId ==
+                } else if (widget.task.taskType.taskTypeName ==
                     TaskTypeDataConstant.sellAnimal) {
                   context
                       .read<SaleTypeCubit>()
                       .getSaleTypeByName(saleTypeName: 'MeatSale');
-                } else if (widget.task.taskType.taskTypeId ==
+                } else if (widget.task.taskType.taskTypeName ==
                     TaskTypeDataConstant.sellEgg) {
                   context
                       .read<SaleTypeCubit>()
                       .getSaleTypeByName(saleTypeName: 'EggSale');
-                } else if (widget.task.taskType.taskTypeId ==
+                } else if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.weighing &&
                     widget.task.status == StatusDataConstant.done) {
                   setState(() {
@@ -1547,16 +1549,16 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   growthStage = farmingBatch.growthStageDetails;
                   _isLoading = false;
                 });
-                if (widget.task.taskType.taskTypeId ==
+                if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.sellAnimal ||
-                    widget.task.taskType.taskTypeId ==
+                    widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.giveChicken) {
                   context
                       .read<SaleTypeCubit>()
                       .getSaleTypeByName(saleTypeName: 'MeatSale');
-                } else if (widget.task.taskType.taskTypeId ==
+                } else if (widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.vaccin ||
-                    widget.task.taskType.taskTypeId ==
+                    widget.task.taskType.taskTypeName ==
                         TaskTypeDataConstant.weighing) {
                   context
                       .read<GrowthStageCubit>()
@@ -1565,7 +1567,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               getFarmingBatchByCageFailure: (e) {
                 if (e.toString().contains('farming-batch-not-found')) {
-                  if (widget.task.taskType.taskTypeId ==
+                  if (widget.task.taskType.taskTypeName ==
                       TaskTypeDataConstant.sellAnimal) {
                     context
                         .read<SaleTypeCubit>()
@@ -1727,7 +1729,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           left: 16.0, right: 16.0, top: 24.0, bottom: 80.0),
       child: Column(
         children: [
-          if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding)
+          if (widget.task.taskType.taskTypeName == TaskTypeDataConstant.feeding)
             FoodLogWidget(
               userName: userName,
               // ignore: unnecessary_null_comparison
@@ -1756,7 +1758,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               actualWeightController: _actualWeightController,
               foodType: growthStage?.foodType,
             )
-          else if (widget.task.taskType.taskTypeId ==
+          else if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.health)
             HealthLogWidget(
               userName: userName,
@@ -1774,7 +1776,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                     },
               noteController: logController,
             )
-          else if (widget.task.taskType.taskTypeId ==
+          else if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.vaccin)
             VaccineLogWidget(
               userName: userName,
@@ -1817,7 +1819,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 }
               },
             )
-          else if (widget.task.taskType.taskTypeId ==
+          else if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.weighing)
             WeighingLogWidget(
               userName: userName,
@@ -1836,10 +1838,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               task: widget.task,
               readOnly: readOnly,
             )
-          else if (widget.task.taskType.taskTypeId ==
+          else if (widget.task.taskType.taskTypeName ==
                   TaskTypeDataConstant.sellAnimal ||
-              widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg)
-            if (widget.task.taskType.taskTypeId ==
+              widget.task.taskType.taskTypeName == TaskTypeDataConstant.sellEgg)
+            if (widget.task.taskType.taskTypeName ==
                 TaskTypeDataConstant.sellAnimal) ...[
               AnimalSaleLogWidget(
                 userName: userName,
@@ -1889,7 +1891,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 saleLogDetail: saleLogDetail,
               )
             ],
-          if (widget.task.taskType.taskTypeId ==
+          if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.giveChicken)
             GiveChickenLogWidget(
               userName: userName,
@@ -1936,9 +1938,11 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                     },
             ),
           const SizedBox(height: 16),
-          if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health ||
-              widget.task.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
-              widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding)
+          if (widget.task.taskType.taskTypeName ==
+                  TaskTypeDataConstant.health ||
+              widget.task.taskType.taskTypeName ==
+                  TaskTypeDataConstant.vaccin ||
+              widget.task.taskType.taskTypeName == TaskTypeDataConstant.feeding)
             ImageNoteSection(
               images: _images,
               onImageAdded: _addImage,
@@ -1956,15 +1960,15 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
   Widget _contentButton() {
     if (_isLoading == false) {
-      if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health &&
+      if (widget.task.taskType.taskTypeName == TaskTypeDataConstant.health &&
           !_hasTakenAllMedications) {
         return const Text('Chưa xác nhận đã cho uống đủ thuốc');
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.feeding &&
           widget.task.hasAnimalDesease == true &&
           !_isIsolationFed) {
         return const Text('Vui lòng xác nhận đã cho ăn ở chuồng cách ly');
-      } else if (widget.task.taskType.taskTypeId ==
+      } else if (widget.task.taskType.taskTypeName ==
               TaskTypeDataConstant.vaccin &&
           vaccineSchedule == null) {
         return const Text('Thông tin lịch tiêm trống');
@@ -1979,49 +1983,49 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   bool _validateTaskInfo() {
     if (_isLoading == false) {
       if (_isProcessing == false) {
-        if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
+        if (widget.task.taskType.taskTypeName == TaskTypeDataConstant.feeding) {
           return TaskValidation.validateFoodLog(
             actualWeightController: _actualWeightController,
             hasAnimalDesease: widget.task.hasAnimalDesease ?? false,
             isIsolationFed: _isIsolationFed,
           );
-        } else if (widget.task.taskType.taskTypeId ==
+        } else if (widget.task.taskType.taskTypeName ==
             TaskTypeDataConstant.health) {
           return TaskValidation.validateHealthLog(
             widget.task,
             prescription,
             _hasTakenAllMedications,
           );
-        } else if (widget.task.taskType.taskTypeId ==
+        } else if (widget.task.taskType.taskTypeName ==
             TaskTypeDataConstant.vaccin) {
           return TaskValidation.validateVaccineLog(
             countAnimalVaccineController: _countAnimalVaccineController,
             vaccineSchedule: vaccineSchedule,
           );
-        } else if (widget.task.taskType.taskTypeId ==
+        } else if (widget.task.taskType.taskTypeName ==
             TaskTypeDataConstant.eggHarvest) {
           return TaskValidation.validateEggHarvestLog(
             countEggCollectedController: _countEggCollectedController,
           );
-        } else if (widget.task.taskType.taskTypeId ==
+        } else if (widget.task.taskType.taskTypeName ==
             TaskTypeDataConstant.sellAnimal) {
           return TaskValidation.validateAnimalSaleLog(
             weightAnimalController: _weightMeatSellController,
             priceAnimalController: _priceMeatSellController,
             animalCountSellController: _animalCountSellController,
           );
-        } else if (widget.task.taskType.taskTypeId ==
+        } else if (widget.task.taskType.taskTypeName ==
             TaskTypeDataConstant.sellEgg) {
           return TaskValidation.validateEggSaleLog(
             countEggSellController: _countEggSellController,
             priceEggSellController: _priceEggSellController,
           );
-        } else if (widget.task.taskType.taskTypeId ==
+        } else if (widget.task.taskType.taskTypeName ==
             TaskTypeDataConstant.weighing) {
           return TaskValidation.validateWeighingLog(
             weightAnimalController: _weightAnimalController,
           );
-        } else if (widget.task.taskType.taskTypeId ==
+        } else if (widget.task.taskType.taskTypeName ==
             TaskTypeDataConstant.giveChicken) {
           return TaskValidation.validateGiveChickenLog(
             giveChickenCountController: _animalCountDonateController,
@@ -2037,7 +2041,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   }
 
   String _getTaskTypeName() {
-    switch (widget.task.taskType.taskTypeId) {
+    switch (widget.task.taskType.taskTypeName) {
       case TaskTypeDataConstant.feeding:
         return "việc cho ăn";
       case TaskTypeDataConstant.health:

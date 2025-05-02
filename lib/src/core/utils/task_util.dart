@@ -10,7 +10,7 @@ bool areAnyMedicationsChecked({
   PrescriptionDto? prescription,
   Map<String, bool> medicationChecked = const {},
 }) {
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.health) {
     return prescription?.medications?.any((medication) =>
             medicationChecked[medication.medicationId] ?? false) ??
         false;
@@ -24,7 +24,7 @@ bool areAllMedicationsChecked({
   PrescriptionDto? prescription,
   Map<String, bool> medicationChecked = const {},
 }) {
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.health) {
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.health) {
     return prescription?.medications?.every((medication) =>
             medicationChecked[medication.medicationId] ?? false) ??
         false;
@@ -76,40 +76,40 @@ bool canCompleteTask({
     return false;
   }
 
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.health &&
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.health &&
       !hasTakenAllMedications) {
     return false;
   }
 
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.feeding &&
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.feeding &&
       task?.hasAnimalDesease == true &&
       !isIsolationFed) {
     return false;
   }
 
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.vaccin &&
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.vaccin &&
       countAnimalVaccine == '0') {
     return false;
   }
 
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.weighing &&
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.weighing &&
       weightAnimal == '0.0') {
     return false;
   }
 
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal &&
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.sellAnimal &&
       (weightMeatSell == '0' ||
           priceMeatSell.isEmpty ||
           priceMeatSell == '0')) {
     return false;
   }
 
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.sellEgg &&
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.sellEgg &&
       (countEggSell == '0' || priceEggSell.isEmpty || priceEggSell == '0')) {
     return false;
   }
 
-  if (task?.taskType.taskTypeId == TaskTypeDataConstant.eggHarvest &&
+  if (task?.taskType.taskTypeName == TaskTypeDataConstant.eggHarvest &&
       countEggCollected == '0') {
     return false;
   }
