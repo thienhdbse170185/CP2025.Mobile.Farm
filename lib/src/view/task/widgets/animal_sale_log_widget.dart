@@ -111,8 +111,10 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
           _buildHeader(context),
           const SizedBox(height: 8),
           _buildReporterInfo(context),
-          const SizedBox(height: 20),
-          _buildGrowthStageInfo(context),
+          if (widget.task.status != StatusDataConstant.done) ...[
+            const SizedBox(height: 20),
+            _buildGrowthStageInfo(context),
+          ],
           const SizedBox(height: 30),
           _buildSaleFormSection(context),
           const SizedBox(height: 20),
@@ -261,8 +263,9 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
   }
 
   Widget _buildSaleFormSection(BuildContext context) {
-    final isEditable =
-        !widget.readOnly && widget.task.status == StatusDataConstant.inProgress;
+    final isEditable = !widget.readOnly &&
+        (widget.task.status == StatusDataConstant.inProgress ||
+            widget.task.status == StatusDataConstant.overdue);
 
     return Card(
       elevation: 2,
@@ -282,7 +285,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Thông tin bán thịt',
+                  'Thông tin bán gà',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -513,7 +516,9 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                 child: TextField(
                   controller: widget.weightMeatSellController,
                   textAlign: TextAlign.right,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   enabled: isEditable,
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(

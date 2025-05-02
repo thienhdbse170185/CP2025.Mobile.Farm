@@ -122,6 +122,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   SaleDetailLogDto? saleDetailLog;
   SaleLogDetailDto? saleLogDetail;
   double weightMeatSell = 0;
+  double weightGiveChicken = 0;
 
   // --- Egg harvest related variables ---
   EggHarvestDto? eggHarvest;
@@ -164,6 +165,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   final TextEditingController _animalCountSellController =
       TextEditingController();
   final TextEditingController _animalCountDonateController =
+      TextEditingController();
+  final TextEditingController _weightGiveChickenController =
+      TextEditingController();
+  final TextEditingController _priceGiveChickenController =
       TextEditingController();
   final TextEditingController _dateAnimalDonateController =
       TextEditingController();
@@ -218,6 +223,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     _weightMeatSellController.text = "0.0";
     _countEggCollectedController.text = '0';
     _countEggSellController.text = '0';
+    _weightGiveChickenController.text = '0.0';
+    // _priceGiveChickenController.text = '0';
     _lastSessionQuantityController.text = '0';
     _dateAnimalSellController.text =
         DateFormat('dd/MM/yyyy').format(TimeUtils.customNow());
@@ -239,7 +246,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   void _initDataLog() {
     if (widget.task.status != StatusDataConstant.pending) {
       if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
-        if (widget.task.status == StatusDataConstant.inProgress) {
+        if (widget.task.status == StatusDataConstant.inProgress ||
+            widget.task.status == StatusDataConstant.overdue) {
           context
               .read<GrowthStageCubit>()
               .getRecommendedWeightByCageId(widget.task.cageId);
@@ -382,167 +390,149 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
     }
 
     // Updated dialog with health status selection
-    if (!TimeUtils.isTimeInSession(
-        TimeUtils.customNow(), widget.task.session)) {
+    if (widget.task.isTreatmentTask ||
+        widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
+        widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
+        widget.task.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
       showDialog(
           context: context,
-          builder: (context) {
-            return WarningConfirmationDialog(
-              title: 'Hết thời gian làm việc',
-              content: const Text(
-                  'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
-              primaryButtonText: 'Quay về trang chủ',
-              onPrimaryButtonPressed: () {
-                context.go(RouteName.home);
-              },
-            );
-          });
-    } else {
-      if (widget.task.isTreatmentTask ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellAnimal ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.sellEgg ||
-          widget.task.taskType.taskTypeId == TaskTypeDataConstant.giveChicken) {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return StatefulBuilder(
-                  builder: (BuildContext context, StateSetter setState) {
-                return WarningConfirmationDialog(
-                    title: 'Xác nhận hoàn thành công việc',
-                    content: Column(
-                      children: [
-                        const Text(
-                            'Xác nhận cung cấp thông tin chính xác để hoàn thành công việc')
-                      ],
-                    ),
-                    primaryButtonText: 'Xác nhận',
-                    onPrimaryButtonPressed: () {
-                      Navigator.of(context).pop();
-                      if (_images.isNotEmpty) {
-                        context.read<UploadImageCubit>().uploadImage(
-                            file: _images.first, isTaskImage: true);
-                      } else {
-                        _onCreateLog();
-                      }
-                    },
-                    secondaryButtonText: 'Hủy',
-                    onSecondaryButtonPressed: () {
-                      Navigator.of(context).pop();
-                    });
-              });
-            });
-      } else {
-        showDialog(
-          context: context,
           builder: (BuildContext context) {
-            // Use a separate variable to track selected state in dialog
-            bool dialogIsHealthy = true;
-
             return StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) {
-                return WarningConfirmationDialog(
-                  title: 'Xác nhận tình trạng sức khỏe',
+                builder: (BuildContext context, StateSetter setState) {
+              return WarningConfirmationDialog(
+                  title: 'Xác nhận hoàn thành công việc',
                   content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                          'Vui lòng chọn tình trạng sức khỏe của đàn gà:'),
-                      const SizedBox(height: 16),
-                      RadioListTile<bool>(
-                        title: const Text('Đàn gà bình thường, khỏe mạnh'),
-                        value: true,
-                        groupValue: dialogIsHealthy,
-                        onChanged: (value) {
-                          setState(() {
-                            dialogIsHealthy = value!;
-                          });
-                        },
-                      ),
-                      RadioListTile<bool>(
-                        title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
-                        value: false,
-                        groupValue: dialogIsHealthy,
-                        onChanged: (value) {
-                          setState(() {
-                            dialogIsHealthy = value!;
-                          });
-                        },
-                      ),
-                      if (!dialogIsHealthy)
-                        Container(
-                          margin: const EdgeInsets.only(
-                              top: 8, left: 16, right: 16),
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.amber.shade200),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.warning_amber,
-                                  color: Colors.amber[700]),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng sau khi đóng hộp thoại này.',
-                                  style: TextStyle(color: Colors.amber[900]),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                          'Xác nhận cung cấp thông tin chính xác để hoàn thành công việc')
                     ],
                   ),
                   primaryButtonText: 'Xác nhận',
                   onPrimaryButtonPressed: () {
                     Navigator.of(context).pop();
-                    if (dialogIsHealthy) {
-                      // Normal flow - upload image if available or create log
-                      if (_images.isNotEmpty) {
-                        context.read<UploadImageCubit>().uploadImage(
-                            file: _images.first, isTaskImage: true);
-                      } else {
-                        _onCreateLog();
-                      }
+                    if (_images.isNotEmpty) {
+                      context
+                          .read<UploadImageCubit>()
+                          .uploadImage(file: _images.first, isTaskImage: true);
                     } else {
-                      if (widget.task.taskType.taskTypeId ==
-                          TaskTypeDataConstant.feeding) {
-                        _handleNavigateCreateMedicalSymptomOnFoodTask();
-                      } else if (widget.task.taskType.taskTypeId ==
-                          TaskTypeDataConstant.vaccin) {
-                        _handleNavigateCreateMedicalSymptomOnVaccineTask();
-                      } else if (widget.task.taskType.taskTypeId ==
-                          TaskTypeDataConstant.sellAnimal) {
-                        _handleNavigateCreateMedicalSymptomOnSellAnimalTask();
-                      } else if (widget.task.taskType.taskTypeId ==
-                          TaskTypeDataConstant.weighing) {
-                        _handleNavigateCreateMedicalSymptomOnWeighingTask();
-                      } else {
-                        context.push(
-                          RouteName.createSymptom,
-                          extra: {
-                            'cageId': widget.task.cageId,
-                            'taskId': widget.task.id,
-                            'imageLog':
-                                _images.isNotEmpty ? _images.first : null,
-                            'fromTask': true,
-                            'cageName': widget.task.cageName
-                          },
-                        );
-                      }
+                      _onCreateLog();
                     }
                   },
                   secondaryButtonText: 'Hủy',
                   onSecondaryButtonPressed: () {
                     Navigator.of(context).pop();
-                  },
-                );
-              },
-            );
-          },
-        );
-      }
+                  });
+            });
+          });
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // Use a separate variable to track selected state in dialog
+          bool dialogIsHealthy = true;
+
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return WarningConfirmationDialog(
+                title: 'Xác nhận tình trạng sức khỏe',
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Vui lòng chọn tình trạng sức khỏe của đàn gà:'),
+                    const SizedBox(height: 16),
+                    RadioListTile<bool>(
+                      title: const Text('Đàn gà bình thường, khỏe mạnh'),
+                      value: true,
+                      groupValue: dialogIsHealthy,
+                      onChanged: (value) {
+                        setState(() {
+                          dialogIsHealthy = value!;
+                        });
+                      },
+                    ),
+                    RadioListTile<bool>(
+                      title: const Text('Đàn gà có dấu hiệu bất thường/bệnh'),
+                      value: false,
+                      groupValue: dialogIsHealthy,
+                      onChanged: (value) {
+                        setState(() {
+                          dialogIsHealthy = value!;
+                        });
+                      },
+                    ),
+                    if (!dialogIsHealthy)
+                      Container(
+                        margin:
+                            const EdgeInsets.only(top: 8, left: 16, right: 16),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.amber.shade200),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.warning_amber, color: Colors.amber[700]),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                'Bạn sẽ được chuyển đến màn hình báo cáo triệu chứng sau khi đóng hộp thoại này.',
+                                style: TextStyle(color: Colors.amber[900]),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
+                primaryButtonText: 'Xác nhận',
+                onPrimaryButtonPressed: () {
+                  Navigator.of(context).pop();
+                  if (dialogIsHealthy) {
+                    // Normal flow - upload image if available or create log
+                    if (_images.isNotEmpty) {
+                      context
+                          .read<UploadImageCubit>()
+                          .uploadImage(file: _images.first, isTaskImage: true);
+                    } else {
+                      _onCreateLog();
+                    }
+                  } else {
+                    if (widget.task.taskType.taskTypeId ==
+                        TaskTypeDataConstant.feeding) {
+                      _handleNavigateCreateMedicalSymptomOnFoodTask();
+                    } else if (widget.task.taskType.taskTypeId ==
+                        TaskTypeDataConstant.vaccin) {
+                      _handleNavigateCreateMedicalSymptomOnVaccineTask();
+                    } else if (widget.task.taskType.taskTypeId ==
+                        TaskTypeDataConstant.sellAnimal) {
+                      _handleNavigateCreateMedicalSymptomOnSellAnimalTask();
+                    } else if (widget.task.taskType.taskTypeId ==
+                        TaskTypeDataConstant.weighing) {
+                      _handleNavigateCreateMedicalSymptomOnWeighingTask();
+                    } else {
+                      context.push(
+                        RouteName.createSymptom,
+                        extra: {
+                          'cageId': widget.task.cageId,
+                          'taskId': widget.task.id,
+                          'imageLog': _images.isNotEmpty ? _images.first : null,
+                          'fromTask': true,
+                          'cageName': widget.task.cageName
+                        },
+                      );
+                    }
+                  }
+                },
+                secondaryButtonText: 'Hủy',
+                onSecondaryButtonPressed: () {
+                  Navigator.of(context).pop();
+                },
+              );
+            },
+          );
+        },
+      );
     }
   }
 
@@ -641,7 +631,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
   }
 
   void _onCreateLog() {
-    if (widget.task.status == StatusDataConstant.inProgress) {
+    if (widget.task.status == StatusDataConstant.inProgress ||
+        widget.task.status == StatusDataConstant.overdue) {
       if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding) {
         double actualWeight = this.actualWeight;
         final log = DailyFoodUsageLogDto(
@@ -716,9 +707,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         context.read<AnimalSaleCubit>().createAnimalSale(
               growthStageId: growthStage!.id,
               saleDate: saleDate!.toIso8601String(),
-              unitPrice: 0,
+              unitPrice: int.parse(
+                  _priceGiveChickenController.text.replaceAll(',', '')),
               quantity: int.parse(_animalCountDonateController.text),
-              weight: 0,
+              weight: weightGiveChicken,
               saleTypeId: saleType!.id,
               taskId: widget.task.id,
               note: logController.text,
@@ -853,8 +845,12 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isProcessing = false;
                 });
                 log("Tạo log cho ăn thành công!");
-                context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, StatusDataConstant.done));
+                if (widget.task.status == StatusDataConstant.inProgress) {
+                  context.read<TaskBloc>().add(TaskEvent.updateTask(
+                      widget.taskId, StatusDataConstant.done));
+                } else if (widget.task.status == StatusDataConstant.overdue) {
+                  _handleTaskComplete(context, true);
+                }
               },
               createDailyFoodUsageLogFailure: (e) async {
                 setState(() {
@@ -1098,8 +1094,12 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 setState(() {
                   _isProcessing = false;
                 });
-                context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, StatusDataConstant.done));
+                if (widget.task.status == StatusDataConstant.inProgress) {
+                  context.read<TaskBloc>().add(TaskEvent.updateTask(
+                      widget.taskId, StatusDataConstant.done));
+                } else if (widget.task.status == StatusDataConstant.overdue) {
+                  _handleTaskComplete(context, true);
+                }
               },
               updateWeightFailure: (e) {
                 log('Cập nhật cân nặng thất bại!');
@@ -1180,8 +1180,12 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   _isProcessing = false;
                 });
                 if (isLastSession == false) {
-                  context.read<TaskBloc>().add(TaskEvent.updateTask(
-                      widget.taskId, StatusDataConstant.done));
+                  if (widget.task.status == StatusDataConstant.inProgress) {
+                    context.read<TaskBloc>().add(TaskEvent.updateTask(
+                        widget.taskId, StatusDataConstant.done));
+                  } else if (widget.task.status == StatusDataConstant.overdue) {
+                    _handleTaskComplete(context, true);
+                  }
                 } else {
                   log('[Prescription] Số con còn lại sau điều trị: ${prescription!.quantityAnimal}');
                   final request = UpdateStatusPrescriptionRequest(
@@ -1203,8 +1207,13 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               },
               updateQuantityAnimalAfterTreatmentInProgress: () {},
               updateQuantityAnimalAfterTreatmentSuccess: () {
-                context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, StatusDataConstant.done));
+                if (widget.task.status == StatusDataConstant.inProgress) {
+                  context.read<TaskBloc>().add(TaskEvent.updateTask(
+                      widget.taskId, StatusDataConstant.done));
+                } else if (widget.task.status == StatusDataConstant.overdue) {
+                  _handleTaskComplete(context, true);
+                }
+                log('Cập nhật số lượng gia cầm sau điều trị thành công!');
               },
               updateQuantityAnimalAfterTreatmentFailure: (message) {
                 setState(() {
@@ -1297,8 +1306,12 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 //   const SnackBar(
                 //       content: Text('Tạo log lịch tiêm chủng thành công!')),
                 // );
-                context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.taskId, StatusDataConstant.done));
+                if (widget.task.status == StatusDataConstant.inProgress) {
+                  context.read<TaskBloc>().add(TaskEvent.updateTask(
+                      widget.taskId, StatusDataConstant.done));
+                } else if (widget.task.status == StatusDataConstant.overdue) {
+                  _handleTaskComplete(context, true);
+                }
               },
               createVaccineScheduleLogFailure: (e) {
                 context
@@ -1350,8 +1363,12 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                 //   const SnackBar(
                 //       content: Text('Tạo log bán gia cầm thành công!')),
                 // );
-                context.read<TaskBloc>().add(TaskEvent.updateTask(
-                    widget.task.id, StatusDataConstant.done));
+                if (widget.task.status == StatusDataConstant.inProgress) {
+                  context.read<TaskBloc>().add(TaskEvent.updateTask(
+                      widget.taskId, StatusDataConstant.done));
+                } else if (widget.task.status == StatusDataConstant.overdue) {
+                  _handleTaskComplete(context, true);
+                }
               },
               createAnimalSaleFailure: (e) {
                 context
@@ -1553,6 +1570,10 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                     context
                         .read<SaleTypeCubit>()
                         .getSaleTypeByName(saleTypeName: 'MeatSale');
+                  } else {
+                    setState(() {
+                      _isLoading = false;
+                    });
                   }
                 } else {
                   setState(() {
@@ -1698,11 +1719,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
 
   Widget _buildTaskReport(BuildContext context) {
     // Adjust all input fields to be read-only if in view mode
-    final bool readOnly = _viewMode ||
-        // taskStatus == StatusDataConstant.doneVn ||
-        // taskStatus == StatusDataConstant.overdueVn;
-        widget.task.status == StatusDataConstant.done ||
-        widget.task.status == StatusDataConstant.overdue;
+    final bool readOnly =
+        _viewMode || widget.task.status == StatusDataConstant.done;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.only(
@@ -1810,7 +1828,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   ? null
                   : (double newWeight) {
                       setState(() {
-                        // _weightAnimalController.text = newWeight.toString();
+                        _weightAnimalController.text = newWeight.toString();
                         weightAnimal = newWeight;
                       });
                     },
@@ -1886,11 +1904,29 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                         saleDate = date;
                       });
                     },
+              onWeightChanged: readOnly
+                  ? null
+                  : (weight) {
+                      setState(() {
+                        // _weightMeatSellController.text = weight.toString();
+                        weightGiveChicken = weight;
+                      });
+                    },
+              onPriceChanged: readOnly
+                  ? null
+                  : (price) {
+                      setState(() {
+                        _priceGiveChickenController.text = price.toString();
+                      });
+                    },
+              priceGiveChickenController: _priceGiveChickenController,
+              weightGiveChickenController: _weightGiveChickenController,
               task: widget.task,
               readOnly: readOnly,
               animalCountDonateController: _animalCountDonateController,
               dateDonateController: _dateAnimalDonateController,
               giveChickenLogDetail: saleLogDetail,
+              isDisabled: readOnly,
               onAnimalCountChanged: readOnly
                   ? null
                   : (count) {
@@ -1900,12 +1936,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                     },
             ),
           const SizedBox(height: 16),
-          if (taskStatus != StatusDataConstant.overdueVn &&
-              (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health ||
-                  widget.task.taskType.taskTypeId ==
-                      TaskTypeDataConstant.vaccin ||
-                  widget.task.taskType.taskTypeId ==
-                      TaskTypeDataConstant.feeding))
+          if (widget.task.taskType.taskTypeId == TaskTypeDataConstant.health ||
+              widget.task.taskType.taskTypeId == TaskTypeDataConstant.vaccin ||
+              widget.task.taskType.taskTypeId == TaskTypeDataConstant.feeding)
             ImageNoteSection(
               images: _images,
               onImageAdded: _addImage,
@@ -1916,12 +1949,6 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                   'Nhập ghi chú về ${_getTaskTypeName()} (nếu có)...',
               imageURL: imageURL,
             )
-          else if (taskStatus == StatusDataConstant.overdueVn)
-            StatusNotificationWidget(
-              iconData: Icons.error_outline,
-              iconColor: Theme.of(context).colorScheme.error,
-              message: 'Công việc đã quá hạn, không thể tạo đơn báo cáo.',
-            ),
         ],
       ),
     );
@@ -1998,6 +2025,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             TaskTypeDataConstant.giveChicken) {
           return TaskValidation.validateGiveChickenLog(
             giveChickenCountController: _animalCountDonateController,
+            giveChickenPriceController: _priceGiveChickenController,
+            giveChickenWeightController: _weightGiveChickenController,
           );
         } else {
           return true;

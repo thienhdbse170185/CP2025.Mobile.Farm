@@ -15,14 +15,19 @@ class GiveChickenLogWidget extends StatefulWidget {
   final GrowthStageDto? growthStage;
   final FarmingBatchDto? farmingBatch;
   final TextEditingController animalCountDonateController;
+  final TextEditingController weightGiveChickenController;
+  final TextEditingController priceGiveChickenController;
   final TextEditingController dateDonateController;
   final DateTime donationDate;
   final ValueChanged<DateTime>? onDateChanged;
+  final ValueChanged<double>? onWeightChanged;
+  final ValueChanged<String>? onPriceChanged;
   final ValueChanged<int>? onAnimalCountChanged;
   final TaskHaveCageName task;
   final bool readOnly;
   final SaleLogDetailDto? giveChickenLogDetail;
   final DateTime? logTime;
+  final bool isDisabled;
 
   const GiveChickenLogWidget({
     super.key,
@@ -30,14 +35,19 @@ class GiveChickenLogWidget extends StatefulWidget {
     this.growthStage,
     this.farmingBatch,
     required this.animalCountDonateController,
+    required this.weightGiveChickenController,
+    required this.priceGiveChickenController,
     required this.dateDonateController,
     required this.donationDate,
     this.onDateChanged,
+    this.onWeightChanged,
+    this.onPriceChanged,
     this.onAnimalCountChanged,
     required this.task,
     this.readOnly = false,
     this.giveChickenLogDetail,
     this.logTime,
+    this.isDisabled = false,
   });
 
   @override
@@ -55,8 +65,19 @@ class _GiveChickenLogWidgetState extends State<GiveChickenLogWidget> {
         (widget.growthStage?.deadQuantity ?? 0);
 
     if (widget.giveChickenLogDetail != null) {
+      widget.weightGiveChickenController.text =
+          widget.giveChickenLogDetail?.weight.toString() ?? '0.0';
       widget.animalCountDonateController.text =
           widget.giveChickenLogDetail?.quantity.toString() ?? '0';
+      // Format the value with commas
+      final formatter = NumberFormat('#,###');
+      final newValue = formatter.format(widget.giveChickenLogDetail?.unitPrice);
+
+      // Update the controller with the formatted value
+      widget.priceGiveChickenController.value = TextEditingValue(
+        text: newValue,
+        selection: TextSelection.collapsed(offset: newValue.length),
+      );
       widget.dateDonateController.text = DateFormat('dd/MM/yyyy')
           .format(DateTime.parse(widget.giveChickenLogDetail?.saleDate ?? ''));
     }
@@ -75,8 +96,10 @@ class _GiveChickenLogWidgetState extends State<GiveChickenLogWidget> {
           _buildHeader(context),
           const SizedBox(height: 8),
           _buildReporterInfo(context),
-          const SizedBox(height: 20),
-          _buildGrowthStageInfo(context),
+          if (widget.task.status != StatusDataConstant.done) ...[
+            const SizedBox(height: 20),
+            _buildGrowthStageInfo(context),
+          ],
           const SizedBox(height: 30),
           _buildDonationFormSection(context),
         ],
@@ -187,6 +210,10 @@ class _GiveChickenLogWidgetState extends State<GiveChickenLogWidget> {
             ),
             const Divider(height: 24),
             _buildAnimalCountInputSection(context, isEditable),
+            const SizedBox(height: 24),
+            _buildWeightInputSection(context, isEditable),
+            const SizedBox(height: 24),
+            _buildPriceInputSection(context, isEditable),
             const SizedBox(height: 24),
             _buildDateInputSection(context, isEditable),
           ],
@@ -347,6 +374,205 @@ class _GiveChickenLogWidgetState extends State<GiveChickenLogWidget> {
         ),
       ],
     );
+  }
+
+  Widget _buildWeightInputSection(BuildContext context, bool isEditable) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.scale,
+                color: Theme.of(context).colorScheme.primary, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Khối lượng đã biếu tặng',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          decoration: BoxDecoration(
+            color: Colors.grey[50],
+            borderRadius: BorderRadius.circular(12),
+            border:
+                Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              QuantityButtonWidget(
+                icon: Icons.remove,
+                onPressed: () {
+                  final currentValue = double.tryParse(
+                        widget.weightGiveChickenController.text,
+                      ) ??
+                      0.0;
+                  if (currentValue > 1) {
+                    if (widget.onWeightChanged != null) {
+                      widget.onWeightChanged!(currentValue - 1.0);
+                      widget.weightGiveChickenController.text =
+                          (currentValue - 1.0).toStringAsFixed(1);
+                    }
+                  } else if (currentValue <= 1 && currentValue > 0.1) {
+                    if (widget.onWeightChanged != null) {
+                      widget.onWeightChanged!(0.1);
+                    }
+                  }
+                },
+                isDisable: !isEditable,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextField(
+                  controller: widget.weightGiveChickenController,
+                  textAlign: TextAlign.right,
+                  keyboardType: TextInputType.number,
+                  enabled: isEditable,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^\d+\.?\d{0,1}')),
+                  ],
+                  decoration: InputDecoration(
+                    suffixText: '(kg)',
+                    suffixStyle:
+                        TextStyle(color: Colors.grey[600], fontSize: 18),
+                  ),
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.w600),
+                  onChanged: (value) async {
+                    final currentValue = double.tryParse(
+                          widget.weightGiveChickenController.text,
+                        ) ??
+                        0.1;
+                    if (widget.onWeightChanged != null) {
+                      widget.onWeightChanged!(currentValue);
+                    }
+                  },
+                  onTap: () {
+                    if (widget.weightGiveChickenController.text == '0' ||
+                        widget.weightGiveChickenController.text == '0.0') {
+                      setState(() {
+                        widget.weightGiveChickenController.text = '';
+                      });
+                    }
+                  },
+                ),
+              ),
+              QuantityButtonWidget(
+                icon: Icons.add,
+                onPressed: () {
+                  final currentValue = double.tryParse(
+                        widget.weightGiveChickenController.text,
+                      ) ??
+                      0.0;
+                  if (widget.onWeightChanged != null) {
+                    widget.onWeightChanged!(currentValue + 1.0);
+                    widget.weightGiveChickenController.text =
+                        (currentValue + 1.0).toStringAsFixed(1);
+                  }
+                },
+                isAdd: true,
+                isDisable: !isEditable,
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPriceInputSection(BuildContext context, bool isEditable) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.attach_money,
+                color: Theme.of(context).colorScheme.primary, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              'Giá tiền thịt đã biếu tặng',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        TextFormField(
+          controller: widget.priceGiveChickenController,
+          keyboardType: TextInputType.number,
+          enabled: isEditable,
+          decoration: InputDecoration(
+            hintText: 'Nhập giá tiền',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            prefixIcon: Icon(Icons.currency_exchange,
+                color: Theme.of(context).colorScheme.primary),
+            suffixText: 'VND/kg',
+            helperText: 'Giá tiền trên 1 kg thịt, giá phải hơn 1,000VND',
+            filled: true,
+            fillColor: isEditable ? Colors.white : Colors.grey[100],
+            errorText: _validatePrice(widget.priceGiveChickenController.text),
+          ),
+          onChanged: (value) {
+            if (value.isNotEmpty) {
+              try {
+                // Clean the string of commas for parsing
+                final cleanValue = value.replaceAll(',', '');
+                final parsedValue = int.parse(cleanValue);
+
+                // Format the value with commas
+                final formatter = NumberFormat('#,###');
+                final newValue = formatter.format(parsedValue);
+
+                // Update the controller with the formatted value
+                widget.priceGiveChickenController.value = TextEditingValue(
+                  text: newValue,
+                  selection: TextSelection.collapsed(offset: newValue.length),
+                );
+
+                // Trigger the callback with the clean value (for validation)
+                if (widget.onPriceChanged != null) {
+                  widget.onPriceChanged!(newValue);
+                }
+
+                // Force rebuild to update validation
+                setState(() {});
+              } catch (e) {
+                // Keep the current input if parsing fails
+              }
+            } else {
+              // Force rebuild to update validation when field is cleared
+              setState(() {});
+            }
+          },
+          validator: (value) => _validatePrice(value),
+        ),
+      ],
+    );
+  }
+
+  String? _validatePrice(String? value) {
+    if (value == null || value.isEmpty) {
+      return null;
+    }
+
+    try {
+      final cleanValue = value.replaceAll(',', '');
+      final parsedValue = int.parse(cleanValue);
+
+      if (parsedValue < 1000) {
+        return 'Giá tiền phải lớn hơn 1,000 VNĐ';
+      }
+    } catch (e) {
+      return 'Vui lòng nhập giá tiền hợp lệ';
+    }
+
+    return null;
   }
 
   Widget _buildDateInputSection(BuildContext context, bool isEditable) {

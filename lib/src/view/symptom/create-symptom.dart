@@ -14,6 +14,7 @@ import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/core/constants/task_type_data_constant.dart';
 import 'package:smart_farm/src/core/router.dart';
 import 'package:smart_farm/src/core/utils/date_util.dart';
+import 'package:smart_farm/src/core/utils/text_input_formatter.dart';
 import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/dto/farming_batch/farming_batch_dto.dart';
 import 'package:smart_farm/src/model/dto/growth_stage/growth_stage_dto.dart';
@@ -569,12 +570,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
               setState(() {
                 _growthStage = growthStage;
                 _affectedQuantity = (_farmingBatch?.quantity ?? 0) -
-                    (growthStage.affectQuantity ?? 0) -
-                    (growthStage.deadQuantity ?? 0);
+                    (growthStage.affectQuantity ?? 0);
                 _availableQuantity = (_growthStage?.quantity ??
-                    0 -
-                        (_farmingBatch?.affectedQuantity ?? 0) -
-                        (_growthStage?.deadQuantity ?? 0));
+                    0 - (_farmingBatch?.affectedQuantity ?? 0));
               });
               context.read<SymptomCubit>().getSymptoms();
               return null;
@@ -1693,6 +1691,8 @@ class _FormBodyState extends State<_FormBody> {
 
   @override
   Widget build(BuildContext context) {
+    final current = int.tryParse(widget.state._affectedController.text) ?? 0;
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Column(
@@ -1997,6 +1997,8 @@ class _FormBodyState extends State<_FormBody> {
                                   keyboardType: TextInputType.number,
                                   inputFormatters: [
                                     FilteringTextInputFormatter.digitsOnly,
+                                    MaxValueTextInputFormatter(
+                                        widget.state._availableQuantity),
                                   ],
                                   decoration: InputDecoration(
                                     suffixText: '(con)',
@@ -2016,7 +2018,8 @@ class _FormBodyState extends State<_FormBody> {
                                         widget.state._affectedController
                                                 .selection =
                                             TextSelection.fromPosition(
-                                                const TextPosition(offset: 1));
+                                          const TextPosition(offset: 1),
+                                        );
                                       });
                                     } else if (await widget.state
                                             ._validateAffectedQuantityForm(
@@ -2043,18 +2046,25 @@ class _FormBodyState extends State<_FormBody> {
                                   final currentValue = int.tryParse(widget
                                           .state._affectedController.text) ??
                                       0;
-                                  if (await widget.state
-                                      ._validateAffectedQuantityForm(widget
-                                          .state._affectedController.text)) {
-                                    widget.state.setState(() => widget
-                                        .state
-                                        ._affectedController
-                                        .text = (currentValue + 1).toString());
+                                  if (currentValue <
+                                      widget.state._availableQuantity) {
+                                    setState(() {
+                                      widget.state._affectedController.text =
+                                          (currentValue + 1).toString();
+                                    });
                                     if (await widget.state
-                                        ._isEmergencyAffectedQuantityForm(widget
+                                        ._validateAffectedQuantityForm(widget
                                             .state._affectedController.text)) {
-                                      widget.state.setState(() =>
-                                          widget.state._isEmergency = true);
+                                      widget.state.setState(() => widget
+                                              .state._affectedController.text =
+                                          (currentValue + 1).toString());
+                                      if (await widget.state
+                                          ._isEmergencyAffectedQuantityForm(
+                                              widget.state._affectedController
+                                                  .text)) {
+                                        widget.state.setState(() =>
+                                            widget.state._isEmergency = true);
+                                      }
                                     }
                                   }
                                 },

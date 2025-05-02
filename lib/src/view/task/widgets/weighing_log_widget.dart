@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_farm/src/core/constants/status_data_constant.dart';
 import 'package:smart_farm/src/model/dto/farming_batch/farming_batch_dto.dart';
 import 'package:smart_farm/src/model/dto/growth_stage/growth_stage_dto.dart';
 import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
@@ -81,8 +82,10 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
           _buildHeader(context),
           const SizedBox(height: 16),
           _buildReporterInfo(context),
-          const SizedBox(height: 20),
-          _buildGrowthStageInfo(context),
+          if (widget.task.status != StatusDataConstant.done) ...[
+            const SizedBox(height: 20),
+            _buildGrowthStageInfo(context),
+          ],
           const SizedBox(height: 24),
           _buildWeightInputForm(context),
           const SizedBox(height: 20),

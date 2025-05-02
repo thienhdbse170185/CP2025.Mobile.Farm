@@ -43,9 +43,9 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isCompleted = widget.task.status == StatusDataConstant.done ||
+    final bool isCompleted = widget.task.status == StatusDataConstant.done;
+    final isEditable = widget.task.status == StatusDataConstant.inProgress ||
         widget.task.status == StatusDataConstant.overdue;
-    final isEditable = widget.task.status == StatusDataConstant.inProgress;
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -58,7 +58,8 @@ class _FoodLogWidgetState extends State<FoodLogWidget> {
           const SizedBox(height: 20),
           _buildFoodQuantityInput(context, isEditable),
           if (widget.hasAnimalDesease &&
-              widget.task.status == StatusDataConstant.inProgress) ...[
+              (widget.task.status == StatusDataConstant.inProgress ||
+                  widget.task.status == StatusDataConstant.overdue)) ...[
             const SizedBox(height: 24),
             _buildIsolationSection(context, isCompleted),
           ],

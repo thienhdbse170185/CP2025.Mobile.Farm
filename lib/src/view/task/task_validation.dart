@@ -110,11 +110,20 @@ class TaskValidation {
 
   static bool validateGiveChickenLog({
     required TextEditingController giveChickenCountController,
+    required TextEditingController giveChickenWeightController,
+    required TextEditingController giveChickenPriceController,
   }) {
     final count = int.tryParse(giveChickenCountController.text) ?? 0;
+    final priceText = giveChickenPriceController.text.trim();
+    final weight = double.tryParse(giveChickenWeightController.text) ?? 0.0;
 
-    if (count <= 0) {
+    if (count <= 0 || priceText.isEmpty || weight <= 0) {
       return false;
+    } else {
+      final price = int.parse(priceText.replaceAll(',', ''));
+      if (price < 1000) {
+        return false;
+      }
     }
     return true;
   }

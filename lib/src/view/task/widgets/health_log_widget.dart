@@ -49,7 +49,9 @@ class _HealthLogWidgetState extends State<HealthLogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isEditable = widget.task.status == StatusDataConstant.inProgress;
+    final bool isEditable =
+        widget.task.status == StatusDataConstant.inProgress ||
+            widget.task.status == StatusDataConstant.overdue;
 
     return GestureDetector(
       onTap: () {

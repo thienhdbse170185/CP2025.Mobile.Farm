@@ -63,7 +63,7 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
           actions: [
             IconButton(
               icon: const Icon(Icons.close),
-              onPressed: () => context.go(RouteName.symptom),
+              onPressed: () => context.go(RouteName.home),
             ),
           ],
         ),

@@ -287,28 +287,28 @@ class _NotificationWidgetState extends State<NotificationWidget>
                         color: Colors.grey.shade700,
                         height: 1.4,
                       ),
-                      maxLines: 2,
+                      maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
-                    if (notification.cageId != null)
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.home_outlined,
-                            size: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            'Chuồng ${notification.cageId!.substring(0, 4)}',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey.shade600,
-                            ),
-                          ),
-                        ],
-                      ),
+                    // if (notification.cageId != null)
+                    //   Row(
+                    //     children: [
+                    //       Icon(
+                    //         Icons.home_outlined,
+                    //         size: 14,
+                    //         color: Colors.grey.shade600,
+                    //       ),
+                    //       const SizedBox(width: 4),
+                    //       Text(
+                    //         notification.cageId!.substring(0, 4),
+                    //         style: TextStyle(
+                    //           fontSize: 12,
+                    //           color: Colors.grey.shade600,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
                   ],
                 ),
               ),
