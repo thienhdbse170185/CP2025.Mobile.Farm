@@ -26,11 +26,15 @@ class PrescriptionRepository {
     }
   }
 
-  Future<bool> checkPrescriptionLastSession(
-      {required String prescriptionId}) async {
+  Future<bool> checkPrescriptionLastSession({
+    required String prescriptionId,
+    required String taskId,
+  }) async {
     try {
       return await apiClient.checkPrescriptionLastSession(
-          prescriptionId: prescriptionId);
+        prescriptionId: prescriptionId,
+        taskId: taskId,
+      );
     } on DioException {
       rethrow;
     }

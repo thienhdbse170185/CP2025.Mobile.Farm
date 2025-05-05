@@ -77,9 +77,9 @@ class _TaskWidgetState extends State<TaskWidget>
       'color': Colors.red,
     },
     {
-      'id': 'warning',
-      'name': 'Có vấn đề',
-      'color': Colors.amber,
+      'id': StatusDataConstant.cancelled,
+      'name': StatusDataConstant.cancelledVn,
+      'color': Colors.grey,
     }
   ];
 
@@ -278,7 +278,7 @@ class _TaskWidgetState extends State<TaskWidget>
             selectedDate,
             _selectedSession,
             1,
-            20,
+            100,
           ));
     } else {
       context.read<TaskBloc>().add(TaskEvent.getTasks(
@@ -289,7 +289,7 @@ class _TaskWidgetState extends State<TaskWidget>
             selectedDate,
             _selectedSession,
             1,
-            20,
+            100,
           ));
     }
   }
@@ -790,7 +790,7 @@ class _TaskWidgetState extends State<TaskWidget>
             labelStyle: TextStyle(fontSize: 12),
             visualDensity: VisualDensity.compact,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            label: Text(TimeUtils.getCurrentSessionName()),
+            label: Text(TimeUtils.getSessionName(_selectedSession!)),
             deleteIcon: Icon(Icons.close, size: 16),
             onDeleted: () {
               setState(() {
@@ -833,6 +833,11 @@ class _TaskWidgetState extends State<TaskWidget>
 
   // Combined filter bottom sheet
   void _showFilterBottomSheet() {
+    String tempTaskType = _selectedTaskType;
+    String tempCage = _selectedCage;
+    String tempStatus = _selectedStatus;
+    int? tempSession = _selectedSession;
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -844,148 +849,143 @@ class _TaskWidgetState extends State<TaskWidget>
         minChildSize: 0.5,
         maxChildSize: 0.9,
         expand: false,
-        builder: (context, scrollController) => Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 8),
-              width: 40,
-              height: 5,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Lọc công việc',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  if (_hasActiveFilters())
-                    TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _selectedTaskType = 'all';
-                          _selectedCage = 'all';
-                          _selectedStatus = 'all';
-                          _selectedSession = null;
-                        });
-                        _filterTasks();
-                        Navigator.pop(context);
-                      },
-                      child: Text('Xóa bộ lọc'),
-                    ),
-                ],
-              ),
-            ),
-            Divider(),
-            Expanded(
-              child: ListView(
-                controller: scrollController,
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  // Task Type Section
-                  _buildFilterSection(
-                    title: 'Loại công việc',
-                    icon: Icons.work_outline,
-                    options: _buildTaskTypeOptions(),
-                    selectedValue: _selectedTaskType,
-                    onSelected: (value) {
-                      setState(() {
-                        _selectedTaskType = value;
-                      });
-                    },
-                  ),
-                  Divider(),
-
-                  // Cage Section
-                  _buildFilterSection(
-                    title: 'Chuồng nuôi',
-                    icon: Icons.home_work_outlined,
-                    options: [
-                      {'id': 'all', 'name': 'Tất cả'},
-                      ...availableCageFilters.map((cage) => {
-                            'id': cage.cageId,
-                            'name': cage.cageName,
-                          }),
-                    ],
-                    selectedValue: _selectedCage,
-                    onSelected: (value) {
-                      setState(() {
-                        _selectedCage = value;
-                      });
-                    },
-                  ),
-                  Divider(),
-
-                  // Session Section
-                  _buildFilterSection(
-                    title: 'Buổi',
-                    icon: Icons.access_time,
-                    options: _sessions
-                        .map((s) => {
-                              'id': s['id'],
-                              'name': s['name'],
-                              'image': s['id'] == 1
-                                  ? 'assets/images/morning.png'
-                                  : s['id'] == 2
-                                      ? 'assets/images/noon.png'
-                                      : s['id'] == 3
-                                          ? 'assets/images/afternoon.png'
-                                          : s['id'] == 4
-                                              ? 'assets/images/moon.png'
-                                              : null,
-                            })
-                        .toList(),
-                    selectedValue: _selectedSession?.toString() ?? 'all',
-                    onSelected: (value) {
-                      setState(() {
-                        _selectedSession =
-                            value == 'all' ? null : int.parse(value);
-                      });
-                    },
-                  ),
-                  Divider(),
-
-                  // Status Section
-                  _buildFilterSection(
-                    title: 'Trạng thái',
-                    icon: Icons.flag_outlined,
-                    options: _statuses,
-                    selectedValue: _selectedStatus,
-                    onSelected: (value) {
-                      setState(() {
-                        _selectedStatus = value;
-                      });
-                    },
-                    isColoredOption: true,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  _filterTasks();
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  minimumSize: Size(double.infinity, 50),
+        builder: (context, scrollController) => StatefulBuilder(
+          builder: (context, setModalState) => Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 8),
+                width: 40,
+                height: 5,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: Text('Áp dụng'),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Lọc công việc',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    if (_hasActiveFilters())
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            _selectedTaskType = 'all';
+                            _selectedCage = 'all';
+                            _selectedStatus = 'all';
+                            _selectedSession = null;
+                          });
+                          _filterTasks();
+                          Navigator.pop(context);
+                        },
+                        child: Text('Xóa bộ lọc'),
+                      ),
+                  ],
+                ),
+              ),
+              Divider(),
+              Expanded(
+                child: ListView(
+                  controller: scrollController,
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  children: [
+                    // Task Type
+                    _buildFilterSection(
+                      title: 'Loại công việc',
+                      icon: Icons.work_outline,
+                      options: _buildTaskTypeOptions(),
+                      selectedValue: tempTaskType,
+                      onSelected: (val) => setModalState(() {
+                        tempTaskType = val;
+                      }),
+                    ),
+                    Divider(),
+                    // Cage
+                    _buildFilterSection(
+                      title: 'Chuồng nuôi',
+                      icon: Icons.home_work_outlined,
+                      options: [
+                        {'id': 'all', 'name': 'Tất cả'},
+                        ...availableCageFilters.map((cage) => {
+                              'id': cage.cageId,
+                              'name': cage.cageName,
+                            }),
+                      ],
+                      selectedValue: tempCage,
+                      onSelected: (val) => setModalState(() {
+                        tempCage = val;
+                      }),
+                    ),
+                    Divider(),
+                    // Session
+                    _buildFilterSection(
+                      title: 'Buổi',
+                      icon: Icons.access_time,
+                      options: _sessions
+                          .map((s) => {
+                                'id': s['id']!,
+                                'name': s['name']!,
+                                'image': s['id'] == 1
+                                    ? 'assets/images/morning.png'
+                                    : s['id'] == 2
+                                        ? 'assets/images/noon.png'
+                                        : s['id'] == 3
+                                            ? 'assets/images/afternoon.png'
+                                            : 'assets/images/moon.png',
+                              })
+                          .toList(),
+                      selectedValue: tempSession?.toString() ?? 'all',
+                      onSelected: (val) => setModalState(() {
+                        tempSession = (val == 'all') ? null : int.parse(val);
+                      }),
+                    ),
+                    Divider(),
+                    // Status
+                    _buildFilterSection(
+                      title: 'Trạng thái',
+                      icon: Icons.flag_outlined,
+                      options: _statuses,
+                      selectedValue: tempStatus,
+                      isColoredOption: true,
+                      onSelected: (val) => setModalState(() {
+                        tempStatus = val;
+                      }),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // commit the selections to your real state
+                    setState(() {
+                      _selectedTaskType = tempTaskType;
+                      _selectedCage = tempCage;
+                      _selectedSession = tempSession;
+                      _selectedStatus = tempStatus;
+                    });
+                    _filterTasks();
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    minimumSize: Size(double.infinity, 50),
+                  ),
+                  child: Text('Áp dụng'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -1264,7 +1264,7 @@ class _TaskWidgetState extends State<TaskWidget>
                     selectedDate,
                     _selectedSession,
                     1,
-                    20,
+                    100,
                   ));
             },
             child: const Text('Tải lại'),

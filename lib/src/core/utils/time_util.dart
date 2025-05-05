@@ -37,6 +37,21 @@ class TimeUtils {
     }
   }
 
+  static String getSessionName(int session) {
+    switch (session) {
+      case 1:
+        return 'Buổi sáng';
+      case 2:
+        return 'Buổi trưa';
+      case 3:
+        return 'Buổi chiều';
+      case 4:
+        return 'Buổi tối';
+      default:
+        return 'Buổi khuya';
+    }
+  }
+
   static String getCurrentSessionPathImage() {
     int currentSession = TimeUtils.getCurrentSession();
     String imagePath = '';

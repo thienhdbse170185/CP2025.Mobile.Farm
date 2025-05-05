@@ -49,11 +49,13 @@ class PrescriptionApiClient {
     }
   }
 
-  Future<bool> checkPrescriptionLastSession(
-      {required String prescriptionId}) async {
+  Future<bool> checkPrescriptionLastSession({
+    required String prescriptionId,
+    required String taskId,
+  }) async {
     try {
-      final response = await dio
-          .get('${ApiEndpoints.prescription}/$prescriptionId/is-last-session');
+      final response = await dio.get(
+          '${ApiEndpoints.prescription}/$prescriptionId/$taskId/is-last-session');
       if (response.statusCode == 200) {
         return response.data['result'];
       } else {

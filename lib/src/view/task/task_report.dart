@@ -873,7 +873,9 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               createHealthLogSuccess: () async {
                 log("Tạo log uống thuốc thành công!");
                 context.read<PrescriptionCubit>().checkPrescriptionLastSession(
-                    prescriptionId: widget.task.prescriptionId ?? '');
+                      prescriptionId: widget.task.prescriptionId ?? '',
+                      taskId: widget.task.id,
+                    );
               },
               createHealthLogFailure: (e) async {
                 if (_images.isNotEmpty) {

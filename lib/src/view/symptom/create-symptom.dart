@@ -171,28 +171,11 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
       context
           .read<TaskBloc>()
           .add(TaskEvent.getTaskById(widget.taskId!, onSuccess: (task) {
-            if (TimeUtils.isTimeInSession(
-                TimeUtils.customNow(), task.session)) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                context
-                    .read<FarmingBatchCubit>()
-                    .getFarmingBatchByCage(widget.cageId!);
-              });
-            } else {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return WarningConfirmationDialog(
-                      title: 'Hết thời gian làm việc',
-                      content: const Text(
-                          'Đã quá thời gian cho phép thực hiện công việc này, không thể tiếp tục.'),
-                      primaryButtonText: 'Quay về trang chủ',
-                      onPrimaryButtonPressed: () {
-                        context.go(RouteName.home);
-                      },
-                    );
-                  });
-            }
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              context
+                  .read<FarmingBatchCubit>()
+                  .getFarmingBatchByCage(widget.cageId!);
+            });
           }));
     } else {
       context.read<CageCubit>().getCagesByUserId();

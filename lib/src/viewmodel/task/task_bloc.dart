@@ -102,12 +102,16 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
         // Tạo danh sách task type không trùng lặp
         List<TaskType> taskTypeList = [];
-        for (var task in tasksMap.values.expand((element) => element)) {
-          if (!taskTypeList.any(
-              (element) => element.taskTypeId == task.taskType.taskTypeName)) {
-            taskTypeList.add(TaskType(
-                taskTypeId: task.taskType.taskTypeName,
-                taskTypeName: task.taskType.taskTypeName));
+        for (var task in tasksMap.values.expand((list) => list)) {
+          final id = task.taskType.taskTypeId;
+          // chỉ thêm khi chưa có id này trong taskTypeList
+          if (!taskTypeList.any((t) => t.taskTypeId == id)) {
+            taskTypeList.add(
+              TaskType(
+                taskTypeId: id,
+                taskTypeName: task.taskType.taskTypeName,
+              ),
+            );
           }
         }
         emit(TaskState.getTasksSuccess(tasksMap, cageList, taskTypeList));

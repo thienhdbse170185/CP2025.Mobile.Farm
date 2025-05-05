@@ -36,12 +36,17 @@ class PrescriptionCubit extends Cubit<PrescriptionState> {
     }
   }
 
-  Future<void> checkPrescriptionLastSession(
-      {required String prescriptionId}) async {
+  Future<void> checkPrescriptionLastSession({
+    required String prescriptionId,
+    required String taskId,
+  }) async {
     emit(PrescriptionState.checkPrescriptionLastSessionInProgress());
     try {
-      final isLastSession = await prescriptionRepository
-          .checkPrescriptionLastSession(prescriptionId: prescriptionId);
+      final isLastSession =
+          await prescriptionRepository.checkPrescriptionLastSession(
+        prescriptionId: prescriptionId,
+        taskId: taskId,
+      );
       emit(
         PrescriptionState.checkPrescriptionLastSessionSuccess(
             isLastSession: isLastSession),

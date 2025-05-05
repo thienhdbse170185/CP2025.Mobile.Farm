@@ -379,13 +379,6 @@ class _NotificationWidgetState extends State<NotificationWidget>
           },
           markReadNotificationInProgress: () {},
           markReadNotificationSuccess: (notification) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Đã đánh dấu thông báo là đã đọc'),
-                duration: Duration(seconds: 2),
-              ),
-            );
-
             _navigateToDetails(notification);
             _loadNotifications();
           },
