@@ -489,8 +489,9 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
       _farmingBatch = null;
       _selectedCageId = null;
     });
-    final totalQuantity =
-        (_growthStage?.quantity ?? 0) - (_farmingBatch?.affectedQuantity ?? 0);
+    final totalQuantity = (_growthStage?.quantity ?? 0) -
+        (_farmingBatch?.affectedQuantity ?? 0) -
+        (_growthStage?.deadQuantity ?? 0);
     context.go(RouteName.createDeathReportSuccess, extra: {
       'cageName': selectedCage,
       'deathCount': int.parse(_affectedController.text),
