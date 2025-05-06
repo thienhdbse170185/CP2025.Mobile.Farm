@@ -640,7 +640,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
         final log = DailyFoodUsageLogDto(
             recommendedWeight: recommendedWeight!.toDouble(),
             actualWeight: actualWeight.toDouble(),
-            notes: logController.text,
+            notes:
+                'Chủ trang trại: ${widget.task.description}. Nhân viên: ${logController.text}',
             logTime: DateTime.now(),
             photo: uploadImage?.path != null
                 ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
@@ -659,7 +660,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             taskId: widget.taskId,
             prescriptionId: prescriptionId ?? '',
             date: TimeUtils.customNow(),
-            notes: logController.text,
+            notes:
+                'Chủ trang trại: ${widget.task.description}. Nhân viên: ${logController.text}',
             photo: uploadImage?.path != null
                 ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
                 : '',
@@ -674,7 +676,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
           session: vaccineSchedule!.session,
           vaccineId: vaccineSchedule!.vaccineId,
           quantity: int.parse(_countAnimalVaccineController.text),
-          notes: logController.text,
+          notes:
+              'Chủ trang trại: ${widget.task.description}. Nhân viên: ${logController.text}',
           photo: uploadImage?.path != null
               ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
               : '',
@@ -702,7 +705,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               saleTypeId: saleType!.id,
               weight: weightMeatSell,
               taskId: widget.task.id,
-              note: logController.text,
+              note:
+                  'Chủ trang trại: ${widget.task.description}. Nhân viên: ${logController.text}',
             );
       } else if (widget.task.taskType.taskTypeName ==
           TaskTypeDataConstant.giveChicken) {
@@ -715,7 +719,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               weight: weightGiveChicken,
               saleTypeId: saleType!.id,
               taskId: widget.task.id,
-              note: logController.text,
+              note:
+                  'Chủ trang trại: ${widget.task.description}. Nhân viên: ${logController.text}',
             );
       }
     } else if (taskStatus == StatusDataConstant.pendingVn) {
@@ -1047,7 +1052,8 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
                         TaskTypeDataConstant.vaccin &&
                     widget.task.status == StatusDataConstant.inProgress) {
                   int realQuantity = (growthStage.quantity ?? 0) -
-                      (farmingBatch?.affectedQuantity ?? 0);
+                      (growthStage.affectQuantity ?? 0) -
+                      (growthStage.deadQuantity ?? 0);
                   setState(() {
                     _countAnimalVaccineController.text =
                         realQuantity.toString();

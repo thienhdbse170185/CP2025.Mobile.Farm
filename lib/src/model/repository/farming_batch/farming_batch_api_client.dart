@@ -81,4 +81,18 @@ class FarmingBatchApiClient {
       rethrow;
     }
   }
+
+  Future<FarmingBatchDto> getFarmingBatchById(String farmingBatchId) async {
+    try {
+      log('farmingBatchId: $farmingBatchId');
+      final response = await dio.get('/farmingbatchs/$farmingBatchId');
+      if (response.statusCode == 200) {
+        return FarmingBatchDto.fromJson(response.data['result']);
+      }
+      throw Exception('Failed to fetch farming batch by ID');
+    } on DioException catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
 }

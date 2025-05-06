@@ -11,6 +11,16 @@ class FarmingBatchCubit extends Cubit<FarmingBatchState> {
   FarmingBatchCubit({required this.repository})
       : super(const FarmingBatchState.initial());
 
+  Future<void> getFarmingBatchById(String farmingBatchId) async {
+    emit(const FarmingBatchState.getFarmingBatchByIdInProgress());
+    try {
+      final farmingBatch = await repository.getFarmingBatchById(farmingBatchId);
+      emit(FarmingBatchState.getFarmingBatchByIdSuccess(farmingBatch));
+    } catch (e) {
+      emit(FarmingBatchState.getFarmingBatchByIdFailure(e.toString()));
+    }
+  }
+
   Future<void> getFarmingBatchByCage(String cageId) async {
     emit(const FarmingBatchState.getFarmingBatchByCageInProgress());
     try {

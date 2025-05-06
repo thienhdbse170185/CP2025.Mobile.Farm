@@ -21,6 +21,8 @@ _$FarmingBatchDtoImpl _$$FarmingBatchDtoImplFromJson(
       cleaningFrequency: (json['cleaningFrequency'] as num).toInt(),
       quantity: (json['quantity'] as num).toInt(),
       affectedQuantity: (json['affectedQuantity'] as num?)?.toInt(),
+      cageName: json['cageName'] as String?,
+      currentQuantity: (json['currentQuantity'] as num?)?.toInt(),
       growthStageDetails: json['growthStageDetails'] == null
           ? null
           : GrowthStageDto.fromJson(
@@ -45,6 +47,8 @@ Map<String, dynamic> _$$FarmingBatchDtoImplToJson(
       'cleaningFrequency': instance.cleaningFrequency,
       'quantity': instance.quantity,
       'affectedQuantity': instance.affectedQuantity,
+      'cageName': instance.cageName,
+      'currentQuantity': instance.currentQuantity,
       'growthStageDetails': instance.growthStageDetails,
       'cage': instance.cage,
     };

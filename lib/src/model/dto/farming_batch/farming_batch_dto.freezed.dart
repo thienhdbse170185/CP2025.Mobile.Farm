@@ -32,6 +32,8 @@ mixin _$FarmingBatchDto {
   int get cleaningFrequency => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   int? get affectedQuantity => throw _privateConstructorUsedError;
+  String? get cageName => throw _privateConstructorUsedError;
+  int? get currentQuantity => throw _privateConstructorUsedError;
   GrowthStageDto? get growthStageDetails => throw _privateConstructorUsedError;
   CageDto? get cage => throw _privateConstructorUsedError;
 
@@ -64,6 +66,8 @@ abstract class $FarmingBatchDtoCopyWith<$Res> {
       int cleaningFrequency,
       int quantity,
       int? affectedQuantity,
+      String? cageName,
+      int? currentQuantity,
       GrowthStageDto? growthStageDetails,
       CageDto? cage});
 
@@ -98,6 +102,8 @@ class _$FarmingBatchDtoCopyWithImpl<$Res, $Val extends FarmingBatchDto>
     Object? cleaningFrequency = null,
     Object? quantity = null,
     Object? affectedQuantity = freezed,
+    Object? cageName = freezed,
+    Object? currentQuantity = freezed,
     Object? growthStageDetails = freezed,
     Object? cage = freezed,
   }) {
@@ -149,6 +155,14 @@ class _$FarmingBatchDtoCopyWithImpl<$Res, $Val extends FarmingBatchDto>
       affectedQuantity: freezed == affectedQuantity
           ? _value.affectedQuantity
           : affectedQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      cageName: freezed == cageName
+          ? _value.cageName
+          : cageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currentQuantity: freezed == currentQuantity
+          ? _value.currentQuantity
+          : currentQuantity // ignore: cast_nullable_to_non_nullable
               as int?,
       growthStageDetails: freezed == growthStageDetails
           ? _value.growthStageDetails
@@ -211,6 +225,8 @@ abstract class _$$FarmingBatchDtoImplCopyWith<$Res>
       int cleaningFrequency,
       int quantity,
       int? affectedQuantity,
+      String? cageName,
+      int? currentQuantity,
       GrowthStageDto? growthStageDetails,
       CageDto? cage});
 
@@ -245,6 +261,8 @@ class __$$FarmingBatchDtoImplCopyWithImpl<$Res>
     Object? cleaningFrequency = null,
     Object? quantity = null,
     Object? affectedQuantity = freezed,
+    Object? cageName = freezed,
+    Object? currentQuantity = freezed,
     Object? growthStageDetails = freezed,
     Object? cage = freezed,
   }) {
@@ -297,6 +315,14 @@ class __$$FarmingBatchDtoImplCopyWithImpl<$Res>
           ? _value.affectedQuantity
           : affectedQuantity // ignore: cast_nullable_to_non_nullable
               as int?,
+      cageName: freezed == cageName
+          ? _value.cageName
+          : cageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currentQuantity: freezed == currentQuantity
+          ? _value.currentQuantity
+          : currentQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
       growthStageDetails: freezed == growthStageDetails
           ? _value.growthStageDetails
           : growthStageDetails // ignore: cast_nullable_to_non_nullable
@@ -325,6 +351,8 @@ class _$FarmingBatchDtoImpl implements _FarmingBatchDto {
       required this.cleaningFrequency,
       required this.quantity,
       required this.affectedQuantity,
+      this.cageName,
+      this.currentQuantity,
       required this.growthStageDetails,
       required this.cage});
 
@@ -356,13 +384,17 @@ class _$FarmingBatchDtoImpl implements _FarmingBatchDto {
   @override
   final int? affectedQuantity;
   @override
+  final String? cageName;
+  @override
+  final int? currentQuantity;
+  @override
   final GrowthStageDto? growthStageDetails;
   @override
   final CageDto? cage;
 
   @override
   String toString() {
-    return 'FarmingBatchDto(id: $id, farmingbatchCode: $farmingbatchCode, name: $name, species: $species, startDate: $startDate, completeAt: $completeAt, estimatedTimeStart: $estimatedTimeStart, endDate: $endDate, status: $status, cleaningFrequency: $cleaningFrequency, quantity: $quantity, affectedQuantity: $affectedQuantity, growthStageDetails: $growthStageDetails, cage: $cage)';
+    return 'FarmingBatchDto(id: $id, farmingbatchCode: $farmingbatchCode, name: $name, species: $species, startDate: $startDate, completeAt: $completeAt, estimatedTimeStart: $estimatedTimeStart, endDate: $endDate, status: $status, cleaningFrequency: $cleaningFrequency, quantity: $quantity, affectedQuantity: $affectedQuantity, cageName: $cageName, currentQuantity: $currentQuantity, growthStageDetails: $growthStageDetails, cage: $cage)';
   }
 
   @override
@@ -389,6 +421,10 @@ class _$FarmingBatchDtoImpl implements _FarmingBatchDto {
                 other.quantity == quantity) &&
             (identical(other.affectedQuantity, affectedQuantity) ||
                 other.affectedQuantity == affectedQuantity) &&
+            (identical(other.cageName, cageName) ||
+                other.cageName == cageName) &&
+            (identical(other.currentQuantity, currentQuantity) ||
+                other.currentQuantity == currentQuantity) &&
             (identical(other.growthStageDetails, growthStageDetails) ||
                 other.growthStageDetails == growthStageDetails) &&
             (identical(other.cage, cage) || other.cage == cage));
@@ -410,6 +446,8 @@ class _$FarmingBatchDtoImpl implements _FarmingBatchDto {
       cleaningFrequency,
       quantity,
       affectedQuantity,
+      cageName,
+      currentQuantity,
       growthStageDetails,
       cage);
 
@@ -444,6 +482,8 @@ abstract class _FarmingBatchDto implements FarmingBatchDto {
       required final int cleaningFrequency,
       required final int quantity,
       required final int? affectedQuantity,
+      final String? cageName,
+      final int? currentQuantity,
       required final GrowthStageDto? growthStageDetails,
       required final CageDto? cage}) = _$FarmingBatchDtoImpl;
 
@@ -474,6 +514,10 @@ abstract class _FarmingBatchDto implements FarmingBatchDto {
   int get quantity;
   @override
   int? get affectedQuantity;
+  @override
+  String? get cageName;
+  @override
+  int? get currentQuantity;
   @override
   GrowthStageDto? get growthStageDetails;
   @override

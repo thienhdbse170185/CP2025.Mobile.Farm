@@ -353,21 +353,21 @@ class _QRScannerWidgetState extends State<QRScannerWidget>
                           });
                         },
                       ),
-                      Container(
-                        width: 1,
-                        height: 24,
-                        color: Colors.white.withOpacity(0.2),
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                      ),
-                      // Gallery Picker
-                      IconButton(
-                        icon: const Icon(
-                          Icons.image,
-                          color: Colors.white,
-                          size: 24,
-                        ),
-                        onPressed: _pickImage,
-                      ),
+                      // Container(
+                      //   width: 1,
+                      //   height: 24,
+                      //   color: Colors.white.withOpacity(0.2),
+                      //   margin: const EdgeInsets.symmetric(horizontal: 8),
+                      // ),
+                      // // Gallery Picker
+                      // IconButton(
+                      //   icon: const Icon(
+                      //     Icons.image,
+                      //     color: Colors.white,
+                      //     size: 24,
+                      //   ),
+                      //   onPressed: _pickImage,
+                      // ),
                     ],
                   ),
                 ),

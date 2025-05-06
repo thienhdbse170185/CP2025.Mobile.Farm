@@ -54,8 +54,9 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
     super.initState();
     if (widget.task.status == StatusDataConstant.inProgress) {
       setState(() {
-        expectedInjectedAnimal = widget.growthStage?.quantity ??
-            0 - (widget.farmingBatch?.affectedQuantity ?? 0);
+        expectedInjectedAnimal = (widget.growthStage?.quantity ?? 0) -
+            (widget.growthStage?.affectQuantity ?? 0) -
+            (widget.growthStage?.deadQuantity ?? 0);
         widget.countAnimalVaccineController.text =
             expectedInjectedAnimal.toString();
       });
@@ -187,7 +188,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                   context: context,
                   label: 'Thời gian báo cáo',
                   value: widget.logTime != null
-                      ? DateFormat('dd/MM/yyyy HH:mm').format(widget.logTime!)
+                      ? DateFormat('dd/MM/yyyy').format(widget.logTime!)
                       : 'Đang tải...',
                   icon: Icons.access_time,
                 ),

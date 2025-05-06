@@ -20,6 +20,8 @@ class FarmingBatchDto with _$FarmingBatchDto {
     required int cleaningFrequency,
     required int quantity,
     required int? affectedQuantity,
+    String? cageName,
+    int? currentQuantity,
     required GrowthStageDto? growthStageDetails,
     required CageDto? cage,
   }) = _FarmingBatchDto;

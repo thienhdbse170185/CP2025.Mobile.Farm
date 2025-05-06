@@ -554,8 +554,9 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
                 _growthStage = growthStage;
                 _affectedQuantity = (_farmingBatch?.quantity ?? 0) -
                     (growthStage.affectQuantity ?? 0);
-                _availableQuantity = (_growthStage?.quantity ??
-                    0 - (_farmingBatch?.affectedQuantity ?? 0));
+                _availableQuantity = (_growthStage?.quantity ?? 0) -
+                    (_farmingBatch?.affectedQuantity ?? 0) -
+                    (_growthStage?.deadQuantity ?? 0);
               });
               context.read<SymptomCubit>().getSymptoms();
               return null;

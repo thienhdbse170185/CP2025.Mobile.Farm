@@ -423,10 +423,8 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
                 _growthStage = growthStage;
                 _affectedQuantity = (_farmingBatch?.quantity ?? 0) -
                     (growthStage.affectQuantity ?? 0);
-                _availableQuantity = (_growthStage?.quantity ??
-                    0 -
-                        (_farmingBatch?.affectedQuantity ?? 0) -
-                        (_growthStage?.deadQuantity ?? 0));
+                _availableQuantity = (_growthStage?.quantity ?? 0) -
+                    (_growthStage?.deadQuantity ?? 0);
               });
               // context.read<SymptomCubit>().getSymptoms();
               return null;
@@ -489,9 +487,8 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
       _farmingBatch = null;
       _selectedCageId = null;
     });
-    final totalQuantity = (_growthStage?.quantity ?? 0) -
-        (_farmingBatch?.affectedQuantity ?? 0) -
-        (_growthStage?.deadQuantity ?? 0);
+    final totalQuantity =
+        (_growthStage?.quantity ?? 0) - (_growthStage?.deadQuantity ?? 0);
     context.go(RouteName.createDeathReportSuccess, extra: {
       'cageName': selectedCage,
       'deathCount': int.parse(_affectedController.text),
