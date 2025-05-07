@@ -1805,6 +1805,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
               farmingBatch: farmingBatch,
               readOnly: readOnly,
               vaccine: vaccine,
+              vaccineScheduleLog: vaccineScheduleLog,
               totalPrice: vaccineScheduleLog?.toltalPrice,
               onVaccineDetailPressed: () {
                 if (vaccine != null) {

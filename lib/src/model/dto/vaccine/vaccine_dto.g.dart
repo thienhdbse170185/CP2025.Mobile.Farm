@@ -12,6 +12,7 @@ _$VaccineDtoImpl _$$VaccineDtoImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       method: json['method'] as String,
       price: (json['price'] as num).toInt(),
+      pricePerDose: (json['pricePerDose'] as num).toInt(),
       ageStart: (json['ageStart'] as num).toInt(),
       ageEnd: (json['ageEnd'] as num).toInt(),
     );
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$VaccineDtoImplToJson(_$VaccineDtoImpl instance) =>
       'name': instance.name,
       'method': instance.method,
       'price': instance.price,
+      'pricePerDose': instance.pricePerDose,
       'ageStart': instance.ageStart,
       'ageEnd': instance.ageEnd,
     };

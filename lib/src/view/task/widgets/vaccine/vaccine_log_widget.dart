@@ -23,6 +23,7 @@ class VaccineLogWidget extends StatefulWidget {
       onVaccineDetailPressed; // Thêm callback khi nhấn vào chi tiết vắc xin
   final VaccineDto? vaccine;
   final DateTime? logTime;
+  final VaccineScheduleLogDto? vaccineScheduleLog;
 
   const VaccineLogWidget({
     super.key,
@@ -40,6 +41,7 @@ class VaccineLogWidget extends StatefulWidget {
     this.onVaccineDetailPressed, // Thêm vào constructor
     this.vaccine,
     this.logTime,
+    this.vaccineScheduleLog,
   });
 
   @override
@@ -565,12 +567,11 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
 
     final formattedTotalPrice =
         formatCurrency((widget.totalPrice ?? 0).toInt());
-    final countText = widget.countAnimalVaccineController.text.isEmpty
-        ? '0'
-        : widget.countAnimalVaccineController.text;
     final formatter = NumberFormat('#,###', 'vi_VN');
     final formattedPrice =
-        '${formatter.format(widget.vaccine?.price ?? 0)} đ/liều';
+        '${formatter.format(widget.vaccine?.price ?? 0)} đ/chai';
+    final formattedPricePerDose =
+        '${formatter.format(widget.vaccine?.pricePerDose ?? 0)} đ/liều';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -625,6 +626,26 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
+                    'Giá trên 1 liều:',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
+                  ),
+                  Text(
+                    formattedPricePerDose,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
                     'Số lượng:',
                     style: TextStyle(
                       fontSize: 14,
@@ -632,7 +653,7 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                     ),
                   ),
                   Text(
-                    '$countText con',
+                    '${widget.vaccineScheduleLog?.quantity} con',
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

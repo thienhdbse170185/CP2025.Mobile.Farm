@@ -143,13 +143,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         final userId = userBox.get(UserDataConstant.userIdKey);
 
         final request = GetTaskRequest(
+          KeySearch: event.keySearch,
           CageId: event.cageId,
           DueDateFrom: _formatDateSlash(TimeUtils.customNow()),
           DueDateTo: _formatDateSlash(TimeUtils.customNow()),
           AssignedToUserId: userId,
           Session: currentSession,
           PageNumber: 1,
-          PageSize: 20,
+          PageSize: 100,
         );
 
         final tasks = await repository.fetchTasks(request);

@@ -169,9 +169,8 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
   void initState() {
     super.initState();
     context.read<UserBloc>().add(const UserEvent.getUserProfile());
-    context
-        .read<TaskBloc>()
-        .add(TaskEvent.getTasksByScanQRCode('', '', '', widget.cage.id, 1, 20));
+    context.read<TaskBloc>().add(
+        TaskEvent.getTasksByScanQRCode('', '', '', widget.cage.id, 1, 100));
   }
 
   @override
@@ -252,7 +251,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             _selectedTaskType == 'all' ? null : _selectedTaskType,
             widget.cage.id,
             1,
-            20,
+            100,
           ));
     } else {
       context.read<TaskBloc>().add(TaskEvent.getTasksByScanQRCode(
@@ -261,7 +260,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
             _selectedTaskType == 'all' ? null : _selectedTaskType,
             widget.cage.id,
             1,
-            20,
+            100,
           ));
     }
   }
@@ -612,6 +611,9 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                               controller: _searchController,
                               onChanged: (query) {
                                 // Your existing search logic
+                                setState(() {
+                                  _filterTasks(searchQuery: query);
+                                });
                               },
                               backgroundColor: WidgetStateProperty.all(
                                 Theme.of(context).colorScheme.surface,
@@ -631,6 +633,7 @@ class _TaskQRCodeWidgetState extends State<TaskQRCodeWidget> {
                                             _searchController.clear();
                                           });
                                           // Your existing clear search logic
+                                          _filterTasks(searchQuery: '');
                                         },
                                       )
                                     : SizedBox.shrink(),

@@ -24,6 +24,7 @@ mixin _$VaccineDto {
   String get name => throw _privateConstructorUsedError;
   String get method => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
+  int get pricePerDose => throw _privateConstructorUsedError;
   int get ageStart => throw _privateConstructorUsedError;
   int get ageEnd => throw _privateConstructorUsedError;
 
@@ -48,6 +49,7 @@ abstract class $VaccineDtoCopyWith<$Res> {
       String name,
       String method,
       int price,
+      int pricePerDose,
       int ageStart,
       int ageEnd});
 }
@@ -71,6 +73,7 @@ class _$VaccineDtoCopyWithImpl<$Res, $Val extends VaccineDto>
     Object? name = null,
     Object? method = null,
     Object? price = null,
+    Object? pricePerDose = null,
     Object? ageStart = null,
     Object? ageEnd = null,
   }) {
@@ -90,6 +93,10 @@ class _$VaccineDtoCopyWithImpl<$Res, $Val extends VaccineDto>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      pricePerDose: null == pricePerDose
+          ? _value.pricePerDose
+          : pricePerDose // ignore: cast_nullable_to_non_nullable
               as int,
       ageStart: null == ageStart
           ? _value.ageStart
@@ -116,6 +123,7 @@ abstract class _$$VaccineDtoImplCopyWith<$Res>
       String name,
       String method,
       int price,
+      int pricePerDose,
       int ageStart,
       int ageEnd});
 }
@@ -137,6 +145,7 @@ class __$$VaccineDtoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? method = null,
     Object? price = null,
+    Object? pricePerDose = null,
     Object? ageStart = null,
     Object? ageEnd = null,
   }) {
@@ -156,6 +165,10 @@ class __$$VaccineDtoImplCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      pricePerDose: null == pricePerDose
+          ? _value.pricePerDose
+          : pricePerDose // ignore: cast_nullable_to_non_nullable
               as int,
       ageStart: null == ageStart
           ? _value.ageStart
@@ -177,6 +190,7 @@ class _$VaccineDtoImpl implements _VaccineDto {
       required this.name,
       required this.method,
       required this.price,
+      required this.pricePerDose,
       required this.ageStart,
       required this.ageEnd});
 
@@ -192,13 +206,15 @@ class _$VaccineDtoImpl implements _VaccineDto {
   @override
   final int price;
   @override
+  final int pricePerDose;
+  @override
   final int ageStart;
   @override
   final int ageEnd;
 
   @override
   String toString() {
-    return 'VaccineDto(id: $id, name: $name, method: $method, price: $price, ageStart: $ageStart, ageEnd: $ageEnd)';
+    return 'VaccineDto(id: $id, name: $name, method: $method, price: $price, pricePerDose: $pricePerDose, ageStart: $ageStart, ageEnd: $ageEnd)';
   }
 
   @override
@@ -210,6 +226,8 @@ class _$VaccineDtoImpl implements _VaccineDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.method, method) || other.method == method) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.pricePerDose, pricePerDose) ||
+                other.pricePerDose == pricePerDose) &&
             (identical(other.ageStart, ageStart) ||
                 other.ageStart == ageStart) &&
             (identical(other.ageEnd, ageEnd) || other.ageEnd == ageEnd));
@@ -217,8 +235,8 @@ class _$VaccineDtoImpl implements _VaccineDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, method, price, ageStart, ageEnd);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, method, price, pricePerDose, ageStart, ageEnd);
 
   /// Create a copy of VaccineDto
   /// with the given fields replaced by the non-null parameter values.
@@ -242,6 +260,7 @@ abstract class _VaccineDto implements VaccineDto {
       required final String name,
       required final String method,
       required final int price,
+      required final int pricePerDose,
       required final int ageStart,
       required final int ageEnd}) = _$VaccineDtoImpl;
 
@@ -256,6 +275,8 @@ abstract class _VaccineDto implements VaccineDto {
   String get method;
   @override
   int get price;
+  @override
+  int get pricePerDose;
   @override
   int get ageStart;
   @override

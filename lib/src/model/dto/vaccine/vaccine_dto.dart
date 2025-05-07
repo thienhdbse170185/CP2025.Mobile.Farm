@@ -10,6 +10,7 @@ class VaccineDto with _$VaccineDto {
     required String name,
     required String method,
     required int price,
+    required int pricePerDose,
     required int ageStart,
     required int ageEnd,
   }) = _VaccineDto;
