@@ -15,7 +15,7 @@ _$VaccineScheduleDtoImpl _$$VaccineScheduleDtoImplFromJson(
       vaccineName: json['vaccineName'] as String,
       date: DateTime.parse(json['date'] as String),
       quantity: (json['quantity'] as num).toInt(),
-      applicationAge: (json['applicationAge'] as num).toInt(),
+      applicationAge: (json['applicationAge'] as num?)?.toInt(),
       totalPrice: (json['totalPrice'] as num?)?.toDouble(),
       session: (json['session'] as num).toInt(),
       status: json['status'] as String,

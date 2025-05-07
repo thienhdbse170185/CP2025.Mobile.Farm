@@ -180,7 +180,7 @@ class _CreateDeathReportScreenState extends State<CreateDeathReportScreen> {
   }
 
   String get formattedDate =>
-      DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
+      DateFormat('EEEE, dd/MM/yyyy', 'vi').format(TimeUtils.customNow());
 
   void _submitForm() {
     showDialog(

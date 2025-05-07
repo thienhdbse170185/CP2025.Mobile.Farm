@@ -196,7 +196,7 @@ class _CreateSymptomWidgetState extends State<CreateSymptomWidget> {
   }
 
   String get formattedDate =>
-      DateFormat('EEEE, dd/MM/yyyy', 'vi').format(DateTime.now());
+      DateFormat('EEEE, dd/MM/yyyy', 'vi').format(TimeUtils.customNow());
 
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();

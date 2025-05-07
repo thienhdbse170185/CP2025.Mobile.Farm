@@ -12,7 +12,7 @@ class VaccineScheduleDto with _$VaccineScheduleDto {
     required String vaccineName,
     required DateTime date,
     required int quantity,
-    required int applicationAge,
+    required int? applicationAge,
     double? totalPrice,
     required int session,
     required String status,

@@ -827,7 +827,7 @@ class _GiveChickenLogWidgetState extends State<GiveChickenLogWidget> {
                               ? DateFormat('dd/MM/yyyy').format(
                                   DateTime.tryParse(
                                           widget.growthStage!.ageStartDate) ??
-                                      DateTime.now())
+                                      TimeUtils.customNow())
                               : 'N/A',
                           icon: Icons.calendar_month,
                         ),
@@ -841,7 +841,7 @@ class _GiveChickenLogWidgetState extends State<GiveChickenLogWidget> {
                               ? DateFormat('dd/MM/yyyy').format(
                                   DateTime.tryParse(
                                           widget.growthStage!.ageEndDate) ??
-                                      DateTime.now())
+                                      TimeUtils.customNow())
                               : 'N/A',
                           icon: Icons.calendar_month,
                         ),

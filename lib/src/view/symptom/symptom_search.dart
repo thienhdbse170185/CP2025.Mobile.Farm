@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/common/widgets/linear_icons.dart';
 import 'package:smart_farm/src/core/router.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/response/medical_symptom/medical_symptom_response.dart';
 import 'package:smart_farm/src/viewmodel/medical_symptom/medical_symptom_cubit.dart';
 
@@ -145,7 +146,7 @@ class _SymptomSearchWidgetState extends State<SymptomSearchWidget> {
                               final picked = await showDateRangePicker(
                                 context: context,
                                 firstDate: DateTime(2020),
-                                lastDate: DateTime.now(),
+                                lastDate: TimeUtils.customNow(),
                               );
                               if (picked != null) {
                                 setModalState(() {

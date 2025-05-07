@@ -642,7 +642,7 @@ class _TaskReportScreenState extends State<TaskReportScreen> {
             actualWeight: actualWeight.toDouble(),
             notes:
                 'Chủ trang trại: ${widget.task.description}. Nhân viên: ${logController.text}',
-            logTime: DateTime.now(),
+            logTime: TimeUtils.customNow(),
             photo: uploadImage?.path != null
                 ? '${dotenv.env['IMAGE_STORAGE_URL']}${uploadImage!.path}'
                 : '',

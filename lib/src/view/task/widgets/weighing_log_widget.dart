@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_farm/src/core/constants/status_data_constant.dart';
+import 'package:smart_farm/src/core/utils/time_util.dart';
 import 'package:smart_farm/src/model/dto/farming_batch/farming_batch_dto.dart';
 import 'package:smart_farm/src/model/dto/growth_stage/growth_stage_dto.dart';
 import 'package:smart_farm/src/model/dto/task/task_have_cage_name/task_have_cage_name.dart';
@@ -376,7 +377,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                               ? DateFormat('dd/MM/yyyy').format(
                                   DateTime.tryParse(
                                           widget.growthStage!.ageStartDate) ??
-                                      DateTime.now())
+                                      TimeUtils.customNow())
                               : 'N/A',
                           icon: Icons.calendar_month,
                         ),
@@ -390,7 +391,7 @@ class _WeighingLogWidgetState extends State<WeighingLogWidget> {
                               ? DateFormat('dd/MM/yyyy').format(
                                   DateTime.tryParse(
                                           widget.growthStage!.ageEndDate) ??
-                                      DateTime.now())
+                                      TimeUtils.customNow())
                               : 'N/A',
                           icon: Icons.calendar_month,
                         ),

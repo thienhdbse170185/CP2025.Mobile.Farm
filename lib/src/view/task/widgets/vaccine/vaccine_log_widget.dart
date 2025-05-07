@@ -305,6 +305,15 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                   icon: Icons.medication_liquid,
                 ),
               ),
+              const SizedBox(width: 24),
+              Expanded(
+                child: _buildInfoItem(
+                  context: context,
+                  label: 'Giai đoạn phát triển',
+                  value: widget.growthStage?.name ?? "Đang tải...",
+                  icon: Icons.pets,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -338,28 +347,6 @@ class _VaccineLogWidgetState extends State<VaccineLogWidget> {
                           : widget.vaccineSchedule!.session == 3
                               ? Icons.wb_cloudy
                               : Icons.nightlight_round,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: _buildInfoItem(
-                  context: context,
-                  label: 'Giai đoạn phát triển',
-                  value: widget.growthStage?.name ?? "Đang tải...",
-                  icon: Icons.pets,
-                ),
-              ),
-              const SizedBox(width: 24),
-              Expanded(
-                child: _buildInfoItem(
-                  context: context,
-                  label: 'Độ tuổi tiêm',
-                  value: '${widget.vaccineSchedule!.applicationAge} ngày tuổi',
-                  icon: Icons.monitor_weight_outlined,
                 ),
               ),
             ],

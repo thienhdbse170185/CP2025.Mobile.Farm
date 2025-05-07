@@ -915,7 +915,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                               ? DateFormat('dd/MM/yyyy').format(
                                   DateTime.tryParse(
                                           widget.growthStage!.ageStartDate) ??
-                                      DateTime.now())
+                                      TimeUtils.customNow())
                               : 'N/A',
                           icon: Icons.calendar_month,
                         ),
@@ -929,7 +929,7 @@ class _AnimalSaleLogWidgetState extends State<AnimalSaleLogWidget> {
                               ? DateFormat('dd/MM/yyyy').format(
                                   DateTime.tryParse(
                                           widget.growthStage!.ageEndDate) ??
-                                      DateTime.now())
+                                      TimeUtils.customNow())
                               : 'N/A',
                           icon: Icons.calendar_month,
                         ),

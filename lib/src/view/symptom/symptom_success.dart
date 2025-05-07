@@ -545,43 +545,30 @@ class _SymptomSuccessWidgetState extends State<SymptomSuccessWidget>
       ),
       child: Row(
         children: [
-          Expanded(
-            child: OutlinedButton.icon(
-              onPressed: () {
-                if (widget.fromTask && widget.taskId != null) {
-                  // Return to specific task detail page
+          if (widget.fromTask)
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: () {
                   context.go(
                     '${RouteName.taskDetail}?taskId=${widget.taskId}',
                     extra: widget.taskId,
                   );
-                } else {
-                  context.go(RouteName.home);
-                }
-              },
-              icon: Icon(
-                widget.fromTask ? Icons.assignment : Icons.home,
-                size: 18,
+                },
+                icon: Icon(
+                  Icons.assignment,
+                  size: 18,
+                ),
+                label: Text('Quay lại c.việc'),
               ),
-              label: Text(widget.fromTask ? 'Quay lại c.việc' : 'Về trang chủ'),
             ),
-          ),
           const SizedBox(width: 8),
           Expanded(
             child: FilledButton.icon(
               onPressed: () {
-                if (widget.fromTask && widget.taskId != null) {
-                  // Create another symptom for the same cage
-                  context.push(RouteName.createSymptom, extra: {
-                    'cageName': widget.cageName,
-                    'taskId': widget.taskId,
-                    'fromTask': true
-                  });
-                } else {
-                  context.push(RouteName.createSymptom);
-                }
+                context.go(RouteName.home);
               },
-              icon: const Icon(Icons.add, size: 18),
-              label: const Text('Tạo báo cáo mới'),
+              icon: const Icon(Icons.home, size: 18),
+              label: const Text('Về trang chủ'),
             ),
           ),
         ],

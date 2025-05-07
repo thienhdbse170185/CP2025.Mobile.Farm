@@ -26,7 +26,7 @@ mixin _$VaccineScheduleDto {
   String get vaccineName => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
-  int get applicationAge => throw _privateConstructorUsedError;
+  int? get applicationAge => throw _privateConstructorUsedError;
   double? get totalPrice => throw _privateConstructorUsedError;
   int get session => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $VaccineScheduleDtoCopyWith<$Res> {
       String vaccineName,
       DateTime date,
       int quantity,
-      int applicationAge,
+      int? applicationAge,
       double? totalPrice,
       int session,
       String status});
@@ -81,7 +81,7 @@ class _$VaccineScheduleDtoCopyWithImpl<$Res, $Val extends VaccineScheduleDto>
     Object? vaccineName = null,
     Object? date = null,
     Object? quantity = null,
-    Object? applicationAge = null,
+    Object? applicationAge = freezed,
     Object? totalPrice = freezed,
     Object? session = null,
     Object? status = null,
@@ -111,10 +111,10 @@ class _$VaccineScheduleDtoCopyWithImpl<$Res, $Val extends VaccineScheduleDto>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
-      applicationAge: null == applicationAge
+      applicationAge: freezed == applicationAge
           ? _value.applicationAge
           : applicationAge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       totalPrice: freezed == totalPrice
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ abstract class _$$VaccineScheduleDtoImplCopyWith<$Res>
       String vaccineName,
       DateTime date,
       int quantity,
-      int applicationAge,
+      int? applicationAge,
       double? totalPrice,
       int session,
       String status});
@@ -171,7 +171,7 @@ class __$$VaccineScheduleDtoImplCopyWithImpl<$Res>
     Object? vaccineName = null,
     Object? date = null,
     Object? quantity = null,
-    Object? applicationAge = null,
+    Object? applicationAge = freezed,
     Object? totalPrice = freezed,
     Object? session = null,
     Object? status = null,
@@ -201,10 +201,10 @@ class __$$VaccineScheduleDtoImplCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
-      applicationAge: null == applicationAge
+      applicationAge: freezed == applicationAge
           ? _value.applicationAge
           : applicationAge // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       totalPrice: freezed == totalPrice
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
@@ -252,7 +252,7 @@ class _$VaccineScheduleDtoImpl implements _VaccineScheduleDto {
   @override
   final int quantity;
   @override
-  final int applicationAge;
+  final int? applicationAge;
   @override
   final double? totalPrice;
   @override
@@ -328,7 +328,7 @@ abstract class _VaccineScheduleDto implements VaccineScheduleDto {
       required final String vaccineName,
       required final DateTime date,
       required final int quantity,
-      required final int applicationAge,
+      required final int? applicationAge,
       final double? totalPrice,
       required final int session,
       required final String status}) = _$VaccineScheduleDtoImpl;
@@ -349,7 +349,7 @@ abstract class _VaccineScheduleDto implements VaccineScheduleDto {
   @override
   int get quantity;
   @override
-  int get applicationAge;
+  int? get applicationAge;
   @override
   double? get totalPrice;
   @override
