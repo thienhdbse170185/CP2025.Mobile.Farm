@@ -92,7 +92,8 @@ class VaccineDetailDialog extends StatelessWidget {
 
   Widget _buildVaccineInfo(BuildContext context) {
     final formatter = NumberFormat('#,###', 'vi_VN');
-    final formattedPrice = '${formatter.format(vaccineDetail.price)} đ/liều';
+    final formattedPrice =
+        '${formatter.format(vaccineDetail.pricePerDose)} đ/liều';
 
     return Container(
       padding: const EdgeInsets.all(16),
